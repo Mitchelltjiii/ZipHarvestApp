@@ -5,7 +5,7 @@ const app = express(); // create express app
 const port = process.env.PORT || 3000
 const mysql = require('mysql');                                      
 
-var router = express.Router();
+var router = app.Router();
 
 app.use('/', router);
 
@@ -40,7 +40,7 @@ connection.connect((err) => {
 
 connection.end();
 
-app.get('/api/harvestbatches', (req, res) => {
+app.get('http://localhost:8080/api/harvestbatches', (req, res) => {
   
   console.log('API/HARVESTBATCHES');
 
