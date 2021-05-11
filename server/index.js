@@ -5,7 +5,7 @@ const app = express(); // create express app
 const port = process.env.PORT || 3000
 const mysql = require('mysql');                                      
 
-var router = app.Router();
+var router = express.Router();
 
 app.use('/', router);
 
