@@ -1,9 +1,64 @@
-import React from 'react';
+import React, {useStyles} from 'react'
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
 
 function LogIn(){
+
+    const useStyles = makeStyles((theme) => ({
+        container: {
+          padding: theme.spacing(3),
+        },
+      }));
+
+    const classes = useStyles();
+
+    const [username, setUsername] = React.useState('');
+    const [password, setPassword] = React.useState('');
+
+    const handleLogIn = (event) => {
+		logIn();
+	  };
+    
+    function logIn(){
+		
+	}
+
+    const handleUsername = (event) => {
+		setUsername(event.target.value);
+	  };
+
+    const handlePassword = (event) => {
+		setPassword(event.target.value);
+	  };
+
+
+
     return(
-        <div>Login</div>
+        <Container className={classes.container} maxWidth="xs">
+        <div class="centered">
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                    <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"/>
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined"/>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn} maxWidth="200px">
+                Log in
+              </Button>
+            </Grid>
+          </Grid>
+        </div>
+      </Container>
     )
 }
 
-export default LogIn
+export default LogIn;
