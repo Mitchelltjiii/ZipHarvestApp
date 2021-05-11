@@ -5,6 +5,9 @@ const app = express(); // create express app
 const port = process.env.PORT || 3000
 const mysql = require('mysql');                                      
 
+var router = express.Router();
+
+app.use('/', router);
 
 // add middlewares
 app.use(express.static(path.join(__dirname, "..", "build")));
