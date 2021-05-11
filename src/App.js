@@ -12,9 +12,10 @@ export default class App extends React.Component {
     loggedIn: 'x'
   };
   componentDidMount() {
+    /*
     axios.get("/users.json").then((response) => {
       this.setState({ users: response.data });
-    });
+    });*/
   }
 
   render() {
