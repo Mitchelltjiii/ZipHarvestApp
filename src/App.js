@@ -2,9 +2,9 @@ import React from "react";
 import axios from "axios";
 import "./styles.css";
 
-import Header from './componentsNew/Header.component';
-import Outer from './componentsNew/Outer.component';
-import LogIn from './componentsNew/LogIn.component';
+import Header from './components/Header.component';
+import Outer from './components/Outer.component';
+import LogIn from './components/LogIn.component';
 
 export default class App extends React.Component {
   state = {
