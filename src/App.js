@@ -28,8 +28,8 @@ export default class App extends React.Component {
 	  let showForm;
     if (loggedIn != '') {
 	  	showForm = <div>
-	    <Header currentPageSet={SetCurrentPage} currentPage={currentPage}/>
-	    <Outer currentPage={currentPage} setCurrentPage={SetCurrentPage} plantMap={plantMap}/>
+	    <Header/>
+	    <Outer/>
     </div>;
     }else{
 		showForm = <div><LogIn></LogIn></div>;
