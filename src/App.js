@@ -16,6 +16,7 @@ export default class App extends React.Component {
     axios.get("/users.json").then((response) => {
       this.setState({ users: response.data });
     });*/
+    //<Outer  currentPage={this.state.currentPage} setCurrentPage={SetCurrentPage}/>
   }
 
   render() {
@@ -30,7 +31,7 @@ export default class App extends React.Component {
     if (this.state.loggedIn != '') {
 	  	showForm = <div>
 	    <Header currentPageSet={SetCurrentPage} currentPage={this.state.currentPage}/>
-	    <Outer  currentPage={this.state.currentPage} setCurrentPage={SetCurrentPage}/>
+	    
     </div>;
     }else{
 		showForm = <div><LogIn></LogIn></div>;
