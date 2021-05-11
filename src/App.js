@@ -9,7 +9,8 @@ import LogIn from './components/LogIn.component';
 export default class App extends React.Component {
   state = {
     currentPage: 'harvest-form',
-    loggedIn: 'x'
+    loggedIn: 'x',
+    harvestBatches: []
   };
   componentDidMount() {
     /*
@@ -17,9 +18,22 @@ export default class App extends React.Component {
       this.setState({ users: response.data });
     });*/
     //<Outer  currentPage={this.state.currentPage} setCurrentPage={SetCurrentPage}/>
+    this.getHarvestBatches();
+
+  }
+
+  getHarvestBatches = () => {
+    // Get the hbs and store them in state
+    console.log("Get Harvest Batches");
+    fetch('/api/harvestbatches')
+      .then(res => res.json())
+      .then(harvestBatches => this.setState({ harvestBatches }));
   }
 
   render() {
+
+    console.log("Harvest Batches In State: " + this.state.harvestBatches);
+
 
 	  const SetCurrentPage = (currentPage) => {
 		

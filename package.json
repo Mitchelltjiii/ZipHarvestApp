@@ -17,6 +17,7 @@
     "react-scripts": "3.4.1",
     "reactstrap": "^8.9.0"
   },
+  "proxy": "http://localhost:3000",
   "scripts": {
     "start-client": "react-scripts start",
     "build": "react-scripts build",
