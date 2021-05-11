@@ -20,6 +20,9 @@ export default class App extends React.Component {
     //<Outer  currentPage={this.state.currentPage} setCurrentPage={SetCurrentPage}/>
     this.getHarvestBatches();
 
+    console.log("Retrieved Harvest Batches: " + this.state.harvestBatches);
+
+
   }
 
   getHarvestBatches = () => {
@@ -28,6 +31,7 @@ export default class App extends React.Component {
     fetch('/api/harvestbatches')
       .then(res => res.json())
       .then(harvestBatches => this.setState({ harvestBatches }));
+    console.log("Get Harvest Batches Done");
   }
 
   render() {
