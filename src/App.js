@@ -35,7 +35,7 @@ export default class App extends React.Component {
        }
 
     })
-      .then(res => res.json())
+      .then(res => res.text())
       .then(harvestBatches => this.setState({ harvestBatches }));
     console.log("Get Harvest Batches Done");
   }
