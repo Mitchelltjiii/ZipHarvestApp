@@ -38,9 +38,20 @@ connection.connect((err) => {
 connection.end();
 
 app.get('/api/harvestbatches', (req, res) => {
+  
+  console.log('API/HARVESTBATCHES');
+
   const queryString = 'select * from harvestbatches';
   var hbString = '';
 
+  connection.connect((err) => {
+    if (err) {
+        console.log('Connection error message: ' + err.message);
+        return;
+    }
+    console.log('Connected!')
+  });
+  
   connection.query(queryString, (err, res, fields) => {
     if (err) {
      console.log('Error: ' + err);
@@ -54,4 +65,6 @@ app.get('/api/harvestbatches', (req, res) => {
   });
 
   res.json(hbString);
+
+  connection.end();
 });
