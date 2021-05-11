@@ -25,9 +25,9 @@ export default class App extends React.Component {
 	  	this.state.currentPage = (currentPage);
 	  }
 
-	  console.log("Logged In: " + loggedIn);
+	  console.log("Logged In: " + this.state.loggedIn);
 	  let showForm;
-    if (loggedIn != '') {
+    if (this.state.loggedIn != '') {
 	  	showForm = <div>
 	    <Header/>
 	    <Outer/>
