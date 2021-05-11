@@ -28,7 +28,13 @@ export default class App extends React.Component {
   getHarvestBatches = () => {
     // Get the hbs and store them in state
     console.log("Get Harvest Batches");
-    fetch('/api/harvestbatches')
+    fetch('/api/harvestbatches', {
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+
+    })
       .then(res => res.json())
       .then(harvestBatches => this.setState({ harvestBatches }));
     console.log("Get Harvest Batches Done");
