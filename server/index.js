@@ -33,3 +33,5 @@ connection.connect((err) => {
   }
   console.log('Connected!')
 });
+
+connection.end();
