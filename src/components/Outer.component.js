@@ -6,11 +6,13 @@ import Landing from './Landing.component';
 class Outer extends Component {
 
   constructor(props) {
+    super(props);
     this.state = {plants: [], harvestedPlants: [], harvestBatches: [], isLoading: true};
     this.remove = this.remove.bind(this);
   }
 
   componentDidMount() {
+      /*
     this.setState({isLoading: true});
 
     console.log("FETCHING PLANTS")
@@ -30,6 +32,7 @@ class Outer extends Component {
     fetch('api/harvestbatches')
       .then(response => response.json())
       .then(data => this.setState({harvestBatches: data, isLoading: false}));
+      */
   }
 
   async remove(id) {
