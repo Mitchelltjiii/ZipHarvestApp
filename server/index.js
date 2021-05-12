@@ -7,8 +7,12 @@ const mysql = require('mysql');
 
 const hbQueryString = 'select * from harvestbatches';
 var hbString = '';
+
 const plantsQueryString = 'select * from plants';
 var plantsString = '';
+
+const harvestedPlantsQueryString = 'select * from harvestedplants';
+var harvestedPlantsString = '';
 
 // add middlewares
 app.use(express.static(path.join(__dirname, "..", "build")));
@@ -20,6 +24,10 @@ app.get('/api/harvestbatches', (req, res) => {
 
 app.get('/api/plants', (req, res) => {
   res.json(plantsString);
+});
+
+app.get('/api/harvestedplants', (req, res) => {
+  res.json(harvestedPlantsString);
 });
 
 app.get('*', (req, res) => {
@@ -70,6 +78,18 @@ connection.query(plantsQueryString, (err, res, fields) => {
  console.log(res);
  console.log('===========================================');
  plantsString = res;
+});
+
+connection.query(harvestedPlantsQueryString, (err, res, fields) => {
+  if (err) {
+   console.log('Error: ' + err);
+    return;
+ }
+ console.log('Here is the result of the query:');
+ console.log('===========================================');
+ console.log(res);
+ console.log('===========================================');
+ harvestedPlantsString = res;
 });
 
 connection.end();
