@@ -45,32 +45,6 @@ export default class App extends React.Component {
       .then(harvestedPlants => this.setState({ harvestedPlants }));
   }
 
-  handlePost = () => {
-    console.log("Handle Post");
-
-    let plantItem = this.getPlantItem();
-    console.log("PLANT ITEM: " + JSON.stringify(plantItem));
-
-    fetch('/api/plant', {
-      method: (plantItem.id) ? 'PUT' : 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(plantItem),
-    });
-  }
-
-  getPlantItem(){
-		console.log("Enter getPlantitem")
-
-		let plant = {
-			strain: 'JOHNNY',
-			tag: '666'
-		  };
-		return plant;
-	}
-
   render() {
 
     console.log("Harvest Batches In State: " + this.state.harvestBatches);
@@ -82,6 +56,36 @@ export default class App extends React.Component {
 		
 	  	this.state.currentPage = (currentPage);
 	  }
+
+    const handlePost = (event) => {
+      doPost();
+      };
+
+    function doPost(){
+      console.log("Handle Post");
+  
+      let plantItem = getPlantItem();
+      console.log("PLANT ITEM: " + JSON.stringify(plantItem));
+  
+      fetch('/api/plant', {
+        method: (plantItem.id) ? 'PUT' : 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(plantItem),
+      });
+    }
+
+    function getPlantItem(){
+      console.log("Enter getPlantitem")
+  
+      let plant = {
+        strain: 'JOHNNY',
+        tag: '666'
+        };
+      return plant;
+    }
 
 	  console.log("Logged In: " + this.state.loggedIn);
 	  let showForm;
