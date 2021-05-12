@@ -48,7 +48,10 @@ export default class App extends React.Component {
   doPost(){
     console.log("Handle Post");
 
-    let plantItem = getPlantItem();
+    let plantItem = {
+      strain: 'JOHNNY',
+      tag: '666'
+      };    
     console.log("PLANT ITEM: " + JSON.stringify(plantItem));
 
     fetch('/api/plant', {
@@ -76,16 +79,6 @@ export default class App extends React.Component {
     const handlePost = (event) => {
       this.doPost();
       };
-
-    function getPlantItem(){
-      console.log("Enter getPlantitem")
-  
-      let plant = {
-        strain: 'JOHNNY',
-        tag: '666'
-        };
-      return plant;
-    }
 
 	  console.log("Logged In: " + this.state.loggedIn);
 	  let showForm;
