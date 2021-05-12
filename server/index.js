@@ -34,12 +34,11 @@ app.get('/api/harvestbatches', (req, res) => {
    console.log(res);
    console.log('===========================================');
    hbString = res;
+
+   connection.end();
+
+   res.json(hbString);
   });
-
-  //res.json(hbString);
-  res.json("{json?}");
-
-  connection.end();
 });
 
 app.get('*', (req, res) => {
