@@ -30,6 +30,43 @@ app.get('/api/harvestedplants', (req, res) => {
   res.json(harvestedPlantsString);
 });
 
+app.get('/api/plant', (req, res) => {
+  const Plant = sequelize.define('plant', {	
+	  id: {
+            type: Sequelize.INTEGER,
+			autoIncrement: true,
+            primaryKey: true
+    },
+	  strain: {
+			type: Sequelize.STRING
+	  },
+	  tag: {
+		type: Sequelize.STRING
+  	}
+	});
+
+  let plant = {};
+
+    try{
+        console.log("CREATE PLANT");
+        // Building plant object from upoading request's body
+        plant.strain = req.body.strain;
+        plant.tag = req.body.tag;
+    
+        // Save to MySQL database
+        Plant.create(plant, 
+                          {attributes: ['id', 'strain', 'tag']})
+                    .then(result => {    
+                      res.status(200).json(result);
+                    });
+    }catch(error){
+        res.status(500).json({
+            message: "Fail!",
+            error: error.message
+        });
+    }
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });

@@ -5,6 +5,7 @@ import "./styles.css";
 import Header from './components/Header.component';
 import Outer from './components/Outer.component';
 import LogIn from './components/LogIn.component';
+import { Button } from "@material-ui/core";
 
 export default class App extends React.Component {
   state = {
@@ -44,10 +45,37 @@ export default class App extends React.Component {
       .then(harvestedPlants => this.setState({ harvestedPlants }));
   }
 
+  handlePost = () => {
+    console.log("Handle Post");
+
+    let plantItem = this.getPlantItem();
+    console.log("PLANT ITEM: " + JSON.stringify(plantItem));
+
+    fetch('/api/plant', {
+      method: (plantItem.id) ? 'PUT' : 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(plantItem),
+    });
+  }
+
+  getPlantItem(){
+		console.log("Enter getPlantitem")
+
+		let plant = {
+			strain: 'JOHNNY',
+			tag: '666'
+		  };
+		return plant;
+	}
+
   render() {
 
     console.log("Harvest Batches In State: " + this.state.harvestBatches);
     console.log("Plants In State: " + this.state.plants);
+    console.log("HarvestedPlants In State: " + this.state.harvestedPlants);
 
 
 	  const SetCurrentPage = (currentPage) => {
@@ -60,7 +88,7 @@ export default class App extends React.Component {
     if (this.state.loggedIn != '') {
 	  	showForm = <div>
 	    <Header currentPageSet={SetCurrentPage} currentPage={this.state.currentPage}/>
-	    
+	    <Button onClick={handlePost}>Post</Button>
     </div>;
     }else{
 		showForm = <div><LogIn></LogIn></div>;
