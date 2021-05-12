@@ -42,6 +42,7 @@ app.get('/api/plant', (req, res) => {
         // Building plant object from upoading request's body
         plant.strain = req.body.strain;
         plant.tag = req.body.tag;
+        plant.id = "9";
     
         // Save to MySQL database
         Plant.create(plant, 
