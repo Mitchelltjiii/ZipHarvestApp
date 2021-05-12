@@ -5,7 +5,11 @@ const app = express(); // create express app
 const port = process.env.PORT || 3000
 const mysql = require('mysql');            
 
-app.get('api/harvestbatches', (req, res) => {
+// add middlewares
+app.use(express.static(path.join(__dirname, "..", "build")));
+app.use(express.static("public"));
+
+app.get('/api/harvestbatches', (req, res) => {
   
   console.log('API/HARVESTBATCHES');
 
@@ -37,11 +41,7 @@ app.get('api/harvestbatches', (req, res) => {
   connection.end();
 });
 
-// add middlewares
-app.use(express.static(path.join(__dirname, "..", "build")));
-app.use(express.static("public"));
-
-app.use((req, res, next) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });
 
