@@ -10,7 +10,8 @@ export default class App extends React.Component {
   state = {
     currentPage: 'harvest-form',
     loggedIn: 'x',
-    harvestBatches: []
+    harvestBatches: [],
+    plants: []
   };
   componentDidMount() {
     /*
@@ -19,6 +20,7 @@ export default class App extends React.Component {
     });*/
     //<Outer  currentPage={this.state.currentPage} setCurrentPage={SetCurrentPage}/>
     this.getHarvestBatches();
+    this.getPlants();
 
     console.log("Retrieved Harvest Batches: " + this.state.harvestBatches);
 
@@ -32,6 +34,12 @@ export default class App extends React.Component {
       .then(res => res.text())
       .then(harvestBatches => this.setState({ harvestBatches }));
     console.log("Get Harvest Batches Done");
+  }
+
+  getPlants = () => {
+    fetch('/api/plants')
+      .then(res => res.text())
+      .then(plants => this.setState({ plants }));
   }
 
   render() {

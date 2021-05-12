@@ -5,17 +5,21 @@ const app = express(); // create express app
 const port = process.env.PORT || 3000
 const mysql = require('mysql');  
 
-const queryString = 'select * from harvestbatches';
-  var hbString = '';
+const hbQueryString = 'select * from harvestbatches';
+var hbString = '';
+const plantsQueryString = 'select * from plants';
+var plantsString = '';
 
 // add middlewares
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
 
 app.get('/api/harvestbatches', (req, res) => {
-  
-  console.log('API/HARVESTBATCHES');
   res.json(hbString);
+});
+
+app.get('/api/plants', (req, res) => {
+  res.json(plantsString);
 });
 
 app.get('*', (req, res) => {
@@ -35,7 +39,8 @@ const connection = mysql.createConnection({
   port: '25060'
 });
 
-connection.connect((err) => {
+connection.connect((err) => {const queryString = 'select * from harvestbatches';
+var hbString = '';
   if (err) {
       console.log('Connection error message: ' + err.message);
       return;
@@ -43,7 +48,7 @@ connection.connect((err) => {
   console.log('Connected!')
 });
 
-connection.query(queryString, (err, res, fields) => {
+connection.query(hbQueryString, (err, res, fields) => {
   if (err) {
    console.log('Error: ' + err);
     return;
@@ -53,6 +58,18 @@ connection.query(queryString, (err, res, fields) => {
  console.log(res);
  console.log('===========================================');
  hbString = res;
+});
+
+connection.query(plantsQueryString, (err, res, fields) => {
+  if (err) {
+   console.log('Error: ' + err);
+    return;
+ }
+ console.log('Here is the result of the query:');
+ console.log('===========================================');
+ console.log(res);
+ console.log('===========================================');
+ plantsString = res;
 });
 
 connection.end();
