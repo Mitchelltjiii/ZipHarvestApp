@@ -5,6 +5,10 @@ const app = express(); // create express app
 const port = process.env.PORT || 3000
 const mysql = require('mysql');  
 
+const db = require('../app/config/db.config');
+
+const Plant = db.Plant;
+
 const hbQueryString = 'select * from harvestbatches';
 var hbString = '';
 
@@ -31,20 +35,6 @@ app.get('/api/harvestedplants', (req, res) => {
 });
 
 app.get('/api/plant', (req, res) => {
-  const Plant = sequelize.define('plant', {	
-	  id: {
-            type: Sequelize.INTEGER,
-			autoIncrement: true,
-            primaryKey: true
-    },
-	  strain: {
-			type: Sequelize.STRING
-	  },
-	  tag: {
-		type: Sequelize.STRING
-  	}
-	});
-
   let plant = {};
 
     try{
