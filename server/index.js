@@ -36,7 +36,8 @@ app.get('/api/harvestbatches', (req, res) => {
    hbString = res;
   });
 
-  res.json(hbString);
+  //res.json(hbString);
+  res.json("{json?}");
 
   connection.end();
 });
