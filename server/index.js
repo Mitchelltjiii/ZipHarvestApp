@@ -38,6 +38,7 @@ app.get('/api/plant', (req, res) => {
   let plant = {};
 
   res.json(req);
+  /*
     try{
         console.log("CREATE PLANT");
         // Building plant object from upoading request's body
@@ -55,7 +56,7 @@ app.get('/api/plant', (req, res) => {
             message: "Fail!",
             error: error.message
         });
-    }
+    }*/
 });
 
 app.get('*', (req, res) => {
