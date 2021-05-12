@@ -37,12 +37,12 @@ app.get('/api/harvestedplants', (req, res) => {
 app.get('/api/plant', (req, res) => {
   let plant = {};
 
+  res.json(req);
     try{
         console.log("CREATE PLANT");
         // Building plant object from upoading request's body
         plant.strain = req.body.strain;
         plant.tag = req.body.tag;
-        plant.id = "9";
     
         // Save to MySQL database
         Plant.create(plant, 
