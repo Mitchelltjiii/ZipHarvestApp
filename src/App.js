@@ -55,7 +55,10 @@ export default class App extends React.Component {
       };    
     console.log("PLANT ITEM: " + JSON.stringify(plantItem));
 
-    fetch('/api/plant')
+    fetch('/api/plant', {
+      method: (plantItem.id) ? 'PUT' : 'POST',
+      body: JSON.stringify(plantItem)
+    })
     .then(res => res.text())
     .then(responseFromPlants => this.setState({ responseFromPlants }));
   }
