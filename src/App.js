@@ -57,7 +57,7 @@ export default class App extends React.Component {
 
     fetch('/api/plant', {
       method: (plantItem.id) ? 'PUT' : 'POST',
-      body: JSON.stringify(plantItem),
+      body: JSON.stringify(plantItem)
     }).then(res => res.text())
     .then(responseFromPlants => this.setState({ responseFromPlants }));
   }
@@ -67,6 +67,7 @@ export default class App extends React.Component {
     console.log("Harvest Batches In State: " + this.state.harvestBatches);
     console.log("Plants In State: " + this.state.plants);
     console.log("HarvestedPlants In State: " + this.state.harvestedPlants);
+    console.log("ResponseFromPlant In State: " + this.state.responseFromPlants);
 
 
 	  const SetCurrentPage = (currentPage) => {
