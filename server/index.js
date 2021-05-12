@@ -37,7 +37,7 @@ app.get('/api/harvestedplants', (req, res) => {
 app.get('/api/plant', (req, res) => {
   let plant = {};
 
-  res.json(req);
+  res.json("Plant POST");
   /*
     try{
         console.log("CREATE PLANT");
