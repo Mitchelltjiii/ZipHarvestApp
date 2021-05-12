@@ -57,6 +57,10 @@ export default class App extends React.Component {
 
     fetch('/api/plant', {
       method: (plantItem.id) ? 'PUT' : 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(plantItem)
     })
     .then(res => res.text())
