@@ -13,7 +13,8 @@ export default class App extends React.Component {
     loggedIn: 'x',
     harvestBatches: [],
     plants: [],
-    harvestedPlants: []
+    harvestedPlants: [],
+    responseFromPlants: ''
   };
   componentDidMount() {
     /*
@@ -45,7 +46,7 @@ export default class App extends React.Component {
       .then(harvestedPlants => this.setState({ harvestedPlants }));
   }
 
-  doPost(){
+  doPost = () => {
     console.log("Handle Post");
 
     let plantItem = {
@@ -56,12 +57,9 @@ export default class App extends React.Component {
 
     fetch('/api/plant', {
       method: (plantItem.id) ? 'PUT' : 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
       body: JSON.stringify(plantItem),
-    });
+    }).then(res => res.text())
+    .then(responseFromPlants => this.setState({ responseFromPlants }));
   }
 
   render() {
