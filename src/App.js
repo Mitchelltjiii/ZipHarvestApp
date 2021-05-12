@@ -45,6 +45,7 @@ export default class App extends React.Component {
   render() {
 
     console.log("Harvest Batches In State: " + this.state.harvestBatches);
+    console.log("Plants In State: " + this.state.plants);
 
 
 	  const SetCurrentPage = (currentPage) => {
