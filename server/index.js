@@ -24,7 +24,7 @@ app.get('/api/harvestbatches', (req, res) => {
     console.log('Connected!')
   });
   
-  connection.query(queryString, (err, res, fields) => {
+  await connection.query(queryString, (err, res, fields) => {
     if (err) {
      console.log('Error: ' + err);
       return;
