@@ -22,6 +22,12 @@ var harvestedPlantsString = '';
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
 
+let router = require('./app/routers/router.js');
+
+app.use('/', router);
+
+/*
+
 app.get('/api/harvestbatches', (req, res) => {
   res.json(hbString);
 });
@@ -99,6 +105,7 @@ app.post('/api/plant', async (req, res) => {
     });
   }
 });
+*/
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
