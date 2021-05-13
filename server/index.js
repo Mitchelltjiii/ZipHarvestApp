@@ -26,10 +26,11 @@ app.use('/', router);
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
 
+/*
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });
-
+*/
 /*
 
 app.get('/api/harvestbatches', (req, res) => {
