@@ -20,17 +20,16 @@ var harvestedPlantsString = '';
 
 let router = require('../app/routers/router');
 
-
 // add middlewares
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
 
-app.use('/', router);
-
-
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });
+
+app.use('/', router);
+
 
 /*
 
