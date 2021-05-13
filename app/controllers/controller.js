@@ -45,7 +45,30 @@ exports.getPlant = (req, res) => {
 
 exports.plants = (req, res) => {
     // find all Plant information from
-    res.json("{GET PLANTS FROM CONTROLLER}");
+    //res.json("{GET PLANTS FROM CONTROLLER}");
+
+    const plantsQueryString = 'select * from plants';
+    var plantsString = '';
+
+    const connection = mysql.createConnection({
+        host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
+        user     : 'doadmin',
+        password : 'xo6wgtevue3qzrmw',
+        database : 'defaultdb',
+        port: '25060'
+      });
+      
+      connection.query(plantsQueryString, (err, res, fields) => {
+        if (err) {
+         console.log('Error: ' + err);
+          return;
+       }
+       console.log('Here is the result of the query:');
+       console.log('===========================================');
+       console.log(res);
+       console.log('===========================================');
+       plantsString = res;
+      }).then(res.json(plantsString)).then(connection.end());
     /* 
     try{
         Plant.findAll({attributes: ['id', 'strain', 'tag']})
