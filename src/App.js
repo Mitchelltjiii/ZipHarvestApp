@@ -22,9 +22,9 @@ export default class App extends React.Component {
       this.setState({ users: response.data });
     });*/
     //<Outer  currentPage={this.state.currentPage} setCurrentPage={SetCurrentPage}/>
-    this.getHarvestBatches();
+    //this.getHarvestBatches();
     this.getPlants();
-    this.getHarvestedPlants();
+    //this.getHarvestedPlants();
   }
 
   getHarvestBatches = () => {
