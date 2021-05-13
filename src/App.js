@@ -35,7 +35,7 @@ export default class App extends React.Component {
   }
 
   getPlants = () => {
-    fetch('/api/plants')
+    fetch('api/plants')
       .then(res => res.text())
       .then(data => this.setState({plants: data}));
   }
