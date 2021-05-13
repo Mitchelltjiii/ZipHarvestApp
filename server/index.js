@@ -40,6 +40,7 @@ app.put('/api/plant', (req, res) => {
     try{
         console.log("CREATE PLANT");
         // Building plant object from upoading request's body
+        plant.id = 9;
         plant.strain = "strain1";
         plant.tag = "tag1";
     
