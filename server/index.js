@@ -22,6 +22,10 @@ var harvestedPlantsString = '';
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "build", "index.html"));
+});
+
 let router = require('../app/routers/router');
 
 app.use('/', router);
@@ -107,15 +111,12 @@ app.post('/api/plant', async (req, res) => {
 });
 */
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "build", "index.html"));
-});
-
 // start express server on port
 app.listen(port, () => {
   console.log("server started on port " + port);
 });
 
+/*
 const connection = mysql.createConnection({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
   user     : 'doadmin',
@@ -169,4 +170,4 @@ connection.query(harvestedPlantsQueryString, (err, res, fields) => {
  harvestedPlantsString = res;
 });
 
-connection.end();
+connection.end();*/

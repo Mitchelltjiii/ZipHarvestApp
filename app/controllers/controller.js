@@ -1,8 +1,8 @@
 const db = require('../config/db.config.js');
 
 const Plant = db.Plant;
-const HarvestedPlant = db.HarvestedPlant;
-const HarvestBatch = db.HarvestBatch;
+//const HarvestedPlant = db.HarvestedPlant;
+//const HarvestBatch = db.HarvestBatch;
 
 exports.createPlant = (req, res) => {
     let plant = {};
@@ -127,7 +127,7 @@ exports.updatePlant = async (req, res) => {
         });
     }
 }
-
+/*
 //HarvestedPlant
 exports.createHarvestedPlant = (req, res) => {
     let plant = {};
@@ -388,3 +388,4 @@ exports.updateHarvestBatch = async (req, res) => {
         });
     }
 }
+*/
