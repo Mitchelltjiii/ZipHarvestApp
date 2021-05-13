@@ -18,6 +18,14 @@ var plantsString = '';
 const harvestedPlantsQueryString = 'select * from harvestedplants';
 var harvestedPlantsString = '';
 
+const cors = require('cors');
+const corsOptions = {
+  origin: 'http://localhost:4200',
+  optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions));
+
 let router = require('../app/routers/router');
 
 // add middlewares
@@ -29,6 +37,25 @@ app.use('/', router);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });
+
+db.sequelize.sync({force: true}).then(() => {
+  console.log('Drop and Resync with { force: true }');
+  Plant.sync().then(() => {
+    const plants = [
+      { id: '1', strain: 'Runtz', tag: '001'},
+      { id: '2', strain: 'Venom OG', tag: '002'},
+      { id: '3', strain: 'Bruce Banner', tag: '003'},
+      { id: '4', strain: 'Key Lime Pie', tag: '004'},
+      { id: '5', strain: 'Gelato 41', tag: '005'},
+      { id: '6', strain: 'Sour Sunset Sherbert', tag: '006'}
+    ]
+    
+    for(let i=0; i<plants.length; i++){
+      Plant.create(plants[i]);
+    }
+  });
+}); 
+
 
 
 
