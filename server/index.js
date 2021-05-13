@@ -36,7 +36,6 @@ app.get('/api/harvestedplants', (req, res) => {
 
 app.put('/api/plant', (req, res) => {
   let plant = {};
-
     try{
         console.log("CREATE PLANT");
         // Building plant object from upoading request's body
