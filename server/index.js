@@ -40,8 +40,8 @@ app.put('/api/plant', (req, res) => {
     try{
         console.log("CREATE PLANT");
         // Building plant object from upoading request's body
-        plant.strain = req.body.strain;
-        plant.tag = req.body.tag;
+        plant.strain = "strain1";
+        plant.tag = "tag1";
     
         // Save to MySQL database
         Plant.create(plant, 
