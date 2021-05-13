@@ -57,7 +57,7 @@ app.put('/api/plant', (req, res) => {
     }
 });
 
-app.post('/api/plant', (req, res) => {
+app.post('/api/plant', async (req, res) => {
   try{
     console.log("UPDATE PLANT");
 
