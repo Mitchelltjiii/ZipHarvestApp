@@ -37,8 +37,6 @@ app.get('/api/harvestedplants', (req, res) => {
 app.put('/api/plant', (req, res) => {
   let plant = {};
 
-  res.json("Plant PUT");
-  /*
     try{
         console.log("CREATE PLANT");
         // Building plant object from upoading request's body
@@ -56,32 +54,50 @@ app.put('/api/plant', (req, res) => {
             message: "Fail!",
             error: error.message
         });
-    }*/
+    }
 });
 
 app.post('/api/plant', (req, res) => {
-  let plant = {};
+  try{
+    console.log("UPDATE PLANT");
 
-  res.json("Plant POST");
-  /*
-    try{
-        console.log("CREATE PLANT");
-        // Building plant object from upoading request's body
-        plant.strain = req.body.strain;
-        plant.tag = req.body.tag;
-    
-        // Save to MySQL database
-        Plant.create(plant, 
-                          {attributes: ['id', 'strain', 'tag']})
-                    .then(result => {    
-                      res.status(200).json(result);
-                    });
-    }catch(error){
-        res.status(500).json({
-            message: "Fail!",
-            error: error.message
+    if(!plant){
+        // return a response to client
+        res.status(404).json({
+            message: "Not Found for updating a plant with id = " + plantId,
+            error: "404"
         });
-    }*/
+    } else {    
+        // update new change to database
+        let updatedObject = {
+            id: req.body.id,
+            strain: req.body.strain,
+            tag: req.body.tag
+        }
+        let result = await Plant.update(updatedObject,
+                          { 
+                            returning: true, 
+                            where: {id: req.body.id},
+                            attributes: ['id', 'strain', 'tag']
+                          }
+                        );
+
+        // return the response to client
+        if(!result) {
+            res.status(500).json({
+                message: "Error -> Can not update a plant with id = " + req.params.id,
+                error: "Can NOT Updated",
+            });
+        }
+
+        res.status(200).json(result);
+    }
+  } catch(error){
+    res.status(500).json({
+        message: "Error -> Can not update a plant with id = " + req.params.id,
+        error: error.message
+    });
+  }
 });
 
 app.get('*', (req, res) => {
