@@ -70,7 +70,7 @@ app.post('/api/plant', async (req, res) => {
     } else {    
         // update new change to database
         let updatedObject = {
-            id: req.body.id,
+            id: "9",
             strain: req.body.strain,
             tag: req.body.tag
         }
