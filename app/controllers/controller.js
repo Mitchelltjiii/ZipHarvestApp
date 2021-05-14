@@ -49,7 +49,7 @@ exports.plants = (req, res) => {
     try{
         Plant.findAll({attributes: ['id', 'strain', 'tag']})
         .then(plants => {
-            res.status(200).json(plants);
+            res.json(plants);
         })
     }catch(error) {
         // log on console

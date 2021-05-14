@@ -26,7 +26,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));*/
 
-let router = require('../app/routers/router');
+const router = require('../app/routers/router');
 
 // add middlewares
 app.use(express.static(path.join(__dirname, "..", "build")));
@@ -38,7 +38,7 @@ app.use('/', router);
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });
-
+/*
 db.sequelize.sync({force: true}).then(() => {
   console.log('Drop and Resync with { force: true }');
   Plant.sync().then(() => {
@@ -55,7 +55,7 @@ db.sequelize.sync({force: true}).then(() => {
       Plant.create(plants[i]);
     }
   });
-}); 
+});*/ 
 
 
 
