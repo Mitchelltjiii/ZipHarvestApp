@@ -45,8 +45,8 @@ exports.getPlant = (req, res) => {
 
 exports.plants = (req, res) => {
     // find all Plant information from
-    //res.json("{GET PLANTS FROM CONTROLLER}");
-    try{
+    res.json("{GET PLANTS FROM CONTROLLER}");
+    /*try{
         Plant.findAll({attributes: ['id', 'strain', 'tag']})
         .then(plants => {
             res.json(plants);
@@ -59,7 +59,7 @@ exports.plants = (req, res) => {
             message: "Error!",
             error: error
         });
-    }
+    }*/
 }
 
 exports.deletePlant = async (req, res) => {
