@@ -4,10 +4,10 @@ let router = express.Router();
  
 const controller = require('../controllers/controller.js');
 
-router.post('/api/plant', controller.createPlant);
+//router.post('/api/plant', controller.createPlant);
 router.get('/api/plant/:id', controller.getPlant);
 router.get('/api/plants', controller.plants);
-router.put('/api/plant', controller.updatePlant);
+//router.put('/api/plant', controller.updatePlant);
 router.delete('/api/plant/:id', controller.deletePlant);
 
 router.post('/api/plant', async function(req, res, next) {
