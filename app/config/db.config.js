@@ -8,7 +8,6 @@ const sequelize = new Sequelize(env.database, env.db.username, env.db.password, 
   host: env.db.host,
   port: env.db.port,
   dialect: env.dialect,
-  dialectModule: "mysql2",
   operatorsAliases: false,
  
   pool: {
