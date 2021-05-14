@@ -4,6 +4,26 @@ const Plant = db.Plant;
 //const HarvestedPlant = db.HarvestedPlant;
 //const HarvestBatch = db.HarvestBatch;
 
+exports.create = (req, res) => {
+    const result = await db.query(
+      `INSERT INTO plants 
+      (strain, tag) 
+      VALUES 
+      (?, ?)`, 
+      [
+        "Strain1", "Tag1"
+      ]
+    );
+  
+    let message = 'Error in creating programming language';
+  
+    if (result.affectedRows) {
+      message = 'Programming language created successfully';
+    }
+  
+    return {message};
+  }
+
 exports.createPlant = (req, res) => {
     let plant = {};
 
