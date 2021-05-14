@@ -11,7 +11,18 @@ router.put('/api/plant', controller.updatePlant);
 router.delete('/api/plant/:id', controller.deletePlant);
 
 router.post('/api/plant', async function(req, res, next) {
-    res.json("{LMAO FUCK ME}")
+    res.json("{LMAO FUCK ME POST}")
+    /*
+    try {
+      res.json(await controller.create(req.body));
+    } catch (err) {
+      console.error(`Error while creating programming language`, err.message);
+      next(err);
+    }*/
+  });
+
+router.put('/api/plant', async function(req, res, next) {
+    res.json("{LMAO FUCK ME PUT}")
     /*
     try {
       res.json(await controller.create(req.body));
