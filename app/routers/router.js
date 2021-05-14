@@ -10,6 +10,17 @@ router.get('/api/plants', controller.plants);
 router.put('/api/plant', controller.updatePlant);
 router.delete('/api/plant/:id', controller.deletePlant);
 
+router.post('/api/plant', async function(req, res, next) {
+    res.json("{LMAO FUCK ME}")
+    /*
+    try {
+      res.json(await controller.create(req.body));
+    } catch (err) {
+      console.error(`Error while creating programming language`, err.message);
+      next(err);
+    }*/
+  });
+
 /*
 
 router.post('/api/harvestedplant', controller.createHarvestedPlant);
