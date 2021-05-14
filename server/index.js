@@ -32,6 +32,17 @@ const router = require('../app/routers/router');
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
 
+app.get('/api/harvestbatches', (req, res) => {
+  res.json(hbString);
+});
+
+app.get('/api/plants', (req, res) => {
+  res.json(plantsString);
+});
+
+app.get('/api/harvestedplants', (req, res) => {
+  res.json(harvestedPlantsString);
+});
 
 app.use('/', router);
 
@@ -146,7 +157,7 @@ app.listen(port, () => {
   console.log("server started on port " + port);
 });
 
-/*
+
 const connection = mysql.createConnection({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
   user     : 'doadmin',
@@ -200,4 +211,4 @@ connection.query(harvestedPlantsQueryString, (err, res, fields) => {
  harvestedPlantsString = res;
 });
 
-connection.end();*/
+connection.end();
