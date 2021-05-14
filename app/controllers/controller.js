@@ -4,7 +4,7 @@ const Plant = db.Plant;
 //const HarvestedPlant = db.HarvestedPlant;
 //const HarvestBatch = db.HarvestBatch;
 
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     const result = await db.query(
       `INSERT INTO plants 
       (strain, tag) 
