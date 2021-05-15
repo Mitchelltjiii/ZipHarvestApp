@@ -10,6 +10,10 @@ router.get('/api/plants', controller.plants);
 //router.put('/api/plant', controller.updatePlant);
 router.delete('/api/plant/:id', controller.deletePlant);
 
+router.post('/posttest', (req, res) => {
+  res.send('test worked');
+});
+
 router.post('/api/plant', async function(req, res, next) {
     try {
       res.json(await controller.create());

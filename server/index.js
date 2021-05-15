@@ -38,10 +38,6 @@ app.use(express.urlencoded({
 
 app.use(express.json());
 
-app.post('/posttest', (req, res) => {
-  res.send('test worked');
-});
-
 app.get('/api/harvestbatches', (req, res) => {
   res.json(hbString);
 });
@@ -54,7 +50,7 @@ app.get('/api/harvestedplants', (req, res) => {
   res.json(harvestedPlantsString);
 });
 
-//app.use('/', router);
+app.use('/', router);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
