@@ -5,6 +5,8 @@ const Plant = db.Plant;
 //const HarvestBatch = db.HarvestBatch;
 
 exports.create = async (req, res) => {
+    return "Got to create";
+    /*
     let strain = 'strain1';
     let tag = 'tag1';
     const result = await db.query(
@@ -23,7 +25,7 @@ exports.create = async (req, res) => {
       message = 'Programming language created successfully';
     }
   
-    return {message};
+    return {message};*/
   }
 
 exports.createPlant = (req, res) => {
