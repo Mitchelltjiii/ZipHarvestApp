@@ -5,15 +5,15 @@ const Plant = db.Plant;
 //const HarvestBatch = db.HarvestBatch;
 
 exports.create = async (req, res) => {
-    return "{exports.create}";
-    /*
+    let strain = 'strain1';
+    let tag = 'tag1';
     const result = await db.query(
       `INSERT INTO plants 
       (strain, tag) 
       VALUES 
       (?, ?)`, 
       [
-        "Strain1", "Tag1"
+        strain, tag
       ]
     );
   
@@ -23,7 +23,7 @@ exports.create = async (req, res) => {
       message = 'Programming language created successfully';
     }
   
-    return {message};*/
+    return {message};
   }
 
 exports.createPlant = (req, res) => {
