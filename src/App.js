@@ -56,7 +56,7 @@ export default class App extends React.Component {
     console.log("PLANT ITEM: " + JSON.stringify(plantItem));
 //method: (plantItem.id) ? 'PUT' : 'POST',
 
-    fetch('/post-test', {
+    fetch('/posttest', {
       method: (plantItem.id) ? 'PUT' : 'POST',
       headers: {
         'Accept': 'application/json',

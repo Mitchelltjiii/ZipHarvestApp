@@ -38,9 +38,8 @@ app.use(express.urlencoded({
 
 app.use(express.json());
 
-app.post('/post-test',function(req,res){
-  console.log('Got body:', req.body);
-  res.send(req);
+app.post('/posttest', (req, res) => {
+  res.send('test worked');
 });
 
 app.get('/api/harvestbatches', (req, res) => {
@@ -56,10 +55,10 @@ app.get('/api/harvestedplants', (req, res) => {
 });
 
 //app.use('/', router);
-/*
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
-});8?
+});
 /*
 db.sequelize.sync({force: true}).then(() => {
   console.log('Drop and Resync with { force: true }');
