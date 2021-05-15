@@ -28,18 +28,19 @@ app.use(cors(corsOptions));*/
 
 const router = require('../app/routers/router');
 
-app.use(express.json());
-app.use(express.urlencoded({
-  extended: true
-}));
-
 // add middlewares
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
 
-app.get('/post-test', (req, res) => {
+app.use(express.urlencoded({
+  extended: false
+}));
+
+app.use(express.json());
+
+app.post('/post-test',function(req,res){
   console.log('Got body:', req.body);
-  res.json(req);
+  res.send(req);
 });
 
 app.get('/api/harvestbatches', (req, res) => {
