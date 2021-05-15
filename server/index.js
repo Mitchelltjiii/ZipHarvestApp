@@ -39,7 +39,7 @@ app.use(express.static("public"));
 
 app.post('/post-test', (req, res) => {
   console.log('Got body:', req.body);
-  res.json(req);
+  res.send(req);
 });
 
 app.get('/api/harvestbatches', (req, res) => {
@@ -54,7 +54,7 @@ app.get('/api/harvestedplants', (req, res) => {
   res.json(harvestedPlantsString);
 });
 
-app.use('/', router);
+//app.use('/', router);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
