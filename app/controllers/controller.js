@@ -7,13 +7,15 @@ const Plant = db.Plant;
 exports.create = async (req, res) => {
     let strain = 'strain1';
     let tag = 'tag1';
+    let createdAt = 'createdAt';
+    let updatedAt = 'updatedAt';
     const result = await db.query(
       `INSERT INTO plants 
-      (strain, tag) 
+      (strain, tag, createdAt, updatedAt) 
       VALUES 
-      (?, ?)`, 
+      (?, ?, ?, ?)`, 
       [
-        strain, tag
+        strain, tag, createdAt, updatedAt
       ]
     );
   
