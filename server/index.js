@@ -56,10 +56,10 @@ app.get('/api/harvestedplants', (req, res) => {
 });
 
 //app.use('/', router);
-
+/*
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
-});
+});8?
 /*
 db.sequelize.sync({force: true}).then(() => {
   console.log('Drop and Resync with { force: true }');
