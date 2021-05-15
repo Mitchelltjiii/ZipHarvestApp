@@ -37,9 +37,9 @@ app.use(express.urlencoded({
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
 
-app.post('/post-test', (req, res) => {
+app.get('/post-test', (req, res) => {
   console.log('Got body:', req.body);
-  res.send(req);
+  res.json(req);
 });
 
 app.get('/api/harvestbatches', (req, res) => {
