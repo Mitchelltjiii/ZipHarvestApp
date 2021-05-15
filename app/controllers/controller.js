@@ -4,7 +4,7 @@ const Plant = db.Plant;
 //const HarvestedPlant = db.HarvestedPlant;
 //const HarvestBatch = db.HarvestBatch;
 
-exports.create = async (req, res) => {
+exports.create = (req, res) => {
     return "Got to create";
     /*
     let strain = 'strain1';
