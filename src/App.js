@@ -64,7 +64,7 @@ export default class App extends React.Component {
       },
       body: JSON.stringify(plantItem)
     })
-    .then(res => res.json())
+    .then(res => res.text())
     .then(responseFromPlants => this.setState({ responseFromPlants }));
   }
 
