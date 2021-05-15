@@ -28,9 +28,18 @@ app.use(cors(corsOptions));*/
 
 const router = require('../app/routers/router');
 
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // add middlewares
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
+
+app.post('/post-test', (req, res) => {
+  console.log('Got body:', req.body);
+  res.json(req);
+});
 
 app.get('/api/harvestbatches', (req, res) => {
   res.json(hbString);
