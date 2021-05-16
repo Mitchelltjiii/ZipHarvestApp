@@ -27,6 +27,13 @@ const corsOptions = {
 app.use(cors(corsOptions));*/
 
 const router = require('../app/routers/router');
+const connection = mysql.createConnection({
+  host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
+  user     : 'doadmin',
+  password : 'xo6wgtevue3qzrmw',
+  database : 'defaultdb',
+  port: '25060'
+});
 
 // add middlewares
 app.use(express.static(path.join(__dirname, "..", "build")));
@@ -50,7 +57,31 @@ app.get('/api/harvestedplants', (req, res) => {
   res.json(harvestedPlantsString);
 });
 
-app.use('/', router);
+app.post('/posttest', async function (req, res){
+  res.json("Test Passed");
+  /*
+  let strain = 'strain1';
+    let tag = 'tag1';
+    const result = await connection.query(
+      `INSERT INTO plants 
+      (strain, tag) 
+      VALUES 
+      (?, ?)`, 
+      [
+        strain, tag
+      ]
+    );
+  
+    let message = 'Error in creating programming language';
+  
+    if (result.affectedRows) {
+      message = 'Programming language created successfully';
+    }
+  
+    res.json({message});*/
+});
+
+//app.use('/', router);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
@@ -161,15 +192,6 @@ app.post('/api/plant', async (req, res) => {
 // start express server on port
 app.listen(port, () => {
   console.log("server started on port " + port);
-});
-
-
-const connection = mysql.createConnection({
-  host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
-  user     : 'doadmin',
-  password : 'xo6wgtevue3qzrmw',
-  database : 'defaultdb',
-  port: '25060'
 });
 
 connection.connect((err) => {const queryString = 'select * from harvestbatches';

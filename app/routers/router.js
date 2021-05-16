@@ -7,16 +7,6 @@ const controller = require('../controllers/controller.js');
 const db = require('../config/db.config.js');
 
 const Plant = db.Plant;
-const mysql = require('mysql');  
-
-
-const connection = mysql.createConnection({
-  host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
-  user     : 'doadmin',
-  password : 'xo6wgtevue3qzrmw',
-  database : 'defaultdb',
-  port: '25060'
-});
 
 //router.post('/api/plant', controller.createPlant);
 router.get('/api/plant/:id', controller.getPlant);
