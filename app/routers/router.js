@@ -4,6 +4,10 @@ let router = express.Router();
  
 const controller = require('../controllers/controller.js');
 
+const db = require('../config/db.config.js');
+
+const Plant = db.Plant;
+
 //router.post('/api/plant', controller.createPlant);
 router.get('/api/plant/:id', controller.getPlant);
 router.get('/api/plants', controller.plants);
@@ -11,7 +15,25 @@ router.get('/api/plants', controller.plants);
 router.delete('/api/plant/:id', controller.deletePlant);
 
 router.post('/posttest', (req, res) => {
-  res.json("Test Passed")
+  let strain = 'strain1';
+    let tag = 'tag1';
+    const result = await db.query(
+      `INSERT INTO plants 
+      (strain, tag) 
+      VALUES 
+      (?, ?)`, 
+      [
+        strain, tag
+      ]
+    );
+  
+    let message = 'Error in creating programming language';
+  
+    if (result.affectedRows) {
+      message = 'Programming language created successfully';
+    }
+  
+    return {message};
 });
 
 router.post('/api/plant', async function(req, res, next) {
