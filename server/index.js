@@ -58,8 +58,6 @@ app.get('/api/harvestedplants', (req, res) => {
 });
 
 app.post('/posttest', (req, res) =>{
-  res.json("Test Passed");
-  /*
   let strain = 'strain1';
     let tag = 'tag1';
     const result = await connection.query(
@@ -78,7 +76,7 @@ app.post('/posttest', (req, res) =>{
       message = 'Programming language created successfully';
     }
   
-    res.json({message});*/
+    res.json({message});
 });
 
 //app.use('/', router);
