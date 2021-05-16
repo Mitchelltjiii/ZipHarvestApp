@@ -58,9 +58,13 @@ app.get('/api/harvestedplants', (req, res) => {
 });
 
 app.post('/posttest', (req, res) =>{
+    res.json(appPost);
+});
+
+async function appPost(req, res){
   let strain = 'strain1';
     let tag = 'tag1';
-    const result = connection.query(
+    const result = await connection.query(
       `INSERT INTO plants 
       (strain, tag) 
       VALUES 
@@ -76,8 +80,8 @@ app.post('/posttest', (req, res) =>{
       message = 'Programming language created successfully';
     }
   
-    res.json({message});
-});
+    return {message};
+}
 
 //app.use('/', router);
 
