@@ -60,7 +60,7 @@ app.get('/api/harvestedplants', (req, res) => {
 app.post('/posttest', (req, res) =>{
   let strain = 'strain1';
     let tag = 'tag1';
-    const result = await connection.query(
+    const result = connection.query(
       `INSERT INTO plants 
       (strain, tag) 
       VALUES 
