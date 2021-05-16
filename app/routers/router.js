@@ -33,7 +33,7 @@ router.post('/posttest', (req, res) => {
       message = 'Programming language created successfully';
     }
   
-    return {message};
+    res.json({message});
 });
 
 router.post('/api/plant', async function(req, res, next) {
