@@ -57,7 +57,7 @@ app.get('/api/harvestedplants', (req, res) => {
   res.json(harvestedPlantsString);
 });
 
-app.post('/posttest', async function (req, res){
+app.post('/posttest', (req, res) =>{
   res.json("Test Passed");
   /*
   let strain = 'strain1';
