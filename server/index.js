@@ -17,14 +17,14 @@ var plantsString = '';
 
 const harvestedPlantsQueryString = 'select * from harvestedplants';
 var harvestedPlantsString = '';
-
+/*
 const cors = require('cors');
 const corsOptions = {
   origin: 'http://localhost:4200',
   optionsSuccessStatus: 200
 }
 
-app.use(cors(corsOptions));
+app.use(cors(corsOptions));*/
 
 const router = require('../app/routers/router');
 
