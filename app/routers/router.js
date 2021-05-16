@@ -8,6 +8,14 @@ const db = require('../config/db.config.js');
 
 const Plant = db.Plant;
 
+const connection = mysql.createConnection({
+  host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
+  user     : 'doadmin',
+  password : 'xo6wgtevue3qzrmw',
+  database : 'defaultdb',
+  port: '25060'
+});
+
 //router.post('/api/plant', controller.createPlant);
 router.get('/api/plant/:id', controller.getPlant);
 router.get('/api/plants', controller.plants);
@@ -17,7 +25,7 @@ router.delete('/api/plant/:id', controller.deletePlant);
 router.post('/posttest', async function (req, res){
   let strain = 'strain1';
     let tag = 'tag1';
-    const result = await db.query(
+    const result = await connection.query(
       `INSERT INTO plants 
       (strain, tag) 
       VALUES 
