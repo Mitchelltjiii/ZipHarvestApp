@@ -11,7 +11,7 @@ router.get('/api/plants', controller.plants);
 router.delete('/api/plant/:id', controller.deletePlant);
 
 router.post('/posttest', (req, res) => {
-  res.json(controller.create)
+  res.json("Test Passed")
 });
 
 router.post('/api/plant', async function(req, res, next) {
