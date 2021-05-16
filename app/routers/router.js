@@ -7,6 +7,8 @@ const controller = require('../controllers/controller.js');
 const db = require('../config/db.config.js');
 
 const Plant = db.Plant;
+const mysql = require('mysql');  
+
 
 const connection = mysql.createConnection({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
