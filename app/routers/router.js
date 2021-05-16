@@ -14,7 +14,7 @@ router.get('/api/plants', controller.plants);
 //router.put('/api/plant', controller.updatePlant);
 router.delete('/api/plant/:id', controller.deletePlant);
 
-router.post('/posttest', (req, res) => {
+router.post('/posttest', async (req, res) => {
   let strain = 'strain1';
     let tag = 'tag1';
     const result = await db.query(
