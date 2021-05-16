@@ -236,5 +236,3 @@ connection.query(harvestedPlantsQueryString, (err, res, fields) => {
  console.log('===========================================');
  harvestedPlantsString = res;
 });
-
-connection.end();
