@@ -62,6 +62,8 @@ app.post('/posttest', (req, res) =>{
 });
 
 async function appPost(req, res){
+  return "Got to apppost";
+  /*
   let strain = 'strain1';
     let tag = 'tag1';
     const result = await connection.query(
@@ -80,7 +82,7 @@ async function appPost(req, res){
       message = 'Programming language created successfully';
     }
   
-    return message;
+    return message;*/
 }
 
 //app.use('/', router);
