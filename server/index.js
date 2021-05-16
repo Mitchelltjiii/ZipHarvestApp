@@ -58,7 +58,7 @@ app.get('/api/harvestedplants', (req, res) => {
 });
 
 app.post('/posttest', (req, res) =>{
-    res.json(appPost);
+    res.json(appPost(req,res));
 });
 
 async function appPost(req, res){
@@ -80,7 +80,7 @@ async function appPost(req, res){
       message = 'Programming language created successfully';
     }
   
-    return {message};
+    return message;
 }
 
 //app.use('/', router);
