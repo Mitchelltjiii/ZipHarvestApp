@@ -5,8 +5,8 @@ const Plant = db.Plant;
 //const HarvestBatch = db.HarvestBatch;
 
 exports.create = (req, res) => {
-    return "Got to create";
-    
+    res.json("{Got to create}");
+
     /*
     let strain = 'strain1';
     let tag = 'tag1';
