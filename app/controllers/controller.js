@@ -6,6 +6,7 @@ const Plant = db.Plant;
 
 exports.create = (req, res) => {
     return "Got to create";
+    
     /*
     let strain = 'strain1';
     let tag = 'tag1';
