@@ -60,12 +60,43 @@ app.get('/api/harvestedplants', (req, res) => {
 });
 
 app.post('/posttest', (req, res) =>{
+
+    let strain = 'strain1';
+    let tag = 'tag1';
+    
+    console.log("Posttest start");
+    (async () => {
+      console.log("Async wrapper start");
+      const result = await connection.query(
+        `INSERT INTO plants 
+        (strain, tag) 
+        VALUES 
+        (?, ?)`, 
+        [
+          strain, tag
+        ]
+      );
+      console.log("Async wrapper ended");
+    })();
+  
+    console.log("After async wrap");
+
+    let message = 'Error in creating programming language';
+  
+    if (result.affectedRows) {
+      message = 'Programming language created successfully';
+    }
+  
+    res.json(message);
+
+  
+  /*
   console.log("Start posttest");
   let appPostResponse = 'Didnt process apppost';
   appPostDone = false;
   console.log("Before apppostfunc");
 
-  appPost(req,res).then(ap => {appPostResponse=ap});
+  appPostResponse = appPost(req,res);
   console.log("After apppostfunction");
 
   while(appPostDone === false){
@@ -75,7 +106,7 @@ app.post('/posttest', (req, res) =>{
 
   console.log("appPostResponse: " + appPostResponse);
 
-  res.json(appPostResponse);
+  res.json(appPostResponse);*/
 });
 
 function sleep(ms) {
@@ -89,6 +120,8 @@ async function appPost(req, res){
 
   appPostDone = true;
   console.log("returning form apppost");
+
+
 
   return "Got to apppost";
   /*
