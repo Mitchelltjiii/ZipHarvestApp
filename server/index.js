@@ -60,12 +60,20 @@ app.get('/api/harvestedplants', (req, res) => {
 });
 
 app.post('/posttest', (req, res) =>{
+  console.log("Start posttest");
   let appPostResponse = 'Didnt process apppost';
   appPostDone = false;
+  console.log("Before apppostfunc");
+
   appPostResponse = appPost(req,res);
+  console.log("After apppostfunction");
+
   while(appPostDone === false){
     sleep(100);
+    console.log("Sleep");
   }
+
+  console.log("appPostResponse: " + appPostResponse);
 
   res.json(appPostResponse);
 });
@@ -77,7 +85,11 @@ function sleep(ms) {
 } 
 
 async function appPost(req, res){
+  console.log("Enter Apppost");
+
   appPostDone = true;
+  console.log("returning form apppost");
+
   return "Got to apppost";
   /*
   let strain = 'strain1';
