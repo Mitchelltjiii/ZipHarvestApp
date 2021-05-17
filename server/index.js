@@ -70,17 +70,19 @@ app.post('/posttest', (req, res) =>{
   
     let strain = 'strain1';
     let tag = 'tag1';
+    let createdAt = 'ss';
+    let updatedAt = 'ss';
     
     console.log("Posttest start");
     (async () => {
       console.log("Async wrapper start");
       const result = await connection.query(
         `INSERT INTO plants 
-        (strain, tag) 
+        (strain, tag, createdAt, updatedAt) 
         VALUES 
-        (?, ?)`, 
+        (?, ?, ?, ?)`, 
         [
-          strain, tag
+          strain, tag, createdAt, updatedAt
         ]
       );
       console.log("Async wrapper ended");
