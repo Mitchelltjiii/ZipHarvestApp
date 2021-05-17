@@ -65,7 +65,7 @@ app.post('/posttest', (req, res) =>{
   appPostDone = false;
   console.log("Before apppostfunc");
 
-  appPostResponse = appPost(req,res);
+  appPost(req,res).then(ap => {appPostResponse=ap});
   console.log("After apppostfunction");
 
   while(appPostDone === false){
