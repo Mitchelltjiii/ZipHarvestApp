@@ -58,7 +58,7 @@ app.get('/api/harvestedplants', (req, res) => {
 });
 
 app.post('/posttest', (req, res) =>{
-    res.json(appPost(req,res));
+    res.json({appPost(req,res)});
 });
 
 async function appPost(req, res){
