@@ -64,7 +64,7 @@ app.post('/posttest', (req, res) =>{
   appPostDone = false;
   appPostResponse = appPost(req,res);
   while(appPostDone === false){
-    await sleep(100);
+    sleep(100);
   }
 
   res.json(appPostResponse);
