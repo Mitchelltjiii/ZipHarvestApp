@@ -3,7 +3,7 @@ const path = require("path");
 const express = require("express");
 const app = express(); // create express app
 const port = process.env.PORT || 3000
-const mysql = require('mysql');  
+const mysql = require('mysql2/promise');
 
 const db = require('../app/config/db.config');
 
@@ -27,12 +27,18 @@ const corsOptions = {
 app.use(cors(corsOptions));*/
 
 const router = require('../app/routers/router');
-const connection = mysql.createConnection({
+
+
+// get the promise implementation, we will use bluebird
+const bluebird = require('bluebird');
+
+const connection = await mysql.createConnection({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
   user     : 'doadmin',
   password : 'xo6wgtevue3qzrmw',
   database : 'defaultdb',
-  port: '25060'
+  port: '25060',
+  Promise: bluebird
 });
 
 let appPostDone = true;
@@ -61,6 +67,7 @@ app.get('/api/harvestedplants', (req, res) => {
 
 app.post('/posttest', (req, res) =>{
 
+  
     let strain = 'strain1';
     let tag = 'tag1';
     
@@ -78,7 +85,7 @@ app.post('/posttest', (req, res) =>{
       );
       console.log("Async wrapper ended");
     })();
-  
+
     console.log("After async wrap");
 
     let message = 'Error in creating programming language';
