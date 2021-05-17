@@ -35,6 +35,8 @@ const connection = mysql.createConnection({
   port: '25060'
 });
 
+let appPostDone = true;
+
 // add middlewares
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("public"));
@@ -58,10 +60,24 @@ app.get('/api/harvestedplants', (req, res) => {
 });
 
 app.post('/posttest', (req, res) =>{
-    res.json(appPost(req,res));
+  let appPostResponse = 'Didnt process apppost';
+  appPostDone = false;
+  appPostResponse = appPost(req,res);
+  while(appPostDone === false){
+    await sleep(100);
+  }
+
+  res.json(appPostResponse);
 });
 
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+} 
+
 async function appPost(req, res){
+  appPostDone = true;
   return "Got to apppost";
   /*
   let strain = 'strain1';
