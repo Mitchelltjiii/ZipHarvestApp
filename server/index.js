@@ -32,7 +32,7 @@ const router = require('../app/routers/router');
 // get the promise implementation, we will use bluebird
 const bluebird = require('bluebird');
 
-const connection = await mysql.createConnection({
+const connection = mysql.createConnection({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
   user     : 'doadmin',
   password : 'xo6wgtevue3qzrmw',
