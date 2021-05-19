@@ -69,13 +69,15 @@ app.post('/posttest', (req, res) =>{
   
     let strain = 'strain1';
     let tag = 'tag1';
-    let createdAt = 'ss';
-    let updatedAt = 'ss';
+    let createdAt = '2021-05-03 22:06:12';
+    let updatedAt = '2021-05-03 22:06:12';
     
     console.log("Posttest start");
+    const promisePool = pool.promise();
+
     (async () => {
       console.log("Async wrapper start");
-      const result = await connection.query(
+      const result = await promisePool.query(
         `INSERT INTO plants 
         (strain, tag, createdAt, updatedAt) 
         VALUES 
