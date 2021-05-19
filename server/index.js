@@ -3,7 +3,7 @@ const path = require("path");
 const express = require("express");
 const app = express(); // create express app
 const port = process.env.PORT || 3000
-const mysql = require('mysql2/promise');
+const mysql = require('mysql2-promise');
 
 const db = require('../app/config/db.config');
 
