@@ -3,7 +3,7 @@ const path = require("path");
 const express = require("express");
 const app = express(); // create express app
 const port = process.env.PORT || 3000
-const mysql = require('mysql2-promise');
+const mysql = require('mysql2');
 
 const db = require('../app/config/db.config');
 
@@ -30,15 +30,14 @@ const router = require('../app/routers/router');
 
 
 // get the promise implementation, we will use bluebird
-const bluebird = require('bluebird');
+//const bluebird = require('bluebird');
 
 const connection = mysql.createConnection({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
   user     : 'doadmin',
   password : 'xo6wgtevue3qzrmw',
   database : 'defaultdb',
-  port: '25060',
-  Promise: bluebird
+  port: '25060'
 });
 
 let appPostDone = true;
