@@ -7571,6 +7571,7 @@ mute-stream@0.0.8:
   integrity sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
 
 mysql2@^2.2.5, "mysql@npm:mysql2@^2.18.1":
+  name mysql
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/mysql2/-/mysql2-2.2.5.tgz#72624ffb4816f80f96b9c97fedd8c00935f9f340"
   integrity sha512-XRqPNxcZTpmFdXbJqb+/CtYVLCx14x1RTeNMD4954L331APu75IC74GDqnZMEt1kwaXy6TySo55rF2F3YJS78g==
@@ -8355,6 +8356,11 @@ pnp-webpack-plugin@1.6.4:
   integrity sha512-7Wjy+9E3WwLOEL30D+m8TSTF7qJJUJLONBnwQp0518siuMxUQUbgZwssaFX+QKlZkjHZcw/IpZCt/H0srrntSg==
   dependencies:
     ts-pnp "^1.1.6"
+
+pool@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/pool/-/pool-0.4.1.tgz#0de6be33b08e943f03f1f3aa0edb9b6f17221665"
+  integrity sha1-Dea+M7COlD8D8fOqDtubbxciFmU=
 
 popper.js@1.16.1-lts:
   version "1.16.1-lts"
