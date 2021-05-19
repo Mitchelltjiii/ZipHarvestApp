@@ -95,7 +95,7 @@ app.post('/posttest', (req, res) =>{
       } );
       console.log("After WithTransaction");
     } catch ( err ) {
-      // handle error
+      console.log("CAUGHT ERROR");
     }
      
 
