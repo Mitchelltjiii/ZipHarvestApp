@@ -73,7 +73,7 @@ app.post('/posttest', (req, res) =>{
     let updatedAt = '2021-05-03 22:06:12';
     
     console.log("Query start");
-    const result = connection.query(
+    const result = connection.execute(
         `INSERT INTO plants 
         (strain, tag, createdAt, updatedAt) 
         VALUES 
