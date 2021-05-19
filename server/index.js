@@ -4,7 +4,6 @@ const express = require("express");
 const app = express(); // create express app
 const port = process.env.PORT || 3000
 const mysql = require('mysql');
-const pool = require('pool').getPool();
 
 const db = require('../app/config/db.config');
 
@@ -73,12 +72,8 @@ app.post('/posttest', (req, res) =>{
     let createdAt = '2021-05-03 22:06:12';
     let updatedAt = '2021-05-03 22:06:12';
     
-    console.log("Posttest start");
-    const promisePool = pool.promise();
-
-    (async () => {
-      console.log("Async wrapper start");
-      const result = await promisePool.query(
+    console.log("Query start");
+    const result = connection.query(
         `INSERT INTO plants 
         (strain, tag, createdAt, updatedAt) 
         VALUES 
@@ -86,11 +81,10 @@ app.post('/posttest', (req, res) =>{
         [
           strain, tag, createdAt, updatedAt
         ]
-      );
-      console.log("Async wrapper ended");
-    })();
+    );
+     
 
-    console.log("After async wrap");
+    console.log("After Query");
 
     let message = 'Error in creating programming language';
   
