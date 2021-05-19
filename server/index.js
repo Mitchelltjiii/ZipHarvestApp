@@ -77,7 +77,10 @@ app.post('/posttest', (req, res) =>{
 
     let result = "result not recieved";
     try {
+      console.log("Before WithTransaction");
       await withTransaction( connection, async () => {
+        console.log("Enter WithTransaction");
+
         result = connection.query(
           `INSERT INTO plants 
           (strain, tag, createdAt, updatedAt) 
@@ -87,7 +90,10 @@ app.post('/posttest', (req, res) =>{
             strain, tag, createdAt, updatedAt
           ]
       );
+      console.log("After WithTransaction Query");
+
       } );
+      console.log("After WithTransaction");
     } catch ( err ) {
       // handle error
     }
@@ -124,15 +130,24 @@ app.post('/posttest', (req, res) =>{
 });
 
 async function withTransaction( db, callback ) {
+  console.log("In WithTransaction Function");
+
   try {
     await db.beginTransaction();
     await callback();
     await db.commit();
+    console.log("Commit Reached");
   } catch ( err ) {
+    console.log("Error Reached");
+
     await db.rollback();
     throw err;
   } finally {
+    console.log("Closing DB");
+
     await db.close();
+    console.log("Withtransaction completed");
+
   }
 }
 
