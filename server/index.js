@@ -73,15 +73,24 @@ app.post('/posttest', (req, res) =>{
     let updatedAt = '2021-05-03 22:06:12';
     
     console.log("Query start");
-    const result = connection.execute(
-        `INSERT INTO plants 
-        (strain, tag, createdAt, updatedAt) 
-        VALUES 
-        (?, ?, ?, ?)`, 
-        [
-          strain, tag, createdAt, updatedAt
-        ]
-    );
+    
+
+    let result = "result not recieved";
+    try {
+      await withTransaction( db, async () => {
+        result = connection.query(
+          `INSERT INTO plants 
+          (strain, tag, createdAt, updatedAt) 
+          VALUES 
+          (?, ?, ?, ?)`, 
+          [
+            strain, tag, createdAt, updatedAt
+          ]
+      );
+      } );
+    } catch ( err ) {
+      // handle error
+    }
      
 
     console.log("After Query");
@@ -113,6 +122,19 @@ app.post('/posttest', (req, res) =>{
 
   res.json(appPostResponse);*/
 });
+
+async function withTransaction( db, callback ) {
+  try {
+    await db.beginTransaction();
+    await callback();
+    await db.commit();
+  } catch ( err ) {
+    await db.rollback();
+    throw err;
+  } finally {
+    await db.close();
+  }
+}
 
 function sleep(ms) {
   return new Promise((resolve) => {
