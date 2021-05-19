@@ -77,7 +77,7 @@ app.post('/posttest', (req, res) =>{
 
     let result = "result not recieved";
     try {
-      await withTransaction( db, async () => {
+      await withTransaction( connection, async () => {
         result = connection.query(
           `INSERT INTO plants 
           (strain, tag, createdAt, updatedAt) 
