@@ -12,29 +12,19 @@ class Outer extends Component {
   }
 
   componentDidMount() {
-      /*
-    this.setState({isLoading: true});
+    this.state.plants = this.props.plants;
+    this.state.harvestedPlants = this.props.harvestedPlants;
+    this.state.harvestBatches = this.props.harvestBatches;
 
-    console.log("FETCHING PLANTS")
-
-    fetch('api/plants')
-      .then(response => response.json())
-      .then(data => this.setState({plants: data, isLoading: false}));
-
-    //this.setState({isLoading: true});
-
-    fetch('api/harvestedplants')
-      .then(response => response.json())
-      .then(data => this.setState({harvestedPlants: data, isLoading: false}));
-
-    //this.setState({isLoading: true});
-
-    fetch('api/harvestbatches')
-      .then(response => response.json())
-      .then(data => this.setState({harvestBatches: data, isLoading: false}));
-      */
+    console.log("Component Mounted: Outer");
+    console.log("=========================");
+    console.log("this.state.plants: " + this.state.plants);
+    console.log("this.state.harvestedPlants: " + this.state.harvestedPlants);
+    console.log("this.state.harvestBatches: " + this.state.harvestBatches);
+    console.log("=========================");
   }
 
+  /*
   async remove(id) {
     await fetch(`/api/plant/${id}`, {
       method: 'DELETE',
@@ -46,7 +36,7 @@ class Outer extends Component {
       let updatedPlants = [...this.state.plants].filter(i => i.id !== id);
       this.setState({plants: updatedPlants});
     });
-  }
+  }*/
 
   render() {
     var parent = this;
