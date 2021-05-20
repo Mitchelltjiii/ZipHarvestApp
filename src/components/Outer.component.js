@@ -8,7 +8,7 @@ class Outer extends Component {
   constructor(props) {
     super(props);
     this.state = {plants: [], harvestedPlants: [], harvestBatches: [], isLoading: true};
-    this.remove = this.remove.bind(this);
+    //this.remove = this.remove.bind(this);
   }
 
   componentDidMount() {
