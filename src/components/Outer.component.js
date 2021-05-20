@@ -88,24 +88,26 @@ class Outer extends Component {
     }
 
 
-    this.state.plants = this.props.plants;
-    this.state.harvestedPlants = this.props.harvestedPlants;
-    this.state.harvestBatches = this.props.harvestBatches;
+    this.state.plants = JSON.parse(this.props.plants);
+    this.state.harvestedPlants = JSON.parse(this.props.harvestedPlants);
+    this.state.harvestBatches = jSON.parse(this.props.harvestBatches);
 
     console.log("Rendering: Outer");
     console.log("***********************");
-    console.log("this.state.plants: " + this.state.plants);
-    console.log("this.state.harvestedPlants: " + this.state.harvestedPlants);
-    console.log("this.state.harvestBatches: " + this.state.harvestBatches);
+    console.log("this.props.plants: " + this.props.plants);
+    console.log("this.props.harvestedPlants: " + this.props.harvestedPlants);
+    console.log("this.props.harvestBatches: " + this.props.harvestBatches);
     console.log("***********************");
 
-      console.log("Plants at render: " + JSON.stringify(this.state.plants));
-      console.log("HarvestedPlants at render: " + JSON.stringify(this.state.harvestedPlants));
-      console.log("HarvestBatches at render: " + JSON.stringify(this.state.harvestBatches));
+
+    console.log("this.state.plants: " + JSON.stringify(this.state.plants));
+    console.log("this.state.harvestedPlants: " + JSON.stringify(this.state.harvestedPlants));
+    console.log("this.state.harvestBatches: " + JSON.stringify(this.state.harvestBatches));
+
 
       return (
         <div>
-			<Landing/>
+			<Landing currentPage={this.props.currentPage} plantMap={this.state.plants} setPlantMap={setPlantMap} harvestedPlantsMap={this.state.harvestedPlants} setHarvestedPlantMap={setHarvestedPlantMap} harvestBatchesMap={this.state.harvestBatches} setHarvestBatches={setHarvestBatches} resetHarvestBatches={resetHarvestBatches} resetAll={resetAll}/>
 		</div>
     );
   }
