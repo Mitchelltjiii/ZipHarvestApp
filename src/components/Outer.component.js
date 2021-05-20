@@ -87,6 +87,18 @@ class Outer extends Component {
         .then(data => parent.setState({harvestBatches: data, isLoading: false}));
     }
 
+
+    this.state.plants = this.props.plants;
+    this.state.harvestedPlants = this.props.harvestedPlants;
+    this.state.harvestBatches = this.props.harvestBatches;
+
+    console.log("Rendering: Outer");
+    console.log("***********************");
+    console.log("this.state.plants: " + this.state.plants);
+    console.log("this.state.harvestedPlants: " + this.state.harvestedPlants);
+    console.log("this.state.harvestBatches: " + this.state.harvestBatches);
+    console.log("***********************");
+
       console.log("Plants at render: " + JSON.stringify(this.state.plants));
       console.log("HarvestedPlants at render: " + JSON.stringify(this.state.harvestedPlants));
       console.log("HarvestBatches at render: " + JSON.stringify(this.state.harvestBatches));
