@@ -64,26 +64,38 @@ app.get('/api/harvestedplants', (req, res) => {
   res.json(harvestedPlantsString);
 });
 
-/*
+
 
 //rest api to create a new record into mysql database
-app.post('/posttest', function (req, res) {
+app.post('/posttest', (req, res) =>{
   //var postData  = req.body;
 
-  let strain = 'strain1';
-  let tag = 'tag1';
+  let strain = 'strain3';
+  let tag = 'tag3';
   let createdAt = '2021-05-03 22:06:12';
   let updatedAt = '2021-05-03 22:06:12';
 
-  var postData = {"strain":"Strain2","tag":"Tag2","createdAt":"2021-05-03 22:06:12","updatedAt":"2021-05-03 22:06:12"};
+  const result = connection.query(
+    `INSERT INTO plants 
+    (strain, tag, createdAt, updatedAt) 
+    VALUES 
+    (?, ?, ?, ?)`, 
+    [
+      strain, tag, createdAt, updatedAt
+    ]
+  );  
 
-  connection.query('INSERT INTO employee SET ?', postData, function (error, results, fields) {
-  if (error) throw error;
-    res.end(JSON.stringify(results));
-  });
+    let message = 'Error in creating programming language';
+  
+    if (result.affectedRows) {
+      message = 'Programming language created successfully';
+    }
+  
+    res.json(message);
 });
-*/
 
+
+/*
 app.post('/posttest', (req, res) =>{
 
   
@@ -146,8 +158,8 @@ app.post('/posttest', (req, res) =>{
 
   console.log("appPostResponse: " + appPostResponse);
 
-  res.json(appPostResponse);*/
-});
+  res.json(appPostResponse);
+});*/
 
 async function withTransaction( db, callback ) {
   console.log("In WithTransaction Function");
