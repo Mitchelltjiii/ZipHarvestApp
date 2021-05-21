@@ -10,7 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-//import DeleteButton from './DeleteButton.component';
+import DeleteButton from './DeleteButton.component';
 
 
 function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeightChanges,wrapper,getRemovePlantIDDelete,currHidePlants,setHidePlants}) {
@@ -287,7 +287,7 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
               {editNow 
               ? 			
                   <TableCell align="left" style={{ width: "170px"}}>
-                      <div>Delete Button</div>
+                    <DeleteButton editNow={editNow} row={row} getRemovePlantIDDelete={getRemovePlantIDDelete} wrapper={wrapper} hideHarvestedPlant={hideHarvestedPlant}></DeleteButton>
                   </TableCell>
               : null
               }
@@ -309,8 +309,6 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
 }
 
 export default MyTable;
-
-//<DeleteButton editNow={editNow} row={row} getRemovePlantIDDelete={getRemovePlantIDDelete} wrapper={wrapper} hideHarvestedPlant={hideHarvestedPlant}></DeleteButton>
 
 
 /*<TableBody>
