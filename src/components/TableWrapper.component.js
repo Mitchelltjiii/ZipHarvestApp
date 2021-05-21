@@ -1,5 +1,5 @@
 import React from 'react';
-import MyTable from './MyTable.component';
+//import MyTable from './MyTable.component';
 
 class TableWrapper extends React.Component {
 
