@@ -127,9 +127,17 @@ export default class App extends React.Component {
     .then(responseFromPlants => this.setState({ responseFromPlants }));
   }
 
+  resetHarvestBatches = () => {
+    this.setState({harvestBatchesLoading: true});
+
+    console.log("RESETTING Harvest Batches");
+
+    this.getHarvestBatches();
+  }
+
   render() {
 
-    if(this.state.isLoading){
+    if(this.state.plantsLoading || this.state.harvestedPlantsLoading || this.state.harvestBatchesLoading){
       return(<div>Loading...</div>);
     }
 

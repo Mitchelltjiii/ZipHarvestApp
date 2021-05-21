@@ -59,16 +59,6 @@ class Outer extends Component {
       console.log("SET HARVESTEDPLANT MAP - HarvestedPlantMap after transfer: " + JSON.stringify(parent.state.harvestedPlantMap));
     }
 
-    function resetHarvestBatches(){
-      parent.setState({isLoading: true});
-  
-      console.log("RESETTING Harvest Batches");
-  
-      fetch('api/harvestbatches')
-        .then(response => response.json())
-        .then(data => parent.setState({harvestBatches: data, isLoading: false}));
-    }
-
     function resetAll(){
       parent.setState({isLoading: true});
   
@@ -121,7 +111,7 @@ class Outer extends Component {
 
       return (
         <div>
-			<Landing currentPage={this.props.currentPage} plantMap={this.state.plants} setPlantMap={setPlantMap} harvestedPlantsMap={this.state.harvestedPlants} setHarvestedPlantMap={setHarvestedPlantMap} harvestBatchesMap={this.state.harvestBatches} setHarvestBatches={setHarvestBatches} resetHarvestBatches={resetHarvestBatches} resetAll={resetAll}/>
+			<Landing currentPage={this.props.currentPage} plantMap={this.state.plants} setPlantMap={setPlantMap} harvestedPlantsMap={this.state.harvestedPlants} setHarvestedPlantMap={setHarvestedPlantMap} harvestBatchesMap={this.state.harvestBatches} setHarvestBatches={setHarvestBatches} resetHarvestBatches={this.props.resetHarvestBatches} resetAll={resetAll}/>
 		</div>
     );
   }

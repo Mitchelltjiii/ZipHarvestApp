@@ -15,7 +15,7 @@ class AddHarvestBatchButton extends Component{
         console.log("Enter Add New HB");
         this.props.addNewHB();
 
-        //setTimeout(() => this.props.resetHarvestBatches(), 0) 
+        setTimeout(() => this.props.resetHarvestBatches(), 0) 
 
         this.executeAddNewHB();
 
