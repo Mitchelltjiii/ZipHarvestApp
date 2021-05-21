@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-//import HBTable from './HBTable.component';
+import HBTable from './HBTable.component';
 
 function HarvestBatchesForm({harvestBatches, harvestedPlants}) {
 
@@ -13,7 +13,7 @@ function HarvestBatchesForm({harvestBatches, harvestedPlants}) {
   				justify="center"
 				alignItems="center"
 			>
-			<div> HB Table</div>
+			<HBTable harvestBatches={harvestBatches} harvestedPlants={harvestedPlants}></HBTable>
 
 			</Grid>
 		</div>
@@ -21,4 +21,3 @@ function HarvestBatchesForm({harvestBatches, harvestedPlants}) {
 }
 
 export default HarvestBatchesForm;
-//			<HBTable harvestBatches={harvestBatches} harvestedPlants={harvestedPlants}></HBTable>
