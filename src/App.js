@@ -13,7 +13,7 @@ export default class App extends React.Component {
     plants: [],
     harvestedPlants: [],
     responseFromPlants: [],
-    isLoading: false
+    isLoading: true
   };
   componentDidMount() {
     /*
@@ -28,6 +28,10 @@ export default class App extends React.Component {
     console.log("After GetPlants")
 
     this.getHarvestedPlants();
+
+    this.state.isLoading = false;
+
+    this.forceUpdate();
   }
 /*
   getHarvestBatches = () => {
@@ -101,6 +105,10 @@ export default class App extends React.Component {
   }
 
   render() {
+
+    if(this.state.isLoading){
+      return(<div>Loading...</div>);
+    }
 
     console.log("Rendering - App.js");
 
