@@ -71,6 +71,7 @@ export default class App extends React.Component {
     this.state.plants = text;
     this.state.plantsLoading = false;
     console.log("Leaving GetPlants")
+    this.engageReload();
   }
 
   getHarvestedPlants = async () => {
@@ -81,6 +82,7 @@ export default class App extends React.Component {
     this.state.harvestedPlants = text;
     this.state.harvestedPlantsLoading = false;
     console.log("Leaving GetHarvestedPlants")
+    this.engageReload();
   }
 
   getHarvestBatches = async () => {
@@ -93,7 +95,7 @@ export default class App extends React.Component {
     this.state.harvestBatchesLoading = false;
 
     console.log("Leaving GetHarvestBatches")
-
+    this.engageReload();
   }
 
   SetCurrentPage = (currentPage) => {
