@@ -20,7 +20,8 @@ export default class App extends React.Component {
     axios.get("/users.json").then((response) => {
       this.setState({ users: response.data });
     });*/
-    //<Outer  currentPage={this.state.currentPage} setCurrentPage={SetCurrentPage}/>
+    console.log("Component Did Mount - App.js");
+
     this.getHarvestBatches();
     this.getPlants();
     this.getHarvestedPlants();
@@ -76,29 +77,7 @@ export default class App extends React.Component {
 
   render() {
 
-    var parent = this;
-
-    console.log("APP.JS RENDERING");
-
-    function resetAll(){
-      parent.setState({isLoading: true});
-  
-      console.log("RESETTING ALL");
-  
-      fetch('api/plants')
-      .then(response => response.text())
-      .then(data => parent.setState({plants: data, isLoading: false}));
-  
-      fetch('api/harvestedplants')
-      .then(response => response.text())
-      .then(data => parent.setState({harvestedPlants: data, isLoading: false}));
-  
-      fetch('api/harvestbatches')
-        .then(response => response.text())
-        .then(data => parent.setState({harvestBatches: data, isLoading: false}));
-    }
-
-    resetAll();
+    console.log("Rendering - App.js");
 
     console.log("Harvest Batches In State: " + this.state.harvestBatches);
     console.log("Plants In State: " + this.state.plants);
