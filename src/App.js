@@ -1,7 +1,5 @@
 import React from "react";
-import axios from "axios";
 import "./styles.css";
-
 import Header from './components/Header.component';
 import Outer from './components/Outer.component';
 import LogIn from './components/LogIn.component';
@@ -46,6 +44,12 @@ export default class App extends React.Component {
       .then(harvestedPlants => this.setState({ harvestedPlants }));
   }
 
+  SetCurrentPage = (currentPage) => {
+		
+    console.log("Set Current Page: " + currentPage);
+    this.state.currentPage = (currentPage);
+  }
+
   doPost = () => {
     console.log("Handle Post");
 
@@ -74,13 +78,6 @@ export default class App extends React.Component {
     console.log("Plants In State: " + this.state.plants);
     console.log("HarvestedPlants In State: " + this.state.harvestedPlants);
     console.log("ResponseFromPlant In State: " + this.state.responseFromPlants);
-
-
-	  const SetCurrentPage = (currentPage) => {
-		
-      console.log("Set Current Page: " + currentPage);
-	  	this.state.currentPage = (currentPage);
-	  }
 
     const handlePost = (event) => {
       this.doPost();
