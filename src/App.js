@@ -87,13 +87,11 @@ export default class App extends React.Component {
 
   getHarvestBatches = async () => {
     console.log("In GetHarvestBatches")
-
     const response = await fetch('/api/harvestbatches');
     const text = await response.text();
     console.log("API GET HARVESTBATCHES: " + text);
     this.state.harvestBatches = text;
     this.state.harvestBatchesLoading = false;
-
     console.log("Leaving GetHarvestBatches")
     this.engageReload();
   }

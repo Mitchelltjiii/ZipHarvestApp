@@ -46,6 +46,37 @@ class HarvestPlantButton extends Component{
         }
     }
 
+    async executeHarvestPlant(){
+      console.log("Execute Harvest Plant");
+      if(this.props.nextPlant()){
+          console.log("Engage Harvested Plant Item");
+          const harvestedPlantItem = this.props.getHarvestedPlantItem();
+          console.log("Harvseted Plant Item should be done");
+
+          const response = fetch('/harvestedplant', {
+            method: (harvestedPlantItem.id) ? 'PUT' : 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(harvestedPlantItem)
+          });
+          const text = await response.text();
+
+          //setTimeout(() => this.removePlant(event), 0) 
+      }
+
+      /*
+      fetch('/harvestbatch', {
+        method: (harvestBatchItem.id) ? 'PUT' : 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(harvestBatchItem)
+      });*/
+    }
+
     async removePlant(event) {
       console.log("Enter removePlant");
       setTimeout(() => this.updateHB(event), 0) 

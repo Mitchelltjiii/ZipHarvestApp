@@ -72,14 +72,42 @@ app.get('/api/harvestbatches', (req, res) => {
 });
 
 app.get('/api/plants', (req, res) => {
+  console.log('api/plants');
+  connection.query(plantsQueryString, (err, res, fields) => {
+    if (err) {
+     console.log('Error: ' + err);
+      return;
+   }
+   console.log('Here is the result of the query:');
+   console.log('===========================================');
+   console.log(res);
+   console.log('===========================================');
+   plantsString = res;
+   console.log("QUERY Plants DONE")
+  });
+  
+  console.log('RESPOND FROM API/HB');
   res.json(plantsString);
 });
 
 app.get('/api/harvestedplants', (req, res) => {
+  console.log('api/harvestedplants');
+  connection.query(harvestedPlantsQueryString, (err, res, fields) => {
+    if (err) {
+     console.log('Error: ' + err);
+      return;
+   }
+   console.log('Here is the result of the query:');
+   console.log('===========================================');
+   console.log(res);
+   console.log('===========================================');
+   harvestedPlantsString = res;
+   console.log("QUERY HB DONE")
+  });
+  
+  console.log('RESPOND FROM API/HB');
   res.json(harvestedPlantsString);
 });
-
-
 
 //rest api to create a new record into mysql database
 app.post('/posttest', (req, res) =>{
@@ -134,6 +162,39 @@ app.post('/harvestbatch', (req, res) =>{
     (?, ?, ?, ?, ?, ?, ?)`, 
     [
       name, finalized, plantList, type, date, createdAt, updatedAt
+    ]
+  );  
+
+    let message = 'Error in creating programming language';
+  
+    if (result.affectedRows) {
+      message = 'Programming language created successfully';
+    }
+  
+    res.json(message);
+});
+
+app.post('/harvestedplant', (req, res) =>{
+  var postData  = req.body;
+
+  let uid = postData.uid;
+  let strain = postData.strain;
+  let tag = postData.tag;
+  let weight = postData.weight;
+  let unit = postData.unit;
+  let createdAt = '2021-05-03 22:06:12';
+  let updatedAt = '2021-05-03 22:06:12';
+
+  console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
+  console.log("POST DATA: UID: " + uid);
+
+  const result = connection.query(
+    `INSERT INTO harvestedplants 
+    (uid, strain, tag, weight, unit, createdAt, updatedAt) 
+    VALUES 
+    (?, ?, ?, ?, ?, ?, ?)`, 
+    [
+      uid, strain, tag, weight, unit, createdAt, updatedAt
     ]
   );  
 
