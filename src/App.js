@@ -48,6 +48,7 @@ export default class App extends React.Component {
 		
     console.log("Set Current Page: " + currentPage);
     this.state.currentPage = (currentPage);
+    this.forceUpdate();
   }
 
   doPost = () => {
