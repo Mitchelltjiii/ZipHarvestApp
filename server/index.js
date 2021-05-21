@@ -207,13 +207,15 @@ app.post('/harvestedplant', (req, res) =>{
     res.json(message);
 });
 
-app.delete(`/plant/${removePlantID}`, (req, res) =>{
-  console.log("Delete Plant: " + removePlantID);
+app.delete(`/plant/:id`, (req, res) =>{
+  console.log("Delete Plant: " + id);
+  let plantID = req.params.id;
+
   const result = connection.query(
     `DELETE FROM plants 
     WHERE id = ?`, 
     [
-      removePlantID
+      plantID
     ]
   );  
 
