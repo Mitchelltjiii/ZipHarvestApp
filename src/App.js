@@ -75,6 +75,10 @@ export default class App extends React.Component {
 
   render() {
 
+    this.getHarvestBatches();
+    this.getPlants();
+    this.getHarvestedPlants();
+
     console.log("Harvest Batches In State: " + this.state.harvestBatches);
     console.log("Plants In State: " + this.state.plants);
     console.log("HarvestedPlants In State: " + this.state.harvestedPlants);
