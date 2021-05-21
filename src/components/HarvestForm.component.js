@@ -21,7 +21,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import HarvestPlantButton from './HarvestPlantButton.component';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { getAssociationsByRelation } from 'sequelize-typescript';
 import AddHarvestBatchButton from './AddHarvestBatchButton.component';
 import EditButton from './EditButton.component';
 import TableWrapper from './TableWrapper.component';
