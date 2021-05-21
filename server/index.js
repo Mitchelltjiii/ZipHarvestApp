@@ -207,6 +207,24 @@ app.post('/harvestedplant', (req, res) =>{
     res.json(message);
 });
 
+app.delete(`/plant/${removePlantID}`, (req, res) =>{
+  const result = connection.query(
+    `REMOVE FROM plants 
+    WHERE id = ?`, 
+    [
+      removePlantID
+    ]
+  );  
+
+    let message = 'Error in creating programming language';
+  
+    if (result.affectedRows) {
+      message = 'Programming language created successfully';
+    }
+  
+    res.json(message);
+});
+
 
 /*
 app.post('/posttest', (req, res) =>{

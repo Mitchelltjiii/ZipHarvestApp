@@ -22,7 +22,7 @@ class HarvestPlantButton extends Component{
 
       event.preventDefault();
 
-      this.executeHarvestPlant();
+      this.executeHarvestPlant(event);
       /*
         event.preventDefault();
         console.log("Engage Next Plant");
@@ -51,8 +51,8 @@ class HarvestPlantButton extends Component{
         }*/
     }
 
-    async executeHarvestPlant(){
-      
+    async executeHarvestPlant(event){
+      event.preventDefault();
       console.log("Execute Harvest Plant");
       if(this.props.nextPlant()){
           console.log("Engage Harvested Plant Item");
@@ -69,7 +69,7 @@ class HarvestPlantButton extends Component{
           });
           const text = await response.text();
 
-          //setTimeout(() => this.removePlant(event), 0) 
+          setTimeout(() => this.removePlant(event), 0) 
       }
 
       /*
@@ -85,9 +85,24 @@ class HarvestPlantButton extends Component{
 
     async removePlant(event) {
       console.log("Enter removePlant");
-      setTimeout(() => this.updateHB(event), 0) 
+      //setTimeout(() => this.updateHB(event), 0) 
 
       event.preventDefault();
+
+      console.log("Engage RemovePlantID");
+      const removePlantID = this.props.getRemovedPlantID();
+      console.log("getRemovedPlantID should be done");
+
+      const response = fetch(`/plant/${removePlantID}`, {
+            method: 'DELETE',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+          });
+      const text = await response.text();
+
+      /*
       console.log("Engage getRemovedPlantID");
       const removePlantID = this.props.getRemovedPlantID();
       console.log("getRemovedPlantID should be done");
@@ -99,7 +114,7 @@ class HarvestPlantButton extends Component{
         'Content-Type': 'application/json'
       }
       });
-      console.log("Exit removePlant");
+      console.log("Exit removePlant");*/
     }
 
     async updateHB(event) {
