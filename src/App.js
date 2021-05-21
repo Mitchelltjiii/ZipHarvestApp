@@ -87,8 +87,8 @@ export default class App extends React.Component {
 	  let showForm;
     if (this.state.loggedIn != '') {
 	  	showForm = <div>
-	    <Header currentPageSet={SetCurrentPage} currentPage={this.state.currentPage}/>
-      <Outer currentPage={this.state.currentPage} setCurrentPage={SetCurrentPage} harvestBatches={this.state.harvestBatches} harvestedPlants={this.state.harvestedPlants} plants={this.state.plants}/>
+	    <Header currentPageSet={this.SetCurrentPage} currentPage={this.state.currentPage}/>
+      <Outer currentPage={this.state.currentPage} setCurrentPage={this.SetCurrentPage} harvestBatches={this.state.harvestBatches} harvestedPlants={this.state.harvestedPlants} plants={this.state.plants}/>
     </div>;
     }else{
 		showForm = <div><LogIn></LogIn></div>;
