@@ -91,6 +91,8 @@ class HarvestPlantButton extends Component{
 
       console.log("Engage RemovePlantID");
       const removePlantID = this.props.getRemovedPlantID();
+      console.log("removePlantID:  " + removePlantID);
+
       console.log("getRemovedPlantID should be done");
 
       const response = fetch(`/plant/${removePlantID}`, {
