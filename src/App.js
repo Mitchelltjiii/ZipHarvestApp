@@ -78,6 +78,7 @@ export default class App extends React.Component {
 
     var parent = this;
 
+    console.log("APP.JS RENDERING");
 
     function resetAll(){
       parent.setState({isLoading: true});
