@@ -820,7 +820,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 					alignItems="center"
 				>
 
-<div>harvestbatch info tabs</div>
+				<HarvestBatchInfoTabs hbInfoTabsHiddenNow={hbInfoTabsHiddenNow}> </HarvestBatchInfoTabs>
 
 				</Grid>
 				
@@ -916,7 +916,8 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				>
 
 				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddBranch}>Add Branch</Button>
-                <div>prop dummy</div>        
+				<HarvestPlantButton getHarvestedPlantItem={getHarvestedPlantItem} getRemovedPlantID={getRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} nextPlant={nextPlant} setChanges={setChanges}></HarvestPlantButton>
+
 				</Grid>
 
 				<Grid
@@ -936,14 +937,6 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		</div>
 	);
 }
-
-
-
-
-//<HarvestBatchInfoTabs hbInfoTabsHiddenNow={hbInfoTabsHiddenNow}> </HarvestBatchInfoTabs>
-
-
-//<PropDummy getHarvestedPlantItem={getHarvestedPlantItem} getRemovedPlantID={getRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} nextPlant={nextPlant} setChanges={setChanges}></PropDummy>
 
 //<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} harvestedPlants={harvestedPlants} currHidePlants={currHidePlants} currentHarvest={currentHarvest} timeLimit={timeLimit}></EditButton>		
 
