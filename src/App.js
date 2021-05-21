@@ -12,7 +12,8 @@ export default class App extends React.Component {
     harvestBatches: [],
     plants: [],
     harvestedPlants: [],
-    responseFromPlants: []
+    responseFromPlants: [],
+    isLoading: false
   };
   componentDidMount() {
     /*
@@ -33,7 +34,7 @@ export default class App extends React.Component {
   }
 
   getPlants = () => {
-    fetch('api/plants')
+    fetch('/api/plants')
       .then(res => res.text())
       .then(plants => this.setState({ plants }));
   }
@@ -75,9 +76,28 @@ export default class App extends React.Component {
 
   render() {
 
-    this.getHarvestBatches();
-    this.getPlants();
-    this.getHarvestedPlants();
+    var parent = this;
+
+
+    function resetAll(){
+      parent.setState({isLoading: true});
+  
+      console.log("RESETTING ALL");
+  
+      fetch('api/plants')
+      .then(response => response.text())
+      .then(data => parent.setState({plants: data, isLoading: false}));
+  
+      fetch('api/harvestedplants')
+      .then(response => response.text())
+      .then(data => parent.setState({harvestedPlants: data, isLoading: false}));
+  
+      fetch('api/harvestbatches')
+        .then(response => response.text())
+        .then(data => parent.setState({harvestBatches: data, isLoading: false}));
+    }
+
+    resetAll();
 
     console.log("Harvest Batches In State: " + this.state.harvestBatches);
     console.log("Plants In State: " + this.state.plants);
