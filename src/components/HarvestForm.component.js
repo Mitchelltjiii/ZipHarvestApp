@@ -932,16 +932,11 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 
 				</Grid>
 
-				<div>Table Wrapper</div>
-			</Grid>
+					<TableWrapper currHarvest={currentHarvest} harvestedPlants={harvestedPlants} editNow={editNow} currWeightChanges={currWeightChanges} setWeightChanges={setWeightChanges} getRemovePlantIDDelete={getRemovePlantIDDelete} 
+					currHidePlants={currHidePlants} setHidePlants={setHidePlants}></TableWrapper>			
+				</Grid>
 		</div>
 	);
 }
-
-
-//<TableWrapper currHarvest={currentHarvest} harvestedPlants={harvestedPlants} editNow={editNow} currWeightChanges={currWeightChanges} setWeightChanges={setWeightChanges} getRemovePlantIDDelete={getRemovePlantIDDelete} 
-//currHidePlants={currHidePlants} setHidePlants={setHidePlants}></TableWrapper>
-
-
 
 export default HarvestForm;
