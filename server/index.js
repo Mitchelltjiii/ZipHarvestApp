@@ -210,7 +210,7 @@ app.post('/harvestedplant', (req, res) =>{
 app.delete(`/plant/${removePlantID}`, (req, res) =>{
   console.log("Delete Plant: " + removePlantID);
   const result = connection.query(
-    `REMOVE FROM plants 
+    `DELETE FROM plants 
     WHERE id = ?`, 
     [
       removePlantID
