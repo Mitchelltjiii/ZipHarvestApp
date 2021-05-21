@@ -110,7 +110,7 @@ app.post('/harvestbatch', (req, res) =>{
   console.log("POST DATA: NAME: " + name);
 
   const result = connection.query(
-    `INSERT INTO plants 
+    `INSERT INTO harvestbatches 
     (name, finalized, plantList, type, date, createdAt, updatedAt) 
     VALUES 
     (?, ?, ?, ?, ?, ?, ?)`, 
