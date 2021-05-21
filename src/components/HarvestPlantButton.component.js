@@ -19,6 +19,11 @@ class HarvestPlantButton extends Component{
       };
 
     async handleSubmit(event) {
+
+      event.preventDefault();
+
+      this.executeHarvestPlant();
+      /*
         event.preventDefault();
         console.log("Engage Next Plant");
         if(this.props.nextPlant()){
@@ -43,10 +48,11 @@ class HarvestPlantButton extends Component{
           console.log("Create harvested plant should be done - no indicator");
   
           this.props.history.push('/plants');
-        }
+        }*/
     }
 
     async executeHarvestPlant(){
+      
       console.log("Execute Harvest Plant");
       if(this.props.nextPlant()){
           console.log("Engage Harvested Plant Item");

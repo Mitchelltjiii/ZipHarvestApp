@@ -86,7 +86,7 @@ app.get('/api/plants', (req, res) => {
    console.log("QUERY Plants DONE")
   });
   
-  console.log('RESPOND FROM API/HB');
+  console.log('RESPOND FROM API/PLANTS');
   res.json(plantsString);
 });
 
@@ -105,7 +105,7 @@ app.get('/api/harvestedplants', (req, res) => {
    console.log("QUERY HB DONE")
   });
   
-  console.log('RESPOND FROM API/HB');
+  console.log('RESPOND FROM API/HARVESTEDPLANTS');
   res.json(harvestedPlantsString);
 });
 
