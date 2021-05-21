@@ -67,7 +67,11 @@ class HarvestPlantButton extends Component{
             },
             body: JSON.stringify(harvestedPlantItem)
           });
-          const text = await response.text();
+          try{
+            await response.text();
+          }catch(err){
+
+          }
 
           setTimeout(() => this.removePlant(event), 0) 
       }
@@ -102,7 +106,7 @@ class HarvestPlantButton extends Component{
               'Content-Type': 'application/json'
             }
           });
-          
+
       const text = await response.text();
 
       /*
