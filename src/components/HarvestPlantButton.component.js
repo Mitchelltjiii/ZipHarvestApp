@@ -102,6 +102,7 @@ class HarvestPlantButton extends Component{
               'Content-Type': 'application/json'
             }
           });
+          
       const text = await response.text();
 
       /*
