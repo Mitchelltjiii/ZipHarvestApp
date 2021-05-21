@@ -13,7 +13,9 @@ export default class App extends React.Component {
     plants: [],
     harvestedPlants: [],
     responseFromPlants: [],
-    isLoading: true
+    plantsLoading: true,
+    harvestedPlantsLoading: true,    
+    harvestBatchesLoading: true
   };
   componentDidMount() {
     /*
@@ -22,16 +24,17 @@ export default class App extends React.Component {
     });*/
     console.log("Component Did Mount - App.js");
 
+    console.log("Before GetHarvestBatches")
     this.getHarvestBatches();
+    console.log("After GetHarvestBatches")
+
     console.log("Before GetPlants")
     this.getPlants();
     console.log("After GetPlants")
 
+    console.log("Before GetHarvestedPlants")
     this.getHarvestedPlants();
-
-    this.state.isLoading = false;
-
-    this.forceUpdate();
+    console.log("After GetHarvestedPlants")
   }
 /*
   getHarvestBatches = () => {
@@ -52,27 +55,45 @@ export default class App extends React.Component {
       .then(harvestedPlants => this.setState({ harvestedPlants }));
   }*/
 
+  engageReload = () => {
+    console.log("Engage Reload || pl: " + this.state.plantsLoading + " | hpl: " + this.state.harvestedPlantsLoading + " | hbl: " + this.state.harvestBatchesLoading);
+    if(!this.state.plantsLoading && !this.state.harvestedPlantsLoading && !this.state.harvestBatchesLoading){
+      console.log("Force Updated In App.js");
+      this.forceUpdate();
+    }
+  }
+
   getPlants = async () => {
     console.log("In GetPlants")
     const response = await fetch('/api/plants');
     const text = await response.text();
     console.log("API GET PLANTS: " + text);
     this.state.plants = text;
+    this.state.plantsLoading = false;
     console.log("Leaving GetPlants")
   }
 
   getHarvestedPlants = async () => {
+    console.log("In GetHarvestedPlants")
     const response = await fetch('/api/harvestedplants');
     const text = await response.text();
     console.log("API GET HARVESTEDPLANTS: " + text);
     this.state.harvestedPlants = text;
+    this.state.harvestedPlantsLoading = false;
+    console.log("Leaving GetHarvestedPlants")
   }
 
   getHarvestBatches = async () => {
+    console.log("In GetHarvestBatches")
+
     const response = await fetch('/api/harvestbatches');
     const text = await response.text();
     console.log("API GET HARVESTBATCHES: " + text);
     this.state.harvestBatches = text;
+    this.state.harvestBatchesLoading = false;
+
+    console.log("Leaving GetHarvestBatches")
+
   }
 
   SetCurrentPage = (currentPage) => {
