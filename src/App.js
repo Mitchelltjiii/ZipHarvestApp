@@ -34,12 +34,19 @@ export default class App extends React.Component {
       .then(harvestBatches => this.setState({ harvestBatches }));
   }
 
+  getPlants = async () => {
+    const response = await fetch('/api/plants');
+    const text = await response.text();
+    console.log("API GET PLANTS: " + text);
+    this.state.plants = text;
+  }
+/*
   getPlants = () => {
     fetch('/api/plants')
       .then(res => res.text())
       .then(plants => this.setState({ plants }));
   }
-
+*/
   getHarvestedPlants = () => {
     fetch('/api/harvestedplants')
       .then(res => res.text())
