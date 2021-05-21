@@ -688,7 +688,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				</Grid>
 
 			<TextField id="changeHBField" label="New Harvest Batch"/>
-            <div>addharvestbatchbutton</div>
+            <AddHarvestBatchButton getHarvestBatchItem={getHarvestBatchItem} addNewHB={addNewHB} resetHarvestBatches={resetHarvestBatches}></AddHarvestBatchButton>
 			<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancelNewHB}>Cancel</Button>
 
 		  </div>
@@ -807,8 +807,8 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 					alignItems="center"
 				>
 
-                <div>changehbform and addnewhbform</div>    
-				
+				<ChangeHBForm changeHBHiddenNow={changeHBHiddenNow}></ChangeHBForm>
+				<AddNewHBForm changeHBHiddenNow={changeHBHiddenNow}></AddNewHBForm>
 				
 
 				</Grid>
@@ -937,13 +937,10 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	);
 }
 
-//<AddHarvestBatchButton getHarvestBatchItem={getHarvestBatchItem} addNewHB={addNewHB} resetHarvestBatches={resetHarvestBatches}></AddHarvestBatchButton>
 
 
-//<ChangeHBForm changeHBHiddenNow={changeHBHiddenNow}></ChangeHBForm>
-//<AddNewHBForm changeHBHiddenNow={changeHBHiddenNow}></AddNewHBForm>
 
-//				<HarvestBatchInfoTabs hbInfoTabsHiddenNow={hbInfoTabsHiddenNow}> </HarvestBatchInfoTabs>
+//<HarvestBatchInfoTabs hbInfoTabsHiddenNow={hbInfoTabsHiddenNow}> </HarvestBatchInfoTabs>
 
 
 //<PropDummy getHarvestedPlantItem={getHarvestedPlantItem} getRemovedPlantID={getRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} nextPlant={nextPlant} setChanges={setChanges}></PropDummy>
