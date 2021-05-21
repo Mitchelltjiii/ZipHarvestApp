@@ -52,7 +52,22 @@ app.use(express.urlencoded({
 
 app.use(express.json());
 
-app.get('/api/harvestbatches', (req, res) => {
+app.get('/api/harvestbatches', async (req, res) => {
+  console.log('api/harvestbatches');
+  await connection.query(hbQueryString, (err, res, fields) => {
+    if (err) {
+     console.log('Error: ' + err);
+      return;
+   }
+   console.log('Here is the result of the query:');
+   console.log('===========================================');
+   console.log(res);
+   console.log('===========================================');
+   hbString = res;
+   console.log("QUERY HB DONE")
+  });
+  
+  console.log('RESPOND FROM API/HB');
   res.json(hbString);
 });
 
@@ -370,8 +385,7 @@ app.listen(port, () => {
   console.log("server started on port " + port);
 });
 
-connection.connect((err) => {const queryString = 'select * from harvestbatches';
-var hbString = '';
+connection.connect((err) => {
   if (err) {
       console.log('Connection error message: ' + err.message);
       return;

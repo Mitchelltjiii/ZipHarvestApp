@@ -38,13 +38,9 @@ class AddHarvestBatchButton extends Component{
     executeAddNewHB(){
       console.log("Execute Add New HB");
 
-      //2021-05-03 22:06:12
-
       const harvestBatchItem = this.props.getHarvestBatchItem(true);
       console.log("HarvestBatchItem before fetch: " + JSON.stringify(harvestBatchItem));
-  
-  //method: (plantItem.id) ? 'PUT' : 'POST',
-  
+    
       fetch('/harvestbatch', {
         method: (harvestBatchItem.id) ? 'PUT' : 'POST',
         headers: {
