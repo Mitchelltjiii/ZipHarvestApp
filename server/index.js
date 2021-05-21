@@ -105,9 +105,9 @@ app.post('/harvestbatch', (req, res) =>{
   let createdAt = '2021-05-03 22:06:12';
   let updatedAt = '2021-05-03 22:06:12';
 
-  console.json("POST DATA: HARVESTBATCH STRINGIFIED: " + JSON.stringify(postData));
-  console.json("POST DATA: HARVESTBATCH: " + postData);
-  console.json("POST DATA: NAME: " + name);
+  console.log("POST DATA: HARVESTBATCH STRINGIFIED: " + JSON.stringify(postData));
+  console.log("POST DATA: HARVESTBATCH: " + postData);
+  console.log("POST DATA: NAME: " + name);
 
   const result = connection.query(
     `INSERT INTO plants 
