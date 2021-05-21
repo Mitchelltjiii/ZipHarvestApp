@@ -28,6 +28,7 @@ function Header({currentPageSet, currentPage}){
   }
 
   const handleExistingBatches = () => {
+    console.log("Handle Existing Batches");
     handleClose()
     currentPageSet('harvest-batches-form')
   }

@@ -78,6 +78,7 @@ export default class App extends React.Component {
 
 	  const SetCurrentPage = (currentPage) => {
 		
+      console.log("Set Current Page: " + currentPage);
 	  	this.state.currentPage = (currentPage);
 	  }
 
