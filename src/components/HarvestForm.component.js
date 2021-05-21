@@ -927,7 +927,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 					alignItems="center"
 				>
 
-				<div>Edit Button</div>
+				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} harvestedPlants={harvestedPlants} currHidePlants={currHidePlants} currentHarvest={currentHarvest} timeLimit={timeLimit}></EditButton>		
 				<FormLabel>Harvest Queue</FormLabel>
 
 				</Grid>
@@ -938,7 +938,6 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	);
 }
 
-//<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} harvestedPlants={harvestedPlants} currHidePlants={currHidePlants} currentHarvest={currentHarvest} timeLimit={timeLimit}></EditButton>		
 
 //<TableWrapper currHarvest={currentHarvest} harvestedPlants={harvestedPlants} editNow={editNow} currWeightChanges={currWeightChanges} setWeightChanges={setWeightChanges} getRemovePlantIDDelete={getRemovePlantIDDelete} 
 //currHidePlants={currHidePlants} setHidePlants={setHidePlants}></TableWrapper>
