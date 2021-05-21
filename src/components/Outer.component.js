@@ -88,9 +88,23 @@ class Outer extends Component {
     }
 
 
-    this.state.plants = JSON.parse(this.props.plants);
-    this.state.harvestedPlants = JSON.parse(this.props.harvestedPlants);
-    this.state.harvestBatches = JSON.parse(this.props.harvestBatches);
+    try{
+      this.state.plants = JSON.parse(this.props.plants);
+    }catch(err){
+
+    }
+
+    try{
+      this.state.harvestedPlants = JSON.parse(this.props.harvestedPlants);
+    }catch(err){
+
+    }
+
+    try{
+      this.state.harvestBatches = JSON.parse(this.props.harvestBatches);
+    }catch(err){
+
+    }
 
     console.log("Rendering: Outer");
     console.log("***********************");
