@@ -94,6 +94,36 @@ app.post('/posttest', (req, res) =>{
     res.json(message);
 });
 
+app.post('/harvestbatch', (req, res) =>{
+  var postData  = req.body;
+
+  let name = postData.name;
+  let finalized = postData.finalized;
+  let plantList = postData.plantList;
+  let type = postData.type;
+  let date = postData.date;
+  let createdAt = '2021-05-03 22:06:12';
+  let updatedAt = '2021-05-03 22:06:12';
+
+  const result = connection.query(
+    `INSERT INTO plants 
+    (name, finalized, plantList, type, date, createdAt, updatedAt) 
+    VALUES 
+    (?, ?, ?, ?, ?, ?, ?)`, 
+    [
+      name, finalized, plantList, type, date, createdAt, updatedAt
+    ]
+  );  
+
+    let message = 'Error in creating programming language';
+  
+    if (result.affectedRows) {
+      message = 'Programming language created successfully';
+    }
+  
+    res.json(message);
+});
+
 
 /*
 app.post('/posttest', (req, res) =>{
