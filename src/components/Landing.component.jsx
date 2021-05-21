@@ -16,7 +16,7 @@ function Landing({currentPage, plantMap, setPlantMap, harvestedPlantsMap, setHar
 		
         <div>
 			{currentPage === 'harvest-form' ? (
-				<HarvestForm/>
+				<HarvestForm harvestBatches={harvestBatchesMap} setHarvestBatches={setHarvestBatches} plants={plantMap} setPlantMap={setPlantMap} harvestedPlants={harvestedPlantsMap} setHarvestedPlantMap={setHarvestedPlantMap} resetHarvestBatches={resetHarvestBatches} resetAll={resetAll}/>
 			) : currentPage === 'harvest-batches-form' ? (
 				<HarvestBatchesForm/>
 			) : null}
