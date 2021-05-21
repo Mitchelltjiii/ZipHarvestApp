@@ -52,9 +52,9 @@ app.use(express.urlencoded({
 
 app.use(express.json());
 
-app.get('/api/harvestbatches', async (req, res) => {
+app.get('/api/harvestbatches', (req, res) => {
   console.log('api/harvestbatches');
-  await connection.query(hbQueryString, (err, res, fields) => {
+  connection.query(hbQueryString, (err, res, fields) => {
     if (err) {
      console.log('Error: ' + err);
       return;
