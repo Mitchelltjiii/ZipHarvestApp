@@ -433,7 +433,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			hbDate=getYesterdayStr();
 		}
 
-		addedHB = new HarvestBatch("",hbName,"","{}",harvestType,hbDate);
+		addedHB = new HarvestBatch("",hbName,false,"{}",harvestType,hbDate);
 
 		if(hbName!=""&&!hbOptionsList.includes(hbName)){
 			harvestBatches.push(addedHB);

@@ -98,7 +98,10 @@ app.post('/harvestbatch', (req, res) =>{
   var postData  = req.body;
 
   let name = postData.name;
-  let finalized = postData.finalized;
+  let finalized = 0;
+  if(postData.finalized){
+    finalized = 1;
+  }
   let plantList = postData.plantList;
   let type = postData.type;
   let date = postData.date;
