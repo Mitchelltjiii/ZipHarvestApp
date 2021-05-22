@@ -144,7 +144,7 @@ class HarvestPlantButton extends Component{
         }catch(err){
         }
 
-      //setTimeout(() => this.props.setChanges(), 0) 
+      setTimeout(() => this.props.setChanges(), 0) 
 
       /*    
       await fetch('/api/harvestbatch', {

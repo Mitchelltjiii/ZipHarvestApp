@@ -133,6 +133,24 @@ export default class App extends React.Component {
     this.getHarvestBatches();
   }
 
+  resetAll = () => {
+    this.setState({harvestBatchesLoading: true, plantsLoading: true, harvestedPlantsLoading: true});
+
+    console.log("RESETTING ALL");
+
+    console.log("Before GetHarvestBatches")
+    this.getHarvestBatches();
+    console.log("After GetHarvestBatches")
+
+    console.log("Before GetPlants")
+    this.getPlants();
+    console.log("After GetPlants")
+
+    console.log("Before GetHarvestedPlants")
+    this.getHarvestedPlants();
+    console.log("After GetHarvestedPlants")
+  }
+
   render() {
 
     if(this.state.plantsLoading || this.state.harvestedPlantsLoading || this.state.harvestBatchesLoading){
