@@ -73,7 +73,7 @@ class HarvestPlantButton extends Component{
 
           }
 
-          
+
           setTimeout(() => this.removePlant(event), 0) 
       }
 
@@ -90,7 +90,7 @@ class HarvestPlantButton extends Component{
 
     async removePlant(event) {
       console.log("Enter removePlant");
-      //setTimeout(() => this.updateHB(event), 0) 
+      setTimeout(() => this.updateHB(event), 0) 
 
       event.preventDefault();
 
@@ -126,13 +126,27 @@ class HarvestPlantButton extends Component{
     }
 
     async updateHB(event) {
-      console.log("Enter UpdateHB");
-      setTimeout(() => this.props.setChanges(), 0) 
-
       event.preventDefault();
-
+      console.log("Execute Update HB");
       const harvestBatchItem = this.props.getHarvestBatchItem(false);
-    
+      console.log("Harvest Batch Item should be done");
+
+      const response = fetch('/harvestbatch', {
+          method: (harvestBatchItem.id) ? 'PUT' : 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(harvestBatchItem)
+        });
+        try{
+          await response.text();
+        }catch(err){
+        }
+
+      //setTimeout(() => this.props.setChanges(), 0) 
+
+      /*    
       await fetch('/api/harvestbatch', {
         method: (harvestBatchItem.id) ? 'PUT' : 'POST',
         headers: {
@@ -140,7 +154,7 @@ class HarvestPlantButton extends Component{
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(harvestBatchItem),
-      });
+      });*/
     }
     
     constructor(props) {

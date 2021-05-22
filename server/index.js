@@ -174,6 +174,44 @@ app.post('/harvestbatch', (req, res) =>{
     res.json(message);
 });
 
+app.put('/harvestbatch', (req, res) =>{
+  var postData  = req.body;
+
+  let id = postData.id;
+  let name = postData.name;
+  let finalized = 0;
+  if(postData.finalized){
+    finalized = 1;
+  }
+  let plantList = postData.plantList;
+  let type = postData.type;
+  let date = postData.date;
+  let createdAt = '2021-05-03 22:06:12';
+  let updatedAt = '2021-05-03 22:06:12';
+
+  console.log("PUT DATA: HARVESTBATCH STRINGIFIED: " + JSON.stringify(postData));
+  console.log("PUT DATA: HARVESTBATCH: " + postData);
+  console.log("PUT DATA: NAME: " + name);
+
+  const result = connection.query(
+    `INSERT INTO harvestbatches 
+    (id, name, finalized, plantList, type, date, createdAt, updatedAt) 
+    VALUES 
+    (?, ?, ?, ?, ?, ?, ?, ?)`, 
+    [
+      id, name, finalized, plantList, type, date, createdAt, updatedAt
+    ]
+  );  
+
+    let message = 'Error in creating programming language';
+  
+    if (result.affectedRows) {
+      message = 'Programming language created successfully';
+    }
+  
+    res.json(message);
+});
+
 app.post('/harvestedplant', (req, res) =>{
   var postData  = req.body;
 
