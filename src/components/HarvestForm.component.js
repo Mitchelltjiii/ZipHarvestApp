@@ -915,7 +915,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				>
 
 				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddBranch}>Add Branch</Button>
-				<HarvestPlantButton getHarvestedPlantItem={getHarvestedPlantItem} getRemovedPlantID={getRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} nextPlant={nextPlant} setChanges={this.setChanges}></HarvestPlantButton>
+				<HarvestPlantButton getHarvestedPlantItem={getHarvestedPlantItem} getRemovedPlantID={getRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} nextPlant={nextPlant} setChanges={setChanges}></HarvestPlantButton>
 
 				</Grid>
 
