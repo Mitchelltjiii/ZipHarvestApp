@@ -49,7 +49,7 @@ class AddHarvestBatchButton extends Component{
       });
       const text = await response.text();
 
-      setTimeout(() => this.props.resetHarvestBatches(), 0); 
+      setTimeout(() => this.props.resetHarvestBatches(this.props.currentHarvest), 0); 
 
       /*
       fetch('/harvestbatch', {

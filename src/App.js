@@ -15,7 +15,8 @@ export default class App extends React.Component {
     responseFromPlants: [],
     plantsLoading: true,
     harvestedPlantsLoading: true,    
-    harvestBatchesLoading: true
+    harvestBatchesLoading: true,
+    currentHB: ""
   };
   componentDidMount() {
     /*
@@ -125,16 +126,16 @@ export default class App extends React.Component {
     .then(responseFromPlants => this.setState({ responseFromPlants }));
   }
 
-  resetHarvestBatches = () => {
-    this.setState({harvestBatchesLoading: true});
+  resetHarvestBatches = (currHarvest) => {
+    this.setState({harvestBatchesLoading: true, currentHarvest: currHarvest});
 
     console.log("RESETTING Harvest Batches");
 
     this.getHarvestBatches();
   }
 
-  resetAll = () => {
-    this.setState({harvestBatchesLoading: true, plantsLoading: true, harvestedPlantsLoading: true});
+  resetAll = (currHarvest) => {
+    this.setState({harvestBatchesLoading: true, plantsLoading: true, harvestedPlantsLoading: true, currentHarvest: currHarvest});
 
     console.log("RESETTING ALL");
 
@@ -173,7 +174,8 @@ export default class App extends React.Component {
     if (this.state.loggedIn != '') {
 	  	showForm = <div>
 	    <Header currentPageSet={this.SetCurrentPage} currentPage={this.state.currentPage}/>
-      <Outer currentPage={this.state.currentPage} setCurrentPage={this.SetCurrentPage} harvestBatches={this.state.harvestBatches} harvestedPlants={this.state.harvestedPlants} plants={this.state.plants} resetHarvestBatches={this.resetHarvestBatches} resetAll={this.resetAll}/>
+      <Outer currentPage={this.state.currentPage} setCurrentPage={this.SetCurrentPage} harvestBatches={this.state.harvestBatches} harvestedPlants={this.state.harvestedPlants} plants={this.state.plants} 
+      resetHarvestBatches={this.resetHarvestBatches} resetAll={this.resetAll} currentHarvest={this.state.currentHarvest}/>
     </div>;
     }else{
 		showForm = <div><LogIn></LogIn></div>;

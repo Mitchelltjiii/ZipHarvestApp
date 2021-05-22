@@ -25,7 +25,7 @@ import AddHarvestBatchButton from './AddHarvestBatchButton.component';
 import EditButton from './EditButton.component';
 import TableWrapper from './TableWrapper.component';
 
-function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harvestedPlants,setHarvestedPlantMap,resetHarvestBatches, resetAll}) { 
+function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harvestedPlants,setHarvestedPlantMap,resetHarvestBatches, resetAll, currentHarvest}) { 
 
 	function HarvestBatch(itemID,name,finalized,plantList,type,date){
 		this.itemID = itemID;
@@ -52,7 +52,6 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	}
 
 	let hbOptionsList = ["Add New Harvest Batch"];
-	let currentHarvest = new HarvestBatch("","","","{}","","");
 	let currentHarvestedPlant = new HarvestedPlant('','','','',0,'');
 	let removedPlantID = '';
 	let addedHB = new HarvestBatch("","","","{}","","");
@@ -568,9 +567,9 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		setSelectedTag('');
 		setHarvestBatches(harvestBatches);	
 
-		resetAll();
+		resetAll(currentHarvest);
 
-		resetAll();
+		resetAll(currentHarvest);
 
 		console.log("Exit setchanges");
 	}
@@ -689,7 +688,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				</Grid>
 
 			<TextField id="changeHBField" label="New Harvest Batch"/>
-            <AddHarvestBatchButton getHarvestBatchItem={getHarvestBatchItem} addNewHB={addNewHB} resetHarvestBatches={resetHarvestBatches}></AddHarvestBatchButton>
+            <AddHarvestBatchButton getHarvestBatchItem={getHarvestBatchItem} addNewHB={addNewHB} resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest}></AddHarvestBatchButton>
 			<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancelNewHB}>Cancel</Button>
 
 		  </div>
