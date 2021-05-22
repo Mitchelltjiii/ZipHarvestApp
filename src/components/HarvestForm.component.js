@@ -571,7 +571,6 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		resetAll();
 
 		console.log("Exit setchanges");
-
 	}
 
 	const ChangeHBForm = ({changeHBHiddenNow}) => {
