@@ -193,13 +193,13 @@ app.put('/harvestbatch', (req, res) =>{
   console.log("PUT DATA: HARVESTBATCH: " + postData);
   console.log("PUT DATA: NAME: " + name);
 
+  //var sql = "UPDATE trn_employee set first_name =? , last_name =?  WHERE employee_id = ?";
+
   const result = connection.query(
-    `INSERT INTO harvestbatches 
-    (id, name, finalized, plantList, type, date, createdAt, updatedAt) 
-    VALUES 
-    (?, ?, ?, ?, ?, ?, ?, ?)`, 
+    `UPDATE harvestbatches set
+    name =?, finalized =?, plantList =?, type =?, date =?, createdAt =?, updatedAt =? WHERE id = ?`, 
     [
-      id, name, finalized, plantList, type, date, createdAt, updatedAt
+      name, finalized, plantList, type, date, createdAt, updatedAt, id
     ]
   );  
 
