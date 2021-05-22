@@ -213,8 +213,10 @@ app.delete(`/plant/:id`, (req, res) =>{
 
   const result = connection.query(
     `DELETE FROM plants WHERE (id = ?)`, 
-    [plantID]
-  );  
+    [plantID],function (err, result) {
+    if(err) throw err;
+    console.log("Number of records deleted: " + result.affectedRows);
+  }); 
 
     let message = 'Error in creating programming language';
   
