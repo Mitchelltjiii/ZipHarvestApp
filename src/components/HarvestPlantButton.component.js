@@ -131,6 +131,8 @@ class HarvestPlantButton extends Component{
       const harvestBatchItem = this.props.getHarvestBatchItem(false);
       console.log("Harvest Batch Item should be done");
 
+      setTimeout(() => this.props.setChanges(), 0); 
+
       const response = fetch('/harvestbatch', {
           method: (harvestBatchItem.id) ? 'PUT' : 'POST',
           headers: {
@@ -139,12 +141,11 @@ class HarvestPlantButton extends Component{
           },
           body: JSON.stringify(harvestBatchItem)
         });
-        try{
+      try{
           await response.text();
-        }catch(err){
-        }
+      }catch(err){
+      }
 
-      setTimeout(() => this.props.setChanges(), 0) 
 
       /*    
       await fetch('/api/harvestbatch', {
