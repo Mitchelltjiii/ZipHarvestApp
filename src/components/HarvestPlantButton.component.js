@@ -73,6 +73,7 @@ class HarvestPlantButton extends Component{
 
           }
 
+          
           setTimeout(() => this.removePlant(event), 0) 
       }
 
