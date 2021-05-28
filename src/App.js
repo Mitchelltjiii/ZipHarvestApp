@@ -127,6 +127,9 @@ export default class App extends React.Component {
   }
 
   resetHarvestBatches = (currHarvest) => {
+    console.log("RESET HARVEST BATCHES-CurrHarvest: " + currHarvest);
+    console.log("RESET HARVEST BATCHES-CurrHarvest: " + JSON.stringify(currHarvest));
+
     this.setState({harvestBatchesLoading: true, currentHarvest: currHarvest});
 
     console.log("RESETTING Harvest Batches");
