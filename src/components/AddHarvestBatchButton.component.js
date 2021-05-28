@@ -35,6 +35,9 @@ class AddHarvestBatchButton extends Component{
 
     async executeAddNewHB(){
       console.log("Execute Add New HB");
+      console.log("Current Harvest: " + this.props.currentHarvest);
+      console.log("Current Harvest (STRING): " + JSON.stringify(this.props.currentHarvest));
+
 
       const harvestBatchItem = this.props.getHarvestBatchItem(true);
       console.log("HarvestBatchItem before fetch: " + JSON.stringify(harvestBatchItem));
