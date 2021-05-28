@@ -149,7 +149,7 @@ export default class App extends React.Component {
 
     console.log("RESET Harvest Batches");
     console.log("HarvestBatches: " + this.state.harvestBatches);
-    console.log("CurrHarvest: " + currHarvest);
+    console.log("CurrHarvest: " + JSON.stringify(currHarvest));
     console.log("CurrHarvest.name: " + currHarvest.name);
 
     let parsed = JSON.parse(this.state.harvestBatches);
