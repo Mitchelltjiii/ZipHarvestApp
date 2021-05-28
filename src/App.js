@@ -150,12 +150,13 @@ export default class App extends React.Component {
     console.log("RESET Harvest Batches");
     console.log("HarvestBatches: " + this.state.harvestBatches);
     console.log("CurrHarvest: " + currHarvest);
-    console.log("CurrHarvest Name: " + currHarvest.name);
+    console.log("CurrHarvest.name: " + currHarvest.name);
 
     let parsed = JSON.parse(this.state.harvestBatches);
 
     for(let val of parsed){
 			console.log("Val: " + JSON.stringify(val));
+      console.log("Val.name: " + val.name);
 			if(val.name == currHarvest.name){
 				console.log("Found HarvestBatch: " + val.name);
         currHarvestID = val.id;
