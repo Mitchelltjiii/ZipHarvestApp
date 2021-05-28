@@ -16,7 +16,7 @@ export default class App extends React.Component {
     plantsLoading: true,
     harvestedPlantsLoading: true,    
     harvestBatchesLoading: true,
-    currentHB: ""
+    currentHarvest: []
   };
   componentDidMount() {
     /*
@@ -127,6 +127,20 @@ export default class App extends React.Component {
   }
 
   resetHarvestBatches = (currHarvest) => {
+    let currHarvestID = -1;
+
+    console.log("RESET Harvest Batches");
+
+    for(let val of harvestBatches){
+			console.log("Val: " + JSON.stringify(val));
+			if(val.name == currHarvest.name){
+				console.log("Found HarvestBatch: " + val.name);
+        currHarvestID = val.id;
+			}
+		}
+
+    currHarvest.id = currHarvestID;
+
     this.setState({harvestBatchesLoading: true, currentHarvest: currHarvest});
 
     console.log("RESETTING Harvest Batches");
