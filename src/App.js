@@ -133,29 +133,27 @@ export default class App extends React.Component {
 
     console.log("Before getHarvestBatches");
 
+    setTimeout(() => this.executeResetHarvestBatches(currHarvest),0); 
+
     this.getHarvestBatches();
 
     console.log("After getHarvestBatches");
+
+   
+  }
+
+  executeResetHarvestBatches = (currHarvest) => {
+    console.log("Enter executeresetharvestbatches");
 
     let currHarvestID = -1;
 
     console.log("RESET Harvest Batches");
     console.log("HarvestBatches: " + this.state.harvestBatches);
 
+    let parsed = JSON.parse(this.state.harvestBatches);
 
-    for(let val of JSON.stringify(this.state.harvestBatches)){
+    for(let val of parsed){
 			console.log("Val: " + JSON.stringify(val));
-			if(val.name == currHarvest.name){
-				console.log("Found HarvestBatch: " + val.name);
-        currHarvestID = val.id;
-			}
-		}
-
-    let cutDown = this.state.harvestBatches.substring(1,this.state.harvestBatches.length-1);
-    console.log("Cut Down: " + cutDown); 
-
-    for(let val of cutDown){
-			console.log("Val2: " + JSON.stringify(val));
 			if(val.name == currHarvest.name){
 				console.log("Found HarvestBatch: " + val.name);
         currHarvestID = val.id;
