@@ -51,7 +51,6 @@ class AddHarvestBatchButton extends Component{
       });
       const text = await response.text();
 
-
       /*
       fetch('/harvestbatch', {
         method: (harvestBatchItem.id) ? 'PUT' : 'POST',

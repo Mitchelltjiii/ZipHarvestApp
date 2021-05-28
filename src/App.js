@@ -127,9 +127,21 @@ export default class App extends React.Component {
   }
 
   resetHarvestBatches = (currHarvest) => {
+    this.setState({harvestBatchesLoading: true, currentHarvest: currHarvest});
+
+    console.log("RESETTING Harvest Batches");
+
+    console.log("Before getHarvestBatches");
+
+    this.getHarvestBatches();
+
+    console.log("After getHarvestBatches");
+
     let currHarvestID = -1;
 
     console.log("RESET Harvest Batches");
+    console.log("HarvestBatches: " + this.state.harvestBatches);
+
 
     for(let val of this.state.harvestBatches){
 			console.log("Val: " + JSON.stringify(val));
@@ -140,12 +152,6 @@ export default class App extends React.Component {
 		}
 
     currHarvest.id = currHarvestID;
-
-    this.setState({harvestBatchesLoading: true, currentHarvest: currHarvest});
-
-    console.log("RESETTING Harvest Batches");
-
-    this.getHarvestBatches();
   }
 
   resetAll = (currHarvest) => {
