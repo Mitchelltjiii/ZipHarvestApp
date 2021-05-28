@@ -38,6 +38,8 @@ class AddHarvestBatchButton extends Component{
 
       const harvestBatchItem = this.props.getHarvestBatchItem(true);
       console.log("HarvestBatchItem before fetch: " + JSON.stringify(harvestBatchItem));
+
+      setTimeout(() => this.props.resetHarvestBatches(this.props.currentHarvest), 0); 
     
       const response = fetch('/harvestbatch', {
         method: (harvestBatchItem.id) ? 'PUT' : 'POST',
@@ -49,7 +51,6 @@ class AddHarvestBatchButton extends Component{
       });
       const text = await response.text();
 
-      setTimeout(() => this.props.resetHarvestBatches(this.props.currentHarvest), 0); 
 
       /*
       fetch('/harvestbatch', {
