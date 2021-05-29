@@ -48,10 +48,17 @@ class AddHarvestBatchButton extends Component{
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(harvestBatchItem)
+      },function(error, results, fields) {
+        console.log("RESPONSE FUNCTION CALLED");
+        if (error) throw error;
+        console.log("POST RESULTS: " + results);
+        console.log(error);
+        res.send({postResults: results}); //<-- send back the JSON response
       });
+      
       var text = "Text before change";
       try{
-        text = await response.text();
+        text = await response.text;
       }catch(err){
         console.log("CAUGHT ERROR EXECUTEADDNEWHB");
       }
@@ -78,7 +85,8 @@ class AddHarvestBatchButton extends Component{
     constructor(props) {
         super(props);
         this.state = {
-          harvestBatchItem: this.emptyHarvestBatch
+          harvestBatchItem: this.emptyHarvestBatch,
+          postResults: "NO RESULTS"
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
