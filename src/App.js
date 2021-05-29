@@ -191,29 +191,17 @@ export default class App extends React.Component {
     console.log("After GetHarvestedPlants")
   }
 
-  setNewHBID = (newID,hbName) => {
+  setNewHBID = (newID,hb) => {
     console.log("SET NEW HB ID");
-		let x = 0;
-		let foundX = -1;
-    let parsedHB = JSON.parse(this.state.harvestBatches);
-		for(let val of parsedHB) {
-			console.log("VAL: " + val);
-			console.log("Val.name: " + val.name);
-			if(val.name == hbName){
-				console.log("FOUND X: " + x);
-				foundX = x;
-			}
-			x++;
-		}
-		if(foundX != -1){
-      let newHB = this.state.harvestBatches[foundX];
-      console.log("NEW HB FROM STATE: " + newHB);
-      console.log("NEW HB FROM STATE(STRING): " + JSON.stringify(newHB));
-      newHB.id = newID;
-      console.log("NEW HB ID: " + newHB.id);
-      console.log("NEW HB ID(STRING): " + JSON.stringify(newHB.id));
-			this.state.harvestBatches.splice(foundX,foundX,newHB);
-		}
+    let parsedHB = JSON.parse(hb);
+      console.log("NEW parsedHB: " + parsedHB);
+      console.log("NEW parsedHB(STRING): " + JSON.stringify(parsedHB));
+      parsedHB.id = newID;
+      console.log("NEW HB parsedHB: " + parsedHB);
+      console.log("NEW HB parsedHB(STRING): " + JSON.stringify(parsedHB));
+      console.log("NEW HB parsedHB ID: " + parsedHB.id);
+      console.log("NEW HB parsedHB ID(STRING): " + JSON.stringify(parsedHB.id));
+			this.state.harvestBatches.push(parsedHB);
 		console.log("Harvest Batches Map AFTER SET NEW HB ID(STRINGIFIED): " + JSON.stringify(this.state.harvestBatches));
 	}
 

@@ -52,7 +52,7 @@ class AddHarvestBatchButton extends Component{
         return response.json();
       }).then(function(data) {
         console.log("EXCT DATA: " + data); // this will be a string
-        parent.props.setNewHBID(data);
+        parent.props.setNewHBID(data,harvestBatchItem);
       });
       /*
       var text = "Text before change";
