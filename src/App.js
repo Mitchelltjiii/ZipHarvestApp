@@ -207,7 +207,9 @@ export default class App extends React.Component {
       console.log("TempHarvestBatches ADDED");
       console.log("TempHarvestBatches: " + tempHarvestBatches);
 
-		console.log("Harvest Batches Map AFTER SET NEW HB ID(STRINGIFIED): " + JSON.stringify(this.state.harvestBatches));
+      this.setState({harvestBatches: tempHarvestBatches});
+
+		  console.log("Harvest Batches Map AFTER SET NEW HB ID(STRINGIFIED): " + JSON.stringify(this.state.harvestBatches));
 	}
 
   getCurrentHarvestID = (hbName) => {
