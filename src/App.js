@@ -97,6 +97,20 @@ export default class App extends React.Component {
     this.engageReload();
   }
 
+  getHarvestBatchesForReset = async () => {
+    setTimeout(() => this.executeResetHarvestBatches(currHarvest),0); 
+
+    console.log("In GetHarvestBatchesFORRESET")
+    const response = await fetch('/api/harvestbatches');
+    const text = await response.text();
+    console.log("API GET HARVESTBATCHES: " + text);
+    this.state.harvestBatches = text;
+    this.state.harvestBatchesLoading = false;
+    console.log("Leaving GetHarvestBatchesFORRESET")
+    this.engageReload();
+  }
+
+
   SetCurrentPage = (currentPage) => {
 		
     console.log("Set Current Page: " + currentPage);
@@ -136,13 +150,9 @@ export default class App extends React.Component {
 
     console.log("Before getHarvestBatches");
 
-    setTimeout(() => this.executeResetHarvestBatches(currHarvest),0); 
-
-    this.getHarvestBatches();
+    this.getHarvestBatchesForReset();
 
     console.log("After getHarvestBatches");
-
-   
   }
 
   executeResetHarvestBatches = (currHarvest) => {
