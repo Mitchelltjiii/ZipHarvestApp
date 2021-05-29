@@ -774,6 +774,12 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			};
 
 		let ch = currentHarvest;
+		console.log("CURRENT HARVEST: " + currentHarvest);
+		console.log("CURRENT HARVEST(STRING): " + JSON.stringify(currentHarvest));
+
+		console.log("HarvestBatches in HarvestForm: " + harvestBatches);
+		console.log("HarvestBatches in HarvestForm(STRING): " + JSON.stringify(harvestBatches));
+
 		if(addNew){
 			ch = addedHB;
 		}
