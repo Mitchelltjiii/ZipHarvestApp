@@ -50,6 +50,8 @@ class AddHarvestBatchButton extends Component{
         body: JSON.stringify(harvestBatchItem)
       });
       const text = await response.text();
+      console.log("AFTER TEXT CALL - HB RESPONSE");
+
       console.log("EXECUTE ADD NEW HB RESPONSE: " + response);
 
       console.log("EXECUTE ADD NEW HB RESPONSE(STRING): " + JSON.stringify(response));
