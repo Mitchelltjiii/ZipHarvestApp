@@ -170,9 +170,9 @@ app.post('/harvestbatch', (req, res) =>{
       message = 'Programming language created successfully';
     }
 
-    console.log("HARVESTBATCH POST RESULT IN SERVER: " + result);
+    //console.log("HARVESTBATCH POST RESULT IN SERVER: " + result);
   
-    res.json(message);
+    //res.json(message);
 });
 
 app.put('/harvestbatch', (req, res) =>{
