@@ -97,7 +97,7 @@ export default class App extends React.Component {
     this.engageReload();
   }
 
-  getHarvestBatchesForReset = async () => {
+  getHarvestBatchesForReset = async (currHarvest) => {
     setTimeout(() => this.executeResetHarvestBatches(currHarvest),0); 
 
     console.log("In GetHarvestBatchesFORRESET")
@@ -150,7 +150,7 @@ export default class App extends React.Component {
 
     console.log("Before getHarvestBatches");
 
-    this.getHarvestBatchesForReset();
+    this.getHarvestBatchesForReset(currHarvest);
 
     console.log("After getHarvestBatches");
   }
