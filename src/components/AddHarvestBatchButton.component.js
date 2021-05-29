@@ -50,7 +50,7 @@ class AddHarvestBatchButton extends Component{
       
       var text = "Text before change";
       try{
-        text = await response.text;
+        text = await response.json();
       }catch(err){
         console.log("CAUGHT ERROR EXECUTEADDNEWHB");
       }
