@@ -36,6 +36,8 @@ class AddHarvestBatchButton extends Component{
     async executeAddNewHB(){
       console.log("Execute Add New HB");
 
+      let parent = this;
+
       const harvestBatchItem = this.props.getHarvestBatchItem(true);
       console.log("HarvestBatchItem before fetch: " + JSON.stringify(harvestBatchItem));
     
@@ -50,7 +52,7 @@ class AddHarvestBatchButton extends Component{
         return response.json();
       }).then(function(data) {
         console.log("EXCT DATA: " + data); // this will be a string
-        this.props.setNewHBID(data);
+        parent.props.setNewHBID(data);
       });
       /*
       var text = "Text before change";
