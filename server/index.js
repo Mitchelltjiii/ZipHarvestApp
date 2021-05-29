@@ -152,6 +152,8 @@ app.post('/harvestbatch', (req, res) =>{
   console.log("POST DATA: HARVESTBATCH: " + postData);
   console.log("POST DATA: NAME: " + name);
 
+  var postResult = "NO RESULTS";
+
   const result = connection.query(
     `INSERT INTO harvestbatches 
     (name, finalized, plantList, type, date, createdAt, updatedAt) 
@@ -162,17 +164,15 @@ app.post('/harvestbatch', (req, res) =>{
     ],
     function(err, result2) {
         console.log("RESULT2- " + result2.insertId);
+        postResult = result2.insertId;
+        console.log("POSTRESULT- " + postResult);
     });  
 
-    let message = 'Error in creating programming language';
-  
-    if (result.affectedRows) {
-      message = 'Programming language created successfully';
-    }
+    console.log("HARVESTBATCH POST RESULT IN SERVER: " + result);
 
-    //console.log("HARVESTBATCH POST RESULT IN SERVER: " + result);
-  
-    //res.json(message);
+    console.log("POSTRESULT WITH RESPONSE- " + postResult);
+
+    res.json(postResult);
 });
 
 app.put('/harvestbatch', (req, res) =>{
