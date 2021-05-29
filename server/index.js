@@ -159,14 +159,18 @@ app.post('/harvestbatch', (req, res) =>{
     (?, ?, ?, ?, ?, ?, ?)`, 
     [
       name, finalized, plantList, type, date, createdAt, updatedAt
-    ]
-  );  
+    ],
+    function(err, result2) {
+        console.log("RESULT2- " + result2.insertId);
+    });  
 
     let message = 'Error in creating programming language';
   
     if (result.affectedRows) {
       message = 'Programming language created successfully';
     }
+
+    console.log("HARVESTBATCH POST RESULT IN SERVER: " + JSON.stringify(result));
   
     res.json(message);
 });
