@@ -193,15 +193,13 @@ export default class App extends React.Component {
 
   setNewHBID = (newID,hb) => {
     console.log("SET NEW HB ID");
-    let parsedHB = JSON.parse(hb);
-      console.log("NEW parsedHB: " + parsedHB);
-      console.log("NEW parsedHB(STRING): " + JSON.stringify(parsedHB));
-      parsedHB.id = newID;
-      console.log("NEW HB parsedHB: " + parsedHB);
-      console.log("NEW HB parsedHB(STRING): " + JSON.stringify(parsedHB));
-      console.log("NEW HB parsedHB ID: " + parsedHB.id);
-      console.log("NEW HB parsedHB ID(STRING): " + JSON.stringify(parsedHB.id));
-			this.state.harvestBatches.push(parsedHB);
+		
+      console.log("NEW HB: " + hb);
+      console.log("NEW HB(STRING): " + JSON.stringify(hb));
+      hb.id = newID;
+      console.log("NEW HB ID: " + hb.id);
+      console.log("NEW HB ID(STRING): " + JSON.stringify(hb.id));
+			this.state.harvestBatches.push(hb);
 		console.log("Harvest Batches Map AFTER SET NEW HB ID(STRINGIFIED): " + JSON.stringify(this.state.harvestBatches));
 	}
 
