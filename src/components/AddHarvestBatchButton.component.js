@@ -49,6 +49,8 @@ class AddHarvestBatchButton extends Component{
       }).then(function(resp){
         console.log("EXCT RESPONSE: " + resp);
         console.log("EXCT RESPONSE(STRING): " + JSON.stringify(resp));
+        console.log("EXCT RESPONSE.text: " + resp.text);
+        console.log("EXCT RESPONSE.text(STRING): " + JSON.stringify(resp.text));
     }, function(error){
         // handle error response
     });
