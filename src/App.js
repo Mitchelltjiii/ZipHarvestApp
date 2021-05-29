@@ -210,6 +210,19 @@ export default class App extends React.Component {
 		console.log("Harvest Batches Map AFTER SET NEW HB ID(STRINGIFIED): " + JSON.stringify(this.state.harvestBatches));
 	}
 
+  getCurrentHarvestID = (hbName) => {
+    console.log("Get Current Harvest ID - HBName: " + hbName);
+
+    for(const val of this.state.harvestBatches){
+      console.log("Val(String): " + JSON.stringify(val));
+      console.log("Val.name: " + val.name);
+      if(val.name == hbName){
+        console.log("Found harvestbatch! ID - " + val.id);
+        return val.id;
+      }
+    }
+  }
+
   render() {
 
     if(this.state.plantsLoading || this.state.harvestedPlantsLoading || this.state.harvestBatchesLoading){
@@ -233,7 +246,7 @@ export default class App extends React.Component {
 	  	showForm = <div>
 	    <Header currentPageSet={this.SetCurrentPage} currentPage={this.state.currentPage}/>
       <Outer currentPage={this.state.currentPage} setCurrentPage={this.SetCurrentPage} harvestBatches={this.state.harvestBatches} harvestedPlants={this.state.harvestedPlants} plants={this.state.plants} 
-      resetHarvestBatches={this.resetHarvestBatches} resetAll={this.resetAll} currentHarvest={this.state.currentHarvest} setNewHBID={this.setNewHBID}/>
+      resetHarvestBatches={this.resetHarvestBatches} resetAll={this.resetAll} currentHarvest={this.state.currentHarvest} setNewHBID={this.setNewHBID} getCurrentHarvestID={this.getCurrentHarvestID}/>
     </div>;
     }else{
 		showForm = <div><LogIn></LogIn></div>;

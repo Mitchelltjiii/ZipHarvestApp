@@ -25,7 +25,7 @@ import AddHarvestBatchButton from './AddHarvestBatchButton.component';
 import EditButton from './EditButton.component';
 import TableWrapper from './TableWrapper.component';
 
-function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harvestedPlants,setHarvestedPlantMap,resetHarvestBatches, resetAll, currentHarvest, setNewHBID}) { 
+function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harvestedPlants,setHarvestedPlantMap,resetHarvestBatches, resetAll, currentHarvest, setNewHBID, getCurrentHarvestID}) { 
 
 	function HarvestBatch(itemID,name,finalized,plantList,type,date){
 		this.itemID = itemID;
@@ -141,6 +141,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			if(val.name == selectedHB){
 				console.log("GRABBED");
 				console.log("Val.id: " + val.id);
+				console.log("Get CURRHARV ID FROM APP: " + getCurrentHarvestID(val.name));
 				return new HarvestBatch(val.id,val.name,val.finalized,val.plantList,val.type,val.date);
 			}
 		}
