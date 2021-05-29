@@ -39,23 +39,18 @@ class AddHarvestBatchButton extends Component{
       const harvestBatchItem = this.props.getHarvestBatchItem(true);
       console.log("HarvestBatchItem before fetch: " + JSON.stringify(harvestBatchItem));
     
-      const response = fetch('/harvestbatch', {
+      const resp = fetch('/harvestbatch', {
         method: (harvestBatchItem.id) ? 'PUT' : 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(harvestBatchItem)
-      }).then(function(resp){
-        console.log("EXCT RESPONSE: " + resp);
-        console.log("EXCT RESPONSE(STRING): " + JSON.stringify(resp));
-        console.log("EXCT RESPONSE.body.text(): " + resp.body.text());
-        console.log("EXCT RESPONSE.body.text()(STRING): " + JSON.stringify(resp.body.text()));
-        console.log("EXCT RESPONSE.text(): " + resp.text());
-        console.log("EXCT RESPONSE.text()(STRING): " + JSON.stringify(resp.text()));
-    }, function(error){
-        // handle error response
-    });
+      }).then(function(response) {
+        return response.text();
+      }).then(function(data) {
+        console.log("EXCT DATA: " + data); // this will be a string
+      });
       /*
       var text = "Text before change";
       try{
