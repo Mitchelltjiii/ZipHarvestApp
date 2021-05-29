@@ -310,6 +310,11 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	}
 	console.log("CURRSELECTED TAG AFTER TRANSFORM: " + currSelectedTag);
 
+	console.log("ON REFRESH CURRHARVEST: " + currentHarvest);
+	console.log("ON REFRESH CURRHARVEST(STRING): " + JSON.stringify(currentHarvest));
+
+
+
 	let currWeightChanges = [];
 
 	function setWeightChanges(currentWeightChanges){
