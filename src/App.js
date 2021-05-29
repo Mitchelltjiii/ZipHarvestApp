@@ -98,15 +98,14 @@ export default class App extends React.Component {
   }
 
   getHarvestBatchesForReset = async (currHarvest) => {
-    setTimeout(() => this.executeResetHarvestBatches(currHarvest),0); 
-
     console.log("In GetHarvestBatchesFORRESET")
     const response = await fetch('/api/harvestbatches');
     const text = await response.text();
     console.log("API GET HARVESTBATCHES: " + text);
     this.state.harvestBatches = text;
     this.state.harvestBatchesLoading = false;
-    console.log("Leaving GetHarvestBatchesFORRESET")
+    console.log("Leaving GetHarvestBatchesFORRESET");
+    this.executeResetHarvestBatches(currHarvest);
   }
 
 
@@ -151,7 +150,7 @@ export default class App extends React.Component {
   executeResetHarvestBatches = (currHarvest) => {
     console.log("Enter executeresetharvestbatches");
 
-    setTimeout(() =>  this.forceUpdate(),0); 
+    setTimeout(() => this.engageReload(),0); 
 
     let currHarvestID = -1;
 
