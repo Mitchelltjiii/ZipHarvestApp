@@ -143,13 +143,15 @@ export default class App extends React.Component {
     console.log("RESET HARVEST BATCHES-CurrHarvest: " + currHarvest);
     console.log("RESET HARVEST BATCHES-CurrHarvest: " + JSON.stringify(currHarvest));
 
-    setTimeout(() =>     this.getHarvestBatchesForReset(currHarvest),0); 
+    setTimeout(() =>  this.getHarvestBatchesForReset(currHarvest),0); 
 
     this.setState({harvestBatchesLoading: true, currentHarvest: currHarvest});
   }
 
   executeResetHarvestBatches = (currHarvest) => {
     console.log("Enter executeresetharvestbatches");
+
+    setTimeout(() =>  this.forceUpdate(),0); 
 
     let currHarvestID = -1;
 
