@@ -578,11 +578,11 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				console.log("GOT HB!");
 			}
 		}  
+		/*
 		tempHarvestBatches = tempHarvestBatches.substring(0,tempHarvestBatches.length-1) + "," + JSON.stringify(hb) + "]";
       	console.log("TempHarvestBatches ADDED");
-      	console.log("TempHarvestBatches: " + tempHarvestBatches);
+      	console.log("TempHarvestBatches: " + tempHarvestBatches);*/
 
-      this.setState({harvestBatches: tempHarvestBatches});
 		console.log("===============");
 		console.log("PLANTS: " + JSON.stringify(plants));
 		console.log("===============");
