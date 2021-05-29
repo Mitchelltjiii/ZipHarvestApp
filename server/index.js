@@ -164,13 +164,16 @@ app.post('/harvestbatch', (req, res) =>{
     ],
     function(err, result2) {
       foundID = result2.insertId;
+      console.log("POST FOUND ID: " + foundID);
+      res.json(foundID);
     });
   
+    /*
     try{
       res.json(foundID);
     }catch(err2){
       res.json("Failed POST - HarvestBatch");
-    }
+    }*/
 });
 
 app.put('/harvestbatch', (req, res) =>{
