@@ -142,7 +142,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				console.log("GRABBED");
 				console.log("Val.id: " + val.id);
 				console.log("Get CURRHARV ID FROM APP: " + getCurrentHarvestID(val.name));
-				return new HarvestBatch(val.id,val.name,val.finalized,val.plantList,val.type,val.date);
+				return new HarvestBatch(getCurrentHarvestID(val.name),val.name,val.finalized,val.plantList,val.type,val.date);
 			}
 		}
 		console.log("Exit GetHarvestBatch");
