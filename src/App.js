@@ -107,7 +107,6 @@ export default class App extends React.Component {
     this.state.harvestBatches = text;
     this.state.harvestBatchesLoading = false;
     console.log("Leaving GetHarvestBatchesFORRESET")
-    this.engageReload();
   }
 
 
@@ -144,15 +143,9 @@ export default class App extends React.Component {
     console.log("RESET HARVEST BATCHES-CurrHarvest: " + currHarvest);
     console.log("RESET HARVEST BATCHES-CurrHarvest: " + JSON.stringify(currHarvest));
 
+    setTimeout(() =>     this.getHarvestBatchesForReset(currHarvest),0); 
+
     this.setState({harvestBatchesLoading: true, currentHarvest: currHarvest});
-
-    console.log("RESETTING Harvest Batches");
-
-    console.log("Before getHarvestBatches");
-
-    this.getHarvestBatchesForReset(currHarvest);
-
-    console.log("After getHarvestBatches");
   }
 
   executeResetHarvestBatches = (currHarvest) => {
