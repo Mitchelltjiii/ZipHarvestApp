@@ -195,7 +195,8 @@ export default class App extends React.Component {
     console.log("SET NEW HB ID");
 		let x = 0;
 		let foundX = -1;
-		for(let val of this.state.harvestBatches) {
+    let parsedHB = JSON.parse(this.state.harvestBatches);
+		for(let val of parsedHB) {
 			console.log("VAL: " + val);
 			console.log("Val.name: " + val.name);
 			if(val.name == hbName){
