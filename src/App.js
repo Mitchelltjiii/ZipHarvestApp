@@ -203,7 +203,7 @@ export default class App extends React.Component {
 
       let tempHarvestBatches = this.state.harvestBatches;
       console.log("TempHarvestBatches: " + tempHarvestBatches);
-			tempHarvestBatches = tempHarvestBatches.substring(0,tempHarvestBatches.length-1) + JSON.stringify(hb) + "]";
+			tempHarvestBatches = tempHarvestBatches.substring(0,tempHarvestBatches.length-1) + "," + JSON.stringify(hb) + "]";
       console.log("TempHarvestBatches ADDED");
       console.log("TempHarvestBatches: " + tempHarvestBatches);
 
