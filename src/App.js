@@ -199,7 +199,14 @@ export default class App extends React.Component {
       hb.id = newID;
       console.log("NEW HB ID: " + hb.id);
       console.log("NEW HB ID(STRING): " + JSON.stringify(hb.id));
-			this.state.harvestBatches.push(hb);
+      let tempHarvestBatches = this.state.harvestBatches;
+      console.log("TempHarvestBatches: " + tempHarvestBatches);
+      console.log("TempHarvestBatches(String): " + JSON.stringify(tempHarvestBatches));
+			tempHarvestBatches.push(hb);
+      console.log("TempHarvestBatches PUSHED");
+      console.log("TempHarvestBatches: " + tempHarvestBatches);
+      console.log("TempHarvestBatches(String): " + JSON.stringify(tempHarvestBatches));
+
 		console.log("Harvest Batches Map AFTER SET NEW HB ID(STRINGIFIED): " + JSON.stringify(this.state.harvestBatches));
 	}
 
