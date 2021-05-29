@@ -46,8 +46,13 @@ class AddHarvestBatchButton extends Component{
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(harvestBatchItem)
-      });
-      
+      }).then(function(resp){
+        console.log("EXCT RESPONSE: " + resp);
+        console.log("EXCT RESPONSE(STRING): " + JSON.stringify(resp));
+    }, function(error){
+        // handle error response
+    });
+      /*
       var text = "Text before change";
       try{
         text = await response.text;
@@ -60,7 +65,7 @@ class AddHarvestBatchButton extends Component{
 
       console.log("EXECUTE ADD NEW HB text: " + text);
       
-      console.log("EXECUTE ADD NEW HB text(STRING): " + JSON.stringify(text));
+      console.log("EXECUTE ADD NEW HB text(STRING): " + JSON.stringify(text));*/
 /*,function(error, results, fields) {
         console.log("RESPONSE FUNCTION CALLED");
         if (error) throw error;
