@@ -172,7 +172,7 @@ app.post('/harvestbatch', (req, res) =>{
 
     console.log("POSTRESULT WITH RESPONSE- " + postResult);
 
-    res.text(postResult);
+    res.json(postResult);
 });
 
 app.put('/harvestbatch', (req, res) =>{

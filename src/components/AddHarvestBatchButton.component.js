@@ -47,7 +47,7 @@ class AddHarvestBatchButton extends Component{
         },
         body: JSON.stringify(harvestBatchItem)
       }).then(function(response) {
-        return response.text();
+        return response.json();
       }).then(function(data) {
         console.log("EXCT DATA: " + data); // this will be a string
       });
