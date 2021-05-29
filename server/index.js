@@ -166,13 +166,14 @@ app.post('/harvestbatch', (req, res) =>{
         console.log("RESULT2- " + result2.insertId);
         postResult = result2.insertId;
         console.log("POSTRESULT- " + postResult);
+        console.log("POSTRESULT WITH RESPONSE- " + postResult);
+
+        res.json(postResult);
     });  
 
     console.log("HARVESTBATCH POST RESULT IN SERVER: " + result);
 
-    console.log("POSTRESULT WITH RESPONSE- " + postResult);
-
-    res.json(postResult);
+    
 });
 
 app.put('/harvestbatch', (req, res) =>{
