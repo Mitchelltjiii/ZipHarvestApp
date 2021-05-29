@@ -246,7 +246,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	
 	currentHarvest = getHarvestBatch(selectedHB);
 	console.log("AFTER ALL THAT THE HARVESTBATCHES: " + harvestBatches);
-	console.log("AFTER ALL THAT THE HARVESTBATCHES(STRING): " + harvestBatches);
+	console.log("AFTER ALL THAT THE HARVESTBATCHES(STRING): " + JSON.stringify(harvestBatches));
 
   	const handleDayChange = (event) => {
     	setDay(event.target.value);
