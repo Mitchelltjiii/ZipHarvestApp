@@ -212,8 +212,9 @@ export default class App extends React.Component {
 
   getCurrentHarvestID = (hbName) => {
     console.log("Get Current Harvest ID - HBName: " + hbName);
+    let parsedHB = JSON.parse(this.state.harvestBatches);
 
-    for(const val of this.state.harvestBatches){
+    for(const val of parsedHB){
       console.log("Val(String): " + JSON.stringify(val));
       console.log("Val.name: " + val.name);
       if(val.name == hbName){
