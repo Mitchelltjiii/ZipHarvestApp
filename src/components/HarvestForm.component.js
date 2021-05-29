@@ -566,6 +566,17 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		return false;
 	}
 
+	function printData(){
+		console.log("PRINT DATA!");
+		console.log("===============");
+		console.log("PLANTS: " + JSON.stringify(plants));
+		console.log("===============");
+		console.log("HARVESTEDPLANTS: " + JSON.stringify(harvestedPlants));
+		console.log("===============");
+		console.log("HARVESTBATCHES: " + JSON.stringify(harvestBatches));
+		console.log("===============");
+	}
+
 	function setChanges(){
 		console.log("Enter setchanges");
 
@@ -934,7 +945,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				>
 
 				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddBranch}>Add Branch</Button>
-				<HarvestPlantButton getHarvestedPlantItem={getHarvestedPlantItem} getRemovedPlantID={getRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} nextPlant={nextPlant} setChanges={setChanges}></HarvestPlantButton>
+				<HarvestPlantButton getHarvestedPlantItem={getHarvestedPlantItem} getRemovedPlantID={getRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} nextPlant={nextPlant} setChanges={setChanges} printData={printData}></HarvestPlantButton>
 
 				</Grid>
 
