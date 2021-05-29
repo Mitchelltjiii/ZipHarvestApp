@@ -134,14 +134,18 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	};
 
 	function getHarvestBatch(selectedHB){
+		console.log("Enter GetHarvestBatch");
 		for(let val of harvestBatches) {
 			console.log("VAL: " + val);
 			console.log("Val.name: " + val.name);
 			if(val.name == selectedHB){
 				console.log("GRABBED");
+				console.log("Val.id: " + val.id);
 				return new HarvestBatch(val.id,val.name,val.finalized,val.plantList,val.type,val.date);
 			}
 		}
+		console.log("Exit GetHarvestBatch");
+
 	}
 
 	function setHarvestBatch(selectedHB){
