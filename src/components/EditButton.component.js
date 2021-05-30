@@ -301,8 +301,6 @@ class EditButton extends Component{
 
     async updateHarvestedPlant(harvestedPlantItem){
       console.log("Engage update harvested plant");
-      setTimeout(() => this.state.busyUpdating = false, 0) 
-
       const response = fetch('/harvestedplant', {
             method: (harvestedPlantItem.id) ? 'PUT' : 'POST',
             headers: {
@@ -313,9 +311,13 @@ class EditButton extends Component{
       });
       console.log("Create harvested plant should be done - no indicator");
       try{
+        console.log("AWAITING RESPONSE UPDATEHARVESTEDPLANT")
         await response.text();
+        console.log("RESPONSE RECIEVED UPDATEHARVESTEDPLANT")
       }catch(err){
+        console.log("NO RESPONSE RECIEVED UPDATEHARVESTEDPLANT")
       }
+      this.state.busyUpdating = false;
       
       console.log("Exit update harvested plant")
     }
