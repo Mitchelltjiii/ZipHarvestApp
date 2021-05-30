@@ -202,6 +202,7 @@ app.post('/harvestedplant', (req, res) =>{
 app.put('/harvestedplant', (req, res) =>{
   var postData  = req.body;
 
+  let id = postData.id;
   let uid = postData.uid;
   let strain = postData.strain;
   let tag = postData.tag;
