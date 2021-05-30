@@ -39,15 +39,20 @@ class Outer extends Component {
   }*/
 
   refreshOuter = (plants,harvestedPlants,harvestBatches) => {
-    this.setState({plants:plants,harvestedPlants:harvestedPlants,harvestBatches:harvestBatches});
+    this.state.plants = plants;
+    this.state.harvestedPlants = harvestedPlants;
+    this.state.harvestBatches = harvestBatches;
     console.log("REFRESH OUTER");
     console.log("$$$$$$$$$$$$");
-    console.log("Plants: " + this.state.plants);
-    console.log("Plants(STRING): " + JSON.stringify(this.state.plants));
-    console.log("HarvestedPlants: " + this.state.harvestedPlants);
-    console.log("HarvestedPlants(STRING): " + JSON.stringify(this.state.harvestedPlants));
-    console.log("HarvestBatches: " + this.state.harvestBatches);
-    console.log("HarvestBatches(STRING): " + JSON.stringify(this.state.harvestBatches));
+    console.log("Plants: " + plants);
+    console.log("Plants(STRING): " + JSON.stringify(plants));
+    console.log("HarvestedPlants: " + harvestedPlants);
+    console.log("HarvestedPlants(STRING): " + JSON.stringify(harvestedPlants));
+    console.log("HarvestBatches: " + harvestBatches);
+    console.log("HarvestBatches(STRING): " + JSON.stringify(harvestBatches));
+    console.log("STATE.Plants(STRING): " + JSON.stringify(this.state.plants));
+    console.log("STATE.HarvestedPlants(STRING): " + JSON.stringify(this.state.harvestedPlants));
+    console.log("STATE.HarvestBatches(STRING): " + JSON.stringify(this.state.harvestBatches));
     this.forceUpdate();
   }
 
