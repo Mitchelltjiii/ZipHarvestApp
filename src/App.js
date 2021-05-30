@@ -226,6 +226,27 @@ export default class App extends React.Component {
     }
   }
 
+  setNewHarvestedPlantID = (newID,hp) => {
+    console.log("SET NEW HP ID");
+		
+      console.log("NEW HP: " + hp);
+      console.log("NEW HP(STRING): " + JSON.stringify(hp));
+      hp.id = newID;
+      console.log("NEW HB ID: " + hp.id);
+      console.log("NEW HB ID(STRING): " + JSON.stringify(hp.id));
+      console.log("NEW HB(STRING): " + JSON.stringify(hp));
+
+      let tempHarvestedPlants = this.state.harvestedPlants;
+      console.log("TempHarvestedPlants: " + tempHarvestedPlants);
+			tempHarvestedPlants = tempHarvestedPlants.substring(0,tempHarvestedPlants.length-1) + "," + JSON.stringify(hp) + "]";
+      console.log("TempHarvestedplants ADDED");
+      console.log("TempHarvestedPlants: " + tempHarvestedPlants);
+
+      this.setState({harvestedPlants: tempHarvestedPlants});
+
+		  console.log("Harvest Plants Map AFTER SET NEW HP ID(STRINGIFIED): " + JSON.stringify(this.state.harvestedPlants));
+	}
+
   render() {
 
     if(this.state.plantsLoading || this.state.harvestedPlantsLoading || this.state.harvestBatchesLoading){
@@ -249,7 +270,8 @@ export default class App extends React.Component {
 	  	showForm = <div>
 	    <Header currentPageSet={this.SetCurrentPage} currentPage={this.state.currentPage}/>
       <Outer currentPage={this.state.currentPage} setCurrentPage={this.SetCurrentPage} harvestBatches={this.state.harvestBatches} harvestedPlants={this.state.harvestedPlants} plants={this.state.plants} 
-      resetHarvestBatches={this.resetHarvestBatches} resetAll={this.resetAll} currentHarvest={this.state.currentHarvest} setNewHBID={this.setNewHBID} getCurrentHarvestID={this.getCurrentHarvestID}/>
+      resetHarvestBatches={this.resetHarvestBatches} resetAll={this.resetAll} currentHarvest={this.state.currentHarvest} setNewHBID={this.setNewHBID} getCurrentHarvestID={this.getCurrentHarvestID}
+      setNewHarvestedPlantID={this.setNewHarvestedPlantID}/>
     </div>;
     }else{
 		showForm = <div><LogIn></LogIn></div>;
