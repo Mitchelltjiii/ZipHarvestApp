@@ -288,7 +288,7 @@ class EditButton extends Component{
     async deleteHarvestedPlant(removePlantID){
       console.log("getRemovedPlantID should be done");
       console.log("REMOVE PLANT ID: " + removePlantID);
-      await fetch(`/api/harvestedplant/${removePlantID}`, {
+      const response = fetch(`/api/harvestedplant/${removePlantID}`, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
@@ -296,8 +296,14 @@ class EditButton extends Component{
       }
       });
 
-      setTimeout(() => this.state.busyUpdating = false, 0) 
-    }
+      try{
+        console.log("AWAITING RESPONSE DELETEHARVESTEDPLANT")
+        await response.text();
+        console.log("RESPONSE RECIEVED DELETEHARVESTEDPLANT")
+      }catch(err){
+        console.log("NO RESPONSE RECIEVED DELETEHARVESTEDPLANT")
+      }
+      this.state.busyUpdating = false;    }
 
     async updateHarvestedPlant(harvestedPlantItem){
       console.log("Engage update harvested plant");
@@ -325,7 +331,7 @@ class EditButton extends Component{
 
     async updateHarvestBatch(harvestBatchItem){
       console.log("Engage update harvest batch");
-      await fetch('/api/harvestbatch', {
+      const response = fetch('/harvestbatch', {
             method: (harvestBatchItem.id) ? 'PUT' : 'POST',
             headers: {
               'Accept': 'application/json',
@@ -334,10 +340,14 @@ class EditButton extends Component{
             body: JSON.stringify(harvestBatchItem),
       });
       console.log("Create harvested plant should be done - no indicator");
-
-      this.props.history.push('/plants');
-
-      setTimeout(() => this.state.busyUpdating = false, 0) 
+      try{
+        console.log("AWAITING RESPONSE UPDATEHARVESTBATCH")
+        await response.text();
+        console.log("RESPONSE RECIEVED UPDATEHARVESTBATCH")
+      }catch(err){
+        console.log("NO RESPONSE RECIEVED UPDATEHARVESTBATCH")
+      }
+      this.state.busyUpdating = false;
       
       console.log("Exit update harvest batch")
     }
