@@ -67,7 +67,7 @@ app.get('/api/harvestbatches', (req, res) => {
         console.log("POSTRESULT WITH RESPONSE- " + postResult);
 
         res.json(postResult);*/
-        res.json("{}");
+        res.json(result);
     });
     /*
   connection.query(hbQueryString, (err, response, fields) => {
