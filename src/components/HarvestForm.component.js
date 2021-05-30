@@ -570,14 +570,22 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		console.log("PRINT DATA!");
 		console.log("HB ID: " + hbID);
 
+		let foundX = -1;
+		let x = 0;
 		let parsedHBs = harvestBatches;
       	console.log("ParsedHBs: " + JSON.stringify(parsedHBs));
 		for(const hb of parsedHBs){
 			console.log("HB: " + JSON.stringify(hb));
 			if(hb.id == hbID){
 				console.log("GOT HB!");
+				foundX = x;
 			}
+			x++;
 		}  
+		let replaceHB = parsedHBs[foundX];
+		console.log("Replace HB: " + JSON.stringify(replaceHB));
+		parsedHBs.splice(foundX,foundX,replaceHB);
+
 		/*
 		tempHarvestBatches = tempHarvestBatches.substring(0,tempHarvestBatches.length-1) + "," + JSON.stringify(hb) + "]";
       	console.log("TempHarvestBatches ADDED");
