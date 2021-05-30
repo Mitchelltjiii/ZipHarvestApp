@@ -38,7 +38,16 @@ class Outer extends Component {
     });
   }*/
 
-  refreshOuter = () => {
+  refreshOuter = (plants,harvestedPlants,harvestBatches) => {
+    this.setState({plants:plants,harvestedPlants:harvestedPlants,harvestBatches:harvestBatches});
+    console.log("REFRESH OUTER");
+    console.log("$$$$$$$$$$$$");
+    console.log("Plants: " + this.state.plants);
+    console.log("Plants(STRING): " + JSON.stringify(this.state.plants));
+    console.log("HarvestedPlants: " + this.state.harvestedPlants);
+    console.log("HarvestedPlants(STRING): " + JSON.stringify(this.state.harvestedPlants));
+    console.log("HarvestBatches: " + this.state.harvestBatches);
+    console.log("HarvestBatches(STRING): " + JSON.stringify(this.state.harvestBatches));
     this.forceUpdate();
   }
 

@@ -619,7 +619,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		console.log("===============");
 		console.log("HARVESTBATCHES: " + JSON.stringify(harvestBatches));
 		console.log("===============");
-		refreshOuter();
+		refreshOuter(plants,harvestedPlants,harvestBatches);
 	}
 
 	function setChanges(){
