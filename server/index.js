@@ -54,21 +54,20 @@ app.use(express.json());
 
 app.get('/api/harvestbatches', (req, res) => {
   console.log('api/harvestbatches');
-  connection.query(hbQueryString, (err, res, fields) => {
+  connection.query(hbQueryString, (err, response, fields) => {
     if (err) {
      console.log('Error: ' + err);
       return;
    }
    console.log('Here is the result of the query:');
    console.log('===========================================');
-   console.log(res);
+   console.log(response);
    console.log('===========================================');
-   hbString = res;
+   hbString = response;
    console.log("QUERY HB DONE")
+   console.log('RESPOND FROM API/HB');
+   res.json(hbString);
   });
-  
-  console.log('RESPOND FROM API/HB');
-  res.json(hbString);
 });
 
 app.get('/api/plants', (req, res) => {
