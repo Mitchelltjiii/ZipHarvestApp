@@ -25,7 +25,7 @@ import AddHarvestBatchButton from './AddHarvestBatchButton.component';
 import EditButton from './EditButton.component';
 import TableWrapper from './TableWrapper.component';
 
-function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harvestedPlants,setHarvestedPlantMap,resetHarvestBatches, resetAll, currentHarvest, setNewHBID, getCurrentHarvestID}) { 
+function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harvestedPlants,setHarvestedPlantMap,resetHarvestBatches, resetAll, currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter}) { 
 
 	function HarvestBatch(itemID,name,finalized,plantList,type,date){
 		this.itemID = itemID;
@@ -619,6 +619,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		console.log("===============");
 		console.log("HARVESTBATCHES: " + JSON.stringify(harvestBatches));
 		console.log("===============");
+		refreshOuter();
 	}
 
 	function setChanges(){

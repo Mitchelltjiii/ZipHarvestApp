@@ -38,6 +38,10 @@ class Outer extends Component {
     });
   }*/
 
+  refreshOuter = () => {
+    this.forceUpdate();
+  }
+
   render() {
     var parent = this;
 
@@ -96,7 +100,7 @@ class Outer extends Component {
 			<Landing currentPage={this.props.currentPage} plantMap={this.state.plants} setPlantMap={setPlantMap} harvestedPlantsMap={this.state.harvestedPlants} 
       setHarvestedPlantMap={setHarvestedPlantMap} harvestBatchesMap={this.state.harvestBatches} setHarvestBatches={setHarvestBatches} 
       resetHarvestBatches={this.props.resetHarvestBatches} resetAll={this.props.resetAll} currentHarvest={this.props.currentHarvest} setNewHBID={this.props.setNewHBID}
-      getCurrentHarvestID={this.props.getCurrentHarvestID}/>
+      getCurrentHarvestID={this.props.getCurrentHarvestID} refreshOuter={this.refreshOuter}/>
 		</div>
     );
   }
