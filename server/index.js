@@ -231,11 +231,85 @@ app.put('/harvestedplant', (req, res) =>{
     res.json(message);
 });
 
+app.post('/plant', (req, res) =>{
+  var postData  = req.body;
+
+  let strain = postData.strain;
+  let tag = postData.tag;
+  let createdAt = '2021-05-03 22:06:12';
+  let updatedAt = '2021-05-03 22:06:12';
+
+  console.log("POST DATA: PLANT STRINGIFIED: " + JSON.stringify(postData));
+  console.log("POST DATA: strain: " + strain);
+
+  const result = connection.query(
+    `INSERT INTO plants 
+    (strain, tag, createdAt, updatedAt) 
+    VALUES 
+    (?, ?, ?, ?)`, 
+    [
+      strain, tag, createdAt, updatedAt
+    ]
+  );  
+
+    let message = 'Error in creating programming language';
+  
+    if (result.affectedRows) {
+      message = 'Programming language created successfully';
+    }
+  
+    res.json(message);
+});
+
+app.put('/plant', (req, res) =>{
+  var postData  = req.body;
+
+  let id = postData.id;
+  let strain = postData.strain;
+  let tag = postData.tag;
+  let createdAt = '2021-05-03 22:06:12';
+  let updatedAt = '2021-05-03 22:06:12';
+
+  console.log("POST DATA: PLANT STRINGIFIED: " + JSON.stringify(postData));
+  console.log("POST DATA: STRAIN: " + strain);
+
+  const result = connection.query(
+    `UPDATE plants set
+    strain =?, tag =?, createdAt =?, updatedAt =? WHERE id = ?`, 
+    [
+      strain, tag, createdAt, updatedAt, id
+    ]
+  );  
+
+    let message = 'Error in creating programming language';
+  
+    if (result.affectedRows) {
+      message = 'Programming language created successfully';
+    }
+  
+    res.json(message);
+});
+
 app.delete(`/plant/:id`, (req, res) =>{
   console.log("Delete Plant: " + req.params.id);
   let plantID = req.params.id;
 
   const result = connection.query(`DELETE FROM plants WHERE id = ${plantID}`);
+
+    let message = 'Error in creating programming language';
+  
+    if (result.affectedRows) {
+      message = 'Programming language created successfully';
+    }
+  
+    res.json(message);
+});
+
+app.delete(`/harvestedplant/:id`, (req, res) =>{
+  console.log("Delete HarvestedPlant: " + req.params.id);
+  let plantID = req.params.id;
+
+  const result = connection.query(`DELETE FROM harvestedplants WHERE id = ${plantID}`);
 
     let message = 'Error in creating programming language';
   

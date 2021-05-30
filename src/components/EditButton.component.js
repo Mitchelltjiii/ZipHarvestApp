@@ -288,7 +288,7 @@ class EditButton extends Component{
     async deleteHarvestedPlant(removePlantID){
       console.log("getRemovedPlantID should be done");
       console.log("REMOVE PLANT ID: " + removePlantID);
-      const response = fetch(`/api/harvestedplant/${removePlantID}`, {
+      const response = fetch(`/harvestedplant/${removePlantID}`, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
@@ -354,7 +354,7 @@ class EditButton extends Component{
 
     async addPlant(plantItem){
       console.log("Engage add Plant");
-      await fetch('/api/plant', {
+      const response = fetch('/plant', {
         method: (plantItem.id) ? 'PUT' : 'POST',
         headers: {
           'Accept': 'application/json',
@@ -363,10 +363,14 @@ class EditButton extends Component{
         body: JSON.stringify(plantItem),
       });
       console.log("Create plant should be done - no indicator");
-
-      this.props.history.push('/plants');
-
-      setTimeout(() => this.state.busyUpdating = false, 0) 
+      try{
+        console.log("AWAITING RESPONSE ADD PLANT")
+        await response.text();
+        console.log("RESPONSE RECIEVED ADD PLANT")
+      }catch(err){
+        console.log("NO RESPONSE RECIEVED ADD PLANT")
+      }
+      this.state.busyUpdating = false;
       
       console.log("Exit update plant")
     }
