@@ -74,6 +74,7 @@ class HarvestPlantButton extends Component{
             parent.props.setNewHarvestedPlantID(data,harvestedPlantItem);
             parent.removePlant(event,harvestedPlantItem.uid)
           });
+          
       }
     }
 
