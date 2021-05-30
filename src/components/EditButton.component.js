@@ -301,6 +301,8 @@ class EditButton extends Component{
 
     async updateHarvestedPlant(harvestedPlantItem){
       console.log("Engage update harvested plant");
+      setTimeout(() => this.state.busyUpdating = false, 0) 
+
       await fetch('/api/harvestedplant', {
             method: (harvestedPlantItem.id) ? 'PUT' : 'POST',
             headers: {
@@ -313,7 +315,6 @@ class EditButton extends Component{
 
       this.props.history.push('/plants');
 
-      setTimeout(() => this.state.busyUpdating = false, 0) 
       
       console.log("Exit update harvested plant")
     }
