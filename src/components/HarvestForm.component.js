@@ -604,6 +604,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		}
 
 		console.log("NEW PLANT LIST: " + newPlantList);
+		replaceHB.plantList = newPlantList;
 		parsedHBs.splice(foundX,foundX,replaceHB);
 
 		/*
