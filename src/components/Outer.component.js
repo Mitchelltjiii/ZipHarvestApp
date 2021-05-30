@@ -42,6 +42,9 @@ class Outer extends Component {
     this.state.plants = plants;
     this.state.harvestedPlants = harvestedPlants;
     this.state.harvestBatches = harvestBatches;
+    this.props.plants = plants;
+    this.props.harvestBatches = harvestBatches;
+    this.props.harvestedPlants = harvestedPlants;
     console.log("REFRESH OUTER");
     console.log("$$$$$$$$$$$$");
     console.log("Plants: " + plants);
