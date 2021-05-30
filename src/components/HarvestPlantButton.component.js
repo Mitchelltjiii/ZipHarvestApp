@@ -74,7 +74,7 @@ class HarvestPlantButton extends Component{
           }
 
 
-          setTimeout(() => this.removePlant(event), 0) 
+          setTimeout(() => this.removePlant(event,harvestedPlantItem.uid), 0) 
       }
 
       /*
@@ -88,9 +88,9 @@ class HarvestPlantButton extends Component{
       });*/
     }
 
-    async removePlant(event) {
+    async removePlant(event,addID) {
       console.log("Enter removePlant");
-      setTimeout(() => this.updateHB(event), 0) 
+      setTimeout(() => this.updateHB(event,addID), 0) 
 
       event.preventDefault();
 
@@ -125,13 +125,13 @@ class HarvestPlantButton extends Component{
       console.log("Exit removePlant");*/
     }
 
-    async updateHB(event) {
+    async updateHB(event,addID) {
       event.preventDefault();
       console.log("Execute Update HB");
       const harvestBatchItem = this.props.getHarvestBatchItem(false);
       console.log("Harvest Batch Item should be done");
 
-      setTimeout(() => this.props.printData(harvestBatchItem.id), 0); 
+      setTimeout(() => this.props.printData(harvestBatchItem.id,addID), 0); 
 
       const response = fetch('/harvestbatch', {
           method: (harvestBatchItem.id) ? 'PUT' : 'POST',

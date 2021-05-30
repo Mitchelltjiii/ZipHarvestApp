@@ -566,9 +566,10 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		return false;
 	}
 
-	function printData(hbID){
+	function printData(hbID,addID){
 		console.log("PRINT DATA!");
 		console.log("HB ID: " + hbID);
+		console.log("Add Plant ID: " + addID);
 
 		let foundX = -1;
 		let x = 0;
@@ -587,12 +588,22 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		console.log("Replace HB: " + JSON.stringify(replaceHB));
 		console.log("PlantList: " + plantList);
 		console.log("PlantList(STRING): " + JSON.stringify(plantList));
-		let textSplit = plantList.split(",");
+		let textSplit = plantList.substring(1,plantList.length-1);
+		textSplit = textSplit.split(",");
+		let newPlantList = "{";
 
+		let i = 0;
 		textSplit.forEach((element) => {
 			console.log("Split Element: " + element);
+			newPlantList += element + ",";
+			i++;
 		});
+		newPlantList+= addID + "}";
+		if(i == 0){
+			newPlantList = "{" + addID + "}";
+		}
 
+		console.log("NEW PLANT LIST: " + newPlantList);
 		parsedHBs.splice(foundX,foundX,replaceHB);
 
 		/*
