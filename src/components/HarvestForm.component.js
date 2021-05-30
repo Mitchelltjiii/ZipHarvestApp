@@ -619,6 +619,10 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		console.log("===============");
 		console.log("HARVESTBATCHES: " + JSON.stringify(harvestBatches));
 		console.log("===============");
+		setWeight("");
+		setBranchValue("");
+		setSearchTag("");
+		setSelectedTag('');		
 		refreshOuter(plants,harvestedPlants,harvestBatches);
 	}
 
