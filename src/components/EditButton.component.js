@@ -303,18 +303,19 @@ class EditButton extends Component{
       console.log("Engage update harvested plant");
       setTimeout(() => this.state.busyUpdating = false, 0) 
 
-      await fetch('/api/harvestedplant', {
+      const response = fetch('/harvestedplant', {
             method: (harvestedPlantItem.id) ? 'PUT' : 'POST',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(harvestedPlantItem),
+            body: JSON.stringify(harvestedPlantItem)
       });
       console.log("Create harvested plant should be done - no indicator");
-
-      this.props.history.push('/plants');
-
+      try{
+        await response.text();
+      }catch(err){
+      }
       
       console.log("Exit update harvested plant")
     }

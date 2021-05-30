@@ -14,20 +14,8 @@ const hbQueryString = 'select * from harvestbatches';
 const plantsQueryString = 'select * from plants';
 
 const harvestedPlantsQueryString = 'select * from harvestedplants';
-/*
-const cors = require('cors');
-const corsOptions = {
-  origin: 'http://localhost:4200',
-  optionsSuccessStatus: 200
-}
-
-app.use(cors(corsOptions));*/
 
 const router = require('../app/routers/router');
-
-
-// get the promise implementation, we will use bluebird
-//const bluebird = require('bluebird');
 
 const connection = mysql.createConnection({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
@@ -56,21 +44,6 @@ app.get('/api/harvestbatches', (req, res) => {
         console.log("GET HARVESTBATCHES RESULT(STRING)- " + JSON.stringify(result));
         res.json(result);
     });
-    /*
-  connection.query(hbQueryString, (err, response, fields) => {
-    if (err) {
-     console.log('Error: ' + err);
-      return;
-   }
-   console.log('Here is the result of the query:');
-   console.log('===========================================');
-   console.log(response);
-   console.log('===========================================');
-   hbString = response;
-   console.log("QUERY HB DONE")
-   console.log('RESPOND FROM API/HB');
-   res.json(hbString);
-  });*/
 });
 
 app.get('/api/plants', (req, res) => {
@@ -226,6 +199,37 @@ app.post('/harvestedplant', (req, res) =>{
     res.json(message);
 });
 
+app.put('/harvestedplant', (req, res) =>{
+  var postData  = req.body;
+
+  let uid = postData.uid;
+  let strain = postData.strain;
+  let tag = postData.tag;
+  let weight = postData.weight;
+  let unit = postData.unit;
+  let createdAt = '2021-05-03 22:06:12';
+  let updatedAt = '2021-05-03 22:06:12';
+
+  console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
+  console.log("POST DATA: UID: " + uid);
+
+  const result = connection.query(
+    `UPDATE harvestedplants set
+    uid =?, strain =?, tag =?, weight =?, unit =?, createdAt =?, updatedAt =? WHERE id = ?`, 
+    [
+      uid, strain, tag, weight, unit, createdAt, updatedAt, id
+    ]
+  );  
+
+    let message = 'Error in creating programming language';
+  
+    if (result.affectedRows) {
+      message = 'Programming language created successfully';
+    }
+  
+    res.json(message);
+});
+
 app.delete(`/plant/:id`, (req, res) =>{
   console.log("Delete Plant: " + req.params.id);
   let plantID = req.params.id;
@@ -240,134 +244,6 @@ app.delete(`/plant/:id`, (req, res) =>{
   
     res.json(message);
 });
-
-
-/*
-app.post('/posttest', (req, res) =>{
-
-  
-  let strain = 'strain2';
-  let tag = 'tag2';
-  let createdAt = '2021-05-03 22:06:12';
-  let updatedAt = '2021-05-03 22:06:12';
-    
-    
-    console.log("Query start");
-
-    let result = "result not recieved";
-    try {
-      console.log("Before WithTransaction");
-      await withTransaction( connection, async () => {
-        console.log("Enter WithTransaction");
-
-        result = connection.query(
-          `INSERT INTO plants 
-          (strain, tag, createdAt, updatedAt) 
-          VALUES 
-          (?, ?, ?, ?)`, 
-          [
-            strain, tag, createdAt, updatedAt
-          ]
-        );
-        console.log("After WithTransaction Query");
-
-      });
-      console.log("After WithTransaction");
-    } catch ( err ) {
-      console.log("CAUGHT ERROR");
-    }
-     
-
-    console.log("After Query");
-
-    let message = 'Error in creating programming language';
-  
-    if (result.affectedRows) {
-      message = 'Programming language created successfully';
-    }
-  
-    res.json(message);
-
-  
-  /*
-  console.log("Start posttest");
-  let appPostResponse = 'Didnt process apppost';
-  appPostDone = false;
-  console.log("Before apppostfunc");
-
-  appPostResponse = appPost(req,res);
-  console.log("After apppostfunction");
-
-  while(appPostDone === false){
-    sleep(100);
-    console.log("Sleep");
-  }
-
-  console.log("appPostResponse: " + appPostResponse);
-
-  res.json(appPostResponse);
-});*/
-
-async function withTransaction( db, callback ) {
-  console.log("In WithTransaction Function");
-
-  try {
-    await db.beginTransaction();
-    await callback();
-    await db.commit();
-    console.log("Commit Reached");
-  } catch ( err ) {
-    console.log("Error Reached");
-
-    await db.rollback();
-    throw err;
-  } finally {
-    console.log("Closing DB");
-
-    await db.close();
-    console.log("Withtransaction completed");
-
-  }
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-} 
-
-async function appPost(req, res){
-  console.log("Enter Apppost");
-
-  appPostDone = true;
-  console.log("returning form apppost");
-
-
-
-  return "Got to apppost";
-  /*
-  let strain = 'strain1';
-    let tag = 'tag1';
-    const result = await connection.query(
-      `INSERT INTO plants 
-      (strain, tag) 
-      VALUES 
-      (?, ?)`, 
-      [
-        strain, tag
-      ]
-    );
-  
-    let message = 'Error in creating programming language';
-  
-    if (result.affectedRows) {
-      message = 'Programming language created successfully';
-    }
-  
-    return message;*/
-}
-
-//app.use('/', router);
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
@@ -390,90 +266,6 @@ db.sequelize.sync({force: true}).then(() => {
     }
   });
 });*/ 
-
-
-
-
-/*
-
-app.get('/api/harvestbatches', (req, res) => {
-  res.json(hbString);
-});
-
-app.get('/api/plants', (req, res) => {
-  res.json(plantsString);
-});
-
-app.get('/api/harvestedplants', (req, res) => {
-  res.json(harvestedPlantsString);
-});
-
-app.put('/api/plant', (req, res) => {
-  let plant = {};
-    try{
-        console.log("CREATE PLANT");
-        // Building plant object from upoading request's body
-        plant.id = 9;
-        plant.strain = "strain1";
-        plant.tag = "tag1";
-    
-        // Save to MySQL database
-        Plant.create(plant, 
-                          {attributes: ['id', 'strain', 'tag']})
-                    .then(result => {    
-                      res.status(200).json(result);
-                    });
-    }catch(error){
-        res.status(500).json({
-            message: "Fail!",
-            error: error.message
-        });
-    }
-});
-
-app.post('/api/plant', async (req, res) => {
-  try{
-    console.log("UPDATE PLANT");
-
-    if(!plant){
-        // return a response to client
-        res.status(404).json({
-            message: "Not Found for updating a plant with id = " + plantId,
-            error: "404"
-        });
-    } else {    
-        // update new change to database
-        let updatedObject = {
-            id: "9",
-            strain: req.body.strain,
-            tag: req.body.tag
-        }
-        let result = await Plant.update(updatedObject,
-                          { 
-                            returning: true, 
-                            where: {id: "9"},
-                            attributes: ['id', 'strain', 'tag']
-                          }
-                        );
-
-        // return the response to client
-        if(!result) {
-            res.status(500).json({
-                message: "Error -> Can not update a plant with id = " + req.params.id,
-                error: "Can NOT Updated",
-            });
-        }
-
-        res.status(200).json(result);
-    }
-  } catch(error){
-    res.status(500).json({
-        message: "Error -> Can not update a plant with id = " + req.params.id,
-        error: error.message
-    });
-  }
-});
-*/
 
 // start express server on port
 app.listen(port, () => {
