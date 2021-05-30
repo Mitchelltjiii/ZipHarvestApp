@@ -54,6 +54,22 @@ app.use(express.json());
 
 app.get('/api/harvestbatches', (req, res) => {
   console.log('api/harvestbatches');
+  connection.query(hbQueryString,
+    function(err, result) {
+        console.log("GET HARVESTBATCHES RESULT- " + result);
+        console.log("GET HARVESTBATCHES RESULT(STRING)- " + JSON.stringify(result));
+        console.log("GET HARVESTBATCHES RESULT.message- " + result.message);
+        console.log("GET HARVESTBATCHES RESULT.message(STRING)- " + JSON.stringify(result.message));
+
+        let response = "No Results";
+        /*response = result;
+        console.log("POSTRESULT- " + postResult);
+        console.log("POSTRESULT WITH RESPONSE- " + postResult);
+
+        res.json(postResult);*/
+        res.json("{}");
+    });
+    /*
   connection.query(hbQueryString, (err, response, fields) => {
     if (err) {
      console.log('Error: ' + err);
@@ -67,7 +83,7 @@ app.get('/api/harvestbatches', (req, res) => {
    console.log("QUERY HB DONE")
    console.log('RESPOND FROM API/HB');
    res.json(hbString);
-  });
+  });*/
 });
 
 app.get('/api/plants', (req, res) => {
