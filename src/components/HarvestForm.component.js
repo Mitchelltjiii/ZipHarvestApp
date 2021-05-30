@@ -587,9 +587,11 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		console.log("Replace HB: " + JSON.stringify(replaceHB));
 		console.log("PlantList: " + plantList);
 		console.log("PlantList(STRING): " + JSON.stringify(plantList));
-		for(const pl of plantList){
-			console.log("PL: " + pl);
-		}
+		let textSplit = textSplit.split(",");
+
+		textSplit.forEach((element) => {
+			console.log("Split Element: " + element);
+		});
 
 		parsedHBs.splice(foundX,foundX,replaceHB);
 
