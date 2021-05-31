@@ -286,7 +286,7 @@ export default class App extends React.Component {
 	}
 
   executeLogIn = (user) =>{
-    loggedIn=user;
+    this.state.loggedIn=user;
     this.engageReload();
   }
 
