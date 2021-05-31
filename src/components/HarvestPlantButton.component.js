@@ -84,7 +84,7 @@ class HarvestPlantButton extends Component{
       const parent = this;
 
       console.log("Engage RemovePlantID");
-      const removePlantID = this.props.getRemovedPlantID();
+      const removePlantID = this.props.getAndResetRemovedPlantID();
       console.log("removePlantID:  " + removePlantID);
 
       console.log("getRemovedPlantID should be done");

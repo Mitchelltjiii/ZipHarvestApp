@@ -53,7 +53,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 
 	let hbOptionsList = ["Add New Harvest Batch"];
 	let currentHarvestedPlant = new HarvestedPlant('','','','',0,'');
-	let removedPlantID = '';
+
 	let addedHB = new HarvestBatch("","","","{}","","");
 
 	console.log("ENTER HARVESTFORM, CURRENT HARVEST: " + JSON.stringify(currentHarvest));
@@ -102,6 +102,8 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	const [strainList, setStrainList] = React.useState(["Don't Change Strain","Add New Strain"]);
 
 	const [editMode, setEditMode] = React.useState(false);
+
+	const [removedPlantID, setRemovedPlantID] = React.useState("");
 
 
 	let searchForList = [];
@@ -553,7 +555,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				addHarvestedPlant(currentHarvestedPlant);
 
 				removePlant(plantTag)
-				removedPlantID = addPlant.itemID;
+				setRemovedPlantID(addPlant.itemID);
 				console.log("PLANTS AFTER REMOVED: " + plants);
 
 				let plantTags = [];
@@ -792,9 +794,13 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		return yesterday.toString();
 	}
 
-	function getRemovedPlantID(){
-		console.log("Enter and Exit getRemovedPlantID (Returns removedPlantID)");
-		return removedPlantID;
+	function getAndResetRemovedPlantID(){
+		console.log("Enter getRemovedPlantID");
+		let toRet = removedPlantID;
+		setRemovedPlantID("");
+		console.log("Get and Reset Removed Plant ID Returning: " + toRet); 
+		console.log("Exit getRemovedPlantID");
+		return toRet;
 	}
 
 	function getRemovePlantIDDelete(uid){
@@ -996,7 +1002,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				>
 
 				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddBranch}>Add Branch</Button>
-				<HarvestPlantButton getHarvestedPlantItem={getHarvestedPlantItem} getRemovedPlantID={getRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} nextPlant={nextPlant} setChanges={setChanges} printData={printData} setNewHarvestedPlantID={setNewHarvestedPlantID}></HarvestPlantButton>
+				<HarvestPlantButton getHarvestedPlantItem={getHarvestedPlantItem} getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} nextPlant={nextPlant} setChanges={setChanges} printData={printData} setNewHarvestedPlantID={setNewHarvestedPlantID}></HarvestPlantButton>
 
 				</Grid>
 
