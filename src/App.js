@@ -8,7 +8,7 @@ import { Button } from "@material-ui/core";
 export default class App extends React.Component {
   state = {
     currentPage: 'harvest-form',
-    loggedIn: 'x',
+    loggedIn: '',
     harvestBatches: [],
     plants: [],
     harvestedPlants: [],
