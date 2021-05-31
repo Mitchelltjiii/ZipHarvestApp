@@ -11,7 +11,7 @@ const Plant = db.Plant;
 
 const hbQueryString = 'select * from harvestbatches';
 
-const plantsQueryString = 'select * from plants';
+const plantsQueryString = 'select * from zh.plants';
 
 const harvestedPlantsQueryString = 'select * from harvestedplants';
 
@@ -57,8 +57,8 @@ app.get('/api/harvestbatches', (req, res) => {
     });
 });
 
-app.get('/api/plants', (req, res) => {
-  console.log('api/plants');
+app.get('/api/zhplants', (req, res) => {
+  console.log('api/zhplants');
   connection.query(plantsQueryString,
     function(err, result) {
         console.log("GET PLANTS RESULT(STRING)- " + JSON.stringify(result));

@@ -36,8 +36,9 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		this.date = date;
 	}
 
-	function Plant(itemID,strain,tag){
+	function Plant(itemID,user,strain,tag){
 		this.itemID = itemID;
+		this.user = user;
 		this.strain = strain;
 		this.tag = tag;
 	}
@@ -201,7 +202,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			console.log("Val.tag: " + val.tag);
 			if(val.tag == plantTag){
 				console.log("GRABBED PLANT");
-				return new Plant(val.id,val.strain,val.tag);
+				return new Plant(val.id,val.user,val.strain,val.tag);
 			}
 		}
 	}

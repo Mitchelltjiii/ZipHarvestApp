@@ -30,10 +30,11 @@ class EditButton extends Component{
 		        this.unit = unit;
 	      }
 
-        function Plant(itemID,strain,tag){
+        function Plant(itemID,user,strain,tag){
           this.itemID = itemID;
           this.strain = strain;
           this.tag = tag;
+          this.user = user;
         }
 
         if(this.props.editNow){
@@ -105,10 +106,10 @@ class EditButton extends Component{
           }
 
           for(const uid of this.props.currHidePlants){
-            let addPlant = new Plant("","","");
+            let addPlant = new Plant("","","","");
             for(const val of this.props.harvestedPlants){
               if(val.uid == uid){
-                addPlant = new Plant("",val.strain,val.tag);
+                addPlant = new Plant("",val.user,val.strain,val.tag);
 
                 const plantItem = this.getPlantItem(addPlant);
   
@@ -355,7 +356,7 @@ class EditButton extends Component{
     async addPlant(plantItem){
       console.log("Engage add Plant");
       let parent = this;
-      const resp = fetch('/plant', {
+      const resp = fetch('/zhplant', {
         method: (plantItem.id) ? 'PUT' : 'POST',
         headers: {
           'Accept': 'application/json',
@@ -408,7 +409,7 @@ class EditButton extends Component{
       const removePlantID = this.props.getRemovedPlantID();
       console.log("getRemovedPlantID should be done");
       console.log("REMOVE PLANT ID: " + removePlantID);
-      await fetch(`/api/plant/${removePlantID}`, {
+      await fetch(`/api/zhplant/${removePlantID}`, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',

@@ -89,7 +89,7 @@ class HarvestPlantButton extends Component{
 
       console.log("getRemovedPlantID should be done");
 
-      const resp = fetch(`/plant/${removePlantID}`, {
+      const resp = fetch(`/zhplant/${removePlantID}`, {
             method: 'DELETE',
             headers: {
               'Accept': 'application/json',
