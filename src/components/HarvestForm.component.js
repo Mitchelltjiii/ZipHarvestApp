@@ -521,6 +521,9 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				}
 
 				let addPlant = getPlant(plantTag);
+				console.log("ADD PLANT CREATED: " + addPlant);
+				console.log("ADD PLANT CREATED(STRING): " + JSON.stringify(addPlant));
+
 				if(addPlant===null||addPlant===undefined){
 					return false;
 				}
@@ -550,7 +553,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				addHarvestedPlant(currentHarvestedPlant);
 
 				removePlant(plantTag)
-				removedPlantID = addPlant.uid;
+				removedPlantID = addPlant.itemID;
 				console.log("PLANTS AFTER REMOVED: " + plants);
 
 				let plantTags = [];
