@@ -616,7 +616,9 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		console.log("Parsed HBs after Splice: " + parsedHBs);
 		console.log("Parsed HBs after Splice: " + JSON.stringify(parsedHBs));
 		harvestBatches = parsedHBs;
-		currentHarvest = parsedHBs[foundX];
+		let tempHB = parsedHBs[foundX];
+		console.log("Temp HB: " + tempHB);
+		currentHarvest = new HarvestBatch(tempHB.id,tempHB.name,tempHB.finalized,tempHB.plantList,tempHB.type,tempHB.date);
 	}
 
 	function printData(){
