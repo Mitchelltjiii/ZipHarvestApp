@@ -136,7 +136,7 @@ app.put('/harvestbatch', (req, res) =>{
 
   let id = postData.id;
   let name = postData.name;
-  let finalized = postData.finalized;
+  let finalized = 0;
   let plantList = postData.plantList;
   let type = postData.type;
   let date = postData.date;
