@@ -26,7 +26,8 @@ function LogIn({users, executeLogIn}){
       console.log("Password: " + password);
 
       console.log("Checking Users");
-      for(const val of users){
+      let parsedUsers = JSON.parse(users);
+      for(const val of parsedUsers){
         console.log("Val: " + val);
         console.log("Val(String): " + JSON.stringify(val));
         if(val.username==username){
