@@ -19,12 +19,13 @@ function LogIn(){
     const [password, setPassword] = React.useState('');
 
     const handleLogIn = (event) => {
-		logIn();
+		  logIn();
 	  };
     
     function logIn(){
-		
-	}
+      console.log("Username: " + username);
+      console.log("Password: " + password);
+	  }
 
     const handleUsername = (event) => {
 		setUsername(event.target.value);
