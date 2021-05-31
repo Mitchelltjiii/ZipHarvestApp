@@ -232,9 +232,9 @@ export default class App extends React.Component {
       console.log("NEW HP: " + hp);
       console.log("NEW HP(STRING): " + JSON.stringify(hp));
       hp.id = newID;
-      console.log("NEW HB ID: " + hp.id);
-      console.log("NEW HB ID(STRING): " + JSON.stringify(hp.id));
-      console.log("NEW HB(STRING): " + JSON.stringify(hp));
+      console.log("NEW HP ID: " + hp.id);
+      console.log("NEW HP ID(STRING): " + JSON.stringify(hp.id));
+      console.log("NEW HP(STRING): " + JSON.stringify(hp));
 
       let tempHarvestedPlants = this.state.harvestedPlants;
       console.log("TempHarvestedPlants: " + tempHarvestedPlants);
