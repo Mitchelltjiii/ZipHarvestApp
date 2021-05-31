@@ -154,16 +154,9 @@ app.put('/harvestbatch', (req, res) =>{
     name =?, finalized =?, plantList =?, type =?, date =?, createdAt =?, updatedAt =? WHERE id = ?`, 
     [
       name, finalized, plantList, type, date, createdAt, updatedAt, id
-    ]
-  );  
-
-    let message = 'Error in creating programming language';
-  
-    if (result.affectedRows) {
-      message = 'Programming language created successfully';
-    }
-  
-    res.json(message);
+    ],function(err, result2) {
+      res.json("{}");
+  });  
 });
 
 app.post('/harvestedplant', (req, res) =>{
