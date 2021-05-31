@@ -610,7 +610,9 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 
 		console.log("NEW PLANT LIST: " + newPlantList);
 		replaceHB.plantList = newPlantList;
+		console.log("Parsed HBs before Splice: " + JSON.stringify(parsedHBs));
 		parsedHBs.splice(foundX,foundX,replaceHB);
+		console.log("Parsed HBs after Splice: " + JSON.stringify(parsedHBs));
 
 		/*
 		tempHarvestBatches = tempHarvestBatches.substring(0,tempHarvestBatches.length-1) + "," + JSON.stringify(hb) + "]";
