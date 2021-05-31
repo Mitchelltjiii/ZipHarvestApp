@@ -571,8 +571,8 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		return false;
 	}
 
-	function printData(hbID,addID){
-		console.log("PRINT DATA!");
+	function updateHBList(addID){
+		let hbID = currentHarvest.itemID;
 		console.log("HB ID: " + hbID);
 		console.log("Add Plant ID: " + addID);
 
@@ -616,11 +616,10 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		console.log("Parsed HBs after Splice: " + parsedHBs);
 		console.log("Parsed HBs after Splice: " + JSON.stringify(parsedHBs));
 		harvestBatches = parsedHBs;
+	}
 
-		/*
-		tempHarvestBatches = tempHarvestBatches.substring(0,tempHarvestBatches.length-1) + "," + JSON.stringify(hb) + "]";
-      	console.log("TempHarvestBatches ADDED");
-      	console.log("TempHarvestBatches: " + tempHarvestBatches);*/
+	function printData(){
+		console.log("PRINT DATA!");
 
 		console.log("===============");
 		console.log("PLANTS: " + JSON.stringify(plants));
@@ -1007,7 +1006,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				>
 
 				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddBranch}>Add Branch</Button>
-				<HarvestPlantButton getHarvestedPlantItem={getHarvestedPlantItem} getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} nextPlant={nextPlant} setChanges={setChanges} printData={printData} setNewHarvestedPlantID={setNewHarvestedPlantID}></HarvestPlantButton>
+				<HarvestPlantButton getHarvestedPlantItem={getHarvestedPlantItem} getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} nextPlant={nextPlant} setChanges={setChanges} printData={printData} setNewHarvestedPlantID={setNewHarvestedPlantID} updateHBList={updateHBList}></HarvestPlantButton>
 
 				</Grid>
 

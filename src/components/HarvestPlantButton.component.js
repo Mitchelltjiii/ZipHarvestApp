@@ -120,6 +120,7 @@ class HarvestPlantButton extends Component{
     async updateHB(event,addID) {
       event.preventDefault();
       console.log("Execute Update HB");
+      this.props.updateHBList(addID)
       const harvestBatchItem = this.props.getHarvestBatchItem(false);
       console.log("Harvest Batch Item should be done");
 
@@ -135,7 +136,7 @@ class HarvestPlantButton extends Component{
         }).then(function(response) {
             return response.json();
           }).then(function(data) {
-            parent.props.printData(harvestBatchItem.id,addID)
+            parent.props.printData()
           });
 
 
