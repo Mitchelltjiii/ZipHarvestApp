@@ -371,7 +371,7 @@ app.delete(`/zhplant/:id`, (req, res) =>{
   console.log("Delete Plant: " + req.params.id);
   let plantID = req.params.id;
 
-  const result = connection.query(`DELETE FROM plants WHERE id = ${plantID}`);
+  const result = connection.query(`DELETE FROM zhplants WHERE id = ${plantID}`);
 
     let message = 'Error in creating programming language';
   
