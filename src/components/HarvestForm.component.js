@@ -550,7 +550,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				addHarvestedPlant(currentHarvestedPlant);
 
 				removePlant(plantTag)
-				removedPlantID = addPlant.itemID;
+				removedPlantID = addPlant.uid;
 				console.log("PLANTS AFTER REMOVED: " + plants);
 
 				let plantTags = [];
@@ -790,8 +790,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	}
 
 	function getRemovedPlantID(){
-		console.log("Enter getRemovedPlantID --");
-		console.log("-- Exit getRemovedPlantID");
+		console.log("Enter and Exit getRemovedPlantID (Returns removedPlantID)");
 		return removedPlantID;
 	}
 

@@ -78,21 +78,10 @@ class HarvestPlantButton extends Component{
       }
     }
 
-      /*
-      fetch('/harvestbatch', {
-        method: (harvestBatchItem.id) ? 'PUT' : 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(harvestBatchItem)
-      });*/
-
     async removePlant(event,addID) {
       console.log("Enter removePlant");
-      setTimeout(() => this.updateHB(event,addID), 0) 
-
       event.preventDefault();
+      const parent = this;
 
       console.log("Engage RemovePlantID");
       const removePlantID = this.props.getRemovedPlantID();
@@ -100,15 +89,18 @@ class HarvestPlantButton extends Component{
 
       console.log("getRemovedPlantID should be done");
 
-      const response = fetch(`/plant/${removePlantID}`, {
+      const resp = fetch(`/plant/${removePlantID}`, {
             method: 'DELETE',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             }
+          }).then(function(response) {
+            return response.json();
+          }).then(function(data) {
+            parent.updateHB(event,addID)
           });
 
-      const text = await response.text();
 
       /*
       console.log("Engage getRemovedPlantID");
