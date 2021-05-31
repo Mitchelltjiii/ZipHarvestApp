@@ -354,23 +354,21 @@ class EditButton extends Component{
 
     async addPlant(plantItem){
       console.log("Engage add Plant");
-      const response = fetch('/plant', {
+      let parent = this;
+      const resp = fetch('/plant', {
         method: (plantItem.id) ? 'PUT' : 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(plantItem),
+      }).then(function(response) {
+        return response.json();
+      }).then(function(data) {
+        console.log("EXECUTE PLANT EXCT DATA: " + data); // this will be a string
+        parent.props.setNewPlantID(data,plantItem);
+        this.state.busyUpdating = false;
       });
-      console.log("Create plant should be done - no indicator");
-      try{
-        console.log("AWAITING RESPONSE ADD PLANT")
-        await response.text();
-        console.log("RESPONSE RECIEVED ADD PLANT")
-      }catch(err){
-        console.log("NO RESPONSE RECIEVED ADD PLANT")
-      }
-      this.state.busyUpdating = false;
       
       console.log("Exit update plant")
     }

@@ -25,7 +25,7 @@ import AddHarvestBatchButton from './AddHarvestBatchButton.component';
 import EditButton from './EditButton.component';
 import TableWrapper from './TableWrapper.component';
 
-function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harvestedPlants,setHarvestedPlantMap,resetHarvestBatches, resetAll, currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestedPlantID}) { 
+function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harvestedPlants,setHarvestedPlantMap,resetHarvestBatches, resetAll, currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestedPlantID, setNewPlantID}) { 
 
 	function HarvestBatch(itemID,name,finalized,plantList,type,date){
 		this.itemID = itemID;
@@ -608,16 +608,10 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			newPlantList = "{" + addID + "}";
 		}
 
-		console.log("NEW PLANT LIST: " + newPlantList);
 		replaceHB.plantList = newPlantList;
-		console.log("Parsed HBs before Splice: " + parsedHBs);
-		console.log("Parsed HBs before Splice: " + JSON.stringify(parsedHBs));
 		parsedHBs.splice(foundX,1,replaceHB);
-		console.log("Parsed HBs after Splice: " + parsedHBs);
-		console.log("Parsed HBs after Splice: " + JSON.stringify(parsedHBs));
 		harvestBatches = parsedHBs;
 		let tempHB = parsedHBs[foundX];
-		console.log("Temp HB: " + tempHB);
 		currentHarvest = new HarvestBatch(tempHB.id,tempHB.name,tempHB.finalized,tempHB.plantList,tempHB.type,tempHB.date);
 	}
 
@@ -1020,7 +1014,8 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 					alignItems="center"
 				>
 
-				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} harvestedPlants={harvestedPlants} currHidePlants={currHidePlants} currentHarvest={currentHarvest} timeLimit={timeLimit}></EditButton>		
+				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} harvestedPlants={harvestedPlants} currHidePlants={currHidePlants}
+				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID}></EditButton>		
 				<FormLabel>Harvest Queue</FormLabel>
 
 				</Grid>

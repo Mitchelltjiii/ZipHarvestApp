@@ -247,6 +247,27 @@ export default class App extends React.Component {
 		  console.log("Harvested Plants Map AFTER SET NEW HP ID(STRINGIFIED): " + JSON.stringify(this.state.harvestedPlants));
 	}
 
+  setNewPlantID = (newID,plant) => {
+    console.log("SET NEW PLANT ID");
+		
+      console.log("NEW PLANT: " + plant);
+      console.log("NEW PLANT(STRING): " + JSON.stringify(plant));
+      plant.id = newID;
+      console.log("NEW PLANT ID: " + plant.id);
+      console.log("NEW PLANT ID(STRING): " + JSON.stringify(plant.id));
+      console.log("NEW PLANT(STRING): " + JSON.stringify(plant));
+
+      let tempPlants = this.state.plants;
+      console.log("TempPlants: " + tempPlants);
+			tempPlants = tempPlants.substring(0,tempPlants.length-1) + "," + JSON.stringify(plant) + "]";
+      console.log("Tempplants ADDED");
+      console.log("TempPlants: " + tempPlants);
+
+      this.setState({plants: tempPlants});
+
+		  console.log("Plants Map AFTER SET NEW PLANT ID(STRINGIFIED): " + JSON.stringify(this.state.plants));
+	}
+
   render() {
 
     if(this.state.plantsLoading || this.state.harvestedPlantsLoading || this.state.harvestBatchesLoading){
@@ -271,7 +292,7 @@ export default class App extends React.Component {
 	    <Header currentPageSet={this.SetCurrentPage} currentPage={this.state.currentPage}/>
       <Outer currentPage={this.state.currentPage} setCurrentPage={this.SetCurrentPage} harvestBatches={this.state.harvestBatches} harvestedPlants={this.state.harvestedPlants} plants={this.state.plants} 
       resetHarvestBatches={this.resetHarvestBatches} resetAll={this.resetAll} currentHarvest={this.state.currentHarvest} setNewHBID={this.setNewHBID} getCurrentHarvestID={this.getCurrentHarvestID}
-      setNewHarvestedPlantID={this.setNewHarvestedPlantID}/>
+      setNewHarvestedPlantID={this.setNewHarvestedPlantID} setNewPlantID={this.setNewPlantID}/>
     </div>;
     }else{
 		showForm = <div><LogIn></LogIn></div>;
