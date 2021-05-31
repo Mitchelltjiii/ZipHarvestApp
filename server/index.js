@@ -15,6 +15,8 @@ const plantsQueryString = 'select * from plants';
 
 const harvestedPlantsQueryString = 'select * from harvestedplants';
 
+const usersQueryString = 'select * from users';
+
 const router = require('../app/routers/router');
 
 const connection = mysql.createConnection({
@@ -36,6 +38,15 @@ app.use(express.urlencoded({
 }));
 
 app.use(express.json());
+
+app.get('/api/users', (req, res) => {
+  console.log('api/users');
+  connection.query(usersQueryString,
+    function(err, result) {
+        console.log("GET USERS RESULT(STRING)- " + JSON.stringify(result));
+        res.json(result);
+    });
+});
 
 app.get('/api/harvestbatches', (req, res) => {
   console.log('api/harvestbatches');

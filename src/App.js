@@ -16,7 +16,9 @@ export default class App extends React.Component {
     plantsLoading: true,
     harvestedPlantsLoading: true,    
     harvestBatchesLoading: true,
-    currentHarvest: []
+    currentHarvest: [],
+    users: [],
+    usersLoading: true
   };
   componentDidMount() {
     /*
@@ -24,6 +26,10 @@ export default class App extends React.Component {
       this.setState({ users: response.data });
     });*/
     console.log("Component Did Mount - App.js");
+
+    console.log("Before Get Users");
+    this.getUsers();
+    console.log("After Get Users");
 
     console.log("Before GetHarvestBatches")
     this.getHarvestBatches();
@@ -58,10 +64,21 @@ export default class App extends React.Component {
 
   engageReload = () => {
     console.log("Engage Reload || pl: " + this.state.plantsLoading + " | hpl: " + this.state.harvestedPlantsLoading + " | hbl: " + this.state.harvestBatchesLoading);
-    if(!this.state.plantsLoading && !this.state.harvestedPlantsLoading && !this.state.harvestBatchesLoading){
+    if(!this.state.usersLoading || !this.state.plantsLoading && !this.state.harvestedPlantsLoading && !this.state.harvestBatchesLoading){
       console.log("Force Updated In App.js");
       this.forceUpdate();
     }
+  }
+
+  getUsers = async () => {
+    console.log("In GetUsers")
+    const response = await fetch('/api/users');
+    const text = await response.text();
+    console.log("API GET USERS: " + text);
+    this.state.users = text;
+    this.state.usersLoading = false;
+    console.log("Leaving GetUsers")
+    this.engageReload();
   }
 
   getPlants = async () => {
@@ -268,9 +285,14 @@ export default class App extends React.Component {
 		  console.log("Plants Map AFTER SET NEW PLANT ID(STRINGIFIED): " + JSON.stringify(this.state.plants));
 	}
 
+  executeLogIn = (user) =>{
+    loggedIn=user;
+    this.engageReload();
+  }
+
   render() {
 
-    if(this.state.plantsLoading || this.state.harvestedPlantsLoading || this.state.harvestBatchesLoading){
+    if(this.state.usersLoading || this.state.plantsLoading || this.state.harvestedPlantsLoading || this.state.harvestBatchesLoading){
       return(<div>Loading...</div>);
     }
 
@@ -295,7 +317,7 @@ export default class App extends React.Component {
       setNewHarvestedPlantID={this.setNewHarvestedPlantID} setNewPlantID={this.setNewPlantID}/>
     </div>;
     }else{
-		showForm = <div><LogIn></LogIn></div>;
+		showForm = <div><LogIn users={this.state.users} executeLogIn={this.executeLogIn}></LogIn></div>;
     }
     return (
       <div className="App">
