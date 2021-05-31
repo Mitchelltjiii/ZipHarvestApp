@@ -293,7 +293,81 @@ app.put('/plant', (req, res) =>{
     res.json(message);
 });
 
+
+
 app.delete(`/plant/:id`, (req, res) =>{
+  console.log("Delete Plant: " + req.params.id);
+  let plantID = req.params.id;
+
+  const result = connection.query(`DELETE FROM plants WHERE id = ${plantID}`);
+
+    let message = 'Error in creating programming language';
+  
+    if (result.affectedRows) {
+      message = 'Programming language created successfully';
+    }
+  
+    res.json(message);
+});
+
+app.post('/zhplant', (req, res) =>{
+  var postData  = req.body;
+
+  let user = postData.user;
+  let strain = postData.strain;
+  let tag = postData.tag;
+
+  console.log("POST DATA: PLANT STRINGIFIED: " + JSON.stringify(postData));
+  console.log("POST DATA: strain: " + strain);
+
+  const result = connection.query(
+    `INSERT INTO zh.plants 
+    (user, strain, tag) 
+    VALUES 
+    (?, ?, ?)`, 
+    [
+      user, strain, tag
+    ],function(err, result2) {
+      console.log("RESULT2- " + result2.insertId);
+      postResult = result2.insertId;
+      console.log("POSTRESULT- " + postResult);
+      console.log("POSTRESULT WITH RESPONSE- " + postResult);
+
+      res.json(postResult);
+  });  
+});
+
+app.put('/zhplant', (req, res) =>{
+  var postData  = req.body;
+
+  let id = postData.id;
+  let user = postData.user;
+  let strain = postData.strain;
+  let tag = postData.tag;
+
+  console.log("POST DATA: PLANT STRINGIFIED: " + JSON.stringify(postData));
+  console.log("POST DATA: STRAIN: " + strain);
+
+  const result = connection.query(
+    `UPDATE zh.plants set
+    user =?, strain =?, tag =? WHERE id = ?`, 
+    [
+      user, strain, tag, id
+    ]
+  );  
+
+    let message = 'Error in creating programming language';
+  
+    if (result.affectedRows) {
+      message = 'Programming language created successfully';
+    }
+  
+    res.json(message);
+});
+
+
+
+app.delete(`/zhplant/:id`, (req, res) =>{
   console.log("Delete Plant: " + req.params.id);
   let plantID = req.params.id;
 
