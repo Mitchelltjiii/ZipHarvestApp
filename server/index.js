@@ -180,6 +180,9 @@ app.post('/harvestedplant', (req, res) =>{
   console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
   console.log("POST DATA: UID: " + uid);
 
+  var postResult = "NO RESULTS";
+
+
   const result = connection.query(
     `INSERT INTO harvestedplants 
     (uid, strain, tag, weight, unit, createdAt, updatedAt) 
@@ -187,16 +190,14 @@ app.post('/harvestedplant', (req, res) =>{
     (?, ?, ?, ?, ?, ?, ?)`, 
     [
       uid, strain, tag, weight, unit, createdAt, updatedAt
-    ]
-  );  
+    ],function(err, result2) {
+      console.log("RESULT2- " + result2.insertId);
+      postResult = result2.insertId;
+      console.log("POSTRESULT- " + postResult);
+      console.log("POSTRESULT WITH RESPONSE- " + postResult);
 
-    let message = 'Error in creating programming language';
-  
-    if (result.affectedRows) {
-      message = 'Programming language created successfully';
-    }
-  
-    res.json(message);
+      res.json(postResult);
+  });  
 });
 
 app.put('/harvestedplant', (req, res) =>{
@@ -249,16 +250,14 @@ app.post('/plant', (req, res) =>{
     (?, ?, ?, ?)`, 
     [
       strain, tag, createdAt, updatedAt
-    ]
-  );  
+    ],function(err, result2) {
+      console.log("RESULT2- " + result2.insertId);
+      postResult = result2.insertId;
+      console.log("POSTRESULT- " + postResult);
+      console.log("POSTRESULT WITH RESPONSE- " + postResult);
 
-    let message = 'Error in creating programming language';
-  
-    if (result.affectedRows) {
-      message = 'Programming language created successfully';
-    }
-  
-    res.json(message);
+      res.json(postResult);
+  });  
 });
 
 app.put('/plant', (req, res) =>{

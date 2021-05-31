@@ -244,7 +244,7 @@ export default class App extends React.Component {
 
       this.setState({harvestedPlants: tempHarvestedPlants});
 
-		  console.log("Harvest Plants Map AFTER SET NEW HP ID(STRINGIFIED): " + JSON.stringify(this.state.harvestedPlants));
+		  console.log("Harvested Plants Map AFTER SET NEW HP ID(STRINGIFIED): " + JSON.stringify(this.state.harvestedPlants));
 	}
 
   render() {
