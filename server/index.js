@@ -151,12 +151,15 @@ app.put('/harvestbatch', (req, res) =>{
 
   const result = connection.query(
     `UPDATE harvestbatches set
-    name =?, finalized =?, plantList =?, type =?, date =?, createdAt =?, updatedAt =? WHERE id = ?`, 
+    (id, name, finalized, plantList, type, date, createdAt, updatedAt) 
+    VALUES 
+    (?, ?, ?, ?, ?, ?, ?)`, 
     [
-      name, finalized, plantList, type, date, createdAt, updatedAt, id
-    ],function(err, result2) {
-      res.json("{}");
-  });  
+      id, name, finalized, plantList, type, date, createdAt, updatedAt
+    ],
+    function(err, result2) {
+        res.json("{}");
+    });  
 });
 
 app.post('/harvestedplant', (req, res) =>{
