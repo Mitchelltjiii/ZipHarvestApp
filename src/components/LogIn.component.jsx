@@ -5,8 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 
-function LogIn(){
-
+function LogIn({users, executeLogIn}){
     const useStyles = makeStyles((theme) => ({
         container: {
           padding: theme.spacing(3),
@@ -27,14 +26,14 @@ function LogIn(){
       console.log("Password: " + password);
 
       console.log("Checking Users");
-      for(const val of this.props.users){
+      for(const val of users){
         console.log("Val: " + val);
         console.log("Val(String): " + JSON.stringify(val));
         if(val.username==username){
           console.log("User Match");
           if(val.password==password){
             console.log("Password Correct!");
-            this.props.executeLogIn(username);
+            executeLogIn(username);
           }
         }
       }
