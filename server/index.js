@@ -11,7 +11,7 @@ const Plant = db.Plant;
 
 const hbQueryString = 'select * from harvestbatches';
 
-const plantsQueryString = 'select * from zh.plants';
+const plantsQueryString = 'select * from zhplants';
 
 const harvestedPlantsQueryString = 'select * from harvestedplants';
 
@@ -321,7 +321,7 @@ app.post('/zhplant', (req, res) =>{
   console.log("POST DATA: strain: " + strain);
 
   const result = connection.query(
-    `INSERT INTO zh.plants 
+    `INSERT INTO zhplants 
     (user, strain, tag) 
     VALUES 
     (?, ?, ?)`, 
@@ -349,7 +349,7 @@ app.put('/zhplant', (req, res) =>{
   console.log("POST DATA: STRAIN: " + strain);
 
   const result = connection.query(
-    `UPDATE zh.plants set
+    `UPDATE zhplants set
     user =?, strain =?, tag =? WHERE id = ?`, 
     [
       user, strain, tag, id
