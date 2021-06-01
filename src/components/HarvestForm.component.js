@@ -604,10 +604,12 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			newPlantList += element + ",";
 			i++;
 		});
+		console.log("New Plant List after Loop: " + newPlantList);
 		newPlantList+= addID + "}";
 		if(i == 0){
 			newPlantList = "{" + addID + "}";
 		}
+		console.log("New Plant List after if: " + newPlantList);
 
 		replaceHB.plantList = newPlantList;
 		parsedHBs.splice(foundX,1,replaceHB);
