@@ -350,9 +350,8 @@ app.post('/zhplant', (req, res) =>{
       }else{
         console.log("Result2 undefined");
       }
-      
       res.json(postResult);
-  });  
+  });   
 });
 
 app.put('/zhplant', (req, res) =>{
