@@ -464,6 +464,9 @@ class EditButton extends Component{
 
     getPlantItem(plant){
 		  console.log("Enter getPlantItem")
+      console.log("Plant: " + plant);
+      console.log("Plant(STRING): " + JSON.stringify(plant));
+
 		  let plantItem = {
         user: '',
         strain: '',
