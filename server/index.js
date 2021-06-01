@@ -332,11 +332,12 @@ app.post('/zhplant', (req, res) =>{
   console.log("POST DATA: PLANT STRINGIFIED: " + JSON.stringify(postData));
   console.log("POST DATA: strain: " + strain);
 
-  let postResult = "No Results";
-
   console.log("USER: " + user);
   console.log("STRAIN: " + strain);
   console.log("TAG: " + tag);
+
+  var postResult = "NO RESULTS";
+
 
   const result = connection.query(
     `INSERT INTO zhplants 
@@ -354,8 +355,9 @@ app.post('/zhplant', (req, res) =>{
       }else{
         console.log("Result2 undefined");
       }
+
       res.json(postResult);
-  });   
+  });  
 });
 
 app.put('/zhplant', (req, res) =>{
