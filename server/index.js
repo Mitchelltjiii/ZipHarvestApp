@@ -129,12 +129,15 @@ app.post('/harvestbatch', (req, res) =>{
       name, finalized, plantList, type, date, createdAt, updatedAt
     ],
     function(err, result2) {
+      if(result2 != undefined){
         console.log("RESULT2- " + result2.insertId);
         postResult = result2.insertId;
         console.log("POSTRESULT- " + postResult);
         console.log("POSTRESULT WITH RESPONSE- " + postResult);
-
-        res.json(postResult);
+      }else{
+        console.log("Result2 undefined");
+      }
+      res.json(postResult);
     });  
 
     console.log("HARVESTBATCH POST RESULT IN SERVER: " + result);
@@ -195,10 +198,14 @@ app.post('/harvestedplant', (req, res) =>{
     [
       uid, strain, tag, weight, unit, createdAt, updatedAt
     ],function(err, result2) {
-      console.log("RESULT2- " + result2.insertId);
-      postResult = result2.insertId;
-      console.log("POSTRESULT- " + postResult);
-      console.log("POSTRESULT WITH RESPONSE- " + postResult);
+      if(result2 != undefined){
+        console.log("RESULT2- " + result2.insertId);
+        postResult = result2.insertId;
+        console.log("POSTRESULT- " + postResult);
+        console.log("POSTRESULT WITH RESPONSE- " + postResult);
+      }else{
+        console.log("Result2 undefined");
+      }
 
       res.json(postResult);
   });  
@@ -244,6 +251,8 @@ app.post('/plant', (req, res) =>{
   let createdAt = '2021-05-03 22:06:12';
   let updatedAt = '2021-05-03 22:06:12';
 
+  let postResult = "No Results";
+
   console.log("POST DATA: PLANT STRINGIFIED: " + JSON.stringify(postData));
   console.log("POST DATA: strain: " + strain);
 
@@ -255,11 +264,14 @@ app.post('/plant', (req, res) =>{
     [
       strain, tag, createdAt, updatedAt
     ],function(err, result2) {
-      console.log("RESULT2- " + result2.insertId);
-      postResult = result2.insertId;
-      console.log("POSTRESULT- " + postResult);
-      console.log("POSTRESULT WITH RESPONSE- " + postResult);
-
+      if(result2 != undefined){
+        console.log("RESULT2- " + result2.insertId);
+        postResult = result2.insertId;
+        console.log("POSTRESULT- " + postResult);
+        console.log("POSTRESULT WITH RESPONSE- " + postResult);
+      }else{
+        console.log("Result2 undefined");
+      }
       res.json(postResult);
   });  
 });
@@ -320,6 +332,8 @@ app.post('/zhplant', (req, res) =>{
   console.log("POST DATA: PLANT STRINGIFIED: " + JSON.stringify(postData));
   console.log("POST DATA: strain: " + strain);
 
+  let postResult = "No Results";
+
   const result = connection.query(
     `INSERT INTO zhplants 
     (user, strain, tag) 
@@ -328,11 +342,15 @@ app.post('/zhplant', (req, res) =>{
     [
       user, strain, tag
     ],function(err, result2) {
-      console.log("RESULT2- " + result2.insertId);
-      postResult = result2.insertId;
-      console.log("POSTRESULT- " + postResult);
-      console.log("POSTRESULT WITH RESPONSE- " + postResult);
-
+      if(result2 != undefined){
+        console.log("RESULT2- " + result2.insertId);
+        postResult = result2.insertId;
+        console.log("POSTRESULT- " + postResult);
+        console.log("POSTRESULT WITH RESPONSE- " + postResult);
+      }else{
+        console.log("Result2 undefined");
+      }
+      
       res.json(postResult);
   });  
 });
