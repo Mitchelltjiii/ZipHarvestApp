@@ -601,8 +601,10 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		let i = 0;
 		textSplit.forEach((element) => {
 			console.log("Split Element: " + element);
-			newPlantList += element + ",";
-			i++;
+			if(element != ""){
+				newPlantList += element + ",";
+				i++;
+			}
 		});
 		console.log("New Plant List after Loop: " + newPlantList);
 		newPlantList+= addID + "}";
