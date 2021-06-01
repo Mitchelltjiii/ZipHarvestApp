@@ -465,10 +465,12 @@ class EditButton extends Component{
     getPlantItem(plant){
 		  console.log("Enter getPlantItem")
 		  let plantItem = {
+        user: '',
         strain: '',
         tag: ''
         };
 
+        plantItem.user = plant.user;
         plantItem.strain = plant.strain;
         plantItem.tag = plant.tag;
 
