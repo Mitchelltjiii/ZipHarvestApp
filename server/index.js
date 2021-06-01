@@ -334,6 +334,10 @@ app.post('/zhplant', (req, res) =>{
 
   let postResult = "No Results";
 
+  console.log("USER: " + user);
+  console.log("STRAIN: " + strain);
+  console.log("TAG: " + tag);
+
   const result = connection.query(
     `INSERT INTO zhplants 
     (user, strain, tag) 
