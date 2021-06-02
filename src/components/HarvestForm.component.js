@@ -445,7 +445,12 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			hbDate=getYesterdayStr();
 		}
 
-		addedHB = new HarvestBatch(hbName,0,harvestType,hbDate);
+		let harvType = 0;
+		if(harvestType == "Manifest"){
+			harvType = 1;
+		}
+
+		addedHB = new HarvestBatch(hbName,0,harvType,hbDate);
 
 		if(hbName!=""&&!hbOptionsList.includes(hbName)){
 			harvestBatches.push(addedHB);
