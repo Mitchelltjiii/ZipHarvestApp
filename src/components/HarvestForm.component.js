@@ -41,17 +41,17 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		this.active = active;
 	}
 
-	function HarvestedPlant(itemID,uid,strain,tag,weight,unit){
+	function HarvestedPlant(itemID,tag,weight,unit,batchName,userID){
 		this.itemID = itemID;
-		this.uid = uid;
-		this.strain = strain;
 		this.tag = tag;
 		this.weight = weight;
 		this.unit = unit;
+		this.batchName = batchName;
+		this.userID = userID;
 	}
 
 	let hbOptionsList = ["Add New Harvest Batch"];
-	let currentHarvestedPlant = new HarvestedPlant('','','','',0,'');
+	let currentHarvestedPlant = new HarvestedPlant('','','','','','');
 
 	let addedHB = new HarvestBatch("",0,"","");
 
@@ -210,7 +210,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			console.log("Val.uid: " + val.uid);
 			if(val.uid == uid){
 				console.log("GRABBED HARVESTEDPLANT");
-				return new HarvestedPlant(val.itemID, val.uid, val.strain, val.tag, val.weight, val.unit);
+				return new HarvestedPlant(val.itemID, val.tag, val.weight, val.unit, val.batchName, val.userID);
 			}
 		}
 	}
@@ -538,7 +538,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				if(addPlant===null||addPlant===undefined){
 					return false;
 				}
-				currentHarvestedPlant = new HarvestedPlant('',getNewUID(),addPlant.strain,addPlant.tag,0,'');
+				currentHarvestedPlant = new HarvestedPlant('',addPlant.tag,0,'',currentHarvest.name,userID);
 				if(weight===""||weight===undefined){
 					currentHarvestedPlant.weight=getBranchWeight();
 				}else{
