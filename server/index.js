@@ -142,10 +142,9 @@ app.post('/hb', (req, res) =>{
     console.log("HARVESTBATCH POST RESULT IN SERVER: " + result);
 });
 
-app.put('/harvestbatch', (req, res) =>{
+app.put('/hb', (req, res) =>{
   var postData  = req.body;
 
-  let id = postData.id;
   let name = postData.name;
   let submitted = postData.submitted;
   let userID = postData.userID;
@@ -160,9 +159,9 @@ app.put('/harvestbatch', (req, res) =>{
 
   const result = connection.query(
     `UPDATE hb set
-    finalized =?, userID =?, type =?, date =? WHERE name = ?`, 
+    submitted =?, userID =?, type =?, date =? WHERE name = ?`, 
     [
-      name, finalized, userID, type, date
+      name, submitted, userID, type, date
     ],function(err, result2) {
       res.json("{}");
   });  
