@@ -72,7 +72,7 @@ class HarvestPlantButton extends Component{
           }).then(function(data) {
             console.log("EXECUTE HARVSET PLANT EXCT DATA: " + data); // this will be a string
             parent.props.setNewHarvestedPlantID(data,harvestedPlantItem);
-            if(this.props.harvestType == "harvest"){
+            if(parent.props.harvestType == "harvest"){
               parent.updatePlant(event);
             }
           });
