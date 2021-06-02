@@ -83,7 +83,7 @@ export default class App extends React.Component {
 
   getPlants = async () => {
     console.log("In GetPlants")
-    const response = await fetch('/api/zhplants');
+    const response = await fetch('/api/pl');
     const text = await response.text();
     console.log("API GET PLANTS: " + text);
     this.state.plants = text;
