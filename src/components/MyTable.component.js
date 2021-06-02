@@ -15,13 +15,11 @@ import DeleteButton from './DeleteButton.component';
 
 function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeightChanges,wrapper,getRemovePlantIDDelete,currHidePlants,setHidePlants}) {
 
-  console.log('HARVESTEDPLANTS in Table: ' + harvestedPlants);
+  console.log('HARVESTEDPLANTS in Table: ' + JSON.stringify(harvestedPlants));
 
-  function HarvestBatch(itemID,name,finalized,plantList,type,date){
-		this.itemID = itemID;
+  function HarvestBatch(name,submitted,type,date){
 		this.name = name;
-		this.finalized = finalized;
-		this.plantList = plantList;
+		this.submitted = submitted;
     this.type = type;
     this.date = date;
 	}
@@ -39,11 +37,11 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
       });
 
     const classes = useStyles();
-    let harvestBatch = new HarvestBatch('','','','{}','','');
+    let harvestBatch = new HarvestBatch('',0,'','');
     console.log('CurrHarvest in Table: ' + JSON.stringify(currHarvest));
 
     if(currHarvest!==undefined){
-      harvestBatch = new HarvestBatch(currHarvest.itemID,currHarvest.name,currHarvest.finalized,currHarvest.plantList,currHarvest.type,currHarvest.date);
+      harvestBatch = new HarvestBatch(currHarvest.name,currHarvest.finalized,currHarvest.type,currHarvest.date);
     }
 
     console.log('HarvestBatch in Table: ' + JSON.stringify(harvestBatch));
@@ -266,7 +264,7 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
         <TableHead>
           <TableRow>
             {editNow ? <TableCell align="left" style={{ width: "170px"}}>Delete</TableCell> : null}
-            <TableCell align="left">Tag</TableCell>
+                      <TableCell align="left">Tag</TableCell>
             					<TableCell align="right">Strain</TableCell>
             					<TableCell align="right">Weight</TableCell>
             					<TableCell align="right">Unit</TableCell>
@@ -300,45 +298,3 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
 }
 
 export default MyTable;
-
-
-/*<TableBody>
-            {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-            </TableRow>
-            ))}
-            </TableBody>
-
-            <TableBody>
-            {newArray.map((row) => (
-            <TableRow key={row.tag}>
-              <TableCell component="th" scope="row">
-                {row.tag}
-              </TableCell>
-              <TableCell>{row.strain}</TableCell>
-              <TableCell>{row.weight}</TableCell>
-              <TableCell>{row.unit}</TableCell>
-              <TableCell>{row.date}</TableCell>
-            </TableRow>
-            ))}
-            </TableBody>
-
-
-<TableBody>
-                            {Array.from(plants.plantList).map((tag) => (
-                            <TableRow key={tag}>
-                            <TableCell component="th" scope="row">{plants.get(tag).tag}</TableCell>
-                            <TableCell>{plants.get(tag).name}</TableCell>
-                            <TableCell>{plants.get(tag).weight}</TableCell>
-                            <TableCell>{plants.get(tag).unit}</TableCell>
-                            <TableCell>{plants.get(tag).date}</TableCell>
-                            </TableRow>
-                        ))}
-        </TableBody>*/
