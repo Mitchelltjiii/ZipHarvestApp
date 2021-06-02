@@ -53,9 +53,6 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
     }
 
     let rows = [];
-
-    console.log("parsedPlantslist: " + JSON.stringify(parsedPlantsList));
-
       try{
         for(let val of harvestedPlants) {  
           if(val.batchName == currHarvest.name){
