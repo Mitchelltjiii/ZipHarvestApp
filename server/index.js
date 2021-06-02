@@ -171,7 +171,7 @@ app.post('/hr', (req, res) =>{
   var postData  = req.body;
 
   let tag = postData.tag;
-  let weight = JSON.stringify(postData.weight);
+  let weight = postData.weight;
   let unit = postData.unit;
   let batchName = postData.batchName;
   let userID = postData.userID;
