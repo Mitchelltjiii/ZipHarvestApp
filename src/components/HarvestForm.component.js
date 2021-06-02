@@ -27,11 +27,9 @@ import TableWrapper from './TableWrapper.component';
 
 function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harvestedPlants,setHarvestedPlantMap,resetHarvestBatches, resetAll, currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestedPlantID, setNewPlantID}) { 
 
-	function HarvestBatch(itemID,name,finalized,plantList,type,date){
-		this.itemID = itemID;
+	function HarvestBatch(name,submitted,type,date){
 		this.name = name;
-		this.finalized = finalized;
-		this.plantList = plantList;
+		this.submitted = submitted;
 		this.type = type;
 		this.date = date;
 	}
@@ -55,7 +53,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	let hbOptionsList = ["Add New Harvest Batch"];
 	let currentHarvestedPlant = new HarvestedPlant('','','','',0,'');
 
-	let addedHB = new HarvestBatch("","","","{}","","");
+	let addedHB = new HarvestBatch("",0,"","");
 
 	console.log("ENTER HARVESTFORM, CURRENT HARVEST: " + JSON.stringify(currentHarvest));
 
@@ -145,7 +143,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				console.log("GRABBED");
 				console.log("Val.id: " + val.id);
 				console.log("Get CURRHARV ID FROM APP: " + getCurrentHarvestID(val.name));
-				return new HarvestBatch(getCurrentHarvestID(val.name),val.name,val.finalized,val.plantList,val.type,val.date);
+				return new HarvestBatch(val.name,val.finalized,val.type,val.date);
 			}
 		}
 		console.log("Exit GetHarvestBatch");
@@ -167,9 +165,9 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		}
 
 		console.log("Harvest Batches Map Before SetHarvestBatch(STRINGIFIED): " + JSON.stringify(harvestBatches));
-		console.log("HB TO BE ADDED: " + JSON.stringify(new HarvestBatch(selectedHB.id,selectedHB.name,selectedHB.finalized,selectedHB.plantList,selectedHB.type,selectedHB.date)));
+		console.log("HB TO BE ADDED: " + JSON.stringify(new HarvestBatch(selectedHB.name,selectedHB.finalized,selectedHB.type,selectedHB.date)));
 		if(foundX != -1){
-			harvestBatches.splice(foundX,foundX,new HarvestBatch(selectedHB.itemID,selectedHB.name,selectedHB.finalized,selectedHB.plantList,selectedHB.type,selectedHB.date));
+			harvestBatches.splice(foundX,foundX,new HarvestBatch(selectedHB.name,selectedHB.finalized,selectedHB.type,selectedHB.date));
 		}
 		console.log("Harvest Batches Map AFTER SetHarvestBatch(STRINGIFIED): " + JSON.stringify(harvestBatches));
 	}
@@ -447,7 +445,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			hbDate=getYesterdayStr();
 		}
 
-		addedHB = new HarvestBatch("",hbName,false,"{}",harvestType,hbDate);
+		addedHB = new HarvestBatch(hbName,0,harvestType,hbDate);
 
 		if(hbName!=""&&!hbOptionsList.includes(hbName)){
 			harvestBatches.push(addedHB);
@@ -617,7 +615,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		parsedHBs.splice(foundX,1,replaceHB);
 		harvestBatches = parsedHBs;
 		let tempHB = parsedHBs[foundX];
-		currentHarvest = new HarvestBatch(tempHB.id,tempHB.name,tempHB.finalized,tempHB.plantList,tempHB.type,tempHB.date);
+		currentHarvest = new HarvestBatch(tempHB.name,tempHB.submitted,tempHB.type,tempHB.date);
 	}
 
 	function printData(){
@@ -853,8 +851,8 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		console.log("Enter getharvestBatchitem")
 		let hb = {
 			name: '',
-			finalized: '',
-			plantList: '{}',
+			submitted: '',
+			userID: '',
 			type: '',
 			date: ''
 			};
@@ -871,7 +869,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		}
 		hb.name = ch.name;
 		hb.finalized = ch.finalized;
-		hb.plantList = ch.plantList;
+		hb.userID = ch.userID;
 		hb.type = ch.type;
 		hb.date = ch.date;
 		if(ch.itemID!==""){

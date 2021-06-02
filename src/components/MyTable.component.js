@@ -48,24 +48,18 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
 
     console.log('HarvestBatch in Table: ' + JSON.stringify(harvestBatch));
 
-    function createData(uid, tag, strain, weight, unit) {
-      return { uid, tag, strain, weight, unit};
+    function createData(tag, strain, weight, unit) {
+      return {tag, strain, weight, unit};
     }
 
     let rows = [];
-    let parsedPlantsList = [];
-    
-    if(harvestBatch.name != ''){
-      let unparsedPlantList = harvestBatch.plantList.substring(1,harvestBatch.plantList.length-1);
-      parsedPlantsList = unparsedPlantList.split(',');
-    }
 
     console.log("parsedPlantslist: " + JSON.stringify(parsedPlantsList));
 
       try{
         for(let val of harvestedPlants) {  
-          if(parsedPlantsList.includes(val.uid) && !currHidePlants.includes(val.uid)){
-            rows.push(createData(val.uid,val.tag,val.strain,val.weight,val.unit));
+          if(val.batchName == currHarvest.name){
+            rows.push(createData(val.tag,val.strain,val.weight,val.unit));
           }
         }
       }catch(error){
@@ -82,12 +76,12 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
 
       let i = 0;
       let foundIndex = -1;
-      let foundRow = createData("","","","","");
+      let foundRow = createData("","","","");
       for(let row of rows){
         console.log("row: " + JSON.stringify(row));
         if(row.uid == uid){
           foundIndex = i;
-          foundRow = createData(row.uid,row.tag,row.strain,row.weight,text);
+          foundRow = createData(row.tag,row.strain,row.weight,text);
         }
         i++;
       }

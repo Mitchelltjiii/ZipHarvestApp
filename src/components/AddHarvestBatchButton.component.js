@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 class AddHarvestBatchButton extends Component{
     emptyHarvestBatch = {
       name: '',
-      finalized: '',
+      submitted: '',
       plantList: '{}',
       type: '',
       date: ''
@@ -51,8 +51,8 @@ class AddHarvestBatchButton extends Component{
       }).then(function(response) {
         return response.json();
       }).then(function(data) {
-        console.log("EXCT DATA: " + data); // this will be a string
-        parent.props.setNewHBID(data,harvestBatchItem);
+        //console.log("EXCT DATA: " + data); // this will be a string
+        //parent.props.setNewHBID(data,harvestBatchItem);
       });
       /*
       var text = "Text before change";

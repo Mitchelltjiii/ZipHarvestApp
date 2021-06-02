@@ -103,32 +103,31 @@ app.post('/posttest', (req, res) =>{
     res.json(message);
 });
 
-app.post('/harvestbatch', (req, res) =>{
+app.post('/hb', (req, res) =>{
   var postData  = req.body;
 
   let name = postData.name;
-  let finalized = postData.finalized;
-  let plantList = postData.plantList;
+  let submitted = postData.submitted;
+  let userID = postData.userID;
   let type = postData.type;
   let date = postData.date;
-  let createdAt = '2021-05-03 22:06:12';
-  let updatedAt = '2021-05-03 22:06:12';
 
-  console.log("POST DATA: HARVESTBATCH STRINGIFIED: " + JSON.stringify(postData));
-  console.log("POST DATA: HARVESTBATCH: " + postData);
+  console.log("POST DATA: hb STRINGIFIED: " + JSON.stringify(postData));
+  console.log("POST DATA: hb: " + postData);
   console.log("POST DATA: NAME: " + name);
 
   var postResult = "NO RESULTS";
 
   const result = connection.query(
-    `INSERT INTO harvestbatches 
-    (name, finalized, plantList, type, date, createdAt, updatedAt) 
+    `INSERT INTO hb 
+    (name, submitted, userID, type, date) 
     VALUES 
-    (?, ?, ?, ?, ?, ?, ?)`, 
+    (?, ?, ?, ?, ?)`, 
     [
-      name, finalized, plantList, type, date, createdAt, updatedAt
+      name, submitted, userID, type, date
     ],
     function(err, result2) {
+      /*
       if(result2 != undefined){
         console.log("RESULT2- " + result2.insertId);
         postResult = result2.insertId;
@@ -136,13 +135,11 @@ app.post('/harvestbatch', (req, res) =>{
         console.log("POSTRESULT WITH RESPONSE- " + postResult);
       }else{
         console.log("Result2 undefined");
-      }
-      res.json(postResult);
+      }*/
+      res.json("{}");
     });  
 
     console.log("HARVESTBATCH POST RESULT IN SERVER: " + result);
-
-    
 });
 
 app.put('/harvestbatch', (req, res) =>{
@@ -150,24 +147,22 @@ app.put('/harvestbatch', (req, res) =>{
 
   let id = postData.id;
   let name = postData.name;
-  let finalized = postData.finalized;
-  let plantList = postData.plantList;
+  let submitted = postData.submitted;
+  let userID = postData.userID;
   let type = postData.type;
   let date = postData.date;
-  let createdAt = '2021-05-03 22:06:12';
-  let updatedAt = '2021-05-03 22:06:12';
 
-  console.log("PUT DATA: HARVESTBATCH STRINGIFIED: " + JSON.stringify(postData));
-  console.log("PUT DATA: HARVESTBATCH: " + postData);
+  console.log("PUT DATA: HB STRINGIFIED: " + JSON.stringify(postData));
+  console.log("PUT DATA: HB: " + postData);
   console.log("PUT DATA: NAME: " + name);
 
   //var sql = "UPDATE trn_employee set first_name =? , last_name =?  WHERE employee_id = ?";
 
   const result = connection.query(
-    `UPDATE harvestbatches set
-    name =?, finalized =?, plantList =?, type =?, date =?, createdAt =?, updatedAt =? WHERE id = ?`, 
+    `UPDATE hb set
+    finalized =?, userID =?, type =?, date =? WHERE name = ?`, 
     [
-      name, finalized, plantList, type, date, createdAt, updatedAt, id
+      name, finalized, userID, type, date
     ],function(err, result2) {
       res.json("{}");
   });  
