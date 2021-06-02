@@ -94,7 +94,7 @@ export default class App extends React.Component {
 
   getHarvestedPlants = async () => {
     console.log("In GetHarvestedPlants")
-    const response = await fetch('/api/harvestedplants');
+    const response = await fetch('/api/hr');
     const text = await response.text();
     console.log("API GET HARVESTEDPLANTS: " + text);
     this.state.harvestedPlants = text;
@@ -105,7 +105,7 @@ export default class App extends React.Component {
 
   getHarvestBatches = async () => {
     console.log("In GetHarvestBatches")
-    const response = await fetch('/api/harvestbatches');
+    const response = await fetch('/api/hb');
     const text = await response.text();
     console.log("API GET HARVESTBATCHES: " + text);
     this.state.harvestBatches = text;

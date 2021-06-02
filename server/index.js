@@ -9,11 +9,11 @@ const db = require('../app/config/db.config');
 
 const Plant = db.Plant;
 
-const hbQueryString = 'select * from harvestbatches';
+const hbQueryString = 'select * from hb';
 
 const plantsQueryString = 'select * from pl';
 
-const harvestedPlantsQueryString = 'select * from harvestedplants';
+const harvestRecordsQueryString = 'select * from hr';
 
 const usersQueryString = 'select * from users';
 
@@ -48,8 +48,8 @@ app.get('/api/users', (req, res) => {
     });
 });
 
-app.get('/api/harvestbatches', (req, res) => {
-  console.log('api/harvestbatches');
+app.get('/api/hb', (req, res) => {
+  console.log('api/hb');
   connection.query(hbQueryString,
     function(err, result) {
         console.log("GET HARVESTBATCHES RESULT(STRING)- " + JSON.stringify(result));
@@ -66,9 +66,9 @@ app.get('/api/pl', (req, res) => {
     });
 });
 
-app.get('/api/harvestedplants', (req, res) => {
-  console.log('api/harvestedplants');
-  connection.query(harvestedPlantsQueryString,
+app.get('/api/hr', (req, res) => {
+  console.log('api/hr');
+  connection.query(harvestRecordsQueryString,
     function(err, result) {
         console.log("GET HARVESTEDPLANTS RESULT(STRING)- " + JSON.stringify(result));
         res.json(result);
