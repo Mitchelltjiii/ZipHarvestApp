@@ -187,14 +187,13 @@ app.post('/hr', (req, res) =>{
   console.log("POST DATA: userID: " + userID);
 
   const result = connection.query(
-    `INSERT INTO hr 
+    `INSERT INTO defaultdb.hr 
     (tag, weight, unit, batchName, userID) 
     VALUES 
-    (?, ?, ?, ?, ?)`, 
+    (?, ?, ?, ?, ?)`,
     [
       tag, weight, unit, batchName, userID
-    ],
-    function(err, result2) {
+    ],function(err, result2) {
       if(result2 != undefined){
         console.log("RESULT2- " + result2.insertId);
         postResult = result2.insertId;
