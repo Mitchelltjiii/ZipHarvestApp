@@ -11,7 +11,7 @@ const Plant = db.Plant;
 
 const hbQueryString = 'select * from harvestbatches';
 
-const plantsQueryString = 'select * from zhplants';
+const plantsQueryString = 'select * from pl';
 
 const harvestedPlantsQueryString = 'select * from harvestedplants';
 
@@ -57,8 +57,8 @@ app.get('/api/harvestbatches', (req, res) => {
     });
 });
 
-app.get('/api/zhplants', (req, res) => {
-  console.log('api/zhplants');
+app.get('/api/pl', (req, res) => {
+  console.log('api/pl');
   connection.query(plantsQueryString,
     function(err, result) {
         console.log("GET PLANTS RESULT(STRING)- " + JSON.stringify(result));
@@ -322,7 +322,8 @@ app.delete(`/plant/:id`, (req, res) =>{
     res.json(message);
 });
 
-app.post('/zhplant', (req, res) =>{
+/*
+app.post('/pl', (req, res) =>{
   var postData  = req.body;
 
   let user = postData.user;
@@ -403,7 +404,7 @@ app.delete(`/zhplant/:id`, (req, res) =>{
     }
   
     res.json(message);
-});
+});*/
 
 app.delete(`/harvestedplant/:id`, (req, res) =>{
   console.log("Delete HarvestedPlant: " + req.params.id);
