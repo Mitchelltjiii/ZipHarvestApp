@@ -13,7 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import DeleteButton from './DeleteButton.component';
 
 
-function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeightChanges,wrapper,getRemovePlantIDDelete,currHidePlants,setHidePlants}) {
+function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeightChanges,wrapper,getRemovePlantIDDelete,currHidePlants,setHidePlants,plants}) {
 
   console.log('HARVESTEDPLANTS in Table: ' + JSON.stringify(harvestedPlants));
 
@@ -50,11 +50,19 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
       return {tag, strain, weight, unit};
     }
 
+    function getStrainFromTag(tag){
+      for(let val of plants){
+        if(val.tag == tag){
+          return val.strain;
+        }
+      }
+    }
+
     let rows = [];
       try{
         for(let val of harvestedPlants) {  
           if(val.batchName == currHarvest.name){
-            rows.push(createData(val.tag,val.strain,val.weight,val.unit));
+            rows.push(createData(val.tag,getStrainFromTag(val.tag),val.weight,val.unit));
           }
         }
       }catch(error){
