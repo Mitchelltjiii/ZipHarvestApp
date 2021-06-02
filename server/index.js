@@ -396,7 +396,7 @@ app.delete(`/zhplant/:id`, (req, res) =>{
     }
   
     res.json(message);
-});*/
+});
 
 app.delete(`/harvestedplant/:id`, (req, res) =>{
   console.log("Delete HarvestedPlant: " + req.params.id);
