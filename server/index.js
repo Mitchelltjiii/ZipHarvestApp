@@ -186,8 +186,6 @@ app.post('/hr', (req, res) =>{
   console.log("POST DATA: batchname: " + batchName);
   console.log("POST DATA: userID: " + userID);
 
-
-
   const result = connection.query(
     `INSERT INTO hr 
     (tag, weight, unit, batchName, userID) 
@@ -195,7 +193,8 @@ app.post('/hr', (req, res) =>{
     (?, ?, ?, ?, ?)`, 
     [
       tag, weight, unit, batchName, userID
-    ],function(err, result2) {
+    ],
+    function(err, result2) {
       if(result2 != undefined){
         console.log("RESULT2- " + result2.insertId);
         postResult = result2.insertId;
@@ -204,9 +203,8 @@ app.post('/hr', (req, res) =>{
       }else{
         console.log("Result2 undefined");
       }
-
       res.json(postResult);
-  });  
+    });  
 });
 
 app.put('/hr', (req, res) =>{
