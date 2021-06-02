@@ -141,9 +141,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			console.log("Val.name: " + val.name);
 			if(val.name == selectedHB){
 				console.log("GRABBED");
-				console.log("Val.id: " + val.id);
-				console.log("Get CURRHARV ID FROM APP: " + getCurrentHarvestID(val.name));
-				return new HarvestBatch(val.name,val.finalized,val.type,val.date);
+				return new HarvestBatch(val.name,val.submitted,val.type,val.date);
 			}
 		}
 		console.log("Exit GetHarvestBatch");
@@ -165,9 +163,9 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		}
 
 		console.log("Harvest Batches Map Before SetHarvestBatch(STRINGIFIED): " + JSON.stringify(harvestBatches));
-		console.log("HB TO BE ADDED: " + JSON.stringify(new HarvestBatch(selectedHB.name,selectedHB.finalized,selectedHB.type,selectedHB.date)));
+		console.log("HB TO BE ADDED: " + JSON.stringify(new HarvestBatch(selectedHB.name,selectedHB.submitted,selectedHB.type,selectedHB.date)));
 		if(foundX != -1){
-			harvestBatches.splice(foundX,foundX,new HarvestBatch(selectedHB.name,selectedHB.finalized,selectedHB.type,selectedHB.date));
+			harvestBatches.splice(foundX,foundX,new HarvestBatch(selectedHB.name,selectedHB.submitted,selectedHB.type,selectedHB.date));
 		}
 		console.log("Harvest Batches Map AFTER SetHarvestBatch(STRINGIFIED): " + JSON.stringify(harvestBatches));
 	}
