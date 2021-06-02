@@ -117,7 +117,8 @@ class Outer extends Component {
 			<Landing currentPage={this.props.currentPage} plantMap={this.state.plants} setPlantMap={setPlantMap} harvestedPlantsMap={this.state.harvestedPlants} 
       setHarvestedPlantMap={setHarvestedPlantMap} harvestBatchesMap={this.state.harvestBatches} setHarvestBatches={setHarvestBatches} 
       resetHarvestBatches={this.props.resetHarvestBatches} resetAll={this.props.resetAll} currentHarvest={this.props.currentHarvest} setNewHBID={this.props.setNewHBID}
-      getCurrentHarvestID={this.props.getCurrentHarvestID} refreshOuter={this.refreshOuter} setNewHarvestedPlantID={this.props.setNewHarvestedPlantID} setNewPlantID={this.props.setNewPlantID}/>
+      getCurrentHarvestID={this.props.getCurrentHarvestID} refreshOuter={this.refreshOuter} setNewHarvestedPlantID={this.props.setNewHarvestedPlantID} 
+      setNewPlantID={this.props.setNewPlantID} userID={this.props.userID}/>
 		</div>
     );
   }

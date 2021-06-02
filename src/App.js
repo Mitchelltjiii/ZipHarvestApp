@@ -18,7 +18,8 @@ export default class App extends React.Component {
     harvestBatchesLoading: true,
     currentHarvest: [],
     users: [],
-    usersLoading: true
+    usersLoading: true,
+    userID: ""
   };
   componentDidMount() {
     /*
@@ -285,8 +286,9 @@ export default class App extends React.Component {
 		  console.log("Plants Map AFTER SET NEW PLANT ID(STRINGIFIED): " + JSON.stringify(this.state.plants));
 	}
 
-  executeLogIn = (user) =>{
+  executeLogIn = (user, userID) =>{
     this.state.loggedIn=user;
+    this.state.userID=userID;
     this.engageReload();
   }
 
@@ -314,7 +316,7 @@ export default class App extends React.Component {
 	    <Header currentPageSet={this.SetCurrentPage} currentPage={this.state.currentPage}/>
       <Outer currentPage={this.state.currentPage} setCurrentPage={this.SetCurrentPage} harvestBatches={this.state.harvestBatches} harvestedPlants={this.state.harvestedPlants} plants={this.state.plants} 
       resetHarvestBatches={this.resetHarvestBatches} resetAll={this.resetAll} currentHarvest={this.state.currentHarvest} setNewHBID={this.setNewHBID} getCurrentHarvestID={this.getCurrentHarvestID}
-      setNewHarvestedPlantID={this.setNewHarvestedPlantID} setNewPlantID={this.setNewPlantID}/>
+      setNewHarvestedPlantID={this.setNewHarvestedPlantID} setNewPlantID={this.setNewPlantID} userID={this.state.userID}/>
     </div>;
     }else{
 		showForm = <div><LogIn users={this.state.users} executeLogIn={this.executeLogIn}></LogIn></div>;

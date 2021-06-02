@@ -34,7 +34,7 @@ function LogIn({users, executeLogIn}){
           console.log("User Match");
           if(val.password==password){
             console.log("Password Correct!");
-            executeLogIn(username);
+            executeLogIn(username,val.apiid);
           }
         }
       }
