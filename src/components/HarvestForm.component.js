@@ -34,11 +34,11 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		this.date = date;
 	}
 
-	function Plant(itemID,user,strain,tag){
-		this.itemID = itemID;
+	function Plant(user,strain,tag,active){
 		this.user = user;
 		this.strain = strain;
 		this.tag = tag;
+		this.active = active;
 	}
 
 	function HarvestedPlant(itemID,uid,strain,tag,weight,unit){
@@ -198,7 +198,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			console.log("Val.tag: " + val.tag);
 			if(val.tag == plantTag){
 				console.log("GRABBED PLANT");
-				return new Plant(val.id,val.user,val.strain,val.tag);
+				return new Plant(val.user,val.strain,val.tag,val.active);
 			}
 		}
 	}
@@ -219,19 +219,24 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		console.log("Remove Plant: " + plantTag);
 		let x = 0;
 		let foundX = -1;
+		let replaceEntry = "";
 		for(let val of plants) {
 			console.log("VAL: " + val);
 			console.log("Val.tag: " + val.tag);
 			if(val.tag == plantTag){
 				console.log("FOUND X: " + x);
 				foundX = x;
+				replaceEntry = val;
+				if(currentHarvest.type == 0){
+					replaceEntry.active = 1;
+				}
 			}
 			x++;
 		}
 
 		console.log("Plant Map Before Remove Plant(STRINGIFIED): " + JSON.stringify(plants));
 		if(foundX != -1){
-			plants.splice(foundX,1);
+			plants.splice(foundX,1,replaceEntry);
 		}
 		console.log("Plant Map AFTER Remove Plant(STRINGIFIED): " + JSON.stringify(plants));
 	}
@@ -446,7 +451,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		}
 
 		let harvType = 0;
-		if(harvestType == "Manifest"){
+		if(harvestType == "manifest"){
 			harvType = 1;
 		}
 
@@ -545,21 +550,11 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 					return false;
 				}
 				currentHarvestedPlant.unit=unit;
-				let plantList = currentHarvest.plantList;
-				console.log("PLANTLIST BEFORE APPEND: " + plantList);
-				if(plantList==="{}"){
-					plantList = "{" + currentHarvestedPlant.uid + "}";
-				}else{
-					plantList = plantList.substring(0,plantList.length-1) + "," + currentHarvestedPlant.uid + "}";
-				}
-				console.log("PLANTLIST AFTER APPEND" + plantList);
-
-				currentHarvest.plantList = plantList;
 								
 				addHarvestedPlant(currentHarvestedPlant);
 
 				removePlant(plantTag)
-				setRemovedPlantID(addPlant.itemID);
+				//setRemovedPlantID(addPlant.itemID);
 				console.log("PLANTS AFTER REMOVED: " + plants);
 
 				let plantTags = [];
@@ -830,18 +825,42 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	function getHarvestedPlantItem(){
 		console.log("Enter getharvestedPlantitem")
 		let plant = {
-			uid: '',
-			strain: '',
 			tag: '',
 			weight: 0,
-			unit: ''
+			unit: '',
+			batchName: '',
+			userID: ''
 		  };
 
-		plant.uid = currentHarvestedPlant.uid;
-		plant.strain = currentHarvestedPlant.strain;
 		plant.tag = currentHarvestedPlant.tag;
 		plant.unit = currentHarvestedPlant.unit;
 		plant.weight = currentHarvestedPlant.weight;
+		plant.batchName = currentHarvestedPlant.batchName;
+		plant.userID = userID;
+
+		if(currentHarvestedPlant.itemID!==""){
+			plant.id = currentHarvestedPlant.itemID;
+		}
+
+		console.log("Adding " + plant.strain); 
+		console.log("Stringified before passed: " + JSON.stringify(plant));
+		console.log("Exit getharvestedPlantitem")
+		return plant;
+	}
+
+	function getPlantItem(active){
+		console.log("Enter getPlantItem")
+		let plant = {
+			tag: '',
+			strain: '',
+			active: ''
+		  };
+
+		plant.tag = currentHarvestedPlant.tag;
+		plant.strain = currentHarvestPlant.strain;
+		plant.userID = userID;
+		plant.active = active;
+
 		if(currentHarvestedPlant.itemID!==""){
 			plant.id = currentHarvestedPlant.itemID;
 		}
@@ -1011,7 +1030,9 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				>
 
 				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddBranch}>Add Branch</Button>
-				<HarvestPlantButton getHarvestedPlantItem={getHarvestedPlantItem} getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} nextPlant={nextPlant} setChanges={setChanges} printData={printData} setNewHarvestedPlantID={setNewHarvestedPlantID} updateHBList={updateHBList}></HarvestPlantButton>
+				<HarvestPlantButton getHarvestedPlantItem={getHarvestedPlantItem} getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} 
+				nextPlant={nextPlant} setChanges={setChanges} printData={printData} setNewHarvestedPlantID={setNewHarvestedPlantID} 
+				updateHBList={updateHBList} getPlantItem={getPlantItem} harvestType={harvestType}></HarvestPlantButton>
 
 				</Grid>
 

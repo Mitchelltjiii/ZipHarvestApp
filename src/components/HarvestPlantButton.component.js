@@ -60,7 +60,7 @@ class HarvestPlantButton extends Component{
           const harvestedPlantItem = this.props.getHarvestedPlantItem();
           console.log("Harvseted Plant Item should be done");
 
-          const resp = fetch('/harvestedplant', {
+          const resp = fetch('/hp', {
             method: (harvestedPlantItem.id) ? 'PUT' : 'POST',
             headers: {
               'Accept': 'application/json',
@@ -71,36 +71,35 @@ class HarvestPlantButton extends Component{
             return response.json();
           }).then(function(data) {
             console.log("EXECUTE HARVSET PLANT EXCT DATA: " + data); // this will be a string
-            parent.props.setNewHarvestedPlantID(data,harvestedPlantItem);
-            parent.removePlant(event,harvestedPlantItem.uid)
+            //parent.props.setNewHarvestedPlantID(data,harvestedPlantItem);
+            if(this.props.harvestType == "harvest"){
+              parent.updatePlant(event);
+            }
           });
-          
       }
     }
 
-    async removePlant(event,addID) {
-      console.log("Enter removePlant");
+    async updatePlant(event) {
+      console.log("Enter updatePlant");
       event.preventDefault();
       const parent = this;
 
-      console.log("Engage RemovePlantID");
-      const removePlantID = this.props.getAndResetRemovedPlantID();
-      console.log("removePlantID:  " + removePlantID);
+      const plantItem = this.props.getPlantItem(1);
 
       console.log("getRemovedPlantID should be done");
 
-      const resp = fetch(`/zhplant/${removePlantID}`, {
-            method: 'DELETE',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            }
-          }).then(function(response) {
-            return response.json();
-          }).then(function(data) {
-            parent.updateHB(event,addID)
-          });
-
+      const resp = fetch('/pl', {
+        method: (plantItem.tag) ? 'PUT' : 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(plantItem)
+      }).then(function(response) {
+        return response.json();
+      }).then(function(data) {
+        parent.props.printData()
+      });
 
       /*
       console.log("Engage getRemovedPlantID");
@@ -126,7 +125,7 @@ class HarvestPlantButton extends Component{
 
       let parent = this;
 
-      const resp = fetch('/harvestbatch', {
+      const resp = fetch('/hb', {
           method: (harvestBatchItem.id) ? 'PUT' : 'POST',
           headers: {
             'Accept': 'application/json',
@@ -136,7 +135,6 @@ class HarvestPlantButton extends Component{
         }).then(function(response) {
             return response.json();
           }).then(function(data) {
-            parent.props.printData()
           });
 
 
