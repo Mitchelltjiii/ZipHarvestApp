@@ -395,7 +395,9 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 
 		for (const val of plants) {
 			console.log("Val: " + JSON.stringify(val));
-			plantTags.push(val.tag);
+			if(val.active == 0){
+				plantTags.push(val.tag);
+			}
 		}
 		console.log("Commit Search... PlantTags Size:" + plantTags.length);
 
