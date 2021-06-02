@@ -336,7 +336,7 @@ app.post('/pl', (req, res) =>{
     VALUES 
     (?, ?, ?, ?)`, 
     [
-      user, strain, tag
+      tag, strain, userID, active
     ],function(err, result2) {
       /*
       if(result2 != undefined){
