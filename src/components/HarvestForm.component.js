@@ -870,7 +870,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			ch = addedHB;
 		}
 		hb.name = ch.name;
-		hb.finalized = ch.finalized;
+		hb.submitted = ch.submitted;
 		hb.userID = ch.userID;
 		hb.type = ch.type;
 		hb.date = ch.date;
