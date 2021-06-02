@@ -177,7 +177,6 @@ app.post('/hr', (req, res) =>{
   let userID = postData.userID;
 
   console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
-  console.log("POST DATA: UID: " + uid);
 
   var postResult = "NO RESULTS";
 
