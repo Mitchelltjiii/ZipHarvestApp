@@ -180,6 +180,13 @@ app.post('/hr', (req, res) =>{
 
   var postResult = "NO RESULTS";
 
+  console.log("POST DATA: Tag: " + tag);
+  console.log("POST DATA: weight: " + weight);
+  console.log("POST DATA: unit: " + unit);
+  console.log("POST DATA: batchname: " + batchName);
+  console.log("POST DATA: userID: " + userID);
+
+
 
   const result = connection.query(
     `INSERT INTO hr 
