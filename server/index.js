@@ -167,16 +167,14 @@ app.put('/hb', (req, res) =>{
   });  
 });
 
-app.post('/harvestedplant', (req, res) =>{
+app.post('/hr', (req, res) =>{
   var postData  = req.body;
 
-  let uid = postData.uid;
-  let strain = postData.strain;
   let tag = postData.tag;
   let weight = postData.weight;
   let unit = postData.unit;
-  let createdAt = '2021-05-03 22:06:12';
-  let updatedAt = '2021-05-03 22:06:12';
+  let batchName = postData.batchName;
+  let userID = postData.userID;
 
   console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
   console.log("POST DATA: UID: " + uid);
@@ -185,12 +183,12 @@ app.post('/harvestedplant', (req, res) =>{
 
 
   const result = connection.query(
-    `INSERT INTO harvestedplants 
-    (uid, strain, tag, weight, unit, createdAt, updatedAt) 
+    `INSERT INTO hr 
+    (tag, weight, unit, batchName, userID) 
     VALUES 
-    (?, ?, ?, ?, ?, ?, ?)`, 
+    (?, ?, ?, ?, ?)`, 
     [
-      uid, strain, tag, weight, unit, createdAt, updatedAt
+      tag, weight, unit, batchName, userID
     ],function(err, result2) {
       if(result2 != undefined){
         console.log("RESULT2- " + result2.insertId);
@@ -205,26 +203,24 @@ app.post('/harvestedplant', (req, res) =>{
   });  
 });
 
-app.put('/harvestedplant', (req, res) =>{
+app.put('/hr', (req, res) =>{
   var postData  = req.body;
 
   let id = postData.id;
-  let uid = postData.uid;
-  let strain = postData.strain;
   let tag = postData.tag;
   let weight = postData.weight;
   let unit = postData.unit;
-  let createdAt = '2021-05-03 22:06:12';
-  let updatedAt = '2021-05-03 22:06:12';
+  let batchName = postData.batchName;
+  let userID = postData.userIDl
 
   console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
   console.log("POST DATA: UID: " + uid);
 
   const result = connection.query(
     `UPDATE harvestedplants set
-    uid =?, strain =?, tag =?, weight =?, unit =?, createdAt =?, updatedAt =? WHERE id = ?`, 
+    tag =?, weight =?, unit =?, batchName =?, userID =? WHERE id = ?`, 
     [
-      uid, strain, tag, weight, unit, createdAt, updatedAt, id
+      tag, weight, unit, batchName, userID, id
     ]
   );  
 
@@ -316,32 +312,34 @@ app.delete(`/plant/:id`, (req, res) =>{
     res.json(message);
 });
 
-/*
 app.post('/pl', (req, res) =>{
   var postData  = req.body;
 
-  let user = postData.user;
+  let userID = postData.userID;
   let strain = postData.strain;
   let tag = postData.tag;
+  let active = postData.active;
 
   console.log("POST DATA: PLANT STRINGIFIED: " + JSON.stringify(postData));
   console.log("POST DATA: strain: " + strain);
 
-  console.log("USER: " + user);
+  console.log("USER: " + userID);
   console.log("STRAIN: " + strain);
   console.log("TAG: " + tag);
+  console.log("ACTIVE: " + active);
 
   var postResult = "NO RESULTS";
 
 
   const result = connection.query(
-    `INSERT INTO zhplants 
-    (user, strain, tag) 
+    `INSERT INTO pl 
+    (tag, strain, userID, active) 
     VALUES 
-    (?, ?, ?)`, 
+    (?, ?, ?, ?)`, 
     [
       user, strain, tag
     ],function(err, result2) {
+      /*
       if(result2 != undefined){
         console.log("RESULT2- " + result2.insertId);
         postResult = result2.insertId;
@@ -350,27 +348,27 @@ app.post('/pl', (req, res) =>{
       }else{
         console.log("Result2 undefined");
       }
-
-      res.json(postResult);
+*/
+      res.json("{}");
   });  
 });
 
-app.put('/zhplant', (req, res) =>{
+app.put('/pl', (req, res) =>{
   var postData  = req.body;
 
-  let id = postData.id;
-  let user = postData.user;
   let strain = postData.strain;
   let tag = postData.tag;
+  let userID = postData.userID;
+  let active = postData.active;
 
   console.log("POST DATA: PLANT STRINGIFIED: " + JSON.stringify(postData));
   console.log("POST DATA: STRAIN: " + strain);
 
   const result = connection.query(
-    `UPDATE zhplants set
-    user =?, strain =?, tag =? WHERE id = ?`, 
+    `UPDATE pl set
+    strain =?, userID =?, active =? WHERE id = ?`, 
     [
-      user, strain, tag, id
+      tag, strain, userID, active
     ]
   );  
 

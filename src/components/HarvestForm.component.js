@@ -853,6 +853,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		let plant = {
 			tag: '',
 			strain: '',
+			userID: '',
 			active: ''
 		  };
 

@@ -60,7 +60,7 @@ class HarvestPlantButton extends Component{
           const harvestedPlantItem = this.props.getHarvestedPlantItem();
           console.log("Harvseted Plant Item should be done");
 
-          const resp = fetch('/hp', {
+          const resp = fetch('/hr', {
             method: (harvestedPlantItem.id) ? 'PUT' : 'POST',
             headers: {
               'Accept': 'application/json',
@@ -71,7 +71,7 @@ class HarvestPlantButton extends Component{
             return response.json();
           }).then(function(data) {
             console.log("EXECUTE HARVSET PLANT EXCT DATA: " + data); // this will be a string
-            //parent.props.setNewHarvestedPlantID(data,harvestedPlantItem);
+            parent.props.setNewHarvestedPlantID(data,harvestedPlantItem);
             if(this.props.harvestType == "harvest"){
               parent.updatePlant(event);
             }
