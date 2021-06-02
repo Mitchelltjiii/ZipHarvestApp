@@ -857,7 +857,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		  };
 
 		plant.tag = currentHarvestedPlant.tag;
-		plant.strain = currentHarvestPlant.strain;
+		plant.strain = currentHarvestedPlant.strain;
 		plant.userID = userID;
 		plant.active = active;
 
