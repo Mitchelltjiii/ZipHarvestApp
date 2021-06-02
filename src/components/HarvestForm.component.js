@@ -1024,7 +1024,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				</Grid>
 
 					<TableWrapper currHarvest={currentHarvest} harvestedPlants={harvestedPlants} editNow={editNow} currWeightChanges={currWeightChanges} setWeightChanges={setWeightChanges} getRemovePlantIDDelete={getRemovePlantIDDelete} 
-					currHidePlants={currHidePlants} setHidePlants={setHidePlants}></TableWrapper>			
+					currHidePlants={currHidePlants} setHidePlants={setHidePlants} plants={plants}></TableWrapper>			
 				</Grid>
 		</div>
 	);

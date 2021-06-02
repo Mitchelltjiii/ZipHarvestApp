@@ -12,7 +12,10 @@ constructor()
 
   render() {
     return (
-      <MyTable id="myTable" currHarvest={this.props.currHarvest} harvestedPlants={this.props.harvestedPlants} editNow={this.props.editNow} currWeightChanges={this.props.currWeightChanges} setWeightChanges={this.props.setWeightChanges} wrapper={this} getRemovePlantIDDelete={this.props.getRemovePlantIDDelete} currHidePlants={this.props.currHidePlants} setHidePlants={this.props.setHidePlants}></MyTable>
+      <MyTable id="myTable" currHarvest={this.props.currHarvest} harvestedPlants={this.props.harvestedPlants} editNow={this.props.editNow} 
+      currWeightChanges={this.props.currWeightChanges} setWeightChanges={this.props.setWeightChanges} wrapper={this} 
+      getRemovePlantIDDelete={this.props.getRemovePlantIDDelete} currHidePlants={this.props.currHidePlants} setHidePlants={this.props.setHidePlants}
+      plants={this.props.plants}></MyTable>
     );
   }
 }
