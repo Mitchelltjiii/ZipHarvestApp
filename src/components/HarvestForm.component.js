@@ -849,6 +849,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	}
 
 	function getPlantItem(active){
+		
 		console.log("Enter getPlantItem")
 		let plant = {
 			tag: '',
