@@ -221,7 +221,7 @@ app.put('/hr', (req, res) =>{
   let weight = postData.weight;
   let unit = postData.unit;
   let batchName = postData.batchName;
-  let userID = postData.userIDl
+  let userID = postData.userID;
 
   console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
 
