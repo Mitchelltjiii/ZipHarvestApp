@@ -837,7 +837,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		return plant;
 	}
 
-	function getPlantItem(active){
+	function getPlantItem(active,plantTag,strain){
 
 		console.log("Enter getPlantItem")
 		let plant = {
@@ -849,8 +849,8 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 
 		console.log("Current Harvested Plant(STRING): " + JSON.stringify(currentHarvestedPlant));
 
-		plant.tag = currentHarvestedPlant.tag;
-		plant.strain = currentHarvestedPlant.strain;
+		plant.tag = plantTag;
+		plant.strain = strain;
 		plant.userID = userID;
 		plant.active = active;
 

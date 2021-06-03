@@ -78,18 +78,18 @@ class HarvestPlantButton extends Component{
             console.log("Harvest Type(STRING): " + JSON.stringify(parent.props.harvestType));
 
             if(parent.props.harvestType == "harvest"){
-              parent.updatePlant(event);
+              parent.updatePlant(event,harvestedPlantItem.tag,harvestedPlantItem.strain);
             }
           });
       }
     }
 
-    async updatePlant(event) {
+    async updatePlant(event,plantTag,strain) {
       console.log("Enter updatePlant");
       event.preventDefault();
       const parent = this;
 
-      const plantItem = this.props.getPlantItem(1);
+      const plantItem = this.props.getPlantItem(1,plantTag,strain);
 
       console.log("getRemovedPlantID should be done");
 
