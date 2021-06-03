@@ -171,7 +171,7 @@ app.post('/hr', (req, res) =>{
   var postData  = req.body;
 
   let tag = postData.tag;
-  let weight = JSON.stringify(postData.weight);
+  let weight = postData.weight;
   let unit = postData.unit;
   let batchName = postData.batchName;
   let userID = postData.userID;
@@ -370,8 +370,8 @@ app.put('/pl', (req, res) =>{
   let userID = postData.userID;
   let active = postData.active;
 
-  console.log("POST DATA: PLANT STRINGIFIED: " + JSON.stringify(postData));
-  console.log("POST DATA: STRAIN: " + strain);
+  console.log("PUT DATA: PLANT STRINGIFIED: " + JSON.stringify(postData));
+  console.log("PUT DATA: STRAIN: " + strain);
 
   const result = connection.query(
     `UPDATE pl set

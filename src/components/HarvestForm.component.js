@@ -857,7 +857,9 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			active: ''
 		  };
 
-		plant.tag = currentHarvestedPlant.tag;
+		console.log("Current Harvested Plant(STRING): " + JSON.stringify(currentHarvestedPlant));
+
+		plant.tag = currSelectedTag.tag;
 		plant.strain = currentHarvestedPlant.strain;
 		plant.userID = userID;
 		plant.active = active;
