@@ -65,7 +65,15 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
       try{
         for(let val of harvestedPlants) {  
           if(val.batchName == currHarvest.name){
-            rows.push(createData(val.tag,getStrainFromTag(val.tag),val.weight,val.unit));
+            let hidden = false;
+            for(let val2 of currHidePlants){
+              if(val2 == val.tag){
+                hidden = true;
+              }
+            }
+            if(!hidden){
+              rows.push(createData(val.tag,getStrainFromTag(val.tag),val.weight,val.unit));
+            }
           }
         }
       }catch(error){
