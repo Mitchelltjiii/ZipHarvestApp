@@ -317,8 +317,8 @@ class EditButton extends Component{
         plant.weight = currentHarvestedPlant.weight;
         plant.batchName = currentHarvestedPlant.batchName;
         plant.userID = currentHarvestedPlant.userID;
-      if(currentHarvestedPlant.itemID!==""){
-        plant.id = currentHarvestedPlant.itemID;
+      if(currentHarvestedPlant.id!==""){
+        plant.id = currentHarvestedPlant.id;
       }
   
       console.log("Stringified before passed: " + JSON.stringify(plant));
