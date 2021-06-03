@@ -187,7 +187,7 @@ app.post('/hr', (req, res) =>{
   console.log("POST DATA: userID: " + userID);
 
   const result = connection.query(
-    `INSERT INTO defaultdb.hr 
+    `INSERT INTO hr 
     (tag, weight, unit, batchName, userID) 
     VALUES 
     (?, ?, ?, ?, ?)`,
@@ -201,6 +201,13 @@ app.post('/hr', (req, res) =>{
         console.log("POSTRESULT WITH RESPONSE- " + postResult);
       }else{
         console.log("Result2 undefined");
+      }
+      try{
+        console.log("Error: " + err);
+        console.log("Error msg: " + err.message);
+        console.log("Error msg (STRING): " + JSON.stringify(err.message));
+      }catch(errrror){
+        console.log("Errrrrror!");
       }
       res.json(postResult);
     });  
