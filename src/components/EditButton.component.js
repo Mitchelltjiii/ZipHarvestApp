@@ -11,8 +11,8 @@ class EditButton extends Component{
       };
 
     async clickEdit(){
-	      function HarvestedPlant(itemID,tag,weight,unit,batchName,userID){
-	        	this.itemID = itemID;
+	      function HarvestedPlant(id,tag,weight,unit,batchName,userID){
+	        	this.id = id;
 		        this.tag = tag;
 		        this.weight = weight;
 		        this.unit = unit;

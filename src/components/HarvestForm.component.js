@@ -636,7 +636,6 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		setBranchValue("");
 		setSearchTag("");
 		setSelectedTag('');
-		setHarvestBatches(harvestBatches);	
 
 		//resetAll(currentHarvest);
 
