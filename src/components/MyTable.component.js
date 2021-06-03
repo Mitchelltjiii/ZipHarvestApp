@@ -17,6 +17,8 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
 
   console.log("MYTABLE STARTED");
   console.log('HARVESTEDPLANTS in Table: ' + JSON.stringify(harvestedPlants));
+  console.log("Curr Hide Plants: " + currHidePlants);
+  console.log("Curr Hide Plants(STRING): " + JSON.stringify(currHidePlants));
 
   function HarvestBatch(name,submitted,type,date){
 		this.name = name;
