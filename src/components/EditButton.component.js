@@ -152,7 +152,7 @@ class EditButton extends Component{
                 this.state.busyUpdating = true;
                 console.log("Before updateharvestedplant");
   
-                this.props.removeHarvestedPlant(foundID);
+                this.deleteHarvestedPlant(foundID);
                 console.log("After updateharvestedplant");
   
                 let x = 0;
