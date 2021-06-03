@@ -637,9 +637,13 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		setSearchTag("");
 		setSelectedTag('');
 
-		resetAll(currentHarvest);
+		//resetAll(currentHarvest);
 
 		console.log("Exit setchanges");
+	}
+
+	function setHarvestedPlants(hp){
+		harvestedPlants = hp;
 	}
 
 	function removeHarvestedPlant(removeID){
@@ -1065,7 +1069,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				>
 
 				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} harvestedPlants={harvestedPlants} currHidePlants={currHidePlants}
-				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} removeHarvestedPlant={removeHarvestedPlant}></EditButton>		
+				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} setHarvestedPlants={setHarvestedPlants}></EditButton>		
 				<FormLabel>Harvest Queue</FormLabel>
 
 				</Grid>

@@ -144,13 +144,14 @@ class EditButton extends Component{
     
               if(foundIndex != -1){
                 this.props.harvestedPlants.splice(foundIndex,1);
+                console.log("Harvested Plants before Set: " + JSON.stringify(this.props.harvestedPlants));
+                this.props.setHarvestedPlants(this.props.harvestedPlants);
                 console.log("Harvested Plant Remove from HarvestedPlants");
       
                 console.log("Busy Updating activated")
                 this.state.busyUpdating = true;
                 console.log("Before updateharvestedplant");
   
-                this.deleteHarvestedPlant(foundID);
                 this.props.removeHarvestedPlant(foundID);
                 console.log("After updateharvestedplant");
   
