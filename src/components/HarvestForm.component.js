@@ -643,6 +643,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	}
 
 	function setHarvestedPlants(hp){
+		console.log("Set HarvestedPlants Function");
 		setHarvestedPlantMap(hp);
 	}
 
