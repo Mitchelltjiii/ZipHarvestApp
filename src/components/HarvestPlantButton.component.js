@@ -21,6 +21,7 @@ class HarvestPlantButton extends Component{
     async handleSubmit(event) {
 
       event.preventDefault();
+      console.log("Handle Submit Harvest Plant Button");
 
       this.executeHarvestPlant(event);
       /*
