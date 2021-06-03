@@ -833,12 +833,15 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		return plant;
 	}
 
-	function getStrainForPlantItem(){
+	function getStrainForPlantItem(tag){
 		console.log("Get Strain For Plant Item");
-		console.log("Searching For: " + currentHarvestedPlant.tag);
+		if(tag == null){
+			tag = currentHarvestedPlant.tag;
+		}
+		console.log("Searching For: " + tag);
 		for(let val of plants){
 			console.log("VAL(STRING): " + JSON.stringify(val));
-			if(val.tag == currentHarvestedPlant.tag){
+			if(val.tag == tag){
 				return val.strain;
 			}
 		}
@@ -1044,7 +1047,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				>
 
 				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} harvestedPlants={harvestedPlants} currHidePlants={currHidePlants}
-				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID}></EditButton>		
+				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem}></EditButton>		
 				<FormLabel>Harvest Queue</FormLabel>
 
 				</Grid>

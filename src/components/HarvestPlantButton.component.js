@@ -58,7 +58,7 @@ class HarvestPlantButton extends Component{
       console.log("Execute Harvest Plant");
       if(this.props.nextPlant()){
           console.log("Engage Harvested Plant Item");
-          const strain = this.props.getStrainForPlantItem();
+          const strain = this.props.getStrainForPlantItem(null);
           const harvestedPlantItem = this.props.getHarvestedPlantItem();
           console.log("Harvseted Plant Item should be done");
 

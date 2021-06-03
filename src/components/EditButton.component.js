@@ -99,7 +99,7 @@ class EditButton extends Component{
             let addPlant = new Plant("","","","");
             for(const val of this.props.harvestedPlants){
               if(val.tag == tag){
-                addPlant = new Plant(val.tag,val.strain,"mtj",0);
+                addPlant = new Plant(val.tag,this.props.getStrainForPlantItem(val.tag),"mtj",0);
 
                 const plantItem = this.getPlantItem(addPlant);
   
