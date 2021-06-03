@@ -643,7 +643,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	}
 
 	function setHarvestedPlants(hp){
-		harvestedPlants = hp;
+		setHarvestedPlantMap(hp);
 	}
 
 	function removeHarvestedPlant(removeID){
