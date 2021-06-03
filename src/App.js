@@ -262,7 +262,11 @@ export default class App extends React.Component {
 
       let tempHarvestedPlants = this.state.harvestedPlants;
       console.log("TempHarvestedPlants: " + tempHarvestedPlants);
-			tempHarvestedPlants = tempHarvestedPlants.substring(0,tempHarvestedPlants.length-1) + "," + JSON.stringify(hp) + "]";
+      if(tempHarvestedPlants == "[]"){
+        tempHarvestedPlant = "[" + JSON.stringify(hp) + "]";
+      }else{
+        tempHarvestedPlants = tempHarvestedPlants.substring(0,tempHarvestedPlants.length-1) + "," + JSON.stringify(hp) + "]";
+      }
       console.log("TempHarvestedplants ADDED");
       console.log("TempHarvestedPlants: " + tempHarvestedPlants);
 
