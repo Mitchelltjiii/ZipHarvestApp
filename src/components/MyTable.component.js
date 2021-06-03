@@ -67,6 +67,8 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
           if(val.batchName == currHarvest.name){
             let hidden = false;
             for(let val2 of currHidePlants){
+              console.log("VAL 2 : " + val2);
+              console.log("Val.tag: " + val.tag);
               if(val2 == val.tag){
                 hidden = true;
               }
