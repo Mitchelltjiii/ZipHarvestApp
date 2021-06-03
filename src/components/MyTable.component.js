@@ -150,8 +150,7 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
 
         console.log("Curr ROWS after edit: " + JSON.stringify(rows));
 
-        wrapper.setState({ state: wrapper.state });
-
+        wrapper.reset();
     }
 
     function onTFChange(tag,text){
