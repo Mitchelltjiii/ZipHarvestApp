@@ -640,8 +640,6 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 
 		resetAll(currentHarvest);
 
-		resetAll(currentHarvest);
-
 		console.log("Exit setchanges");
 	}
 

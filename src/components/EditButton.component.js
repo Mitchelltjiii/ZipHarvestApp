@@ -178,71 +178,7 @@ class EditButton extends Component{
                 console.log("Left timeout loop");
               }
           }
-
-          let plantList = this.props.currentHarvest.plantList;
-          console.log("Plantlist: " + plantList);
-
-          let parsedPlantsList = (plantList.substring(1,plantList.length-1)).split(",");
-
-          console.log("Parsed Plants List Before: " + JSON.stringify(parsedPlantsList));
-
-          for(const uid of this.props.currHidePlants){
-				    
-            let i = 0;
-            let foundIndex = -1;
-
-            for(let id of parsedPlantsList){
-              if(id == uid){
-                foundIndex = i;
-              }
-              i++;
-            }
-
-            if(foundIndex != -1){
-              parsedPlantsList.splice(foundIndex,1);
-            }
-          }
-
-          let newPlantList = "{";
-          console.log("New Parsed Plants List: " + JSON.stringify(parsedPlantsList));
-          if(parsedPlantsList.length > 0){
-            for(const uid of parsedPlantsList){
-              newPlantList += uid + ",";
-            }
-            if(newPlantList.includes(",")){
-              newPlantList = newPlantList.substring(0,newPlantList.length-1);
-            }
-          }
-          newPlantList += "}";
-          console.log("NEW PLANT LIST: " + newPlantList);
-
-          this.props.currentHarvest.plantList = newPlantList;
-
-          const harvestBatchItem = this.getHarvestBatchItem(this.props.currentHarvest);
-  
-          console.log("Harvest Batch Item to update with: " + JSON.stringify(harvestBatchItem));
-  
-          console.log("Busy Updating activated")
-          this.state.busyUpdating = true;
-          console.log("Before updateharvestbatch");
-  
-          this.updateHarvestBatch(harvestBatchItem);
-          console.log("After updateharvestbatch");
-  
-          let x = 0;
-
-          while(this.state.busyUpdating && x<this.props.timeLimit){
-            console.log("Set timeout");
-            setTimeout('',200);
-            x++;
-          }
-
-          if(x==this.props.timeLimit){
-            console.log("TIMEOUT OPERATION FAILED");
-          }
-          console.log("Left timeout loop"); 
-
-          this.props.setChanges();
+          //this.props.setChanges();
         }
       this.props.setEditMode(!this.props.editNow);
     }
