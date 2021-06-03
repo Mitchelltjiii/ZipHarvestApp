@@ -168,7 +168,7 @@ class EditButton extends Component{
                 console.log("Left timeout loop");
               }
           }
-          //this.props.setChanges();
+          this.props.setChanges();
         }
       this.props.setEditMode(!this.props.editNow);
     }
@@ -303,6 +303,7 @@ class EditButton extends Component{
 
     getHarvestedPlantItem(currentHarvestedPlant){
       console.log("Enter getharvestedPlantitem")
+      console.log("Plant To Create PlantItem From: " + JSON.stringify(currentHarvestedPlant));
       let plant = {
         tag: '',
 			  weight: 0,
@@ -320,7 +321,6 @@ class EditButton extends Component{
         plant.id = currentHarvestedPlant.itemID;
       }
   
-      console.log("Adding " + plant.strain); 
       console.log("Stringified before passed: " + JSON.stringify(plant));
       console.log("Exit getharvestedPlantitem")
       return plant;

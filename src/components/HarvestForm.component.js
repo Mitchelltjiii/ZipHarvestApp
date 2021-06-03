@@ -638,7 +638,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		setSelectedTag('');
 		setHarvestBatches(harvestBatches);	
 
-		resetAll(currentHarvest);
+		//resetAll(currentHarvest);
 
 		console.log("Exit setchanges");
 	}
