@@ -226,7 +226,7 @@ app.put('/hr', (req, res) =>{
   console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
 
   const result = connection.query(
-    `UPDATE harvestedplants set
+    `UPDATE hr set
     tag =?, weight =?, unit =?, batchName =?, userID =? WHERE id = ?`, 
     [
       tag, weight, unit, batchName, userID, id
