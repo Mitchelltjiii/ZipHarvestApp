@@ -211,6 +211,8 @@ export default class App extends React.Component {
     console.log("Before GetHarvestedPlants")
     this.getHarvestedPlants();
     console.log("After GetHarvestedPlants")
+
+    this.forceUpdate();
   }
 
   setNewHBID = (newID,hb) => {
