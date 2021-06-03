@@ -21,20 +21,20 @@ class EditButton extends Component{
       
 
     async clickEdit(){
-	      function HarvestedPlant(itemID,uid,strain,tag,weight,unit){
+	      function HarvestedPlant(itemID,tag,weight,unit,batchName,userID){
 	        	this.itemID = itemID;
-	        	this.uid = uid;
-	        	this.strain = strain;
 		        this.tag = tag;
 		        this.weight = weight;
 		        this.unit = unit;
+            this.batchName = batchName;
+            this.userID = userID;
 	      }
 
-        function Plant(itemID,user,strain,tag){
-          this.itemID = itemID;
-          this.strain = strain;
+        function Plant(tag,strain,userID,active){
           this.tag = tag;
-          this.user = user;
+          this.strain = strain;
+          this.userID = userID;
+          this.active = active;
         }
 
         if(this.props.editNow){
@@ -53,7 +53,7 @@ class EditButton extends Component{
 
               let i = 0;
               let foundIndex = -1;
-              let foundHarvestedPlant = new HarvestedPlant('','','','',0,'');
+              let foundHarvestedPlant = new HarvestedPlant('','','','','','');
               for(const val2 of this.props.harvestedPlants){
                 console.log("Val2 (Harvestedplants): " + JSON.stringify(val2));
                 if(val2.uid==val.uid){
@@ -64,7 +64,7 @@ class EditButton extends Component{
                   if(newUnit == ''){
                     newUnit = val2.unit;
                   }
-                  foundHarvestedPlant = new HarvestedPlant(val2.id,val2.uid,val2.strain,val2.tag,newWeight,newUnit);
+                  foundHarvestedPlant = new HarvestedPlant(val2.id,val2.tag,newWeight,newUnit,val2.batchName,val2.userID);
                   console.log("Found Index: " + i);
                 }
                 i++;
@@ -109,7 +109,7 @@ class EditButton extends Component{
             let addPlant = new Plant("","","","");
             for(const val of this.props.harvestedPlants){
               if(val.uid == uid){
-                addPlant = new Plant("","mtj",val.strain,val.tag);
+                addPlant = new Plant(val.tag,val.strain,"mtj",0);
 
                 const plantItem = this.getPlantItem(addPlant);
   
@@ -289,7 +289,7 @@ class EditButton extends Component{
     async deleteHarvestedPlant(removePlantID){
       console.log("getRemovedPlantID should be done");
       console.log("REMOVE PLANT ID: " + removePlantID);
-      const response = fetch(`/harvestedplant/${removePlantID}`, {
+      const response = fetch(`/hr/${removePlantID}`, {
       method: 'DELETE',
       headers: {
         'Accept': 'application/json',
@@ -304,11 +304,12 @@ class EditButton extends Component{
       }catch(err){
         console.log("NO RESPONSE RECIEVED DELETEHARVESTEDPLANT")
       }
-      this.state.busyUpdating = false;    }
+      this.state.busyUpdating = false;    
+    }
 
     async updateHarvestedPlant(harvestedPlantItem){
       console.log("Engage update harvested plant");
-      const response = fetch('/harvestedplant', {
+      const response = fetch('/hr', {
             method: (harvestedPlantItem.id) ? 'PUT' : 'POST',
             headers: {
               'Accept': 'application/json',
@@ -356,8 +357,8 @@ class EditButton extends Component{
     async addPlant(plantItem){
       console.log("Engage add Plant");
       let parent = this;
-      const resp = fetch('/zhplant', {
-        method: (plantItem.id) ? 'PUT' : 'POST',
+      const resp = fetch('/pl', {
+        method: (plantItem.tag) ? 'PUT' : 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -377,18 +378,18 @@ class EditButton extends Component{
     getHarvestedPlantItem(currentHarvestedPlant){
       console.log("Enter getharvestedPlantitem")
       let plant = {
-        uid: '',
-        strain: '',
         tag: '',
-        weight: 0,
-        unit: ''
+			  weight: 0,
+			  unit: '',
+			  batchName: '',
+			  userID: ''
         };
   
-      plant.uid = currentHarvestedPlant.uid;
-      plant.strain = currentHarvestedPlant.strain;
-      plant.tag = currentHarvestedPlant.tag;
-      plant.unit = currentHarvestedPlant.unit;
-      plant.weight = currentHarvestedPlant.weight;
+        plant.tag = currentHarvestedPlant.tag;
+        plant.unit = currentHarvestedPlant.unit;
+        plant.weight = currentHarvestedPlant.weight;
+        plant.batchName = currentHarvestedPlant.batchName;
+        plant.userID = currentHarvestedPlant.userID;
       if(currentHarvestedPlant.itemID!==""){
         plant.id = currentHarvestedPlant.itemID;
       }
@@ -467,15 +468,17 @@ class EditButton extends Component{
       console.log("Plant: " + plant);
       console.log("Plant(STRING): " + JSON.stringify(plant));
 
-		  let plantItem = {
-        user: '',
+      let plantItem = {
+        tag: '',
         strain: '',
-        tag: ''
+        userID: '',
+        active: ''
         };
 
-        plantItem.user = plant.user;
-        plantItem.strain = plant.strain;
         plantItem.tag = plant.tag;
+        plantItem.strain = plant.strain;
+        plantItem.userID = plant.userID;
+        plantItem.active = plant.active;
 
 	    	if(plant.itemID!==""){
 	    		plantItem.id = plant.itemID;
@@ -485,6 +488,8 @@ class EditButton extends Component{
     		console.log("Exit getPlantItem")
     		return plantItem;
     	}
+
+
     
     constructor(props) {
         super(props);

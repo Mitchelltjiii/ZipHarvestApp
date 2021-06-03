@@ -407,11 +407,11 @@ app.delete(`/zhplant/:id`, (req, res) =>{
     res.json(message);
 });
 
-app.delete(`/harvestedplant/:id`, (req, res) =>{
-  console.log("Delete HarvestedPlant: " + req.params.id);
+app.delete(`/hr/:id`, (req, res) =>{
+  console.log("Delete HarvestRecord: " + req.params.id);
   let plantID = req.params.id;
 
-  const result = connection.query(`DELETE FROM harvestedplants WHERE id = ${plantID}`);
+  const result = connection.query(`DELETE FROM hr WHERE id = ${plantID}`);
 
     let message = 'Error in creating programming language';
   
