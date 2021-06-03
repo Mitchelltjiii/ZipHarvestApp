@@ -153,8 +153,6 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		let x = 0;
 		let foundX = -1;
 		for(let val of harvestBatches) {
-			console.log("VAL: " + val);
-			console.log("Val.name: " + val.name);
 			if(val.name == selectedHB.name){
 				console.log("FOUND X: " + x);
 				foundX = x;
@@ -194,8 +192,6 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	function getPlant(plantTag){
 		console.log("GET PLANT - Tag: " + plantTag);
 		for(let val of plants) {
-			console.log("VAL: " + JSON.stringify(val));
-			console.log("Val.tag: " + val.tag);
 			if(val.tag == plantTag){
 				console.log("GRABBED PLANT");
 				return new Plant(val.user,val.strain,val.tag,val.active);
@@ -206,8 +202,6 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	function getHarvestedPlant(uid){
 		console.log("GET Harvested PLANT - UID: " + uid);
 		for(let val of plants) {
-			console.log("VAL: " + JSON.stringify(val));
-			console.log("Val.uid: " + val.uid);
 			if(val.uid == uid){
 				console.log("GRABBED HARVESTEDPLANT");
 				return new HarvestedPlant(val.itemID, val.tag, val.weight, val.unit, val.batchName, val.userID);
@@ -221,8 +215,6 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		let foundX = -1;
 		let replaceEntry = "";
 		for(let val of plants) {
-			console.log("VAL: " + val);
-			console.log("Val.tag: " + val.tag);
 			if(val.tag == plantTag){
 				console.log("FOUND X: " + x);
 				foundX = x;
@@ -397,7 +389,6 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		console.log("Commit Search!!");
 
 		for (const val of plants) {
-			console.log("Val: " + JSON.stringify(val));
 			if(val.active == 0){
 				plantTags.push(val.tag);
 			}
@@ -560,7 +551,6 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				let plantTags = [];
 
 				for (const val of plants) {
-					console.log("Val: " + val);
 					plantTags.push(val.tag);
 				}
 				console.log("Exit Next Plant");
@@ -811,7 +801,6 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		console.log("Get Remove Plant ID Delete: UID: " + uid)
 
 		for(let val of harvestedPlants){
-			console.log("Val: " + JSON.stringify(val));
 			if(val.uid == uid){
 				console.log("Found UID: " + uid);
 				console.log("Found hbItemID: " + val.id);
@@ -849,7 +838,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	}
 
 	function getPlantItem(active){
-		
+
 		console.log("Enter getPlantItem")
 		let plant = {
 			tag: '',
