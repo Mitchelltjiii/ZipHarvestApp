@@ -13,7 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import DeleteButton from './DeleteButton.component';
 
 
-function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeightChanges,wrapper,getRemovePlantIDDelete,currHidePlants,setHidePlants,plants}) {
+function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeightChanges,wrapper,getRemovePlantIDDelete,currHidePlants,setHidePlants,plants,reset}) {
 
   console.log('HARVESTEDPLANTS in Table: ' + JSON.stringify(harvestedPlants));
 
@@ -150,7 +150,7 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
 
         console.log("Curr ROWS after edit: " + JSON.stringify(rows));
 
-        wrapper.reset();
+        reset();
     }
 
     function onTFChange(tag,text){
