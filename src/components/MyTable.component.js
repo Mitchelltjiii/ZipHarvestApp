@@ -15,6 +15,7 @@ import DeleteButton from './DeleteButton.component';
 
 function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeightChanges,wrapper,getRemovePlantIDDelete,currHidePlants,setHidePlants,plants,reset}) {
 
+  console.log("MYTABLE STARTED");
   console.log('HARVESTEDPLANTS in Table: ' + JSON.stringify(harvestedPlants));
 
   function HarvestBatch(name,submitted,type,date){
