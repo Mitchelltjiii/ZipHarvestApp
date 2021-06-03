@@ -625,6 +625,18 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		refreshOuter(plants,harvestedPlants,harvestBatches);
 	}
 
+	function justPrint(){
+		console.log("JUST PRINT DATA!");
+
+		console.log("===============");
+		console.log("PLANTS: " + JSON.stringify(plants));
+		console.log("===============");
+		console.log("HARVESTEDPLANTS: " + JSON.stringify(harvestedPlants));
+		console.log("===============");
+		console.log("HARVESTBATCHES: " + JSON.stringify(harvestBatches));
+		console.log("===============");
+	}
+
 	function setChanges(){
 		console.log("Enter setchanges");
 
@@ -1070,7 +1082,8 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				>
 
 				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} harvestedPlants={harvestedPlants} currHidePlants={currHidePlants}
-				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} setHarvestedPlants={setHarvestedPlants}></EditButton>		
+				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
+				 setHarvestedPlants={setHarvestedPlants} justPrint={justPrint}></EditButton>		
 				<FormLabel>Harvest Queue</FormLabel>
 
 				</Grid>

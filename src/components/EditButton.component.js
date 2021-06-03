@@ -171,6 +171,8 @@ class EditButton extends Component{
           }
           this.props.setChanges();
         }
+        console.log("HarvestedPlants in EditButton after changes accepted: " + JSON.stringify(this.props.harvestedPlants));
+        this.props.printData();
       this.props.setEditMode(!this.props.editNow);
     }
 
