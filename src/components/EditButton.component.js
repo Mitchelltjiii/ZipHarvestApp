@@ -295,7 +295,7 @@ class EditButton extends Component{
       }).then(function(data) {
         console.log("EXECUTE PLANT EXCT DATA: " + data); // this will be a string
         parent.props.setNewPlantID(data,plantItem);
-        this.state.busyUpdating = false;
+        parent.state.busyUpdating = false;
       });
       
       console.log("Exit update plant")
