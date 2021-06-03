@@ -538,7 +538,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				if(addPlant===null||addPlant===undefined){
 					return false;
 				}
-				currentHarvestedPlant = new HarvestedPlant('',addPlant.tag,0,'',currentHarvest.name,userID);
+				currentHarvestedPlant = new HarvestedPlant('',plantTag,0,'',currentHarvest.name,userID);
 				if(weight===""||weight===undefined){
 					currentHarvestedPlant.weight=getBranchWeight();
 				}else{
@@ -859,7 +859,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 
 		console.log("Current Harvested Plant(STRING): " + JSON.stringify(currentHarvestedPlant));
 
-		plant.tag = currSelectedTag.tag;
+		plant.tag = currentHarvestedPlant.tag;
 		plant.strain = currentHarvestedPlant.strain;
 		plant.userID = userID;
 		plant.active = active;
