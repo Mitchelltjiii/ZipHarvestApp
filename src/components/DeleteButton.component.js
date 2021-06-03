@@ -3,43 +3,10 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
 class DeleteButton extends Component{
-    emptyHarvestedPlant = {
-        uid: '',
-        strain: '',
-        tag: '',
-        weight: 0,
-        unit: ''
-      };
-
-    getHarvestedPlantItem(currentHarvestedPlant){
-      console.log("Enter getharvestedPlantitem")
-      let plant = {
-        uid: '',
-        strain: '',
-        tag: '',
-        weight: 0,
-        unit: ''
-        };
-  
-      plant.uid = currentHarvestedPlant.uid;
-      plant.strain = currentHarvestedPlant.strain;
-      plant.tag = currentHarvestedPlant.tag;
-      plant.unit = currentHarvestedPlant.unit;
-      plant.weight = currentHarvestedPlant.weight;
-      if(currentHarvestedPlant.itemID!==""){
-        plant.id = currentHarvestedPlant.itemID;
-      }
-  
-      console.log("Adding " + plant.strain); 
-      console.log("Stringified before passed: " + JSON.stringify(plant));
-      console.log("Exit getharvestedPlantitem")
-      return plant;
-    }
-
     deletePlant() {
       console.log("Enter deletePlant");
 
-      this.props.hideHarvestedPlant(this.props.row.uid);
+      this.props.hideHarvestedPlant(this.props.row.tag);
     }
 
     async handleGetReady(event) {
