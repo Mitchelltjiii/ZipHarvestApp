@@ -161,7 +161,7 @@ app.put('/hb', (req, res) =>{
     `UPDATE hb set
     submitted =?, userID =?, type =?, date =? WHERE name = ?`, 
     [
-      name, submitted, userID, type, date
+      submitted, userID, type, date, name
     ],function(err, result2) {
       res.json("{}");
   });  
@@ -377,7 +377,7 @@ app.put('/pl', (req, res) =>{
     `UPDATE pl set
     strain =?, userID =?, active =? WHERE tag = ?`, 
     [
-      tag, strain, userID, active
+      strain, userID, active, tag
     ]
   );  
 
