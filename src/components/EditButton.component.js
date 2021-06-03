@@ -107,7 +107,6 @@ class EditButton extends Component{
   
                 console.log("Busy Updating activated")
                 this.state.busyUpdating = true;
-                console.log("Before updateharvestbatch");
   
                 this.addPlant(plantItem);
                 console.log("After addPlant");
@@ -152,6 +151,7 @@ class EditButton extends Component{
                 console.log("Before updateharvestedplant");
   
                 this.deleteHarvestedPlant(foundID);
+                this.props.removeHarvestedPlant(foundID);
                 console.log("After updateharvestedplant");
   
                 let x = 0;
@@ -256,30 +256,6 @@ class EditButton extends Component{
       console.log("Exit update harvested plant")
     }
 
-
-    async updateHarvestBatch(harvestBatchItem){
-      console.log("Engage update harvest batch");
-      const response = fetch('/harvestbatch', {
-            method: (harvestBatchItem.id) ? 'PUT' : 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(harvestBatchItem),
-      });
-      console.log("Create harvested plant should be done - no indicator");
-      try{
-        console.log("AWAITING RESPONSE UPDATEHARVESTBATCH")
-        await response.text();
-        console.log("RESPONSE RECIEVED UPDATEHARVESTBATCH")
-      }catch(err){
-        console.log("NO RESPONSE RECIEVED UPDATEHARVESTBATCH")
-      }
-      this.state.busyUpdating = false;
-      
-      console.log("Exit update harvest batch")
-    }
-
     async addPlant(plantItem){
       console.log("Engage add Plant");
       let parent = this;
@@ -294,7 +270,7 @@ class EditButton extends Component{
         return response.json();
       }).then(function(data) {
         console.log("EXECUTE PLANT EXCT DATA: " + data); // this will be a string
-        parent.props.setNewPlantID(data,plantItem);
+        //parent.props.setNewPlantID(data,plantItem);
         parent.state.busyUpdating = false;
       });
       

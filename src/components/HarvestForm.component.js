@@ -642,6 +642,24 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		console.log("Exit setchanges");
 	}
 
+	function removeHarvestedPlant(removeID){
+		console.log("Remove Harvested Plant ID: " + removeID );
+		let x = 0;
+		let foundIndex = -1;
+		for(let val of harvestedPlants){
+			console.log("Val: " + JSON.stringify(val));
+			if(val.id == removeID){
+				foundIndex=x;
+			}
+			x++;
+		}
+		if(foundIndex != -1){
+			console.log("Harvestedplants before splice: " + JSON.stringify(harvestedPlants) );
+			harvestedPlants.splice(foundX,1);
+			console.log("Harvestedplants after splice: " + JSON.stringify(harvestedPlants) );
+		}
+	}
+
 	const ChangeHBForm = ({changeHBHiddenNow}) => {
 		if (changeHBHiddenNow) return null;
 	  
@@ -1047,7 +1065,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				>
 
 				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} harvestedPlants={harvestedPlants} currHidePlants={currHidePlants}
-				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem}></EditButton>		
+				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} removeHarvestedPlant={removeHarvestedPlant}></EditButton>		
 				<FormLabel>Harvest Queue</FormLabel>
 
 				</Grid>
