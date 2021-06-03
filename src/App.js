@@ -196,6 +196,10 @@ export default class App extends React.Component {
 
     console.log("RESETTING ALL");
 
+    console.log("Before Get Users");
+    this.getUsers();
+    console.log("After Get Users");
+
     console.log("Before GetHarvestBatches")
     this.getHarvestBatches();
     console.log("After GetHarvestBatches")
