@@ -645,15 +645,15 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	function removeHarvestedPlant(removeID){
 		console.log("Remove Harvested Plant ID: " + removeID );
 		let x = 0;
-		let foundIndex = -1;
+		let foundX = -1;
 		for(let val of harvestedPlants){
 			console.log("Val: " + JSON.stringify(val));
 			if(val.id == removeID){
-				foundIndex=x;
+				foundX=x;
 			}
 			x++;
 		}
-		if(foundIndex != -1){
+		if(foundX != -1){
 			console.log("Harvestedplants before splice: " + JSON.stringify(harvestedPlants) );
 			harvestedPlants.splice(foundX,1);
 			console.log("Harvestedplants after splice: " + JSON.stringify(harvestedPlants) );
