@@ -72,6 +72,9 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
   
       }
 
+    console.log("ROWS CREATED: " + rows);
+    console.log("ROWS CREATED(STRING): " + JSON.stringify(rows));
+
 
     function getCurrentWeightTag(weight){
       return "Current Weight: " + weight;
