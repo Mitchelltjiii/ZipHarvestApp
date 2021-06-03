@@ -3,20 +3,20 @@ import Button from '@material-ui/core/Button';
 
 class HarvestPlantButton extends Component{
     emptyHarvestedPlant = {
-        uid: '',
-        strain: '',
         tag: '',
-        weight: 0,
-        unit: ''
+        weight: '',
+        unit: '',
+        batchName: '',
+        userID: ''
       };
 
     emptyHarvestBatch = {
-      name: '',
-      finalized: '',
-      plantList: '{}',
-      type: '',
-      date: ''
-      };
+        name: '',
+        submitted: '',
+        plantList: '{}',
+        type: '',
+        date: ''
+        };
 
     async handleSubmit(event) {
 

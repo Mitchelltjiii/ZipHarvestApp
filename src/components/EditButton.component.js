@@ -3,22 +3,12 @@ import Button from '@material-ui/core/Button';
 
 class EditButton extends Component{
     emptyHarvestedPlant = {
-        uid: '',
-        strain: '',
         tag: '',
-        weight: 0,
-        unit: ''
+        weight: '',
+        unit: '',
+        batchName: '',
+        userID: ''
       };
-
-    emptyHarvestBatch = {
-      name: '',
-      finalized: '',
-      plantList: '{}',
-      type: '',
-      date: ''
-      };  
-
-      
 
     async clickEdit(){
 	      function HarvestedPlant(itemID,tag,weight,unit,batchName,userID){
@@ -56,7 +46,7 @@ class EditButton extends Component{
               let foundHarvestedPlant = new HarvestedPlant('','','','','','');
               for(const val2 of this.props.harvestedPlants){
                 console.log("Val2 (Harvestedplants): " + JSON.stringify(val2));
-                if(val2.uid==val.uid){
+                if(val2.tag==val.tag){
                   foundIndex = i;
                   if(isNaN(newWeight) || newWeight == 0){
                     newWeight = val2.weight;
@@ -105,10 +95,10 @@ class EditButton extends Component{
             }
           }
 
-          for(const uid of this.props.currHidePlants){
+          for(const tag of this.props.currHidePlants){
             let addPlant = new Plant("","","","");
             for(const val of this.props.harvestedPlants){
-              if(val.uid == uid){
+              if(val.tag == tag){
                 addPlant = new Plant(val.tag,val.strain,"mtj",0);
 
                 const plantItem = this.getPlantItem(addPlant);
@@ -139,13 +129,13 @@ class EditButton extends Component{
 
           console.log("START HIDE PLANTS");
 
-          for(const uid of this.props.currHidePlants){
+          for(const tag of this.props.currHidePlants){
               let i = 0;
               let foundIndex = -1;
               let foundID = '';
               for(const val2 of this.props.harvestedPlants){
                 console.log("Val2 (Harvestedplants): " + JSON.stringify(val2));
-                if(val2.uid==uid){
+                if(val2.tag==tag){
                   foundIndex = i;
                   console.log("Found Index: " + i);
                   foundID = val2.id;
@@ -424,20 +414,16 @@ class EditButton extends Component{
     		console.log("Exit getPlantItem")
     		return plantItem;
     	}
-
-
     
     constructor(props) {
         super(props);
         this.state = {
           harvestedPlantItem: this.emptyHarvestedPlant,
-          harvsetBatchItem: this.emptyHarvestBatch,
           busyUpdating: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     
-
     render() {    
         let editButtonText = "Edit";
 	      if(this.props.editNow){
@@ -448,7 +434,5 @@ class EditButton extends Component{
         </div>
       }
 }
-
-
 
 export default EditButton;

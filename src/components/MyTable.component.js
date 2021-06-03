@@ -24,8 +24,8 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
     this.date = date;
 	}
 
-    function weightChange(uid,newWeight,newUnit){
-      this.uid = uid;
+    function weightChange(tag,newWeight,newUnit){
+      this.tag = tag;
       this.newWeight = newWeight;
       this.newUnit = newUnit;
     }
@@ -74,15 +74,15 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
       return "Current Weight: " + weight;
     }
 
-    function onDDChange(uid,text){
-      console.log("ON DD CHANGE -- uid: " + uid + ", Text: " + text);
+    function onDDChange(tag,text){
+      console.log("ON DD CHANGE -- tag: " + tag + ", Text: " + text);
 
       let i = 0;
       let foundIndex = -1;
       let foundRow = createData("","","","");
       for(let row of rows){
         console.log("row: " + JSON.stringify(row));
-        if(row.uid == uid){
+        if(row.tag == tag){
           foundIndex = i;
           foundRow = createData(row.tag,row.strain,row.weight,text);
         }
@@ -98,18 +98,17 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
       foundIndex = -1;
       for(let val of currWeightChanges) {
         console.log("VAL: " + val);
-        console.log("Val.uid: " + val.uid);
-        if(val.uid == uid){
-          console.log("GRABBED UID: " + uid);
+        if(val.tag == tag){
+          console.log("GRABBED tag: " + tag);
           foundIndex = i;
         }
         i++;
       }
 
       if(foundIndex != -1){
-        currWeightChanges.splice(foundIndex,1,new weightChange(uid,currWeightChanges[foundIndex].newWeight,text));
+        currWeightChanges.splice(foundIndex,1,new weightChange(tag,currWeightChanges[foundIndex].newWeight,text));
       }else{
-        currWeightChanges.push(new weightChange(uid,'',text));
+        currWeightChanges.push(new weightChange(tag,'',text));
       }
 
       console.log("Curr Weight Changes after edit: " + JSON.stringify(currWeightChanges));
@@ -119,35 +118,12 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
       console.log("Curr ROWS after edit: " + JSON.stringify(rows));
 
       wrapper.setState({ state: wrapper.state });
-
-      /*
-      let i = 0;
-      let foundIndex = -1;
-      for(let val of currWeightChanges) {
-        console.log("VAL: " + val);
-        console.log("Val.uid: " + val.uid);
-        if(val.uid == uid){
-          console.log("GRABBED UID: " + uid);
-          foundIndex = i;
-        }
-        i++;
-      }
-
-      if(foundIndex != -1){
-        currWeightChanges.splice(foundIndex,1,new weightChange(uid,text));
-      }else{
-        currWeightChanges.push(new weightChange(uid,text));
-      }
-
-      console.log("Curr Weight Changes after edit: " + JSON.stringify(currWeightChanges));
-      setWeightChanges(currWeightChanges);
-      */
     }
 
-    function hideHarvestedPlant(uid){
+    function hideHarvestedPlant(tag){
         console.log("Hide Harvested Plant clicked in MyTable");
 
-        currHidePlants.push(uid);
+        currHidePlants.push(tag);
 
         console.log("Curr Hide Plants after edit: " + JSON.stringify(currHidePlants));
 
@@ -157,9 +133,9 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
         let foundIndex = -1;
         for(let val of rows) {
          console.log("VAL: " + val);
-         console.log("Val.uid: " + val.uid);
-          if(val.uid == uid){
-            console.log("GRABBED UID: " + uid);
+         console.log("Val.tag: " + val.tag);
+          if(val.tag == tag){
+            console.log("GRABBED tag: " + tag);
             foundIndex = i;
           }  
          i++;
@@ -178,24 +154,24 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
 
     }
 
-    function onTFChange(uid,text){
-      console.log("ON TF CHANGE -- uid: " + uid + ", Text: " + text);
+    function onTFChange(tag,text){
+      console.log("ON TF CHANGE -- tag: " + tag + ", Text: " + text);
       let i = 0;
       let foundIndex = -1;
       for(let val of currWeightChanges) {
         console.log("VAL: " + val);
-        console.log("Val.uid: " + val.uid);
-        if(val.uid == uid){
-          console.log("GRABBED UID: " + uid);
+        console.log("Val.tag: " + val.tag);
+        if(val.tag == tag){
+          console.log("GRABBED TAG: " + tag);
           foundIndex = i;
         }
         i++;
       }
 
       if(foundIndex != -1){
-        currWeightChanges.splice(foundIndex,1,new weightChange(uid,text,currWeightChanges[foundIndex].newUnit));
+        currWeightChanges.splice(foundIndex,1,new weightChange(tag,text,currWeightChanges[foundIndex].newUnit));
       }else{
-        currWeightChanges.push(new weightChange(uid,text,''));
+        currWeightChanges.push(new weightChange(tag,text,''));
       }
 
       console.log("Curr Weight Changes after edit: " + JSON.stringify(currWeightChanges));
@@ -208,7 +184,7 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
       let weightVal = '';
 
       for(let val of currWeightChanges){
-        if(val.uid == row.uid){
+        if(val.tag == row.tag){
           if(val.newWeight != ''){
             weightVal = val.newWeight;
           }
@@ -217,7 +193,7 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
       
       return (
         <TableCell align="right">
-          			<TextField label={getCurrentWeightTag(row.weight)} defaultValue={weightVal} onChange={(event) => onTFChange(row.uid,event.target.value)} />
+          			<TextField label={getCurrentWeightTag(row.weight)} defaultValue={weightVal} onChange={(event) => onTFChange(row.tag,event.target.value)} />
         </TableCell>
       );
     };
@@ -238,7 +214,7 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
       let unitVal = row.unit;
 
       for(let val of currWeightChanges){
-        if(val.uid == row.uid){
+        if(val.tag == row.tag){
           if(val.newUnit != ''){
             unitVal = val.newUnit;
           }
@@ -247,7 +223,7 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
       
       return (
         <TableCell align="right">
-                <Select value={unitVal} onChange={(event) => onDDChange(row.uid,event.target.value)} style={{minWidth: 80}}>
+                <Select value={unitVal} onChange={(event) => onDDChange(row.tag,event.target.value)} style={{minWidth: 80}}>
                 	{unitList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
@@ -280,7 +256,7 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
         </TableHead>
         <TableBody>
             {rows.map((row) => (
-            <TableRow key={row.uid}>
+            <TableRow key={row.tag}>
               {editNow 
               ? 			
                   <TableCell align="left" style={{ width: "170px"}}>
