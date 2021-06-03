@@ -58,6 +58,7 @@ class HarvestPlantButton extends Component{
       console.log("Execute Harvest Plant");
       if(this.props.nextPlant()){
           console.log("Engage Harvested Plant Item");
+          const strain = this.props.getStrainForPlantItem();
           const harvestedPlantItem = this.props.getHarvestedPlantItem();
           console.log("Harvseted Plant Item should be done");
 
@@ -78,7 +79,7 @@ class HarvestPlantButton extends Component{
             console.log("Harvest Type(STRING): " + JSON.stringify(parent.props.harvestType));
 
             if(parent.props.harvestType == "harvest"){
-              parent.updatePlant(event,harvestedPlantItem.tag,harvestedPlantItem.strain);
+              parent.updatePlant(event,harvestedPlantItem.tag,strain);
             }
           });
       }

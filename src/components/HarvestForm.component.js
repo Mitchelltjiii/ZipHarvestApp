@@ -831,10 +831,20 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			plant.id = currentHarvestedPlant.itemID;
 		}
 
-		console.log("Adding " + plant.strain); 
 		console.log("Stringified before passed: " + JSON.stringify(plant));
 		console.log("Exit getharvestedPlantitem")
 		return plant;
+	}
+
+	function getStrainForPlantItem(){
+		console.log("Get Strain For Plant Item");
+		console.log("Searching For: " + currentHarvestedPlant.tag);
+		for(let val of plants){
+			console.log("VAL(STRING): " + JSON.stringify(val));
+			if(val.tag == currentHarvestedPlant.tag){
+				return val.strain;
+			}
+		}
 	}
 
 	function getPlantItem(active,plantTag,strain){
@@ -1025,7 +1035,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddBranch}>Add Branch</Button>
 				<HarvestPlantButton getHarvestedPlantItem={getHarvestedPlantItem} getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} 
 				nextPlant={nextPlant} setChanges={setChanges} printData={printData} setNewHarvestedPlantID={setNewHarvestedPlantID} 
-				updateHBList={updateHBList} getPlantItem={getPlantItem} harvestType={harvestType}></HarvestPlantButton>
+				updateHBList={updateHBList} getPlantItem={getPlantItem} harvestType={harvestType} getStrainForPlantItem={getStrainForPlantItem}></HarvestPlantButton>
 
 				</Grid>
 
