@@ -1083,7 +1083,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 
 				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} harvestedPlants={harvestedPlants} currHidePlants={currHidePlants}
 				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
-				 setHarvestedPlants={setHarvestedPlants} justPrint={justPrint}></EditButton>		
+				 setHarvestedPlants={setHarvestedPlants} justPrint={justPrint} printData={printData}></EditButton>		
 				<FormLabel>Harvest Queue</FormLabel>
 
 				</Grid>
