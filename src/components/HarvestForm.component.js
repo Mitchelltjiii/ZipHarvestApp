@@ -649,7 +649,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		setSearchTag("");
 		setSelectedTag('');
 
-		//resetAll(currentHarvest);
+		resetAll(currentHarvest);
 
 		console.log("Exit setchanges");
 	}
