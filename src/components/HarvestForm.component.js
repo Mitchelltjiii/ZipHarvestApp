@@ -659,6 +659,11 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		setHarvestedPlantMap(hp);
 	}
 
+	function setPlants(pl){
+		console.log("Set Plants Function");
+		setPlantMap(pl);
+	}
+
 	function removeHarvestedPlant(removeID){
 		console.log("Remove Harvested Plant ID: " + removeID );
 		let x = 0;
@@ -1083,7 +1088,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 
 				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} harvestedPlants={harvestedPlants} currHidePlants={currHidePlants}
 				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
-				 setHarvestedPlants={setHarvestedPlants} justPrint={justPrint} printData={printData}></EditButton>		
+				 setHarvestedPlants={setHarvestedPlants} setPlants={setPlants} justPrint={justPrint} printData={printData}></EditButton>		
 				<FormLabel>Harvest Queue</FormLabel>
 
 				</Grid>
