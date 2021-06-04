@@ -24,8 +24,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import AddHarvestBatchButton from './AddHarvestBatchButton.component';
 import EditButton from './EditButton.component';
 import TableWrapper from './TableWrapper.component';
+import { setGlobalCssModule } from 'reactstrap/es/utils';
 
-function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harvestedPlants,setHarvestedPlantMap,resetHarvestBatches, resetAll, currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestedPlantID, setNewPlantID, userID}) { 
+function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harvestedPlants,setHarvestedPlantMap,resetHarvestBatches, 
+	resetAll, currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestedPlantID, setNewPlantID, userID, setAll}) { 
 
 	function HarvestBatch(name,submitted,type,date){
 		this.name = name;
@@ -622,6 +624,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		setBranchValue("");
 		setSearchTag("");
 		setSelectedTag('');		
+		setAll(plants,harvestedPlants,harvestBatches);
 		refreshOuter(plants,harvestedPlants,harvestBatches);
 	}
 
@@ -649,7 +652,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		setSearchTag("");
 		setSelectedTag('');
 
-		resetAll(currentHarvest);
+		//resetAll(currentHarvest);
 
 		console.log("Exit setchanges");
 	}

@@ -302,6 +302,26 @@ export default class App extends React.Component {
     this.engageReload();
   }
 
+  setAll = (plants,harvestedPlants,harvestBatches) => {
+    this.state.plants = plants;
+    this.state.harvestedPlants = harvestedPlants;
+    this.state.harvestBatches = harvestBatches;
+    this.props.plants = plants;
+    this.props.harvestBatches = harvestBatches;
+    this.props.harvestedPlants = harvestedPlants;
+    console.log("Set all!");
+    console.log("$$$$$$$$$$$$");
+    console.log("Plants: " + plants);
+    console.log("Plants(STRING): " + JSON.stringify(plants));
+    console.log("HarvestedPlants: " + harvestedPlants);
+    console.log("HarvestedPlants(STRING): " + JSON.stringify(harvestedPlants));
+    console.log("HarvestBatches: " + harvestBatches);
+    console.log("HarvestBatches(STRING): " + JSON.stringify(harvestBatches));
+    console.log("STATE.Plants(STRING): " + JSON.stringify(this.state.plants));
+    console.log("STATE.HarvestedPlants(STRING): " + JSON.stringify(this.state.harvestedPlants));
+    console.log("STATE.HarvestBatches(STRING): " + JSON.stringify(this.state.harvestBatches));
+  }
+
   render() {
 
     if(this.state.usersLoading || this.state.plantsLoading || this.state.harvestedPlantsLoading || this.state.harvestBatchesLoading){
@@ -326,7 +346,7 @@ export default class App extends React.Component {
 	    <Header currentPageSet={this.SetCurrentPage} currentPage={this.state.currentPage}/>
       <Outer currentPage={this.state.currentPage} setCurrentPage={this.SetCurrentPage} harvestBatches={this.state.harvestBatches} harvestedPlants={this.state.harvestedPlants} plants={this.state.plants} 
       resetHarvestBatches={this.resetHarvestBatches} resetAll={this.resetAll} currentHarvest={this.state.currentHarvest} setNewHBID={this.setNewHBID} getCurrentHarvestID={this.getCurrentHarvestID}
-      setNewHarvestedPlantID={this.setNewHarvestedPlantID} setNewPlantID={this.setNewPlantID} userID={this.state.userID}/>
+      setNewHarvestedPlantID={this.setNewHarvestedPlantID} setNewPlantID={this.setNewPlantID} userID={this.state.userID} setAll={this.setAll}/>
     </div>;
     }else{
 		showForm = <div><LogIn users={this.state.users} executeLogIn={this.executeLogIn}></LogIn></div>;

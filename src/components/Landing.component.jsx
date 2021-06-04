@@ -5,7 +5,7 @@ import HarvestBatchesForm from './HarvestBatchesForm.component';
 
 function Landing({currentPage, plantMap, setPlantMap, harvestedPlantsMap, setHarvestedPlantMap, harvestBatchesMap, 
 	setHarvestBatches, resetHarvestBatches, resetAll, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
-setNewHarvestedPlantID, setNewPlantID, userID}){
+setNewHarvestedPlantID, setNewPlantID, userID, setAll}){
 
 	console.log("ENTER LANDING, PLANTS(STRINGIFIED): " + JSON.stringify(plantMap));
 
@@ -20,7 +20,7 @@ setNewHarvestedPlantID, setNewPlantID, userID}){
 			{currentPage === 'harvest-form' ? (
 				<HarvestForm harvestBatches={harvestBatchesMap} setHarvestBatches={setHarvestBatches} plants={plantMap} setPlantMap={setPlantMap} harvestedPlants={harvestedPlantsMap} setHarvestedPlantMap={setHarvestedPlantMap} 
 				resetHarvestBatches={resetHarvestBatches} resetAll={resetAll} currentHarvest={currentHarvest} setNewHBID={setNewHBID} getCurrentHarvestID={getCurrentHarvestID} refreshOuter={refreshOuter} 
-				setNewHarvestedPlantID={setNewHarvestedPlantID} setNewPlantID={setNewPlantID} userID={userID}/>
+				setNewHarvestedPlantID={setNewHarvestedPlantID} setNewPlantID={setNewPlantID} userID={userID} setAll={setAll}/>
 			) : currentPage === 'harvest-batches-form' ? (
 				<HarvestBatchesForm harvestBatches={harvestBatchesMap} harvestedPlants={harvestedPlantsMap}/>
 			) : null}
