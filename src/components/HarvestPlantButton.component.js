@@ -104,7 +104,7 @@ class HarvestPlantButton extends Component{
       }).then(function(response) {
         return response.json();
       }).then(function(data) {
-        parent.props.printData()
+        parent.props.resetHarvestForm()
       });
 
       /*

@@ -610,26 +610,19 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		currentHarvest = new HarvestBatch(tempHB.name,tempHB.submitted,tempHB.type,tempHB.date);
 	}
 
-	function printData(){
-		console.log("PRINT DATA!");
-
-		console.log("===============");
-		console.log("PLANTS: " + JSON.stringify(plants));
-		console.log("===============");
-		console.log("HARVESTEDPLANTS: " + JSON.stringify(harvestedPlants));
-		console.log("===============");
-		console.log("HARVESTBATCHES: " + JSON.stringify(harvestBatches));
-		console.log("===============");
+	function resetHarvestForm(){
+		console.log("RESET HARVEST FORM - GO TO PRINT DATA!");
+		printData();
 		setWeight("");
 		setBranchValue("");
 		setSearchTag("");
-		setSelectedTag('');		
-		setAll(plants,harvestedPlants,harvestBatches);
+		setSelectedTag("");		
+		//setAll(plants,harvestedPlants,harvestBatches);
 		refreshOuter(plants,harvestedPlants,harvestBatches);
 	}
 
-	function justPrint(){
-		console.log("JUST PRINT DATA!");
+	function printData(){
+		console.log("PRINT DATA!");
 
 		console.log("===============");
 		console.log("PLANTS: " + JSON.stringify(plants));
@@ -1077,7 +1070,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 
 				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddBranch}>Add Branch</Button>
 				<HarvestPlantButton getHarvestedPlantItem={getHarvestedPlantItem} getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} 
-				nextPlant={nextPlant} setChanges={setChanges} printData={printData} setNewHarvestedPlantID={setNewHarvestedPlantID} 
+				nextPlant={nextPlant} setChanges={setChanges} resetHarvestForm={resetHarvestForm} setNewHarvestedPlantID={setNewHarvestedPlantID} 
 				updateHBList={updateHBList} getPlantItem={getPlantItem} harvestType={harvestType} getStrainForPlantItem={getStrainForPlantItem}></HarvestPlantButton>
 
 				</Grid>
@@ -1091,7 +1084,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 
 				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} harvestedPlants={harvestedPlants} currHidePlants={currHidePlants}
 				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
-				 setHarvestedPlants={setHarvestedPlants} setPlants={setPlants} justPrint={justPrint} printData={printData}></EditButton>		
+				 setHarvestedPlants={setHarvestedPlants} setPlants={setPlants} printData={printData} resetHarvestForm={resetHarvestForm}></EditButton>		
 				<FormLabel>Harvest Queue</FormLabel>
 
 				</Grid>
