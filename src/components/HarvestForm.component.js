@@ -196,7 +196,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function getPlant(plantTag){
 		console.log("GET PLANT - Tag: " + plantTag);
-		for(let val of getPlants()) {
+		for(let val of JSON.parse(getPlants())) {
 			if(val.tag == plantTag){
 				console.log("GRABBED PLANT");
 				return new Plant(val.userID,val.strain,val.tag,val.active);
