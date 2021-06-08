@@ -27,7 +27,7 @@ class Outer extends Component {
     console.log("***********************");
       return (
         <div>
-			<Landing currentPage={this.props.currentPage} getPlants={this.props.getPlants} setPlantMap={this.props.setPlants} getHarvestRecords={this.props.getHarvestRecords} 
+			<Landing currentPage={this.props.currentPage} getPlants={this.props.getPlants} setPlants={this.props.setPlants} getHarvestRecords={this.props.getHarvestRecords} 
       setHarvestRecords={this.props.setHarvestRecords} getHarvestBatches={this.props.getHarvestBatches} setHarvestBatches={this.props.setHarvestBatches} 
       resetHarvestBatches={this.props.resetHarvestBatches} resetAll={this.props.resetAll} currentHarvest={this.props.currentHarvest} setNewHBID={this.props.setNewHBID}
       getCurrentHarvestID={this.props.getCurrentHarvestID} refreshOuter={this.refreshOuter} setNewHarvestRecordID={this.props.setNewHarvestRecordID} 

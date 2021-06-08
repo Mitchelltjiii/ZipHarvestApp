@@ -220,11 +220,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 		console.log("Plant Map Before Remove Plant(STRINGIFIED): " + getPlants());
 		if(foundX != -1){
-			JSON.parse(getPlants());
-			JSON.parse(getPlants()).splice(foundX,1,replaceEntry);
-			let splicedPlants = JSON.stringify(JSON.parse(getPlants()).splice(foundX,1,replaceEntry));
-			console.log("Spliced Plants: " + splicedPlants);
-			setPlants("Plants");
+			setPlants(JSON.stringify(JSON.parse(getPlants()).splice(foundX,1,replaceEntry)));
 		}
 		console.log("Plant Map AFTER Remove Plant(STRINGIFIED): " + getPlants());
 	}
