@@ -112,7 +112,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	let strain = '';
 
 	console.log("Create Search for List");
-	for (const val of getPlants()) {
+	for (const val of JSON.parse(getPlants())) {
 		console.log("Val Search For: " + JSON.stringify(val));
 		console.log("Val.tag: " + val.tag);
 		if(getPlant(val.tag) != undefined){
