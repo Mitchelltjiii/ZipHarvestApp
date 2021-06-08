@@ -54,7 +54,7 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
     }
 
     function getStrainFromTag(tag){
-      for(let val of getPlants()){
+      for(let val of JSON.parse(getPlants())){
         if(val.tag == tag){
           return val.strain;
         }
@@ -63,7 +63,7 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
 
     let rows = [];
       try{
-        for(let val of getHarvestRecords()) {  
+        for(let val of JSON.parse(getHarvestRecords())) {  
           if(val.batchName == currHarvest.name){
             let hidden = false;
             for(let val2 of currHidePlants){
