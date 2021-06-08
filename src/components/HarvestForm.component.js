@@ -152,8 +152,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("Set Harvest Batch: " + JSON.stringify(selectedHB));
 		let x = 0;
 		let foundX = -1;
-		let harvestBatches = getHarvestBatches();
-		for(let val of JSON.parse(getHarvestBatches())) {
+		let parsedHarvestBatches = JSON.parse(getHarvestBatches());
+		for(let val of parsedHarvestBatches) {
 			if(val.name == selectedHB.name){
 				console.log("FOUND X: " + x);
 				foundX = x;
@@ -161,13 +161,13 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			x++;
 		}
 
-		console.log("Harvest Batches Map Before SetHarvestBatch(STRINGIFIED): " + JSON.stringify(harvestBatches));
+		console.log("Harvest Batches Map Before SetHarvestBatch(STRINGIFIED): " + JSON.stringify(parsedHarvestBatches));
 		console.log("HB TO BE ADDED: " + JSON.stringify(new HarvestBatch(selectedHB.name,selectedHB.submitted,selectedHB.type,selectedHB.date,selectedHB.userID)));
 		if(foundX != -1){
-			harvestBatches.splice(foundX,foundX,new HarvestBatch(selectedHB.name,selectedHB.submitted,selectedHB.type,selectedHB.date,selectedHB.userID));
+			parsedHarvestBatches.splice(foundX,foundX,new HarvestBatch(selectedHB.name,selectedHB.submitted,selectedHB.type,selectedHB.date,selectedHB.userID));
 		}
-		console.log("Harvest Batches Map AFTER SetHarvestBatch(STRINGIFIED): " + JSON.stringify(harvestBatches));
-		setHarvestBatches(harvestBatches);
+		console.log("Harvest Batches Map AFTER SetHarvestBatch(STRINGIFIED): " + JSON.stringify(parsedHarvestBatches));
+		setHarvestBatches(JSON.stringify(parsedHarvestBatches));
 	}
 
 	function getNewUID(){
@@ -220,7 +220,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 		console.log("Plant Map Before Remove Plant(STRINGIFIED): " + JSON.stringify(getPlants()));
 		if(foundX != -1){
-			setPlants(getPlants().splice(foundX,1,replaceEntry));
+			setPlants(JSON.stringify(JSON.parse(getPlants()).splice(foundX,1,replaceEntry)));
 		}
 		console.log("Plant Map AFTER Remove Plant(STRINGIFIED): " + JSON.stringify(getPlants()));
 	}
@@ -228,7 +228,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	function addHarvestRecord(plant){
 		console.log("Add Harvested Plant: " + JSON.stringify(plant));
 		console.log("Before Add Harvest Record - HarvestRecords: " + JSON.stringify(getHarvestRecords()));
-		setHarvestRecords(getHarvestRecords().push(plant));
+		setHarvestRecords(JSON.stringify(JSON.parse(getHarvestRecords()).push(plant)));
 		console.log("After Add Harvest Record - HarvestRecords: " + JSON.stringify(getHarvestRecords()));
 	}
 	
@@ -433,7 +433,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		addedHB = new HarvestBatch(hbName,0,harvType,hbDate,userID);
 
 		if(hbName!=""&&!hbOptionsList.includes(hbName)){
-			setHarvestBatches(getHarvestBatches().push(addedHB));
+			setHarvestBatches(JSON.stringify(JSON.parse(getHarvestBatches()).push(addedHB)));
 			hbOptionsList.push(hbName);
 			console.log("HB Added");
 			setSelectedHB(hbName);
@@ -585,7 +585,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 		replaceHB.plantList = newPlantList;
 		parsedHBs.splice(foundX,1,replaceHB);
-		setHarvestBatches(parsedHBs);
+		setHarvestBatches(JSON.stringify(parsedHBs));
 		let tempHB = parsedHBs[foundX];
 		currentHarvest = new HarvestBatch(tempHB.name,tempHB.submitted,tempHB.type,tempHB.date,userID);
 	}
@@ -642,7 +642,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}
 		if(foundX != -1){
 			console.log("HarvestRecords before splice: " + JSON.stringify(getHarvestRecords()) );
-			setHarvestRecords(getHarvestRecords().splice(foundX,1));
+			setHarvestRecords(JSON.stringify(JSON.parse(getHarvestRecords()).splice(foundX,1)));
 			console.log("HarvestRecords after splice: " + JSON.stringify(getHarvestRecords()) );
 		}
 	}

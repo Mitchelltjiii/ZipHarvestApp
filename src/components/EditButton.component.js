@@ -61,7 +61,7 @@ class EditButton extends Component{
               }
     
               if(foundIndex != -1){
-                this.props.setHarvestRecords(this.props.getHarvestRecords.splice(foundIndex,1,foundHarvestRecord));
+                this.props.setHarvestRecords(JSON.stringify(JSON.parse(this.props.getHarvestRecords).splice(foundIndex,1,foundHarvestRecord)));
                 console.log("Harvested Plant Replaced");
   
                 const harvestRecordItem = this.getHarvestRecordItem(foundHarvestRecord);
@@ -143,7 +143,7 @@ class EditButton extends Component{
               }
     
               if(foundIndex != -1){
-                this.props.setHarvestRecords(this.props.getHarvestRecords().splice(foundIndex,1));
+                this.props.setHarvestRecords(JSON.stringify(JSON.parse(this.props.getHarvestRecords()).splice(foundIndex,1)));
                 console.log("Harvest Records after Set: " + JSON.stringify(this.props.getHarvestRecords()));
       
                 console.log("Busy Updating activated")
