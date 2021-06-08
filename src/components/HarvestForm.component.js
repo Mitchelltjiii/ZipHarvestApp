@@ -139,7 +139,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function getHarvestBatch(selectedHB){
 		console.log("Enter GetHarvestBatch");
-		for(let val of getHarvestBatches()) {
+		for(let val of JSON.parse(getHarvestBatches())) {
 			console.log("VAL(STRING): " + JSON.stringify(val));
 			console.log("Val.name: " + val.name);
 			if(val.name == selectedHB){
