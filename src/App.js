@@ -244,10 +244,10 @@ export default class App extends React.Component {
 
       let tempHarvestRecords = this.state.harvestRecords;
       console.log("TempHarvestRecord: " + tempHarvestRecords);
-      if(tempHarvestRecord == "[]"){
-        tempHarvestRecord = "[" + JSON.stringify(hr) + "]";
+      if(tempHarvestRecords == "[]"){
+        tempHarvestRecords = "[" + JSON.stringify(hr) + "]";
       }else{
-        tempHarvestRecord = tempHarvestRecord.substring(0,tempHarvestRecord.length-1) + "," + JSON.stringify(hr) + "]";
+        tempHarvestRecords = tempHarvestRecords.substring(0,tempHarvestRecords.length-1) + "," + JSON.stringify(hr) + "]";
       }
       console.log("TempHarvestRecords ADDED");
       console.log("TempHarvestRecords: " + tempHarvestRecords);
