@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Button from '@material-ui/core/Button';
 
 class HarvestPlantButton extends Component{
-    emptyHarvestedPlant = {
+    emptyHarvestRecord = {
         tag: '',
         weight: '',
         unit: '',
@@ -24,32 +24,6 @@ class HarvestPlantButton extends Component{
       console.log("Handle Submit Harvest Plant Button");
 
       this.executeHarvestPlant(event);
-      /*
-        event.preventDefault();
-        console.log("Engage Next Plant");
-        if(this.props.nextPlant()){
-          console.log("Next plant should be done");
-
-          console.log("Engage Harvested Plant Item");
-          const harvestedPlantItem = this.props.getHarvestedPlantItem();
-          console.log("Harvseted Plant Item should be done");
-  
-      
-          setTimeout(() => this.removePlant(event), 0) 
-  
-          console.log("Engage create harvested plant");
-          await fetch('/api/harvestedplant', {
-                method: (harvestedPlantItem.id) ? 'PUT' : 'POST',
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(harvestedPlantItem),
-          });
-          console.log("Create harvested plant should be done - no indicator");
-  
-          this.props.history.push('/plants');
-        }*/
     }
 
     async executeHarvestPlant(event){
@@ -59,27 +33,27 @@ class HarvestPlantButton extends Component{
       if(this.props.nextPlant()){
           console.log("Engage Harvested Plant Item");
           const strain = this.props.getStrainForPlantItem(null);
-          const harvestedPlantItem = this.props.getHarvestedPlantItem();
+          const harvestRecordItem = this.props.getHarvestRecordItem();
           console.log("Harvseted Plant Item should be done");
 
           const resp = fetch('/hr', {
-            method: (harvestedPlantItem.id) ? 'PUT' : 'POST',
+            method: (harvestRecordItem.id) ? 'PUT' : 'POST',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(harvestedPlantItem)
+            body: JSON.stringify(harvestRecordItem)
           }).then(function(response) {
             return response.json();
           }).then(function(data) {
             console.log("EXECUTE HARVSET PLANT EXCT DATA: " + data); // this will be a string
-            parent.props.setNewHarvestedPlantID(data,harvestedPlantItem);
+            parent.props.setNewHarvestRecordID(data,harvestRecordItem);
             console.log("Harvest Type Check");
             console.log("Harvest Type: " + parent.props.harvestType);
             console.log("Harvest Type(STRING): " + JSON.stringify(parent.props.harvestType));
 
             if(parent.props.harvestType == "harvest"){
-              parent.updatePlant(event,harvestedPlantItem.tag,strain);
+              parent.updatePlant(event,harvestRecordItem.tag,strain);
             }
           });
       }
@@ -158,7 +132,7 @@ class HarvestPlantButton extends Component{
     constructor(props) {
         super(props);
         this.state = {
-          harvestedPlantItem: this.emptyHarvestedPlant,
+          harvestRecordItem: this.emptyHarvestRecord,
           harvsetBatchItem: this.emptyHarvestBatch
         };
         this.handleSubmit = this.handleSubmit.bind(this);

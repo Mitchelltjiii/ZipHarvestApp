@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Button from '@material-ui/core/Button';
 
 class EditButton extends Component{
-    emptyHarvestedPlant = {
+    emptyHarvestRecord = {
         tag: '',
         weight: '',
         unit: '',
@@ -11,7 +11,7 @@ class EditButton extends Component{
       };
 
     async clickEdit(){
-	      function HarvestedPlant(id,tag,weight,unit,batchName,userID){
+	      function HarvestRecord(id,tag,weight,unit,batchName,userID){
 	        	this.id = id;
 		        this.tag = tag;
 		        this.weight = weight;
@@ -43,9 +43,9 @@ class EditButton extends Component{
 
               let i = 0;
               let foundIndex = -1;
-              let foundHarvestedPlant = new HarvestedPlant('','','','','','');
-              for(const val2 of this.props.harvestedPlants){
-                console.log("Val2 (Harvestedplants): " + JSON.stringify(val2));
+              let foundHarvestRecord = new HarvestRecord('','','','','','');
+              for(const val2 of this.props.getHarvestRecords()){
+                console.log("Val2 (HarvestRecords): " + JSON.stringify(val2));
                 if(val2.tag==val.tag){
                   foundIndex = i;
                   if(isNaN(newWeight) || newWeight == 0){
@@ -54,26 +54,26 @@ class EditButton extends Component{
                   if(newUnit == ''){
                     newUnit = val2.unit;
                   }
-                  foundHarvestedPlant = new HarvestedPlant(val2.id,val2.tag,newWeight,newUnit,val2.batchName,val2.userID);
+                  foundHarvestRecord = new HarvestRecord(val2.id,val2.tag,newWeight,newUnit,val2.batchName,val2.userID);
                   console.log("Found Index: " + i);
                 }
                 i++;
               }
     
               if(foundIndex != -1){
-                this.props.harvestedPlants.splice(foundIndex,1,foundHarvestedPlant);
+                this.props.setHarvestRecords(this.props.getHarvestRecords.splice(foundIndex,1,foundHarvestRecord));
                 console.log("Harvested Plant Replaced");
   
-                const harvestedPlantItem = this.getHarvestedPlantItem(foundHarvestedPlant);
+                const harvestRecordItem = this.getHarvestRecordItem(foundHarvestRecord);
   
-                console.log("Harvested Plant Item to update with: " + JSON.stringify(harvestedPlantItem));
+                console.log("Harvested Plant Item to update with: " + JSON.stringify(harvestRecordItem));
   
                 console.log("Busy Updating activated")
                 this.state.busyUpdating = true;
-                console.log("Before updateharvestedplant");
+                console.log("Before updateHarvestRecord");
   
-                this.updateHarvestedPlant(harvestedPlantItem);
-                console.log("After updateharvestedplant");
+                this.updateHarvestRecord(harvestRecordItem);
+                console.log("After updateHarvestRecord");
   
                 let x = 0;
   
@@ -89,7 +89,7 @@ class EditButton extends Component{
                 console.log("Left timeout loop");
               }
     
-              console.log("HarvestedPlants after edit: " + JSON.stringify(this.props.harvestedPlants));
+              console.log("HarvestRecords after edit: " + JSON.stringify(this.props.getHarvestRecords()));
             }catch(s){
     
             }
@@ -97,7 +97,7 @@ class EditButton extends Component{
 
           for(const tag of this.props.currHidePlants){
             let addPlant = new Plant("","","","");
-            for(const val of this.props.harvestedPlants){
+            for(const val of this.props.getHarvestRecords()){
               if(val.tag == tag){
                 addPlant = new Plant(val.tag,this.props.getStrainForPlantItem(val.tag),"mtj",0);
 
@@ -132,8 +132,8 @@ class EditButton extends Component{
               let i = 0;
               let foundIndex = -1;
               let foundID = '';
-              for(const val2 of this.props.harvestedPlants){
-                console.log("Val2 (Harvestedplants): " + JSON.stringify(val2));
+              for(const val2 of this.props.getHarvestRecords()){
+                console.log("Val2 (HarvestRecords): " + JSON.stringify(val2));
                 if(val2.tag==tag){
                   foundIndex = i;
                   console.log("Found Index: " + i);
@@ -143,18 +143,15 @@ class EditButton extends Component{
               }
     
               if(foundIndex != -1){
-                this.props.harvestedPlants.splice(foundIndex,1);
-                console.log("Harvested Plants before Set: " + JSON.stringify(this.props.harvestedPlants));
-                this.props.setHarvestedPlants(this.props.harvestedPlants);
-                this.props.setPlants(this.props.plants);
-                console.log("Harvested Plant Remove from HarvestedPlants");
+                this.props.setHarvestRecords(this.props.getHarvestRecords().splice(foundIndex,1));
+                console.log("Harvest Records after Set: " + JSON.stringify(this.props.getHarvestRecords()));
       
                 console.log("Busy Updating activated")
                 this.state.busyUpdating = true;
-                console.log("Before updateharvestedplant");
+                console.log("Before updateHarvestRecord");
   
-                this.deleteHarvestedPlant(foundID);
-                console.log("After updateharvestedplant");
+                this.deleteHarvestRecord(foundID);
+                console.log("After updateHarvestRecord");
   
                 let x = 0;
   
@@ -172,7 +169,7 @@ class EditButton extends Component{
           }
           this.props.setChanges();
         }
-        console.log("HarvestedPlants in EditButton after changes accepted: " + JSON.stringify(this.props.harvestedPlants));
+        console.log("HarvestRecords in EditButton after changes accepted: " + JSON.stringify(this.props.getHarvestRecords()));
         this.props.printData();
       this.props.setEditMode(!this.props.editNow);
     }
@@ -187,36 +184,10 @@ class EditButton extends Component{
         console.log("EditNow after clickedit: " + this.props.editNow);
 
         setTimeout(() => this.setState(this.state), 0) 
-
-        /*
-        if(this.props.clickEdit()){
-          console.log("Next plant should be done");
-
-          console.log("Engage Harvested Plant Item");
-          const harvestedPlantItem = this.props.getHarvestedPlantItem();
-          console.log("Harvseted Plant Item should be done");
-  
-      
-          setTimeout(() => this.removePlant(event), 0) 
-  
-          console.log("Engage create harvested plant");
-          await fetch('/api/harvestedplant', {
-                method: (harvestedPlantItem.id) ? 'PUT' : 'POST',
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(harvestedPlantItem),
-          });
-          console.log("Create harvested plant should be done - no indicator");
-  
-          this.props.history.push('/plants');
-        }
-        */
     }
 
       
-    async deleteHarvestedPlant(removePlantID){
+    async deleteHarvestRecord(removePlantID){
       console.log("getRemovedPlantID should be done");
       console.log("REMOVE PLANT ID: " + removePlantID);
       const response = fetch(`/hr/${removePlantID}`, {
@@ -228,32 +199,32 @@ class EditButton extends Component{
       });
 
       try{
-        console.log("AWAITING RESPONSE DELETEHARVESTEDPLANT")
+        console.log("AWAITING RESPONSE DELETEHarvestRecord")
         await response.text();
-        console.log("RESPONSE RECIEVED DELETEHARVESTEDPLANT")
+        console.log("RESPONSE RECIEVED DELETEHarvestRecord")
       }catch(err){
-        console.log("NO RESPONSE RECIEVED DELETEHARVESTEDPLANT")
+        console.log("NO RESPONSE RECIEVED DELETEHarvestRecord")
       }
       this.state.busyUpdating = false;    
     }
 
-    async updateHarvestedPlant(harvestedPlantItem){
+    async updateHarvestRecord(harvestRecordItem){
       console.log("Engage update harvested plant");
       const response = fetch('/hr', {
-            method: (harvestedPlantItem.id) ? 'PUT' : 'POST',
+            method: (harvestRecordItem.id) ? 'PUT' : 'POST',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(harvestedPlantItem)
+            body: JSON.stringify(harvestRecordItem)
       });
       console.log("Create harvested plant should be done - no indicator");
       try{
-        console.log("AWAITING RESPONSE UPDATEHARVESTEDPLANT")
+        console.log("AWAITING RESPONSE UPDATEHarvestRecord")
         await response.text();
-        console.log("RESPONSE RECIEVED UPDATEHARVESTEDPLANT")
+        console.log("RESPONSE RECIEVED UPDATEHarvestRecord")
       }catch(err){
-        console.log("NO RESPONSE RECIEVED UPDATEHARVESTEDPLANT")
+        console.log("NO RESPONSE RECIEVED UPDATEHarvestRecord")
       }
       this.state.busyUpdating = false;
       
@@ -281,9 +252,9 @@ class EditButton extends Component{
       console.log("Exit update plant")
     }
 
-    getHarvestedPlantItem(currentHarvestedPlant){
-      console.log("Enter getharvestedPlantitem")
-      console.log("Plant To Create PlantItem From: " + JSON.stringify(currentHarvestedPlant));
+    getHarvestRecordItem(currentHarvestRecord){
+      console.log("Enter getHarvestRecorditem")
+      console.log("Plant To Create PlantItem From: " + JSON.stringify(currentHarvestRecord));
       let plant = {
         tag: '',
 			  weight: 0,
@@ -292,17 +263,17 @@ class EditButton extends Component{
 			  userID: ''
         };
   
-        plant.tag = currentHarvestedPlant.tag;
-        plant.unit = currentHarvestedPlant.unit;
-        plant.weight = currentHarvestedPlant.weight;
-        plant.batchName = currentHarvestedPlant.batchName;
-        plant.userID = currentHarvestedPlant.userID;
-      if(currentHarvestedPlant.id!==""){
-        plant.id = currentHarvestedPlant.id;
+        plant.tag = currentHarvestRecord.tag;
+        plant.unit = currentHarvestRecord.unit;
+        plant.weight = currentHarvestRecord.weight;
+        plant.batchName = currentHarvestRecord.batchName;
+        plant.userID = currentHarvestRecord.userID;
+      if(currentHarvestRecord.id!==""){
+        plant.id = currentHarvestRecord.id;
       }
   
       console.log("Stringified before passed: " + JSON.stringify(plant));
-      console.log("Exit getharvestedPlantitem")
+      console.log("Exit getHarvestRecorditem")
       return plant;
     }
   
@@ -398,7 +369,7 @@ class EditButton extends Component{
     constructor(props) {
         super(props);
         this.state = {
-          harvestedPlantItem: this.emptyHarvestedPlant,
+          harvestRecordItem: this.emptyHarvestRecord,
           busyUpdating: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);

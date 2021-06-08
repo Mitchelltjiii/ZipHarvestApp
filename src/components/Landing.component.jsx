@@ -3,26 +3,26 @@ import HarvestForm from './HarvestForm.component';
 import HarvestBatchesForm from './HarvestBatchesForm.component';
 
 
-function Landing({currentPage, plantMap, setPlantMap, harvestedPlantsMap, setHarvestedPlantMap, harvestBatchesMap, 
+function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
 	setHarvestBatches, resetHarvestBatches, resetAll, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
-setNewHarvestedPlantID, setNewPlantID, userID, setAll}){
+setNewHarvestRecordID, setNewPlantID, userID, setAll}){
 
-	console.log("ENTER LANDING, PLANTS(STRINGIFIED): " + JSON.stringify(plantMap));
+	console.log("ENTER LANDING, GET PLANTS(STRINGIFIED): " + JSON.stringify(getPlants));
 
-	console.log("ENTER LANDING, harvestedPlantsMap(STRINGIFIED): " + JSON.stringify(harvestedPlantsMap));
+	console.log("ENTER LANDING, GET harvestRecordsMap(STRINGIFIED): " + JSON.stringify(getHarvestRecords));
 
-	console.log("ENTER LANDING, harvestbatches(STRINGIFIED): " + JSON.stringify(harvestBatchesMap));
+	console.log("ENTER LANDING, GET harvestbatches(STRINGIFIED): " + JSON.stringify(getHarvestBatches));
 
 
     return(
 		
         <div>
 			{currentPage === 'harvest-form' ? (
-				<HarvestForm harvestBatches={harvestBatchesMap} setHarvestBatches={setHarvestBatches} plants={plantMap} setPlantMap={setPlantMap} harvestedPlants={harvestedPlantsMap} setHarvestedPlantMap={setHarvestedPlantMap} 
+				<HarvestForm getHarvestBatches={getHarvestBatches} setHarvestBatches={setHarvestBatches} getPlants={getPlants} setPlants={setPlants} getHarvestRecords={getHarvestRecords} setHarvestRecords={setHarvestRecords} 
 				resetHarvestBatches={resetHarvestBatches} resetAll={resetAll} currentHarvest={currentHarvest} setNewHBID={setNewHBID} getCurrentHarvestID={getCurrentHarvestID} refreshOuter={refreshOuter} 
-				setNewHarvestedPlantID={setNewHarvestedPlantID} setNewPlantID={setNewPlantID} userID={userID} setAll={setAll}/>
+				setNewHarvestRecordID={setNewHarvestRecordID} setNewPlantID={setNewPlantID} userID={userID} setAll={setAll}/>
 			) : currentPage === 'harvest-batches-form' ? (
-				<HarvestBatchesForm harvestBatches={harvestBatchesMap} harvestedPlants={harvestedPlantsMap}/>
+				<HarvestBatchesForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords}/>
 			) : null}
         </div>
     )

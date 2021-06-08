@@ -11,25 +11,25 @@ import HarvestBatch from './HarvestBatchesForm.component';
 import Button from '@material-ui/core/Button';
 
 
-function HBTable({harvestBatches,harvestedPlants}) {
+function HBTable({getHarvestBatches,getHarvestRecords}) {
 
-    console.log("ENTER HBTABLE, HBLIST: " + harvestBatches);
+    console.log("ENTER HBTABLE, HBLIST: " + getHarvestBatches());
 
-    function HarvestBatch(itemID,name,finalized,plantList,type,date){
+    function HarvestBatch(name,submitted,type,date,userID){
+      this.name = name;
+      this.submitted = submitted;
+      this.type = type;
+      this.date = date;
+      this.userID = userID;
+    }
+
+  function HarvestRecord(itemID,tag,weight,unit,batchName,userID){
 		this.itemID = itemID;
-		this.name = name;
-		this.finalized = finalized;
-		this.plantList = plantList;
-        this.type = type;
-        this.date = date;
-	}
-
-    function HarvestedPlant(itemID,strain,tag,weight,unit){
-		this.itemID = itemID;
-		this.strain = strain;
 		this.tag = tag;
 		this.weight = weight;
 		this.unit = unit;
+		this.batchName = batchName;
+		this.userID = userID;
 	}
 
     const useStyles = makeStyles({
@@ -48,7 +48,7 @@ function HBTable({harvestBatches,harvestedPlants}) {
 
     const rows = [];
 
-    for(let val of harvestBatches) {
+    for(let val of getHarvestBatches()) {
       rows.push(createData(val.name,val.plantList));
     }
        

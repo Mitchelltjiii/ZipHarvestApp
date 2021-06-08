@@ -26,24 +26,25 @@ import EditButton from './EditButton.component';
 import TableWrapper from './TableWrapper.component';
 import { setGlobalCssModule } from 'reactstrap/es/utils';
 
-function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harvestedPlants,setHarvestedPlantMap,resetHarvestBatches, 
-	resetAll, currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestedPlantID, setNewPlantID, userID, setAll}) { 
+function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches, 
+	resetAll, currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, setAll}) { 
 
-	function HarvestBatch(name,submitted,type,date){
+	function HarvestBatch(name,submitted,type,date,userID){
 		this.name = name;
 		this.submitted = submitted;
 		this.type = type;
 		this.date = date;
+		this.userID = userID;
 	}
 
-	function Plant(user,strain,tag,active){
-		this.user = user;
+	function Plant(userID,strain,tag,active){
+		this.userID = userID;
 		this.strain = strain;
 		this.tag = tag;
 		this.active = active;
 	}
 
-	function HarvestedPlant(itemID,tag,weight,unit,batchName,userID){
+	function HarvestRecord(itemID,tag,weight,unit,batchName,userID){
 		this.itemID = itemID;
 		this.tag = tag;
 		this.weight = weight;
@@ -53,17 +54,17 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	}
 
 	let hbOptionsList = ["Add New Harvest Batch"];
-	let currentHarvestedPlant = new HarvestedPlant('','','','','','');
+	let currentHarvestRecord = new HarvestRecord('','','','','','');
 
-	let addedHB = new HarvestBatch("",0,"","");
+	let addedHB = new HarvestBatch("",0,"","",userID);
 
 	console.log("ENTER HARVESTFORM, CURRENT HARVEST: " + JSON.stringify(currentHarvest));
 
-	console.log("ENTER HARVESTFORM, CURRENT HARVESTBATCHES: " + JSON.stringify(harvestBatches));
+	console.log("ENTER HARVESTFORM, CURRENT HARVESTBATCHES: " + JSON.stringify(getHarvestBatches()));
 
-	console.log("ENTER HARVESTFORM, CURRENT PLANTMAP: " + JSON.stringify(plants));
+	console.log("ENTER HARVESTFORM, CURRENT PLANTMAP: " + JSON.stringify(getPlants()));
 
-	console.log("ENTER HARVESTFORM, CURRENT HARVESTEDPLANTSMAP: " + JSON.stringify(harvestedPlants));
+	console.log("ENTER HARVESTFORM, CURRENT HarvestRecords: " + JSON.stringify(getHarvestRecords()));
 
 	var bgColors = { "Default": "#81b71a",
                     "Blue": "#00B1E1",
@@ -111,7 +112,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	let strain = '';
 
 	console.log("Create Search for List");
-	for (const val of plants) {
+	for (const val of getPlants()) {
 		console.log("Val Search For: " + JSON.stringify(val));
 		console.log("Val.tag: " + val.tag);
 		if(getPlant(val.tag) != undefined){
@@ -138,12 +139,12 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 
 	function getHarvestBatch(selectedHB){
 		console.log("Enter GetHarvestBatch");
-		for(let val of harvestBatches) {
+		for(let val of getHarvestBatches()) {
 			console.log("VAL(STRING): " + JSON.stringify(val));
 			console.log("Val.name: " + val.name);
 			if(val.name == selectedHB){
 				console.log("GRABBED");
-				return new HarvestBatch(val.name,val.submitted,val.type,val.date);
+				return new HarvestBatch(val.name,val.submitted,val.type,val.date,val.userID);
 			}
 		}
 		console.log("Exit GetHarvestBatch");
@@ -154,6 +155,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		console.log("Set Harvest Batch: " + JSON.stringify(selectedHB));
 		let x = 0;
 		let foundX = -1;
+		let harvestBatches = getHarvestBatches();
 		for(let val of harvestBatches) {
 			if(val.name == selectedHB.name){
 				console.log("FOUND X: " + x);
@@ -163,11 +165,12 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		}
 
 		console.log("Harvest Batches Map Before SetHarvestBatch(STRINGIFIED): " + JSON.stringify(harvestBatches));
-		console.log("HB TO BE ADDED: " + JSON.stringify(new HarvestBatch(selectedHB.name,selectedHB.submitted,selectedHB.type,selectedHB.date)));
+		console.log("HB TO BE ADDED: " + JSON.stringify(new HarvestBatch(selectedHB.name,selectedHB.submitted,selectedHB.type,selectedHB.date,selectedHB.userID)));
 		if(foundX != -1){
-			harvestBatches.splice(foundX,foundX,new HarvestBatch(selectedHB.name,selectedHB.submitted,selectedHB.type,selectedHB.date));
+			harvestBatches.splice(foundX,foundX,new HarvestBatch(selectedHB.name,selectedHB.submitted,selectedHB.type,selectedHB.date,selectedHB.userID));
 		}
 		console.log("Harvest Batches Map AFTER SetHarvestBatch(STRINGIFIED): " + JSON.stringify(harvestBatches));
+		setHarvestBatches(harvestBatches);
 	}
 
 	function getNewUID(){
@@ -182,7 +185,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		}
 		console.log("Generated UID: " + uid);
 
-		for(let val of harvestedPlants) {
+		for(let val of getHarvestRecords()) {
 			if(val.uid == uid){
 				console.log("UID already exists, trying again");
 				return getNewUID();
@@ -193,20 +196,10 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 
 	function getPlant(plantTag){
 		console.log("GET PLANT - Tag: " + plantTag);
-		for(let val of plants) {
+		for(let val of getPlants()) {
 			if(val.tag == plantTag){
 				console.log("GRABBED PLANT");
-				return new Plant(val.user,val.strain,val.tag,val.active);
-			}
-		}
-	}
-
-	function getHarvestedPlant(uid){
-		console.log("GET Harvested PLANT - UID: " + uid);
-		for(let val of plants) {
-			if(val.uid == uid){
-				console.log("GRABBED HARVESTEDPLANT");
-				return new HarvestedPlant(val.itemID, val.tag, val.weight, val.unit, val.batchName, val.userID);
+				return new Plant(val.userID,val.strain,val.tag,val.active);
 			}
 		}
 	}
@@ -216,7 +209,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		let x = 0;
 		let foundX = -1;
 		let replaceEntry = "";
-		for(let val of plants) {
+		for(let val of getPlants()) {
 			if(val.tag == plantTag){
 				console.log("FOUND X: " + x);
 				foundX = x;
@@ -228,23 +221,23 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			x++;
 		}
 
-		console.log("Plant Map Before Remove Plant(STRINGIFIED): " + JSON.stringify(plants));
+		console.log("Plant Map Before Remove Plant(STRINGIFIED): " + JSON.stringify(getPlants()));
 		if(foundX != -1){
-			plants.splice(foundX,1,replaceEntry);
+			setPlants(getPlants().splice(foundX,1,replaceEntry));
 		}
-		console.log("Plant Map AFTER Remove Plant(STRINGIFIED): " + JSON.stringify(plants));
+		console.log("Plant Map AFTER Remove Plant(STRINGIFIED): " + JSON.stringify(getPlants()));
 	}
 
-	function addHarvestedPlant(plant){
+	function addHarvestRecord(plant){
 		console.log("Add Harvested Plant: " + JSON.stringify(plant));
-		console.log("Before Add Harvested Plant - harvsetedPlants: " + JSON.stringify(harvestedPlants));
-		harvestedPlants.push(plant);
-		console.log("After Add Harvested Plant - harvsetedPlants: " + JSON.stringify(harvestedPlants));
+		console.log("Before Add Harvest Record - HarvestRecords: " + JSON.stringify(getHarvestRecords()));
+		setHarvestRecords(getHarvestRecords().push(plant));
+		console.log("After Add Harvest Record - HarvestRecords: " + JSON.stringify(getHarvestRecords()));
 	}
 	
 	currentHarvest = getHarvestBatch(selectedHB);
-	console.log("AFTER ALL THAT THE HARVESTBATCHES: " + harvestBatches);
-	console.log("AFTER ALL THAT THE HARVESTBATCHES(STRING): " + JSON.stringify(harvestBatches));
+	console.log("AFTER ALL THAT THE HARVESTBATCHES: " + getHarvestBatches());
+	console.log("AFTER ALL THAT THE HARVESTBATCHES(STRING): " + JSON.stringify(getHarvestBatches()));
 
   	const handleDayChange = (event) => {
     	setDay(event.target.value);
@@ -288,7 +281,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 
 	let searchOptionsList = ["Contains","Ends With"];
     
-	for(let val of harvestBatches) {
+	for(let val of getHarvestBatches()) {
 		console.log("XX-VAL[name]: " + val.name);
 		if(!hbOptionsList.includes(val.name)){
 			hbOptionsList.push(val.name);
@@ -334,14 +327,6 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	function getHidePlants(){
 		return currHidePlants;
 	}
-
-	/*
-	if(harvestBatches!==undefined){
-		for (const k of harvestBatches.keys()) {
-			currHBMap.set(k,harvestBatches.get(k));
-			console.log("HB: " + harvestBatches.get(k).name);
-		}
-	}*/
 
 	/*
 					<ChangeStrainForm changeStrainHiddenNow={changeStrainHiddenNow}></ChangeStrainForm>
@@ -390,7 +375,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 
 		console.log("Commit Search!!");
 
-		for (const val of plants) {
+		for (const val of getPlants()) {
 			if(val.active == 0){
 				plantTags.push(val.tag);
 			}
@@ -448,17 +433,15 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			harvType = 1;
 		}
 
-		addedHB = new HarvestBatch(hbName,0,harvType,hbDate);
+		addedHB = new HarvestBatch(hbName,0,harvType,hbDate,userID);
 
 		if(hbName!=""&&!hbOptionsList.includes(hbName)){
-			harvestBatches.push(addedHB);
+			setHarvestBatches(getHarvestBatches().push(addedHB));
 			hbOptionsList.push(hbName);
 			console.log("HB Added");
 			setSelectedHB(hbName);
 		}
 		setChangeHBHidden(false);
-		console.log("Embark on changing harvestbatchesmap");
-		setHarvestBatches(harvestBatches);
 		console.log("setChangeStrainHidden");
 	}
 
@@ -531,28 +514,28 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				if(addPlant===null||addPlant===undefined){
 					return false;
 				}
-				currentHarvestedPlant = new HarvestedPlant('',plantTag,0,'',currentHarvest.name,userID);
+				currentHarvestRecord = new HarvestRecord('',plantTag,0,'',currentHarvest.name,userID);
 				if(weight===""||weight===undefined){
-					currentHarvestedPlant.weight=getBranchWeight();
+					currentHarvestRecord.weight=getBranchWeight();
 				}else{
 					console.log("Parse Float: " + parseFloat(weight));
 					console.log("Branch Weight: " + getBranchWeight());
-					currentHarvestedPlant.weight=parseFloat(weight)+getBranchWeight();
+					currentHarvestRecord.weight=parseFloat(weight)+getBranchWeight();
 				}
-				if(currentHarvestedPlant.weight===0){
+				if(currentHarvestRecord.weight===0){
 					return false;
 				}
-				currentHarvestedPlant.unit=unit;
+				currentHarvestRecord.unit=unit;
 								
-				addHarvestedPlant(currentHarvestedPlant);
+				addHarvestRecord(currentHarvestRecord);
 
 				removePlant(plantTag)
 				//setRemovedPlantID(addPlant.itemID);
-				console.log("PLANTS AFTER REMOVED: " + plants);
+				console.log("getPlants() AFTER REMOVED: " + getPlants());
 
 				let plantTags = [];
 
-				for (const val of plants) {
+				for (const val of getPlants()) {
 					plantTags.push(val.tag);
 				}
 				console.log("Exit Next Plant");
@@ -569,7 +552,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 
 		let foundX = -1;
 		let x = 0;
-		let parsedHBs = harvestBatches;
+		let parsedHBs = getHarvestBatches();
       	console.log("ParsedHBs: " + JSON.stringify(parsedHBs));
 		for(const hb of parsedHBs){
 			console.log("HB: " + JSON.stringify(hb));
@@ -605,9 +588,9 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 
 		replaceHB.plantList = newPlantList;
 		parsedHBs.splice(foundX,1,replaceHB);
-		harvestBatches = parsedHBs;
+		setHarvestBatches(parsedHBs);
 		let tempHB = parsedHBs[foundX];
-		currentHarvest = new HarvestBatch(tempHB.name,tempHB.submitted,tempHB.type,tempHB.date);
+		currentHarvest = new HarvestBatch(tempHB.name,tempHB.submitted,tempHB.type,tempHB.date,userID);
 	}
 
 	function resetHarvestForm(){
@@ -617,28 +600,27 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		setBranchValue("");
 		setSearchTag("");
 		setSelectedTag("");		
-		//setAll(plants,harvestedPlants,harvestBatches);
-		refreshOuter(plants,harvestedPlants,harvestBatches);
+		refreshOuter();
 	}
 
 	function printData(){
 		console.log("PRINT DATA!");
 
 		console.log("===============");
-		console.log("PLANTS: " + JSON.stringify(plants));
+		console.log("PLANTS: " + JSON.stringify(getPlants()));
 		console.log("===============");
-		console.log("HARVESTEDPLANTS: " + JSON.stringify(harvestedPlants));
+		console.log("HARVESTRECORDS: " + JSON.stringify(getHarvestRecords()));
 		console.log("===============");
-		console.log("HARVESTBATCHES: " + JSON.stringify(harvestBatches));
+		console.log("HARVESTBATCHES: " + JSON.stringify(getHarvestBatches()));
 		console.log("===============");
 	}
 
 	function setChanges(){
 		console.log("Enter setchanges");
 
-		setPlantMap(plants);
+		//setPlantMap(plants);
 		setHarvestBatch(currentHarvest);
-		setHarvestedPlantMap(harvestedPlants);
+		//setHarvestRecords(harvestRecords);
 
 		setWeight("");
 		setBranchValue("");
@@ -650,21 +632,11 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		console.log("Exit setchanges");
 	}
 
-	function setHarvestedPlants(hp){
-		console.log("Set HarvestedPlants Function");
-		setHarvestedPlantMap(hp);
-	}
-
-	function setPlants(pl){
-		console.log("Set Plants Function");
-		setPlantMap(pl);
-	}
-
-	function removeHarvestedPlant(removeID){
+	function removeHarvestRecord(removeID){
 		console.log("Remove Harvested Plant ID: " + removeID );
 		let x = 0;
 		let foundX = -1;
-		for(let val of harvestedPlants){
+		for(let val of getHarvestRecords()){
 			console.log("Val: " + JSON.stringify(val));
 			if(val.id == removeID){
 				foundX=x;
@@ -672,9 +644,9 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			x++;
 		}
 		if(foundX != -1){
-			console.log("Harvestedplants before splice: " + JSON.stringify(harvestedPlants) );
-			harvestedPlants.splice(foundX,1);
-			console.log("Harvestedplants after splice: " + JSON.stringify(harvestedPlants) );
+			console.log("HarvestRecords before splice: " + JSON.stringify(getHarvestRecords()) );
+			setHarvestRecords(getHarvestRecords().splice(foundX,1));
+			console.log("HarvestRecords after splice: " + JSON.stringify(getHarvestRecords()) );
 		}
 	}
 
@@ -833,7 +805,7 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 	function getRemovePlantIDDelete(uid){
 		console.log("Get Remove Plant ID Delete: UID: " + uid)
 
-		for(let val of harvestedPlants){
+		for(let val of getHarvestRecords()){
 			if(val.uid == uid){
 				console.log("Found UID: " + uid);
 				console.log("Found hbItemID: " + val.id);
@@ -844,8 +816,8 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		return '';
 	}
 
-	function getHarvestedPlantItem(){
-		console.log("Enter getharvestedPlantitem")
+	function getHarvestRecordItem(){
+		console.log("Enter getHarvestRecorditem")
 		let plant = {
 			tag: '',
 			weight: 0,
@@ -854,28 +826,28 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			userID: ''
 		  };
 
-		plant.tag = currentHarvestedPlant.tag;
-		plant.unit = currentHarvestedPlant.unit;
-		plant.weight = currentHarvestedPlant.weight;
-		plant.batchName = currentHarvestedPlant.batchName;
+		plant.tag = currentHarvestRecord.tag;
+		plant.unit = currentHarvestRecord.unit;
+		plant.weight = currentHarvestRecord.weight;
+		plant.batchName = currentHarvestRecord.batchName;
 		plant.userID = userID;
 
-		if(currentHarvestedPlant.itemID!==""){
-			plant.id = currentHarvestedPlant.itemID;
+		if(currentHarvestRecord.itemID!==""){
+			plant.id = currentHarvestRecord.itemID;
 		}
 
 		console.log("Stringified before passed: " + JSON.stringify(plant));
-		console.log("Exit getharvestedPlantitem")
+		console.log("Exit getHarvestRecorditem")
 		return plant;
 	}
 
 	function getStrainForPlantItem(tag){
 		console.log("Get Strain For Plant Item");
 		if(tag == null){
-			tag = currentHarvestedPlant.tag;
+			tag = currentHarvestRecord.tag;
 		}
 		console.log("Searching For: " + tag);
-		for(let val of plants){
+		for(let val of getPlants()){
 			console.log("VAL(STRING): " + JSON.stringify(val));
 			if(val.tag == tag){
 				return val.strain;
@@ -893,20 +865,20 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 			active: ''
 		  };
 
-		console.log("Current Harvested Plant(STRING): " + JSON.stringify(currentHarvestedPlant));
+		console.log("Current Harvested Plant(STRING): " + JSON.stringify(currentHarvestRecord));
 
 		plant.tag = plantTag;
 		plant.strain = strain;
 		plant.userID = userID;
 		plant.active = active;
 
-		if(currentHarvestedPlant.itemID!==""){
-			plant.id = currentHarvestedPlant.itemID;
+		if(currentHarvestRecord.itemID!==""){
+			plant.id = currentHarvestRecord.itemID;
 		}
 
 		console.log("Adding " + plant.strain); 
 		console.log("Stringified before passed: " + JSON.stringify(plant));
-		console.log("Exit getharvestedPlantitem")
+		console.log("Exit getHarvestRecorditem")
 		return plant;
 	}
 
@@ -924,8 +896,8 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 		console.log("CURRENT HARVEST: " + currentHarvest);
 		console.log("CURRENT HARVEST(STRING): " + JSON.stringify(currentHarvest));
 
-		console.log("HarvestBatches in HarvestForm: " + harvestBatches);
-		console.log("HarvestBatches in HarvestForm(STRING): " + JSON.stringify(harvestBatches));
+		console.log("HarvestBatches in HarvestForm: " + getHarvestBatches());
+		console.log("HarvestBatches in HarvestForm(STRING): " + JSON.stringify(getHarvestBatches()));
 
 		if(addNew){
 			ch = addedHB;
@@ -1069,8 +1041,8 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 				>
 
 				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddBranch}>Add Branch</Button>
-				<HarvestPlantButton getHarvestedPlantItem={getHarvestedPlantItem} getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} 
-				nextPlant={nextPlant} setChanges={setChanges} resetHarvestForm={resetHarvestForm} setNewHarvestedPlantID={setNewHarvestedPlantID} 
+				<HarvestPlantButton getHarvestRecordItem={getHarvestRecordItem} getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} 
+				nextPlant={nextPlant} setChanges={setChanges} resetHarvestForm={resetHarvestForm} setNewHarvestRecordID={setNewHarvestRecordID} 
 				updateHBList={updateHBList} getPlantItem={getPlantItem} harvestType={harvestType} getStrainForPlantItem={getStrainForPlantItem}></HarvestPlantButton>
 
 				</Grid>
@@ -1082,15 +1054,15 @@ function HarvestForm({harvestBatches,setHarvestBatches,plants,setPlantMap,harves
 					alignItems="center"
 				>
 
-				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} harvestedPlants={harvestedPlants} currHidePlants={currHidePlants}
+				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} getHarvestRecords={getHarvestRecords} currHidePlants={currHidePlants}
 				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
-				 setHarvestedPlants={setHarvestedPlants} setPlants={setPlants} printData={printData} resetHarvestForm={resetHarvestForm}></EditButton>		
+				 setHarvestRecords={setHarvestRecords} setPlants={setPlants} printData={printData} resetHarvestForm={resetHarvestForm}></EditButton>		
 				<FormLabel>Harvest Queue</FormLabel>
 
 				</Grid>
 
-					<TableWrapper currHarvest={currentHarvest} harvestedPlants={harvestedPlants} editNow={editNow} currWeightChanges={currWeightChanges} setWeightChanges={setWeightChanges} getRemovePlantIDDelete={getRemovePlantIDDelete} 
-					currHidePlants={currHidePlants} setHidePlants={setHidePlants} plants={plants}></TableWrapper>			
+					<TableWrapper currHarvest={currentHarvest} getHarvestRecords={getHarvestRecords} editNow={editNow} currWeightChanges={currWeightChanges} setWeightChanges={setWeightChanges} getRemovePlantIDDelete={getRemovePlantIDDelete} 
+					currHidePlants={currHidePlants} setHidePlants={setHidePlants} getPlants={getPlants}></TableWrapper>			
 				</Grid>
 		</div>
 	);

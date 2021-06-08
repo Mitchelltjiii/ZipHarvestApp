@@ -6,7 +6,7 @@ class DeleteButton extends Component{
     deletePlant() {
       console.log("Enter deletePlant");
 
-      this.props.hideHarvestedPlant(this.props.row.tag);
+      this.props.hideHarvestRecord(this.props.row.tag);
     }
 
     async handleGetReady(event) {
@@ -30,7 +30,7 @@ class DeleteButton extends Component{
     constructor(props) {
         super(props);
         this.state = {
-          harvestedPlantItem: this.emptyHarvestedPlant,
+          harvestRecordItem: this.emptyHarvestRecord,
           readyToDelete: false,
           bgColors: { "Default": "#81b71a",
                     "Blue": "#00B1E1",

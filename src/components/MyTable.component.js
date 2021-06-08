@@ -13,10 +13,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import DeleteButton from './DeleteButton.component';
 
 
-function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeightChanges,wrapper,getRemovePlantIDDelete,currHidePlants,setHidePlants,plants,reset}) {
+function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWeightChanges,wrapper,getRemovePlantIDDelete,currHidePlants,setHidePlants,getPlants,reset}) {
 
   console.log("MYTABLE STARTED");
-  console.log('HARVESTEDPLANTS in Table: ' + JSON.stringify(harvestedPlants));
+  console.log('HarvestRecords in Table: ' + JSON.stringify(getHarvestRecords()));
   console.log("Curr Hide Plants: " + currHidePlants);
   console.log("Curr Hide Plants(STRING): " + JSON.stringify(currHidePlants));
 
@@ -54,7 +54,7 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
     }
 
     function getStrainFromTag(tag){
-      for(let val of plants){
+      for(let val of getPlants()){
         if(val.tag == tag){
           return val.strain;
         }
@@ -63,7 +63,7 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
 
     let rows = [];
       try{
-        for(let val of harvestedPlants) {  
+        for(let val of getHarvestRecords()) {  
           if(val.batchName == currHarvest.name){
             let hidden = false;
             for(let val2 of currHidePlants){
@@ -136,7 +136,7 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
       wrapper.setState({ state: wrapper.state });
     }
 
-    function hideHarvestedPlant(tag){
+    function hideHarvestRecord(tag){
         console.log("Hide Harvested Plant clicked in MyTable");
 
         currHidePlants.push(tag);
@@ -275,7 +275,7 @@ function MyTable({currHarvest,harvestedPlants,editNow,currWeightChanges,setWeigh
               {editNow 
               ? 			
                   <TableCell align="left" style={{ width: "170px"}}>
-                    <DeleteButton editNow={editNow} row={row} getRemovePlantIDDelete={getRemovePlantIDDelete} wrapper={wrapper} hideHarvestedPlant={hideHarvestedPlant}></DeleteButton>
+                    <DeleteButton editNow={editNow} row={row} getRemovePlantIDDelete={getRemovePlantIDDelete} wrapper={wrapper} hideHarvestRecord={hideHarvestRecord}></DeleteButton>
                   </TableCell>
               : null
               }
