@@ -60,11 +60,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	console.log("ENTER HARVESTFORM, CURRENT HARVEST: " + JSON.stringify(currentHarvest));
 
-	console.log("ENTER HARVESTFORM, CURRENT HARVESTBATCHES: " + JSON.stringify(getHarvestBatches()));
+	console.log("ENTER HARVESTFORM, CURRENT HARVESTBATCHES: " + getHarvestBatches());
 
-	console.log("ENTER HARVESTFORM, CURRENT PLANTMAP: " + JSON.stringify(getPlants()));
+	console.log("ENTER HARVESTFORM, CURRENT PLANTMAP: " + getPlants());
 
-	console.log("ENTER HARVESTFORM, CURRENT HarvestRecords: " + JSON.stringify(getHarvestRecords()));
+	console.log("ENTER HARVESTFORM, CURRENT HarvestRecords: " + getHarvestRecords());
 
 	var bgColors = { "Default": "#81b71a",
                     "Blue": "#00B1E1",
@@ -73,9 +73,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
                     "Red": "#E9573F",
                     "Yellow": "#F6BB42",
 	};
-	
-	const handleClick = (event) => {
-	  };
 
 	const [day, setDay] = React.useState('today');
 
@@ -281,7 +278,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	let searchOptionsList = ["Contains","Ends With"];
     
-	for(let val of getHarvestBatches()) {
+	for(let val of JSON.parse(getHarvestBatches())) {
 		console.log("XX-VAL[name]: " + val.name);
 		if(!hbOptionsList.includes(val.name)){
 			hbOptionsList.push(val.name);
