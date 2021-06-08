@@ -153,7 +153,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		let x = 0;
 		let foundX = -1;
 		let harvestBatches = getHarvestBatches();
-		for(let val of harvestBatches) {
+		for(let val of JSON.parse(getHarvestBatches())) {
 			if(val.name == selectedHB.name){
 				console.log("FOUND X: " + x);
 				foundX = x;
@@ -182,7 +182,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}
 		console.log("Generated UID: " + uid);
 
-		for(let val of getHarvestRecords()) {
+		for(let val of JSON.parse(getHarvestRecords())) {
 			if(val.uid == uid){
 				console.log("UID already exists, trying again");
 				return getNewUID();
@@ -206,7 +206,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		let x = 0;
 		let foundX = -1;
 		let replaceEntry = "";
-		for(let val of getPlants()) {
+		for(let val of JSON.parse(getPlants())) {
 			if(val.tag == plantTag){
 				console.log("FOUND X: " + x);
 				foundX = x;
@@ -372,7 +372,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 		console.log("Commit Search!!");
 
-		for (const val of getPlants()) {
+		for (const val of JSON.parse(getPlants())) {
 			if(val.active == 0){
 				plantTags.push(val.tag);
 			}
@@ -532,7 +532,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				let plantTags = [];
 
-				for (const val of getPlants()) {
+				for (const val of JSON.parse(getPlants())) {
 					plantTags.push(val.tag);
 				}
 				console.log("Exit Next Plant");
@@ -633,7 +633,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("Remove Harvested Plant ID: " + removeID );
 		let x = 0;
 		let foundX = -1;
-		for(let val of getHarvestRecords()){
+		for(let val of JSON.parse(getHarvestRecords())){
 			console.log("Val: " + JSON.stringify(val));
 			if(val.id == removeID){
 				foundX=x;
@@ -802,7 +802,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	function getRemovePlantIDDelete(uid){
 		console.log("Get Remove Plant ID Delete: UID: " + uid)
 
-		for(let val of getHarvestRecords()){
+		for(let val of JSON.parse(getHarvestRecords())){
 			if(val.uid == uid){
 				console.log("Found UID: " + uid);
 				console.log("Found hbItemID: " + val.id);
@@ -844,7 +844,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			tag = currentHarvestRecord.tag;
 		}
 		console.log("Searching For: " + tag);
-		for(let val of getPlants()){
+		for(let val of JSON.parse(getPlants())){
 			console.log("VAL(STRING): " + JSON.stringify(val));
 			if(val.tag == tag){
 				return val.strain;

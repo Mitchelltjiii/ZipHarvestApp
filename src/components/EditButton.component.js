@@ -97,7 +97,7 @@ class EditButton extends Component{
 
           for(const tag of this.props.currHidePlants){
             let addPlant = new Plant("","","","");
-            for(const val of this.props.getHarvestRecords()){
+            for(const val of JSON.parse(this.props.getHarvestRecords())){
               if(val.tag == tag){
                 addPlant = new Plant(val.tag,this.props.getStrainForPlantItem(val.tag),"mtj",0);
 

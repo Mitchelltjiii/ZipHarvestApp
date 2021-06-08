@@ -48,7 +48,7 @@ function HBTable({getHarvestBatches,getHarvestRecords}) {
 
     const rows = [];
 
-    for(let val of getHarvestBatches()) {
+    for(let val of JSON.parse(getHarvestBatches())) {
       rows.push(createData(val.name,val.plantList));
     }
        

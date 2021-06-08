@@ -159,9 +159,9 @@ export default class App extends React.Component {
     console.log("CurrHarvest: " + JSON.stringify(currHarvest));
     console.log("CurrHarvest.name: " + currHarvest.name);
 
-    let parsed = JSON.parse(this.state.harvestBatches);
+    let parsedHarvestBatches = JSON.parse(this.state.harvestBatches);
 
-    for(let val of parsed){
+    for(let val of parsedHarvestBatches){
 			console.log("Val: " + JSON.stringify(val));
       console.log("Val.name: " + val.name);
 			if(val.name == currHarvest.name){
@@ -179,19 +179,19 @@ export default class App extends React.Component {
     console.log("RESETTING ALL");
 
     console.log("Before Get Users");
-    this.getUsers();
+    this.getUsersFromDB();
     console.log("After Get Users");
 
     console.log("Before GetHarvestBatches")
-    this.getHarvestBatches();
+    this.getHarvestBatchesFromDB();
     console.log("After GetHarvestBatches")
 
     console.log("Before GetPlants")
-    this.getPlants();
+    this.getPlantsFromDB();
     console.log("After GetPlants")
 
     console.log("Before GetHarvestRecords")
-    this.getHarvestRecords();
+    this.getHarvestRecordsFromDB();
     console.log("After GetHarvestRecords")
 
     this.forceUpdate();
@@ -313,6 +313,10 @@ export default class App extends React.Component {
     return this.state.harvestBatches;
   }
 
+  getUsers = () => {
+    return this.state.users;
+  }
+
   setHarvestBatches = (harvestBatchesFromChild) =>{
     console.log("SET HARVEST BATCHES - HB from child: " + JSON.stringify(harvestBatchesFromChild));
     this.state.harvestBatches = harvestBatchesFromChild;
@@ -355,7 +359,7 @@ export default class App extends React.Component {
       setHarvestBatches={this.setHarvestBatches} setHarvestRecords={this.setHarvestRecords} setPlants={this.setPlants}/>
     </div>;
     }else{
-		showForm = <div><LogIn users={this.state.users} executeLogIn={this.executeLogIn}></LogIn></div>;
+		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn}></LogIn></div>;
     }
     return (
       <div className="App">
