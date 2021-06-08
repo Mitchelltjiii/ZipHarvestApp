@@ -317,7 +317,7 @@ export default class App extends React.Component {
     return this.state.users;
   }
 
-  setHarvestBatches = (harvestBatchesFromChild) =>{
+  setHarvestBatches = (harvestBatchesFromChild) => {
     console.log("SET HARVEST BATCHES - HB from child: " + JSON.stringify(harvestBatchesFromChild));
     this.state.harvestBatches = harvestBatchesFromChild;
     console.log("SET HARVEST BATCHES - state.hbMap after transfer: " + JSON.stringify(this.state.harvestBatches));
@@ -329,7 +329,7 @@ export default class App extends React.Component {
     console.log("SET PLANTS - Plants after transfer: " + JSON.stringify(this.state.plants));
   }
 
-  setHarvestRecords(harvestRecordsMapFromChild){
+  setHarvestRecords = (harvestRecordsMapFromChild) => {
     console.log("SET HARVESTRECORDS MAP - HarvestRecordsMap from child: " + JSON.stringify(harvestRecordsMapFromChild));
     this.state.harvestRecords = harvestRecordsMapFromChild;
     console.log("SET HARVESTRECORDS - HarvestRecords after transfer: " + JSON.stringify(this.state.harvestRecords));
