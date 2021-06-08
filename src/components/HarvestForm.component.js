@@ -203,6 +203,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function removePlant(plantTag){
 		console.log("Remove Plant: " + plantTag);
+		console.log("Current Harvest: " + currentHarvest);
+		console.log("Current Harvest(STRING): " + JSON.stringify(currentHarvest));
+
 		let x = 0;
 		let foundX = -1;
 		let replaceEntry = "";
@@ -218,11 +221,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			x++;
 		}
 
-		console.log("Plant Map Before Remove Plant(STRINGIFIED): " + getPlants());
+		console.log("Plant Map Before Remove Plant: " + getPlants());
 		if(foundX != -1){
 			setPlants(JSON.stringify(JSON.parse(getPlants()).splice(foundX,1,replaceEntry)));
 		}
-		console.log("Plant Map AFTER Remove Plant(STRINGIFIED): " + getPlants());
+		console.log("Plant Map AFTER Remove Plant: " + getPlants());
 	}
 
 	function addHarvestRecord(plant){
@@ -234,7 +237,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	
 	currentHarvest = getHarvestBatch(selectedHB);
 	console.log("AFTER ALL THAT THE HARVESTBATCHES: " + getHarvestBatches());
-	console.log("AFTER ALL THAT THE HARVESTBATCHES(STRING): " + JSON.stringify(getHarvestBatches()));
 
   	const handleDayChange = (event) => {
     	setDay(event.target.value);
@@ -351,7 +353,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	let harvestTypeLabelText = "Harvest";
 	let harvestDateLabelText = "Today";
 	if(!(currentHarvest == undefined || currentHarvest.name == '')){
-		if(currentHarvest.type=="manicure"){
+		if(currentHarvest.type==1){
 			harvestTypeLabelText = "Manicure";
 		}
 		if(currentHarvest.date==getTodayStr()){

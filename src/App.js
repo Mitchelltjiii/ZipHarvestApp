@@ -318,21 +318,21 @@ export default class App extends React.Component {
   }
 
   setHarvestBatches = (harvestBatchesFromChild) => {
-    console.log("SET HARVEST BATCHES - HB from child: " + JSON.stringify(harvestBatchesFromChild));
+    console.log("SET HARVEST BATCHES - HB from child: " + harvestBatchesFromChild);
     this.state.harvestBatches = harvestBatchesFromChild;
-    console.log("SET HARVEST BATCHES - state.hbMap after transfer: " + JSON.stringify(this.state.harvestBatches));
+    console.log("SET HARVEST BATCHES - state.hbMap after transfer: " + this.state.harvestBatches);
   }
 
   setPlants = (plantMapFromChild) => {
-    console.log("SET PLANT MAP - PlantMap from child: " + JSON.stringify(plantMapFromChild));
+    console.log("SET PLANT MAP - PlantMap from child: " + plantMapFromChild);
     this.state.plant = plantMapFromChild;
-    console.log("SET PLANTS - Plants after transfer: " + JSON.stringify(this.state.plants));
+    console.log("SET PLANTS - Plants after transfer: " + this.state.plants);
   }
 
   setHarvestRecords = (harvestRecordsMapFromChild) => {
-    console.log("SET HARVESTRECORDS MAP - HarvestRecordsMap from child: " + JSON.stringify(harvestRecordsMapFromChild));
+    console.log("SET HARVESTRECORDS MAP - HarvestRecordsMap from child: " + harvestRecordsMapFromChild);
     this.state.harvestRecords = harvestRecordsMapFromChild;
-    console.log("SET HARVESTRECORDS - HarvestRecords after transfer: " + JSON.stringify(this.state.harvestRecords));
+    console.log("SET HARVESTRECORDS - HarvestRecords after transfer: " + this.state.harvestRecords);
   }
 
   render() {
