@@ -218,11 +218,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			x++;
 		}
 
-		console.log("Plant Map Before Remove Plant(STRINGIFIED): " + JSON.stringify(getPlants()));
+		console.log("Plant Map Before Remove Plant(STRINGIFIED): " + getPlants());
 		if(foundX != -1){
 			setPlants(JSON.stringify(JSON.parse(getPlants()).splice(foundX,1,replaceEntry)));
 		}
-		console.log("Plant Map AFTER Remove Plant(STRINGIFIED): " + JSON.stringify(getPlants()));
+		console.log("Plant Map AFTER Remove Plant(STRINGIFIED): " + getPlants());
 	}
 
 	function addHarvestRecord(plant){
