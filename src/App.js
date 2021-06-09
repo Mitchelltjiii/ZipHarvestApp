@@ -318,6 +318,10 @@ export default class App extends React.Component {
 
   getUsers = () => {
     console.log("In App.js - Get Users: " + this.state.users);
+    if(this.state.users = ""){
+      this.usersLoading=true;
+      this.getUsersFromDB();
+    }
     return this.state.users;
   }
 
@@ -363,7 +367,7 @@ export default class App extends React.Component {
       setHarvestBatches={this.setHarvestBatches} setHarvestRecords={this.setHarvestRecords} setPlants={this.setPlants}/>
     </div>;
     }else{
-		showForm = <div><LogIn getUsers={this.getUsersFromDB} executeLogIn={this.executeLogIn}></LogIn></div>;
+		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn}></LogIn></div>;
     }
     return (
       <div className="App">
