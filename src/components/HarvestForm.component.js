@@ -137,7 +137,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	function getHarvestBatch(selectedHB){
 		console.log("Enter GetHarvestBatch");
 		console.log("Get Harvest Batches: " + getHarvestBatches());
-		console.log("Get Harvest Batches(STRING): " + JSON.stringify(getHarvestBatches()));
 
 		for(let val of JSON.parse(getHarvestBatches())) {
 			console.log("VAL(STRING): " + JSON.stringify(val));
@@ -235,7 +234,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("Add Harvested Plant: " + JSON.stringify(plant));
 		let tempHarvestRecords = JSON.parse(getHarvestRecords());
 		console.log("Before Add Harvest Record - HarvestRecords: " + JSON.stringify(tempHarvestRecords));
-		tempHarvestRecords.push(JSON.stringify(plant));
+		tempHarvestRecords.push(plant);
 		setHarvestRecords(JSON.stringify(tempHarvestRecords));
 		console.log("After Add Harvest Record - HarvestRecords: " + getHarvestRecords());
 	}
@@ -441,7 +440,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 		if(hbName!=""&&!hbOptionsList.includes(hbName)){
 			let tempHarvestBatches = JSON.parse(getHarvestBatches());
-			tempHarvestBatches.push(JSON.stringify(addedHB));
+			tempHarvestBatches.push(addedHB);
 			setHarvestBatches(tempHarvestBatches);
 			hbOptionsList.push(hbName);
 			console.log("HB Added");
