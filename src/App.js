@@ -37,7 +37,7 @@ export default class App extends React.Component {
     console.log("After GetHarvestBatches")
 
     console.log("Before GetPlants")
-    this.getPlantsFromDB();
+    this.getPlantsFromDB(true);
     console.log("After GetPlants")
 
     console.log("Before GetHarvestRecords")
@@ -64,7 +64,7 @@ export default class App extends React.Component {
     this.engageReload();
   }
 
-  getPlantsFromDB = async () => {
+  getPlantsFromDB = async (reload) => {
     console.log("In GetPlants")
     const response = await fetch('/api/pl');
     const text = await response.text();
@@ -72,7 +72,9 @@ export default class App extends React.Component {
     this.state.plants = text;
     this.state.plantsLoading = false;
     console.log("Leaving GetPlants")
-    this.engageReload();
+    if(reload){
+      this.engageReload();
+    }
   }
 
   getHarvestRecordsFromDB = async () => {
@@ -187,7 +189,7 @@ export default class App extends React.Component {
     console.log("After GetHarvestBatches")
 
     console.log("Before GetPlants")
-    this.getPlantsFromDB();
+    this.getPlantsFromDB(true);
     console.log("After GetPlants")
 
     console.log("Before GetHarvestRecords")
@@ -202,7 +204,7 @@ export default class App extends React.Component {
 
     console.log("RELOAD PLANTS");
     console.log("Before GetPlants");
-    this.getPlantsFromDB();
+    this.getPlantsFromDB(false);
     console.log("After GetPlants");
   }
 
