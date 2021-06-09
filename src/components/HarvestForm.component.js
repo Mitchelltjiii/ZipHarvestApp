@@ -128,12 +128,16 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [searchStrain, setSearchStrain] = React.useState('All Strains');
 
-	const [selectedHB, setSelectedHB] = React.useState('');
+	let selHB = '';
 
 	console.log("JSON.stringify-currentharvest: " + JSON.stringify(currentHarvest));
 	if(currentHarvest != undefined && JSON.stringify(currentHarvest)!= "[]"){
-		selectedHB = currentHarvest.name;
+		selHB = currentHarvest.name;
 	}
+
+	const [selectedHB, setSelectedHB] = React.useState(selHB);
+
+	
 
 
 	const handleSelectHB = (e) => {
