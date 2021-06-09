@@ -27,7 +27,7 @@ import TableWrapper from './TableWrapper.component';
 import { setGlobalCssModule } from 'reactstrap/es/utils';
 
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches, 
-	resetAll, currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, setAll}) { 
+	resetAll, currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, setAll, reloadPlants}) { 
 
 	function HarvestBatch(name,submitted,type,date,userID){
 		this.name = name;
@@ -604,7 +604,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setWeight("");
 		setBranchValue("");
 		setSearchTag("");
-		setSelectedTag("");		
+		setSelectedTag("");	
+		reloadPlants();	
 		refreshOuter();
 	}
 
