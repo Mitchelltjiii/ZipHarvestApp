@@ -618,6 +618,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		//refreshOuter();
 	}
 
+	function reloadPlantsFromEditButton(){
+		reloadPlants(currentHarvest);	
+	}
+
 	function printData(){
 		console.log("PRINT DATA!");
 
@@ -1071,7 +1075,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} getHarvestRecords={getHarvestRecords} currHidePlants={currHidePlants}
 				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
-				 setHarvestRecords={setHarvestRecords} setPlants={setPlants} printData={printData} resetHarvestForm={resetHarvestForm}></EditButton>		
+				 setHarvestRecords={setHarvestRecords} setPlants={setPlants} printData={printData} resetHarvestForm={resetHarvestForm}
+				 reloadPlantsFromEditButton={reloadPlantsFromEditButton}></EditButton>		
 				<FormLabel>Harvest Queue</FormLabel>
 
 				</Grid>
