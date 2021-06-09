@@ -320,7 +320,7 @@ export default class App extends React.Component {
     console.log("In App.js - Get Users: " + this.state.users);
     console.log("In App.js - Get Users(STRING): " + JSON.stringify(this.state.users));
 
-    if(JSON.stringify(this.state.users) = ""){
+    if(JSON.stringify(this.state.users) == ""){
       console.log("Users is empty");
       this.usersLoading=true;
       this.getUsersFromDB();
