@@ -363,7 +363,7 @@ export default class App extends React.Component {
       setHarvestBatches={this.setHarvestBatches} setHarvestRecords={this.setHarvestRecords} setPlants={this.setPlants}/>
     </div>;
     }else{
-		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn}></LogIn></div>;
+		showForm = <div><LogIn getUsers={this.getUsersFromDB} executeLogIn={this.executeLogIn}></LogIn></div>;
     }
     return (
       <div className="App">
