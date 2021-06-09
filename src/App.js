@@ -54,13 +54,13 @@ export default class App extends React.Component {
   }
 
   getUsersFromDB = async () => {
-    console.log("In GetUsers")
+    console.log("In GetUsers FROM DB")
     const response = await fetch('/api/users');
     const text = await response.text();
     console.log("API GET USERS: " + text);
     this.state.users = text;
     this.state.usersLoading = false;
-    console.log("Leaving GetUsers")
+    console.log("Leaving GetUsers FROM DB")
     this.engageReload();
   }
 
@@ -318,10 +318,16 @@ export default class App extends React.Component {
 
   getUsers = () => {
     console.log("In App.js - Get Users: " + this.state.users);
+    console.log("In App.js - Get Users(STRING): " + JSON.stringify(this.state.users));
+
     if(this.state.users = ""){
+      console.log("Users is empty");
       this.usersLoading=true;
       this.getUsersFromDB();
+    }else{
+      console.log("Users is not empty");
     }
+    console.log("Return state.users");
     return this.state.users;
   }
 
