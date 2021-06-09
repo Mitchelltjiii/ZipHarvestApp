@@ -197,13 +197,13 @@ export default class App extends React.Component {
     this.forceUpdate();
   }
 
-  reloadPlants = () => {
-    this.setState({plantsLoading: true});
+  reloadPlants = (currHarvest) => {
+    this.setState({plantsLoading: true, currentHarvest: currHarvest});
 
     console.log("RELOAD PLANTS");
-    console.log("Before GetPlants")
+    console.log("Before GetPlants");
     this.getPlantsFromDB();
-    console.log("After GetPlants")
+    console.log("After GetPlants");
   }
 
   setNewHBID = (newID,hb) => {
