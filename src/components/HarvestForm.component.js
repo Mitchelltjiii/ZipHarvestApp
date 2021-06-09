@@ -615,7 +615,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setSearchTag("");
 		setSelectedTag("");	
 		reloadPlants(currentHarvest);	
-		refreshOuter();
+		//refreshOuter();
 	}
 
 	function printData(){
