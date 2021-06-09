@@ -302,18 +302,22 @@ export default class App extends React.Component {
   }
 
   getPlants = () => {
+    console.log("In App.js - Get Plants: " + this.state.plants);
     return this.state.plants;
   }
 
   getHarvestRecords = () => {
+    console.log("In App.js - Get HarvestRecords: " + this.state.harvestRecords);
     return this.state.harvestRecords;
   }
 
   getHarvestBatches = () => {
+    console.log("In App.js - Get HarvestBatches: " + this.state.harvestBatches);
     return this.state.harvestBatches;
   }
 
   getUsers = () => {
+    console.log("In App.js - Get Users: " + this.state.users);
     return this.state.users;
   }
 

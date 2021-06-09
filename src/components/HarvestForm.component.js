@@ -606,11 +606,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("PRINT DATA!");
 
 		console.log("===============");
-		console.log("PLANTS: " + JSON.stringify(getPlants()));
+		console.log("PLANTS: " + getPlants());
 		console.log("===============");
-		console.log("HARVESTRECORDS: " + JSON.stringify(getHarvestRecords()));
+		console.log("HARVESTRECORDS: " + getHarvestRecords());
 		console.log("===============");
-		console.log("HARVESTBATCHES: " + JSON.stringify(getHarvestBatches()));
+		console.log("HARVESTBATCHES: " + getHarvestBatches());
 		console.log("===============");
 	}
 
