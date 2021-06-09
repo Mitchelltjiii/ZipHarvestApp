@@ -230,8 +230,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function addHarvestRecord(plant){
 		console.log("Add Harvested Plant: " + JSON.stringify(plant));
-		console.log("Before Add Harvest Record - HarvestRecords: " + getHarvestRecords());
-		setHarvestRecords(JSON.stringify(JSON.parse(getHarvestRecords()).push(JSON.stringify(plant))));
+		let tempHarvestRecords = JSON.parse(getHarvestRecords());
+		console.log("Before Add Harvest Record - HarvestRecords: " + JSON.stringify(tempHarvestRecords));
+		tempHarvestRecords.push(JSON.stringify(plant));
+		setHarvestRecords(JSON.stringify(tempHarvestRecords));
 		console.log("After Add Harvest Record - HarvestRecords: " + getHarvestRecords());
 	}
 	
