@@ -370,6 +370,9 @@ export default class App extends React.Component {
     console.log("Plants In State: " + this.state.plants);
     console.log("HarvestRecords In State: " + this.state.harvestRecords);
     console.log("ResponseFromPlant In State: " + this.state.responseFromPlants);
+    console.log("CurrentHarvest: " + this.state.currentHarvest);
+    console.log("CurrentHarvest(STRNIG): " + JSON.stringify(this.state.currentHarvest));
+
 
 	  console.log("Logged In: " + this.state.loggedIn);
 	  let showForm;
