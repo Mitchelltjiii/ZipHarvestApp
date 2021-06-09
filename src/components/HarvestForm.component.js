@@ -130,6 +130,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [selectedHB, setSelectedHB] = React.useState('');
 
+	console.log("JSON.stringify-currentharvest: " + JSON.stringify(currentHarvest));
+	if(currentHarvest != undefined && JSON.stringify(currentHarvest)!= "[]"){
+		selectedHB = currentHarvest.name;
+	}
+
+
 	const handleSelectHB = (e) => {
 		setSelectedHB(e.target.value);
 	};
@@ -368,12 +374,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			harvestDateLabelText = currentHarvest.date;
 		}
 	}
-
-	console.log("JSON.stringify-currentharvest: " + JSON.stringify(currentHarvest));
-	if(currentHarvest != undefined && JSON.stringify(currentHarvest)!= "[]"){
-		setSelectedHB(currentHarvest.name);
-	}
-
 
 	console.log("HB Info Tabs Hidden Now: " + hbInfoTabsHiddenNow);
 
