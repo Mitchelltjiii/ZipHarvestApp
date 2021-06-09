@@ -532,7 +532,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				}
 				currentHarvestRecord.unit=unit;
 								
-				addHarvestRecord(currentHarvestRecord);
+				//addHarvestRecord(currentHarvestRecord);
 
 				removePlant(plantTag)
 				//setRemovedPlantID(addPlant.itemID);
