@@ -437,7 +437,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		addedHB = new HarvestBatch(hbName,0,harvType,hbDate,userID);
 
 		if(hbName!=""&&!hbOptionsList.includes(hbName)){
-			setHarvestBatches(JSON.stringify(JSON.parse(getHarvestBatches()).push(addedHB)));
+			let tempHarvestBatches = JSON.parse(getHarvestBatches());
+			tempHarvestBatches.push(JSON.stringify(addedHB));
+			setHarvestBatches(tempHarvestBatches);
 			hbOptionsList.push(hbName);
 			console.log("HB Added");
 			setSelectedHB(hbName);
