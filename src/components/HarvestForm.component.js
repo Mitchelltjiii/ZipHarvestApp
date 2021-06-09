@@ -369,6 +369,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}
 	}
 
+	console.log("JSON.stringify-currentharvest: " + JSON.stringify(currentHarvest));
+	if(JSON.stringify(currentHarvest)!= ""){
+		setSelectedHB(currentHarvest.name);
+	}
+
 
 	console.log("HB Info Tabs Hidden Now: " + hbInfoTabsHiddenNow);
 
