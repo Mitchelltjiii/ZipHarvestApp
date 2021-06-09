@@ -370,7 +370,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	console.log("JSON.stringify-currentharvest: " + JSON.stringify(currentHarvest));
-	if(JSON.stringify(currentHarvest)!= ""){
+	if(currentHarvest != undefined && JSON.stringify(currentHarvest)!= "[]"){
 		setSelectedHB(currentHarvest.name);
 	}
 
