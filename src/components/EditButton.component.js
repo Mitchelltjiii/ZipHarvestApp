@@ -44,7 +44,7 @@ class EditButton extends Component{
               let i = 0;
               let foundIndex = -1;
               let foundHarvestRecord = new HarvestRecord('','','','','','');
-              for(const val2 of this.props.getHarvestRecords()){
+              for(const val2 of JSON.parse(this.props.getHarvestRecords())){
                 console.log("Val2 (HarvestRecords): " + JSON.stringify(val2));
                 if(val2.tag==val.tag){
                   foundIndex = i;
@@ -132,7 +132,7 @@ class EditButton extends Component{
               let i = 0;
               let foundIndex = -1;
               let foundID = '';
-              for(const val2 of this.props.getHarvestRecords()){
+              for(const val2 of JSON.parse(this.props.getHarvestRecords())){
                 console.log("Val2 (HarvestRecords): " + JSON.stringify(val2));
                 if(val2.tag==tag){
                   foundIndex = i;
