@@ -407,6 +407,7 @@ app.delete(`/zhplant/:id`, (req, res) =>{
     res.json(message);
 });
 
+/*
 app.delete(`/hr/:id`, (req, res) =>{
   console.log("Delete HarvestRecord: " + req.params.id);
   let plantID = req.params.id;
@@ -420,6 +421,20 @@ app.delete(`/hr/:id`, (req, res) =>{
     }
   
     res.json(message);
+});*/
+
+app.delete(`/hr/:id`, (req, res) =>{
+  console.log("Delete HarvestRecord: " + req.params.id);
+  let plantID = req.params.id;
+  var sql = `DELETE FROM hr WHERE id = ${plantID}`;
+  connection.query(sql,function(err, result) {
+        console.log("GET HARVESTBATCHES RESULT(STRING)- " + JSON.stringify(result));
+        res.json(result);
+        if (err) {
+          console.log('DELETE HR Connection error message: ' + err.message);
+          return;
+      }
+    });
 });
 
 app.get('*', (req, res) => {
