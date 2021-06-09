@@ -41,7 +41,7 @@ export default class App extends React.Component {
     console.log("After GetPlants")
 
     console.log("Before GetHarvestRecords")
-    this.getHarvestRecordsFromDB();
+    this.getHarvestRecordsFromDB(true);
     console.log("After GetHarvestRecords")
   }
 
@@ -77,7 +77,7 @@ export default class App extends React.Component {
     }
   }
 
-  getHarvestRecordsFromDB = async () => {
+  getHarvestRecordsFromDB = async (reload) => {
     console.log("In GetHarvestRecords")
     const response = await fetch('/api/hr');
     const text = await response.text();
@@ -85,7 +85,9 @@ export default class App extends React.Component {
     this.state.harvestRecords = text;
     this.state.harvestRecordsLoading = false;
     console.log("Leaving GetHarvestRecords")
-    this.engageReload();
+    if(reload){
+      this.engageReload();
+    }
   }
 
   getHarvestBatchesFromDB = async () => {
@@ -193,7 +195,7 @@ export default class App extends React.Component {
     console.log("After GetPlants")
 
     console.log("Before GetHarvestRecords")
-    this.getHarvestRecordsFromDB();
+    this.getHarvestRecordsFromDB(true);
     console.log("After GetHarvestRecords")
 
     this.forceUpdate();
@@ -206,6 +208,19 @@ export default class App extends React.Component {
     console.log("Before GetPlants");
     this.getPlantsFromDB(false);
     console.log("After GetPlants");
+  }
+
+  reloadPlantsAndHarvestRecords = (currHarvest) => {
+    this.setState({currentHarvest: currHarvest});
+
+    console.log("RELOAD PLANTS AND HARVEST RECORDS");
+    console.log("Before GetPlants");
+    this.getPlantsFromDB(false);
+    console.log("After GetPlants");
+
+    console.log("Before GetHarvestRecordsFROMDB");
+    this.getHarvestRecordsFromDB(false);
+    console.log("After GetHarvestRecordsFROMDB");
   }
 
   setNewHBID = (newID,hb) => {
@@ -382,7 +397,7 @@ export default class App extends React.Component {
       <Outer currentPage={this.state.currentPage} setCurrentPage={this.SetCurrentPage} getPlants={this.getPlants} getHarvestRecords={this.getHarvestRecords} getHarvestBatches={this.getHarvestBatches}
       resetHarvestBatches={this.resetHarvestBatches} resetAll={this.resetAll} currentHarvest={this.state.currentHarvest} setNewHBID={this.setNewHBID} getCurrentHarvestID={this.getCurrentHarvestID}
       setNewHarvestRecordID={this.setNewHarvestRecordID} setNewPlantID={this.setNewPlantID} userID={this.state.userID} setAll={this.setAll}
-      setHarvestBatches={this.setHarvestBatches} setHarvestRecords={this.setHarvestRecords} setPlants={this.setPlants} reloadPlants={this.reloadPlants}/>
+      setHarvestBatches={this.setHarvestBatches} setHarvestRecords={this.setHarvestRecords} setPlants={this.setPlants} reloadPlants={this.reloadPlants} reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords}/>
     </div>;
     }else{
 		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn}></LogIn></div>;

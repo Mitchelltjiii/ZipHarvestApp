@@ -27,7 +27,8 @@ import TableWrapper from './TableWrapper.component';
 import { setGlobalCssModule } from 'reactstrap/es/utils';
 
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches, 
-	resetAll, currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, setAll, reloadPlants}) { 
+	resetAll, currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, setAll, 
+	reloadPlants, reloadPlantsAndHarvestRecords}) { 
 
 	function HarvestBatch(name,submitted,type,date,userID){
 		this.name = name;
@@ -618,8 +619,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		//refreshOuter();
 	}
 
-	function reloadPlantsFromEditButton(){
-		reloadPlants(currentHarvest);	
+	function reloadFromEditButton(){
+		reloadPlantsAndHarvestRecords(currentHarvest);
 	}
 
 	function printData(){
@@ -1076,7 +1077,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} getHarvestRecords={getHarvestRecords} currHidePlants={currHidePlants}
 				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
 				 setHarvestRecords={setHarvestRecords} setPlants={setPlants} printData={printData} resetHarvestForm={resetHarvestForm}
-				 reloadPlantsFromEditButton={reloadPlantsFromEditButton}></EditButton>		
+				 reloadFromEditButton={reloadFromEditButton}></EditButton>		
 				<FormLabel>Harvest Queue</FormLabel>
 
 				</Grid>
