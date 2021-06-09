@@ -200,7 +200,7 @@ export default class App extends React.Component {
   }
 
   reloadPlants = (currHarvest) => {
-    this.setState({plantsLoading: true, currentHarvest: currHarvest});
+    this.setState({currentHarvest: currHarvest});
 
     console.log("RELOAD PLANTS");
     console.log("Before GetPlants");
