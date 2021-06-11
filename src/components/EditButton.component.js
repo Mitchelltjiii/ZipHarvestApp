@@ -71,7 +71,9 @@ class EditButton extends Component{
                 console.log("Harvested Plant Item to update with: " + JSON.stringify(harvestRecordItem));
   
                 console.log("Busy Updating activated")
+                console.log("BUSYSETTINGHR before push: " + JSON.stringify(this.state.busySettingHarvestRecords)); 
                 this.state.busySettingHarvestRecords.push(harvestRecordItem.id);
+                console.log("BUSYSETTINGHR after push: " + JSON.stringify(this.state.busySettingHarvestRecords)); 
                 console.log("Before updateHarvestRecord");
   
                 this.updateHarvestRecord(harvestRecordItem);
