@@ -220,15 +220,15 @@ export default class App extends React.Component {
   }
 
   reloadPlantsAndHarvestRecords = (currHarvest) => {
-    this.setState({currentHarvest: currHarvest});
+    this.setState({currentHarvest: currHarvest, plantsLoading: true, harvestRecordsLoading: true});
 
     console.log("RELOAD PLANTS AND HARVEST RECORDS");
     console.log("Before GetPlants");
-    this.getPlantsFromDB(false);
+    this.getPlantsFromDB(true);
     console.log("After GetPlants");
 
     console.log("Before GetHarvestRecordsFROMDB");
-    this.getHarvestRecordsFromDB(false);
+    this.getHarvestRecordsFromDB(true);
     console.log("After GetHarvestRecordsFROMDB");
   }
 
