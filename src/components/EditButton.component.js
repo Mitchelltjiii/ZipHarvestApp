@@ -182,7 +182,12 @@ class EditButton extends Component{
           this.props.setChanges();
           console.log("HarvestRecords in EditButton after changes accepted: " + this.props.getHarvestRecords());
           this.props.printData();
-          setTimeout(() => this.props.reloadFromEditButton(),0); 
+          console.log("BUSY LIST");
+          console.log("Busy setting harvest records" + JSON.stringify(this.state.busySettingHarvestRecords));
+          console.log("Busy add plants" + JSON.stringify(this.state.busyAddingPlants));
+          console.log("Busy deleting harvest records" + JSON.stringify(this.state.busyDeletingHarvestRecords));
+
+          this.props.reloadFromEditButton(); 
         }
       this.props.setEditMode(!this.props.editNow);
     }
