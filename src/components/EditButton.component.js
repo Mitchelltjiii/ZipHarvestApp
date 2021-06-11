@@ -222,7 +222,7 @@ class EditButton extends Component{
       console.log("Before removing busy removing record");
       console.log("BUSYREMOVINGHR before: " + JSON.stringify(this.state.busyDeletingHarvestRecords)); 
       for( var i = 0; i < this.state.busyDeletingHarvestRecords.length; i++){ 
-        if (this.state.busyDeletingHarvestRecords[i] == harvestRecordItem.id) { 
+        if (this.state.busyDeletingHarvestRecords[i] == removePlantID) { 
             this.state.busyDeletingHarvestRecords.splice(i, 1); 
         }
       }
