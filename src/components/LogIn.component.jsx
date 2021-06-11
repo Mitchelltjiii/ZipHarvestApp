@@ -41,8 +41,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers}){
           }
         }
       }catch(ex){
-        reloadUsers();
-        let parsedUsers = JSON.parse(getUsers());
+        let parsedUsers = JSON.parse(reloadUsers());
         for(const val of parsedUsers){
           console.log("Val: " + val);
           console.log("Val(String): " + JSON.stringify(val));
