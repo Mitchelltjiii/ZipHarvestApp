@@ -19,7 +19,8 @@ export default class App extends React.Component {
     currentHarvest: [],
     users: [],
     usersLoading: true,
-    userID: ""
+    userID: "",
+    busySettingUsers: false
   };
   componentDidMount() {
     /*
@@ -64,6 +65,14 @@ export default class App extends React.Component {
     if(reload){
       this.engageReload();
     }
+  }
+
+  setUserIDInDB = async (uID) => {
+    console.log("In setUserID IN DB")
+    fetch('/api/setUserID', {
+      body: JSON.stringify(uID)
+    })
+    .then(this.state.busySettingUsers=false);
   }
 
   getPlantsFromDB = async (reload) => {
@@ -317,6 +326,19 @@ export default class App extends React.Component {
   executeLogIn = (user, userID) =>{
     this.state.loggedIn=user;
     this.state.userID=userID;
+    this.state.busySettingUser = true;
+    this.setUserIDInDB(userID);
+    let x = 0;
+
+    while(this.state.busySettingUser == true && x<10000){
+      console.log("Set timeout");
+       setTimeout('',200);
+       x++;
+    }
+
+    if(x==10000){
+       console.log("TIMEOUT OPERATION FAILED");
+   }
     this.engageReload();
   }
 

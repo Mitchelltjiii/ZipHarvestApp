@@ -9,13 +9,15 @@ const db = require('../app/config/db.config');
 
 const Plant = db.Plant;
 
-const hbQueryString = "select * from hb where userID = 'mtj'";
+const hbQueryString = "select * from hb where userID = ";
 
 const plantsQueryString = 'select * from pl';
 
 const harvestRecordsQueryString = 'select * from hr';
 
 const usersQueryString = 'select * from users';
+
+const userID = "";
 
 const router = require('../app/routers/router');
 
@@ -39,6 +41,11 @@ app.use(express.urlencoded({
 
 app.use(express.json());
 
+app.get('/api/setUserID',(req, res) => {
+  console.log('api users id set: ' + req.body);
+  userID = req.body;
+});
+
 app.get('/api/users', (req, res) => {
   console.log('api/users');
   connection.query(usersQueryString,
@@ -50,7 +57,7 @@ app.get('/api/users', (req, res) => {
 
 app.get('/api/hb', (req, res) => {
   console.log('api/hb');
-  connection.query(hbQueryString,
+  connection.query(hbQueryString + userID,
     function(err, result) {
         console.log("GET HARVESTBATCHES RESULT(STRING)- " + JSON.stringify(result));
         res.json(result);
