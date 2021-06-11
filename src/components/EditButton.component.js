@@ -28,7 +28,8 @@ class EditButton extends Component{
         }
 
         if(this.props.editNow){
-          let currWeightChanges = this.props.getWeightChanges();
+          let currWeightChanges = this.props.getWeightChanges();      
+          setTimeout(() => this.props.reloadFromEditButton(),0); 
 
           console.log("Weight changes got from Harvestform: " + JSON.stringify(currWeightChanges));
           for(const val of currWeightChanges){
@@ -174,7 +175,6 @@ class EditButton extends Component{
           this.props.setChanges();
           console.log("HarvestRecords in EditButton after changes accepted: " + this.props.getHarvestRecords());
           this.props.printData();
-          this.props.reloadFromEditButton();
         }
       this.props.setEditMode(!this.props.editNow);
     }
