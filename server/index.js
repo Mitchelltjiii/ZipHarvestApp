@@ -9,7 +9,7 @@ const db = require('../app/config/db.config');
 
 const Plant = db.Plant;
 
-const hbQueryString = 'select * from hb';
+const hbQueryString = 'select * from hb where userID = mtj';
 
 const plantsQueryString = 'select * from pl';
 
