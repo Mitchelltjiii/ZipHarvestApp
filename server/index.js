@@ -17,8 +17,6 @@ const harvestRecordsQueryString = 'select * from hr';
 
 const usersQueryString = 'select * from users';
 
-const userID = "";
-
 const router = require('../app/routers/router');
 
 const connection = mysql.createConnection({
@@ -41,11 +39,6 @@ app.use(express.urlencoded({
 
 app.use(express.json());
 
-app.get('/api/setUserID',(req, res) => {
-  console.log('api users id set: ' + req.body);
-  userID = req.body;
-});
-
 app.get('/api/users', (req, res) => {
   console.log('api/users');
   connection.query(usersQueryString,
@@ -55,16 +48,16 @@ app.get('/api/users', (req, res) => {
     });
 });
 
-app.get('/api/hb', (req, res) => {
+app.get('/api/hb', (userID) => {
   console.log('api/hb');
-  console.log("HBSTRING: " + hbQueryString);
-  console.log("USERID: " + userID);
-
-  connection.query(hbQueryString + userID,
-    function(err, result) {
-        console.log("GET HARVESTBATCHES RESULT(STRING)- " + JSON.stringify(result));
-        res.json(result);
-    });
+  console.log("User ID: " + userID);
+  if(userID != ""){
+    connection.query(hbQueryString + userID,
+      function(err, result) {
+          console.log("GET HARVESTBATCHES RESULT(STRING)- " + JSON.stringify(result));
+          res.json(result);
+      });
+  }
 });
 
 app.get('/api/pl', (req, res) => {
