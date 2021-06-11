@@ -110,15 +110,18 @@ class EditButton extends Component{
   
                 console.log("Plant Item to update with: " + JSON.stringify(plantItem));
   
-                console.log("Busy Updating activated")
-                this.state.busyUpdating = true;
+                console.log("BUSYADDINGPL"); 
+                console.log("BUSYADDINGPL before push: " + JSON.stringify(this.state.busyAddingPlants)); 
+                this.state.busyAddingPlants.push(addPlant.tag);
+                console.log("BUSYSETTINGHR after push: " + JSON.stringify(this.state.busyAddingPlants)); 
+                console.log("Before updateHarvestRecord");
   
                 this.addPlant(plantItem);
                 console.log("After addPlant");
   
                 let x = 0;
 
-                while(this.state.busyUpdating && x<this.props.timeLimit){
+                while(this.state.busyAddingPlants != [] && x<this.props.timeLimit){
                   console.log("Set timeout");
                   setTimeout('',200);
                   x++;
@@ -153,8 +156,10 @@ class EditButton extends Component{
                 this.props.setHarvestRecords(JSON.stringify(splicedHR));
                 console.log("Harvest Records after Set: " + JSON.stringify(this.props.getHarvestRecords()));
       
-                console.log("Busy Updating activated")
-                this.state.busyUpdating = true;
+                console.log("BUSYREMOVINGHR"); 
+                console.log("BUSYREMOVINGHR before push: " + JSON.stringify(this.state.busyDeletingHarvestRecords)); 
+                this.state.busyDeletingHarvestRecords.push(foundID);
+                console.log("BUSYREMOVINGHR after push: " + JSON.stringify(this.state.busyDeletingHarvestRecords)); 
                 console.log("Before updateHarvestRecord");
   
                 this.deleteHarvestRecord(foundID);
@@ -162,7 +167,7 @@ class EditButton extends Component{
   
                 let x = 0;
   
-                while(this.state.busyUpdating && x<this.props.timeLimit){
+                while(this.state.busyDeletingHarvestRecords != [] && x<this.props.timeLimit){
                   console.log("Set timeout");
                   setTimeout('',200);
                   x++;
@@ -204,7 +209,7 @@ class EditButton extends Component{
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
-      }).then(this.state.busyUpdating = false);
+      });
 
       try{
         console.log("AWAITING RESPONSE DELETEHarvestRecord")
@@ -213,6 +218,16 @@ class EditButton extends Component{
       }catch(err){
         console.log("NO RESPONSE RECIEVED DELETEHarvestRecord")
       } 
+
+      console.log("Before removing busy removing record");
+      console.log("BUSYREMOVINGHR before: " + JSON.stringify(this.state.busyDeletingHarvestRecords)); 
+      for( var i = 0; i < this.state.busyDeletingHarvestRecords.length; i++){ 
+        if (this.state.busyDeletingHarvestRecords[i] == harvestRecordItem.id) { 
+            this.state.busyDeletingHarvestRecords.splice(i, 1); 
+        }
+      }
+      console.log("BUSYREMOVINGHB after: " + JSON.stringify(this.state.busyDeletingHarvestRecords));       
+      console.log("Exit remove harvest record")
     }
 
     async updateHarvestRecord(harvestRecordItem){
@@ -259,7 +274,14 @@ class EditButton extends Component{
       }).then(function(data) {
         console.log("EXECUTE PLANT EXCT DATA: " + data); // this will be a string
         //parent.props.setNewPlantID(data,plantItem);
-        parent.state.busyUpdating = false;
+        console.log("Before removing busy adding record");
+        console.log("BUSYADDINGPL before: " + JSON.stringify(parent.state.busyAddingPlants)); 
+        for( var i = 0; i < parent.state.busyAddingPlants.length; i++){ 
+          if ( parent.state.busyAddingPlants[i] == plantItem.tag) { 
+              parent.state.busyAddingPlants.splice(i, 1); 
+          }
+        }
+        console.log("BUSYADDINGPL after: " + JSON.stringify(parent.state.busyAddingPlants));          
       });
       
       console.log("Exit update plant")
@@ -385,7 +407,7 @@ class EditButton extends Component{
           harvestRecordItem: this.emptyHarvestRecord,
           busyUpdating: false,
           busySettingHarvestRecords: [],
-          busyAddingPlantRecord: [],
+          busyAddingPlants: [],
           busyDeletingHarvestRecords: []
         };
         this.handleSubmit = this.handleSubmit.bind(this);
