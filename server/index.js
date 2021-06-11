@@ -57,6 +57,9 @@ app.get('/api/users', (req, res) => {
 
 app.get('/api/hb', (req, res) => {
   console.log('api/hb');
+  console.log("HBSTRING: " + hbQueryString);
+  console.log("USERID: " + userID);
+
   connection.query(hbQueryString + userID,
     function(err, result) {
         console.log("GET HARVESTBATCHES RESULT(STRING)- " + JSON.stringify(result));
