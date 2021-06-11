@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 
-function LogIn({getUsers, executeLogIn}){
+function LogIn({getUsers, executeLogIn, reloadUsers}){
     const useStyles = makeStyles((theme) => ({
         container: {
           padding: theme.spacing(3),
@@ -27,18 +27,35 @@ function LogIn({getUsers, executeLogIn}){
 
       console.log("Checking Users");
       console.log("Users String: " + getUsers());
-      let parsedUsers = JSON.parse(getUsers());
-      for(const val of parsedUsers){
-        console.log("Val: " + val);
-        console.log("Val(String): " + JSON.stringify(val));
-        if(val.username==username){
-          console.log("User Match");
-          if(val.password==password){
-            console.log("Password Correct!");
-            executeLogIn(username,val.apiid);
+      try{
+        let parsedUsers = JSON.parse(getUsers());
+        for(const val of parsedUsers){
+          console.log("Val: " + val);
+          console.log("Val(String): " + JSON.stringify(val));
+          if(val.username==username){
+            console.log("User Match");
+            if(val.password==password){
+              console.log("Password Correct!");
+              executeLogIn(username,val.apiid);
+            }
+          }
+        }
+      }catch(ex){
+        reloadUsers();
+        let parsedUsers = JSON.parse(getUsers());
+        for(const val of parsedUsers){
+          console.log("Val: " + val);
+          console.log("Val(String): " + JSON.stringify(val));
+          if(val.username==username){
+            console.log("User Match");
+            if(val.password==password){
+              console.log("Password Correct!");
+              executeLogIn(username,val.apiid);
+            }
           }
         }
       }
+      
 	  }
 
     const handleUsername = (event) => {

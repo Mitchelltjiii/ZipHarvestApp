@@ -29,7 +29,7 @@ export default class App extends React.Component {
     console.log("Component Did Mount - App.js");
 
     console.log("Before Get Users");
-    this.getUsersFromDB();
+    this.getUsersFromDB(true);
     console.log("After Get Users");
 
     console.log("Before GetHarvestBatches")
@@ -53,7 +53,7 @@ export default class App extends React.Component {
     }
   }
 
-  getUsersFromDB = async () => {
+  getUsersFromDB = async (reload) => {
     console.log("In GetUsers FROM DB")
     const response = await fetch('/api/users');
     const text = await response.text();
@@ -61,7 +61,9 @@ export default class App extends React.Component {
     this.state.users = text;
     this.state.usersLoading = false;
     console.log("Leaving GetUsers FROM DB")
-    this.engageReload();
+    if(reload){
+      this.engageReload();
+    }
   }
 
   getPlantsFromDB = async (reload) => {
@@ -183,7 +185,7 @@ export default class App extends React.Component {
     console.log("RESETTING ALL");
 
     console.log("Before Get Users");
-    this.getUsersFromDB();
+    this.getUsersFromDB(true);
     console.log("After Get Users");
 
     console.log("Before GetHarvestBatches")
@@ -208,6 +210,13 @@ export default class App extends React.Component {
     console.log("Before GetPlants");
     this.getPlantsFromDB(false);
     console.log("After GetPlants");
+  }
+
+  reloadUsers = () => {
+    console.log("RELOAD USERS");
+    console.log("Before GetUsersFromDB");
+    this.getUsersFromDB(false);
+    console.log("After GetUsersFromDB");
   }
 
   reloadPlantsAndHarvestRecords = (currHarvest) => {
@@ -349,7 +358,7 @@ export default class App extends React.Component {
     if(JSON.stringify(this.state.users) == ""){
       console.log("Users is empty");
       this.usersLoading=true;
-      this.getUsersFromDB();
+      this.getUsersFromDB(true);
     }else{
       console.log("Users is not empty");
     }
@@ -400,7 +409,7 @@ export default class App extends React.Component {
       setHarvestBatches={this.setHarvestBatches} setHarvestRecords={this.setHarvestRecords} setPlants={this.setPlants} reloadPlants={this.reloadPlants} reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords}/>
     </div>;
     }else{
-		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn}></LogIn></div>;
+		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers}></LogIn></div>;
     }
     return (
       <div className="App">
