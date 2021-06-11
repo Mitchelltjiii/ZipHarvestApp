@@ -172,10 +172,10 @@ class EditButton extends Component{
               }
           }
           this.props.setChanges();
+          console.log("HarvestRecords in EditButton after changes accepted: " + this.props.getHarvestRecords());
+          this.props.printData();
+          this.props.reloadFromEditButton();
         }
-        console.log("HarvestRecords in EditButton after changes accepted: " + this.props.getHarvestRecords());
-        this.props.printData();
-        this.props.reloadFromEditButton();
       this.props.setEditMode(!this.props.editNow);
     }
 
