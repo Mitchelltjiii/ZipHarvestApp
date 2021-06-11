@@ -149,14 +149,19 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("Enter GetHarvestBatch");
 		console.log("Get Harvest Batches: " + getHarvestBatches());
 
-		for(let val of JSON.parse(getHarvestBatches())) {
-			console.log("VAL(STRING): " + JSON.stringify(val));
-			console.log("Val.name: " + val.name);
-			if(val.name == selectedHB){
-				console.log("GRABBED");
-				return new HarvestBatch(val.name,val.submitted,val.type,val.date,val.userID);
+		try{
+			for(let val of JSON.parse(getHarvestBatches())) {
+				console.log("VAL(STRING): " + JSON.stringify(val));
+				console.log("Val.name: " + val.name);
+				if(val.name == selectedHB){
+					console.log("GRABBED");
+					return new HarvestBatch(val.name,val.submitted,val.type,val.date,val.userID);
+				}
 			}
+		}catch(excc){
+			
 		}
+		
 		console.log("Exit GetHarvestBatch");
 
 	}

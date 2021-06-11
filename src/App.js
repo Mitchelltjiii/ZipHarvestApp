@@ -70,6 +70,11 @@ export default class App extends React.Component {
   setUserIDInDB = async (uID) => {
     console.log("In setUserID IN DB")
     fetch('/api/setUserID', {
+      method: 'POST',
+      headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
       body: JSON.stringify(uID)
     })
     .then(this.state.busySettingUsers=false);
