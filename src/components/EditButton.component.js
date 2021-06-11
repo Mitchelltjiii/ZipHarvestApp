@@ -201,7 +201,7 @@ class EditButton extends Component{
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
-      });
+      }).then(this.state.busyUpdating = false);
 
       try{
         console.log("AWAITING RESPONSE DELETEHarvestRecord")
@@ -209,8 +209,7 @@ class EditButton extends Component{
         console.log("RESPONSE RECIEVED DELETEHarvestRecord")
       }catch(err){
         console.log("NO RESPONSE RECIEVED DELETEHarvestRecord")
-      }
-      this.state.busyUpdating = false;    
+      } 
     }
 
     async updateHarvestRecord(harvestRecordItem){
