@@ -289,7 +289,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setChangeStrain(event.target.value);
 	  };
 
-	let timeLimit = 100;
+	let timeLimit = 10000;
 
 	let unitList = ["lbs","g"];
 
