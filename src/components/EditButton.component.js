@@ -61,7 +61,7 @@ class EditButton extends Component{
               }
     
               if(foundIndex != -1){
-                let splicedHR = JSON.parse(this.props.getHarvestRecords);
+                let splicedHR = JSON.parse(this.props.getHarvestRecords());
                 splicedHR.splice(foundIndex,1,foundHarvestRecord)
                 this.props.setHarvestRecords(JSON.stringify(splicedHR));
                 console.log("Harvested Plant Replaced");
@@ -145,7 +145,7 @@ class EditButton extends Component{
               }
     
               if(foundIndex != -1){
-                let splicedHR = JSON.parse(this.props.getHarvestRecords);
+                let splicedHR = JSON.parse(this.props.getHarvestRecords());
                 splicedHR.splice(foundIndex,1);
                 this.props.setHarvestRecords(JSON.stringify(splicedHR));
                 console.log("Harvest Records after Set: " + JSON.stringify(this.props.getHarvestRecords()));
