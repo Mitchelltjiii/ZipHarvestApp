@@ -317,7 +317,17 @@ export default class App extends React.Component {
   executeLogIn = (user, userID) =>{
     this.state.loggedIn=user;
     this.state.userID=userID;
-    let x = 0;
+    const resp = fetch('/setUserID', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: this.state.userID
+    }).then(function(response) {
+      return response.json();
+    }).then(function(data) {
+    });
     this.engageReload();
   }
 
