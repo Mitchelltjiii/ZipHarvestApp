@@ -28,7 +28,6 @@ const connection = mysql.createConnection({
 });
 
 let appPostDone = true;
-let userID = '';
 
 // add middlewares
 app.use(express.static(path.join(__dirname, "..", "build")));
@@ -49,8 +48,12 @@ app.get('/api/users', (req, res) => {
     });
 });
 
-app.get('/api/hb', (req, res) => {
+app.get('/api/hb/:id', (req, res) => {
   console.log('api/hb');
+  let userID = req.params.id;
+  console.log("User ID: " + userID);
+  var sql = `${userID}`;
+  console.log("Commit Query: " + hbQueryString + sql);
   if(userID != ""){
     connection.query(hbQueryString + sql,
       function(err, result) {
@@ -104,13 +107,6 @@ app.post('/posttest', (req, res) =>{
     }
   
     res.json(message);
-});
-
-app.post('/setUserID', (req, res) =>{
-  var postData  = req.body;
-  console.log("Set User ID");
-  console.log("USERID: " + postData);
-  userID = postData;
 });
 
 app.post('/hb', (req, res) =>{

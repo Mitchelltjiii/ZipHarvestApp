@@ -94,7 +94,8 @@ export default class App extends React.Component {
 
   getHarvestBatchesFromDB = async () => {
     console.log("In GetHarvestBatches")
-    if(this.state.userID==""){
+    if(this.state.userID == ""){
+      console.log("State.userID is empty");
       return;
     }
     const response = await fetch(`/api/hb/${this.state.userID}`);
@@ -320,19 +321,7 @@ export default class App extends React.Component {
   executeLogIn = (user, userID) =>{
     this.state.loggedIn=user;
     this.state.userID=userID;
-    console.log("Execute Log In")
-    const resp = fetch('/setUserID', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: this.state.userID
-    }).then(function(response) {
-      return response.json();
-    }).then(function(data) {
-      this.engageReload();
-    });
+    this.engageReload();
   }
 
   setAll = (plants,harvestRecords,harvestBatches) => {
