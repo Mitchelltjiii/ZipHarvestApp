@@ -48,9 +48,9 @@ app.get('/api/users', (req, res) => {
     });
 });
 
-app.get('/api/hb/:userID', (req, res) => {
+app.get('/api/hb/:id', (req, res) => {
   console.log('api/hb');
-  let userID = req.params.userID;
+  let userID = req.params.id;
   console.log("User ID: " + userID);
   var sql = `${userID}`;
   console.log("Commit Query: " + hbQueryString + sql);
