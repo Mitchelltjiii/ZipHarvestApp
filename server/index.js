@@ -63,8 +63,12 @@ app.get('/api/hb/:id', (req, res) => {
   }
 });
 
-app.get('/api/pl', (req, res) => {
+app.get('/api/pl/:id', (req, res) => {
   console.log('api/pl');
+  let userID = req.params.id;
+  console.log("User ID: " + userID);
+  var sql = `${userID}`;
+  console.log("Commit Query: " + plantsQueryString + sql);
   connection.query(plantsQueryString,
     function(err, result) {
         console.log("GET PLANTS RESULT(STRING)- " + JSON.stringify(result));
@@ -72,8 +76,12 @@ app.get('/api/pl', (req, res) => {
     });
 });
 
-app.get('/api/hr', (req, res) => {
+app.get('/api/hr/:id', (req, res) => {
   console.log('api/hr');
+  let userID = req.params.id;
+  console.log("User ID: " + userID);
+  var sql = `${userID}`;
+  console.log("Commit Query: " + harvestRecordsQueryString + sql);
   connection.query(harvestRecordsQueryString,
     function(err, result) {
         console.log("GET HARVESTEDPLANTS RESULT(STRING)- " + JSON.stringify(result));

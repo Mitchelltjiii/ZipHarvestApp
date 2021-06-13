@@ -67,8 +67,13 @@ export default class App extends React.Component {
   }
 
   getPlantsFromDB = async (reload) => {
-    console.log("In GetPlants")
-    const response = await fetch('/api/pl');
+    console.log("In GetPlants");
+    if(this.state.userID == ""){
+      console.log("State.userID is empty");
+      return;
+    }
+    console.log("State.userid: " + this.state.userID);
+    const response = await fetch(`/api/pl/${this.state.userID}`);
     const text = await response.text();
     console.log("API GET PLANTS: " + text);
     this.state.plants = text;
@@ -80,8 +85,13 @@ export default class App extends React.Component {
   }
 
   getHarvestRecordsFromDB = async (reload) => {
-    console.log("In GetHarvestRecords")
-    const response = await fetch('/api/hr');
+    console.log("In GetHarvestRecords");
+    if(this.state.userID == ""){
+      console.log("State.userID is empty");
+      return;
+    }
+    console.log("State.userid: " + this.state.userID);
+    const response = await fetch(`/api/hr/${this.state.userID}`);
     const text = await response.text();
     console.log("API GET HARVESRECORDS: " + text);
     this.state.harvestRecords = text;
