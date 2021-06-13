@@ -48,9 +48,10 @@ app.get('/api/users', (req, res) => {
     });
 });
 
-app.get('/api/hb', (userID) => {
+app.get('/api/hb', (req, res) => {
   console.log('api/hb');
-  console.log("User ID: " + userID);
+  console.log("User ID: " + req.body.userID);
+  
   if(userID != ""){
     connection.query(hbQueryString + userID,
       function(err, result) {

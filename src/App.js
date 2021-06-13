@@ -19,8 +19,7 @@ export default class App extends React.Component {
     currentHarvest: [],
     users: [],
     usersLoading: true,
-    userID: "",
-    busySettingUsers: false
+    userID: ""
   };
   componentDidMount() {
     /*
@@ -67,19 +66,6 @@ export default class App extends React.Component {
     }
   }
 
-  setUserIDInDB = async (uID) => {
-    console.log("In setUserID IN DB")
-    fetch('/api/setUserID', {
-      method: 'POST',
-      headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-      body: JSON.stringify(uID)
-    })
-    .then(this.state.busySettingUsers=false);
-  }
-
   getPlantsFromDB = async (reload) => {
     console.log("In GetPlants")
     const response = await fetch('/api/pl');
@@ -108,7 +94,17 @@ export default class App extends React.Component {
 
   getHarvestBatchesFromDB = async () => {
     console.log("In GetHarvestBatches")
-    const response = await fetch('/api/hb',this.state.userID);
+    let userIDObject = {
+			userID: this.state.userID
+		  };
+    const response = await fetch('/api/hb',{
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: userIDObject
+    });
     const text = await response.text();
     console.log("API GET HARVESTBATCHES: " + text);
     this.state.harvestBatches = text;
@@ -331,19 +327,7 @@ export default class App extends React.Component {
   executeLogIn = (user, userID) =>{
     this.state.loggedIn=user;
     this.state.userID=userID;
-    this.state.busySettingUser = true;
-    this.setUserIDInDB(userID);
     let x = 0;
-
-    while(this.state.busySettingUser == true && x<10000){
-      console.log("Set timeout");
-       setTimeout('',200);
-       x++;
-    }
-
-    if(x==10000){
-       console.log("TIMEOUT OPERATION FAILED");
-   }
     this.engageReload();
   }
 
