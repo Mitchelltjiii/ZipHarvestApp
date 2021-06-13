@@ -317,6 +317,7 @@ export default class App extends React.Component {
   executeLogIn = (user, userID) =>{
     this.state.loggedIn=user;
     this.state.userID=userID;
+    console.log("Execute Log In")
     const resp = fetch('/setUserID', {
       method: 'POST',
       headers: {
