@@ -327,8 +327,8 @@ export default class App extends React.Component {
     }).then(function(response) {
       return response.json();
     }).then(function(data) {
+      this.engageReload();
     });
-    this.engageReload();
   }
 
   setAll = (plants,harvestRecords,harvestBatches) => {
