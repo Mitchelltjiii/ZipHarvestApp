@@ -48,12 +48,14 @@ app.get('/api/users', (req, res) => {
     });
 });
 
-app.get('/api/hb', (req, res) => {
+app.get('/api/hb/:userID', (req, res) => {
   console.log('api/hb');
-  console.log("User ID: " + req.body.userID);
-  
+  let userID = req.params.userID;
+  console.log("User ID: " + userID);
+  var sql = `${userID}`;
+  console.log("Commit Query: " + hbQueryString + sql);
   if(userID != ""){
-    connection.query(hbQueryString + userID,
+    connection.query(hbQueryString + sql,
       function(err, result) {
           console.log("GET HARVESTBATCHES RESULT(STRING)- " + JSON.stringify(result));
           res.json(result);
