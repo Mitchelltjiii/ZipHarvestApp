@@ -94,6 +94,9 @@ export default class App extends React.Component {
 
   getHarvestBatchesFromDB = async () => {
     console.log("In GetHarvestBatches")
+    if(this.state.userID==""){
+      return;
+    }
     const response = await fetch(`/api/hb/${this.state.userID}`);
     const text = await response.text();
     console.log("API GET HARVESTBATCHES: " + text);
