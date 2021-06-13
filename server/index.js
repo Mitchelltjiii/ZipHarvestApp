@@ -9,7 +9,7 @@ const db = require('../app/config/db.config');
 
 const Plant = db.Plant;
 
-const hbQueryString = "select * from hb where userID = ";
+const hbQueryString = "select * from hb where userID = 'mtj'";
 
 const plantsQueryString = 'select * from pl';
 
@@ -55,7 +55,7 @@ app.get('/api/hb/:id', (req, res) => {
   var sql = `${userID}`;
   console.log("Commit Query: " + hbQueryString + sql);
   if(userID != ""){
-    connection.query(hbQueryString + sql,
+    connection.query(hbQueryString,
       function(err, result) {
           console.log("GET HARVESTBATCHES RESULT(STRING)- " + JSON.stringify(result));
           res.json(result);
