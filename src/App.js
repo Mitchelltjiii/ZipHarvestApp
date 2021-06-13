@@ -98,6 +98,7 @@ export default class App extends React.Component {
       console.log("State.userID is empty");
       return;
     }
+    console.log("State.userid: " + this.state.userID);
     const response = await fetch(`/api/hb/${this.state.userID}`);
     const text = await response.text();
     console.log("API GET HARVESTBATCHES: " + text);
