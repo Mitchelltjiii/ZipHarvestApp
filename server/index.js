@@ -11,9 +11,9 @@ const Plant = db.Plant;
 
 const hbQueryString = "select * from hb where userID = '";
 
-const plantsQueryString = 'select * from pl';
+const plantsQueryString = "select * from pl where userID = '";
 
-const harvestRecordsQueryString = 'select * from hr';
+const harvestRecordsQueryString = "select * from hr where userID = '";
 
 const usersQueryString = 'select * from users';
 
@@ -69,7 +69,7 @@ app.get('/api/pl/:id', (req, res) => {
   console.log("User ID: " + userID);
   var sql = `${userID}`;
   console.log("Commit Query: " + plantsQueryString + sql);
-  connection.query(plantsQueryString,
+  connection.query(plantsQueryString + sql + "'",
     function(err, result) {
         console.log("GET PLANTS RESULT(STRING)- " + JSON.stringify(result));
         res.json(result);
@@ -82,7 +82,7 @@ app.get('/api/hr/:id', (req, res) => {
   console.log("User ID: " + userID);
   var sql = `${userID}`;
   console.log("Commit Query: " + harvestRecordsQueryString + sql);
-  connection.query(harvestRecordsQueryString,
+  connection.query(harvestRecordsQueryString + sql + "'",
     function(err, result) {
         console.log("GET HARVESTEDPLANTS RESULT(STRING)- " + JSON.stringify(result));
         res.json(result);
