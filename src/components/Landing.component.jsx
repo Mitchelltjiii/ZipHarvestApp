@@ -5,7 +5,7 @@ import HarvestBatchesForm from './HarvestBatchesForm.component';
 
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
 	setHarvestBatches, resetHarvestBatches, resetAll, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
-setNewHarvestRecordID, setNewPlantID, userID, setAll,reloadPlants,reloadPlantsAndHarvestRecords}){
+setNewHarvestRecordID, setNewPlantID, userID, setAll,reloadPlants,reloadPlantsAndHarvestRecords, reloadHarvestBatches}){
 
 	console.log("ENTER LANDING, GET PLANTS(STRINGIFIED): " + JSON.stringify(getPlants()));
 
@@ -20,7 +20,8 @@ setNewHarvestRecordID, setNewPlantID, userID, setAll,reloadPlants,reloadPlantsAn
 			{currentPage === 'harvest-form' ? (
 				<HarvestForm getHarvestBatches={getHarvestBatches} setHarvestBatches={setHarvestBatches} getPlants={getPlants} setPlants={setPlants} getHarvestRecords={getHarvestRecords} setHarvestRecords={setHarvestRecords} 
 				resetHarvestBatches={resetHarvestBatches} resetAll={resetAll} currentHarvest={currentHarvest} setNewHBID={setNewHBID} getCurrentHarvestID={getCurrentHarvestID} refreshOuter={refreshOuter} 
-				setNewHarvestRecordID={setNewHarvestRecordID} setNewPlantID={setNewPlantID} userID={userID} setAll={setAll} reloadPlants={reloadPlants} reloadPlantsAndHarvestRecords={reloadPlantsAndHarvestRecords}/>
+				setNewHarvestRecordID={setNewHarvestRecordID} setNewPlantID={setNewPlantID} userID={userID} setAll={setAll} reloadPlants={reloadPlants} reloadPlantsAndHarvestRecords={reloadPlantsAndHarvestRecords}
+				reloadHarvestBatches={reloadHarvestBatches}/>
 			) : currentPage === 'harvest-batches-form' ? (
 				<HarvestBatchesForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords}/>
 			) : null}

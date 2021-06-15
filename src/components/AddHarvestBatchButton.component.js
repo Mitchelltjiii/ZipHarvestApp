@@ -13,7 +13,7 @@ class AddHarvestBatchButton extends Component{
     async handleSubmit(event) {
         event.preventDefault();
         console.log("Enter Add New HB");
-        this.props.addNewHB();
+        //this.props.addNewHB();
 
         this.executeAddNewHB();
 
@@ -53,6 +53,7 @@ class AddHarvestBatchButton extends Component{
       }).then(function(data) {
         //console.log("EXCT DATA: " + data); // this will be a string
         //parent.props.setNewHBID(data,harvestBatchItem);
+        parent.props.reloadHarvestBatchesFromAddHB();
       });
       /*
       var text = "Text before change";

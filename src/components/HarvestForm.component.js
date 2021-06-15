@@ -28,7 +28,7 @@ import { setGlobalCssModule } from 'reactstrap/es/utils';
 
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches, 
 	resetAll, currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, setAll, 
-	reloadPlants, reloadPlantsAndHarvestRecords}) { 
+	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches}) { 
 
 	function HarvestBatch(name,submitted,type,date,userID){
 		this.name = name;
@@ -394,6 +394,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setChangeStrain(strain);
 	};
 
+	function reloadHarvestBatchesFromAddHB(){
+		reloadHarvestBatches(currentHarvest)
+	}
+
 	function addNewHB(){
 		let hbName = document.getElementById("changeHBField").value;
 		console.log("HB Name: " + hbName);
@@ -413,6 +417,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		if(hbName!=""&&!hbOptionsList.includes(hbName)){
 			let tempHarvestBatches = JSON.parse(getHarvestBatches());
 			tempHarvestBatches.push(addedHB);
+			//reloadHarvestBatches();
 			//setHarvestBatches(JSON.stringify(tempHarvestBatches));
 			hbOptionsList.push(hbName);
 			console.log("HB Added");
@@ -746,7 +751,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				</Grid>
 
 			<TextField id="changeHBField" label="New Harvest Batch"/>
-            <AddHarvestBatchButton getHarvestBatchItem={getHarvestBatchItem} addNewHB={addNewHB} resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID}></AddHarvestBatchButton>
+            <AddHarvestBatchButton getHarvestBatchItem={getHarvestBatchItem} addNewHB={addNewHB} resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} reloadHarvestBatchesFromAddHB={reloadHarvestBatchesFromAddHB}></AddHarvestBatchButton>
 			<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancelNewHB}>Cancel</Button>
 
 		  </div>
