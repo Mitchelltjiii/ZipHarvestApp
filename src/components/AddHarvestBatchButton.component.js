@@ -13,7 +13,7 @@ class AddHarvestBatchButton extends Component{
     async handleSubmit(event) {
         event.preventDefault();
         console.log("Enter Add New HB");
-        //this.props.addNewHB();
+        this.props.addNewHB();
 
         this.executeAddNewHB();
 

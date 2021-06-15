@@ -414,6 +414,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 		addedHB = new HarvestBatch(hbName,0,harvType,hbDate,userID);
 
+		/*
 		if(hbName!=""&&!hbOptionsList.includes(hbName)){
 			let tempHarvestBatches = JSON.parse(getHarvestBatches());
 			tempHarvestBatches.push(addedHB);
@@ -422,7 +423,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			hbOptionsList.push(hbName);
 			console.log("HB Added");
 			setSelectedHB(hbName);
-		}
+		}*/
 		setChangeHBHidden(false);
 		console.log("setChangeStrainHidden");
 	}
