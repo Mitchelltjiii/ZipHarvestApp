@@ -52,10 +52,18 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
       console.log("Check Plant List");
       plantCount = 0;
       strain = "";
+      let plants = getPlants();
+      console.log("Plants: " + plants);
+      let parsedPlants = [];
+      try{
+        parsedPlants = JSON.parse(plants);
+      }catch(mm){
+        console.log("Could not parse plants");
+      }
+
       for(let val of JSON.parse(getHarvestRecords())){
         if(val.batchName == batchName){
           plantCount++;
-          let str = JSON.parse(getPlants())[val.tag];
           console.log("STR: " + str);
           if(strain == ""){
             strain = str;
