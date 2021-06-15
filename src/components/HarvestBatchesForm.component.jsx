@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import HBTable from './HBTable.component';
 
-function HarvestBatchesForm({getHarvestBatches, getHarvestRecords}) {
+function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants}) {
 
 	return (
 		<div id="harvest-batches-form">
@@ -13,7 +13,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords}) {
   				justify="center"
 				alignItems="center"
 			>
-			<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords}></HBTable>
+			<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants}></HBTable>
 
 			</Grid>
 		</div>
