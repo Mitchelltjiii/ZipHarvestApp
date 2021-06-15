@@ -44,8 +44,8 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
     let plantCount = 0;
     let strain = "";
 
-    function createData(name, plants) {
-      return { name, plants};
+    function createData(name, plants, strain, date) {
+      return { name, plants, strain, date};
     }
 
     function checkPlantList(batchName) {
