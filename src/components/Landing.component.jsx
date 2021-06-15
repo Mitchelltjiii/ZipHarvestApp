@@ -23,7 +23,7 @@ setNewHarvestRecordID, setNewPlantID, userID, setAll,reloadPlants,reloadPlantsAn
 				setNewHarvestRecordID={setNewHarvestRecordID} setNewPlantID={setNewPlantID} userID={userID} setAll={setAll} reloadPlants={reloadPlants} reloadPlantsAndHarvestRecords={reloadPlantsAndHarvestRecords}
 				reloadHarvestBatches={reloadHarvestBatches}/>
 			) : currentPage === 'harvest-batches-form' ? (
-				<HarvestBatchesForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords}/>
+				<HarvestBatchesForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants}/>
 			) : null}
         </div>
     )

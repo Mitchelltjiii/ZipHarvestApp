@@ -11,7 +11,7 @@ import HarvestBatch from './HarvestBatchesForm.component';
 import Button from '@material-ui/core/Button';
 
 
-function HBTable({getHarvestBatches,getHarvestRecords}) {
+function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
 
     console.log("ENTER HBTABLE, HBLIST: " + getHarvestBatches());
 
@@ -55,9 +55,11 @@ function HBTable({getHarvestBatches,getHarvestRecords}) {
       for(let val of JSON.parse(getHarvestRecords())){
         if(val.batchName == batchName){
           plantCount++;
+          let str = JSON.parse(getPlants())[val.tag];
+          console.log("STR: " + str);
           if(strain == ""){
-            strain = val.strain;
-          }else if(val.strain != strain){
+            strain = str;
+          }else if(str != strain){
             strain = "Multi-Harvest";
           }
         }
