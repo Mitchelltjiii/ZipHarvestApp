@@ -104,7 +104,7 @@ class EditButton extends Component{
             let addPlant = new Plant("","","","");
             for(const val of JSON.parse(this.props.getHarvestRecords())){
               if(val.tag == tag){
-                addPlant = new Plant(val.tag,this.props.getStrainForPlantItem(val.tag),"mtj",0);
+                addPlant = new Plant(val.tag,this.props.getStrainForPlantItem(val.tag),val.userID,0);
 
                 const plantItem = this.getPlantItem(addPlant);
   
