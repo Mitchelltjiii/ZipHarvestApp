@@ -41,15 +41,35 @@ function HBTable({getHarvestBatches,getHarvestRecords}) {
     
 
     const classes = useStyles();
+    let plantCount = 0;
+    let strain = "";
 
     function createData(name, plants) {
       return { name, plants};
     }
 
+    function checkPlantList(batchName) {
+      console.log("Check Plant List");
+      plantCount = 0;
+      strain = "";
+      for(let val of JSON.parse(getHarvestRecords())){
+        if(val.batchName == batchName){
+          plantCount++;
+          if(strain == ""){
+            strain = val.strain;
+          }else if(val.strain != strain){
+            strain = "Multi-Harvest";
+          }
+        }
+      }
+      console.log("Strain of " + batchName + ": " + strain);
+    }
+
     const rows = [];
 
     for(let val of JSON.parse(getHarvestBatches())) {
-      rows.push(createData(val.name,val.plantList));
+      checkPlantList(val.name);
+      rows.push(createData(val.name,plantCount));
     }
        
     return(
