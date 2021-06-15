@@ -166,49 +166,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	}
 
-	function setHarvestBatch(selectedHB){
-		console.log("Set Harvest Batch: " + JSON.stringify(selectedHB));
-		let x = 0;
-		let foundX = -1;
-		let parsedHarvestBatches = JSON.parse(getHarvestBatches());
-		for(let val of parsedHarvestBatches) {
-			if(val.name == selectedHB.name){
-				console.log("FOUND X: " + x);
-				foundX = x;
-			}
-			x++;
-		}
-
-		console.log("Harvest Batches Map Before SetHarvestBatch(STRINGIFIED): " + JSON.stringify(parsedHarvestBatches));
-		console.log("HB TO BE ADDED: " + JSON.stringify(new HarvestBatch(selectedHB.name,selectedHB.submitted,selectedHB.type,selectedHB.date,selectedHB.userID)));
-		if(foundX != -1){
-			parsedHarvestBatches.splice(foundX,1,new HarvestBatch(selectedHB.name,selectedHB.submitted,selectedHB.type,selectedHB.date,selectedHB.userID));
-		}
-		console.log("Harvest Batches Map AFTER SetHarvestBatch(STRINGIFIED): " + JSON.stringify(parsedHarvestBatches));
-		setHarvestBatches(JSON.stringify(parsedHarvestBatches));
-	}
-
-	function getNewUID(){
-		let uid = '';
-		let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-		let charactersLength = characters.length;
-
-		let i = 0;
-		while(i < 8){
-			uid += characters.charAt(Math.floor(Math.random() * charactersLength));
-			i++;
-		}
-		console.log("Generated UID: " + uid);
-
-		for(let val of JSON.parse(getHarvestRecords())) {
-			if(val.uid == uid){
-				console.log("UID already exists, trying again");
-				return getNewUID();
-			}
-		}
-		return uid;
-	}
-
 	function getPlant(plantTag){
 		console.log("GET PLANT - Tag: " + plantTag);
 		for(let val of JSON.parse(getPlants())) {
@@ -456,7 +413,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		if(hbName!=""&&!hbOptionsList.includes(hbName)){
 			let tempHarvestBatches = JSON.parse(getHarvestBatches());
 			tempHarvestBatches.push(addedHB);
-			setHarvestBatches(JSON.stringify(tempHarvestBatches));
+			//setHarvestBatches(JSON.stringify(tempHarvestBatches));
 			hbOptionsList.push(hbName);
 			console.log("HB Added");
 			setSelectedHB(hbName);
