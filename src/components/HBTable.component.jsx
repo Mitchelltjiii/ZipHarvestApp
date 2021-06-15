@@ -84,7 +84,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
 
     for(let val of JSON.parse(getHarvestBatches())) {
       checkPlantList(val.name);
-      rows.push(createData(val.name,plantCount));
+      rows.push(createData(val.name,plantCount,strain,val.date));
     }
        
     return(
@@ -93,7 +93,9 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
-            <TableCell align="right">Plants</TableCell>
+            <TableCell align="right">Strain</TableCell>
+            <TableCell align="right"># Plants</TableCell>
+            <TableCell align="right">Date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -102,7 +104,9 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
+              <TableCell align="right">{row.strain}</TableCell>
               <TableCell align="right">{row.plants}</TableCell>
+              <TableCell align="right">{row.date}</TableCell>
             </TableRow>
             ))}
             </TableBody>
