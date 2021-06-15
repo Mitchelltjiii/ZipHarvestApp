@@ -644,7 +644,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("Enter setchanges");
 
 		//setPlantMap(plants);
-		setHarvestBatch(currentHarvest);
+		//setHarvestBatch(currentHarvest);
 		//setHarvestRecords(harvestRecords);
 
 		setWeight("");
