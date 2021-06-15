@@ -424,6 +424,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			console.log("HB Added");
 			setSelectedHB(hbName);
 		}*/
+		if(hbName!=""){
+			setSelectedHB(hbName);
+		}
 		setChangeHBHidden(false);
 		console.log("setChangeStrainHidden");
 	}
