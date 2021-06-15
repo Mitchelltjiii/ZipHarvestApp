@@ -182,7 +182,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("Harvest Batches Map Before SetHarvestBatch(STRINGIFIED): " + JSON.stringify(parsedHarvestBatches));
 		console.log("HB TO BE ADDED: " + JSON.stringify(new HarvestBatch(selectedHB.name,selectedHB.submitted,selectedHB.type,selectedHB.date,selectedHB.userID)));
 		if(foundX != -1){
-			parsedHarvestBatches.splice(foundX,foundX,new HarvestBatch(selectedHB.name,selectedHB.submitted,selectedHB.type,selectedHB.date,selectedHB.userID));
+			parsedHarvestBatches.splice(foundX,1,new HarvestBatch(selectedHB.name,selectedHB.submitted,selectedHB.type,selectedHB.date,selectedHB.userID));
 		}
 		console.log("Harvest Batches Map AFTER SetHarvestBatch(STRINGIFIED): " + JSON.stringify(parsedHarvestBatches));
 		setHarvestBatches(JSON.stringify(parsedHarvestBatches));
