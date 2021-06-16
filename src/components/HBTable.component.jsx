@@ -92,7 +92,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
         }
         x++;
       }
-      let newRow = JSON.stringify(rows.splice(foundX,1));
+      let newRow = rows.splice(foundX,1);
       newRows.push(newRow.substring(1,newRow.length-1));
       console.log("New Rows: " + JSON.stringify(newRows));
     }
