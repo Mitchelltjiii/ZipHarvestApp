@@ -38,7 +38,7 @@ class ExportButton extends Component{
 
         for(let val of JSON.parse(this.props.getHarvestRecords())){
             data.push(createData(val.tag,val.weight,val.unit,"Dry Room #1",val.batchName,val.date));
-            newData += val.tag + "," + val.weight + "\n";
+            newData += val.tag + "," + val.weight + "," + val.unit + ",Dry Room #1," + val.batchName + ",," + val.date + "\n";
         }   
 
         console.log("New Data: " + newData);
