@@ -34,19 +34,23 @@ class ExportButton extends Component{
         }
 
         let data = []; 
+        let newData = "";
 
         for(let val of JSON.parse(this.props.getHarvestRecords())){
             data.push(createData(val.tag,val.weight,val.unit,"Dry Room #1",val.batchName,val.date));
-        }
+            newData += val.tag + "," + val.weight + "\n";
+        }   
+
+        console.log("New Data: " + newData);
         
         return <div style={{width: "170px"}}>
-            <CSVLink data={data}>
+            <CSVLink data={newData}>
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}  style={{width: "120px"}}>Export</Button>            
             </CSVLink>
         </div>;
       }
 }
-//            
+ 
 
 
 
