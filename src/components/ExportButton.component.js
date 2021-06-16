@@ -33,9 +33,11 @@ class ExportButton extends Component{
             for(let val of JSON.parse(parent.props.getHarvestBatches())){
                 console.log("Val: " + JSON.stringify(val));
                 if(val.name == batchName){
-                    let parsedDate = Date.parse(val.date);
-                    console.log("Parsed Date: " + JSON.stringify(parsedDate));
+                    let parsedDate = new Date();
                     var dd = String(parsedDate.getDate()).padStart(2, '0');
+                    parsedDate = Date.parse(val.date);
+                    console.log("Parsed Date: " + JSON.stringify(parsedDate));
+                    dd = String(parsedDate.getDate()).padStart(2, '0');
                     var mm = String(parsedDate.getMonth() + 1).padStart(2, '0'); //January is 0!
                     var yyyy = parsedDate.getFullYear();
                 
