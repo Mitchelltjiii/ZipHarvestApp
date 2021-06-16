@@ -28,23 +28,24 @@ class ExportButton extends Component{
 
     render() {  
         
-        function createData(tag,weight,unit,dryroom,hbname,date){
-            let blank = "";
-            return {tag, weight, unit, dryroom, hbname, blank, date};
+        function getDate(batchName){
+            for(let val of JSON.parse(this.props.getHarvestBatches())){
+                if(val.name == batchName){
+                    return val.date;
+                }
+            }
         }
 
-        let data = []; 
-        let newData = "";
+        let data = ""; 
 
         for(let val of JSON.parse(this.props.getHarvestRecords())){
-            data.push(createData(val.tag,val.weight,val.unit,"Dry Room #1",val.batchName,val.date));
-            newData += val.tag + "," + val.weight + "," + val.unit + ",Dry Room #1," + val.batchName + ",," + val.date + "\n";
+            if(val.batchName == this.props.row.name){
+                data += val.tag + "," + val.weight + "," + val.unit + ",Dry Room #1," + val.batchName + ",," + getDate(val.batchName) + "\n";
+            }
         }   
-
-        console.log("New Data: " + newData);
         
         return <div style={{width: "170px"}}>
-            <CSVLink data={newData}>
+            <CSVLink data={data}>
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}  style={{width: "120px"}}>Export</Button>            
             </CSVLink>
         </div>;
