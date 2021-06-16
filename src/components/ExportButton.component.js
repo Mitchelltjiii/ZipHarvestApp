@@ -26,28 +26,33 @@ class ExportButton extends Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     
-    
-
-    render() { 
-        let headers = [
-            { label: "First Name", key: "firstname" },
-            { label: "Last Name", key: "lastname" },
-            { label: "Email", key: "email" }
-          ];
-           
+    getHBData(){
         let data = [
             { firstname: "Ahmed", lastname: "Tomi", email: "ah@smthing.co.com" },
             { firstname: "Raed", lastname: "Labes", email: "rl@smthing.co.com" },
             { firstname: "Yezzi", lastname: "Min l3b", email: "ymin@cocococo.com" }
           ]; 
+        return data;
+    }
+
+    getHBHeaders(){
+        let headers = [
+            { label: "First Name", key: "firstname" },
+            { label: "Last Name", key: "lastname" },
+            { label: "Email", key: "email" }
+          ];
+        return headers;
+    }
+
+    render() {         
         return <div style={{width: "170px"}}>
-            <CSVLink data={data} headers={headers}>
-                Download me
+            <CSVLink data={getHBData} headers={getHBHeaders}>
+            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}  style={{width: "120px"}}>Export</Button>            
             </CSVLink>;
         </div>;
       }
 }
-//            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}  style={{width: "120px"}}>Export</Button>
+//            
 
 
 
