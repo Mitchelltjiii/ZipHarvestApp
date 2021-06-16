@@ -31,7 +31,14 @@ class ExportButton extends Component{
         function getDate(batchName){
             for(let val of JSON.parse(this.props.getHarvestBatches())){
                 if(val.name == batchName){
-                    return val.date;
+                    let parsedDate = Date.parse(val.date);
+                    var dd = String(parsedDate.getDate()).padStart(2, '0');
+                    var mm = String(parsedDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+                    var yyyy = parsedDate.getFullYear();
+                
+                    let today = yyyy + '-' + mm + '-' + dd;
+                    console.log("Today Str: " + today.toString());
+                    return today.toString();
                 }
             }
         }
