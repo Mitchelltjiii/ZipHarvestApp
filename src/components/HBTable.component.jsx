@@ -9,28 +9,12 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import HarvestBatch from './HarvestBatchesForm.component';
 import Button from '@material-ui/core/Button';
+import ExportButton from './ExportButton.component';
 
 
 function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
 
     console.log("ENTER HBTABLE, HBLIST: " + getHarvestBatches());
-
-    function HarvestBatch(name,submitted,type,date,userID){
-      this.name = name;
-      this.submitted = submitted;
-      this.type = type;
-      this.date = date;
-      this.userID = userID;
-    }
-
-  function HarvestRecord(itemID,tag,weight,unit,batchName,userID){
-		this.itemID = itemID;
-		this.tag = tag;
-		this.weight = weight;
-		this.unit = unit;
-		this.batchName = batchName;
-		this.userID = userID;
-	}
 
     const useStyles = makeStyles({
         table: {
@@ -82,11 +66,11 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
 
     const rows = [];
 
-    console.log("Create Rows");
     for(let val of JSON.parse(getHarvestBatches())) {
       checkPlantList(val.name);
-      console.log("Strain: " + strain);
-      console.log("Val.Date: " + val.date);
+      if(strain == ""){
+        strain = "N/A";
+      }
 
       rows.push(createData(val.name,plantCount,strain,val.date));
     }
@@ -100,6 +84,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
             <TableCell align="right">Strain</TableCell>
             <TableCell align="right"># Plants</TableCell>
             <TableCell align="right">Date</TableCell>
+            <TableCell align="right">Export</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -111,6 +96,9 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
               <TableCell align="right">{row.strain}</TableCell>
               <TableCell align="right">{row.plants}</TableCell>
               <TableCell align="right">{row.date}</TableCell>
+              <TableCell align="right" style={{ width: "170px"}}>
+                    <ExportButton row={row}></ExportButton>
+                  </TableCell>
             </TableRow>
             ))}
             </TableBody>
