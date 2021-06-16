@@ -30,7 +30,8 @@ class ExportButton extends Component{
         
         function createData(tag,weight,unit,dryroom,hbname,date){
             let blank = "";
-            return {tag, weight, unit, dryroom, hbname,blank,date};
+            let str = "{" + tag + "," + weight + "," + unit + "," + dryroom + "," + hbname + "," + blank + "," + date + "}";
+            return str;
         }
 
         let data = []; 
