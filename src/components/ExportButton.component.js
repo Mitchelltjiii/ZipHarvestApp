@@ -26,21 +26,22 @@ class ExportButton extends Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    render() {    
-        let data = [
-            { tag: "tag", weight: "weight", unit: "unit", dryroom: "dryroom", hbname: "hbname", unknown: "", date: "date" }
-          ]; 
+    render() {  
+        
+        function createData(tag,weight,unit,dryroom,hbname,date){
+            return {tag, weight, unit, dryroom, hbname, "", date};
+        }
 
-        let headers = [
-            { label: "First Name", key: "firstname" },
-            { label: "Last Name", key: "lastname" },
-            { label: "Email", key: "email" }
-          ];    
+        let data = []; 
+
+        for(let val of JSON.parse(this.props.getHarvestRecords())){
+            data.push(createData(val.tag,val.weight,val.unit,"Dry Room #1",val.batchName,val.date));
+        }
         
         return <div style={{width: "170px"}}>
             <CSVLink data={data}>
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}  style={{width: "120px"}}>Export</Button>            
-            </CSVLink>;
+            </CSVLink>
         </div>;
       }
 }

@@ -97,7 +97,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
               <TableCell align="right">{row.plants}</TableCell>
               <TableCell align="right">{row.date}</TableCell>
               <TableCell align="right" style={{ width: "170px"}}>
-                    <ExportButton row={row}></ExportButton>
+                    <ExportButton row={row} getHarvestRecords={getHarvestRecords}></ExportButton>
                   </TableCell>
             </TableRow>
             ))}
