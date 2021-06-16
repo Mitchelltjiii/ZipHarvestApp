@@ -13,7 +13,6 @@ class ExportButton extends Component{
     constructor(props) {
         super(props);
         this.state = {
-          harvestRecordItem: this.emptyHarvestRecord,
           bgColors: { "Default": "#81b71a",
                     "Blue": "#00B1E1",
                     "Cyan": "#37BC9B",
@@ -29,7 +28,7 @@ class ExportButton extends Component{
     render() {  
         return <div style={{width: "170px"}}>
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}  style={{width: "120px"}}>Export</Button>
-        </div>
+        </div>;
       }
 }
 
