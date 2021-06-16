@@ -27,9 +27,9 @@ class ExportButton extends Component{
     }
 
     render() {  
-        
+        let parent = this;
         function getDate(batchName){
-            for(let val of JSON.parse(this.props.getHarvestBatches())){
+            for(let val of JSON.parse(parent.props.getHarvestBatches())){
                 if(val.name == batchName){
                     let parsedDate = Date.parse(val.date);
                     var dd = String(parsedDate.getDate()).padStart(2, '0');
