@@ -35,7 +35,7 @@ class ExportButton extends Component{
                 if(val.name == batchName){
                     let parsedDate = new Date();
                     var dd = String(parsedDate.getDate()).padStart(2, '0');
-                    parsedDate = Date.parse(val.date);
+                    parsedDate = new Date(val.date);
                     console.log("Parsed Date: " + JSON.stringify(parsedDate));
                     dd = String(parsedDate.getDate()).padStart(2, '0');
                     var mm = String(parsedDate.getMonth() + 1).padStart(2, '0'); //January is 0!
