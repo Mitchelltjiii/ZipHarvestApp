@@ -33,11 +33,8 @@ class ExportButton extends Component{
             for(let val of JSON.parse(parent.props.getHarvestBatches())){
                 console.log("Val: " + JSON.stringify(val));
                 if(val.name == batchName){
-                    let parsedDate = new Date();
+                    let parsedDate = new Date(val.date);
                     var dd = String(parsedDate.getDate()).padStart(2, '0');
-                    parsedDate = new Date(val.date);
-                    console.log("Parsed Date: " + JSON.stringify(parsedDate));
-                    dd = String(parsedDate.getDate()).padStart(2, '0');
                     var mm = String(parsedDate.getMonth() + 1).padStart(2, '0'); //January is 0!
                     var yyyy = parsedDate.getFullYear();
                 
@@ -52,7 +49,7 @@ class ExportButton extends Component{
 
         for(let val of JSON.parse(this.props.getHarvestRecords())){
             if(val.batchName == this.props.row.name){
-                data += val.tag + "," + val.weight + "," + val.unit + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
+                data += String(val.tag) + "," + val.weight + "," + val.unit + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
             }
         }   
         
