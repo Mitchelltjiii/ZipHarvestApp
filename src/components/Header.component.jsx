@@ -50,7 +50,7 @@ function Header({currentPageSet, currentPage, executeLogout}){
         <MenuItem onClick={()=>{handleHarvestNow() }}>Harvest Now</MenuItem>
         <MenuItem onClick={()=>{handleExistingBatches() }}>Existing Batches</MenuItem>
         <MenuItem onClick={()=>{handleMyAccount() }}>My account</MenuItem>
-        <MenuItem onClick={()=>{handleSignOut}}>Logout</MenuItem>
+        <MenuItem onClick={()=>{handleSignOut()}}>Logout</MenuItem>
       </Menu>
     </div>
             
