@@ -78,18 +78,18 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
     let newRows = [];
     let foundX = -1;
     let x = 0;
-    let earliestDate = new Date();
+    let latestDate = new Date();
     let parsedRows = [];
     while(JSON.stringify(rows) != "" && JSON.stringify(rows) != "[]"){
       x = 0;
       foundX = -1;
-      earliestDate = new Date();
+      latestDate = new Date(0);
       console.log("Rows: " + JSON.stringify(rows));
       for(let val of rows){
         console.log("Val: " + JSON.stringify(val));
-        if(new Date(val.date)<earliestDate){
+        if(new Date(val.date)>latestDate){
           foundX = x;
-          earliestDate = new Date(val.date);
+          latestDate = new Date(val.date);
         }
         x++;
       }
