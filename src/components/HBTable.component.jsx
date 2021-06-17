@@ -79,6 +79,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
     let foundX = -1;
     let x = 0;
     let earliestDate = new Date();
+    let parsedRows = [];
     while(JSON.stringify(rows) != "" && JSON.stringify(rows) != "[]"){
       x = 0;
       foundX = -1;
@@ -94,7 +95,8 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
       }
       let newRow = JSON.stringify(rows.splice(foundX,1));
       newRows.push(newRow.substring(1,newRow.length-1));
-      console.log("New Rows: " + JSON.stringify(newRows));
+      console.log("New Rows: " + newRows);
+      parsedRows = JSON.parse(newRows);
     }
     
        
@@ -111,7 +113,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
           </TableRow>
         </TableHead>
         <TableBody>
-            {newRows.map((row) => (
+            {parsedRows.map((row) => (
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">
                 {row.name}
