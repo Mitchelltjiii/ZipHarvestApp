@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
-function Header({currentPageSet, currentPage}){
+function Header({currentPageSet, currentPage, executeLogout}){
     const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -15,7 +15,8 @@ function Header({currentPageSet, currentPage}){
   };
 
   const handleSignOut = () => {
-    handleClose()
+    handleClose();
+    executeLogout();
   }
 
   const handleMyAccount = () => {
@@ -49,7 +50,7 @@ function Header({currentPageSet, currentPage}){
         <MenuItem onClick={()=>{handleHarvestNow() }}>Harvest Now</MenuItem>
         <MenuItem onClick={()=>{handleExistingBatches() }}>Existing Batches</MenuItem>
         <MenuItem onClick={()=>{handleMyAccount() }}>My account</MenuItem>
-        <MenuItem onClick={()=>{}}>Logout</MenuItem>
+        <MenuItem onClick={()=>{handleSignOut}}>Logout</MenuItem>
       </Menu>
     </div>
             

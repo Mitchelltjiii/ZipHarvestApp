@@ -410,6 +410,21 @@ export default class App extends React.Component {
     console.log("SET HARVESTRECORDS - HarvestRecords after transfer: " + this.state.harvestRecords);
   }
 
+
+  executeLogout = () => {
+    this.state.loggedIn = '';
+    this.state.currentPage = 'harvest-form';
+    this.state.harvestBatches = [];
+    this.state.plants = [];
+    this.state.harvestRecords = [];
+    this.state.plantsLoading = true;
+    this.state.harvestBatchesLoading = true;
+    this.state.harvestRecordsLoading = true;
+    this.state.currentHarvest = [];
+    this.state.userID = "";
+    this.forceUpdate();
+  }
+
   render() {
     if ((this.state.loggedIn == '' && this.state.usersLoading) || (this.state.loggedIn != '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading))){
       return(<div>Loading...</div>);
@@ -427,7 +442,7 @@ export default class App extends React.Component {
 	  let showForm;
     if (this.state.loggedIn != '') {
 	  	showForm = <div>
-	    <Header currentPageSet={this.SetCurrentPage} currentPage={this.state.currentPage}/>
+	    <Header currentPageSet={this.SetCurrentPage} currentPage={this.state.currentPage} executeLogout={this.executeLogout}/>
       <Outer currentPage={this.state.currentPage} setCurrentPage={this.SetCurrentPage} getPlants={this.getPlants} getHarvestRecords={this.getHarvestRecords} getHarvestBatches={this.getHarvestBatches}
       resetHarvestBatches={this.resetHarvestBatches} resetAll={this.resetAll} currentHarvest={this.state.currentHarvest} setNewHBID={this.setNewHBID} getCurrentHarvestID={this.getCurrentHarvestID}
       setNewHarvestRecordID={this.setNewHarvestRecordID} setNewPlantID={this.setNewPlantID} userID={this.state.userID} setAll={this.setAll}
