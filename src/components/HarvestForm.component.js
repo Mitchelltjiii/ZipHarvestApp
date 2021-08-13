@@ -25,6 +25,8 @@ import AddHarvestBatchButton from './AddHarvestBatchButton.component';
 import EditButton from './EditButton.component';
 import TableWrapper from './TableWrapper.component';
 import { setGlobalCssModule } from 'reactstrap/es/utils';
+import Collapsible from 'react-collapsible';
+
 
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches, 
 	resetAll, currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, setAll, 
@@ -669,12 +671,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
-				<div className="full tr" style={{width: "100px",height: "30px", backgroundColor: bgColors.Green, verticalAlign: "middle"}}>
+				<div className="full tr" style={{width: "200px",height: "30px", backgroundColor: bgColors.Green, verticalAlign: "middle"}}>
 						<FormLabel id="harvest-type-label" style={{verticalAlign: "middle"}}><b>{harvestTypeLabelText}</b></FormLabel>
 					</div>
 					<div className="full tr" style={{width: "20px",height: "30px"}}>
 					</div>
-					<div className="full tr" style={{width: "100px",height: "30px", backgroundColor: bgColors.Green, verticalAlign: "middle"}}>
+					<div className="full tr" style={{width: "200px",height: "30px", backgroundColor: bgColors.Green, verticalAlign: "middle"}}>
 						<FormLabel id="date-label" style={{verticalAlign: "middle"}}><b>{harvestDateLabelText}</b></FormLabel>
 					</div>
 				</Grid>
