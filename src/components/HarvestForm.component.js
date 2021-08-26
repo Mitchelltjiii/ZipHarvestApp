@@ -383,11 +383,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		return newTagList; 
 	}
 
-	const processData = (dataString) => {
-	  }
-
 	// handle file upload
-	const handleFileUpload = (e) => {
+	const handleFileUpload = (event) => {
 		
 	  }
 
