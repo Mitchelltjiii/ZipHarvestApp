@@ -698,6 +698,13 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 				<div>IMPORT TAB</div>
+				<div>
+					<input
+        			type="file"
+        			accept=".csv,.xlsx,.xls"
+      				/>
+				</div>
+				
 				</Grid>
 			  		  
 		  </div>
