@@ -26,7 +26,7 @@ import EditButton from './EditButton.component';
 import TableWrapper from './TableWrapper.component';
 import { setGlobalCssModule } from 'reactstrap/es/utils';
 import Collapsible from 'react-collapsible';
-import { ImportButton } from "react-admin-import-csv";
+
 
 
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches, 
@@ -703,8 +703,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
-				<ImportButton/>
-				<div>Import Button</div>
+				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleImport}>Import</Button>
 				</Grid>
 			  		  
 		  </div>
@@ -945,16 +944,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   				justify="center"
 				alignItems="center"
 			>
-				<Grid
-					container
-					direction="row"
-  					justify="center"
-					alignItems="center"
-				>
-
-				<ImportTab></ImportTab>
-				
-				</Grid>
 				<Grid
 					container
 					direction="row"
