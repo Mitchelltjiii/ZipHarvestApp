@@ -109,8 +109,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [removedPlantID, setRemovedPlantID] = React.useState("");
 
-	const [columns, setColumns] = useState([]);
-  	const [data, setData] = useState([]);
+	const [columns, setColumns] = React.useState([]);
+  	const [data, setData] = React.useState([]);
 
 	let searchForList = [];
 	let strain = '';
