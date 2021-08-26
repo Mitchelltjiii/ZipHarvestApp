@@ -26,6 +26,7 @@ import EditButton from './EditButton.component';
 import TableWrapper from './TableWrapper.component';
 import { setGlobalCssModule } from 'reactstrap/es/utils';
 import Collapsible from 'react-collapsible';
+import { ImportButton } from "react-admin-import-csv";
 
 
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches, 
@@ -252,6 +253,14 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const handleChangeStrainSelect = (event) => {
 		setChangeStrain(event.target.value);
 	  };
+
+	const handleImport = (event) => {
+		doImport();
+	  };
+
+	function doImport(){
+		
+	}
 
 	let timeLimit = 10000;
 
@@ -685,6 +694,24 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		);
 	  };
 
+	  const ImportTab = () => {
+		return (
+		  <div className="full tr">
+			  <Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
+				<ImportButton/>
+				<div>Import Button</div>
+				</Grid>
+			  		  
+		  </div>
+		);
+	  };
+
+
 
 
 	const ChangeStrainForm = ({changeStrainHiddenNow}) => {
@@ -918,6 +945,16 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   				justify="center"
 				alignItems="center"
 			>
+				<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
+
+				<ImportTab></ImportTab>
+				
+				</Grid>
 				<Grid
 					container
 					direction="row"
