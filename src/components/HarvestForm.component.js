@@ -109,8 +109,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [removedPlantID, setRemovedPlantID] = React.useState("");
 
-	const [columns, setColumns] = React.useState([]);
-  	const [data, setData] = React.useState([]);
+	const [columns, setColumns] = useState([]);
+  	const [data, setData] = useState([]);
 
 	let searchForList = [];
 	let strain = '';
@@ -426,7 +426,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	  }
 
 	// handle file upload
-	const handleFileUpload = e => {
+	const handleFileUpload = (e) => {
 		const file = e.target.files[0];
 		const reader = new FileReader();
 		reader.onload = (evt) => {
