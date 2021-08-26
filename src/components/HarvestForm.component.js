@@ -259,7 +259,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	  };
 
 	// handle file upload
-	const handleImport = e => {
+	const handleImport = (event) => {
 		
 	}
 
