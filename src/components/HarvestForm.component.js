@@ -58,9 +58,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		this.userID = userID;
 	}
 
-	const [columns, setColumns] = useState([]);
-  	const [data, setData] = useState([]);
-
 	let hbOptionsList = ["Add New Harvest Batch"];
 	let currentHarvestRecord = new HarvestRecord('','','','','','');
 
