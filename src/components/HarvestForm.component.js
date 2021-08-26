@@ -26,8 +26,6 @@ import EditButton from './EditButton.component';
 import TableWrapper from './TableWrapper.component';
 import { setGlobalCssModule } from 'reactstrap/es/utils';
 import Collapsible from 'react-collapsible';
-import * as XLSX from 'xlsx';
-
 
 
 
@@ -257,11 +255,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const handleChangeStrainSelect = (event) => {
 		setChangeStrain(event.target.value);
 	  };
-
-	// handle file upload
-	const handleImport = (event) => {
-		
-	}
 
 	let timeLimit = 10000;
 
@@ -705,11 +698,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 				<div>IMPORT TAB</div>
-				<input
-        			type="file"
-        			accept=".csv,.xlsx,.xls"
-        			onChange={handleImport}
-      			/>
 				</Grid>
 			  		  
 		  </div>
