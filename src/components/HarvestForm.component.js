@@ -383,13 +383,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		return newTagList; 
 	}
 
-	// handle file upload
-	const handleFileUpload = (event) => {
-		
-	  }
-
-
-
 	const handleAddNewStrain = (event) => {
 		let strain = document.getElementById("changeStrainField").value;
 		console.log("Strain: " + strain);
@@ -707,7 +700,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					<input
         			type="file"
         			accept=".csv,.xlsx,.xls"
-					onChange={handleFileUpload}
       				/>
 				</div>
 				
