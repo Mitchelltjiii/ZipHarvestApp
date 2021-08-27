@@ -26,7 +26,6 @@ import EditButton from './EditButton.component';
 import TableWrapper from './TableWrapper.component';
 import { setGlobalCssModule } from 'reactstrap/es/utils';
 import Collapsible from 'react-collapsible';
-import * as XLSX from 'xlsx';
 
 
 
@@ -108,6 +107,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const [editMode, setEditMode] = React.useState(false);
 
 	const [removedPlantID, setRemovedPlantID] = React.useState("");
+
+	const [columns, setColumns] = React.useState([]);
+  	const [data, setData] = React.useState([]);
 
 	let searchForList = [];
 	let strain = '';
