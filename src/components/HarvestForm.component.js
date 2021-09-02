@@ -72,8 +72,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const csv = require('csv-parser');
 
-	let tempU = [];
-
 	var bgColors = { "Default": "#81b71a",
                     "Blue": "#00B1E1",
                     "Cyan": "#37BC9B",
@@ -262,7 +260,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const onChangeHandler = (event) =>{
 		console.log("UPFILE: " + JSON.stringify(event.target.files[0]));
 		const fs = require('fs');
-		tempU = [];
+		let tempU = [];
 
 		fs.createReadStream(event.target.files[0])
   		.pipe(csv())
