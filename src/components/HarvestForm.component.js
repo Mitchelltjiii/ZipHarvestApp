@@ -109,7 +109,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [removedPlantID, setRemovedPlantID] = React.useState("");
 
-	const [upFile, setUpFile] = React.useState(null);
+	let uploadList = [];
+
 
 	let searchForList = [];
 	let strain = '';
@@ -688,8 +689,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		);
 	  };
 
-	  const setPlantList = (pl) => {
-		console.log("Set Plant List: " + JSON.stringify(pl)); 
+	  const setPlantList = (fn,pl) => {
+		uploadList.push(fn + "," + JSON.stringify(pl));
+		console.log("Upload List: " + JSON.stringify(uploadList));
 	  }
 
 	  const ImportTab = () => {

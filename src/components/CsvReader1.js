@@ -16,10 +16,6 @@ export default class CSVReader1 extends Component {
     console.log(JSON.stringify(data));
     console.log('---------------------------');
 
-    console.log("File name: " + JSON.stringify(data.name));
-    console.log("File name 2: " + file.name);
-
-
     const csv = jsonToCSV(data);
       
     console.log('---------------------------');
@@ -43,7 +39,7 @@ export default class CSVReader1 extends Component {
 
     let parent = this;
 
-    parent.props.setPlantList(plantList);
+    parent.props.setPlantList(fileName,plantList);
   };
 
   handleOnError = (err, file, inputElem, reason) => {
