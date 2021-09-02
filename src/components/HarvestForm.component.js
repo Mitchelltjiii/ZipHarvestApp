@@ -108,8 +108,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [removedPlantID, setRemovedPlantID] = React.useState("");
 
-	const [columns, setColumns] = React.useState([]);
-  	const [data, setData] = React.useState([]);
+	const [upFile, setUpFile] = React.useState(null);
 
 	let searchForList = [];
 	let strain = '';
@@ -255,6 +254,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const handleChangeStrainSelect = (event) => {
 		setChangeStrain(event.target.value);
 	  };
+
+	const onChangeHandler = (event) =>{
+		console.log("UPFILE: " + event.target.files[0]);
+		setUpFile(event.target.files[0]);
+	}
 
 	let timeLimit = 10000;
 
@@ -699,7 +703,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				>
 				<div>IMPORT TAB</div>
 				<div>
-					<input type="file" name="file"/>
+					<input type="file" name="file" onChange={onChangeHandler}/>
 				</div>
 				
 				</Grid>
