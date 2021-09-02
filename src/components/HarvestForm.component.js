@@ -72,7 +72,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const csv = require('csv-parser');
 
-	const tempU = [];
+	let tempU = [];
 
 	var bgColors = { "Default": "#81b71a",
                     "Blue": "#00B1E1",
