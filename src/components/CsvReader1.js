@@ -24,7 +24,7 @@ export default class CSVReader1 extends Component {
     for (var i = 1; i < csvSplit.length; i++) {
         console.log(csvSplit[i]);
         let newText = csvSplit[i].substring(1);
-        newText = nextText.substring(0,newText.indexOf('"'));
+        newText = newText.substring(0,newText.indexOf('"'));
         console.log("New text: " + newText);
         let newTextSplit = newText.split(",");
         for (var c = 0; c < newTextSplit.length; c++) {
