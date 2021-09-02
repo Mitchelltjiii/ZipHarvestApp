@@ -266,11 +266,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   		.pipe(csv())
   		.on('data', function (row) {
     		const user = {
-        		username,
         		firstname: row.Firstname,
         		surname: row.Surname,
-        		roles: row.Roles,
-        		password
+        		roles: row.Roles
    			}
     		tempU.push(user);
   		})
