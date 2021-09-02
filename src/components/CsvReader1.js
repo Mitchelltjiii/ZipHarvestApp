@@ -16,7 +16,7 @@ export default class CSVReader1 extends Component {
     console.log(JSON.stringify(data));
     console.log('---------------------------');
 
-    console.log("File name: " + data.name);
+    console.log("File name: " + JSON.stringify(data.name));
 
     const csv = jsonToCSV(data);
       
