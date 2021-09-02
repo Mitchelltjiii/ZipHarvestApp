@@ -11,7 +11,7 @@ export default class CSVReader1 extends Component {
     }
   };
 
-  handleOnFileLoad = (data, file) => {
+  handleOnFileLoad = (data, file, e) => {
     console.log('---------------------------');
     console.log(JSON.stringify(data));
     console.log('---------------------------');
@@ -39,7 +39,10 @@ export default class CSVReader1 extends Component {
 
     let parent = this;
 
-    parent.props.setPlantList(file.name,plantList);
+    parent.props.setPlantList(file.name,jSON.stringify(plantList));
+    if (buttonRef.current) {
+        buttonRef.current.removeFile(e);
+    }
   };
 
   handleOnError = (err, file, inputElem, reason) => {
