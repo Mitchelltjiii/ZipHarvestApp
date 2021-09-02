@@ -27,10 +27,10 @@ export default class CSVReader1 extends Component {
         newText = newText.substring(0,newText.indexOf('"'));
         console.log("New text: " + newText);
         let newTextSplit = newText.split(",");
-        for (var c = 0; c < newTextSplit.length; c++) {
-            console.log("New text split: " + newTextSplit[c]);
-        }
+        plantList.push(newTextSplit[0] + "," + newTextSplit[1]);
     }
+
+    console.log("Plantlist: " + JSON.stringify(plantList));
   };
 
   handleOnError = (err, file, inputElem, reason) => {
