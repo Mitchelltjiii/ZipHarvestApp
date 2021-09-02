@@ -699,10 +699,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				>
 				<div>IMPORT TAB</div>
 				<div>
-					<input
-        			type="file"
-        			accept=".csv,.xlsx,.xls"
-      				/>
+					<input type="file" name="file"/>
 				</div>
 				
 				</Grid>
@@ -711,6 +708,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		);
 	  };
 
+//        			accept=".csv,.xlsx,.xls"
 
 //				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleImport}>Import</Button>
 
