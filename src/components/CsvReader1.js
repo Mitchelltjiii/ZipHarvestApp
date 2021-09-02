@@ -12,9 +12,6 @@ export default class CSVReader1 extends Component {
   };
 
   handleOnFileLoad = (data) => {
-    console.log('+-------------------------+');
-    console.log(data.data);
-    console.log('+-------------------------+');
     console.log('---------------------------');
     console.log(JSON.stringify(data.data));
     console.log('---------------------------');
