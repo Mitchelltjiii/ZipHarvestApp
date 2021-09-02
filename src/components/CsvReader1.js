@@ -13,7 +13,7 @@ export default class CSVReader1 extends Component {
 
   handleOnFileLoad = (data) => {
     console.log('---------------------------');
-    console.log(data);
+    console.log(JSON.stringify(data));
     console.log('---------------------------');
   };
 
