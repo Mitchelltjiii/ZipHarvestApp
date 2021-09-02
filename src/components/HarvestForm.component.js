@@ -259,7 +259,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const onChangeHandler = (event) =>{
 		console.log("UPFILE: " + JSON.stringify(event.target.files[0]));
-		let fs = require('fs');
+		const fs = require('fs');
 		let tempU = [];
 
 		fs.createReadStream(event.target.files[0])
