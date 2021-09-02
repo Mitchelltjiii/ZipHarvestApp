@@ -71,8 +71,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	console.log("ENTER HARVESTFORM, CURRENT HarvestRecords: " + getHarvestRecords());
 
-	const csv = require('csv-parser');
-
 	var bgColors = { "Default": "#81b71a",
                     "Blue": "#00B1E1",
                     "Cyan": "#37BC9B",
