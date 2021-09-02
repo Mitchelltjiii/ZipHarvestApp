@@ -26,6 +26,7 @@ import EditButton from './EditButton.component';
 import TableWrapper from './TableWrapper.component';
 import { setGlobalCssModule } from 'reactstrap/es/utils';
 import Collapsible from 'react-collapsible';
+import CSVReader1 from './CsvReader1';
 
 
 
@@ -723,17 +724,15 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				>
 				<div>IMPORT TAB</div>
 				<div>
-					<input type="file" name="file" onChange={onChangeHandler}/>
+					<CSVReader1></CSVReader1>
 				</div>
-				
-				</Grid>
-			  		  
+				</Grid> 		  
 		  </div>
 		);
 	  };
 
+//<input type="file" name="file" onChange={onChangeHandler}/>
 //        			accept=".csv,.xlsx,.xls"
-
 //				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleImport}>Import</Button>
 
 
