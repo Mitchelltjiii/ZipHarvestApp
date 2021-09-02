@@ -688,6 +688,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		);
 	  };
 
+	  const setPlantList = (pl) => {
+		console.log("Set Plant List: " + JSON.stringify(pl)); 
+	  }
+
 	  const ImportTab = () => {
 		return (
 		  <div className="full tr">
@@ -699,7 +703,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				>
 				<div>IMPORT TAB</div>
 				<div>
-					<CSVReader1></CSVReader1>
+					<CSVReader1 setPlantList={setPlantList}></CSVReader1>
 				</div>
 				</Grid> 		  
 		  </div>

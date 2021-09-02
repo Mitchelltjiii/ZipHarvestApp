@@ -12,7 +12,7 @@ export default class CSVReader1 extends Component {
   };
 
   handleOnFileLoad = (data) => {
-    const csv = jsonToCSV(data)
+    const csv = jsonToCSV(data);
       
     console.log('---------------------------');
     console.log(csv);
@@ -21,16 +21,18 @@ export default class CSVReader1 extends Component {
     console.log("CSV SPLIT: ");
     let csvSplit = csv.split(/\r?\n/);
     let plantList = [];
-    for (var i = 1; i < csvSplit.length; i++) {
+    for (var i = 2; i < csvSplit.length; i++) {
         console.log(csvSplit[i]);
         let newText = csvSplit[i].substring(1);
         newText = newText.substring(0,newText.indexOf('"'));
         console.log("New text: " + newText);
         let newTextSplit = newText.split(",");
-        plantList.push(newTextSplit[0] + "," + newTextSplit[1]);
+        if(newTextSplit[0] != undefined && newTextSplit[1] != undefined) {
+            plantList.push(newTextSplit[0] + "," + newTextSplit[1]);
+        }
     }
-
     console.log("Plantlist: " + JSON.stringify(plantList));
+    setPlantList(plantList);
   };
 
   handleOnError = (err, file, inputElem, reason) => {
