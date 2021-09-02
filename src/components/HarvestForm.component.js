@@ -256,7 +256,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	  };
 
 	const onChangeHandler = (event) =>{
-		console.log("UPFILE: " + event.target.files[0]);
+		console.log("UPFILE: " + JSON.stringify(event.target.files[0]));
 		setUpFile(event.target.files[0]);
 	}
 
