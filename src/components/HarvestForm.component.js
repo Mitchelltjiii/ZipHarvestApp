@@ -278,6 +278,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   		    console.table(tempU)
     	  // TODO: SAVE users data to another file
     	})
+		console.log("TempU: " + tempU);
+		console.log("TempU(STRING): "  + JSON.stringify(tempU));
 		setUpFile(event.target.files[0]);
 	}
 
