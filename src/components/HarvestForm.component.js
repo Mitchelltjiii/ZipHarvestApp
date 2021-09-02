@@ -70,6 +70,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	console.log("ENTER HARVESTFORM, CURRENT HarvestRecords: " + getHarvestRecords());
 
+	const fs = require('fs');
+	const csv = require('csv-parser');
+
+	const tempU = [];
+
 	var bgColors = { "Default": "#81b71a",
                     "Blue": "#00B1E1",
                     "Cyan": "#37BC9B",
@@ -257,6 +262,22 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const onChangeHandler = (event) =>{
 		console.log("UPFILE: " + JSON.stringify(event.target.files[0]));
+		fs.createReadStream(event.target.files[0])
+  		.pipe(csv())
+  		.on('data', function (row) {
+    		const user = {
+        		username,
+        		firstname: row.Firstname,
+        		surname: row.Surname,
+        		roles: row.Roles,
+        		password
+   			}
+    		tempU.push(user);
+  		})
+  		.on('end', function () {
+  		    console.table(tempU)
+    	  // TODO: SAVE users data to another file
+    	})
 		setUpFile(event.target.files[0]);
 	}
 
