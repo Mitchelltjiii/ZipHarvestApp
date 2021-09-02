@@ -12,9 +12,12 @@ export default class CSVReader1 extends Component {
   };
 
   handleOnFileLoad = (data) => {
+    const csv = jsonToCSV(data)
+      
     console.log('---------------------------');
-    console.log(JSON.stringify(data.data));
+    console.log(csv);
     console.log('---------------------------');
+    
   };
 
   handleOnError = (err, file, inputElem, reason) => {
