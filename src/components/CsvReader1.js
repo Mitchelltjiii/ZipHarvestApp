@@ -12,6 +12,12 @@ export default class CSVReader1 extends Component {
   };
 
   handleOnFileLoad = (data) => {
+    console.log('---------------------------');
+    console.log(JSON.stringify(data));
+    console.log('---------------------------');
+
+    console.log("File name: " + data.name);
+
     const csv = jsonToCSV(data);
       
     console.log('---------------------------');
@@ -32,7 +38,10 @@ export default class CSVReader1 extends Component {
         }
     }
     console.log("Plantlist: " + JSON.stringify(plantList));
-    setPlantList(plantList);
+
+    let parent = this;
+
+    parent.props.setPlantList(plantList);
   };
 
   handleOnError = (err, file, inputElem, reason) => {
@@ -104,7 +113,16 @@ export default class CSVReader1 extends Component {
               >
                 {file && file.name}
               </div>
-              <button
+              
+            </aside>
+          )}
+        </CSVReader>
+      </>
+    );
+  }
+}
+
+/*<button
                 style={{
                   borderRadius: 0,
                   marginLeft: 0,
@@ -115,11 +133,4 @@ export default class CSVReader1 extends Component {
                 onClick={this.handleRemoveFile}
               >
                 Remove
-              </button>
-            </aside>
-          )}
-        </CSVReader>
-      </>
-    );
-  }
-}
+              </button>*/

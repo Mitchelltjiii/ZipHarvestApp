@@ -701,7 +701,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
-				<div>IMPORT TAB</div>
 				<div>
 					<CSVReader1 setPlantList={setPlantList}></CSVReader1>
 				</div>
