@@ -256,29 +256,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setChangeStrain(event.target.value);
 	  };
 
-	const onChangeHandler = (event) =>{
-		console.log("UPFILE: " + JSON.stringify(event.target.files[0]));
-		let tempU = [];
-
-		fs.createReadStream(event.target.files[0])
-  		.pipe(csv())
-  		.on('data', function (row) {
-    		const user = {
-        		firstname: row.Firstname,
-        		surname: row.Surname,
-        		roles: row.Roles
-   			}
-    		tempU.push(user);
-  		})
-  		.on('end', function () {
-  		    console.table(tempU)
-    	  // TODO: SAVE users data to another file
-    	});
-		console.log("TempU: " + tempU);
-		console.log("TempU(STRING): "  + JSON.stringify(tempU));
-		setUpFile(event.target.files[0]);
-	}
-
 	let timeLimit = 10000;
 
 	let unitList = ["lbs","g"];
@@ -728,10 +705,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		  </div>
 		);
 	  };
-
-//<input type="file" name="file" onChange={onChangeHandler}/>
-//        			accept=".csv,.xlsx,.xls"
-//				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleImport}>Import</Button>
+//<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleImport}>Import</Button>
 
 
 	const ChangeStrainForm = ({changeStrainHiddenNow}) => {
