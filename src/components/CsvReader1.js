@@ -39,7 +39,7 @@ export default class CSVReader1 extends Component {
 
     let parent = this;
 
-    parent.props.setPlantList(fileName,plantList);
+    parent.props.setPlantList(file.name,plantList);
   };
 
   handleOnError = (err, file, inputElem, reason) => {
