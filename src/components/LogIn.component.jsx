@@ -42,7 +42,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers}){
         }
       }catch(ex){
         reloadUsers();
-        let parsedUsers = JSON.parse(getUsers());
+        let parsedUsers = JSON.parse(getUsers()); //error here Uncaught SyntaxError: Unexpected end of JSON input
         for(const val of parsedUsers){
           console.log("Val: " + val);
           console.log("Val(String): " + JSON.stringify(val));
