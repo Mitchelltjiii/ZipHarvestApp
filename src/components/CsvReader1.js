@@ -18,6 +18,11 @@ export default class CSVReader1 extends Component {
     console.log(csv);
     console.log('---------------------------');
     
+    console.log("CSV SPLIT: ");
+    let csvSplit = csv.split(/\r?\n/);
+    for (var i = 1; i < csvSplit.length; i++) {
+        console.log(csvSplit[i]);
+    }
   };
 
   handleOnError = (err, file, inputElem, reason) => {
