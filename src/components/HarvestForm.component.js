@@ -70,7 +70,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	console.log("ENTER HARVESTFORM, CURRENT HarvestRecords: " + getHarvestRecords());
 
-	const fs = require('fs');
 	const csv = require('csv-parser');
 
 	const tempU = [];
@@ -262,6 +261,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const onChangeHandler = (event) =>{
 		console.log("UPFILE: " + JSON.stringify(event.target.files[0]));
+		const fs = require('fs');
+		tempU = [];
+
 		fs.createReadStream(event.target.files[0])
   		.pipe(csv())
   		.on('data', function (row) {
@@ -275,7 +277,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   		.on('end', function () {
   		    console.table(tempU)
     	  // TODO: SAVE users data to another file
-    	})
+    	});
 		console.log("TempU: " + tempU);
 		console.log("TempU(STRING): "  + JSON.stringify(tempU));
 		setUpFile(event.target.files[0]);
