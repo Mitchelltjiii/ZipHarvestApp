@@ -111,6 +111,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [uploadList,setUploadList] = React.useState([]);
 
+	console.log("Upload List after refresh: " + JSON.stringify(uploadList));
+
 
 	let searchForList = [];
 	let strain = '';
@@ -709,9 +711,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					<CSVReader1 setPlantList={setPlantList}></CSVReader1>
 				</div>
 				<div>
-					{uploadList.map((index) => (
+					{uploadList.map((name,index) => (
             			<div>
-							{uploadList[index]}
+							{name}
 						</div>
           			))}
 				</div>
