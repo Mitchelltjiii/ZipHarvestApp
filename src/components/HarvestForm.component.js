@@ -691,7 +691,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	  const setPlantList = (fn,pl) => {
 		let uList = uploadList;
-		uList.push(fn + "," + JSON.stringify(pl));
+		uList.push(fn + "," + pl);
 		console.log("Upload List: " + JSON.stringify(uList));
 		setUploadList(uList);
 	  }
