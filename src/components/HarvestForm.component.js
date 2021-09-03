@@ -706,6 +706,13 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				<div>
 					<CSVReader1 setPlantList={setPlantList}></CSVReader1>
 				</div>
+				<div>
+					{uploadList.map((name, index) => (
+            			<div>
+							{name}
+						</div>
+          			))}
+				</div>
 				</Grid> 		  
 		  </div>
 		);
