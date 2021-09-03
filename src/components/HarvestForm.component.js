@@ -709,9 +709,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					<CSVReader1 setPlantList={setPlantList}></CSVReader1>
 				</div>
 				<div>
-					{uploadList.map((name, index) => (
+					{uploadList.map((index) => (
             			<div>
-							{name}
+							{uploadList[index]}
 						</div>
           			))}
 				</div>
