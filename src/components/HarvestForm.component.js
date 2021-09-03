@@ -161,7 +161,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	};
 
 	const handleRemoveFromUploadQueue = (e) => {
-		console.log("Remove File Name: " + e.target.value);
+		console.log("Remove File Name: " + JSON.stringify(e.target.value));
 	};
 
 	function getHarvestBatch(selectedHB){
