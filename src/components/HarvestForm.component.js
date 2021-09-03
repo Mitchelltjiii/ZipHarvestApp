@@ -706,7 +706,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		refreshOuter();
 	  }
 
-	  const UploadTab = (name) => {
+	  const UploadTab = ({name}) => {
 		  return (
 			<div className="full tr">
 				<Grid
