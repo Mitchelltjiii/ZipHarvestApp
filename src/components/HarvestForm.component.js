@@ -114,9 +114,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	console.log("Upload List after refresh: " + JSON.stringify(uploadList));
 
 	let uploadNamesList = [];
-	for(let m = 0; m < uploadList.length; m++){
-		console.log('UploadList[m]: ' + uploadList[m]);
-		let splitList = uploadList[m].split(",");
+	for(const val of uploadList){
+		console.log('UploadList[m]: ' + val);
+		let splitList = val.split(",");
 		console.log("SplitList[0]: " + splitList[0]);
 		uploadNamesList.push(splitList[0]);
 	}
