@@ -113,6 +113,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	console.log("Upload List after refresh: " + JSON.stringify(uploadList));
 
+	for(let m = 0; m < uploadList.length; m++){
+		let splitList = uploadList[m].split(",");
+		uploadNamesList.push(splitList[0]);
+	}
 
 	let searchForList = [];
 	let strain = '';
@@ -712,9 +716,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					<CSVReader1 setPlantList={setPlantList}></CSVReader1>
 				</div>
 				<div>
-					{uploadList.map((name,index) => (
+					{uploadNamesList.map((name,index) => (
+
             			<div>
-							div + {name}
+							{name}
 						</div>
           			))}
 				</div>
