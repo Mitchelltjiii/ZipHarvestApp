@@ -706,12 +706,30 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		refreshOuter();
 	  }
 
+	  const UploadTab = (name) => {
+		  return (
+			<div className="full tr">
+				<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
+				<div>
+					{name}
+				</div>
+				<Button aria-controls="simple-menu" aria-haspopup="true">X</Button>
+				</Grid>
+			</div>
+		  );
+	  };
+
 	  const ImportTab = () => {
 		return (
 		  <div className="full tr">
 			  <Grid
 					container
-					direction="row"
+					direction="column"
   					justify="center"
 					alignItems="center"
 				>
@@ -720,13 +738,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				</div>
 				<div>
 					{uploadNamesList.map((name,index) => (
-
-            			<div>
-							{name}
-						</div>
+            			<UploadTab name={name}></UploadTab>
           			))}
 				</div>
-				</Grid> 		  
+				</Grid>		  
 		  </div>
 		);
 	  };
