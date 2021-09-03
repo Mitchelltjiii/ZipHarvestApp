@@ -696,7 +696,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		uList.push(fn + "," + pl);
 		console.log("Upload List: " + JSON.stringify(uList));
 		setUploadList(uList);
-		this.forceUpdate();
+		refreshOuter();
 	  }
 
 	  const ImportTab = () => {
