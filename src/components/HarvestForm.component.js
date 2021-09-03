@@ -713,7 +713,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				<div>
 					{uploadList.map((name,index) => (
             			<div>
-							{name}
+							div + {name}
 						</div>
           			))}
 				</div>
