@@ -160,6 +160,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setSelectedHB(e.target.value);
 	};
 
+	const handleRemoveFromUploadQueue = (e) => {
+		console.log("Remove File Name: " + e.target.value);
+	};
+
 	function getHarvestBatch(selectedHB){
 		console.log("Enter GetHarvestBatch");
 		console.log("Get Harvest Batches: " + getHarvestBatches());
@@ -718,7 +722,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				<div>
 					{name}
 				</div>
-				<Button aria-controls="simple-menu" aria-haspopup="true">X</Button>
+				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleRemoveFromUploadQueue} value={name}>X</Button>
 				</Grid>
 			</div>
 		  );
