@@ -657,12 +657,26 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function removeUploadQueueButton(name){
 		console.log("removeUploadQueueButton--");
+		let index = 0;
+		let foundIndex = -1;
 		for(let val of uploadList){
-			console.log("Val: " + val);
-			console.log("String val: " + JSON.stringify(val));
+			let splitList = val.split(",");
+			console.log("SplitList[0]: " + splitList[0]);
+			if(splitList[0]==name){
+				foundIndex = index;
+				console.log("Found Index: " + foundIndex);
+			}
+			index++;
 		}
-		console.log("removeUploadQueueButton++");
 
+		if(foundIndex != -1){
+			console.log("Found Index != -1");
+			let uList = uploadList;
+			uList.remove(foundIndex);
+			console.log("Upload List: " + JSON.stringify(uList));
+			setUploadList(uList);
+			refreshOuter();	
+		}
 	}
 
 	const ChangeHBForm = ({changeHBHiddenNow}) => {
