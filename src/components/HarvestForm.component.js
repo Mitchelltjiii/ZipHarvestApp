@@ -27,6 +27,7 @@ import TableWrapper from './TableWrapper.component';
 import { setGlobalCssModule } from 'reactstrap/es/utils';
 import Collapsible from 'react-collapsible';
 import CSVReader1 from './CsvReader1';
+import RemoveUploadQueueItemButton from './RemoveUploadQueueItemButton';
 
 
 
@@ -154,15 +155,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const [selectedHB, setSelectedHB] = React.useState(selHB);
 
 	
-	
-
-
 	const handleSelectHB = (e) => {
 		setSelectedHB(e.target.value);
-	};
-
-	const handleRemoveFromUploadQueue = (e) => {
-		console.log("Remove File Name: " + JSON.stringify(e.target.value));
 	};
 
 	function getHarvestBatch(selectedHB){
@@ -661,6 +655,16 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}
 	}
 
+	function removeUploadQueueButton(name){
+		console.log("removeUploadQueueButton--");
+		for(let val of uploadList){
+			console.log("Val: " + val);
+			console.log("String val: " + JSON.stringify(val));
+		}
+		console.log("removeUploadQueueButton++");
+
+	}
+
 	const ChangeHBForm = ({changeHBHiddenNow}) => {
 		if (changeHBHiddenNow) return null;
 	  
@@ -723,7 +727,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				<div>
 					{name}
 				</div>
-				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleRemoveFromUploadQueue} value={name}>X</Button>
+				<RemoveUploadQueueItemButton name={name} removeUploadQueueButton={removeUploadQueueButton}></RemoveUploadQueueItemButton>
 				</Grid>
 			</div>
 		  );
