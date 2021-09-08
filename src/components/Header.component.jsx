@@ -28,6 +28,11 @@ function Header({currentPageSet, currentPage, executeLogout}){
     currentPageSet('harvest-form')
   }
 
+  const handleManagePlants = () => {
+    handleClose()
+    currentPageSet('manage-plants')
+  }
+
   const handleExistingBatches = () => {
     console.log("Handle Existing Batches");
     handleClose()
@@ -48,7 +53,8 @@ function Header({currentPageSet, currentPage, executeLogout}){
         onClose={handleClose}
       >
         <MenuItem onClick={()=>{handleHarvestNow() }}>Harvest Now</MenuItem>
-        <MenuItem onClick={()=>{handleExistingBatches() }}>Existing Batches</MenuItem>
+        <MenuItem onClick={()=>{handleManagePlants() }}>Manage Plants</MenuItem>
+        <MenuItem onClick={()=>{handleExistingBatches() }}>Harvest Batches</MenuItem>
         <MenuItem onClick={()=>{handleMyAccount() }}>My Account</MenuItem>
         <MenuItem onClick={()=>{handleSignOut()}}>Logout</MenuItem>
       </Menu>

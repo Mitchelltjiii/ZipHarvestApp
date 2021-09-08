@@ -98,23 +98,6 @@ export default class CSVReader1 extends Component {
               >
                 Browse file
               </button>
-              <div
-                style={{
-                  borderWidth: 1,
-                  borderStyle: 'solid',
-                  borderColor: '#ccc',
-                  height: 45,
-                  lineHeight: 2.5,
-                  marginTop: 5,
-                  marginBottom: 5,
-                  paddingLeft: 13,
-                  paddingTop: 3,
-                  width: '60%',
-                }}
-              >
-                {file && file.name}
-              </div>
-              
             </aside>
           )}
         </CSVReader>
