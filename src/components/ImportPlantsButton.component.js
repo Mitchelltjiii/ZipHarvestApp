@@ -99,6 +99,7 @@ class ImportPlantsButton extends Component{
         super(props);
         this.state = {};
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.executeAddPlant = this.executeAddPlant.bind(this);
     }
 
     render() {    
