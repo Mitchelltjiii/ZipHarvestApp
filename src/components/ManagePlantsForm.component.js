@@ -81,7 +81,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
     const ImportTab = () => {
         return(
             <div>
-                {this.state.importing
+                {importing
                 ? <CSVReader1 setPlantList={setPlantList}></CSVReader1>
                 : <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}  style={{width: "120px"}}>+</Button>
                 }
