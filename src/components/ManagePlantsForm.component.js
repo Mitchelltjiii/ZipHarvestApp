@@ -51,6 +51,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 		}
 
 		setPlants(JSON.stringify(tempPlants));
+		setUploadList([]);
 		console.log("After Add Plants - Plants: " + getPlants());
 		setImporting(false);
         refreshOuter();
