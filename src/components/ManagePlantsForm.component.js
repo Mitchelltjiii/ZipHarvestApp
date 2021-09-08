@@ -11,15 +11,6 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 
     const [uploadList,setUploadList] = React.useState([]);
     const [importing,setImporting] = React.useState(false);
-	const parent = this;
- 
-
-	function Plant(userID,strain,tag,active){
-		this.userID = userID;
-		this.strain = strain;
-		this.tag = tag;
-		this.active = active;
-	}
 
     console.log("Upload List after refresh: " + JSON.stringify(uploadList));
 
