@@ -19,11 +19,12 @@ class ImportPlantsButton extends Component{
         }
 
         function getPlantItem(plant){
-            console.log("Enter getPlantItem")
+            console.log("Enter getPlantItem");
+
             let pl = {
                 tag: plant.tag,
                 strain: plant.strain,
-                userID: this.props.userID,
+                userID: plant.userID,
                 active: 0
                 };
             return pl;
