@@ -18,7 +18,7 @@ class ImportPlantsButton extends Component{
             this.active = active;
         }
 
-        function getPlantItem(pl){
+        function getPlantItem(plant){
             console.log("Enter getPlantItem")
             let pl = {
                 tag: plant.tag,
@@ -26,6 +26,7 @@ class ImportPlantsButton extends Component{
                 userID: this.props.userID,
                 active: 0
                 };
+            return pl;
         }
 
         event.preventDefault();
