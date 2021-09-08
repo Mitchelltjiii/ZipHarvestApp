@@ -11,10 +11,10 @@ class ImportPlantsButton extends Component{
 
     async handleSubmit(event) {
 
-        function Plant(userID,strain,tag,active){
-            this.userID = userID;
-            this.strain = strain;
+        function Plant(tag,strain,userID,active){
             this.tag = tag;
+            this.strain = strain;
+            this.userID = userID;
             this.active = active;
         }
 
@@ -42,7 +42,7 @@ class ImportPlantsButton extends Component{
 
 			for(let i = 1; i < splitList.length; i++){
 				console.log("Add Plant: " + JSON.stringify(splitList[i]));
-				let plant = new Plant(this.props.userID,splitList[i+1],splitList[i],0);
+				let plant = new Plant(splitList[i],splitList[i+1],this.props.userID,0);
 				tempPlants.push(plant);
                 this.state.plantItem = getPlantItem(plant);
                 console.log("Execute Add Plant from loop");

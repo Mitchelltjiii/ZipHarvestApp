@@ -256,70 +256,6 @@ app.put('/hr', (req, res) =>{
     res.json(message);
 });
 
-app.post('/plant', (req, res) =>{
-  var postData  = req.body;
-
-  let strain = postData.strain;
-  let tag = postData.tag;
-  let createdAt = '2021-05-03 22:06:12';
-  let updatedAt = '2021-05-03 22:06:12';
-
-  let postResult = "No Results";
-
-  console.log("POST DATA: PLANT STRINGIFIED: " + JSON.stringify(postData));
-  console.log("POST DATA: strain: " + strain);
-
-  const result = connection.query(
-    `INSERT INTO plants 
-    (strain, tag, createdAt, updatedAt) 
-    VALUES 
-    (?, ?, ?, ?)`, 
-    [
-      strain, tag, createdAt, updatedAt
-    ],function(err, result2) {
-      if(result2 != undefined){
-        console.log("RESULT2- " + result2.insertId);
-        postResult = result2.insertId;
-        console.log("POSTRESULT- " + postResult);
-        console.log("POSTRESULT WITH RESPONSE- " + postResult);
-      }else{
-        console.log("Result2 undefined");
-      }
-      res.json(postResult);
-  });  
-});
-
-app.put('/plant', (req, res) =>{
-  var postData  = req.body;
-
-  let id = postData.id;
-  let strain = postData.strain;
-  let tag = postData.tag;
-  let createdAt = '2021-05-03 22:06:12';
-  let updatedAt = '2021-05-03 22:06:12';
-
-  console.log("POST DATA: PLANT STRINGIFIED: " + JSON.stringify(postData));
-  console.log("POST DATA: STRAIN: " + strain);
-
-  const result = connection.query(
-    `UPDATE plants set
-    strain =?, tag =?, createdAt =?, updatedAt =? WHERE id = ?`, 
-    [
-      strain, tag, createdAt, updatedAt, id
-    ]
-  );  
-
-    let message = 'Error in creating programming language';
-  
-    if (result.affectedRows) {
-      message = 'Programming language created successfully';
-    }
-  
-    res.json(message);
-});
-
-
-
 app.delete(`/plant/:id`, (req, res) =>{
   console.log("Delete Plant: " + req.params.id);
   let plantID = req.params.id;
@@ -338,9 +274,9 @@ app.delete(`/plant/:id`, (req, res) =>{
 app.post('/pl', (req, res) =>{
   var postData  = req.body;
 
-  let userID = postData.userID;
-  let strain = postData.strain;
   let tag = postData.tag;
+  let strain = postData.strain;
+  let userID = postData.userID;
   let active = postData.active;
 
   console.log("POST DATA: PLANT STRINGIFIED: " + JSON.stringify(postData));
@@ -362,7 +298,6 @@ app.post('/pl', (req, res) =>{
     [
       tag, strain, userID, active
     ],function(err, result2) {
-      /*
       if(result2 != undefined){
         console.log("RESULT2- " + result2.insertId);
         postResult = result2.insertId;
@@ -371,9 +306,8 @@ app.post('/pl', (req, res) =>{
       }else{
         console.log("Result2 undefined");
       }
-*/
-      res.json("{}");
-  });  
+      res.json(postResult);
+    });  
 });
 
 app.put('/pl', (req, res) =>{
@@ -389,9 +323,9 @@ app.put('/pl', (req, res) =>{
 
   const result = connection.query(
     `UPDATE pl set
-    strain =?, userID =?, active =? WHERE tag = ?`, 
+    tag =?, strain =?, userID =?, active =? WHERE id = ?`, 
     [
-      strain, userID, active, tag
+      tag, strain, userID, active, id
     ]
   );  
 
