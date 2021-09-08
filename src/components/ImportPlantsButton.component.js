@@ -25,9 +25,9 @@ class ImportPlantsButton extends Component{
             this.active = active;
         }
 
-        function getPlantItem(plant){
+        function getPlantItem(pl){
             console.log("Enter getPlantItem")
-            let plant = {
+            let pl = {
                 tag: plant.tag,
                 strain: plant.strain,
                 userID: this.props.userID,
