@@ -672,7 +672,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		if(foundIndex != -1){
 			console.log("Found Index != -1");
 			let uList = uploadList;
-			uList.remove(foundIndex);
+			uList.splice(foundIndex,1);
 			console.log("Upload List: " + JSON.stringify(uList));
 			setUploadList(uList);
 			refreshOuter();	
