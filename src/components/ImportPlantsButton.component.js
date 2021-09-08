@@ -60,7 +60,7 @@ class ImportPlantsButton extends Component{
     async executeAddPlant(event){
       event.preventDefault();
       console.log("Execute Import Plant");
-      let parent = this;
+      const parent = this;
       console.log("Plant Item**: " + JSON.stringify(parent.state.plantItem));
         const resp = fetch('/pl', {
             method: (parent.state.plantItem.id) ? 'PUT' : 'POST',
