@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import HBTable from './HBTable.component';
 import RemoveUploadQueueItemButton from './RemoveUploadQueueItemButton';
-import CSVReader1 from './CSVReader1';
+import CSVReader1 from './CsvReader1'
 
 function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refreshOuter}) {
 

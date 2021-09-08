@@ -26,7 +26,6 @@ import EditButton from './EditButton.component';
 import TableWrapper from './TableWrapper.component';
 import { setGlobalCssModule } from 'reactstrap/es/utils';
 import Collapsible from 'react-collapsible';
-import CSVReader1 from './CsvReader1';
 
 
 
