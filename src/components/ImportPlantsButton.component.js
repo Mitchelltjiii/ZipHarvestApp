@@ -9,31 +9,7 @@ class ImportPlantsButton extends Component{
         active: ''
       }; 
 
-    getPlantItem(plant){
-        console.log("Enter getPlantItem")
-        console.log("Plant: " + plant);
-        console.log("Plant(STRING): " + JSON.stringify(plant));
-
-        let plantItem = {
-          tag: '',
-          strain: '',
-          userID: '',
-          active: ''
-         };
-
-         plantItem.tag = plant.tag;
-         plantItem.strain = plant.strain;
-         plantItem.userID = plant.userID;
-         plantItem.active = plant.active;
-
-          if(plant.itemID!==""){
-              plantItem.id = plant.itemID;
-          }
-
-          console.log("Stringified before passed: " + JSON.stringify(plantItem));
-          console.log("Exit getPlantItem")
-          return plantItem;
-      }
+    
 
     async handleSubmit(event) {
 
@@ -44,6 +20,31 @@ class ImportPlantsButton extends Component{
             this.active = active;
         }
 
+        function getPlantItem(plant){
+            console.log("Enter getPlantItem")
+            console.log("Plant: " + plant);
+            console.log("Plant(STRING): " + JSON.stringify(plant));
+    
+            let plantItem = {
+              tag: '',
+              strain: '',
+              userID: '',
+              active: ''
+             };
+    
+             plantItem.tag = plant.tag;
+             plantItem.strain = plant.strain;
+             plantItem.userID = plant.userID;
+             plantItem.active = plant.active;
+    
+              if(plant.itemID!==""){
+                  plantItem.id = plant.itemID;
+              }
+    
+              console.log("Stringified before passed: " + JSON.stringify(plantItem));
+              console.log("Exit getPlantItem")
+              return plantItem;
+          }
         
         event.preventDefault();
         console.log("Handle Submit Plant Button");
