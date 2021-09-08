@@ -3,7 +3,8 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import HBTable from './HBTable.component';
 import RemoveUploadQueueItemButton from './RemoveUploadQueueItemButton';
-import CSVReader1 from './CsvReader1'
+import CSVReader1 from './CsvReader1';
+import PlantTable from './PlantTable.component';
 
 function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refreshOuter}) {
 
@@ -92,6 +93,9 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
             			<UploadTab name={name}></UploadTab>
           			))}
 				</div>
+                <div>
+                    <PlantTable getPlants={getPlants}></PlantTable>
+                </div>
 				</Grid>		  
 		  </div>
 			</Grid>
@@ -99,7 +103,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 	);
 }
 
-//			<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants}></HBTable>
+//			
 
 
 export default ManagePlantsForm;

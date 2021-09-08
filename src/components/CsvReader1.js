@@ -67,7 +67,6 @@ export default class CSVReader1 extends Component {
   render() {
     return (
       <>
-        <h5>Basic Upload</h5>
         <CSVReader
           ref={buttonRef}
           onFileLoad={this.handleOnFileLoad}
