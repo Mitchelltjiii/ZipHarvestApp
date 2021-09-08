@@ -11,6 +11,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 
     const [uploadList,setUploadList] = React.useState([]);
     const [importing,setImporting] = React.useState(false);
+	const parent = this;
  
 
 	function Plant(userID,strain,tag,active){
@@ -95,10 +96,19 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
         return(
             <div>
                 {importing
-                ? <div><CSVReader1 setPlantList={setPlantList}></CSVReader1>
-				<ImportPlantsButton getPlants={getPlants} uploadList={uploadList} setPlants={setPlants} setUploadList={setUploadList}
-				setImporting={setImporting} setNewPlantID={setNewPlantID}></ImportPlantsButton>
-				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancel}  style={{width: "120px"}}>Cancel</Button></div>
+                ? <div>
+					<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+					>
+						<CSVReader1 setPlantList={setPlantList}></CSVReader1>
+						<ImportPlantsButton getPlants={getPlants} uploadList={uploadList} setPlants={setPlants} setUploadList={setUploadList}
+						setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter}></ImportPlantsButton>
+						<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancel}  style={{width: "120px"}}>Cancel</Button>
+					</Grid>
+					</div>
                 : <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}  style={{width: "120px"}}>+</Button>
                 }
 				</div>
