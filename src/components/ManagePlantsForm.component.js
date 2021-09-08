@@ -9,7 +9,8 @@ import PlantTable from './PlantTable.component';
 function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refreshOuter}) {
 
     const [uploadList,setUploadList] = React.useState([]);
-
+    const [importing,setImporting] = React.useState(false);
+ 
     console.log("Upload List after refresh: " + JSON.stringify(uploadList));
 
 	let uploadNamesList = [];
@@ -19,6 +20,13 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 		console.log("SplitList[0]: " + splitList[0]);
 		uploadNamesList.push(splitList[0]);
 	}
+
+    const handleGetReady = () => {
+		setImporting(true);
+        refreshOuter();
+	  }
+
+    
 
     const setPlantList = (fn,pl) => {
 		let uList = uploadList;
@@ -70,6 +78,17 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
         );
     };
 
+    const ImportTab = () => {
+        return(
+            <div>
+                {this.state.importing
+                ? <CSVReader1 setPlantList={setPlantList}></CSVReader1>
+                : <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}  style={{width: "120px"}}>+</Button>
+                }
+				</div>
+        )
+    }
+
 	return (
 		<div id="harvest-batches-form">
 			<Grid
@@ -85,9 +104,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
   					justify="center"
 					alignItems="center"
 				>
-				<div>
-					<CSVReader1 setPlantList={setPlantList}></CSVReader1>
-				</div>
+				<ImportTab></ImportTab>
 				<div>
 					{uploadNamesList.map((name,index) => (
             			<UploadTab name={name}></UploadTab>
