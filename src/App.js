@@ -400,7 +400,7 @@ export default class App extends React.Component {
 
   setPlants = (plantMapFromChild) => {
     console.log("SET PLANT MAP - PlantMap from child: " + plantMapFromChild);
-    this.state.plant = plantMapFromChild;
+    this.state.plants = plantMapFromChild;
     console.log("SET PLANTS - Plants after transfer: " + this.state.plants);
   }
 
