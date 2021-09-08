@@ -71,6 +71,7 @@ class ImportPlantsButton extends Component{
 		this.props.setUploadList([]);
 		console.log("After Add Plants - Plants: " + this.props.getPlants());
 		this.props.setImporting(false);
+        this.props.reloadPlants([]);
         this.props.refreshOuter();
     }
 
@@ -90,7 +91,7 @@ class ImportPlantsButton extends Component{
             return response.json();
           }).then(function(data) {
             console.log("EXECUTE PLANT EXCT DATA: " + data); // this will be a string
-            parent.props.setNewPlantID(data,parent.state.plantItem);
+            //parent.props.setNewPlantID(data,parent.state.plantItem);
           });
     }
     
