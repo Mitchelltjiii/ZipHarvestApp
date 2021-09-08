@@ -1,6 +1,7 @@
 import React from 'react';
 import HarvestForm from './HarvestForm.component';
 import HarvestBatchesForm from './HarvestBatchesForm.component';
+import ManagePlantsForm from './ManagePlantsForm.component';
 
 
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
