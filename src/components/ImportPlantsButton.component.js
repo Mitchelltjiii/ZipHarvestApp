@@ -49,8 +49,8 @@ class ImportPlantsButton extends Component{
         event.preventDefault();
         console.log("Handle Submit Plant Button");
 
-	    let tempPlants = JSON.parse(this.props.getPlants());
-		console.log("Before Import Plants - Plants: " + JSON.stringify(tempPlants));
+	    //let tempPlants = JSON.parse(this.props.getPlants());
+		//console.log("Before Import Plants - Plants: " + JSON.stringify(tempPlants));
 
 		for(const val of this.props.uploadList){
 			console.log('**UploadList[m]: ' + val);
@@ -59,10 +59,10 @@ class ImportPlantsButton extends Component{
 			for(let i = 1; i < splitList.length; i++){
 				console.log("Add Plant: " + JSON.stringify(splitList[i]));
 				let plant = new Plant(splitList[i],splitList[i+1],this.props.userID,0);
-				tempPlants.push(plant);
-                this.state.plantItem = getPlantItem(plant);
+				//tempPlants.push(plant);
+                let pl = getPlantItem(plant);
                 console.log("Execute Add Plant from loop");
-                this.executeAddPlant(event,this.state.plantItem);
+                this.executeAddPlant(event,pl);
 				i++;
 			}
 		}
@@ -91,15 +91,13 @@ class ImportPlantsButton extends Component{
             return response.json();
           }).then(function(data) {
             console.log("EXECUTE PLANT EXCT DATA: " + data); // this will be a string
-            parent.props.setNewPlantID(data,plantItem);
+            //parent.props.setNewPlantID(data,plantItem);
           });
     }
     
     constructor(props) {
         super(props);
-        this.state = {
-          plantItem: this.emptyPlant
-        };
+        this.state = {};
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
