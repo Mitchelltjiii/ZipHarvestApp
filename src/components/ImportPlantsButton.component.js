@@ -62,36 +62,36 @@ class ImportPlantsButton extends Component{
 				tempPlants.push(plant);
                 this.state.plantItem = getPlantItem(plant);
                 console.log("Execute Add Plant from loop");
-                this.executeAddPlant(event);
+                this.executeAddPlant(event,this.state.plantItem);
 				i++;
 			}
 		}
 
 		//this.props.setPlants(JSON.stringify(tempPlants));
-        this.props.reloadPlants("[]");
+        //this.props.reloadPlants("[]");
 		this.props.setUploadList([]);
 		//console.log("After Add Plants - Plants: " + this.props.getPlants());
 		this.props.setImporting(false);
         this.props.refreshOuter();
     }
 
-    async executeAddPlant(event){
+    async executeAddPlant(event,plantItem){
       event.preventDefault();
       console.log("Execute Import Plant");
       const parent = this;
-      console.log("Plant Item**: " + JSON.stringify(parent.state.plantItem));
+      console.log("Plant Item**: " + JSON.stringify(plantItem));
         const resp = fetch('/pl', {
-            method: (parent.state.plantItem.id) ? 'PUT' : 'POST',
+            method: (plantItem.id) ? 'PUT' : 'POST',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(parent.state.plantItem)
+            body: JSON.stringify(plantItem)
           }).then(function(response) {
             return response.json();
           }).then(function(data) {
             console.log("EXECUTE PLANT EXCT DATA: " + data); // this will be a string
-            //parent.props.setNewPlantID(data,parent.state.plantItem);
+            parent.props.setNewPlantID(data,plantItem);
           });
     }
     
