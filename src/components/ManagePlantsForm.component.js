@@ -6,11 +6,19 @@ import RemoveUploadQueueItemButton from './RemoveUploadQueueItemButton';
 import CSVReader1 from './CsvReader1';
 import PlantTable from './PlantTable.component';
 
-function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refreshOuter}) {
+function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refreshOuter, userID, setPlants}) {
 
     const [uploadList,setUploadList] = React.useState([]);
     const [importing,setImporting] = React.useState(false);
  
+
+	function Plant(userID,strain,tag,active){
+		this.userID = userID;
+		this.strain = strain;
+		this.tag = tag;
+		this.active = active;
+	}
+
     console.log("Upload List after refresh: " + JSON.stringify(uploadList));
 
 	let uploadNamesList = [];
@@ -23,6 +31,33 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 
     const handleGetReady = () => {
 		setImporting(true);
+        refreshOuter();
+	  }
+
+	const handleImport = () => {
+		let tempPlants = JSON.parse(getPlants());
+		console.log("Before Import Plants - Plants: " + JSON.stringify(tempPlants));
+
+		for(const val of uploadList){
+			console.log('**UploadList[m]: ' + val);
+			let splitList = val.split(",");
+
+			for(let i = 1; i < splitList.length; i++){
+				console.log("Add Plant: " + JSON.stringify(splitList[i]));
+				let plant = new Plant(userID,splitList[i+1],splitList[i],0);
+				tempPlants.push(plant);
+				i++;
+			}
+		}
+
+		setPlants(JSON.stringify(tempPlants));
+		console.log("After Add Plants - Plants: " + getPlants());
+		setImporting(false);
+        refreshOuter();
+	  }
+
+	const handleCancel = () => {
+		setImporting(false);
         refreshOuter();
 	  }
 
@@ -82,7 +117,9 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
         return(
             <div>
                 {importing
-                ? <CSVReader1 setPlantList={setPlantList}></CSVReader1>
+                ? <div><CSVReader1 setPlantList={setPlantList}></CSVReader1>
+				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleImport}  style={{width: "120px"}}>Import</Button>
+				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancel}  style={{width: "120px"}}>Cancel</Button></div>
                 : <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}  style={{width: "120px"}}>+</Button>
                 }
 				</div>

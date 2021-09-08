@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import HBTable from './HBTable.component';
 
-function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants}) {
+function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, userID}) {
 
 	return (
 		<div id="harvest-batches-form">
