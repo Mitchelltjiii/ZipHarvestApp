@@ -3,8 +3,9 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import HBTable from './HBTable.component';
 import RemoveUploadQueueItemButton from './RemoveUploadQueueItemButton';
+import CsvReader1 from './CsvReader1';
 
-function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants}) {
+function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refreshOuter}) {
 
     const [uploadList,setUploadList] = React.useState([]);
 
