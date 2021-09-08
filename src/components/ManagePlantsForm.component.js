@@ -5,6 +5,7 @@ import HBTable from './HBTable.component';
 import RemoveUploadQueueItemButton from './RemoveUploadQueueItemButton';
 import CSVReader1 from './CsvReader1';
 import PlantTable from './PlantTable.component';
+import ImportPlantsButton from './ImportPlantsButton.component';
 
 function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refreshOuter, userID, setPlants}) {
 
@@ -34,36 +35,12 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
         refreshOuter();
 	  }
 
-	const handleImport = () => {
-		let tempPlants = JSON.parse(getPlants());
-		console.log("Before Import Plants - Plants: " + JSON.stringify(tempPlants));
-
-		for(const val of uploadList){
-			console.log('**UploadList[m]: ' + val);
-			let splitList = val.split(",");
-
-			for(let i = 1; i < splitList.length; i++){
-				console.log("Add Plant: " + JSON.stringify(splitList[i]));
-				let plant = new Plant(userID,splitList[i+1],splitList[i],0);
-				tempPlants.push(plant);
-				i++;
-			}
-		}
-
-		setPlants(JSON.stringify(tempPlants));
-		setUploadList([]);
-		console.log("After Add Plants - Plants: " + getPlants());
-		setImporting(false);
-        refreshOuter();
-	  }
-
 	const handleCancel = () => {
 		setImporting(false);
         refreshOuter();
 	  }
 
     
-
     const setPlantList = (fn,pl) => {
 		let uList = uploadList;
 		uList.push(fn + "," + pl);
@@ -114,12 +91,24 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
         );
     };
 
+	function getPlantItem(){
+		console.log("Enter getPlantItem")
+		let pl = {
+			strain: '',
+			tag: '',
+			userID: userID,
+			active: 0
+			};
+		return pl;
+	}
+
     const ImportTab = () => {
         return(
             <div>
                 {importing
                 ? <div><CSVReader1 setPlantList={setPlantList}></CSVReader1>
-				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleImport}  style={{width: "120px"}}>Import</Button>
+				<ImportPlantsButton getPlants={getPlants} uploadList={uploadList} setPlants={setPlants} setUploadList={setUploadList}
+				setImporting={setImporting}></ImportPlantsButton>
 				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancel}  style={{width: "120px"}}>Cancel</Button></div>
                 : <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}  style={{width: "120px"}}>+</Button>
                 }

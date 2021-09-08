@@ -133,7 +133,7 @@ class HarvestPlantButton extends Component{
         super(props);
         this.state = {
           harvestRecordItem: this.emptyHarvestRecord,
-          harvsetBatchItem: this.emptyHarvestBatch
+          harvestBatchItem: this.emptyHarvestBatch
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
