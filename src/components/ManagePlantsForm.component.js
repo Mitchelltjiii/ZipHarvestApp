@@ -7,7 +7,7 @@ import CSVReader1 from './CsvReader1';
 import PlantTable from './PlantTable.component';
 import ImportPlantsButton from './ImportPlantsButton.component';
 
-function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refreshOuter, userID, setPlants}) {
+function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refreshOuter, userID, setPlants, setNewPlantID}) {
 
     const [uploadList,setUploadList] = React.useState([]);
     const [importing,setImporting] = React.useState(false);
@@ -91,24 +91,13 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
         );
     };
 
-	function getPlantItem(){
-		console.log("Enter getPlantItem")
-		let pl = {
-			strain: '',
-			tag: '',
-			userID: userID,
-			active: 0
-			};
-		return pl;
-	}
-
     const ImportTab = () => {
         return(
             <div>
                 {importing
                 ? <div><CSVReader1 setPlantList={setPlantList}></CSVReader1>
 				<ImportPlantsButton getPlants={getPlants} uploadList={uploadList} setPlants={setPlants} setUploadList={setUploadList}
-				setImporting={setImporting}></ImportPlantsButton>
+				setImporting={setImporting} setNewPlantID={setNewPlantID}></ImportPlantsButton>
 				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancel}  style={{width: "120px"}}>Cancel</Button></div>
                 : <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}  style={{width: "120px"}}>+</Button>
                 }
