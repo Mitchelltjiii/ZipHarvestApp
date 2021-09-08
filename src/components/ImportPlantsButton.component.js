@@ -91,7 +91,7 @@ class ImportPlantsButton extends Component{
             return response.json();
           }).then(function(data) {
             console.log("EXECUTE PLANT EXCT DATA: " + data); // this will be a string
-            //parent.props.setNewPlantID(data,plantItem);
+            parent.props.setNewPlantID(data,plantItem);
           });
     }
     
