@@ -37,9 +37,9 @@ class ImportPlantsButton extends Component{
              plantItem.userID = plant.userID;
              plantItem.active = plant.active;
     
-              if(plant.itemID!==""){
+              /*if(plant.itemID!==""){
                   plantItem.id = plant.itemID;
-              }
+              }*/
     
               console.log("Stringified before passed: " + JSON.stringify(plantItem));
               console.log("Exit getPlantItem")
@@ -81,7 +81,7 @@ class ImportPlantsButton extends Component{
       const parent = this;
       console.log("Plant Item**: " + JSON.stringify(plantItem));
         const resp = fetch('/pl', {
-            method: (plantItem.id) ? 'PUT' : 'POST',
+            method: (plantItem.tag) ? 'PUT' : 'POST',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
@@ -91,7 +91,7 @@ class ImportPlantsButton extends Component{
             return response.json();
           }).then(function(data) {
             console.log("EXECUTE PLANT EXCT DATA: " + data); // this will be a string
-            parent.props.setNewPlantID(data,plantItem);
+            //parent.props.setNewPlantID(data,plantItem);
           });
     }
     
