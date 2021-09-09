@@ -37,9 +37,9 @@ class ImportPlantsButton extends Component{
              plantItem.userID = plant.userID;
              plantItem.active = plant.active;
     
-              /*if(plant.itemID!==""){
+              if(plant.itemID!==""){
                   plantItem.id = plant.itemID;
-              }*/
+              }
     
               console.log("Stringified before passed: " + JSON.stringify(plantItem));
               console.log("Exit getPlantItem")
