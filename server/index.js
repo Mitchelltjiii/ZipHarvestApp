@@ -323,19 +323,12 @@ app.put('/pl', (req, res) =>{
 
   const result = connection.query(
     `UPDATE pl set
-    strain =?, userID =?, active =? WHERE tag = ?`, 
+    strain =?, userID =?, active =?, WHERE tag = ?`, 
     [
       strain, userID, active, tag
-    ]
-  );  
-
-    let message = 'Error in creating programming language';
-  
-    if (result.affectedRows) {
-      message = 'Programming language created successfully';
-    }
-  
-    res.json(message);
+    ],function(err, result2) {
+      res.json("{}");
+  }); 
 });
 
 
