@@ -24,7 +24,6 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 	}
 
 	const toggleDeleteAllSelected = () => {
-		//console.log("Delete All Selected: " + !deleteAllSelected);
 		setDeleteAllSelected(!deleteAllSelected);
 	}
 
