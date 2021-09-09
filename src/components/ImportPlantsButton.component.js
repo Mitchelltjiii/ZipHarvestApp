@@ -95,7 +95,7 @@ class ImportPlantsButton extends Component{
 		}*/
 
             let addPlant = new Plant("","","","");
-            for(const val of JSON.parse(this.props.uploadList)){
+            for(const val of this.props.uploadList){
                 console.log('**UploadList[m]: ' + val);
 			    let splitList = val.split(",");
 
