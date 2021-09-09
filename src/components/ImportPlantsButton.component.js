@@ -126,6 +126,7 @@ class ImportPlantsButton extends Component{
                 if(x==this.props.timeLimit){
                   console.log("TIMEOUT OPERATION FAILED");
                 }
+                i++;
             }
         }
 
