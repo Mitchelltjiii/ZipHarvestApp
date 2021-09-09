@@ -27,6 +27,10 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
         refreshOuter();
 	  }
 
+	const handleDelete = () => {
+        refreshOuter();
+	  }
+
 	const handleCancel = () => {
 		setImporting(false);
         refreshOuter();
@@ -106,8 +110,17 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 						</div>
 					</Grid>
 					</div>
-                : <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}  style={{width: "120px"}}>+</Button>
-                }
+                : <div>
+					<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+					></Grid>
+					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}  style={{width: "120px"}}>+</Button>
+					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleDelete}  style={{width: "120px"}}>-</Button>
+               		</div>
+			    }
 				</div>
         )
     }
