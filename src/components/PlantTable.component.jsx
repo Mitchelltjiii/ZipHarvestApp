@@ -10,7 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import SelectDeleteAllButton from './SelectDeleteAllButton.component';
 
 
-function PlantTable({getPlants}) {
+function PlantTable({getPlants,deleteAllSelected,setDeleteAllSelected}) {
 
     console.log("ENTER PlantTable, Plants: " + getPlants());
 
@@ -40,7 +40,7 @@ function PlantTable({getPlants}) {
         <TableHead>
           <TableRow>
           <TableCell align="left" style={{ width: "170px"}}>
-                    <SelectDeleteAllButton deleteAllSelected={this.props.deleteAllSelected} setDeleteAllSelected={this.props.setDeleteAllSelected}></SelectDeleteAllButton>
+                    <SelectDeleteAllButton deleteAllSelected={deleteAllSelected} setDeleteAllSelected={setDeleteAllSelected}></SelectDeleteAllButton>
             </TableCell>
             <TableCell >Tag</TableCell>
             <TableCell align="right">Strain</TableCell>
