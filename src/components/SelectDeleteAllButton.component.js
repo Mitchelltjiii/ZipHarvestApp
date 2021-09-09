@@ -5,14 +5,12 @@ import Grid from '@material-ui/core/Grid';
 class SelectDeleteAllButton extends Component{
     handleClick() {
       console.log("SelectDeleteAllButton handle click");
-      this.setState({checked:!this.state.checked});
-      this.props.setDeleteAllSelected(!this.state.checked);
+      this.props.setDeleteAllSelected(!this.props.deleteAllSelected);
     }
     
     constructor(props) {
         super(props);
         this.state = {
-          checked: false,
           bgColors: { "Default": "#81b71a",
                     "Blue": "#00B1E1",
                     "Cyan": "#37BC9B",
@@ -25,7 +23,7 @@ class SelectDeleteAllButton extends Component{
 
     render() {  
         return <div style={{width: "170px"}}>
-            {this.state.checked ? <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{width: "120px"}}></Button>
+            {this.props.deleteAllSelected ? <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{width: "120px"}}></Button>
             :<Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick} style={{width: "120px"}} backgroundColor={this.state.bgColors.Blue}></Button>
             }
                 </div>
