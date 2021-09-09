@@ -102,7 +102,7 @@ class ImportPlantsButton extends Component{
 			    for(let i = 1; i < splitList.length; i++){
                     addPlant = new Plant(splitList[i],splitList[i+1],this.props.userID,0);
 
-                    const plantItem = this.getPlantItem(addPlant);
+                    const plantItem = getPlantItem(addPlant);
   
                     console.log("Plant Item to update with: " + JSON.stringify(plantItem));
   
