@@ -116,10 +116,15 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 					direction="row"
   					justify="center"
 					alignItems="center"
-					></Grid>
+					>
+					<div>
 					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}  style={{width: "120px"}}>+</Button>
+					</div>
+					<div>
 					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleDelete}  style={{width: "120px"}}>-</Button>
                		</div>
+					</Grid>
+					</div>
 			    }
 				</div>
         )

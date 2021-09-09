@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import SelectDeleteAllButton from './SelectDeleteAllButton.component';
 
 
 function PlantTable({getPlants}) {
@@ -38,13 +39,18 @@ function PlantTable({getPlants}) {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Tag</TableCell>
+          <TableCell align="left" style={{ width: "170px"}}>
+                    <SelectDeleteAllButton></SelectDeleteAllButton>
+            </TableCell>
+            <TableCell >Tag</TableCell>
             <TableCell align="right">Strain</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
             {rows.map((row) => (
             <TableRow key={row.tag}>
+              <TableCell align="left" style={{ width: "170px"}}>
+              </TableCell>
               <TableCell component="th" scope="row">
                 {row.tag}
               </TableCell>
