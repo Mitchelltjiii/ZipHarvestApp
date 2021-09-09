@@ -131,7 +131,7 @@ class ImportPlantsButton extends Component{
         }
 
 		//this.props.setPlants(JSON.stringify(tempPlants));
-        //this.props.reloadPlants("[]");
+        this.props.reloadPlants([]);
 		this.props.setUploadList([]);
 		//console.log("After Add Plants - Plants: " + this.props.getPlants());
 		this.props.setImporting(false);
