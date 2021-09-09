@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 class SelectDeleteAllButton extends Component{
     handleClick() {
       console.log("SelectDeleteAllButton handle click");
-      this.props.setDeleteAllSelected(!this.props.deleteAllSelected);
+      this.props.toggleDeleteAllSelected();
     }
     
     constructor(props) {
@@ -22,8 +22,9 @@ class SelectDeleteAllButton extends Component{
     }
 
     render() {  
-        return <div style={{width: "170px"}}>
-            {this.props.deleteAllSelected ? <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{width: "120px"}}></Button>
+        let checked = this.props.deleteAllSelected;
+        return <div>
+            {checked ? <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{width: "120px"}}></Button>
             :<Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick} style={{width: "120px"}} backgroundColor={this.state.bgColors.Blue}></Button>
             }
                 </div>

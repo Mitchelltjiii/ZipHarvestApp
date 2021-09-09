@@ -23,6 +23,14 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 		uploadNamesList.push(splitList[0]);
 	}
 
+	const toggleDeleteAllSelected = () => {
+		setDeleteAllSelected(!deleteAllSelected);
+	}
+
+	const getDeleteAllSelected = () => {
+		return deleteAllSelected;
+	}
+
     const handleGetReady = () => {
 		setImporting(true);
         refreshOuter();
@@ -153,7 +161,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
           			))}
 				</div>
                 <div>
-                    <PlantTable getPlants={getPlants} deleteAllSelected={deleteAllSelected} setDeleteAllSelected={setDeleteAllSelected}></PlantTable>
+                    <PlantTable getPlants={getPlants} toggleDeleteAllSelected={toggleDeleteAllSelected} deleteAllSelected={getDeleteAllSelected}></PlantTable>
                 </div>
 				</Grid>		  
 		  </div>
