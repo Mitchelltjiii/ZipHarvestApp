@@ -323,7 +323,7 @@ app.put('/pl', (req, res) =>{
 
   const result = connection.query(
     `UPDATE pl set
-    strain =?, userID =?, active =?, WHERE tag = ?`, 
+    strain =?, userID =?, active =?, WHERE (tag = ?)`, 
     [
       strain, userID, active, tag
     ],function(err, result2) {
