@@ -11,6 +11,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 
     const [uploadList,setUploadList] = React.useState([]);
     const [importing,setImporting] = React.useState(false);
+	const [deleteAllSelected,setDeleteAllSelected] = React.useState(false);
 
     console.log("Upload List after refresh: " + JSON.stringify(uploadList));
 
@@ -152,7 +153,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
           			))}
 				</div>
                 <div>
-                    <PlantTable getPlants={getPlants}></PlantTable>
+                    <PlantTable getPlants={getPlants} setDeleteAllSelected={setDeleteAllSelected}></PlantTable>
                 </div>
 				</Grid>		  
 		  </div>

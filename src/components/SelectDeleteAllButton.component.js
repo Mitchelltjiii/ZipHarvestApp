@@ -6,6 +6,7 @@ class SelectDeleteAllButton extends Component{
     handleClick() {
       console.log("SelectDeleteAllButton handle click");
       this.setState({checked:!this.state.checked});
+      this.props.setDeleteAllSelected(!this.state.checked);
     }
     
     constructor(props) {

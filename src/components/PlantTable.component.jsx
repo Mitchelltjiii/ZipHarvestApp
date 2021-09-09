@@ -40,7 +40,7 @@ function PlantTable({getPlants}) {
         <TableHead>
           <TableRow>
           <TableCell align="left" style={{ width: "170px"}}>
-                    <SelectDeleteAllButton></SelectDeleteAllButton>
+                    <SelectDeleteAllButton setDeleteAllSelected={this.props.setDeleteAllSelected}></SelectDeleteAllButton>
             </TableCell>
             <TableCell >Tag</TableCell>
             <TableCell align="right">Strain</TableCell>
