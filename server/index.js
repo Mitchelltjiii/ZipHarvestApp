@@ -325,7 +325,7 @@ app.put('/pl', (req, res) =>{
     `UPDATE pl set
     strain =?, userID =?, active =? WHERE tag = ?`, 
     [
-      tag, strain, userID, active
+      strain, userID, active, tag
     ]
   );  
 
