@@ -11,7 +11,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 
     const [uploadList,setUploadList] = React.useState([]);
     const [importing,setImporting] = React.useState(false);
-	const [deleteAllSelected,setDeleteAllSelected] = React.useState(false);
+	const [selectedToDelete,setSelectedToDelete] = React.useState([]);
 
     console.log("Upload List after refresh: " + JSON.stringify(uploadList));
 
@@ -24,17 +24,35 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 	}
 
 	const toggleDeleteAllSelected = () => {
-		setDeleteAllSelected(!deleteAllSelected);
+		let currPlants = getPlants();
+		console.log("Selected To Delete Length: " + selectedToDelete.length);
+		console.log("CurrPlants Length: " + currPlants.length);
+
+		if(getDeleteAllSelected){
+			console.log("selectedToDelete.length == currPlants.length");
+			setSelectedToDelete([]);
+		}else{
+			console.log("selectedToDelete.length != currPlants.length");
+			let newSelectedToDelete = [];
+			for (const val of JSON.parse(currPlants)) {
+				console.log("Val.tag: " + val.tag);
+				newSelectedToDelete.push(val.tag);
+			}
+			setSelectedToDelete(newSelectedToDelete);
+		}
+
+		console.log("SelectedToDelete: " + selectedToDelete);
+		console.log("SelectedToDelete(STRING): " + JSON.stringify(selectedToDelete));
 	}
 
 	const getDeleteAllSelected = () => {
-		return deleteAllSelected;
+		return selectedToDelete.length == getPlants().length;
 	}
 
     const handleGetReady = () => {
 		setImporting(true);
-        refreshOuter();
-	  }
+       	 refreshOuter();
+	  	}
 
 	const handleDelete = () => {
         refreshOuter();
@@ -161,7 +179,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
           			))}
 				</div>
                 <div>
-                    <PlantTable getPlants={getPlants} toggleDeleteAllSelected={toggleDeleteAllSelected} deleteAllSelected={getDeleteAllSelected}></PlantTable>
+                    <PlantTable getPlants={getPlants} toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected}></PlantTable>
                 </div>
 				</Grid>		  
 		  </div>
