@@ -10,17 +10,9 @@ class ImportPlantsButton extends Component{
       }; 
 
     
-    async addPlant(plantItem,plantList){
+    async addPlant(plantItem,tagExists){
         console.log("Engage add Plant");
-        let tagExists = false;
-        console.log("Tag Exists??? " + plantItem.tag);
-
-        for(const val of plantList){
-          console.log("Tag Exists? " + val.tag);
-          if(val.tag === plantItem.tag){
-            tagExists = true;
-          }
-        }
+        
         let parent = this;
         const resp = fetch('/pl', {
           method: (tagExists) ? 'PUT' : 'POST',
@@ -122,9 +114,17 @@ class ImportPlantsButton extends Component{
                 console.log("BUSYSETTINGHR after push: " + JSON.stringify(this.state.busyAddingPlants)); 
                 console.log("Before updateHarvestRecord");
   
-                this.addPlant(plantItem,plantList);
+                let tagExists = false;
+                console.log("Tag Exists??? " + plantItem.tag);
+
+                for(const val2 of plantList){
+                console.log("Tag Exists? " + val2.tag);
+                  if(val2.tag === plantItem.tag){
+                    tagExists = true;
+                  }
+                }
+                this.addPlant(plantItem,tagExists);
                 console.log("After addPlant");
-  
                 
                 i++;
             }
