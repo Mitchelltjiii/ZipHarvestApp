@@ -14,7 +14,7 @@ class ImportPlantsButton extends Component{
         console.log("Engage add Plant");
         let parent = this;
         const resp = fetch('/pl', {
-          method: 'POST',
+          method: (plantItem.tag) ? 'PUT' : 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'

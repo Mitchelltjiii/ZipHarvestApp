@@ -13,7 +13,7 @@ class RemoveFromAvailablePlants extends Component{
     async addPlant(plantItem){
         console.log("Engage add Plant");
         let parent = this;
-        const resp = fetch('/pl/active', {
+        const resp = fetch('/pl', {
           method: (plantItem.tag) ? 'PUT' : 'POST',
           headers: {
             'Accept': 'application/json',
