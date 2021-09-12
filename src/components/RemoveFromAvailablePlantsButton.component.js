@@ -94,7 +94,7 @@ class RemoveFromAvailablePlants extends Component{
 			}
 		}*/
 
-    let timeLimit = 1000;
+    let timeLimit = 10000;
 
             let addPlant = new Plant("","","","");
             for(const val of this.props.removeList){
