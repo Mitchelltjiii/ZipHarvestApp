@@ -40,7 +40,10 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 					newSelectedToDelete.push(val.tag);
 				}
 			}
+			console.log("SelectedToDelete: " + newSelectedToDelete);
+		    console.log("SelectedToDelete(STRING): " + JSON.stringify(newSelectedToDelete));
 			setSelectedToDelete(newSelectedToDelete);
+			this.props.refreshOuter();
 		}
 
 		console.log("SelectedToDelete: " + selectedToDelete);
