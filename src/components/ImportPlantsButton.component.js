@@ -10,12 +10,12 @@ class ImportPlantsButton extends Component{
       }; 
 
     
-    async addPlant(plantItem){
+    async addPlant(plantItem,plantList){
         console.log("Engage add Plant");
         let tagExists = false;
         console.log("Tag Exists??? " + plantItem.tag);
 
-        for(const val of JSON.parse(this.props.getPlants())){
+        for(const val of plantList){
           console.log("Tag Exists? " + val.tag);
           if(val.tag === plantItem.tag){
             tagExists = true;
@@ -104,6 +104,7 @@ class ImportPlantsButton extends Component{
 		}*/
 
             let addPlant = new Plant("","","","");
+            let plantList = JSON.parse(this.props.getPlants());
             for(const val of this.props.uploadList){
                 console.log('**UploadList[m]: ' + val);
 			    let splitList = val.split(",");
@@ -121,7 +122,7 @@ class ImportPlantsButton extends Component{
                 console.log("BUSYSETTINGHR after push: " + JSON.stringify(this.state.busyAddingPlants)); 
                 console.log("Before updateHarvestRecord");
   
-                this.addPlant(plantItem);
+                this.addPlant(plantItem,plantList);
                 console.log("After addPlant");
   
                 
@@ -143,14 +144,15 @@ class ImportPlantsButton extends Component{
 
 		//this.props.setPlants(JSON.stringify(tempPlants));
         console.log("*A*");
+        this.props.reloadPlants([]);
+        console.log("Plants Reloaded");
 		    this.props.setUploadList([]);
         console.log("*B*");
 
 		    //console.log("After Add Plants - Plants: " + this.props.getPlants());
 		    this.props.setImporting(false);
         console.log("*C*");
-        this.props.reloadPlants([]);
-        console.log("Plants Reloaded");
+        
 
         this.props.refreshOuter();
         console.log("*D*");
