@@ -26,14 +26,13 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 	const toggleDeleteAllSelected = () => {
 		let currPlants = JSON.parse(getPlants());
 		
-
 		if(getDeleteAllSelected()){
 			console.log("selectedToDelete.length == currPlants.length");
 			setSelectedToDelete([]);
 		}else{
 			console.log("selectedToDelete.length != currPlants.length");
 			let newSelectedToDelete = [];
-			for (const val of JSON.parse(currPlants)) {
+			for (const val of currPlants) {
 				console.log("Val.tag: " + val.tag);
 				newSelectedToDelete.push(val.tag);
 			}
