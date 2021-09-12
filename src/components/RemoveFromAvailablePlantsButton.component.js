@@ -14,7 +14,7 @@ class RemoveFromAvailablePlants extends Component{
         console.log("Engage add Plant");
         let parent = this;
         const resp = fetch('/pl', {
-          method: (plantItem.id) ? 'PUT' : 'POST',
+          method: 'PUT',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'

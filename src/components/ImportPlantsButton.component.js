@@ -12,9 +12,18 @@ class ImportPlantsButton extends Component{
     
     async addPlant(plantItem){
         console.log("Engage add Plant");
+        let tagExists = false;
+        console.log("Tag Exists??? " + plantItem.tag);
+
+        for(const val of JSON.parse(this.props.getPlants())){
+          console.log("Tag Exists? " + val.tag);
+          if(val.tag === plantItem.tag){
+            tagExists = true;
+          }
+        }
         let parent = this;
         const resp = fetch('/pl', {
-          method: (plantItem.id) ? 'PUT' : 'POST',
+          method: (tagExists()) ? 'PUT' : 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
