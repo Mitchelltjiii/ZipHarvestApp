@@ -72,6 +72,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 
 		console.log("RemoveList After ToggleDeletePlantSelected: " + JSON.stringify(removeList));
 		setSelectedToDelete(removeList);
+		refreshOuter();
 	}
 
 	const getDeletePlantSelected = (tag) => {
