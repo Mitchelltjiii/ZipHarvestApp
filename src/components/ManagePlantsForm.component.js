@@ -25,10 +25,9 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 
 	const toggleDeleteAllSelected = () => {
 		let currPlants = JSON.parse(getPlants());
-		console.log("Selected To Delete Length: " + selectedToDelete.length);
-		console.log("CurrPlants Length: " + currPlants.length);
+		
 
-		if(getDeleteAllSelected){
+		if(getDeleteAllSelected()){
 			console.log("selectedToDelete.length == currPlants.length");
 			setSelectedToDelete([]);
 		}else{
@@ -46,7 +45,10 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 	}
 
 	const getDeleteAllSelected = () => {
-		return selectedToDelete.length == JSON.parse(getPlants()).length;
+		console.log("Selected To Delete Length: " + selectedToDelete.length);
+		console.log("CurrPlants Length: " + JSON.parse(getPlants()).length);
+		console.log("GetDeleteAllSelected: " + JSON.stringify(selectedToDelete.length === JSON.parse(getPlants()).length));
+		return (selectedToDelete.length === JSON.parse(getPlants()).length);
 	}
 
     const handleGetReady = () => {
