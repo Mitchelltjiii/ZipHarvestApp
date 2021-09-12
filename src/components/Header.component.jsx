@@ -21,6 +21,7 @@ function Header({currentPageSet, currentPage, executeLogout}){
 
   const handleMyAccount = () => {
     handleClose()
+    currentPageSet('account-form');
   }
 
   const handleHarvestNow = () => {
@@ -30,7 +31,7 @@ function Header({currentPageSet, currentPage, executeLogout}){
 
   const handleManagePlants = () => {
     handleClose()
-    currentPageSet('manage-plants')
+    currentPageSet('manage-plants-form')
   }
 
   const handleExistingBatches = () => {
