@@ -322,10 +322,28 @@ app.put('/pl', (req, res) =>{
   console.log("PUT DATA: STRAIN: " + strain);
 
   const result = connection.query(
-    `UPDATE pl set
+    `UPDATE pl SET
     strain =?, userID =?, active =?, WHERE (tag = ?)`, 
     [
       strain, userID, active, tag
+    ],function(err, result2) {
+      res.json("{}");
+  }); 
+});
+
+app.put('/pl/active', (req, res) =>{
+  var postData  = req.body;
+
+  let tag = postData.tag;
+  let active = postData.active;
+
+  console.log("PUT DATA ACTIVE: PLANT STRINGIFIED: " + JSON.stringify(postData));
+
+  const result = connection.query(
+    `UPDATE pl SET
+    active = ? WHERE (tag = ?)`, 
+    [
+      active, tag
     ],function(err, result2) {
       res.json("{}");
   }); 
