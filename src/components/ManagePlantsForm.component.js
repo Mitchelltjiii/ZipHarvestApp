@@ -43,7 +43,6 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 			console.log("SelectedToDelete: " + newSelectedToDelete);
 		    console.log("SelectedToDelete(STRING): " + JSON.stringify(newSelectedToDelete));
 			setSelectedToDelete(newSelectedToDelete);
-			this.props.refreshOuter();
 		}
 
 		console.log("SelectedToDelete: " + selectedToDelete);
@@ -93,7 +92,13 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 		console.log("Selected To Delete Length: " + selectedToDelete.length);
 		console.log("CurrPlants Length: " + JSON.parse(getPlants()).length);
 		console.log("GetDeleteAllSelected: " + JSON.stringify(selectedToDelete.length === JSON.parse(getPlants()).length));
-		return (selectedToDelete.length === JSON.parse(getPlants()).length);
+		let x = 0;
+		for(const val of JSON.parse(getPlants())){
+			if(val.active === 0){
+				x++;
+			}
+		}
+		return (selectedToDelete.length === x);
 	}
 
     const handleGetReady = () => {
