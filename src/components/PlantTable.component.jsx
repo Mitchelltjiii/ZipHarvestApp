@@ -53,7 +53,7 @@ function PlantTable({getPlants,toggleDeleteAllSelected,getDeleteAllSelected,togg
             {rows.map((row) => (
             <TableRow key={row.tag}>
               <TableCell align="left" style={{ width: "170px"}}>
-                  <SelectDeletePlantButton toggleDeletePlantSelected={toggleDeletePlantSelected} getDeletePlantSelected={getDeletePlantSelected}></SelectDeletePlantButton>
+                  <SelectDeletePlantButton toggleDeletePlantSelected={toggleDeletePlantSelected} getDeletePlantSelected={getDeletePlantSelected} tag={row.tag}></SelectDeletePlantButton>
               </TableCell>
               <TableCell component="th" scope="row">
                 {row.tag}
