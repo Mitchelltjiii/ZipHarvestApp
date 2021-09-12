@@ -136,11 +136,11 @@ class ImportPlantsButton extends Component{
         console.log("*A*");
         this.props.reloadPlants([]);
         console.log("Plants Reloaded");
-		this.props.setUploadList([]);
+		    this.props.setUploadList([]);
         console.log("*B*");
 
-		//console.log("After Add Plants - Plants: " + this.props.getPlants());
-		this.props.setImporting(false);
+		    //console.log("After Add Plants - Plants: " + this.props.getPlants());
+		    this.props.setImporting(false);
         console.log("*C*");
 
         this.props.refreshOuter();
