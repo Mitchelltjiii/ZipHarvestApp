@@ -115,20 +115,22 @@ class ImportPlantsButton extends Component{
                 this.addPlant(plantItem);
                 console.log("After addPlant");
   
-                let x = 0;
+                
+                i++;
+            }
+        }
 
-                while(this.state.busyAddingPlants != [] && x<this.props.timeLimit){
+        let x = 0;
+
+        while(this.state.busyAddingPlants != [] && x<this.props.timeLimit){
                   console.log("Set timeout");
                   setTimeout('',200);
                   x++;
                 }
 
-                if(x==this.props.timeLimit){
+        if(x==this.props.timeLimit){
                   console.log("TIMEOUT OPERATION FAILED");
                 }
-                i++;
-            }
-        }
 
 		//this.props.setPlants(JSON.stringify(tempPlants));
         console.log("*A*");
