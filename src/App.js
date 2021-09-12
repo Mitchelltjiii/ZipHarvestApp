@@ -240,7 +240,7 @@ export default class App extends React.Component {
     console.log("RELOAD USERS");
     console.log("Before GetUsersFromDB");
     setTimeout(() => {return this.state.users;},0); 
-    this.getUsersFromDB(true); //was false prviously
+    this.getUsersFromDB(false); //was false prviously
     console.log("After GetUsersFromDB");
   }
 
