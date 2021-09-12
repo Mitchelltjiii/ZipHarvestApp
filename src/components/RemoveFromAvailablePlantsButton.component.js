@@ -93,6 +93,7 @@ class RemoveFromAvailablePlants extends Component{
 				i++;
 			}
 		}*/
+    
 
             let addPlant = new Plant("","","","");
             for(const val of this.props.removeList){
