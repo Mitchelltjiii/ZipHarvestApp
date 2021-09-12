@@ -100,7 +100,7 @@ class RemoveFromAvailablePlants extends Component{
 
 			        for(const val2 of JSON.parse(this.props.getPlants())){
                 console.log("Checking against plant: " + JSON.stringify(val2));
-                //if(val2.tag == val){
+                if(val2.tag == val){
                   addPlant = new Plant(val2.tag,val2.strain,this.props.userID,1);
 
                   const plantItem = getPlantItem(addPlant);
@@ -115,7 +115,7 @@ class RemoveFromAvailablePlants extends Component{
 
                   this.addPlant(plantItem);
                   console.log("After addPlant");
-                //}
+                }
               }
             }
 
