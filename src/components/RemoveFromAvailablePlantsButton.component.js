@@ -98,7 +98,7 @@ class RemoveFromAvailablePlants extends Component{
             for(const val of this.props.removeList){
               console.log('**RemoveList[m]: ' + val);
 
-			        for(const val2 of JSON.parse(getPlants())){
+			        for(const val2 of JSON.parse(this.props.getPlants())){
                 console.log("Checking against plant: " + JSON.stringify(val2));
                 if(val2.tag == val){
                   addPlant = new Plant(val2.tag,val2.strain,this.props.userID,1);
