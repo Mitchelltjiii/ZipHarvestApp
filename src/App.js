@@ -224,6 +224,7 @@ export default class App extends React.Component {
     console.log("RELOAD PLANTS");
     console.log("Before GetPlants");
     this.getPlantsFromDB(true);
+    
     console.log("After GetPlants");
   }
 
