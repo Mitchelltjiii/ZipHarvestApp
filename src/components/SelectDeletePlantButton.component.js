@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
-class SelectDeleteAllButton extends Component{
+class SelectDeletePlantButton extends Component{
     handleClick() {
       console.log("SelectDeleteAllButton handle click");
-      this.props.toggleDeleteAllSelected();
+      this.props.toggleDeletePlantSelected(this.props.tag);
     }
     
     constructor(props) {
@@ -22,7 +22,7 @@ class SelectDeleteAllButton extends Component{
     }
 
     render() {  
-        let checked = this.props.getDeleteAllSelected();
+        let checked = this.props.getDeletePlantSelected(this.props.tag);
         console.log("Select Delete All Button Checked: " + JSON.stringify(checked));
         return <div>
             {checked ? <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{width: "120px"}} color={this.state.bgColors.Blue}>X</Button>
@@ -34,4 +34,4 @@ class SelectDeleteAllButton extends Component{
 
 
 
-export default SelectDeleteAllButton;
+export default SelectDeletePlantButton;

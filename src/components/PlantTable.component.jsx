@@ -8,9 +8,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import SelectDeleteAllButton from './SelectDeleteAllButton.component';
+import SelectDeletePlantButton from './SelectDeletePlantButton.component';
 
 
-function PlantTable({getPlants,toggleDeleteAllSelected,getDeleteAllSelected}) {
+function PlantTable({getPlants,toggleDeleteAllSelected,getDeleteAllSelected,toggleDeletePlantSelected,getDeletePlantSelected}) {
 
     console.log("ENTER PlantTable, Plants: " + getPlants());
 
@@ -52,6 +53,7 @@ function PlantTable({getPlants,toggleDeleteAllSelected,getDeleteAllSelected}) {
             {rows.map((row) => (
             <TableRow key={row.tag}>
               <TableCell align="left" style={{ width: "170px"}}>
+                  <SelectDeletePlantButton toggleDeletePlantSelected={toggleDeletePlantSelected} getDeletePlantSelected={getDeletePlantSelected}></SelectDeletePlantButton>
               </TableCell>
               <TableCell component="th" scope="row">
                 {row.tag}

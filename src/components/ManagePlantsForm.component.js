@@ -45,6 +45,42 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 		console.log("SelectedToDelete(STRING): " + JSON.stringify(selectedToDelete));
 	}
 
+	const toggleDeletePlantSelected = (tag) => {
+		console.log("Toggle Delete Plant Selected Tag: " + tag);
+		let foundIndex = -1;
+		let i = 0;
+		for(const val of removeList){
+			console.log("Removelist Val: " + val);
+			if(tag === val){
+				console.log("Tag === Val");
+				foundIndex = i;
+			}
+			i++;
+		}
+
+		console.log("Found Index: " + JSON.stringify(foundindex));
+
+		if(foundIndex != -1){
+			removeList.splice(i,1);
+		}else{
+			removeList.push(tag);
+		}
+	}
+
+	const getDeletePlantSelected = (tag) => {
+		console.log("Get Delete Plant Selected Tag: " + tag);
+		for(const val of removeList){
+			console.log("Removelist Val: " + val);
+			if(tag === val){
+				console.log("Tag === Val");
+				return true;
+			}
+		}
+		console.log("No Tag Match");
+
+		return false;
+	}
+
 	const getDeleteAllSelected = () => {
 		console.log("Selected To Delete Length: " + selectedToDelete.length);
 		console.log("CurrPlants Length: " + JSON.parse(getPlants()).length);
@@ -56,10 +92,6 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 		setImporting(true);
        	 refreshOuter();
 	  	}
-
-	const handleDelete = () => {
-        refreshOuter();
-	  }
 
 	const handleCancel = () => {
 		setImporting(false);
@@ -183,7 +215,8 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
           			))}
 				</div>
                 <div>
-                    <PlantTable getPlants={getPlants} toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected}></PlantTable>
+                    <PlantTable getPlants={getPlants} toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected} 
+					toggleDeletePlantSelected={toggleDeletePlantSelected} getDeletePlantSelected={getDeletePlantSelected}></PlantTable>
                 </div>
 				</Grid>		  
 		  </div>
