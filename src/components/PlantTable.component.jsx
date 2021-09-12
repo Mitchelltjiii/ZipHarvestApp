@@ -31,7 +31,9 @@ function PlantTable({getPlants,toggleDeleteAllSelected,getDeleteAllSelected}) {
     const rows = [];
 
     for(let val of JSON.parse(getPlants())) {
-      rows.push(createData(val.tag,val.strain));
+      if(val.active == 0){
+        rows.push(createData(val.tag,val.strain));
+      }
     }
        
     return(
