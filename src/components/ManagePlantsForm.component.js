@@ -6,12 +6,14 @@ import RemoveUploadQueueItemButton from './RemoveUploadQueueItemButton';
 import CSVReader1 from './CsvReader1';
 import PlantTable from './PlantTable.component';
 import ImportPlantsButton from './ImportPlantsButton.component';
+import RemoveFromAvailablePlants from './RemoveFromAvailablePlantsButton.component';
 
 function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refreshOuter, userID, setPlants, setNewPlantID,reloadPlants}) {
 
     const [uploadList,setUploadList] = React.useState([]);
     const [importing,setImporting] = React.useState(false);
 	const [selectedToDelete,setSelectedToDelete] = React.useState([]);
+	let removeList = selectedToDelete;
 
     console.log("Upload List after refresh: " + JSON.stringify(uploadList));
 
@@ -149,8 +151,9 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}  style={{width: "120px"}}>+</Button>
 					</div>
 					<div>
-					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleDelete}  style={{width: "120px"}}>-</Button>
-               		</div>
+					<RemoveFromAvailablePlants getPlants={getPlants} removeList={removeList} setPlants={setPlants} setRemoveList={setSelectedToDelete}
+							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></RemoveFromAvailablePlants>
+						               		</div>
 					</Grid>
 					</div>
 			    }
