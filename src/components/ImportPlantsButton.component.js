@@ -23,7 +23,7 @@ class ImportPlantsButton extends Component{
         }
         let parent = this;
         const resp = fetch('/pl', {
-          method: (tagExists()) ? 'PUT' : 'POST',
+          method: (tagExists) ? 'PUT' : 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
