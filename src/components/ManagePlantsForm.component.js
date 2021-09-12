@@ -148,7 +148,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 					alignItems="center"
 					>
 					<div>
-					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}  style={{width: "120px"}}>+</Button>
+					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}  style={{width: "120px"}}>Import Files</Button>
 					</div>
 					<div>
 					<RemoveFromAvailablePlants getPlants={getPlants} removeList={removeList} setPlants={setPlants} setRemoveList={setSelectedToDelete}
