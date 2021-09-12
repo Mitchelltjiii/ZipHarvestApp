@@ -35,8 +35,10 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 			console.log("selectedToDelete.length != currPlants.length");
 			let newSelectedToDelete = [];
 			for (const val of currPlants) {
-				console.log("Val.tag: " + val.tag);
-				newSelectedToDelete.push(val.tag);
+				if(val.active === 0){
+					console.log("Val.tag: " + val.tag);
+					newSelectedToDelete.push(val.tag);
+				}
 			}
 			setSelectedToDelete(newSelectedToDelete);
 		}
@@ -65,6 +67,9 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 		}else{
 			removeList.push(tag);
 		}
+
+		console.log("RemoveList After ToggleDeletePlantSelected: " + JSON.stringify(removeList));
+		setSelectedToDelete(removeList);
 	}
 
 	const getDeletePlantSelected = (tag) => {
