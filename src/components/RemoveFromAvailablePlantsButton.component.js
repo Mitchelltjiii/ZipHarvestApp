@@ -94,6 +94,8 @@ class RemoveFromAvailablePlants extends Component{
 			}
 		}*/
 
+    let timeLimit = 1000;
+
             let addPlant = new Plant("","","","");
             for(const val of this.props.removeList){
               console.log('**RemoveList[m]: ' + val);
@@ -121,13 +123,13 @@ class RemoveFromAvailablePlants extends Component{
 
         let x = 0;
 
-        while(this.state.busyAddingPlants != [] && x<this.props.timeLimit){
+        while(this.state.busyAddingPlants != [] && x<timeLimit){
                   console.log("Set timeout");
                   setTimeout('',200);
                   x++;
                 }
 
-        if(x==this.props.timeLimit){
+        if(x==timeLimit){
                   console.log("TIMEOUT OPERATION FAILED");
                 }
 
