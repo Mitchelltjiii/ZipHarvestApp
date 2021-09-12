@@ -95,6 +95,7 @@ class ImportPlantsButton extends Component{
 			}
 		}*/
 
+    let timeLimit = 1000;
             let addPlant = new Plant("","","","");
             let plantList = JSON.parse(this.props.getPlants());
             for(const val of this.props.uploadList){
@@ -132,13 +133,13 @@ class ImportPlantsButton extends Component{
 
         let x = 0;
 
-        while(this.state.busyAddingPlants != [] && x<this.props.timeLimit){
+        while(this.state.busyAddingPlants != [] && x<timeLimit){
                   console.log("Set timeout");
                   setTimeout('',200);
                   x++;
                 }
 
-        if(x==this.props.timeLimit){
+        if(x==timeLimit){
                   console.log("TIMEOUT OPERATION FAILED");
                 }
 
