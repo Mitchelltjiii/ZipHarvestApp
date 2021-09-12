@@ -96,29 +96,28 @@ class RemoveFromAvailablePlants extends Component{
 
             let addPlant = new Plant("","","","");
             for(const val of this.props.removeList){
-                console.log('**RemoveList[m]: ' + val);
-			    let splitList = val.split(",");
+              console.log('**RemoveList[m]: ' + val);
 
-			    for(let i = 1; i < splitList.length; i++){
-                    addPlant = new Plant(splitList[i],splitList[i+1],this.props.userID,1);
+			        for(const val2 of JSON.parse(getPlants())){
+                console.log("Checking against plant: " + JSON.stringify(val2));
+                if(val2.tag == val){
+                  addPlant = new Plant(val2.tag,val2.strain,this.props.userID,1);
 
-                    const plantItem = getPlantItem(addPlant);
-  
-                    console.log("Plant Item to update with: " + JSON.stringify(plantItem));
-  
-                    console.log("BUSYADDINGPL"); 
-                    console.log("BUSYADDINGPL before push: " + JSON.stringify(this.state.busyAddingPlants)); 
-                 this.state.busyAddingPlants.push(addPlant.tag);
-                console.log("BUSYSETTINGHR after push: " + JSON.stringify(this.state.busyAddingPlants)); 
-                console.log("Before updateHarvestRecord");
-  
-                this.addPlant(plantItem);
-                console.log("After addPlant");
-  
-                
-                i++;
+                  const plantItem = getPlantItem(addPlant);
+
+                  console.log("Plant Item to update with: " + JSON.stringify(plantItem));
+
+                  console.log("BUSYADDINGPL"); 
+                  console.log("BUSYADDINGPL before push: " + JSON.stringify(this.state.busyAddingPlants)); 
+                  this.state.busyAddingPlants.push(addPlant.tag);
+                  console.log("BUSYSETTINGHR after push: " + JSON.stringify(this.state.busyAddingPlants)); 
+                  console.log("Before updateHarvestRecord");
+
+                  this.addPlant(plantItem);
+                  console.log("After addPlant");
+                }
+              }
             }
-        }
 
         let x = 0;
 
@@ -139,10 +138,6 @@ class RemoveFromAvailablePlants extends Component{
 		    this.props.setRemoveList([]);
         console.log("*B*");
 
-		    //console.log("After Add Plants - Plants: " + this.props.getPlants());
-		    this.props.setImporting(false);
-        console.log("*C*");
-
         this.props.refreshOuter();
         console.log("*D*");
 
@@ -157,7 +152,7 @@ class RemoveFromAvailablePlants extends Component{
 
     render() {    
         return <div>
-            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}>Import</Button>
+            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}>Delete</Button>
         </div>
       }
 }
