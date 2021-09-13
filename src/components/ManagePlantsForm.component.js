@@ -7,12 +7,14 @@ import CSVReader1 from './CsvReader1';
 import PlantTable from './PlantTable.component';
 import ImportPlantsButton from './ImportPlantsButton.component';
 import RemoveFromAvailablePlants from './RemoveFromAvailablePlantsButton.component';
+import { TextField } from 'material-ui';
 
 function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refreshOuter, userID, setPlants, setNewPlantID,reloadPlants}) {
 
     const [uploadList,setUploadList] = React.useState([]);
     const [importing,setImporting] = React.useState(false);
 	const [selectedToDelete,setSelectedToDelete] = React.useState([]);
+	const [searchText,setSearchText] = React.useState("");
 	let removeList = selectedToDelete;
 
     console.log("Upload List after refresh: " + JSON.stringify(uploadList));
@@ -111,6 +113,32 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
        	 refreshOuter();
 	  	}
 
+	const getPlantsWithSearch = () => {
+		let plants = JSON.parse(getPlants());
+		let plantsWithSearch = [];
+		console.log("Get Plants With Search");
+		console.log("Search Text: " + searchText);
+
+		for(const val of plants){
+			console.log("Val: " + JSON.stringify(val));
+			if(val.tag.includes(searchText) || val.strain.includes(searchText)){
+				plantsWithSearch.push(val);
+			}
+		}
+		console.log("Plants With Search: " + JSON.stringify(plantsWithSearch));
+		return JSON.stringify(plantsWithSearch);
+	}
+
+	const search = (sText) => {
+		setSearchText(sText);
+		refreshOuter();
+	}
+
+	const handleSearchFieldChange = (event) => {
+		search(event.target.value);
+		refreshOuter();
+	}
+
 	const handleCancel = () => {
 		setImporting(false);
         refreshOuter();
@@ -197,6 +225,9 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
   					justify="center"
 					alignItems="center"
 					>
+						<div>
+							<TextField onChange={handleSearchFieldChange}></TextField>
+						</div>
 					<div>
 					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}  style={{width: "120px"}}>Import Files</Button>
 					</div>
@@ -233,7 +264,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
           			))}
 				</div>
                 <div>
-                    <PlantTable getPlants={getPlants} toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected} 
+                    <PlantTable getPlants={getPlantsWithSearch} toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected} 
 					toggleDeletePlantSelected={toggleDeletePlantSelected} getDeletePlantSelected={getDeletePlantSelected}></PlantTable>
                 </div>
 				</Grid>		  
