@@ -90,16 +90,20 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 	}
 
 	const getDeleteAllSelected = () => {
-		console.log("Selected To Delete Length: " + selectedToDelete.length);
+		if(removeList.length===0){
+			return false;
+		}
+		console.log("Remove List Length: " + removelist.length);
 		console.log("CurrPlants Length: " + JSON.parse(getPlants()).length);
-		console.log("GetDeleteAllSelected: " + JSON.stringify(selectedToDelete.length === JSON.parse(getPlants()).length));
+		console.log("GetDeleteAllSelected: " + JSON.stringify(removeList.length === JSON.parse(getPlants()).length));
+		
 		let x = 0;
 		for(const val of JSON.parse(getPlants())){
 			if(val.active === 0){
 				x++;
 			}
 		}
-		return (selectedToDelete.length === x);
+		return (removeList.length === x);
 	}
 
     const handleGetReady = () => {
