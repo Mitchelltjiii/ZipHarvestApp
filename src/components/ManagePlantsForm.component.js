@@ -7,8 +7,7 @@ import CSVReader1 from './CsvReader1';
 import PlantTable from './PlantTable.component';
 import ImportPlantsButton from './ImportPlantsButton.component';
 import RemoveFromAvailablePlants from './RemoveFromAvailablePlantsButton.component';
-import { TextField } from 'material-ui';
-
+import TextField from '@material-ui/core/TextField';
 function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refreshOuter, userID, setPlants, setNewPlantID,reloadPlants}) {
 
     const [uploadList,setUploadList] = React.useState([]);
@@ -113,7 +112,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
        	 refreshOuter();
 	  	}
 
-	const getPlantsWithSearch = () => {
+	function getPlantsWithSearch(){
 		let plants = JSON.parse(getPlants());
 		let plantsWithSearch = [];
 		console.log("Get Plants With Search");
@@ -131,7 +130,6 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 
 	function search(sText){
 		setSearchText(sText);
-		refreshOuter();
 	}
 
 	const handleSearchFieldChange = (event) => {
