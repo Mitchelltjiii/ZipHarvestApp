@@ -1,11 +1,10 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import PlantTable from './PlantTable.component';
 
 function AccountForm({refreshOuter, userID}) {
 	return (
-		<div id="harvest-batches-form">
+		<div id="account-form">
 			<Grid
 				container
 				direction="row"

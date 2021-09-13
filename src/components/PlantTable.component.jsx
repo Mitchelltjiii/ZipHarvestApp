@@ -43,7 +43,9 @@ function PlantTable({getPlants,toggleDeleteAllSelected,getDeleteAllSelected,togg
         <TableHead>
           <TableRow>
           <TableCell align="left">
-                    <SelectDeleteAllButton toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected}></SelectDeleteAllButton>
+            <div>
+                <SelectDeleteAllButton toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected}></SelectDeleteAllButton>
+            </div>
             </TableCell>
             <TableCell >Tag</TableCell>
             <TableCell align="right">Strain</TableCell>

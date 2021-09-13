@@ -212,7 +212,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
     }
 
 	return (
-		<div id="harvest-batches-form">
+		<div id="manage-plants-form">
 			<Grid
 				container
 				direction="row"
