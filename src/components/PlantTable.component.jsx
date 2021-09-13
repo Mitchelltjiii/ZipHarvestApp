@@ -43,7 +43,7 @@ function PlantTable({getPlants,toggleDeleteAllSelected,getDeleteAllSelected,togg
         <TableHead>
           <TableRow>
           <TableCell align="left">
-            <div>
+            <div style={{height: "30px", width: "30px"}}>
                 <SelectDeleteAllButton toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected}></SelectDeleteAllButton>
             </div>
             </TableCell>
