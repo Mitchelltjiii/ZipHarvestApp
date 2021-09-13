@@ -42,8 +42,8 @@ function PlantTable({getPlants,toggleDeleteAllSelected,getDeleteAllSelected,togg
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-          <TableCell align="left">
-            <div style={{height: "30px", width: "30px"}}>
+          <TableCell align="left" size="small">
+            <div>
                 <SelectDeleteAllButton toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected}></SelectDeleteAllButton>
             </div>
             </TableCell>
@@ -54,7 +54,7 @@ function PlantTable({getPlants,toggleDeleteAllSelected,getDeleteAllSelected,togg
         <TableBody>
             {rows.map((row) => (
             <TableRow key={row.tag}>
-              <TableCell align="left">
+              <TableCell align="left" padding="checkbox">
                   <SelectDeletePlantButton toggleDeletePlantSelected={toggleDeletePlantSelected} getDeletePlantSelected={getDeletePlantSelected} tag={row.tag}></SelectDeletePlantButton>
               </TableCell>
               <TableCell component="th" scope="row">
