@@ -25,8 +25,8 @@ class SelectDeletePlantButton extends Component{
         let checked = this.props.getDeletePlantSelected(this.props.tag);
         console.log("Select Delete Plant Button Checked: " + JSON.stringify(checked));
         return <div>
-            {checked ? <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{height: "30px", width: "30px"}} backgroundColor="#00B1E1">X</Button>
-            :<Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick} style={{height: "30px", width: "30px"}}></Button>
+            {checked ? <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{height: "40px", width: "40px", color: "#00B1E1"}} >X</Button>
+            :<Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick} style={{height: "40px", width: "40px"}}></Button>
             }
                 </div>
       }
