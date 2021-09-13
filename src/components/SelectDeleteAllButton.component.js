@@ -25,8 +25,8 @@ class SelectDeleteAllButton extends Component{
         let checked = this.props.getDeleteAllSelected();
         console.log("Select Delete All Button Checked: " + JSON.stringify(checked));
         return <div>
-            {checked ? <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{height: "60px", width: "60px"}} color={this.state.bgColors.Blue}>X</Button>
-            :<Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick} style={{height: "60px", width: "60px"}}></Button>
+            {checked ? <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{height: "30px", width: "30px"}} color={this.state.bgColors.Blue}>X</Button>
+            :<Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick} style={{height: "30px", width: "30px"}}></Button>
             }
                 </div>
       }
