@@ -129,7 +129,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 	}
 
 	function search(sText){
-		setSearchText(sText);
+		//setSearchText(sText);
 	}
 
 	const handleSearchFieldChange = (event) => {
@@ -223,7 +223,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 					alignItems="center"
 					>
 						<div>
-							<TextField onChange={handleSearchFieldChange} value={searchText}></TextField>
+							<TextField onChange={handleSearchFieldChange} value={searchText} style={{width:"100px"}}></TextField>
 						</div>
 					<div>
 					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}  style={{width: "120px"}}>Import Files</Button>
