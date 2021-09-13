@@ -129,7 +129,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 		return JSON.stringify(plantsWithSearch);
 	}
 
-	const search = (sText) => {
+	function search(sText){
 		setSearchText(sText);
 		refreshOuter();
 	}
