@@ -65,7 +65,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 		console.log("Found Index: " + JSON.stringify(foundIndex));
 
 		if(foundIndex != -1){
-			removeList.splice(i,1);
+			removeList.splice(foundIndex,1);
 		}else{
 			removeList.push(tag);
 		}
