@@ -93,7 +93,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 		if(removeList.length===0){
 			return false;
 		}
-		console.log("Remove List Length: " + removelist.length);
+		console.log("Remove List Length: " + removeList.length);
 		console.log("CurrPlants Length: " + JSON.parse(getPlants()).length);
 		console.log("GetDeleteAllSelected: " + JSON.stringify(removeList.length === JSON.parse(getPlants()).length));
 		
