@@ -13,7 +13,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
     const [uploadList,setUploadList] = React.useState([]);
     const [importing,setImporting] = React.useState(false);
 	const [selectedToDelete,setSelectedToDelete] = React.useState([]);
-	const [searchText,setSearchText] = React.useState("");
+	const [searchText,setSearchText] = React.useState('');
 	let removeList = selectedToDelete;
 
 	let plantsWithSearch = getPlantsWithSearch();
