@@ -928,8 +928,16 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
+					<Dictaphone></Dictaphone>
+				</Grid>
 
-				<Dictaphone></Dictaphone>
+				<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
+
 
 				<ChangeHBForm changeHBHiddenNow={changeHBHiddenNow}></ChangeHBForm>
 				<AddNewHBForm changeHBHiddenNow={changeHBHiddenNow}></AddNewHBForm>
@@ -944,7 +952,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 
-				<HarvestBatchInfoTabs hbInfoTabsHiddenNow={hbInfoTabsHiddenNow}> </HarvestBatchInfoTabs>
+					<HarvestBatchInfoTabs hbInfoTabsHiddenNow={hbInfoTabsHiddenNow}> </HarvestBatchInfoTabs>
 
 				</Grid>
 				

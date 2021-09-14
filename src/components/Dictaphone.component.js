@@ -13,14 +13,28 @@ const Dictaphone = () => {
     return <span>Browser doesn't support speech recognition.</span>;
   }
 
+  const handleStartSpeechRecognition = () => {
+    SpeechRecognition.startListening();
+    console.log("Handle Start Speech Recog")
+    while(listening){
+        console.log("Listening...")
+        setTimeout('',100);
+
+    }
+    console.log("Done Listening");
+  }
+
   return (
     <div>
-      <p>Microphone: {listening ? 'on' : 'off'}</p>
-      <button onClick={SpeechRecognition.startListening}>Start</button>
-      <button onClick={SpeechRecognition.stopListening}>Stop</button>
-      <button onClick={resetTranscript}>Reset</button>
+      <button onClick={handleStartSpeechRecognition}>Voice</button>
       <p>{transcript}</p>
     </div>
   );
 };
 export default Dictaphone;
+
+//      <p>Microphone: {listening ? 'on' : 'off'}</p>
+
+
+/*<button onClick={SpeechRecognition.stopListening}>Stop</button>
+      <button onClick={resetTranscript}>Reset</button>*/
