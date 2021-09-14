@@ -16,7 +16,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 	const [searchText,setSearchText] = React.useState("");
 	let removeList = selectedToDelete;
 
-	let plantsWithSearch = searchText ? getPlantsWithSearch():
+	let plantsWithSearch = getPlantsWithSearch();
 
     console.log("Upload List after refresh: " + JSON.stringify(uploadList));
 
@@ -116,18 +116,18 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 
 	function getPlantsWithSearch(){
 		let plants = JSON.parse(getPlants());
-		let plantsWithSearch = [];
+		let plantsWSearch = [];
 		console.log("Get Plants With Search");
 		console.log("Search Text: " + searchText);
 
 		for(const val of plants){
 			console.log("Val: " + JSON.stringify(val));
 			if(val.tag.includes(searchText) || val.strain.includes(searchText)){
-				plantsWithSearch.push(val);
+				plantsWSearch.push(val);
 			}
 		}
-		console.log("Plants With Search: " + JSON.stringify(plantsWithSearch));
-		return JSON.stringify(plantsWithSearch);
+		console.log("Plants With Search: " + JSON.stringify(plantsWSearch));
+		return JSON.stringify(plantsWSearch);
 	}
 
 	const handleSearchFieldChange = (event) => {
