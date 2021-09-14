@@ -53,8 +53,8 @@ function Header({currentPageSet, currentPage, executeLogout}){
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={()=>{handleHarvestNow() }}>Harvest Now</MenuItem>
         <MenuItem onClick={()=>{handleManagePlants() }}>Manage Plants</MenuItem>
+        <MenuItem onClick={()=>{handleHarvestNow() }}>Harvest Now</MenuItem>
         <MenuItem onClick={()=>{handleExistingBatches() }}>Harvest Batches</MenuItem>
         <MenuItem onClick={()=>{handleMyAccount() }}>My Account</MenuItem>
         <MenuItem onClick={()=>{handleSignOut()}}>Logout</MenuItem>
