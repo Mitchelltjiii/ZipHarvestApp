@@ -122,7 +122,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 
 		for(const val of plants){
 			console.log("Val: " + JSON.stringify(val));
-			if(val.tag.includes(searchText) || val.strain.includes(searchText)){
+			if(val.tag.toLowerCase().includes(searchText.toLowerCase()) || val.strain.toLowerCase().includes(searchText.toLowerCase())){
 				plantsWSearch.push(val);
 			}
 		}
