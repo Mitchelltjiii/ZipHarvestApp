@@ -15,6 +15,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 	const [selectedToDelete,setSelectedToDelete] = React.useState([]);
 	const [searchText,setSearchText] = React.useState('');
 	let removeList = selectedToDelete;
+	const [autoFoc,setAutoFoc] = React.useState(false);
 
 	let plantsWithSearch = getPlantsWithSearch();
 
@@ -50,6 +51,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 
 		console.log("SelectedToDelete: " + selectedToDelete);
 		console.log("SelectedToDelete(STRING): " + JSON.stringify(selectedToDelete));
+		setAutoFoc(false);
 	}
 
 	const toggleDeletePlantSelected = (tag) => {
@@ -76,6 +78,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 		console.log("RemoveList After ToggleDeletePlantSelected: " + JSON.stringify(removeList));
 		setSelectedToDelete(removeList);
 		refreshOuter();
+		setAutoFoc(false);
 	}
 
 	const getDeletePlantSelected = (tag) => {
@@ -133,6 +136,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 	const handleSearchFieldChange = (event) => {
 		setSearchText(event.target.value);
 		setSelectedToDelete([]);
+		setAutoFoc(true);
 	}
 
 	const handleCancel = () => {
@@ -221,7 +225,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
   					justify="center"
 					alignItems="center"
 					>
-						<TextField autoFocus onChange={handleSearchFieldChange} value={searchText} style={{width:"100px"}}></TextField>
+						<TextField autoFocus={autoFoc} onChange={handleSearchFieldChange} value={searchText} style={{width:"100px"}}></TextField>
 					<div>
 					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}  style={{width: "120px"}}>Import Files</Button>
 					</div>
