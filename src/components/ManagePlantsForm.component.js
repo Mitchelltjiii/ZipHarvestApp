@@ -220,7 +220,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
   					justify="center"
 					alignItems="center"
 					>
-						<TextField onChange={handleSearchFieldChange} value={searchText} style={{width:"100px"}}></TextField>
+						<TextField autoFocus onChange={handleSearchFieldChange} value={searchText} style={{width:"100px"}}></TextField>
 					<div>
 					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}  style={{width: "120px"}}>Import Files</Button>
 					</div>
