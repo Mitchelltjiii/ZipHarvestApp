@@ -2,12 +2,39 @@ import React from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 const Dictaphone = () => {
+
+    const commands = [
+        {
+          command: "open",
+          callback: () => {
+            console.log("Open Commanded");
+          },
+        },
+        {
+          command: "change background colour to *",
+          callback: () => {
+          },
+        },
+        {
+          command: "reset",
+          callback: () => {
+            console.log("Reset Commanded");
+          },
+        },
+        ,
+        {
+          command: "reset background colour",
+          callback: () => {
+          },
+        },
+      ];
+
   const {
     transcript,
     listening,
     resetTranscript,
     browserSupportsSpeechRecognition
-  } = useSpeechRecognition();
+  } = useSpeechRecognition({commands});
 
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
@@ -16,6 +43,7 @@ const Dictaphone = () => {
   const handleStartSpeechRecognition = () => {
     SpeechRecognition.startListening();
     console.log("Handle Start Speech Recog")
+    console.log("Listening: " + listening);
     while(listening){
         console.log("Listening...")
         setTimeout('',100);
