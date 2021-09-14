@@ -26,6 +26,7 @@ import EditButton from './EditButton.component';
 import TableWrapper from './TableWrapper.component';
 import { setGlobalCssModule } from 'reactstrap/es/utils';
 import Collapsible from 'react-collapsible';
+import Dictaphone from './Dictaphone.component';
 
 
 
@@ -927,6 +928,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
+
+				<Dictaphone></Dictaphone>
 
 				<ChangeHBForm changeHBHiddenNow={changeHBHiddenNow}></ChangeHBForm>
 				<AddNewHBForm changeHBHiddenNow={changeHBHiddenNow}></AddNewHBForm>

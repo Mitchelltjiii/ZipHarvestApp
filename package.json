@@ -22,6 +22,7 @@
     "react-papaparse": "^3.17.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-speech-recognition": "^3.8.2",
     "reactstrap": "^8.9.0",
     "sequelize": "^6.6.2",
     "styled-components": "^5.3.1",
