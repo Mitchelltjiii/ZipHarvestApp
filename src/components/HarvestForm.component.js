@@ -343,6 +343,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}
 	}
 
+	function searchTagFromSpeech(searchText){
+		setSearchTag(searchText);
+	}
+
 	console.log("HB Info Tabs Hidden Now: " + hbInfoTabsHiddenNow);
 
 	function commitSearch(){

@@ -5,27 +5,18 @@ const Dictaphone = () => {
 
     const commands = [
         {
-          command: "open",
-          callback: () => {
-            console.log("Open Commanded");
+          command: "search *",
+          callback: (searchText) => {
+            console.log("Search: " + searchText);
+            this.props.searchTagFromSpeech(searchText);
           },
         },
         {
-          command: "change background colour to *",
-          callback: () => {
-          },
-        },
-        {
-          command: "reset",
-          callback: () => {
-            console.log("Reset Commanded");
-          },
-        },
-        ,
-        {
-          command: "reset background colour",
-          callback: () => {
-          },
+            command: "weight *",
+            callback: (weight) => {
+              console.log("Weight: " + weight);
+              //this.props.enterWeightFromSpeech(searchText);
+            },
         },
       ];
 
