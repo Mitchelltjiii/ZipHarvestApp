@@ -16,6 +16,8 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 	const [searchText,setSearchText] = React.useState("");
 	let removeList = selectedToDelete;
 
+	let plantsWithSearch = searchText ? getPlantsWithSearch():
+
     console.log("Upload List after refresh: " + JSON.stringify(uploadList));
 
 	let uploadNamesList = [];
@@ -128,12 +130,8 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 		return JSON.stringify(plantsWithSearch);
 	}
 
-	function search(sText){
-		//setSearchText(sText);
-	}
-
 	const handleSearchFieldChange = (event) => {
-		search(event.target.value);
+		setSearchText(event.target.value);
 	}
 
 	const handleCancel = () => {
@@ -261,7 +259,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
           			))}
 				</div>
                 <div>
-                    <PlantTable getPlants={getPlantsWithSearch} toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected} 
+                    <PlantTable plantsWithSearch={plantsWithSearch} toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected} 
 					toggleDeletePlantSelected={toggleDeletePlantSelected} getDeletePlantSelected={getDeletePlantSelected}></PlantTable>
                 </div>
 				</Grid>		  

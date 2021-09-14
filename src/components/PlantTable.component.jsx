@@ -11,9 +11,9 @@ import SelectDeleteAllButton from './SelectDeleteAllButton.component';
 import SelectDeletePlantButton from './SelectDeletePlantButton.component';
 
 
-function PlantTable({getPlants,toggleDeleteAllSelected,getDeleteAllSelected,toggleDeletePlantSelected,getDeletePlantSelected}) {
+function PlantTable({plantsWithSearch,toggleDeleteAllSelected,getDeleteAllSelected,toggleDeletePlantSelected,getDeletePlantSelected}) {
 
-    console.log("ENTER PlantTable, Plants: " + getPlants());
+    console.log("ENTER PlantTable, Plants with search: " + plantsWithSearch);
 
     const useStyles = makeStyles({
         table: {
@@ -31,7 +31,7 @@ function PlantTable({getPlants,toggleDeleteAllSelected,getDeleteAllSelected,togg
 
     const rows = [];
 
-    for(let val of JSON.parse(getPlants())) {
+    for(let val of JSON.parse(plantsWithSearch))) {
       if(val.active == 0){
         rows.push(createData(val.tag,val.strain));
       }
