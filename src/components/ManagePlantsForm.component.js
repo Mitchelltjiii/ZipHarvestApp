@@ -132,6 +132,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 
 	const handleSearchFieldChange = (event) => {
 		setSearchText(event.target.value);
+		setSelectedToDelete([]);
 	}
 
 	const handleCancel = () => {
