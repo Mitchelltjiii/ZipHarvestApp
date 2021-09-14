@@ -30,7 +30,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 	}
 
 	const toggleDeleteAllSelected = () => {
-		let currPlants = JSON.parse(getPlants());
+		let currPlants = JSON.parse(getPlantsWithSearch());
 		
 		if(getDeleteAllSelected()){
 			console.log("selectedToDelete.length == currPlants.length");
@@ -100,11 +100,11 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 			return false;
 		}
 		console.log("Remove List Length: " + removeList.length);
-		console.log("CurrPlants Length: " + JSON.parse(getPlants()).length);
-		console.log("GetDeleteAllSelected: " + JSON.stringify(removeList.length === JSON.parse(getPlants()).length));
+		console.log("CurrPlants Length: " + JSON.parse(getPlantsWithSearch()).length);
+		console.log("GetDeleteAllSelected: " + JSON.stringify(removeList.length === JSON.parse(getPlantsWithSearch()).length));
 		
 		let x = 0;
-		for(const val of JSON.parse(getPlants())){
+		for(const val of JSON.parse(getPlantsWithSearch())){
 			if(val.active === 0){
 				x++;
 			}
