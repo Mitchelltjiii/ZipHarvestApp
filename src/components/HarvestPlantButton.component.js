@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from '@material-ui/core/Button';
 
-class HarvestPlantButton extends Component{
+class HarvestPlantButton extends Button{
     emptyHarvestRecord = {
         tag: '',
         weight: '',

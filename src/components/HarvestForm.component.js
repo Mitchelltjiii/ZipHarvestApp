@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
 import Select from '@material-ui/core/Select';
@@ -111,6 +111,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	let searchForList = [];
 	let strain = '';
+
+	const nextPlantRef = useRef();
 
 	console.log("Create Search for List");
 	for (const val of JSON.parse(getPlants())) {
@@ -347,8 +349,17 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setSearchTag(searchText);
 	}
 
-	function enterWeightFromSpeech(weight){
+	function enterWeightFromSpeech(weight,unit){
 		setWeight(weight);
+		if(unit === 0){
+			setUnit('lbs');
+		}else if(unit === 1){
+			setUnit('g');
+		}
+	}
+
+	function nextPlantFromSpeech(){
+		nextPlantRef.current.click();
 	}
 
 	console.log("HB Info Tabs Hidden Now: " + hbInfoTabsHiddenNow);
@@ -936,7 +947,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
-					<Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}></Dictaphone>
+					<Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
+					nextPlantFromSpeech={nextPlantFromSpeech}></Dictaphone>
 				</Grid>
 
 				<Grid
@@ -1056,7 +1068,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				>
 
 				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddBranch}>Add Branch</Button>
-				<HarvestPlantButton getHarvestRecordItem={getHarvestRecordItem} getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} 
+				<HarvestPlantButton ref={nextPlantRef} getHarvestRecordItem={getHarvestRecordItem} getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} 
 				nextPlant={nextPlant} setChanges={setChanges} resetHarvestForm={resetHarvestForm} setNewHarvestRecordID={setNewHarvestRecordID} 
 				updateHBList={updateHBList} getPlantItem={getPlantItem} harvestType={harvestType} getStrainForPlantItem={getStrainForPlantItem}></HarvestPlantButton>
 
