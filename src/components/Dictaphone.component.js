@@ -61,13 +61,17 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
   }
 
   const handleStartSpeechRecognition = () => {
+    if(listening){
+      return;
+    }
     SpeechRecognition.startListening();
     console.log("Handle Start Speech Recog")
     console.log("Listening: " + listening);
-    while(listening){
-        console.log("Listening...")
+    let x = 0;
+    while(listening && x<1000){
+        console.log("Listening... x: " + x)
         setTimeout('',100);
-
+        x++;
     }
     console.log("Done Listening");
   }
