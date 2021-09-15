@@ -62,6 +62,7 @@ export default class App extends React.Component {
     this.state.usersLoading = false;
     console.log("Leaving GetUsers FROM DB")
     if(reload){
+      console.log("ReloadFromGetUsersFromDB");
       this.engageReload();
     }
   }
@@ -241,6 +242,7 @@ export default class App extends React.Component {
     console.log("RELOAD USERS");
     console.log("Before GetUsersFromDB");
     setTimeout(() => {
+      console.log("Timeout Reached");
       this.usersLoading=true;
       return this.getUsersFromDB(false);
     },0); 
