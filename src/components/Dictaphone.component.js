@@ -2,16 +2,51 @@ import React from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 
-const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpeech,voiceCommand}) => {
+const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpeech}) => {
 
     const commands = [
         {
-          command: "*",
-          callback: (text) => {
-            console.log("Commant Text: " + text);
-            voiceCommand(text);
+            command: "search *",
+            callback: (searchText) => {
+              console.log("Search: " + searchText);
+              searchTagFromSpeech(searchText);
+            },
           },
-        },
+          {
+              command: "weight *",
+              callback: (weight) => {
+                console.log("Weight: " + weight);
+                enterWeightFromSpeech(weight,-1);
+              },
+          },
+          {
+              command: "wait *",
+              callback: (weight) => {
+                console.log("Weight: " + weight);
+                enterWeightFromSpeech(weight,-1);
+              },
+          },
+          {
+              command: "* lb",
+              callback: (weight) => {
+                console.log("Weight: " + weight);
+                enterWeightFromSpeech(weight,0);
+              },
+          },
+          {
+              command: "* G",
+              callback: (weight) => {
+                console.log("Weight: " + weight);
+                enterWeightFromSpeech(weight,1);
+              },
+          },
+          {
+              command: "Next *",
+              callback: () => {
+                console.log("Next Plant Commanded");
+                nextPlantFromSpeech();
+              },
+          },
       ];
 
   const {

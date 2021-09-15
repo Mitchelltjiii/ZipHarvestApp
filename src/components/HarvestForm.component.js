@@ -346,7 +346,15 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	function searchTagFromSpeech(searchText){
-		setSearchTag(searchText);
+		let fixedSearch = searchText;
+		    while(fixedSearch.includes(" to ")){
+			    console.log("SearchText before Fix: " + fixedSearch);
+			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf(" to ")) + fixedSearch.substring(fixedSearch.indexOf(" to ")+4);
+			    console.log("SearchText after Fix: " + fixedSearch);
+		}
+		console.log("SearchText after final Fix: " + fixedSearch);
+
+		setSearchTag(fixedSearch);
 	}
 
 	function enterWeightFromSpeech(weight,unit){
