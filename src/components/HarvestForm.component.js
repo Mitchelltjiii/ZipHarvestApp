@@ -362,6 +362,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		nextPlantRef.current.click();
 	}
 
+	function voiceCommand(text){
+		console.log("Voice Command in HarvestForm: " + text);
+	}
+
 	console.log("HB Info Tabs Hidden Now: " + hbInfoTabsHiddenNow);
 
 	function commitSearch(){
@@ -948,7 +952,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 					<Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
-					nextPlantFromSpeech={nextPlantFromSpeech}></Dictaphone>
+					nextPlantFromSpeech={nextPlantFromSpeech} voiceCommand={voiceCommand}></Dictaphone>
 				</Grid>
 
 				<Grid
