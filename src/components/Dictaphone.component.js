@@ -2,7 +2,7 @@ import React from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 
-const Dictaphone = ({searchTagFromSpeech}) => {
+const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech}) => {
 
     const commands = [
         {
@@ -16,7 +16,7 @@ const Dictaphone = ({searchTagFromSpeech}) => {
             command: "weight *",
             callback: (weight) => {
               console.log("Weight: " + weight);
-              //this.props.enterWeightFromSpeech(searchText);
+              enterWeightFromSpeech(weight);
             },
         },
       ];

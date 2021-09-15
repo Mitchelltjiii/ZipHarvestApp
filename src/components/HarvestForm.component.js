@@ -347,6 +347,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setSearchTag(searchText);
 	}
 
+	function enterWeightFromSpeech(weight){
+		setWeight(weight);
+	}
+
 	console.log("HB Info Tabs Hidden Now: " + hbInfoTabsHiddenNow);
 
 	function commitSearch(){
@@ -932,7 +936,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
-					<Dictaphone searchTagFromSpeech={searchTagFromSpeech}></Dictaphone>
+					<Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}></Dictaphone>
 				</Grid>
 
 				<Grid
