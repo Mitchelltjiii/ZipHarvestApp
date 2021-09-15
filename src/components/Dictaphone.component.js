@@ -2,16 +2,14 @@ import React from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 
-const Dictaphone = () => {
-
-    let parent = this; 
+const Dictaphone = ({searchTagFromSpeech}) => {
 
     const commands = [
         {
           command: "search *",
           callback: (searchText) => {
             console.log("Search: " + searchText);
-            parent.props.searchTagFromSpeech(searchText);
+            searchTagFromSpeech(searchText);
           },
         },
         {
