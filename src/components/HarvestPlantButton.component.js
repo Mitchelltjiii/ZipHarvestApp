@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from '@material-ui/core/Button';
 
-class HarvestPlantButton extends Button{
+class HarvestPlantButton extends Component{
     emptyHarvestRecord = {
         tag: '',
         weight: '',
@@ -140,7 +140,7 @@ class HarvestPlantButton extends Button{
 
     render() {    
         return <div>
-            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}>Next Plant</Button>
+            <Button ref={this.props.plantRef} aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}>Next Plant</Button>
         </div>
       }
 }
