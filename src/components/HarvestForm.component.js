@@ -932,7 +932,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
-					<Dictaphone></Dictaphone>
+					<Dictaphone searchTagFromSpeech={searchTagFromSpeech}></Dictaphone>
 				</Grid>
 
 				<Grid
