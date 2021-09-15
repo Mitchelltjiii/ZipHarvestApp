@@ -60,6 +60,7 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
     return <span>Browser doesn't support speech recognition.</span>;
   }
 
+  
   const handleStartSpeechRecognition = () => {
     if(!listening){
       SpeechRecognition.startListening();
