@@ -47,6 +47,13 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
               nextPlantFromSpeech();
             },
         },
+        {
+            command: "Next Plan",
+            callback: () => {
+              console.log("Next Plant Commanded");
+              nextPlantFromSpeech();
+            },
+        },
       ];
 
   const {
