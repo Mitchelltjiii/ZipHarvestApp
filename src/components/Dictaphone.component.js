@@ -19,6 +19,20 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech}) => {
               enterWeightFromSpeech(weight);
             },
         },
+        {
+            command: "wait *",
+            callback: (weight) => {
+              console.log("Weight: " + weight);
+              enterWeightFromSpeech(weight);
+            },
+        },
+        {
+            command: "* pounds",
+            callback: (weight) => {
+              console.log("Weight: " + weight);
+              enterWeightFromSpeech(weight);
+            },
+        },
       ];
 
   const {
