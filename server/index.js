@@ -15,7 +15,7 @@ const plantsQueryString = "select * from pl where userID = '";
 
 const harvestRecordsQueryString = "select * from hr where userID = '";
 
-const usersQueryString = "select * from users where userID = '";
+const usersQueryString = "select * from users";
 
 const router = require('../app/routers/router');
 
