@@ -46,14 +46,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers}){
         reloadUsers();
         console.log("Exited ReloadUsers")
 
-        console.log("Usersloading: " + getUsersLoading());
-        let x = 0;
-        while(getUsersLoading()){
-        }
-
         console.log("Get Users**: " + getUsers());
-
-
         console.log("Parse Users**");
         let parsedUsers = JSON.parse(getUsers()); //error here Uncaught SyntaxError: Unexpected end of JSON input
 
