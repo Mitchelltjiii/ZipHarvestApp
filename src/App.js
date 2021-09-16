@@ -244,7 +244,7 @@ export default class App extends React.Component {
     setTimeout(() => {
       console.log("Timeout Reached");
       this.state.usersLoading=true;
-      return this.getUsersFromDB(false);
+      return this.getUsersFromDB(true);
     },0); 
     console.log("After GetUsersFromDB");
   }
@@ -387,15 +387,7 @@ export default class App extends React.Component {
   }
 
   getUsers = () => {
-    console.log("In App.js - Get Users: " + this.state.users);
-    console.log("In App.js - Get Users(STRING): " + JSON.stringify(this.state.users));
-
-      console.log("Users is empty");
-      this.state.usersLoading=true;
-      this.getUsersFromDB(false);
-      setTimeout(() =>  {return this.state.users},0); 
-    console.log("Return state.users");
-    
+    return this.state.users;
   }
 
   setHarvestBatches = (harvestBatchesFromChild) => {
