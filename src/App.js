@@ -57,14 +57,17 @@ export default class App extends React.Component {
     console.log("In GetUsers FROM DB")
     const response = await fetch('/api/users');
     const text = await response.text();
-    console.log("API GET USERS: " + text);
-    this.state.users = text;
-    this.state.usersLoading = false;
-    console.log("Leaving GetUsers FROM DB")
-    if(reload){
-      console.log("ReloadFromGetUsersFromDB");
-      this.engageReload();
-    }
+    setTimeout(() =>  {
+      console.log("API GET USERS: " + text);
+      this.state.users = text;
+      this.state.usersLoading = false;
+      console.log("Leaving GetUsers FROM DB");
+
+      if(reload){
+        console.log("ReloadFromGetUsersFromDB");
+        this.engageReload();
+      }
+    },0); 
   }
 
   getPlantsFromDB = async (reload) => {
