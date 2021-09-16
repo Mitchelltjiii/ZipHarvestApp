@@ -244,7 +244,7 @@ export default class App extends React.Component {
     setTimeout(() => {
       console.log("Timeout Reached");
       this.state.usersLoading=true;
-      return this.getUsersFromDB(true);
+      return this.getUsersFromDB(false);
     },0); 
     console.log("After GetUsersFromDB");
   }
@@ -394,11 +394,12 @@ export default class App extends React.Component {
       console.log("Users is empty");
       this.state.usersLoading=true;
       this.getUsersFromDB(true);
+      setTimeout(() =>  {return this.state.users},0); 
     }else{
       console.log("Users is not empty");
     }
     console.log("Return state.users");
-    return this.state.users;
+    
   }
 
   setHarvestBatches = (harvestBatchesFromChild) => {
