@@ -50,6 +50,7 @@ app.get('/api/users/:username/:password', (req, res) => {
         console.log("GET USERS RESULT(STRING)- " + JSON.stringify(result));
 
         let parsedUsers = result;
+        let foundLogin = false;
         for(const val of parsedUsers){
           console.log("Val: " + val);
           console.log("Val(String): " + JSON.stringify(val));
@@ -57,11 +58,14 @@ app.get('/api/users/:username/:password', (req, res) => {
             console.log("User Match");
             if(val.password==req.params.password){
               console.log("Password Correct!");
-              res.json("0");
+              foundLogin = true;
+              res.json(0);
             }
           }
         }
-        res.json("1");
+        if(!foundLogin){
+          res.json(1);
+        }
     });
 });
 

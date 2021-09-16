@@ -56,6 +56,9 @@ export default class App extends React.Component {
       console.log("API GET USERS: " + text);
       this.state.users = text;
       this.state.usersLoading = false;
+      if(text === "0"){
+        this.executeLogIn(username);
+      }
       console.log("Leaving GetUsers FROM DB");
     },0); 
   }

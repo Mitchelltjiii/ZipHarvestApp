@@ -25,10 +25,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
       console.log("Username: " + username);
       console.log("Password: " + password);
 
-      let login = attemptLogin(username,password);
-      if(login){
-        executeLogIn(username);
-      }
+      attemptLogin(username,password);
       /*
       console.log("Checking Users");
       console.log("Users String: " + getUsers());
