@@ -40,6 +40,7 @@ export default class App extends React.Component {
     console.log("After GetHarvestRecords")
   }
 
+  
   engageReload = () => {
     console.log("Engage Reload || pl: " + this.state.plantsLoading + " | hpl: " + this.state.harvestRecordsLoading + " | hbl: " + this.state.harvestBatchesLoading);
     if(!this.state.usersLoading || !this.state.plantsLoading && !this.state.harvestRecordsLoading && !this.state.harvestBatchesLoading){
