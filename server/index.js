@@ -38,8 +38,9 @@ app.use(express.urlencoded({
 }));
 
 app.use(express.json());
+
 app.get('/api/users/:username/:password', (req, res) => {
-  if(connection.active){
+  try{
     console.log('api/users');
     connection.query(usersQueryString,
       function(err, result) {
@@ -65,11 +66,13 @@ app.get('/api/users/:username/:password', (req, res) => {
               }
             }
             if(!foundLogin){
+              console.log("Respond: 1");
               res.json(1);
             }
           }
       });
-  }else{
+  }catch(error){
+    console.log("Caught error userquery");
     connection.connect((err) => {
       if (err) {
           console.log('Connection error message: ' + err.message);
