@@ -38,7 +38,6 @@ app.use(express.urlencoded({
 }));
 
 app.use(express.json());
-
 app.get('/api/users/:username/:password', (req, res) => {
   if(connection.active){
     console.log('api/users');
