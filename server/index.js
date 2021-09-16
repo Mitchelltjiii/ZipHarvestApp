@@ -49,17 +49,7 @@ app.get('/api/users/:username/:password', (req, res) => {
         console.log("GET USERS RESULT- " + result);
         console.log("GET USERS RESULT(STRING)- " + JSON.stringify(result));
 
-        if(result=="" || result==undefined){
-          connection.connect((err) => {
-            if (err) {
-                console.log('Connection error message: ' + err.message);
-                res.json(2);
-            }else{
-              console.log('Connected!');
-              res.json(3);
-            }
-          });
-        }else{
+        if(result!="" && result!=undefined){
           let parsedUsers = result;
           let foundLogin = false;
           for(const val of parsedUsers){
