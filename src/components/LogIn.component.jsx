@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 
-function LogIn({getUsers, executeLogIn, reloadUsers}){
+function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading}){
     const useStyles = makeStyles((theme) => ({
         container: {
           padding: theme.spacing(3),
@@ -44,7 +44,22 @@ function LogIn({getUsers, executeLogIn, reloadUsers}){
         console.log("Before ReloadUsers")
         reloadUsers();
         console.log("Exited ReloadUsers")
+
+        console.log("Usersloading: " + getUsersLoading());
+        let x = 0;
+        while(getUsersLoading() && x<1000){
+           console.log("getUsersLoading()... x: " + x)
+           setTimeout('',100);
+           x++;
+        }
+
+        console.log("Get Users**: " + getUsers());
+
+
+        console.log("Parse Users**");
         let parsedUsers = JSON.parse(getUsers()); //error here Uncaught SyntaxError: Unexpected end of JSON input
+
+        console.log("ParsedUsers: " + JSON.stringify(parsedUsers));
         for(const val of parsedUsers){
           console.log("Val: " + val);
           console.log("Val(String): " + JSON.stringify(val));

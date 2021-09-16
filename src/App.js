@@ -243,10 +243,14 @@ export default class App extends React.Component {
     console.log("Before GetUsersFromDB");
     setTimeout(() => {
       console.log("Timeout Reached");
-      this.usersLoading=true;
+      this.state.usersLoading=true;
       return this.getUsersFromDB(false);
     },0); 
     console.log("After GetUsersFromDB");
+  }
+
+  getUsersLoading = () => {
+    return this.state.usersLoading;
   }
 
   reloadPlantsAndHarvestRecords = (currHarvest) => {
@@ -388,7 +392,7 @@ export default class App extends React.Component {
 
     if(JSON.stringify(this.state.users) == ""){
       console.log("Users is empty");
-      this.usersLoading=true;
+      this.state.usersLoading=true;
       this.getUsersFromDB(true);
     }else{
       console.log("Users is not empty");
@@ -455,7 +459,7 @@ export default class App extends React.Component {
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches}/>
     </div>;
     }else{
-		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers}></LogIn></div>;
+		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading}></LogIn></div>;
     }
     return (
       <div className="App">
