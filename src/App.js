@@ -239,14 +239,9 @@ export default class App extends React.Component {
   }
 
   reloadUsers = () => {
-    console.log("RELOAD USERS");
-    console.log("Before GetUsersFromDB");
-    setTimeout(() => {
-      console.log("Timeout Reached");
-      this.state.usersLoading=true;
-      return this.getUsersFromDB(false);
-    },0); 
-    console.log("After GetUsersFromDB");
+    console.log("Timeout Reached");
+    this.state.usersLoading=true;
+    return this.getUsersFromDB(false);
   }
 
   getUsersLoading = () => {
