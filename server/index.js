@@ -40,35 +40,48 @@ app.use(express.urlencoded({
 app.use(express.json());
 
 app.get('/api/users/:username/:password', (req, res) => {
-  console.log('api/users');
-  connection.query(usersQueryString,
-    function(err, result) {
-      console.log("Username**: "+ req.params.username);
-      console.log("Password**: "+ req.params.password);
-
-        console.log("GET USERS RESULT- " + result);
-        console.log("GET USERS RESULT(STRING)- " + JSON.stringify(result));
-
-        if(result!="" && result!=undefined){
-          let parsedUsers = result;
-          let foundLogin = false;
-          for(const val of parsedUsers){
-            console.log("Val: " + val);
-            console.log("Val(String): " + JSON.stringify(val));
-            if(val.username==req.params.username){
-              console.log("User Match");
-              if(val.password==req.params.password){
-                console.log("Password Correct!");
-                foundLogin = true;
-                res.json(0);
+  if(connection.active){
+    console.log('api/users');
+    connection.query(usersQueryString,
+      function(err, result) {
+        console.log("Username**: "+ req.params.username);
+        console.log("Password**: "+ req.params.password);
+  
+          console.log("GET USERS RESULT- " + result);
+          console.log("GET USERS RESULT(STRING)- " + JSON.stringify(result));
+  
+          if(result!="" && result!=undefined){
+            let parsedUsers = result;
+            let foundLogin = false;
+            for(const val of parsedUsers){
+              console.log("Val: " + val);
+              console.log("Val(String): " + JSON.stringify(val));
+              if(val.username==req.params.username){
+                console.log("User Match");
+                if(val.password==req.params.password){
+                  console.log("Password Correct!");
+                  foundLogin = true;
+                  res.json(0);
+                }
               }
             }
+            if(!foundLogin){
+              res.json(1);
+            }
           }
-          if(!foundLogin){
-            res.json(1);
-          }
+      });
+  }else{
+    connection.connect((err) => {
+      if (err) {
+          console.log('Connection error message: ' + err.message);
+          res.json(2);
+        }else{
+          console.log('Connected!')
+          res.json(3);
         }
     });
+  }
+  
 });
 
 app.get('/api/hb/:id', (req, res) => {
