@@ -423,7 +423,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    if ((this.state.loggedIn == '' && this.state.usersLoading) || (this.state.loggedIn != '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading))){
+    if ((this.state.loggedIn != '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading))){
       return(<div>Loading...</div>);
     }
 
