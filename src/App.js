@@ -27,11 +27,6 @@ export default class App extends React.Component {
       this.setState({ users: response.data });
     });*/
     console.log("Component Did Mount - App.js");
-
-    console.log("Before Get Users");
-    this.getUsersFromDB("","");
-    console.log("After Get Users");
-
     console.log("Before GetHarvestBatches")
     this.getHarvestBatchesFromDB();
     console.log("After GetHarvestBatches")
