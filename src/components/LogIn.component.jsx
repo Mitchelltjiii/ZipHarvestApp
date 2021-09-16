@@ -48,9 +48,9 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers}){
 
         console.log("Usersloading: " + getUsersLoading());
         let x = 0;
-        while(x<500 && getUsersLoading()){
+        while(x<5000 && getUsersLoading()){
            console.log("getUsersLoading()... x: " + x)
-           setTimeout('',1000000);
+           setTimeout('',1000);
            x++;
         }
 
