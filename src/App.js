@@ -244,7 +244,7 @@ export default class App extends React.Component {
     setTimeout(() => {
       console.log("Timeout Reached");
       this.state.usersLoading=true;
-      return this.getUsersFromDB(true);
+      return this.getUsersFromDB(false);
     },0); 
     console.log("After GetUsersFromDB");
   }
