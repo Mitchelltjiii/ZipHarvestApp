@@ -49,22 +49,34 @@ app.get('/api/users/:username/:password', (req, res) => {
         console.log("GET USERS RESULT- " + result);
         console.log("GET USERS RESULT(STRING)- " + JSON.stringify(result));
 
-        let parsedUsers = result;
-        let foundLogin = false;
-        for(const val of parsedUsers){
-          console.log("Val: " + val);
-          console.log("Val(String): " + JSON.stringify(val));
-          if(val.username==req.params.username){
-            console.log("User Match");
-            if(val.password==req.params.password){
-              console.log("Password Correct!");
-              foundLogin = true;
-              res.json(0);
+        if(result=="" || result==undefined){
+          connection.connect((err) => {
+            if (err) {
+                console.log('Connection error message: ' + err.message);
+                res.json(2);
+            }else{
+              console.log('Connected!');
+              res.json(3);
+            }
+          });
+        }else{
+          let parsedUsers = result;
+          let foundLogin = false;
+          for(const val of parsedUsers){
+            console.log("Val: " + val);
+            console.log("Val(String): " + JSON.stringify(val));
+            if(val.username==req.params.username){
+              console.log("User Match");
+              if(val.password==req.params.password){
+                console.log("Password Correct!");
+                foundLogin = true;
+                res.json(0);
+              }
             }
           }
-        }
-        if(!foundLogin){
-          res.json(1);
+          if(!foundLogin){
+            res.json(1);
+          }
         }
     });
 });

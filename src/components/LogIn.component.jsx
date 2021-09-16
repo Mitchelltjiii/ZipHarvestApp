@@ -30,7 +30,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
       console.log("Checking Users");
       console.log("Users String: " + getUsers());
       try{
-        setUsers("");
         let parsedUsers = JSON.parse(getUsers());
         for(const val of parsedUsers){
           console.log("Val: " + val);

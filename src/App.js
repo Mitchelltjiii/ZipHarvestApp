@@ -421,8 +421,7 @@ export default class App extends React.Component {
   }
 
   attemptLogin = (username,password) => {
-    let x = this.getUsersFromDB(username,password);
-    console.log("Attempt login result: " + x);
+    this.getUsersFromDB(username,password);
   }
 
   render() {
