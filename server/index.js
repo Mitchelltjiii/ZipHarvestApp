@@ -40,8 +40,6 @@ app.use(express.urlencoded({
 app.use(express.json());
 
 app.get('/api/users/:username/:password', (req, res) => {
-  if(connection.active){
-    console.log('api/users');
     connection.query(usersQueryString,
       function(err, result) {
         console.log("Username**: "+ req.params.username);
@@ -70,18 +68,6 @@ app.get('/api/users/:username/:password', (req, res) => {
             }
           }
       });
-  }else{
-    connection.connect((err) => {
-      if (err) {
-          console.log('Connection error message: ' + err.message);
-          res.json(2);
-        }else{
-          console.log('Connected!')
-          res.json(3);
-        }
-    });
-  }
-  
 });
 
 app.get('/api/hb/:id', (req, res) => {
