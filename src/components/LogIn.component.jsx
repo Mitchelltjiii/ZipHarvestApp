@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 
-function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers}){
+function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,attemptLogin}){
     const useStyles = makeStyles((theme) => ({
         container: {
           padding: theme.spacing(3),
@@ -25,6 +25,11 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers}){
       console.log("Username: " + username);
       console.log("Password: " + password);
 
+      let login = attemptLogin(username,password);
+      if(login){
+        executeLogIn(username);
+      }
+      /*
       console.log("Checking Users");
       console.log("Users String: " + getUsers());
       try{
@@ -62,7 +67,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers}){
             }
           }
         }
-      }
+      }*/
       
 	  }
 

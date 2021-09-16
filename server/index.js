@@ -15,7 +15,7 @@ const plantsQueryString = "select * from pl where userID = '";
 
 const harvestRecordsQueryString = "select * from hr where userID = '";
 
-const usersQueryString = 'select * from users';
+const usersQueryString = "select * from users where userID = '";
 
 const router = require('../app/routers/router');
 
@@ -39,12 +39,27 @@ app.use(express.urlencoded({
 
 app.use(express.json());
 
-app.get('/api/users', (req, res) => {
+app.get('/api/users/:username/:password', (req, res) => {
   console.log('api/users');
   connection.query(usersQueryString,
     function(err, result) {
+      console.log("Username**: "+ req.params.username);
+      console.log("Password**: "+ req.params.password);
+
         console.log("GET USERS RESULT(STRING)- " + JSON.stringify(result));
-        res.json(result);
+        let parsedUsers = JSON.parse(JSON.stringify(result));
+        for(const val of parsedUsers){
+          console.log("Val: " + val);
+          console.log("Val(String): " + JSON.stringify(val));
+          if(val.username==req.params.username){
+            console.log("User Match");
+            if(val.password==req.params.password){
+              console.log("Password Correct!");
+              res.json("0");
+            }
+          }
+        }
+        res.json("1");
     });
 });
 

@@ -29,7 +29,7 @@ export default class App extends React.Component {
     console.log("Component Did Mount - App.js");
 
     console.log("Before Get Users");
-    this.getUsersFromDB(true);
+    this.getUsersFromDB("","");
     console.log("After Get Users");
 
     console.log("Before GetHarvestBatches")
@@ -53,9 +53,9 @@ export default class App extends React.Component {
     }
   }
 
-  getUsersFromDB = async (reload) => {
+  getUsersFromDB = async (username,password) => {
     console.log("In GetUsers FROM DB")
-    const response = await fetch('/api/users');
+    const response = await fetch(`/api/users/${username}/${password}`);
     const text = await response.text();
     setTimeout(() =>  {
       console.log("API GET USERS: " + text);
@@ -204,7 +204,7 @@ export default class App extends React.Component {
     console.log("RESETTING ALL");
 
     console.log("Before Get Users");
-    this.getUsersFromDB(true);
+    this.getUsersFromDB("","");
     console.log("After Get Users");
 
     console.log("Before GetHarvestBatches")
@@ -244,7 +244,7 @@ export default class App extends React.Component {
   reloadUsers = () => {
     console.log("Timeout Reached");
     this.state.usersLoading=true;
-    return this.getUsersFromDB(false);
+    return this.getUsersFromDB("","");
   }
 
   getUsersLoading = () => {
@@ -345,9 +345,9 @@ export default class App extends React.Component {
 		  console.log("Plants Map AFTER SET NEW PLANT ID(STRINGIFIED): " + JSON.stringify(this.state.plants));
 	}
 
-  executeLogIn = (user, userID) =>{
+  executeLogIn = (user) =>{
     this.state.loggedIn=user;
-    this.state.userID=userID;
+    this.state.userID=user;
     this.resetAll([]);
     this.engageReload();
   }
@@ -427,6 +427,11 @@ export default class App extends React.Component {
     this.forceUpdate();
   }
 
+  attemptLogin = (username,password) => {
+    let x = this.getUsersFromDB(username,password);
+    console.log("Attempt login result: " + x);
+  }
+
   render() {
     if ((this.state.loggedIn == '' && this.state.usersLoading) || (this.state.loggedIn != '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading))){
       return(<div>Loading...</div>);
@@ -452,7 +457,7 @@ export default class App extends React.Component {
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches}/>
     </div>;
     }else{
-		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers}></LogIn></div>;
+		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin}></LogIn></div>;
     }
     return (
       <div className="App">
