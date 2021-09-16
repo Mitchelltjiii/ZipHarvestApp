@@ -62,11 +62,6 @@ export default class App extends React.Component {
       this.state.users = text;
       this.state.usersLoading = false;
       console.log("Leaving GetUsers FROM DB");
-
-      if(reload){
-        console.log("ReloadFromGetUsersFromDB");
-        this.engageReload();
-      }
     },0); 
   }
 
