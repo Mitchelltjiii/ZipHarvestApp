@@ -46,8 +46,10 @@ app.get('/api/users/:username/:password', (req, res) => {
       console.log("Username**: "+ req.params.username);
       console.log("Password**: "+ req.params.password);
 
+        console.log("GET USERS RESULT- " + result);
         console.log("GET USERS RESULT(STRING)- " + JSON.stringify(result));
-        let parsedUsers = JSON.parse(JSON.stringify(result));
+
+        let parsedUsers = result;
         for(const val of parsedUsers){
           console.log("Val: " + val);
           console.log("Val(String): " + JSON.stringify(val));
