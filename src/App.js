@@ -419,6 +419,12 @@ export default class App extends React.Component {
     console.log("SET HARVESTRECORDS - HarvestRecords after transfer: " + this.state.harvestRecords);
   }
 
+  setUsers = (usersMapFromChild) => {
+    console.log("SET Users MAP - UsersMap from child: " + usersMapFromChild);
+    this.state.users = usersMapFromChild;
+    console.log("SET Users - Users after transfer: " + this.state.users);
+  }
+
 
   executeLogout = () => {
     this.state.loggedIn = '';
@@ -459,7 +465,7 @@ export default class App extends React.Component {
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches}/>
     </div>;
     }else{
-		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading}></LogIn></div>;
+		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers}></LogIn></div>;
     }
     return (
       <div className="App">

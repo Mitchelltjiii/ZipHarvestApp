@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 
-function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading}){
+function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers}){
     const useStyles = makeStyles((theme) => ({
         container: {
           padding: theme.spacing(3),
@@ -28,6 +28,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading}){
       console.log("Checking Users");
       console.log("Users String: " + getUsers());
       try{
+        setUsers("");
         let parsedUsers = JSON.parse(getUsers());
         for(const val of parsedUsers){
           console.log("Val: " + val);
