@@ -35,6 +35,42 @@ app.get("/api/users/:username/:password",(req,res) => {
           connection.release(); // return the connection to pool
           if(err) throw err;
           console.log('The data from users table are: \n', rows);
+          let foundLogin = false;
+          try{
+            console.log("Trying iteration without parse");
+            for(const val of rows){
+              console.log("Row: " + val);
+              console.log("Row.stringify: " + val.stringify);
+              if(val.username==req.params.username){
+                console.log("User Match");
+                if(val.password==req.params.password){
+                  console.log("Password Correct!");
+                  foundLogin = true;
+                }
+              }
+            }
+            console.log("Found Login: " + foundLogin);
+          }catch(error){
+            console.log("Caught error 1");
+          }
+          foundLogin = false;
+          try{
+            console.log("Trying iteration with parse");
+            for(const val of JSON.parse(rows)){
+              console.log("Row*: " + val);
+              console.log("Row*.stringify: " + val.stringify);
+              if(val.username==req.params.username){
+                console.log("User Match*");
+                if(val.password==req.params.password){
+                  console.log("Password Correct!*");
+                  foundLogin = true;
+                }
+              }
+            }
+            console.log("Found Login*: " + foundLogin);
+          }catch(error2){
+            console.log("Caught error 2");
+          }
       });
   });
 });
