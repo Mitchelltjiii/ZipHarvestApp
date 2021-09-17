@@ -5,6 +5,14 @@ const app = express(); // create express app
 const port = process.env.PORT || 3000
 const mysql = require('mysql');
 
+var pool  = mysql.createPool({
+  host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
+  user     : 'doadmin',
+  password : 'xo6wgtevue3qzrmw',
+  database : 'defaultdb',
+  port: '25060'
+});
+
 const db = require('../app/config/db.config');
 
 const Plant = db.Plant;
@@ -19,13 +27,25 @@ const usersQueryString = "select * from users";
 
 const router = require('../app/routers/router');
 
+app.get("/api/users/:username/:password",(req,res) => {
+  pool.getConnection((err, connection) => {
+      if(err) throw err;
+      console.log('connected as id ' + connection.threadId);
+      connection.query(usersQueryString, (err, rows) => {
+          connection.release(); // return the connection to pool
+          if(err) throw err;
+          console.log('The data from users table are: \n', rows);
+      });
+  });
+});
+/*
 const connection = mysql.createConnection({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
   user     : 'doadmin',
   password : 'xo6wgtevue3qzrmw',
   database : 'defaultdb',
   port: '25060'
-});
+});*/
 
 let appPostDone = true;
 
@@ -39,6 +59,7 @@ app.use(express.urlencoded({
 
 app.use(express.json());
 
+/*
 app.get('/api/users/:username/:password', (req, res) => {
   try{
     console.log('api/users');
@@ -95,7 +116,7 @@ app.get('/api/users/:username/:password', (req, res) => {
     });
   }
   
-});
+});*/
 
 app.get('/api/hb/:id', (req, res) => {
   console.log('api/hb');
@@ -470,11 +491,11 @@ db.sequelize.sync({force: true}).then(() => {
 app.listen(port, () => {
   console.log("server started on port " + port);
 });
-
+/*
 connection.connect((err) => {
   if (err) {
       console.log('Connection error message: ' + err.message);
       return;
   }
   console.log('Connected!')
-});
+});*/
