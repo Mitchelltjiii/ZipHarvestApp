@@ -28,15 +28,15 @@ export default class App extends React.Component {
     });*/
     console.log("Component Did Mount - App.js");
     console.log("Before GetHarvestBatches")
-    this.getHarvestBatchesFromDB();
+    //this.getHarvestBatchesFromDB();
     console.log("After GetHarvestBatches")
 
     console.log("Before GetPlants")
-    this.getPlantsFromDB(true);
+    //this.getPlantsFromDB(true);
     console.log("After GetPlants")
 
     console.log("Before GetHarvestRecords")
-    this.getHarvestRecordsFromDB(true);
+    //this.getHarvestRecordsFromDB(true);
     console.log("After GetHarvestRecords")
   }
 
