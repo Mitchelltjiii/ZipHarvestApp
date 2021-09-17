@@ -69,6 +69,17 @@ app.get('/api/users/:username/:password', (req, res) => {
               console.log("Respond: 1");
               res.json(1);
             }
+          }else{
+            console.log("Caught error userquery**");
+            connection.connect((err) => {
+            if (err) {
+              console.log('Connection error message: ' + err.message);
+               res.json(2);
+             }else{
+             console.log('Connected!')
+             res.json(3);
+            }
+            });
           }
       });
   }catch(error){
