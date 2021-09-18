@@ -53,19 +53,18 @@ export default class App extends React.Component {
     console.log("In GetUsers FROM DB")
     const response = await fetch(`/api/users/${username}/${password}`);
     const text = await response.text();
-    setTimeout(() =>  {
-      console.log("API GET USERS: " + text);
-      this.state.users = text;
-      this.state.usersLoading = false;
-      if(text === "0"){
-        this.executeLogIn(username);
-      }
-      console.log("Leaving GetUsers FROM DB");
-    },0); 
+    console.log("API GET USERS: " + text);
+    this.state.users = text;
+    this.state.usersLoading = false;
+    if(text === "0"){
+      this.executeLogIn(username);
+    }
+    console.log("Leaving GetUsers FROM DB");
+    
   }
 
   getPlantsFromDB = async (reload) => {
-    /*console.log("In GetPlants");
+    console.log("In GetPlants");
     if(this.state.userID == ""){
       console.log("State.userID is empty");
       return;
@@ -79,11 +78,10 @@ export default class App extends React.Component {
     console.log("Leaving GetPlants")
     if(reload){
       this.engageReload();
-    }*/
+    }
   }
 
   getHarvestRecordsFromDB = async (reload) => {
-    /*
     console.log("In GetHarvestRecords");
     if(this.state.userID == ""){
       console.log("State.userID is empty");
@@ -98,11 +96,10 @@ export default class App extends React.Component {
     console.log("Leaving GetHarvestRecords")
     if(reload){
       this.engageReload();
-    }*/
+    }
   }
 
   getHarvestBatchesFromDB = async () => {
-    /*
     console.log("In GetHarvestBatches")
     if(this.state.userID == ""){
       console.log("State.userID is empty");
@@ -115,7 +112,7 @@ export default class App extends React.Component {
     this.state.harvestBatches = text;
     this.state.harvestBatchesLoading = false;
     console.log("Leaving GetHarvestBatches")
-    this.engageReload();*/
+    this.engageReload();
   }
 
   getHarvestBatchesForReset = async (currHarvest) => {

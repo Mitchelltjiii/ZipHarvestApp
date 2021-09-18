@@ -26,6 +26,7 @@ const harvestRecordsQueryString = "select * from hr where userID = '";
 const usersQueryString = "select * from users";
 
 const router = require('../app/routers/router');
+const { default: HarvestBatchesForm } = require("../src/components/HarvestBatchesForm.component");
 
 app.get("/api/users/:username/:password",(req,res) => {
   pool.getConnection((err, connection) => {
@@ -53,25 +54,12 @@ app.get("/api/users/:username/:password",(req,res) => {
           }catch(error){
             console.log("Caught error 1");
           }
-          foundLogin = false;
-          try{
-            console.log("Trying iteration with parse");
-            for(const val of JSON.parse(rows)){
-              console.log("Row*: " + val);
-              console.log("Row*.stringify: " + val.stringify);
-              if(val.username==req.params.username){
-                console.log("User Match*");
-                if(val.password==req.params.password){
-                  console.log("Password Correct!*");
-                  foundLogin = true;
-                }
-              }
-            }
-            console.log("Found Login*: " + foundLogin);
-          }catch(error2){
-            console.log("Caught error 2");
+          if(foundLogin){
+            res.json(0);
+          }else{
+            res.json(1);
           }
-      });
+    });
   });
 });
 /*
@@ -155,6 +143,7 @@ app.get('/api/users/:username/:password', (req, res) => {
 });*/
 
 app.get('/api/hb/:id', (req, res) => {
+  /*
   console.log('api/hb');
   let userID = req.params.id;
   console.log("User ID: " + userID);
@@ -166,10 +155,25 @@ app.get('/api/hb/:id', (req, res) => {
           console.log("GET HARVESTBATCHES RESULT(STRING)- " + JSON.stringify(result));
           res.json(result);
       });
-  }
+  }*/
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    console.log('api/hb');
+    let userID = req.params.id;
+    console.log("User ID: " + userID);
+    var sql = `${userID}`;
+    console.log("Commit Query: " + hbQueryString + sql);
+    connection.query(hbQueryString + sql + "'", (err, rows) => {
+        connection.release(); // return the connection to pool
+        if(err) throw err;
+        console.log('The data from hb table are: \n', rows);
+    });
+  });
 });
 
 app.get('/api/pl/:id', (req, res) => {
+  /*
   console.log('api/pl');
   let userID = req.params.id;
   console.log("User ID: " + userID);
@@ -179,10 +183,26 @@ app.get('/api/pl/:id', (req, res) => {
     function(err, result) {
         console.log("GET PLANTS RESULT(STRING)- " + JSON.stringify(result));
         res.json(result);
+    });*/
+    pool.getConnection((err, connection) => {
+      if(err) throw err;
+      console.log('connected as id ' + connection.threadId);
+      console.log('api/pl');
+      let userID = req.params.id;
+      console.log("User ID: " + userID);
+      var sql = `${userID}`;
+      console.log("Commit Query: " + plantsQueryString + sql);
+      connection.query(plantsQueryString + sql + "'", (err, rows) => {
+          connection.release(); // return the connection to pool
+          if(err) throw err;
+          console.log('The data from plants table are: \n', rows);
+          res.json(rows);
+      });
     });
 });
 
 app.get('/api/hr/:id', (req, res) => {
+  /*
   console.log('api/hr');
   let userID = req.params.id;
   console.log("User ID: " + userID);
@@ -192,6 +212,20 @@ app.get('/api/hr/:id', (req, res) => {
     function(err, result) {
         console.log("GET HARVESTEDPLANTS RESULT(STRING)- " + JSON.stringify(result));
         res.json(result);
+    });*/
+    pool.getConnection((err, connection) => {
+      if(err) throw err;
+      console.log('connected as id ' + connection.threadId);
+      console.log('api/hb');
+      let userID = req.params.id;
+      console.log("User ID: " + userID);
+      var sql = `${userID}`;
+      console.log("Commit Query: " + hrQueryString + sql);
+      connection.query(hrQueryString + sql + "'", (err, rows) => {
+          connection.release(); // return the connection to pool
+          if(err) throw err;
+          console.log('The data from hr table are: \n', rows);
+      });
     });
 });
 
