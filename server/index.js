@@ -168,6 +168,8 @@ app.get('/api/hb/:id', (req, res) => {
         connection.release(); // return the connection to pool
         if(err) throw err;
         console.log('The data from hb table are: \n', rows);
+        res.json(rows);
+
     });
   });
 });
@@ -225,6 +227,7 @@ app.get('/api/hr/:id', (req, res) => {
           connection.release(); // return the connection to pool
           if(err) throw err;
           console.log('The data from hr table are: \n', rows);
+          res.json(rows);
       });
     });
 });
