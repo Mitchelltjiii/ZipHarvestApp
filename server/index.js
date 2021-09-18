@@ -259,7 +259,10 @@ app.post('/posttest', (req, res) =>{
 });
 
 app.post('/hb', (req, res) =>{
-  var postData  = req.body;
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    var postData  = req.body;
 
   let name = postData.name;
   let submitted = postData.submitted;
@@ -271,34 +274,26 @@ app.post('/hb', (req, res) =>{
   console.log("POST DATA: hb: " + postData);
   console.log("POST DATA: NAME: " + name);
 
-  var postResult = "NO RESULTS";
-
-  const result = connection.query(
-    `INSERT INTO hb 
+  connection.query(`INSERT INTO hb 
     (name, submitted, userID, type, date) 
     VALUES 
     (?, ?, ?, ?, ?)`, 
     [
       name, submitted, userID, type, date
-    ],
-    function(err, result2) {
-      /*
-      if(result2 != undefined){
-        console.log("RESULT2- " + result2.insertId);
-        postResult = result2.insertId;
-        console.log("POSTRESULT- " + postResult);
-        console.log("POSTRESULT WITH RESPONSE- " + postResult);
-      }else{
-        console.log("Result2 undefined");
-      }*/
-      res.json("{}");
-    });  
-
-    console.log("HARVESTBATCH POST RESULT IN SERVER: " + result);
+    ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The post hb result is: ', result);
+    res.json(result);
+    });
+  });
 });
 
 app.put('/hb', (req, res) =>{
-  var postData  = req.body;
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    var postData  = req.body;
 
   let name = postData.name;
   let submitted = postData.submitted;
@@ -310,20 +305,25 @@ app.put('/hb', (req, res) =>{
   console.log("PUT DATA: HB: " + postData);
   console.log("PUT DATA: NAME: " + name);
 
-  //var sql = "UPDATE trn_employee set first_name =? , last_name =?  WHERE employee_id = ?";
-
-  const result = connection.query(
-    `UPDATE hb set
-    submitted =?, userID =?, type =?, date =? WHERE name = ?`, 
-    [
-      submitted, userID, type, date, name
-    ],function(err, result2) {
-      res.json("{}");
-  });  
+  connection.query(`UPDATE hb set
+  submitted =?, userID =?, type =?, date =? WHERE name = ?`, 
+  [
+    submitted, userID, type, date, name
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The put hb result is: ', result);
+    res.json(result);
+    });
+  });
 });
 
 app.post('/hr', (req, res) =>{
-  var postData  = req.body;
+
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    var postData  = req.body;
 
   let tag = postData.tag;
   let weight = postData.weight;
@@ -331,45 +331,34 @@ app.post('/hr', (req, res) =>{
   let batchName = postData.batchName;
   let userID = postData.userID;
 
-  console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
-
-  var postResult = "NO RESULTS";
-
   console.log("POST DATA: Tag: " + tag);
   console.log("POST DATA: weight: " + weight);
   console.log("POST DATA: unit: " + unit);
   console.log("POST DATA: batchname: " + batchName);
   console.log("POST DATA: userID: " + userID);
 
-  const result = connection.query(
-    `INSERT INTO hr 
-    (tag, weight, unit, batchName, userID) 
-    VALUES 
-    (?, ?, ?, ?, ?)`,
-    [
-      tag, weight, unit, batchName, userID
-    ],function(err, result2) {
-      if(result2 != undefined){
-        console.log("RESULT2- " + result2.insertId);
-        postResult = result2.insertId;
-        console.log("POSTRESULT- " + postResult);
-        console.log("POSTRESULT WITH RESPONSE- " + postResult);
-      }else{
-        console.log("Result2 undefined");
-      }
-      try{
-        console.log("Error: " + err);
-        console.log("Error msg: " + err.message);
-        console.log("Error msg (STRING): " + JSON.stringify(err.message));
-      }catch(errrror){
-        console.log("Errrrrror!");
-      }
-      res.json(postResult);
-    });  
+  console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
+
+  connection.query(`INSERT INTO hr 
+  (tag, weight, unit, batchName, userID) 
+  VALUES 
+  (?, ?, ?, ?, ?)`,
+  [
+    tag, weight, unit, batchName, userID
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The post hr result is: ', result);
+    res.json(result);
+    });
+  }); 
 });
 
 app.put('/hr', (req, res) =>{
-  var postData  = req.body;
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    var postData  = req.body;
 
   let id = postData.id;
   let tag = postData.tag;
@@ -380,36 +369,27 @@ app.put('/hr', (req, res) =>{
 
   console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
 
-  const result = connection.query(
-    `UPDATE hr set
-    tag =?, weight =?, unit =?, batchName =?, userID =? WHERE id = ?`, 
-    [
-      tag, weight, unit, batchName, userID, id
-    ]
-  );  
-
-    let message = 'Error in creating programming language';
-  
-    if (result.affectedRows) {
-      message = 'Programming language created successfully';
-    }
-  
-    res.json(message);
+  connection.query(`UPDATE hr set
+  tag =?, weight =?, unit =?, batchName =?, userID =? WHERE id = ?`, 
+  [
+    tag, weight, unit, batchName, userID, id
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The post hr result is: ', result);
+    res.json(result);
+    });
+  }); 
 });
 
 app.delete(`/plant/:id`, (req, res) =>{
-  console.log("Delete Plant: " + req.params.id);
-  let plantID = req.params.id;
-
-  const result = connection.query(`DELETE FROM plants WHERE id = ${plantID}`);
-
-    let message = 'Error in creating programming language';
-  
-    if (result.affectedRows) {
-      message = 'Programming language created successfully';
-    }
-  
-    res.json(message);
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    console.log("Delete Plant: " + req.params.id);
+    let plantID = req.params.id;
+    connection.query(`DELETE FROM plants WHERE id = ${plantID}`);
+  });
 });
 
 app.post('/pl', (req, res) =>{
@@ -503,7 +483,10 @@ app.post('/pl', (req, res) =>{
 });
 
 app.put('/pl', (req, res) =>{
-  var postData  = req.body;
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    var postData  = req.body;
 
   let tag = postData.tag;
   let strain = postData.strain;
@@ -512,32 +495,42 @@ app.put('/pl', (req, res) =>{
 
   console.log("PUT DATA ACTIVE: PLANT STRINGIFIED: " + JSON.stringify(postData));
 
-  const result = connection.query(
-    `UPDATE pl SET
-    strain = ?, userID = ?, active = ? WHERE (tag = ?)`, 
-    [
-      strain, userID, active, tag
-    ],function(err, result2) {
-      res.json("{}");
-  }); 
+  connection.query(`UPDATE pl SET
+  strain = ?, userID = ?, active = ? WHERE (tag = ?)`, 
+  [
+    strain, userID, active, tag
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The put pl result is: ', result);
+    res.json(result);
+    });
+  });
 });
 
 app.put('/pl/active', (req, res) =>{
-  var postData  = req.body;
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    var postData  = req.body;
 
   let tag = postData.tag;
   let active = postData.active;
 
   console.log("PUT DATA ACTIVE: PLANT STRINGIFIED: " + JSON.stringify(postData));
 
-  const result = connection.query(
-    `UPDATE pl SET
-    active = ? WHERE (tag = ?)`, 
-    [
-      active, tag
-    ],function(err, result2) {
-      res.json("{}");
-  }); 
+
+  connection.query(`UPDATE pl SET
+  active = ? WHERE (tag = ?)`, 
+  [
+    active, tag
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The update active pl result is: ', result);
+    res.json(result);
+    });
+  });
 });
 
 
@@ -574,17 +567,20 @@ app.delete(`/hr/:id`, (req, res) =>{
 });*/
 
 app.delete(`/hr/:id`, (req, res) =>{
-  console.log("Delete HarvestRecord: " + req.params.id);
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    console.log("Delete HarvestRecord: " + req.params.id);
   let plantID = req.params.id;
   var sql = `DELETE FROM hr WHERE id = ${plantID}`;
-  connection.query(sql,function(err, result) {
-        console.log("GET HARVESTBATCHES RESULT(STRING)- " + JSON.stringify(result));
-        res.json(result);
-        if (err) {
-          console.log('DELETE HR Connection error message: ' + err.message);
-          return;
-      }
+
+  connection.query(sql, (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The update active pl result is: ', result);
+    res.json(result);
     });
+  });
 });
 
 app.get('*', (req, res) => {
