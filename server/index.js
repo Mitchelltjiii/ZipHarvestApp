@@ -40,7 +40,7 @@ app.get("/api/users/:username/:password",(req,res) => {
             console.log("Trying iteration without parse");
             for(const val of rows){
               console.log("Row: " + val);
-              console.log("Row.stringify: " + val.stringify);
+              console.log("Row.stringify: " + JSON.stringify(val));
               if(val.username==req.params.username){
                 console.log("User Match");
                 if(val.password==req.params.password){
@@ -167,8 +167,13 @@ app.get('/api/hb/:id', (req, res) => {
         connection.release(); // return the connection to pool
         if(err) throw err;
         console.log('The data from hb table are: \n', rows);
-        res.json(rows);
-
+        let response = [];
+        for(const val of rows){
+          console.log("Row: " + val);
+          console.log("Row.stringify: " + JSON.stringify(val));
+          response.push(JSON.stringify(val));
+        }
+        res.json(response);
     });
   });
 });
@@ -221,8 +226,8 @@ app.get('/api/hr/:id', (req, res) => {
       let userID = req.params.id;
       console.log("User ID: " + userID);
       var sql = `${userID}`;
-      console.log("Commit Query: " + hrQueryString + sql);
-      connection.query(hrQueryString + sql + "'", (err, rows) => {
+      console.log("Commit Query: " + harvestRecordsQueryString + sql);
+      connection.query(harvestRecordsQueryString + sql + "'", (err, rows) => {
           connection.release(); // return the connection to pool
           if(err) throw err;
           console.log('The data from hr table are: \n', rows);
