@@ -26,7 +26,6 @@ const harvestRecordsQueryString = "select * from hr where userID = '";
 const usersQueryString = "select * from users";
 
 const router = require('../app/routers/router');
-const { default: HarvestBatchesForm } = require("../src/components/HarvestBatchesForm.component");
 
 app.get("/api/users/:username/:password",(req,res) => {
   pool.getConnection((err, connection) => {
