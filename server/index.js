@@ -413,6 +413,57 @@ app.delete(`/plant/:id`, (req, res) =>{
 });
 
 app.post('/pl', (req, res) =>{
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    var postData  = req.body;
+
+  let tag = postData.tag;
+  let strain = postData.strain;
+  let userID = postData.userID;
+  let active = postData.active;
+
+  console.log("POST DATA: PLANT STRINGIFIED: " + JSON.stringify(postData));
+  console.log("POST DATA: strain: " + strain);
+
+  console.log("USER: " + userID);
+  console.log("STRAIN: " + strain);
+  console.log("TAG: " + tag);
+  console.log("ACTIVE: " + active);
+
+  connection.query(`INSERT INTO pl 
+  (tag, strain, userID, active) 
+  VALUES 
+  (?, ?, ?, ?)`, 
+  [
+    tag, strain, userID, active
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The post plants result is: ', result);
+    res.json(result);
+  });
+  /*
+  connection.query(
+    `INSERT INTO pl 
+    (tag, strain, userID, active) 
+    VALUES 
+    (?, ?, ?, ?)`, 
+    [
+      tag, strain, userID, active
+    ],function(err, result2) {
+      if(result2 != undefined){
+        console.log("RESULT2- " + result2.insertId);
+        postResult = result2.insertId;
+        console.log("POSTRESULT- " + postResult);
+        console.log("POSTRESULT WITH RESPONSE- " + postResult);
+      }else{
+        console.log("Result2 undefined");
+      }
+      res.json(postResult);
+    });*/
+  });
+  /*
   var postData  = req.body;
 
   let tag = postData.tag;
@@ -448,7 +499,7 @@ app.post('/pl', (req, res) =>{
         console.log("Result2 undefined");
       }
       res.json(postResult);
-    });  
+    });  */
 });
 
 app.put('/pl', (req, res) =>{
