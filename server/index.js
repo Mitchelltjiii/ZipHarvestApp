@@ -167,13 +167,7 @@ app.get('/api/hb/:id', (req, res) => {
         connection.release(); // return the connection to pool
         if(err) throw err;
         console.log('The data from hb table are: \n', rows);
-        let response = [];
-        for(const val of rows){
-          console.log("Row: " + val);
-          console.log("Row.stringify: " + JSON.stringify(val));
-          response.push(JSON.stringify(val));
-        }
-        res.json(response);
+        res.json(rows);
     });
   });
 });
