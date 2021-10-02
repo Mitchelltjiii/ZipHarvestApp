@@ -12,7 +12,7 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
               let fixedSearch = searchText;
               while(fixedSearch.includes(" to ")){
                 console.log("SearchText before *to* Fix: " + fixedSearch);
-                fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf(" to ")) + fixedSearch.substring(fixedSearch.indexOf(" to ")+4);
+                fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf(" to ")) + "2" + fixedSearch.substring(fixedSearch.indexOf(" to ")+4);
                 console.log("SearchText after * to * Fix: " + fixedSearch);
               }
       
