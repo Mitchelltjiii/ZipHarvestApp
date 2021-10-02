@@ -349,7 +349,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		let fixedSearch = searchText;
 		    while(fixedSearch.includes(" to ")){
 			    console.log("SearchText before Fix: " + fixedSearch);
-			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf(" to ")) + fixedSearch.substring(fixedSearch.indexOf(" to ")+4);
+			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf(" to ")) + 2 + fixedSearch.substring(fixedSearch.indexOf(" to ")+4);
 			    console.log("SearchText after Fix: " + fixedSearch);
 		}
 		console.log("SearchText after final Fix: " + fixedSearch);
