@@ -9,6 +9,19 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
             command: "search *",
             callback: (searchText) => {
               console.log("Search: " + searchText);
+              let fixedSearch = searchText;
+              while(fixedSearch.includes(" to ")){
+                console.log("SearchText before *to* Fix: " + fixedSearch);
+                fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf(" to ")) + fixedSearch.substring(fixedSearch.indexOf(" to ")+4);
+                console.log("SearchText after * to * Fix: " + fixedSearch);
+              }
+      
+              while(fixedSearch.includes(" ")){
+                console.log("SearchText before space Fix: " + fixedSearch);
+                fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf(" ")) + fixedSearch.substring(fixedSearch.indexOf(" ")+1);
+                console.log("SearchText after space Fix: " + fixedSearch);
+              }
+              console.log("SearchText after final Fix: " + fixedSearch);
               searchTagFromSpeech(searchText);
             },
           },
@@ -40,6 +53,13 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
                 enterWeightFromSpeech(weight,1);
               },
           },
+          {
+            command: "* g",
+            callback: (weight) => {
+              console.log("Weight: " + weight);
+              enterWeightFromSpeech(weight,1);
+            },
+          },  
           {
               command: "Next *",
               callback: () => {
