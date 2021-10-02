@@ -1,5 +1,6 @@
 import React from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import VoiceButton from './VoiceButton.component';
 
 
 const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpeech}) => {
@@ -83,9 +84,14 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
     }
   }
 
+  function startListeningFromVoiceButton(){
+    console.log("Start Listening From Voice Button");
+    SpeechRecognition.startListening();
+  }
+
   return (
     <div>
-      <button onClick={handleStartSpeechRecognition}>Voice</button>
+      <VoiceButton startListeningFromVoiceButton={startListeningFromVoiceButton}></VoiceButton>
       <p>{transcript}</p>
     </div>
   );
