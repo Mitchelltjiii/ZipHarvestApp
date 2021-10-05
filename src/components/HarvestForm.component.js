@@ -530,6 +530,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				let addPlant = getPlant(plantTag);
 				lastHarvestedPlant = addPlant;
+				console.log("Last Harvested Plant Set: " + JSON.stringify(lastHarvestedPlant));
+
 				console.log("ADD PLANT CREATED: " + addPlant);
 				console.log("ADD PLANT CREATED(STRING): " + JSON.stringify(addPlant));
 
@@ -826,6 +828,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	function  getLastHarvested(){
+		console.log("Last Harvested Plant*: " + JSON.stringify(lastHarvestedPlant));
 		return lastHarvestedPlant;
 	}
 
