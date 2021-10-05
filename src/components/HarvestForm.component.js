@@ -1084,20 +1084,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				</Grid>
 
-				<Grid
-					container
-					direction="row"
-  					justify="center"
-					alignItems="center"
-				>
-
-				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} getHarvestRecords={getHarvestRecords} currHidePlants={currHidePlants}
-				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
-				 setHarvestRecords={setHarvestRecords} setPlants={setPlants} printData={printData} resetHarvestForm={resetHarvestForm}
-				 reloadFromEditButton={reloadFromEditButton}></EditButton>		
-				<FormLabel>Harvest Queue</FormLabel>
-
-				</Grid>
+				
 
 				{(lastHarvestedPlant.tag === undefined) ? 
 				<div></div> :
@@ -1118,3 +1105,19 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 }
 
 export default HarvestForm;
+
+/*
+<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
+
+				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} getHarvestRecords={getHarvestRecords} currHidePlants={currHidePlants}
+				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
+				 setHarvestRecords={setHarvestRecords} setPlants={setPlants} printData={printData} resetHarvestForm={resetHarvestForm}
+				 reloadFromEditButton={reloadFromEditButton}></EditButton>		
+				<FormLabel>Harvest Queue</FormLabel>
+
+				</Grid>*/

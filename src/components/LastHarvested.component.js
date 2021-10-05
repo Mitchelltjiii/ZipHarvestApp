@@ -37,7 +37,7 @@ class LastHarvested extends Component{
         }catch(err){
 
         }
-        return <div>
+        return <div style={{backgroundColor: this.state.bgColors.Green}}>
                         <Grid
 					    container
 					    direction="column"
@@ -45,9 +45,9 @@ class LastHarvested extends Component{
 					    align="center"
                         minWidth="120px"
 				        >
-                            <div style={{fontSize:"16px",overflow:"hidden",whiteSpace:"nowrap"}}><b>{this.props.getStrainForPlantItem(this.props.lastHarvestedPlant.tag)}</b></div>
-                            <div style={{fontSize:"14px",overflow:"hidden",whiteSpace:"nowrap"}}>{tag}</div>
-                            <div style={{fontSize:"16px",overflow:"hidden",whiteSpace:"nowrap"}}><div><b>{this.props.lastHarvestedPlant.weight + " " + this.props.lastHarvestedPlant.unit}</b></div></div>
+                            <div style={{fontSize:"18px",overflow:"hidden",whiteSpace:"nowrap"}}><b>{this.props.getStrainForPlantItem(this.props.lastHarvestedPlant.tag)}</b></div>
+                            <div style={{fontSize:"16px",overflow:"hidden",whiteSpace:"nowrap"}}>{tag}</div>
+                            <div style={{fontSize:"18px",overflow:"hidden",whiteSpace:"nowrap"}}><div><b>{this.props.lastHarvestedPlant.weight + " " + this.props.lastHarvestedPlant.unit}</b></div></div>
                             {this.state.undoClicked ?
                                 <div>
                                 <Grid
