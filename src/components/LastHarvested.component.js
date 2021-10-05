@@ -42,7 +42,7 @@ class LastHarvested extends Component{
         }catch(err){
 
         }
-        return <div style={{width:"100%",maxWidth:"400px",border:"1px solid black"}}>
+        return <div style={{width:"100%",maxWidth:"300px",border:"1px solid black"}}>
                         <Grid
 					    container
 					    direction="column"

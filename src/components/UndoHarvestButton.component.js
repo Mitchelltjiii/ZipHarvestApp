@@ -22,8 +22,7 @@ class UndoHarvestButton extends Component{
     async executeUndoHarvestPlant(event){
       event.preventDefault();
       let parent = this;
-      console.log("Execute Harvest Plant");
-      if(this.props.undoHarvestedPlant()){
+      console.log("Execute Undo Harvest Plant");
           console.log("Engage Harvested Plant Item");
           const strain = this.props.getStrainForPlantItem(this.props.lastHarvestedPlant.tag);
           const harvestRecordItem = this.props.getHarvestRecordItem();
@@ -43,7 +42,6 @@ class UndoHarvestButton extends Component{
               parent.updatePlant(event,harvestRecordItem.tag,strain);
             }
           });
-      }
     }
 
     async updatePlant(event,plantTag,strain) {
