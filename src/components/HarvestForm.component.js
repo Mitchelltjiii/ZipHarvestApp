@@ -113,7 +113,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	let searchForList = [];
 	let strain = '';
 
-	let lastHarvestedPlant = [];
+	const [lastHarvestedPlant, setLastHarvestedPlant] = React.useState(false);
 
 	const nextPlantRef = useRef();
 
@@ -549,7 +549,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					return false;
 				}
 				currentHarvestRecord.unit=unit;
-				lastHarvestedPlant = currentHarvestRecord;
+				setLastHarvestedPlant(currentHarvestRecord);
 
 								
 				//addHarvestRecord(currentHarvestRecord);
@@ -828,11 +828,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		return yesterday.toString();
 	}
 
-	function getLastHarvested(){
-		console.log("Last Harvested Plant*: " + JSON.stringify(lastHarvestedPlant));
-		return lastHarvestedPlant;
-	}
-
 	function getAndResetRemovedPlantID(){
 		console.log("Enter getRemovedPlantID");
 		let toRet = removedPlantID;
@@ -1103,7 +1098,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				</Grid>
 
-					<LastHarvested getLastHarvested={getLastHarvested}></LastHarvested>			
+				{lastHarvestedPlant===[] ? 
+					<LastHarvested lastHarvestedPlant={lastHarvestedPlant}></LastHarvested>	:
+					null}		
 				</Grid>
 
 				<Grid
