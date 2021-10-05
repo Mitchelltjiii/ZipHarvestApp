@@ -18,10 +18,9 @@ class LastHarvested extends Component{
 
     render() {  
 
-        let lastHarvestedPlant = this.props.lastHarvestedPlant;
-        console.log("Last Harvested Plant**: " + JSON.stringify(lastHarvestedPlant));
+        console.log("Last Harvested Plant**: " + JSON.stringify(this.props.lastHarvestedPlant));
         let unit = "lb";
-        if(lastHarvestedPlant.unit==1){
+        if(this.props.lastHarvestedPlant.unit==1){
             unit = "g";
         }
         return <div style={{maxWidth:"600px"}}>
@@ -39,10 +38,10 @@ class LastHarvested extends Component{
 					    align="center"
                         style={{width:"50%"}}
 				        >
-                            <div style={{fontSize:"24px"}}><b>{lastHarvestedPlant.strain}</b></div>
-                            <div>{lastHarvestedPlant.tag}</div>
+                            <div style={{fontSize:"24px"}}><b>{this.props.lastHarvestedPlant.strain}</b></div>
+                            <div>{this.props.lastHarvestedPlant.tag}</div>
 				        </Grid>
-                        <div style={{width:"50%",fontSize:"22px"}}><div><b>{lastHarvestedPlant.weight + " " + unit}</b></div></div>
+                        <div style={{width:"50%",fontSize:"22px"}}><div><b>{this.props.lastHarvestedPlant.weight + " " + unit}</b></div></div>
 				    </Grid>
             
         </div>
