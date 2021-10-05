@@ -18,7 +18,7 @@ class LastHarvested extends Component{
 
     render() {  
 
-        let lastHarvestedPlant = this.props.getLastHarvested();
+        let lastHarvestedPlant = this.props.lastHarvestedPlant;
         console.log("Last Harvested Plant**: " + JSON.stringify(lastHarvestedPlant));
         let unit = "lb";
         if(lastHarvestedPlant.unit==1){
