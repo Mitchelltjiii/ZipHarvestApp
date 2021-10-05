@@ -827,7 +827,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		return yesterday.toString();
 	}
 
-	function  getLastHarvested(){
+	function getLastHarvested(){
 		console.log("Last Harvested Plant*: " + JSON.stringify(lastHarvestedPlant));
 		return lastHarvestedPlant;
 	}

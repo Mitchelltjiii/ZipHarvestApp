@@ -3,12 +3,6 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
 class LastHarvested extends Component{
-    handleClick(event) {
-        event.preventDefault();
-        console.log("Click");
-        
-        this.props.startListeningFromVoiceButton();
-    }
     
     constructor(props) {
         super(props);
@@ -20,7 +14,6 @@ class LastHarvested extends Component{
                     "Red": "#E9573F",
                     "Yellow": "#F6BB42"}
         };
-        this.handleClick = this.handleClick.bind(this);
     }
 
     render() {  
