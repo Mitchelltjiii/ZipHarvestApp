@@ -115,6 +115,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [lastHarvestedPlant, setLastHarvestedPlant] = React.useState([]);
 
+	console.log("Last Harvested Plant At Load: " + JSON.stringify(lastHarvestedPlant));
+
 	const nextPlantRef = useRef();
 
 	console.log("Create Search for List");
@@ -529,7 +531,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				}
 
 				let addPlant = getPlant(plantTag);
-				console.log("Last Harvested Plant Set: " + JSON.stringify(lastHarvestedPlant));
 
 				console.log("ADD PLANT CREATED: " + addPlant);
 				console.log("ADD PLANT CREATED(STRING): " + JSON.stringify(addPlant));
@@ -550,7 +551,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				}
 				currentHarvestRecord.unit=unit;
 				setLastHarvestedPlant(currentHarvestRecord);
-
+				console.log("Last Harvested Plant Set: " + JSON.stringify(lastHarvestedPlant));
 								
 				//addHarvestRecord(currentHarvestRecord);
 
