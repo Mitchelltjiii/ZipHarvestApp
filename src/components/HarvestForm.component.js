@@ -825,6 +825,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		return yesterday.toString();
 	}
 
+	function  getLastHarvested(){
+		return lastHarvestedPlant;
+	}
+
 	function getAndResetRemovedPlantID(){
 		console.log("Enter getRemovedPlantID");
 		let toRet = removedPlantID;
@@ -1095,7 +1099,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				</Grid>
 
-					<LastHarvested weight={lastHarvestedPlant.weight} tag={lastHarvestedPlant.tag} strain={lastHarvestedPlant.strain}></LastHarvested>			
+					<LastHarvested getLastHarvested={getLastHarvested}></LastHarvested>			
 				</Grid>
 
 				<Grid
