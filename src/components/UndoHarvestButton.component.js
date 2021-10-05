@@ -28,13 +28,12 @@ class UndoHarvestButton extends Component{
           const harvestRecordItem = this.props.getLastHarvestRecordItem();
           console.log("Harvseted Plant Item should be done");
 
-          const resp = fetch('/hr', {
+          const resp = fetch(`/hr/${this.props.lastHarvestedPlant.tag}`, {
             method: 'DELETE',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(harvestRecordItem)
+            }
           }).then(function(response) {
             return response.json();
           }).then(function(data) {
