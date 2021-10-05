@@ -27,6 +27,7 @@ import TableWrapper from './TableWrapper.component';
 import { setGlobalCssModule } from 'reactstrap/es/utils';
 import Collapsible from 'react-collapsible';
 import Dictaphone from './Dictaphone.component';
+import LastHarvested from './LastHarvested.component';
 
 
 
@@ -111,6 +112,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	let searchForList = [];
 	let strain = '';
+
+	let lastHarvestedPlant = [];
 
 	const nextPlantRef = useRef();
 
@@ -526,6 +529,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				}
 
 				let addPlant = getPlant(plantTag);
+				lastHarvestedPlant = addPlant;
 				console.log("ADD PLANT CREATED: " + addPlant);
 				console.log("ADD PLANT CREATED(STRING): " + JSON.stringify(addPlant));
 
@@ -959,16 +963,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
-					<Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
-					nextPlantFromSpeech={nextPlantFromSpeech} voiceCommand={voiceCommand}></Dictaphone>
-				</Grid>
-
-				<Grid
-					container
-					direction="row"
-  					justify="center"
-					alignItems="center"
-				>
 
 
 				<ChangeHBForm changeHBHiddenNow={changeHBHiddenNow}></ChangeHBForm>
@@ -1101,8 +1095,17 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				</Grid>
 
-					<TableWrapper currHarvest={currentHarvest} getHarvestRecords={getHarvestRecords} editNow={editNow} currWeightChanges={currWeightChanges} setWeightChanges={setWeightChanges} getRemovePlantIDDelete={getRemovePlantIDDelete} 
-					currHidePlants={currHidePlants} setHidePlants={setHidePlants} getPlants={getPlants}></TableWrapper>			
+					<LastHarvested weight={lastHarvestedPlant.weight} tag={lastHarvestedPlant.tag} strain={lastHarvestedPlant.strain}></LastHarvested>			
+				</Grid>
+
+				<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
+					<Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
+					nextPlantFromSpeech={nextPlantFromSpeech} voiceCommand={voiceCommand}></Dictaphone>
 				</Grid>
 		</div>
 	);
