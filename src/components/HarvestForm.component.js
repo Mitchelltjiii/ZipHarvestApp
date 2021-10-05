@@ -113,7 +113,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	let searchForList = [];
 	let strain = '';
 
-	const [lastHarvestedPlant, setLastHarvestedPlant] = React.useState(false);
+	const [lastHarvestedPlant, setLastHarvestedPlant] = React.useState("[]");
 
 	const nextPlantRef = useRef();
 
