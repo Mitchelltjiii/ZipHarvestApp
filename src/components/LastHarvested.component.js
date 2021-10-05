@@ -18,7 +18,11 @@ class LastHarvested extends Component{
 
     render() {  
 
-        console.log("Last Harvested Plant**: " + JSON.stringify(this.props.lastHarvestedPlant));    
+        console.log("Last Harvested Plant**: " + JSON.stringify(this.props.lastHarvestedPlant));
+        let tag = "";    
+        if(this.props.lastHarvestedPlant.tag != undefined){
+            tag = this.props.lastHarvestedPlant.tag.substring(this.props.lastHarvestedPlant.tag.length()-5)
+        }
         return <div style={{maxWidth:"1200px"}}>
             <Grid
 					container
@@ -35,7 +39,7 @@ class LastHarvested extends Component{
                         style={{width:"50%"}}
 				        >
                             <div style={{fontSize:"18px"}}><b>{this.props.getStrainForPlantItem(this.props.lastHarvestedPlant.tag)}</b></div>
-                            <div style={{fontSize:"14px"}}>{this.props.lastHarvestedPlant.tag.substring(this.props.lastHarvestedPlant.tag.length()-5)}</div>
+                            <div style={{fontSize:"14px"}}>{tag}</div>
 				        </Grid>
                         <div style={{width:"50%",fontSize:"16px"}}><div><b>{this.props.lastHarvestedPlant.weight + " " + this.props.lastHarvestedPlant.unit}</b></div></div>
 				    </Grid>
