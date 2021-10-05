@@ -28,18 +28,12 @@ class UndoHarvestButton extends Component{
           const harvestRecordItem = this.props.getLastHarvestRecordItem();
           console.log("Harvseted Plant Item should be done");
           try{
-            console.log("LastHarvestedPlant.id: " + this.props.lastHarvestedPlant.id);
-
-          }catch(err){
-
-          }
-          try{
             console.log("LastHarvestedPlant.itemid: " + this.props.lastHarvestedPlant.itemID);
           }catch(err){
 
           }
 
-          const resp = fetch(`/hr/${this.props.lastHarvestedPlant.id}`, {
+          const resp = fetch(`/hr/${this.props.lastHarvestedPlant.itemID}`, {
             method: 'DELETE',
             headers: {
               'Accept': 'application/json',
@@ -49,10 +43,9 @@ class UndoHarvestButton extends Component{
             console.log("THEN*");
           }).then(function(data) {
             console.log("THEN**");
-            /*
             if(parent.props.harvestType == "harvest"){
               parent.updatePlant(event,harvestRecordItem.tag,strain);
-            }*/
+            }
           });
     }
 
