@@ -663,6 +663,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("Exit setchanges");
 	}
 
+	function interceptSetNewHarvestRecordID(id){
+		let lhp = lastHarvestedPlant;
+		lhp.itemID = id;
+		setNewHarvestRecordID(id)
+	}
+
 	function removeHarvestRecord(removeID){
 		console.log("Remove Harvested Plant ID: " + removeID );
 		let x = 0;
@@ -1104,7 +1110,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddBranch}>Add Branch</Button>
 				<HarvestPlantButton plantRef={nextPlantRef} getHarvestRecordItem={getHarvestRecordItem} getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} 
-				nextPlant={nextPlant} setChanges={setChanges} resetHarvestForm={resetHarvestForm} setNewHarvestRecordID={setNewHarvestRecordID} 
+				nextPlant={nextPlant} setChanges={setChanges} resetHarvestForm={resetHarvestForm} setNewHarvestRecordID={interceptSetNewHarvestRecordID} 
 				updateHBList={updateHBList} getPlantItem={getPlantItem} harvestType={harvestType} getStrainForPlantItem={getStrainForPlantItem}></HarvestPlantButton>
 
 				</Grid>

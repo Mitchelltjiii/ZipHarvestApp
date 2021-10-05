@@ -35,11 +35,13 @@ class UndoHarvestButton extends Component{
               'Content-Type': 'application/json'
             }
           }).then(function(response) {
-            return response.json();
+            console.log("THEN*");
           }).then(function(data) {
+            console.log("THEN**");
+            /*
             if(parent.props.harvestType == "harvest"){
               parent.updatePlant(event,harvestRecordItem.tag,strain);
-            }
+            }*/
           });
     }
 
