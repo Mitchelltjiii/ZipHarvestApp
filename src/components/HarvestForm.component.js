@@ -877,6 +877,31 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		return plant;
 	}
 
+	function getLastHarvestRecordItem(){
+		console.log("Enter getLastHarvestRecorditem")
+		let plant = {
+			tag: '',
+			weight: 0,
+			unit: '',
+			batchName: '',
+			userID: ''
+		  };
+
+		plant.tag = lastHarvestedPlant.tag;
+		plant.unit = lastHarvestedPlant.unit;
+		plant.weight = lastHarvestedPlant.weight;
+		plant.batchName = lastHarvestedPlant.batchName;
+		plant.userID = userID;
+
+		if(currentHarvestRecord.itemID!==""){
+			plant.id = currentHarvestRecord.itemID;
+		}
+
+		console.log("Stringified before passed: " + JSON.stringify(plant));
+		console.log("Exit getLastHarvestRecorditem")
+		return plant;
+	}
+
 	function getStrainForPlantItem(tag){
 		console.log("Get Strain For Plant Item");
 		if(tag == null){
@@ -1088,7 +1113,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				{(lastHarvestedPlant.tag === undefined) ? 
 				<div></div> :
-					<LastHarvested lastHarvestedPlant={lastHarvestedPlant} getStrainForPlantItem={getStrainForPlantItem} getHarvestRecordItem={getHarvestRecordItem} 
+					<LastHarvested lastHarvestedPlant={lastHarvestedPlant} getStrainForPlantItem={getStrainForPlantItem} getLastHarvestRecordItem={getLastHarvestRecordItem} 
 					getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} 
 					setChanges={setChanges} resetHarvestForm={resetHarvestForm}
 					getPlantItem={getPlantItem} harvestType={harvestType}></LastHarvested>}		
