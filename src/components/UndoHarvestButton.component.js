@@ -27,8 +27,19 @@ class UndoHarvestButton extends Component{
           const strain = this.props.getStrainForPlantItem(this.props.lastHarvestedPlant.tag);
           const harvestRecordItem = this.props.getLastHarvestRecordItem();
           console.log("Harvseted Plant Item should be done");
+          try{
+            console.log("LastHarvestedPlant.id: " + this.props.lastHarvestedPlant.id);
 
-          const resp = fetch(`/hr/${this.props.lastHarvestedPlant.tag}`, {
+          }catch(err){
+
+          }
+          try{
+            console.log("LastHarvestedPlant.itemid: " + this.props.lastHarvestedPlant.itemID);
+          }catch(err){
+
+          }
+
+          const resp = fetch(`/hr/${this.props.lastHarvestedPlant.id}`, {
             method: 'DELETE',
             headers: {
               'Accept': 'application/json',
