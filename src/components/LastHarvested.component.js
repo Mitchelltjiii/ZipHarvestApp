@@ -4,6 +4,13 @@ import Grid from '@material-ui/core/Grid';
 
 class LastHarvested extends Component{
     
+    handleClick(event) {
+        event.preventDefault();
+        this.state.undoClicked=!this.state.undoClicked;
+        console.log("Undo Clicked - Now: " + this.state.undoClicked);
+        this.forceUpdate();
+    }
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -12,8 +19,12 @@ class LastHarvested extends Component{
                     "Cyan": "#37BC9B",
                     "Green": "#E7F8E2",
                     "Red": "#E9573F",
-                    "Yellow": "#F6BB42"}
+                    "Yellow": "#F6BB42"},
+                    undoClicked: false
+
         };
+        this.handleClick = this.handleClick.bind(this);
+
     }
 
     render() {  
@@ -38,13 +49,28 @@ class LastHarvested extends Component{
 					    direction="column"
   					    justify="center"
 					    align="center"
-                        style={{width:"50%"}}
                         minWidth="120px"
 				        >
                             <div style={{fontSize:"16px",overflow:"hidden",whiteSpace:"nowrap"}}><b>{this.props.getStrainForPlantItem(this.props.lastHarvestedPlant.tag)}</b></div>
                             <div style={{fontSize:"14px",overflow:"hidden",whiteSpace:"nowrap"}}>{tag}</div>
-				        </Grid>
-                        <div style={{width:"50%",fontSize:"16px",overflow:"hidden",whiteSpace:"nowrap",minWidth:"120px"}}><div><b>{this.props.lastHarvestedPlant.weight + " " + this.props.lastHarvestedPlant.unit}</b></div></div>
+                            <div style={{fontSize:"16px",overflow:"hidden",whiteSpace:"nowrap",minWidth:"120px"}}><div><b>{this.props.lastHarvestedPlant.weight + " " + this.props.lastHarvestedPlant.unit}</b></div></div>
+                            {this.state.undoClicked ?
+                                <div>
+                                <Grid
+					            container
+					            direction="row"
+  					            justifyContent="center"
+					            alignItems="center"
+				                >
+                                <Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{width: "5%",marginRight:"10px"}}>Keep</Button>
+                                <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{width: "5%",marginLeft:"10px",marginTop:"5px",marginBottom:"5px"}}>Undo</Button>
+				                </Grid>
+                                 </div>
+                            :<div>
+                                <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{width: "5%"}}>Undo</Button>				    
+                            </div>
+                            }
+                        </Grid>
 				    </Grid>
             
         </div>
