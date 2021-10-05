@@ -529,7 +529,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				}
 
 				let addPlant = getPlant(plantTag);
-				lastHarvestedPlant = addPlant;
 				console.log("Last Harvested Plant Set: " + JSON.stringify(lastHarvestedPlant));
 
 				console.log("ADD PLANT CREATED: " + addPlant);
@@ -550,6 +549,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					return false;
 				}
 				currentHarvestRecord.unit=unit;
+				lastHarvestedPlant = currentHarvestRecord;
+
 								
 				//addHarvestRecord(currentHarvestRecord);
 
