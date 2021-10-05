@@ -37,7 +37,7 @@ class LastHarvested extends Component{
         }catch(err){
 
         }
-        return <div style={{width:"100%",backgroundColor: this.state.bgColors.Green,maxWidth:"600px"}}>
+        return <div border="1px dotted green" style={{width:"100%",maxWidth:"400px"}}>
                         <Grid
 					    container
 					    direction="column"
@@ -45,10 +45,10 @@ class LastHarvested extends Component{
 					    align="center"
                         minWidth="120px"
 				        >
-                            <div style={{fontSize:"16px",overflow:"hidden",whiteSpace:"nowrap",marginBottom:"5px",align:"left"}}><b>Last Harvested Plant</b></div>
-                            <div style={{fontSize:"18px",overflow:"hidden",whiteSpace:"nowrap"}}><b>{this.props.getStrainForPlantItem(this.props.lastHarvestedPlant.tag)}</b></div>
-                            <div style={{fontSize:"18px",overflow:"hidden",whiteSpace:"nowrap"}}><b>{tag}</b></div>
-                            <div style={{fontSize:"18px",overflow:"hidden",whiteSpace:"nowrap"}}><div><b>{this.props.lastHarvestedPlant.weight + " " + this.props.lastHarvestedPlant.unit}</b></div></div>
+                            <div style={{fontSize:"16px",overflow:"hidden",whiteSpace:"nowrap",marginBottom:"5px",align:"left",backgroundColor: this.state.bgColors.Green}}><b>Last Harvested Plant</b></div>
+                            <div style={{fontSize:"18px",overflow:"hidden",whiteSpace:"nowrap"}}>{this.props.getStrainForPlantItem(this.props.lastHarvestedPlant.tag)}</div>
+                            <div style={{fontSize:"18px",overflow:"hidden",whiteSpace:"nowrap"}}>{tag}</div>
+                            <div style={{fontSize:"18px",overflow:"hidden",whiteSpace:"nowrap"}}><div>{this.props.lastHarvestedPlant.weight + " " + this.props.lastHarvestedPlant.unit}</div></div>
                             {this.state.undoClicked ?
                                 <div>
                                 <Grid
@@ -62,7 +62,7 @@ class LastHarvested extends Component{
 				                </Grid>
                                  </div>
                             :<div>
-                                <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{width: "5%",marginTop:"5px",marginBottom:"5px",maxHeight:"30px",minWidth:"40px",maxWidth:"40px"}}>Undo</Button>				    
+                                <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{width: "5%",marginTop:"5px",marginBottom:"5px",maxHeight:"30px",minWidth:"45px",maxWidth:"45px"}}>Undo</Button>				    
                             </div>
                             }
                         </Grid>
