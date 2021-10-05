@@ -25,7 +25,7 @@ class UndoHarvestButton extends Component{
       console.log("Execute Harvest Plant");
       if(this.props.undoHarvestedPlant()){
           console.log("Engage Harvested Plant Item");
-          const strain = this.props.getStrainForPlantItem(this.props.lastHarvested.tag);
+          const strain = this.props.getStrainForPlantItem(this.props.lastHarvestedPlant.tag);
           const harvestRecordItem = this.props.getHarvestRecordItem();
           console.log("Harvseted Plant Item should be done");
 
