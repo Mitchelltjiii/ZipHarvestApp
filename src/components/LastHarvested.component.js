@@ -10,7 +10,7 @@ class LastHarvested extends Component{
         console.log("Undo Clicked - Now: " + this.state.undoClicked);
         this.forceUpdate();
     }
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -38,12 +38,6 @@ class LastHarvested extends Component{
 
         }
         return <div>
-            <Grid
-					container
-					direction="row"
-  					justify="center"
-					alignItems="center"
-				    >
                         <Grid
 					    container
 					    direction="column"
@@ -53,7 +47,7 @@ class LastHarvested extends Component{
 				        >
                             <div style={{fontSize:"16px",overflow:"hidden",whiteSpace:"nowrap"}}><b>{this.props.getStrainForPlantItem(this.props.lastHarvestedPlant.tag)}</b></div>
                             <div style={{fontSize:"14px",overflow:"hidden",whiteSpace:"nowrap"}}>{tag}</div>
-                            <div style={{fontSize:"16px",overflow:"hidden",whiteSpace:"nowrap",minWidth:"120px"}}><div><b>{this.props.lastHarvestedPlant.weight + " " + this.props.lastHarvestedPlant.unit}</b></div></div>
+                            <div style={{fontSize:"16px",overflow:"hidden",whiteSpace:"nowrap"}}><div><b>{this.props.lastHarvestedPlant.weight + " " + this.props.lastHarvestedPlant.unit}</b></div></div>
                             {this.state.undoClicked ?
                                 <div>
                                 <Grid
@@ -71,7 +65,6 @@ class LastHarvested extends Component{
                             </div>
                             }
                         </Grid>
-				    </Grid>
             
         </div>
       }
