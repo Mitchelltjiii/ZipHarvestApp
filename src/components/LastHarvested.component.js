@@ -37,7 +37,7 @@ class LastHarvested extends Component{
         }catch(err){
 
         }
-        return <div style={{backgroundColor: this.state.bgColors.Green}}>
+        return <div style={{width:"100%",backgroundColor: this.state.bgColors.Green}}>
                         <Grid
 					    container
 					    direction="column"
@@ -45,9 +45,10 @@ class LastHarvested extends Component{
 					    align="center"
                         minWidth="120px"
 				        >
-                            <div style={{fontSize:"18px",overflow:"hidden",whiteSpace:"nowrap"}}><b>{this.props.getStrainForPlantItem(this.props.lastHarvestedPlant.tag)}</b></div>
-                            <div style={{fontSize:"16px",overflow:"hidden",whiteSpace:"nowrap"}}>{tag}</div>
-                            <div style={{fontSize:"18px",overflow:"hidden",whiteSpace:"nowrap"}}><div><b>{this.props.lastHarvestedPlant.weight + " " + this.props.lastHarvestedPlant.unit}</b></div></div>
+                            <div style={{fontSize:"20px",overflow:"hidden",whiteSpace:"nowrap",marginBottom:"5px"}}><b>Last Harvested Plant</b></div>
+                            <div style={{fontSize:"17px",overflow:"hidden",whiteSpace:"nowrap"}}><b>{this.props.getStrainForPlantItem(this.props.lastHarvestedPlant.tag)}</b></div>
+                            <div style={{fontSize:"17px",overflow:"hidden",whiteSpace:"nowrap"}}><b>{tag}</b></div>
+                            <div style={{fontSize:"17px",overflow:"hidden",whiteSpace:"nowrap"}}><div><b>{this.props.lastHarvestedPlant.weight + " " + this.props.lastHarvestedPlant.unit}</b></div></div>
                             {this.state.undoClicked ?
                                 <div>
                                 <Grid
@@ -61,7 +62,7 @@ class LastHarvested extends Component{
 				                </Grid>
                                  </div>
                             :<div>
-                                <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{width: "5%"}}>Undo</Button>				    
+                                <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{width: "5%",marginTop:"5px"}}>Undo</Button>				    
                             </div>
                             }
                         </Grid>
