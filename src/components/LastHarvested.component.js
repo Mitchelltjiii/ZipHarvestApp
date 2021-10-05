@@ -26,13 +26,7 @@ class LastHarvested extends Component{
         }catch(err){
 
         }
-        try{
-            tag = JSON.stringify(this.props.lastHarvestedPlant.tag).substring(JSON.stringify(this.props.lastHarvestedPlant.tag).length-5);
-            console.log("Success 2");
-        }catch(err){
-
-        }
-        return <div style={{maxWidth:"1200px"}}>
+        return <div>
             <Grid
 					container
 					direction="rows"
