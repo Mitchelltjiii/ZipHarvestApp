@@ -20,8 +20,10 @@ class LastHarvested extends Component{
 
         console.log("Last Harvested Plant**: " + JSON.stringify(this.props.lastHarvestedPlant));
         let tag = "";    
-        if(this.props.lastHarvestedPlant.tag != undefined){
-            tag = this.props.lastHarvestedPlant.tag.substring(this.props.lastHarvestedPlant.tag.length()-5)
+        try{
+            tag = this.props.lastHarvestedPlant.tag.substring(this.props.lastHarvestedPlant.tag.length()-5);
+        }catch(err){
+
         }
         return <div style={{maxWidth:"1200px"}}>
             <Grid
