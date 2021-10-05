@@ -29,7 +29,7 @@ class LastHarvested extends Component{
         return <div>
             <Grid
 					container
-					direction="rows"
+					direction="row"
   					justify="center"
 					alignItems="center"
 				    >
@@ -39,11 +39,12 @@ class LastHarvested extends Component{
   					    justify="center"
 					    align="center"
                         style={{width:"50%"}}
+                        minWidth="120px"
 				        >
                             <div style={{fontSize:"16px",overflow:"hidden",whiteSpace:"nowrap"}}><b>{this.props.getStrainForPlantItem(this.props.lastHarvestedPlant.tag)}</b></div>
                             <div style={{fontSize:"14px",overflow:"hidden",whiteSpace:"nowrap"}}>{tag}</div>
 				        </Grid>
-                        <div style={{width:"50%",fontSize:"16px",overflow:"hidden",whiteSpace:"nowrap"}}><div><b>{this.props.lastHarvestedPlant.weight + " " + this.props.lastHarvestedPlant.unit}</b></div></div>
+                        <div style={{width:"50%",fontSize:"16px",overflow:"hidden",whiteSpace:"nowrap",minWidth:"120px"}}><div><b>{this.props.lastHarvestedPlant.weight + " " + this.props.lastHarvestedPlant.unit}</b></div></div>
 				    </Grid>
             
         </div>
