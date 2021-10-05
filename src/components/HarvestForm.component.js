@@ -1088,7 +1088,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				{(lastHarvestedPlant.tag === undefined) ? 
 				<div></div> :
-					<LastHarvested lastHarvestedPlant={lastHarvestedPlant} getStrainForPlantItem={getStrainForPlantItem}></LastHarvested>}		
+					<LastHarvested lastHarvestedPlant={lastHarvestedPlant} getStrainForPlantItem={getStrainForPlantItem} getHarvestRecordItem={getHarvestRecordItem} 
+					getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} 
+					setChanges={setChanges} resetHarvestForm={resetHarvestForm}
+					getPlantItem={getPlantItem} harvestType={harvestType}></LastHarvested>}		
 				</Grid>
 
 				<Grid

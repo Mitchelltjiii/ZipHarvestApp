@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import UndoHarvestButton from "./UndoHarvestButton.component";
 
 class LastHarvested extends Component{
     
@@ -9,6 +10,10 @@ class LastHarvested extends Component{
         this.state.undoClicked=!this.state.undoClicked;
         console.log("Undo Clicked - Now: " + this.state.undoClicked);
         this.forceUpdate();
+    }
+
+    undoHarvestedPlant(){
+        console.log("Execute undo Harvest plant");
     }
 
     constructor(props) {
@@ -54,11 +59,13 @@ class LastHarvested extends Component{
                                 <Grid
 					            container
 					            direction="row"
-  					            justifyContent="center"
-					            alignItems="center"
+  					            justify="center"
+					            align="center"
 				                >
-                                <Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{width: "5%",marginRight:"10px"}}>Keep</Button>
-                                <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{width: "5%",marginLeft:"10px",marginTop:"5px",marginBottom:"5px"}}>Undo</Button>
+                                <Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{width: "5%",marginRight:"10px",marginTop:"5px",marginBottom:"5px",maxHeight:"30px",minWidth:"45px",maxWidth:"45px"}}>Keep</Button>
+                                <UndoHarvestButton undoHarvestedPlant={this.undoHarvestedPlant} getHarvestRecordItem={this.props.getHarvestRecordItem} getAndResetRemovedPlantID={this.props.getAndResetRemovedPlantID} getHarvestBatchItem={this.props.getHarvestBatchItem} 
+				                setChanges={this.props.setChanges} resetHarvestForm={this.props.resetHarvestForm} 
+				                getPlantItem={this.props.getPlantItem} harvestType={this.props.harvestType} getStrainForPlantItem={this.props.getStrainForPlantItem}></UndoHarvestButton>
 				                </Grid>
                                  </div>
                             :<div>
