@@ -32,12 +32,11 @@ class LastHarvested extends Component{
 					    direction="column"
   					    justify="center"
 					    align="center"
-                        style={{width:"50%"}}
 				        >
                             <div style={{fontSize:"18px"}}><b>{this.props.getStrainForPlantItem(this.props.lastHarvestedPlant.tag)}</b></div>
                             <div style={{fontSize:"14px"}}>{this.props.lastHarvestedPlant.tag}</div>
 				        </Grid>
-                        <div style={{width:"50%",fontSize:"16px"}}><div><b>{this.props.lastHarvestedPlant.weight + " " + this.props.lastHarvestedPlant.unit}</b></div></div>
+                        <div style={{fontSize:"16px"}}><div><b>{this.props.lastHarvestedPlant.weight + " " + this.props.lastHarvestedPlant.unit}</b></div></div>
 				    </Grid>
             
         </div>
