@@ -21,7 +21,14 @@ class LastHarvested extends Component{
         console.log("Last Harvested Plant**: " + JSON.stringify(this.props.lastHarvestedPlant));
         let tag = "";    
         try{
-            tag = this.props.lastHarvestedPlant.tag.substring(this.props.lastHarvestedPlant.tag.length()-5);
+            tag = this.props.lastHarvestedPlant.tag.substring(this.props.lastHarvestedPlant.tag.length-5);
+            console.log("Success 1");
+        }catch(err){
+
+        }
+        try{
+            tag = JSON.stringify(this.props.lastHarvestedPlant.tag).substring(JSON.stringify(this.props.lastHarvestedPlant.tag).length-5);
+            console.log("Success 2");
         }catch(err){
 
         }
