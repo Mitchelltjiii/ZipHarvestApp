@@ -1100,8 +1100,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				</Grid>
 
 				{(lastHarvestedPlant===[]) ? 
-					<LastHarvested lastHarvestedPlant={lastHarvestedPlant}></LastHarvested>	:
-					null}		
+				<div></div> :
+					<LastHarvested lastHarvestedPlant={lastHarvestedPlant} getStrainForPlantItem={getStrainForPlantItem}></LastHarvested>}		
 				</Grid>
 
 				<Grid
