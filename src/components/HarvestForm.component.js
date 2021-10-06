@@ -78,6 +78,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
                     "Green": "#E7F8E2",
                     "Red": "#E9573F",
                     "Yellow": "#F6BB42",
+					"Offwhite": "#f3f6f4"
 	};
 
 	const [day, setDay] = React.useState('today');
@@ -747,19 +748,20 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	  const HarvestTypeTab = () => {	  
 		return (
-		  <div className="full tr">
+		  <div className="full tr" style={{backgroundColor:bgColors.Offwhite}}>
 			  <Grid
 					container
 					direction="row"
   					justify="center"
 					align="center"
 				>
-				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestType} 
-				style={{maxHeight:"30px",minHeight:"30px",maxWidth:"40px",minWidth:"40px",fontSize:"12px"}}>Edit</Button>
+				
 				<div className="full tr" style={{width: "120px",height: "30px", verticalAlign: "middle",align:"center",
 			marginBottom:"5px"}}>
 						<FormLabel id="harvest-type-label" style={{verticalAlign: "middle"}}><b>{harvestTypeLabelText}</b></FormLabel>
 					</div>
+					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestType} 
+				style={{maxHeight:"30px",minHeight:"30px",maxWidth:"40px",minWidth:"40px",fontSize:"12px",marginTop:"2px",marginBottom:"2px",marginLeft:"2px",marginRight:"2px"}}>Edit</Button>
 				</Grid>
 			  		  
 		  </div>
