@@ -628,7 +628,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setSearchTag("");
 		setSelectedTag("");	
 		reloadPlants(currentHarvest);
-		setLastHarvestedPlant([])	
+		if(resetLastHarvested){
+			setLastHarvestedPlant([])	
+		}
 		//refreshOuter();
 	}
 
