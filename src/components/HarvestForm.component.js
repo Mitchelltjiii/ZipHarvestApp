@@ -110,7 +110,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [removedPlantID, setRemovedPlantID] = React.useState("");
 
-	const [tableVisible,setTableVisible] = React.useState(false);
+	const [tableVisible,setTableVisible] = React.useState(true);
 
 	let tableIsVisible = tableVisible;
 
@@ -737,6 +737,24 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		);
 	  };
 
+	  const HarvestTypeTab = () => {	  
+		return (
+		  <div className="full tr">
+			  <Grid
+					container
+					direction="row"
+  					justify="center"
+					align="center"
+				>
+				<div className="full tr" style={{width: "100px",height: "30px", backgroundColor: bgColors.Green, verticalAlign: "middle",align:"center"}}>
+						<FormLabel id="harvest-type-label" style={{verticalAlign: "middle"}}><b>{harvestTypeLabelText}</b></FormLabel>
+					</div>
+				</Grid>
+			  		  
+		  </div>
+		);
+	  };
+
 	  const HarvestBatchInfoTabs = ({hbInfoTabsHiddenNow}) => {
 		if (hbInfoTabsHiddenNow) return null;
 	  
@@ -746,14 +764,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					container
 					direction="row"
   					justify="center"
-					alignItems="center"
+					align="center"
 				>
-				<div className="full tr" style={{width: "100px",height: "30px", backgroundColor: bgColors.Green, verticalAlign: "middle"}}>
-						<FormLabel id="harvest-type-label" style={{verticalAlign: "middle"}}><b>{harvestTypeLabelText}</b></FormLabel>
-					</div>
+				<HarvestTypeTab></HarvestTypeTab>
 					<div className="full tr" style={{width: "20px",height: "30px"}}>
 					</div>
-					<div className="full tr" style={{width: "180px",height: "30px", backgroundColor: bgColors.Green, verticalAlign: "middle"}}>
+					<div className="full tr" style={{width: "180px",height: "30px", backgroundColor: bgColors.Green, verticalAlign: "middle",align:"center"}}>
 						<FormLabel id="date-label" style={{verticalAlign: "middle"}}><b>{harvestDateLabelText}</b></FormLabel>
 					</div>
 				</Grid>
