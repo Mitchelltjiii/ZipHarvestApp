@@ -246,6 +246,14 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
     	editHarvestType();
 	  };
 
+	  function editHarvestDate(){
+		console.log("Edit Harvest Date");
+	}
+
+	const handleEditHarvestDate = () => {
+    	editHarvestDate();
+	  };
+
 	const handleHarvestTypeChange = (event) => {
     	setHarvestType(event.target.value);
 	  };
@@ -756,11 +764,32 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					align="center"
 				>
 				
-				<div className="full tr" style={{width: "120px",height: "30px", verticalAlign: "middle",align:"center",
+				<div className="full tr" style={{width: "120px",height: "30px",verticalAlign:"center", align:"center",
 			marginBottom:"5px"}}>
-						<FormLabel id="harvest-type-label" style={{verticalAlign: "middle"}}><b>{harvestTypeLabelText}</b></FormLabel>
+						<FormLabel id="harvest-type-label" style={{verticalAlign:"center",align:"center",marginTop:"2px",marginBottom:"2px",marginLeft:"2px",marginRight:"2px"}}><b>{harvestTypeLabelText}</b></FormLabel>
 					</div>
 					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestType} 
+				style={{maxHeight:"30px",minHeight:"30px",maxWidth:"40px",minWidth:"40px",fontSize:"12px",marginTop:"2px",marginBottom:"2px",marginLeft:"2px",marginRight:"2px"}}>Edit</Button>
+				</Grid>
+			  		  
+		  </div>
+		);
+	  };
+
+	  const HarvestDateTab = () => {	  
+		return (
+		  <div className="full tr" style={{backgroundColor:bgColors.Offwhite}}>
+			  <Grid
+					container
+					direction="row"
+  					justify="center"
+					align="center"
+				>
+				
+				<div className="full tr" style={{width: "120px",height: "30px", verticalAlign: "center",align:"center"}}>
+						<FormLabel id="date-label" style={{verticalAlign: "center",align:"center",marginTop:"2px",marginBottom:"2px",marginLeft:"2px",marginRight:"2px"}}><b>{harvestDateLabelText}</b></FormLabel>
+					</div>
+					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestDate} 
 				style={{maxHeight:"30px",minHeight:"30px",maxWidth:"40px",minWidth:"40px",fontSize:"12px",marginTop:"2px",marginBottom:"2px",marginLeft:"2px",marginRight:"2px"}}>Edit</Button>
 				</Grid>
 			  		  
@@ -780,9 +809,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					align="center"
 				>
 				<HarvestTypeTab></HarvestTypeTab>
-					<div className="full tr" style={{width: "120px",height: "30px", verticalAlign: "middle",align:"center"}}>
-						<FormLabel id="date-label" style={{verticalAlign: "middle"}}><b>{harvestDateLabelText}</b></FormLabel>
-					</div>
+					<HarvestDateTab></HarvestDateTab>
 				</Grid>
 			  		  
 		  </div>
