@@ -485,7 +485,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function showTable(){
 		console.log("Show Table");
-		setTableVisible(false);
+		setTableVisible(true);
 		resetHarvestForm(false);
 	}
 
@@ -1158,7 +1158,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				>
 					<Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
 					nextPlantFromSpeech={nextPlantFromSpeech} voiceCommand={voiceCommand}></Dictaphone>
-					{tableVisible ? <TableWrapper id="myTable" currHarvest={currentHarvest} getHarvestRecords={getHarvestRecords} editNow={editNow} 
+					{tableVisible ? <TableWrapper currHarvest={currentHarvest} getHarvestRecords={getHarvestRecords} editNow={editNow} 
       currWeightChanges={currWeightChanges} setWeightChanges={setWeightChanges} 
       getRemovePlantIDDelete={getRemovePlantIDDelete} currHidePlants={currHidePlants} setHidePlants={setHidePlants}
       getPlants={getPlants}></TableWrapper> :
