@@ -110,6 +110,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [removedPlantID, setRemovedPlantID] = React.useState("");
 
+	const [tableVisible,setTableVisible] = React.useState(false);
+
 	let searchForList = [];
 	let strain = '';
 
@@ -483,6 +485,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function showTable(){
 		console.log("Show Table");
+		setTableVisible(false);
+		resetHarvestForm(false);
 	}
 
 	function addBranch(){
@@ -1148,12 +1152,17 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				<Grid
 					container
-					direction="row"
+					direction="column"
   					justify="center"
 					alignItems="center"
 				>
 					<Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
 					nextPlantFromSpeech={nextPlantFromSpeech} voiceCommand={voiceCommand}></Dictaphone>
+					{tableVisible ? <TableWrapper id="myTable" currHarvest={currentHarvest} getHarvestRecords={getHarvestRecords} editNow={editNow} 
+      currWeightChanges={currWeightChanges} setWeightChanges={setWeightChanges} 
+      getRemovePlantIDDelete={getRemovePlantIDDelete} currHidePlants={currHidePlants} setHidePlants={setHidePlants}
+      getPlants={getPlants}></TableWrapper> :
+	  null}
 				</Grid>
 		</div>
 	);
