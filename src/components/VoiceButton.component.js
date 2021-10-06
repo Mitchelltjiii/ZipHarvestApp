@@ -27,7 +27,7 @@ class VoiceButton extends Component{
         return <div>
             
 			<Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{width: "100%"}}>
-                <img src={mic} style={{maxHeight: "100px"}}/>
+                <img src={mic} style={{maxHeight: "60px"}}/>
             </Button>
 		
         </div>

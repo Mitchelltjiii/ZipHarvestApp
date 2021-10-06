@@ -477,6 +477,14 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		addBranch();
 	  };
 
+	const handleShowTable = (event) => {
+		showTable();
+	  };
+
+	function showTable(){
+		console.log("Show Table");
+	}
+
 	function addBranch(){
 		if(isNumeric(weight)){
 			if(branchValue===undefined || branchValue.length===0){
@@ -1116,19 +1124,19 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				<Grid
 					container
-					direction="column"
+					direction="row"
   					justify="center"
 					alignItems="center"
 				>
 
-				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddBranch}>Add Branch</Button>
+				<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddBranch}>Add Branch</Button>
 				<HarvestPlantButton plantRef={nextPlantRef} getHarvestRecordItem={getHarvestRecordItem} getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} 
 				nextPlant={nextPlant} setChanges={setChanges} resetHarvestForm={resetHarvestForm} setNewHarvestRecordID={interceptSetNewHarvestRecordID} 
 				updateHBList={updateHBList} getPlantItem={getPlantItem} harvestType={harvestType} getStrainForPlantItem={getStrainForPlantItem}></HarvestPlantButton>
 
 				</Grid>
 
-				
+				<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleShowTable}>Show Table</Button>
 
 				{(lastHarvestedPlant.tag === undefined) ? 
 				<div></div> :
