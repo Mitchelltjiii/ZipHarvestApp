@@ -68,7 +68,7 @@ class UndoHarvestButton extends Component{
       }).then(function(response) {
         return response.json();
       }).then(function(data) {
-        parent.props.resetHarvestForm(true)
+        parent.props.resetHarvestForm()
       });
     }
     
