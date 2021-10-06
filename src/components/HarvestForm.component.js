@@ -112,6 +112,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [tableVisible,setTableVisible] = React.useState(false);
 
+	let showTableText = "Show Table";
+	if(tableVisible){
+		showTableText = "Hide Table";
+	}
+
 	let searchForList = [];
 	let strain = '';
 
@@ -485,7 +490,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function showTable(){
 		console.log("Show Table");
-		setTableVisible(true);
+		setTableVisible(!tableVisible);
 		resetHarvestForm(false);
 	}
 
@@ -1140,7 +1145,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				</Grid>
 
-				<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleShowTable}>Show Table</Button>
+				<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleShowTable}>{showTableText}</Button>
 
 				{(lastHarvestedPlant.tag === undefined) ? 
 				<div></div> :
