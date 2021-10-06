@@ -665,16 +665,17 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function interceptSetNewHarvestRecordID(data,harvestRecordItem){
 		let lhp = lastHarvestedPlant;
-		console.log("Data.insertId: " + data.insertId);
+		console.log("harvestRecordItem.insertId: " + harvestRecordItem.insertId);
+		console.log("Data: " + data);
 		try{
-			lhp.itemID = data.insertId;
+			lhp.itemID = harvestRecordItem.insertId;
 			console.log("LHP.itemID: " + lhp.itemID);
 		}catch(err){
 
 		}
 
 		try{
-			lhp.id = data.insertId;
+			lhp.id = harvestRecordItem.insertId;
 			console.log("LHP.id: " + lhp.id);
 		}catch(err){
 
