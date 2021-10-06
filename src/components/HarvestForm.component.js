@@ -1166,10 +1166,25 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				>
 					<Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
 					nextPlantFromSpeech={nextPlantFromSpeech} voiceCommand={voiceCommand}></Dictaphone>
-					{tableVisible ? <TableWrapper currHarvest={currentHarvest} getHarvestRecords={getHarvestRecords} editNow={editNow} 
+					{tableVisible ? <div><Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
+
+				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} getHarvestRecords={getHarvestRecords} currHidePlants={currHidePlants}
+				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
+				 setHarvestRecords={setHarvestRecords} setPlants={setPlants} printData={printData} resetHarvestForm={resetHarvestForm}
+				 reloadFromEditButton={reloadFromEditButton}></EditButton>		
+				<FormLabel>Harvest Queue</FormLabel>
+
+				</Grid>
+				<TableWrapper currHarvest={currentHarvest} getHarvestRecords={getHarvestRecords} editNow={editNow} 
       currWeightChanges={currWeightChanges} setWeightChanges={setWeightChanges} 
       getRemovePlantIDDelete={getRemovePlantIDDelete} currHidePlants={currHidePlants} setHidePlants={setHidePlants}
-      getPlants={getPlants}></TableWrapper> :
+      getPlants={getPlants}></TableWrapper>
+	  </div> :
 	  null}
 				</Grid>
 		</div>
