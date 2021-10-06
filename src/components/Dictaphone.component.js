@@ -90,7 +90,7 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
   }
 
   return (
-    <div>
+    <div style={{width:"300px"}}>
       <VoiceButton startListeningFromVoiceButton={startListeningFromVoiceButton}></VoiceButton>
       <p>{transcript}</p>
     </div>

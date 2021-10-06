@@ -756,7 +756,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	  const HarvestTypeTab = () => {	  
 		return (
-		  <div className="full tr" style={{backgroundColor:bgColors.Offwhite}}>
+		  <div className="full tr" style={{backgroundColor:bgColors.Offwhite,marginTop:"3px",marginBottom:"3px"}}>
 			  <Grid
 					container
 					direction="row"
@@ -778,7 +778,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	  const HarvestDateTab = () => {	  
 		return (
-		  <div className="full tr" style={{backgroundColor:bgColors.Offwhite}}>
+		  <div className="full tr" style={{backgroundColor:bgColors.Offwhite,marginBottom:"3px"}}>
 			  <Grid
 					container
 					direction="row"
