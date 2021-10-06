@@ -116,6 +116,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	if(tableVisible){
 		showTableText = "Hide Table";
 	}
+	
 
 	let searchForList = [];
 	let strain = '';
