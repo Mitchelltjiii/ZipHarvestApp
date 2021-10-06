@@ -670,14 +670,24 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("Data: " + data);
 		console.log("data(String): " + JSON.stringify(data));
 		try{
-			lhp.itemID = harvestRecordItem.insertId;
+			console.log("data.insertId: " + data.insertId);
+		}catch(err){
+
+		}
+		try{
+			console.log("data.insertId(STRING): " + JSON.stringify(data.insertId));
+		}catch(err){
+
+		}
+		try{
+			lhp.itemID = data.insertId;
 			console.log("LHP.itemID: " + lhp.itemID);
 		}catch(err){
 
 		}
 
 		try{
-			lhp.id = harvestRecordItem.insertId;
+			lhp.id = data.insertId;
 			console.log("LHP.id: " + lhp.id);
 		}catch(err){
 
