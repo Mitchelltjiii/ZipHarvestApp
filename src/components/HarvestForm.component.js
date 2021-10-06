@@ -619,7 +619,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		currentHarvest = new HarvestBatch(tempHB.name,tempHB.submitted,tempHB.type,tempHB.date,userID);
 	}
 
-	function resetHarvestForm(){
+	function resetHarvestForm(resetLastHarvested){
 		console.log("RESET HARVEST FORM - GO TO PRINT DATA!");
 		printData();
 		setWeight("");
@@ -627,7 +627,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setSearchTag("");
 		setSelectedTag("");	
 		reloadPlants(currentHarvest);
-		setLastHarvestedPlant([])	
+		if(resetLastHarvested){
+			setLastHarvestedPlant([])	
+		}
 		//refreshOuter();
 	}
 
