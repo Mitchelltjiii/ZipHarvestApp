@@ -237,6 +237,14 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
     	setDay(event.target.value);
 	  };
 
+	function editHarvestType(){
+		console.log("Edit Harvest Type");
+	}
+
+	const handleEditHarvestType = () => {
+    	editHarvestType();
+	  };
+
 	const handleHarvestTypeChange = (event) => {
     	setHarvestType(event.target.value);
 	  };
@@ -746,7 +754,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					align="center"
 				>
-				<div className="full tr" style={{width: "100px",height: "30px", backgroundColor: bgColors.Green, verticalAlign: "middle",align:"center"}}>
+				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestType} 
+				style={{maxHeight:"30px",minHeight:"30px",maxWidth:"40px",minWidth:"40px",fontSize:"12px"}}>Edit</Button>
+				<div className="full tr" style={{width: "120px",height: "30px", verticalAlign: "middle",align:"center",
+			marginBottom:"5px"}}>
 						<FormLabel id="harvest-type-label" style={{verticalAlign: "middle"}}><b>{harvestTypeLabelText}</b></FormLabel>
 					</div>
 				</Grid>
@@ -762,14 +773,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		  <div className="full tr">
 			  <Grid
 					container
-					direction="row"
+					direction="column"
   					justify="center"
 					align="center"
 				>
 				<HarvestTypeTab></HarvestTypeTab>
-					<div className="full tr" style={{width: "20px",height: "30px"}}>
-					</div>
-					<div className="full tr" style={{width: "180px",height: "30px", backgroundColor: bgColors.Green, verticalAlign: "middle",align:"center"}}>
+					<div className="full tr" style={{width: "120px",height: "30px", verticalAlign: "middle",align:"center"}}>
 						<FormLabel id="date-label" style={{verticalAlign: "middle"}}><b>{harvestDateLabelText}</b></FormLabel>
 					</div>
 				</Grid>
