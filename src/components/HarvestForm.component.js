@@ -113,6 +113,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [tableVisible,setTableVisible] = React.useState(true);
 
+	const [edittingHarvestDate, setEdittingHarvestDate] = React.useState(false);
+
+
 	let tableIsVisible = tableVisible;
 
 	let showTableText = "Show Table";
@@ -242,6 +245,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	  function editHarvestDate(){
 		console.log("Edit Harvest Date");
+		setEdittingHarvestDate(true);
 	}
 
 	const handleEditHarvestDate = () => {
@@ -758,12 +762,17 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					align="center"
 				>
 				
-				<div className="full tr" style={{width: "120px",height: "30px", verticalAlign: "center",align:"center"}}>
+				{edittingHarvestDate ?
+				<div>Editting</div>
+				:
+				<div>
+					<div className="full tr" style={{width: "120px",height: "30px", verticalAlign: "center",align:"center"}}>
 						<FormLabel id="date-label" style={{width: "80px",verticalAlign: "center",align:"center",marginTop:"2px",marginBottom:"2px",marginLeft:"2px",marginRight:"2px"}}><b>{harvestDateLabelText}</b></FormLabel>
 					</div>
 					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestDate}  style={{minWidth: "20px",maxWidth: "20px",minHeight: "20px",maxHeight: "20px"}}>
-                <img src={edit} style={{minWidth: "20px",maxWidth: "20px",minHeight: "20px",maxHeight: "20px"}}/>
-            </Button>
+                	<img src={edit} style={{minWidth: "20px",maxWidth: "20px",minHeight: "20px",maxHeight: "20px"}}/>
+					</Button> 
+				</div>}
 				</Grid>
 			  		  
 		  </div>
