@@ -378,6 +378,64 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}
 	}
 
+	const [searchText,setSearchText] = React.useState('');
+
+  const handleSearchFieldChange = (event) => {
+		setSearchText(event.target.value);
+	}
+
+  const handleMonthSelect = (event) => {
+		setMonthValue(event.target.value);
+	  };
+
+    const handleDaySelect = (event) => {
+      setDayValue(event.target.value);
+      };
+
+      const handleYearSelect = (event) => {
+        setYearValue(event.target.value);
+        };
+
+  const [monthValue, setMonthValue] = React.useState(1);
+  const [dayValue, setDayValue] = React.useState(1);
+  const [yearValue, setYearValue] = React.useState(2021);
+
+  let monthList = [];
+  for(let i = 1; i < 13; i++){
+    monthList.push("" + i);
+  }
+
+  let dayList = [];
+  let dayNumber = 31;
+  if(monthValue==4||monthValue==6||monthValue==9||monthValue==11){
+    dayNumber = 30;
+  }else if(monthValue==2){
+    if(yearValue%4==0){
+      dayNumber=29;
+    }else{
+      dayNumber=28;
+    }
+  }
+  if(dayValue>dayNumber){
+    setDayValue(dayNumber);
+  }
+  console.log("Day Number: " + dayNumber);
+  for(let i = 1; i <= dayNumber; i++){
+    dayList.push("" + i);
+  }
+
+  let yearList = [];
+  yearList.push("2021");
+  yearList.push("2022");
+  yearList.push("2023");
+  yearList.push("2024");
+  yearList.push("2025");
+  yearList.push("2026");
+  yearList.push("2027");
+  yearList.push("2028");
+  yearList.push("2029");
+  yearList.push("2030");
+
 	function searchTagFromSpeech(searchText){
 		let fixedSearch = searchText;
 		    while(fixedSearch.includes(" to ")){
@@ -755,6 +813,40 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		);
 	  };
 
+	  const UpdateHarvestDateTab = () => {	  
+		return (<div>
+      <Grid
+					container
+					direction="row"
+  					justify="center"
+					align="center"
+				>
+            <Select id="month-select" value={monthValue} onChange={handleMonthSelect} style={{minWidth: 50,maxWidth: 50}}>
+                	{monthList.map((name, index) => (
+            			<MenuItem key={index} value={name}>
+             	 		{name}
+            			</MenuItem>
+          			))}
+             	</Select>	
+
+               <Select id="day-select" value={dayValue} onChange={handleDaySelect} style={{minWidth: 50,maxWidth: 50}}>
+                	{dayList.map((name, index) => (
+            			<MenuItem key={index} value={name}>
+             	 		{name}
+            			</MenuItem>
+          			))}
+             	</Select>
+
+               <Select id="year-select" value={yearValue} onChange={handleYearSelect} style={{minWidth: 80,maxWidth: 80}}>
+                	{yearList.map((name, index) => (
+            			<MenuItem key={index} value={name}>
+             	 		{name}
+            			</MenuItem>
+          			))}
+             	</Select>
+          </Grid>
+    </div>)}
+
 	  const HarvestDateTab = () => {	  
 		return (
 		  <div className="full tr" style={{backgroundColor:bgColors.Offwhite,marginBottom:"3px"}}>
@@ -766,7 +858,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				>
 				
 				{isEdittingHarvestDate ?
-				<div>Editting</div>
+				<div><UpdateHarvestDateTab></UpdateHarvestDateTab></div>
 				:
 				<div>
 					<div className="full tr" style={{width: "120px",height: "30px", verticalAlign: "center",align:"center"}}>
