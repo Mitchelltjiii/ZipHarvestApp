@@ -238,13 +238,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
     	setDay(event.target.value);
 	  };
 
-	function editHarvestType(){
-		console.log("Edit Harvest Type");
-	}
-
-	const handleEditHarvestType = () => {
-    	editHarvestType();
-	  };
+	
 
 	  function editHarvestDate(){
 		console.log("Edit Harvest Date");
@@ -754,28 +748,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		);
 	  };
 
-	  const HarvestTypeTab = () => {	  
-		return (
-		  <div className="full tr" style={{backgroundColor:bgColors.Offwhite,marginTop:"3px",marginBottom:"3px"}}>
-			  <Grid
-					container
-					direction="row"
-  					justify="center"
-					align="center"
-				>
-				
-				<div className="full tr" style={{width: "120px",height: "30px",verticalAlign:"center", align:"center",
-			marginBottom:"5px"}}>
-						<FormLabel id="harvest-type-label" style={{verticalAlign:"center",align:"center",marginTop:"2px",marginBottom:"2px",marginLeft:"2px",marginRight:"2px"}}><b>{harvestTypeLabelText}</b></FormLabel>
-					</div>
-					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestType} 
-				style={{maxHeight:"30px",minHeight:"30px",maxWidth:"40px",minWidth:"40px",fontSize:"12px",marginTop:"2px",marginBottom:"2px",marginLeft:"2px",marginRight:"2px"}}>Edit</Button>
-				</Grid>
-			  		  
-		  </div>
-		);
-	  };
-
 	  const HarvestDateTab = () => {	  
 		return (
 		  <div className="full tr" style={{backgroundColor:bgColors.Offwhite,marginBottom:"3px"}}>
@@ -789,8 +761,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				<div className="full tr" style={{width: "120px",height: "30px", verticalAlign: "center",align:"center"}}>
 						<FormLabel id="date-label" style={{width: "80px",verticalAlign: "center",align:"center",marginTop:"2px",marginBottom:"2px",marginLeft:"2px",marginRight:"2px"}}><b>{harvestDateLabelText}</b></FormLabel>
 					</div>
-					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestDate}  style={{minWidth: "30px",maxWidth: "30px",minHeight: "30px",maxHeight: "30px"}}>
-                <img src={edit} style={{minWidth: "30px",maxWidth: "30px",minHeight: "30px",maxHeight: "30px"}}/>
+					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestDate}  style={{minWidth: "20px",maxWidth: "20px",minHeight: "20px",maxHeight: "20px"}}>
+                <img src={edit} style={{minWidth: "20px",maxWidth: "20px",minHeight: "20px",maxHeight: "20px"}}/>
             </Button>
 				</Grid>
 			  		  
@@ -809,7 +781,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					align="center"
 				>
-				<HarvestTypeTab></HarvestTypeTab>
+					<FormLabel id="harvest-type-label" style={{verticalAlign:"center",align:"center",marginTop:"2px",marginBottom:"2px",marginLeft:"2px",marginRight:"2px"}}><b>{harvestTypeLabelText}</b></FormLabel>
 					<HarvestDateTab></HarvestDateTab>
 				</Grid>
 			  		  
