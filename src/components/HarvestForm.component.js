@@ -115,6 +115,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [edittingHarvestDate, setEdittingHarvestDate] = React.useState(false);
 
+	let isEdittingHarvestDate = edittingHarvestDate;
+
 
 	let tableIsVisible = tableVisible;
 
@@ -762,7 +764,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					align="center"
 				>
 				
-				{edittingHarvestDate ?
+				{isEdittingHarvestDate ?
 				<div>Editting</div>
 				:
 				<div>
