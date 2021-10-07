@@ -788,7 +788,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				>
 				
 				<div className="full tr" style={{width: "120px",height: "30px", verticalAlign: "center",align:"center"}}><b>{harvestDateLabelText}</b></div>
-				<Button onClick={handleEditHarvestDate} aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{maxHeight:"30px",minHeight:"30px",maxWidth:"40px",minWidth:"40px",fontSize:"12px",marginTop:"2px",marginBottom:"2px",marginLeft:"2px",marginRight:"2px"}}>
+				<Button onClick={handleEditHarvestDate} aria-controls="simple-menu" aria-haspopup="true"  style={{maxHeight:"30px",minHeight:"30px",maxWidth:"40px",minWidth:"40px",fontSize:"12px",marginTop:"2px",marginBottom:"2px",marginLeft:"2px",marginRight:"2px"}}>
                 	<img src={editIcon} style={{maxHeight: "60px"}}/>
             	</Button>
 			</Grid>
