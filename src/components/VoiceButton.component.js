@@ -24,6 +24,7 @@ class VoiceButton extends Component{
         this.handleClick = this.handleClick.bind(this);
     }
 
+    
     render() {  
         return <div>
             
