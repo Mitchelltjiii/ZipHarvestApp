@@ -25,9 +25,8 @@ class SaveHarvestDateButton extends Component{
       const harvestBatchItem = this.props.getHarvestBatchItem(false);
       console.log("Harvest Batch Item should be done");
 
-
       const resp = fetch('/hb', {
-          method: 'PUT',
+          method: (harvestBatchItem.id) ? 'PUT' : 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -35,8 +34,8 @@ class SaveHarvestDateButton extends Component{
           body: JSON.stringify(harvestBatchItem)
         }).then(function(response) {
             return response.json();
-        }).then(function(data) {
-        });
+          }).then(function(data) {
+          });
     }
 
     
