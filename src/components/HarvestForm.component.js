@@ -29,6 +29,7 @@ import Collapsible from 'react-collapsible';
 import Dictaphone from './Dictaphone.component';
 import LastHarvested from './LastHarvested.component';
 import edit from '../edit.png';
+import SaveHarvestDateButton from './SaveHarvestDateButton.component';
 
 
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches, 
@@ -190,6 +191,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	}
 
+	function setCurrentHarvestDate(){
+		currentHarvest.date = "01/21/2021";
+	}
+
 	function getPlant(plantTag){
 		console.log("GET PLANT - Tag: " + plantTag);
 		for(let val of JSON.parse(getPlants())) {
@@ -254,6 +259,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const handleEditHarvestDate = () => {
     	editHarvestDate();
 	  };
+
+	const handleSaveHarvestDate = () => {
+		saveHarvestDate();
+	}
 
 	const handleHarvestTypeChange = (event) => {
     	setHarvestType(event.target.value);
@@ -844,6 +853,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
             			</MenuItem>
           			))}
              	</Select>
+			<SaveHarvestDateButton setCurrentHarvestDate={setCurrentHarvestDate}></SaveHarvestDateButton>
           </Grid>
     </div>)}
 
