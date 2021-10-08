@@ -24,6 +24,7 @@ class SaveHarvestDateButton extends Component{
       this.props.setCurrentHarvestDate();
       const harvestBatchItem = this.props.getHarvestBatchItem(false);
       console.log("Harvest Batch Item should be done");
+      
 
       const resp = fetch('/hb', {
           method: (harvestBatchItem.name) ? 'PUT' : 'POST',
