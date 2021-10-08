@@ -260,9 +260,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
     	editHarvestDate();
 	  };
 
-	const handleSaveHarvestDate = () => {
-		saveHarvestDate();
-	}
 
 	const handleHarvestTypeChange = (event) => {
     	setHarvestType(event.target.value);
@@ -853,7 +850,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
             			</MenuItem>
           			))}
              	</Select>
-			<SaveHarvestDateButton setCurrentHarvestDate={setCurrentHarvestDate}></SaveHarvestDateButton>
+			<SaveHarvestDateButton getHarvestBatchItem={getHarvestBatchItem} setCurrentHarvestDate={setCurrentHarvestDate} ></SaveHarvestDateButton>
           </Grid>
     </div>)}
 
