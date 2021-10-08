@@ -253,7 +253,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	function editHarvestDate(){
 		console.log("Edit Harvest Date");
 		setEdittingHarvestDate(true);
-		this.forceUpdate();
+		refreshOuter();
 	}
 
 	const handleEditHarvestDate = () => {

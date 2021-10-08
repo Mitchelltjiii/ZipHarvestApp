@@ -27,7 +27,7 @@ class SaveHarvestDateButton extends Component{
 
 
       const resp = fetch('/hb', {
-          method: 'POST',
+          method: 'PUT',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
