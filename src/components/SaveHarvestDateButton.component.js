@@ -26,6 +26,7 @@ class SaveHarvestDateButton extends Component{
       console.log("Harvest Batch Item should be done");
 
 
+      let parent = this;
       const resp = fetch('/hb', {
           method: 'PUT',
           headers: {
@@ -36,6 +37,7 @@ class SaveHarvestDateButton extends Component{
         }).then(function(response) {
             return response.json();
           }).then(function(data) {
+            parent.props.saveHarvestDate();
           });
     }
 

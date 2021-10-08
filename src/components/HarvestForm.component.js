@@ -192,7 +192,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	function setCurrentHarvestDate(){
-		currentHarvest.date = "01/21/2021";
+		let newDate = monthValue+"/"+dayValue+"/"+yearValue;
+		currentHarvest.date = newDate;
+		console.log("New Date: " + newDate);
 	}
 
 	function getPlant(plantTag){
@@ -253,6 +255,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	function editHarvestDate(){
 		console.log("Edit Harvest Date");
 		setEdittingHarvestDate(true);
+		refreshOuter();
+	}
+
+	function saveHarvestDate(){
+		console.log("Save Harvest Date");
+		setEdittingHarvestDate(false);
 		refreshOuter();
 	}
 
@@ -850,7 +858,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
             			</MenuItem>
           			))}
              	</Select>
-			<SaveHarvestDateButton getHarvestBatchItem={getHarvestBatchItem} setCurrentHarvestDate={setCurrentHarvestDate} ></SaveHarvestDateButton>
+			<SaveHarvestDateButton getHarvestBatchItem={getHarvestBatchItem} setCurrentHarvestDate={setCurrentHarvestDate} saveHarvestDate={saveHarvestDate}></SaveHarvestDateButton>
           </Grid>
     </div>)}
 
