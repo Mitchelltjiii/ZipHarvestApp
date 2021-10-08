@@ -15,7 +15,7 @@ class SaveHarvestDateButton extends Component{
       event.preventDefault();
       console.log("Handle Submit Save Harvest Date Button");
 
-      updateHB(event);
+      this.updateHB(event);
     }
 
     async updateHB(event) {
@@ -27,7 +27,7 @@ class SaveHarvestDateButton extends Component{
 
 
       const resp = fetch('/hb', {
-          method: (harvestBatchItem.id) ? 'PUT' : 'POST',
+          method: 'POST',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
