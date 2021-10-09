@@ -897,9 +897,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					container
 					direction="row"
   					justifyContent="center"
-					alignItems="center"
+					alignItems="right"
 					>
-					<div className="full tr" style={{width: "80px",height: "30px", verticalAlign: "center",align:"center",fontSize:"14px"}}>{harvestDateLabelText}</div>
+					<div className="full tr" style={{width: "80px",height: "30px", verticalAlign: "center",textAlign:"center",fontSize:"14px"}}><b>{harvestDateLabelText}</b></div>
 					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestDate}  style={{minWidth: "20px",maxWidth: "20px",minHeight: "20px",maxHeight: "20px"}}>
                 	<img src={edit} style={{minWidth: "20px",maxWidth: "20px",minHeight: "20px",maxHeight: "20px"}}/>
 					</Button> 
