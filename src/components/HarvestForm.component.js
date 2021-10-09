@@ -892,19 +892,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				{isEdittingHarvestDate ?
 				<div><UpdateHarvestDateTab></UpdateHarvestDateTab></div>
 				:
-				<div style={{width:"150px",height:"30px"}}>
-					<Grid
-					container
-					direction="row"
-  					justifyContent="right"
-					alignItems="right"
-					>
-					<div><b>{harvestDateLabelText}</b></div>
-					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestDate}>
-                	<img src={edit}/>
-					</Button> 
-				
-					</Grid>
+				<div>
+					
 				</div>
 				}
 				</Grid>
