@@ -264,7 +264,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("Edit Harvest Date");
 		setEdittingHarvestDate(true);
 		let monthVal = parseInt(currentHarvest.date.substring(0,2),10);
-		console.log("Month Val: " + month);
+		console.log("Month Val: " + monthVal);
 		setMonthValue(monthVal);
 		refreshOuter();
 	}
