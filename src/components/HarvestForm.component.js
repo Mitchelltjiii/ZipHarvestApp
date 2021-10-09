@@ -318,6 +318,13 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setChangeStrain(event.target.value);
 	  };
 
+	let dateText = "Harvest Date";
+
+	try{
+		dateText = currentHarvest.date;
+	}catch(errrr){
+
+	}
 
 	let timeLimit = 10000;
 
@@ -880,7 +887,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
           </Grid>
     </div>)}
 
-	  const HarvestDateTab = () => {	 
+	  const HarvestDateTab = () => {	  
 		return (
 		  <div className="full tr" style={{backgroundColor:bgColors.Offwhite,marginBottom:"3px"}}>
 			  <Grid
@@ -900,7 +907,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justifyContent="right"
 					alignItems="right"
 					>
-					<div>Date</div>
+					<div>{dateText}</div>
 					
 
 					</Grid>
