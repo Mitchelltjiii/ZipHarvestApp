@@ -899,7 +899,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justifyContent="right"
 					alignItems="right"
 					>
-					<div><b>{harvestDateLabelText}</b></div>
+					<div>{harvestDateLabelText}</div>
 					
 				
 					</Grid>
