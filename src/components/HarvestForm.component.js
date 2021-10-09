@@ -268,7 +268,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		let dayVal = parseInt(currentHarvest.date.substring(3,5),10);
 		console.log("Day val: " + dayVal);
 		setDayValue(dayVal);
-		let yearVal = parseInt(("20" + currentHarvest.date.substring(7,11)),10);
+		let yearVal = parseInt(("20" + currentHarvest.date.substring(6,10)),10);
 		console.log("year val: " + yearVal);
 		setYearValue(yearVal);
 		refreshOuter();
