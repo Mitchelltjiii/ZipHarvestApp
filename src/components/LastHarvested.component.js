@@ -12,10 +12,6 @@ class LastHarvested extends Component{
         this.forceUpdate();
     }
 
-    undoHarvestedPlant(){
-        console.log("Execute undo Harvest plant");
-    }
-
     constructor(props) {
         super(props);
         this.state = {
@@ -63,7 +59,7 @@ class LastHarvested extends Component{
 					            align="center"
 				                >
                                 <Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{width: "5%",marginRight:"10px",marginTop:"5px",marginBottom:"5px",maxHeight:"30px",minWidth:"45px",maxWidth:"45px"}}>Keep</Button>
-                                <UndoHarvestButton undoHarvestedPlant={this.undoHarvestedPlant} getLastHarvestRecordItem={this.props.getLastHarvestRecordItem} getAndResetRemovedPlantID={this.props.getAndResetRemovedPlantID} getHarvestBatchItem={this.props.getHarvestBatchItem} 
+                                <UndoHarvestButton getLastHarvestRecordItem={this.props.getLastHarvestRecordItem} getAndResetRemovedPlantID={this.props.getAndResetRemovedPlantID} getHarvestBatchItem={this.props.getHarvestBatchItem} 
 				                setChanges={this.props.setChanges} resetHarvestForm={this.props.resetHarvestForm} lastHarvestedPlant={this.props.lastHarvestedPlant}
 				                getPlantItem={this.props.getPlantItem} harvestType={this.props.harvestType} getStrainForPlantItem={this.props.getStrainForPlantItem}></UndoHarvestButton>
 				                </Grid>
