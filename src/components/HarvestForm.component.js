@@ -318,7 +318,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setChangeStrain(event.target.value);
 	  };
 
-	let dateText = "Harvest Date";
+	let dummyText = "Harvest Date";
 
 	let timeLimit = 10000;
 
@@ -901,7 +901,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justifyContent="right"
 					alignItems="right"
 					>
-					<div>{dateText}</div>
+					<div>{dummyText}</div>
+					
 
 					</Grid>
 				</div>
