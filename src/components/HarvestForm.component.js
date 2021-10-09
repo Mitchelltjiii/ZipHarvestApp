@@ -261,6 +261,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	function saveHarvestDate(){
 		console.log("Save Harvest Date");
 		setEdittingHarvestDate(false);
+		reloadHarvestBatches(currentHarvest);
 		refreshOuter();
 	}
 
