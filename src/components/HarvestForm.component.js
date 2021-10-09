@@ -881,12 +881,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	  const HarvestDateTab = () => {	  
 		return (
-		  <div className="full tr" style={{backgroundColor:bgColors.Offwhite,marginBottom:"3px"}}>
+		  <div className="full tr" style={{marginBottom:"3px"}}>
 			  <Grid
 					container
 					direction="row"
   					justifyContent="center"
-					align="center"
+					alignItems="center"
 				>
 				
 				{isEdittingHarvestDate ?
