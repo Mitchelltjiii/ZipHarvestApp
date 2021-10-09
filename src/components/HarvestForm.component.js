@@ -896,7 +896,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					<Grid
 					container
 					direction="row"
-  					justifyContent="center"
+  					justifyContent="right"
 					alignItems="right"
 					>
 					<div className="full tr" style={{width: "80px",height: "30px", verticalAlign: "center",textAlign:"center",fontSize:"14px"}}><b>{harvestDateLabelText}</b></div>
