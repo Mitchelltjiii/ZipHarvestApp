@@ -192,7 +192,15 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	function setCurrentHarvestDate(){
-		let newDate = monthValue+"/"+dayValue+"/"+yearValue;
+		let monthZero = "";
+		if(monthValue<10){
+			monthZero = "0";
+		}
+		let dayZero = "";
+		if(dayValue<10){
+			dayZero = "0";
+		}
+		let newDate = monthZero+monthValue+"/"+dayZero+dayValue+"/"+yearValue;
 		currentHarvest.date = newDate;
 		console.log("New Date: " + newDate);
 	}

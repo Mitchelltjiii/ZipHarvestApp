@@ -7,7 +7,7 @@ class LastHarvested extends Component{
     
     handleClick(event) {
         event.preventDefault();
-        this.state.undoClicked=!this.state.undoClicked;
+        this.setState({undoClicked: !this.state.undoClicked});
         console.log("Undo Clicked - Now: " + this.state.undoClicked);
         this.forceUpdate();
     }

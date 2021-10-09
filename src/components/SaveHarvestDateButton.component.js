@@ -10,14 +10,6 @@ class SaveHarvestDateButton extends Component{
         date: ''
         };
 
-    async handleSubmit(event) {
-
-      event.preventDefault();
-      console.log("Handle Submit Save Harvest Date Button");
-
-      this.updateHB(event);
-    }
-
     async updateHB(event) {
       event.preventDefault();
       console.log("Execute Update HB");
@@ -39,6 +31,13 @@ class SaveHarvestDateButton extends Component{
           }).then(function(data) {
             parent.props.saveHarvestDate();
           });
+    }
+    async handleSubmit(event) {
+
+      event.preventDefault();
+      console.log("Handle Submit Save Harvest Date Button");
+
+      this.updateHB(event);
     }
 
     
