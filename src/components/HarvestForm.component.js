@@ -900,9 +900,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="right"
 					>
 					<div><b>{harvestDateLabelText}</b></div>
-					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestDate}>
-                	<img src={edit}/>
-					</Button> 
+					
 				
 					</Grid>
 				</div>
