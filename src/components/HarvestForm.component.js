@@ -880,7 +880,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
           </Grid>
     </div>)}
 
-	  const HarvestDateTab = () => {	  
+	  const HarvestDateTab = () => {	 
+		console.log("harvestDateLabelText: " + harvestDateLabelText);
+ 
 		return (
 		  <div className="full tr" style={{backgroundColor:bgColors.Offwhite,marginBottom:"3px"}}>
 			  <Grid
@@ -900,7 +902,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justifyContent="right"
 					alignItems="right"
 					>
-					<div>{harvestDateLabelText}</div>
+					<div></div>
 					
 
 					</Grid>
