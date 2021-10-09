@@ -25,7 +25,6 @@ class LastHarvested extends Component{
 
         };
         this.handleClick = this.handleClick.bind(this);
-        this.undoHarvestedPlant = this.undoHarvestedPlant.bind(this);
     }
 
     render() {  
