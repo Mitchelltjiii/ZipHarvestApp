@@ -900,15 +900,15 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				{isEdittingHarvestDate ?
 				<div><UpdateHarvestDateTab></UpdateHarvestDateTab></div>
 				:
-				<div style={{width:"130px",height:"30px"}}>
+				<div style={{width:"130px",height:"20px"}}>
 					<Grid
 					container
 					direction="row"
   					justifyContent="right"
 					alignItems="right"
 					>
-					<FormLabel id="harvest-date-label" style={{width:"80px",height:"30px",verticalAlign:"center",align:"center"}}><b>{dateText}</b></FormLabel>
-					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestDate}  style={{minWidth: "30px",maxWidth: "30px",minHeight: "30px",maxHeight: "30px"}}>
+					<FormLabel id="harvest-date-label" style={{width:"80px",height:"20px",verticalAlign:"center",textAlign:"center"}}><b>{dateText}</b></FormLabel>
+					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestDate}  style={{minWidth: "30px",maxWidth: "30px",minHeight: "20px",maxHeight: "20px"}}>
                 	<img src={edit} style={{minWidth: "20px",maxWidth: "20px",minHeight: "20px",maxHeight: "20px"}}/>
 					</Button> 
 					</Grid>
