@@ -320,6 +320,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	let dateText = "Harvest Date";
 
+	try{
+		dateText = currentHarvest.date;
+	}catch(errorror){
+
+	}
+
 	let timeLimit = 10000;
 
 	let unitList = ["lbs","g"];
