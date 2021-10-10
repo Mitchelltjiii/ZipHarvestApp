@@ -903,7 +903,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					>
 					<div>{dummyText}</div>
 					
-
 					</Grid>
 				</div>
 				}
