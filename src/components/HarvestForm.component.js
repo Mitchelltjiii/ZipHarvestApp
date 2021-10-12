@@ -1109,8 +1109,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		plant.batchName = lastHarvestedPlant.batchName;
 		plant.userID = userID;
 
-		if(currentHarvestRecord.itemID!==""){
-			plant.id = currentHarvestRecord.itemID;
+		if(lastHarvestedPlant.itemID!==""){
+			plant.id = lastHarvestedPlant.itemID;
 		}
 
 		console.log("Stringified before passed: " + JSON.stringify(plant));
