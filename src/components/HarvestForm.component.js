@@ -667,7 +667,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 		
 		let plantCount = 0;
-		for(let val of JSON.parse(getHarvestRecords())) {  
+		for(const val of JSON.parse(getHarvestRecords())) {  
 			if(val.batchName == currentHarvest.name){
                 plantCount++;
 			}
@@ -703,7 +703,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					console.log("Parse Float: " + parseFloat(weight));
 					console.log("Branch Weight: " + getBranchWeight());
 					currentHarvestRecord.weight=parseFloat(weight)+getBranchWeight();
-					
+
 				}
 				if(currentHarvestRecord.weight===0){
 					return false;
