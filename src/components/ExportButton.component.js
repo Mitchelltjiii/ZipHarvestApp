@@ -54,9 +54,7 @@ class ExportButton extends Component{
         }   
         
         return <div style={{width: "170px"}}>
-            <CSVLink data={data}>
-            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}  style={{width: "120px"}}>Export</Button>            
-            </CSVLink>
+            <CSVLink data={data} style={{ textDecoration: 'none' }}>Export</CSVLink>
         </div>;
       }
 }
