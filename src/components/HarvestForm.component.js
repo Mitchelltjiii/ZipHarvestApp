@@ -900,7 +900,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				{isEdittingHarvestDate ?
 				<div><UpdateHarvestDateTab></UpdateHarvestDateTab></div>
 				:
-				<div style={{width:"130px",height:"30px"}}>
+				<div style={{width:"150px",height:"30px"}}>
 					<Grid
 					container
 					direction="row"
@@ -1352,7 +1352,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} getHarvestRecords={getHarvestRecords} currHidePlants={currHidePlants}
 				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
-				 setHarvestRecords={setHarvestRecords} setPlants={setPlants} printData={printData}
+				 setHarvestRecords={setHarvestRecords} setPlants={setPlants} printData={printData} resetHarvestForm={resetHarvestForm}
 				 reloadFromEditButton={reloadFromEditButton}></EditButton>		
 				<FormLabel>Harvest Queue</FormLabel>
 
