@@ -116,9 +116,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [edittingHarvestDate, setEdittingHarvestDate] = React.useState(false);
 
-	const [errorMessage, setErrorMessage] = React.useState('');
-
 	let isEdittingHarvestDate = edittingHarvestDate;
+
 
 	let tableIsVisible = tableVisible;
 
@@ -136,12 +135,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	console.log("Last Harvested Plant At Load: " + JSON.stringify(lastHarvestedPlant));
 
 	const nextPlantRef = useRef();
-
-	const ErrorMessage = () => {
-		return(
-			<div>{errorMessage}</div>
-		)
-	}
 
 	console.log("Create Search for List");
 	for (const val of JSON.parse(getPlants())) {
@@ -662,12 +655,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function nextPlant(){
 		console.log("Enter Next Plant");
-
-		console.log("CurrentHarvest.length: " + currentHarvest.length);
-		if(currentHarvest.length==3){
-            setErrorMessage("Harvest Batch cannot exceed 150 items. Create new batch to continue.");
-			return false;
-		}
 
 		if(isNumeric(weight)){
 			console.log("Weight is numeric");
@@ -1340,8 +1327,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				</Grid>
 
 				<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleShowTable}>{showTableText}</Button>
-
-                {(errorMessage != "") ? <ErrorMessage></ErrorMessage> : null}
 
 				{(lastHarvestedPlant.tag === undefined) ? 
 				<div></div> :
