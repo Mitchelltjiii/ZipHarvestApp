@@ -807,8 +807,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("intercept set new harvestrid");
 
 		try{
-			lhp.id = data.insertId;
-			console.log("LHP.id: " + lhp.id);
+			lhp.itemID = data.insertId;
+			console.log("LHP.itemID: " + lhp.itemID);
 		}catch(err){
 
 		}
