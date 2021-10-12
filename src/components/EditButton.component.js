@@ -424,7 +424,7 @@ class EditButton extends Component{
           editButtonText = "Accept Changes";
 	      }   
         return <div>
-			<Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}>{editButtonText}</Button>
+			<Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}>{editButtonText}</Button>
         </div>
       }
 }
