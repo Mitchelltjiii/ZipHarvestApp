@@ -141,7 +141,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const ErrorMessageLabel = () => {
 		return(
-			<div>{errorMessageText}</div>
+			<div style={{backgroundColor:bgColors.Red}}>{errorMessageText}</div>
 		)
 	}
 
@@ -1352,9 +1352,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				</Grid>
 
-				<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleShowTable}>{showTableText}</Button>
-
-                {(errorMessageText.length!=0) ? <ErrorMessageLabel style={{backgroundColor:bgColors.Red}}></ErrorMessageLabel> : null}
+                {(errorMessageText.length!=0) ? <ErrorMessageLabel></ErrorMessageLabel> : null}
 
 				{(lastHarvestedPlant.tag === undefined) ? 
 				<div></div> :
@@ -1378,13 +1376,19 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
-
+				<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
+				<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleShowTable} style={{marginRight:"5px"}}>{showTableText} </Button>
 				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} getHarvestRecords={getHarvestRecords} currHidePlants={currHidePlants}
 				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
 				 setHarvestRecords={setHarvestRecords} setPlants={setPlants} printData={printData} resetHarvestForm={resetHarvestForm}
 				 reloadFromEditButton={reloadFromEditButton}></EditButton>		
-				<FormLabel>Harvest Queue</FormLabel>
-
+				
+				</Grid>
 				</Grid>
 				<TableWrapper currHarvest={currentHarvest} getHarvestRecords={getHarvestRecords} editNow={editNow} 
       currWeightChanges={currWeightChanges} setWeightChanges={setWeightChanges} 
