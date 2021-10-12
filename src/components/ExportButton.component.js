@@ -53,8 +53,17 @@ class ExportButton extends Component{
             }
         }   
         
+         
+        let fileName = this.props.row.name;
+        console.log("FileName A: " + fileName);
+        fileName = fileName.replace(" ","_");
+        console.log("FileName B: " + fileName);
+        fileName = fileName.replace("/",".");
+        console.log("FileName C: " + fileName);
         return <div style={{width: "170px"}}>
-            <CSVLink data={data} style={{ textDecoration: 'none' }}>Export</CSVLink>
+            <CSVLink data={data} style={{textDecoration:"none"}}>
+                 <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}  style={{width: "120px"}}>Export</Button>            
+            </CSVLink>
         </div>;
       }
 }
