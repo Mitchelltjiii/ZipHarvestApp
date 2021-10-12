@@ -900,7 +900,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				{isEdittingHarvestDate ?
 				<div><UpdateHarvestDateTab></UpdateHarvestDateTab></div>
 				:
-				<div style={{width:"150px",height:"30px"}}>
+				<div style={{width:"130px",height:"30px"}}>
 					<Grid
 					container
 					direction="row"
