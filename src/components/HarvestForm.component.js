@@ -594,21 +594,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 		addedHB = new HarvestBatch(hbName,0,harvType,hbDate,userID);
 
-		/*
-		if(hbName!=""&&!hbOptionsList.includes(hbName)){
-			let tempHarvestBatches = JSON.parse(getHarvestBatches());
-			tempHarvestBatches.push(addedHB);
-			//reloadHarvestBatches();
-			//setHarvestBatches(JSON.stringify(tempHarvestBatches));
-			hbOptionsList.push(hbName);
-			console.log("HB Added");
-			setSelectedHB(hbName);
-		}*/
 		if(hbName!=""){
 			setSelectedHB(hbName);
 		}
 		setChangeHBHidden(false);
-		console.log("setChangeStrainHidden");
+		setErrorMessage("");
 	}
 
 	const handleCancelNewHB = (event) => {
@@ -937,7 +927,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				{isEdittingHarvestDate ?
 				<div><UpdateHarvestDateTab></UpdateHarvestDateTab></div>
 				:
-				<div style={{width:"150px",height:"30px"}}>
+				<div style={{height:"30px"}}>
 					<Grid
 					container
 					direction="row"
@@ -1296,7 +1286,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
           			))}
              	</Select>
 
-				<TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag}/>
+				<TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width: "100px"}}/>
 
 				</Grid>
 
@@ -1324,9 +1314,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 
-				<TextField id="Weight" value={weight} onChange={handleWeight}/>
+				<TextField id="Weight" value={weight} onChange={handleWeight} style={{width: "100px"}}/>
 
-				<Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{minWidth: 80}}>
+				<Select id="unit-select" value={unit} onChange={handleUnitSelect}>
                 	{unitList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
