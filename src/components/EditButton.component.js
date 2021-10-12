@@ -423,9 +423,8 @@ class EditButton extends Component{
 	      if(this.props.editNow){
           editButtonText = "Accept Changes";
 	      }   
-        return <div>
-			<Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}>{editButtonText}</Button>
-        </div>
+        return <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}>{editButtonText}</Button>
+        
       }
 }
 
