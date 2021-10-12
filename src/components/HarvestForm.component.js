@@ -1150,7 +1150,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		plant.active = active;
 
 		if(currentHarvestRecord.itemID!==""){
-			plant.id = currentHarvestRecord.itemID;
+			plant.itemID = currentHarvestRecord.itemID;
 		}
 
 		console.log("Adding " + plant.strain); 
@@ -1352,7 +1352,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} getHarvestRecords={getHarvestRecords} currHidePlants={currHidePlants}
 				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
-				 setHarvestRecords={setHarvestRecords} setPlants={setPlants} printData={printData} resetHarvestForm={resetHarvestForm}
+				 setHarvestRecords={setHarvestRecords} setPlants={setPlants} printData={printData}
 				 reloadFromEditButton={reloadFromEditButton}></EditButton>		
 				<FormLabel>Harvest Queue</FormLabel>
 
