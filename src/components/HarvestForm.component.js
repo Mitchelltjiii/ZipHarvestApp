@@ -1370,25 +1370,26 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				>
 					<Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
 					nextPlantFromSpeech={nextPlantFromSpeech} voiceCommand={voiceCommand}></Dictaphone>
+					<Grid
+					container
+					direction="column"
+  					justify="center"
+					alignItems="center"
+				>
+					<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleShowTable}>{showTableText}</Button>
+					{tableVisible ? <EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} getHarvestRecords={getHarvestRecords} currHidePlants={currHidePlants}
+				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
+				 setHarvestRecords={setHarvestRecords} setPlants={setPlants} printData={printData} resetHarvestForm={resetHarvestForm}
+				 reloadFromEditButton={reloadFromEditButton}></EditButton>	: null}
+				 </Grid>
 					{tableVisible ? <div><Grid
 					container
 					direction="row"
   					justify="center"
 					alignItems="center"
 				>
-				<Grid
-					container
-					direction="row"
-  					justify="center"
-					alignItems="center"
-				>
-				<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleShowTable} style={{marginRight:"5px"}}>{showTableText} </Button>
-				<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} getHarvestRecords={getHarvestRecords} currHidePlants={currHidePlants}
-				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
-				 setHarvestRecords={setHarvestRecords} setPlants={setPlants} printData={printData} resetHarvestForm={resetHarvestForm}
-				 reloadFromEditButton={reloadFromEditButton}></EditButton>		
 				
-				</Grid>
+					
 				</Grid>
 				<TableWrapper currHarvest={currentHarvest} getHarvestRecords={getHarvestRecords} editNow={editNow} 
       currWeightChanges={currWeightChanges} setWeightChanges={setWeightChanges} 
