@@ -77,7 +77,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
                     "Blue": "#00B1E1",
                     "Cyan": "#37BC9B",
                     "Green": "#E7F8E2",
-                    "Red": "#E9573F",
+                    "Red": "#FFE9EF",
                     "Yellow": "#F6BB42",
 					"Offwhite": "#f3f6f4"
 	};
@@ -676,6 +676,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("PlantCount: " + plantCount);
 		if(plantCount>=3){
             setErrorMessage("Harvest Batch cannot exceed 150 items. Create new batch to continue.");
+			setLastHarvestedPlant([]);
 			return false;
 		}
 
@@ -1353,7 +1354,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleShowTable}>{showTableText}</Button>
 
-                {(errorMessageText.length!=0) ? <ErrorMessageLabel></ErrorMessageLabel> : null}
+                {(errorMessageText.length!=0) ? <ErrorMessageLabel style={{backgroundColor:bgColors.Red}}></ErrorMessageLabel> : null}
 
 				{(lastHarvestedPlant.tag === undefined) ? 
 				<div></div> :
