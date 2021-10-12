@@ -1150,7 +1150,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		plant.active = active;
 
 		if(currentHarvestRecord.itemID!==""){
-			plant.itemID = currentHarvestRecord.itemID;
+			plant.id = currentHarvestRecord.itemID;
 		}
 
 		console.log("Adding " + plant.strain); 
