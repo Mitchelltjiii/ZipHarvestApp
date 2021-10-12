@@ -225,6 +225,14 @@ export default class App extends React.Component {
     console.log("After GetPlants");
   }
 
+  reloadHarvestRecords = () => {
+    console.log("RELOAD Harvest Reacords");
+    console.log("Before GetHarvestRecords");
+    this.getHarvestRecordsFromDB(true);
+    
+    console.log("After getHarvestRecords");
+  }
+
   reloadHarvestBatches = (currHarvest) => {
     this.setState({currentHarvest: currHarvest});
 
@@ -446,7 +454,7 @@ export default class App extends React.Component {
       resetHarvestBatches={this.resetHarvestBatches} resetAll={this.resetAll} currentHarvest={this.state.currentHarvest} setNewHBID={this.setNewHBID} getCurrentHarvestID={this.getCurrentHarvestID}
       setNewHarvestRecordID={this.setNewHarvestRecordID} setNewPlantID={this.setNewPlantID} userID={this.state.userID} setAll={this.setAll}
       setHarvestBatches={this.setHarvestBatches} setHarvestRecords={this.setHarvestRecords} setPlants={this.setPlants} reloadPlants={this.reloadPlants} 
-      reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches}/>
+      reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}/>
     </div>;
     }else{
 		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin}></LogIn></div>;

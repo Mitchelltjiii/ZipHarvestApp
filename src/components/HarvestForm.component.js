@@ -34,7 +34,7 @@ import SaveHarvestDateButton from './SaveHarvestDateButton.component';
 
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches, 
 	resetAll, currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, setAll, 
-	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches}) { 
+	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords}) { 
 
 	function HarvestBatch(name,submitted,type,date,userID){
 		this.name = name;
@@ -764,6 +764,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setSelectedTag("");	
 		reloadPlants(currentHarvest);
 		if(resetLastHarvested){
+			reloadHarvestRecords();
 			setLastHarvestedPlant([])	
 		}
 		//refreshOuter();
