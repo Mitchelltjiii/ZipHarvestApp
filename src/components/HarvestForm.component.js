@@ -141,7 +141,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const ErrorMessageLabel = () => {
 		return(
-			<div style={{backgroundColor:bgColors.Red}}>{errorMessageText}</div>
+			<div style={{backgroundColor:bgColors.Red,padding:"10px"}}>{errorMessageText}</div>
 		)
 	}
 
@@ -266,6 +266,14 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   	const handleDayChange = (event) => {
     	setDay(event.target.value);
 	  };
+
+	const handleRevertChanges = () => {
+		revertChanges();
+	  };  
+
+	function revertChanges(){
+    	console.log("revert changes");
+	}
 
 	
 
@@ -1376,11 +1384,23 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
-					<Button variant="outlined" style={{marginRight:"5px"}}aria-controls="simple-menu" aria-haspopup="true" onClick={handleShowTable}>{showTableText}</Button>
-					{tableVisible ? <EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} getHarvestRecords={getHarvestRecords} currHidePlants={currHidePlants}
-				 currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
-				 setHarvestRecords={setHarvestRecords} setPlants={setPlants} printData={printData} resetHarvestForm={resetHarvestForm}
-				 reloadFromEditButton={reloadFromEditButton}></EditButton>	: null}
+					{editNow ? null : <Button variant="outlined" style={{marginRight:"5px"}}aria-controls="simple-menu" aria-haspopup="true" onClick={handleShowTable}>{showTableText}</Button>}
+					{tableVisible ? 
+					<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				    >
+					{editNow ? <Button variant="outlined" style={{marginRight:"5px"}}aria-controls="simple-menu" aria-haspopup="true" onClick={handleRevertChanges}>Cancel</Button>
+					: null}
+					<EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} getHarvestRecords={getHarvestRecords} currHidePlants={currHidePlants}
+				    currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
+				    setHarvestRecords={setHarvestRecords} setPlants={setPlants} printData={printData} resetHarvestForm={resetHarvestForm}
+				    reloadFromEditButton={reloadFromEditButton}></EditButton> 
+					</Grid>
+				 	: null}
+				 
 				 </Grid>
 					{tableVisible ? <div><Grid
 					container
