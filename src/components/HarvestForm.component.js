@@ -665,8 +665,16 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	function nextPlant(){
 		console.log("Enter Next Plant");
 
-		console.log("CurrentHarvest.length: " + currentHarvest.length);
-		if(currentHarvest.length==3){
+		
+		let plantCount = 0;
+		for(let val of JSON.parse(getHarvestRecords())) {  
+			if(val.batchName == currHarvest.name){
+                plantCount++;
+			}
+		}
+
+		console.log("PlantCount: " + plantCount);
+		if(plantCount>=3){
             setErrorMessage("Harvest Batch cannot exceed 150 items. Create new batch to continue.");
 			return false;
 		}
