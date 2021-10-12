@@ -797,6 +797,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setSearchTag("");
 		setSelectedTag("");	
 		setErrorMessage("");
+		setEditMode(false);
 		reloadPlants(currentHarvest);
 		if(resetLastHarvested){
 			reloadHarvestRecords();
