@@ -596,9 +596,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 		addedHB = new HarvestBatch(hbName,0,harvType,hbDate,userID);
 
-		if(hbName!=""){
-			setSelectedHB(hbName);
-		}
+		setSelectedHB(hbName);
 		setChangeHBHidden(false);
 		setErrorMessage("");
 		}
