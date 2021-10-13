@@ -423,6 +423,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	let harvestTypeLabelText = "Harvest";
 	let harvestDateLabelText = "Today";
 	if(!(currentHarvest == undefined || currentHarvest.name == '')){
+		console.log("Currenharvest.type: " + currentHarvest.type);
 		if(currentHarvest.type==1){
 			harvestTypeLabelText = "Manicure";
 		}
@@ -434,6 +435,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			harvestDateLabelText = currentHarvest.date;
 		}
 	}
+
+	console.log("Harvest Type Text: " + harvestTypeLabelText);
 
 	const [searchText,setSearchText] = React.useState('');
 
@@ -580,7 +583,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function addNewHB(){
 		let hbName = document.getElementById("changeHBField").value;
-		console.log("HB Name: " + hbName);
+
+		if(hbName == ""){
+			return;
+		}
 
 		let hbDate = getTodayStr();
 		if(day==='yesterday'){
@@ -672,8 +678,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			}
 		}
 
-		console.log("PlantCount: " + plantCount);
-		if(plantCount>=3){
+		if(plantCount>=150){
             setErrorMessage("Harvest Batch cannot exceed 150 items. Create new batch to continue.");
 			setLastHarvestedPlant([]);
 			return false;
