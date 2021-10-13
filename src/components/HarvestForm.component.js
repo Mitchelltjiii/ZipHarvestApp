@@ -599,6 +599,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setSelectedHB(hbName);
 		setChangeHBHidden(false);
 		setErrorMessage("");
+		return true;
+		}else{
+			return false;
 		}
 	}
 
