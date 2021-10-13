@@ -583,12 +583,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function addNewHB(){
 		let hbName = document.getElementById("changeHBField").value;
-
-		if(hbName == ""){
-			return;
-		}
-
-		let hbDate = getTodayStr();
+		if(hbName != ""){
+			let hbDate = getTodayStr();
 		if(day==='yesterday'){
 			hbDate=getYesterdayStr();
 		}
@@ -605,6 +601,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}
 		setChangeHBHidden(false);
 		setErrorMessage("");
+		}
 	}
 
 	const handleCancelNewHB = (event) => {
