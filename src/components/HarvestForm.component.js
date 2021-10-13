@@ -600,9 +600,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setChangeHBHidden(false);
 		setErrorMessage("");
 		return true;
-		}else{
-			return false;
 		}
+		return false;
 	}
 
 	const handleCancelNewHB = (event) => {
