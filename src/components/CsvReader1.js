@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { CSVReader, jsonToCSV } from 'react-papaparse';
-import Button from '@material-ui/core/Button';
 
 const buttonRef = React.createRef();
 
@@ -84,7 +83,20 @@ export default class CSVReader1 extends Component {
                 marginBottom: 10,
               }}
             >
-            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleOpenDialog}  style={{minWidth: "30px",maxWidth: "30px",minHeight: "30px",maxHeight: "30px"}}></Button>
+              <button
+                type="button"
+                onClick={this.handleOpenDialog}
+                style={{
+                  borderRadius: 0,
+                  marginLeft: 0,
+                  marginRight: 0,
+                  width: '40%',
+                  paddingLeft: 0,
+                  paddingRight: 0,
+                }}
+              >
+                Browse file
+              </button>
             </aside>
           )}
         </CSVReader>
