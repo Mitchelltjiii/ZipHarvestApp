@@ -77,7 +77,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 
 
     return(
-      <div className="centered">
+      <div justifyContent="center" alignItems="center">
         <Grid
 					container
 					direction="column"
