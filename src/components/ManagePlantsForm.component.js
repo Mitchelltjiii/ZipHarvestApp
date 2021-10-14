@@ -252,6 +252,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
             			<UploadTab name={name}></UploadTab>
           			))}
 				</div>
+				
                 <div style={{maxWidth:"500px"}}>
                     <PlantTable plantsWithSearch={plantsWithSearch} toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected} 
 					toggleDeletePlantSelected={toggleDeletePlantSelected} getDeletePlantSelected={getDeletePlantSelected}></PlantTable>
