@@ -633,9 +633,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	function addBranch(){
 		if(isNumeric(weight)){
 			if(branchValue===undefined || branchValue.length===0){
-				setBranchValue("+" + weight);
+				setBranchValue(" + " + weight);
 			}else{
-				setBranchValue(branchValue + "+" + weight);
+				setBranchValue(branchValue + " + " + weight);
 			}
 			setWeight("");
 		}
@@ -936,14 +936,14 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				{isEdittingHarvestDate ?
 				<div><UpdateHarvestDateTab></UpdateHarvestDateTab></div>
 				:
-				<div>
+				<div style={{marginBottom:"5px"}}>
 					<Grid
 					container
 					direction="row"
   					justifyContent="center"
 					alignItems="center"
 					>
-					<FormLabel style={{fontSize:"15px",textAlign:"right",marginTop:"7px",marginRight:"4px"}}><b>{dateText}</b></FormLabel>
+					<FormLabel style={{fontSize:"15px",textAlign:"right"}}><b>{dateText}</b></FormLabel>
 					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestDate} style={{minWidth: "20px",maxWidth: "20px",minHeight: "20px",maxHeight: "20px"}}>
                 	<img src={edit} style={{minWidth: "20px",maxWidth: "20px",minHeight: "20px",maxHeight: "20px"}}/>
 					</Button> 
@@ -1269,7 +1269,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
-				<FormLabel component="legend">Search For Strain</FormLabel>
+				<FormLabel style={{marginTop:"8px"}} component="legend">Search For Strain</FormLabel>
 				<Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{minWidth: 80}}>
                 	{searchForList.map((name, index) => (
             			<MenuItem key={index} value={name}>
