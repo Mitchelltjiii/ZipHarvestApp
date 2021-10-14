@@ -84,7 +84,7 @@ export default class CSVReader1 extends Component {
                 marginBottom: 10,
               }}
             >
-              <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleOpenDialog}  style={{minWidth: "30px",maxWidth: "30px",minHeight: "30px",maxHeight: "30px"}}></Button>
+              <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleOpenDialog}  style={{minWidth: "30px",maxWidth: "30px",minHeight: "30px",maxHeight: "30px"}}>Choose File</Button>
             </aside>
           )}
         </CSVReader>
