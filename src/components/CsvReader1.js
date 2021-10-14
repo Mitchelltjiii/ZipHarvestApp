@@ -78,7 +78,7 @@ export default class CSVReader1 extends Component {
           inputStyle={{maxWidth:"100px",minWidth:"100px"}}
         >
           {({ file }) => (
-            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleOpenDialog}  style={{whiteSpace:"nowrap", minWidth: "30px",maxWidth: "30px",minHeight: "30px",maxHeight: "30px"}}>Choose File</Button>
+            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleOpenDialog}  style={{whiteSpace:"nowrap"}}>Choose File</Button>
           )}
         </CSVReader>
       </>
