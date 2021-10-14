@@ -263,7 +263,7 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            {editNow ? <TableCell align="left" style={{ width: "170px"}}>Delete</TableCell> : null}
+            {editNow ? <TableCell align="left">Delete</TableCell> : null}
                       <TableCell align="left">Tag</TableCell>
             					<TableCell align="right">Strain</TableCell>
             					<TableCell align="right">Weight</TableCell>
@@ -275,7 +275,7 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
             <TableRow key={row.tag}>
               {editNow 
               ? 			
-                  <TableCell align="left" style={{ width: "170px"}}>
+                  <TableCell align="left">
                     <DeleteButton editNow={editNow} row={row} getRemovePlantIDDelete={getRemovePlantIDDelete} wrapper={wrapper} hideHarvestRecord={hideHarvestRecord}></DeleteButton>
                   </TableCell>
               : null
