@@ -75,10 +75,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 		setPassword(event.target.value);
 	  };
 
-
-
-    return(
-        <Container className={classes.container} maxWidth="xs">
+    /*<Container className={classes.container} maxWidth="xs">
         <div class="centered">
           <Grid container spacing={3}>
             <Grid item xs={12}>
@@ -97,8 +94,23 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
               </Button>
             </Grid>
           </Grid>
-        </div>
-      </Container>
+        </div> 
+              </Container>
+*/
+
+
+
+    return(
+      <Grid
+					container
+					direction="column"
+  					justifyContent="center"
+					alignItems="center"
+					>
+                    <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"/>
+                    <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined"/>
+                    <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn} maxWidth="200px">Log in</Button>
+          </Grid>
     )
 }
 
