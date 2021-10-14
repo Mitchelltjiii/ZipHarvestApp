@@ -207,6 +207,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 					alignItems="center"
 					>
 						<CSVReader1 setPlantList={setPlantList}></CSVReader1>
+						<div style={{minWidth:"10px",maxWidth:"10px"}}></div>
 						<ImportPlantsButton getPlants={getPlants} uploadList={uploadList} setPlants={setPlants} setUploadList={setUploadList}
 							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></ImportPlantsButton>
 						<Button style={{marginLeft:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancel}>Cancel</Button>
