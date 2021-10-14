@@ -78,7 +78,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 
 
     return(
-      <div>
+      <div className="centered">
         <Grid
 					container
 					direction="column"
@@ -91,7 +91,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                     <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn}>Log in</Button>
           </Grid>
       </div>
-      
     )
 }
 
