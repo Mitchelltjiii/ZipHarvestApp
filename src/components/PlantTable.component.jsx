@@ -9,16 +9,21 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import SelectDeleteAllButton from './SelectDeleteAllButton.component';
 import SelectDeletePlantButton from './SelectDeletePlantButton.component';
-
+import {isMobile} from 'react-device-detect';
 
 function PlantTable({plantsWithSearch,toggleDeleteAllSelected,getDeleteAllSelected,toggleDeletePlantSelected,getDeletePlantSelected}) {
 
     console.log("ENTER PlantTable, Plants with search: " + plantsWithSearch);
 
+    let tableWidth = 600;
+    
+    if(isMobile){
+      tableWidth = 345;
+    }
     const useStyles = makeStyles({
         table: {
-          minWidth: 350,
-          maxWidth: 350
+          minWidth: tableWidth,
+          maxWidth: tableWidth
         },
       });
 

@@ -4,6 +4,7 @@ import Header from './components/Header.component';
 import Outer from './components/Outer.component';
 import LogIn from './components/LogIn.component';
 import { Button } from "@material-ui/core";
+import {isMobile} from 'react-device-detect';
 
 export default class App extends React.Component {
   state = {
