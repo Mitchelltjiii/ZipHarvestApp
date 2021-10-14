@@ -1269,7 +1269,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
-				<FormLabel style={{marginTop:"8px"}}component="legend">Search For Strain</FormLabel>
+				<FormLabel style={{marginTop:"8px"}} component="legend">Search For Strain</FormLabel>
 				<Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{minWidth: 80}}>
                 	{searchForList.map((name, index) => (
             			<MenuItem key={index} value={name}>
@@ -1343,7 +1343,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 
-				<FormLabel id="branchLabel"><b>{branchValue}</b></FormLabel>
+				<FormLabel id="branchLabel">{branchValue}</FormLabel>
 
 				</Grid>
 
