@@ -633,9 +633,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	function addBranch(){
 		if(isNumeric(weight)){
 			if(branchValue===undefined || branchValue.length===0){
-				setBranchValue(" + " + weight);
+				setBranchValue("+" + weight);
 			}else{
-				setBranchValue(branchValue + " + " + weight);
+				setBranchValue(branchValue + "+" + weight);
 			}
 			setWeight("");
 		}
@@ -1269,7 +1269,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
-				<FormLabel style={{marginTop:"8px"}} component="legend">Search For Strain</FormLabel>
+				<FormLabel component="legend">Search For Strain</FormLabel>
 				<Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{minWidth: 80}}>
                 	{searchForList.map((name, index) => (
             			<MenuItem key={index} value={name}>
