@@ -10,18 +10,24 @@ import Paper from '@material-ui/core/Paper';
 import HarvestBatch from './HarvestBatchesForm.component';
 import Button from '@material-ui/core/Button';
 import ExportButton from './ExportButton.component';
+import {isMobile} from 'react-device-detect';
 
 
 function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
 
     console.log("ENTER HBTABLE, HBLIST: " + getHarvestBatches());
 
+    let tableWidth = 600;
+    
+    if(isMobile){
+      tableWidth = 345;
+    }
     const useStyles = makeStyles({
         table: {
-          minWidth: 650,
+          minWidth: tableWidth,
+          maxWidth: tableWidth
         },
       });
-
     
 
     const classes = useStyles();

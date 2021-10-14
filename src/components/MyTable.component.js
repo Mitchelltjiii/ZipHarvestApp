@@ -11,7 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import DeleteButton from './DeleteButton.component';
-
+import {isMobile} from 'react-device-detect';
 
 function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWeightChanges,wrapper,getRemovePlantIDDelete,currHidePlants,setHidePlants,getPlants,reset}) {
 
@@ -33,10 +33,15 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
       this.newUnit = newUnit;
     }
 
+    let tableWidth = 600;
+    
+    if(isMobile){
+      tableWidth = 345;
+    }
     const useStyles = makeStyles({
         table: {
-          minWidth: 350,
-          maxWidth: 350
+          minWidth: tableWidth,
+          maxWidth: tableWidth
         },
       });
 
