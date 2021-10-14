@@ -75,42 +75,22 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 		setPassword(event.target.value);
 	  };
 
-    /*<Container className={classes.container} maxWidth="xs">
-        <div class="centered">
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"/>
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined"/>
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn} maxWidth="200px">
-                Log in
-              </Button>
-            </Grid>
-          </Grid>
-        </div> 
-              </Container>
-*/
-
 
 
     return(
-      <Grid
+      <div class="centered">
+        <Grid
 					container
 					direction="column"
   				justifyContent="center"
 					alignItems="center"
 					>
                     <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
-                    <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined"></TextField>
+                    <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
                     <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn}>Log in</Button>
           </Grid>
+      </div>
+      
     )
 }
 
