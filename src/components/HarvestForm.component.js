@@ -933,8 +933,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					<Grid
 					container
 					direction="row"
-  					justifyContent="right"
-					alignItems="right"
+  					justifyContent="center"
+					alignItems="center"
 					>
 					<FormLabel id="harvest-date-label" style={{textAlign:"right"}}><b>{dateText}</b></FormLabel>
 					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestDate}>
