@@ -209,7 +209,7 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
       
       return (
         <TableCell align="right">
-          			<TextField label={getCurrentWeightTag(row.weight)} defaultValue={weightVal} onChange={(event) => onTFChange(row.tag,event.target.value)} />
+          			<TextField style={{whiteSpace:"nowrap"}} label={getCurrentWeightTag(row.weight)} defaultValue={weightVal} onChange={(event) => onTFChange(row.tag,event.target.value)} />
         </TableCell>
       );
     };
