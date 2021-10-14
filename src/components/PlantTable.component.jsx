@@ -17,8 +17,8 @@ function PlantTable({plantsWithSearch,toggleDeleteAllSelected,getDeleteAllSelect
 
     const useStyles = makeStyles({
         table: {
-          minWidth: 500,
-          maxWidth: 500
+          minWidth: 350,
+          maxWidth: 350
         },
       });
 

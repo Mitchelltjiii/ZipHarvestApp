@@ -590,11 +590,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}
 
 		let harvType = 0;
-		if(harvestType == "manifest"){
+		if(harvestType == "Manifest"){
 			harvType = 1;
 		}
 
 		addedHB = new HarvestBatch(hbName,0,harvType,hbDate,userID);
+		console.log("Added HB: " + JSON.stringify(addedHB));
 
 		setSelectedHB(hbName);
 		setChangeHBHidden(false);
