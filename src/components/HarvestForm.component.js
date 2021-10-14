@@ -633,9 +633,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	function addBranch(){
 		if(isNumeric(weight)){
 			if(branchValue===undefined || branchValue.length===0){
-				setBranchValue("+" + weight);
+				setBranchValue(" + " + weight);
 			}else{
-				setBranchValue(branchValue + "+" + weight);
+				setBranchValue(branchValue + " + " + weight);
 			}
 			setWeight("");
 		}
@@ -925,7 +925,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	  const HarvestDateTab = () => {	  
 		return (
-		  <div style={{backgroundColor:bgColors.Offwhite}}>
+		  <div>
 			  <Grid
 					container
 					direction="row"
@@ -1343,7 +1343,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 
-				<FormLabel id="branchLabel">{branchValue}</FormLabel>
+				<FormLabel id="branchLabel"><b>{branchValue}</b></FormLabel>
 
 				</Grid>
 
