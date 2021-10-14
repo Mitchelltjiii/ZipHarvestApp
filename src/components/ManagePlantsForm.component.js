@@ -209,7 +209,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 						<CSVReader1 setPlantList={setPlantList}></CSVReader1>
 						<ImportPlantsButton getPlants={getPlants} uploadList={uploadList} setPlants={setPlants} setUploadList={setUploadList}
 							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></ImportPlantsButton>
-						<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancel}  style={{width: "120px"}}>Cancel</Button>
+						<Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancel}>Cancel</Button>
 					</Grid>
 					</div>
                 : <div>
@@ -219,14 +219,10 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
   					justify="center"
 					alignItems="center"
 					>
-						<TextField autoFocus={autoFoc} onChange={handleSearchFieldChange} value={searchText} label="Search" style={{width:"100px"}}></TextField>
-					<div>
-					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}  style={{width: "120px"}}>Import Files</Button>
-					</div>
-					<div>
+						<TextField autoFocus={autoFoc} onChange={handleSearchFieldChange} value={searchText} label="Search" style={{width:"130px"}}></TextField>
+					<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}>Import Files</Button>
 					<RemoveFromAvailablePlants getPlants={getPlants} removeList={removeList} setPlants={setPlants} setRemoveList={setSelectedToDelete}
 							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></RemoveFromAvailablePlants>
-						               		</div>
 					</Grid>
 					</div>
 			    }
