@@ -176,7 +176,13 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	
 	const handleSelectHB = (e) => {
-		revertChanges();
+		setWeight("");
+		setBranchValue("");
+		setSearchTag("");
+		setSelectedTag("");	
+		setErrorMessage("");
+		setEditMode(false);
+		setLastHarvestedPlant([])	
 		setSelectedHB(e.target.value);
 	};
 
