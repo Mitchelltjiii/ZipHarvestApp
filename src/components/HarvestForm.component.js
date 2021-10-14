@@ -937,7 +937,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 					>
 					<FormLabel style={{height: "100%",fontSize:"14px",width:"100px",textAlign:"right"}}><b>{dateText}</b></FormLabel>
-					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestDate}>
+					<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleEditHarvestDate} style={{minWidth: "20px",maxWidth: "20px",minHeight: "20px",maxHeight: "20px"}}>
                 	<img src={edit} style={{minWidth: "20px",maxWidth: "20px",minHeight: "20px",maxHeight: "20px"}}/>
 					</Button> 
 					</Grid>
