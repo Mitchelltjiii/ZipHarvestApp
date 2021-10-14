@@ -75,7 +75,6 @@ export default class CSVReader1 extends Component {
           noClick
           noDrag
           onRemoveFile={this.handleOnRemoveFile}
-          inputStyle={{maxWidth:"100px",minWidth:"100px"}}
         >
           {({ file }) => (
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleOpenDialog}  style={{whiteSpace:"nowrap"}}>Choose File</Button>
