@@ -77,15 +77,7 @@ export default class CSVReader1 extends Component {
           onRemoveFile={this.handleOnRemoveFile}
         >
           {({ file }) => (
-            <aside
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                marginBottom: 10,
-              }}
-            >
-              <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleOpenDialog}  style={{minWidth: "30px",maxWidth: "30px",minHeight: "30px",maxHeight: "30px"}}>Choose File</Button>
-            </aside>
+            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleOpenDialog}  style={{whiteSpace:"nowrap", minWidth: "30px",maxWidth: "30px",minHeight: "30px",maxHeight: "30px"}}>Choose File</Button>
           )}
         </CSVReader>
       </>
