@@ -84,7 +84,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
   				justifyContent="center"
 					alignItems="center"
 					>
-
                     <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                     <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
                     <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn}>Log in</Button>
