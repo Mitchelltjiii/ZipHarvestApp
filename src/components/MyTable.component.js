@@ -35,7 +35,8 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
 
     const useStyles = makeStyles({
         table: {
-          minWidth: 650,
+          minWidth: 350,
+          maxWidth: 350
         },
       });
 
