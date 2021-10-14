@@ -210,7 +210,6 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 						<ImportPlantsButton getPlants={getPlants} uploadList={uploadList} setPlants={setPlants} setUploadList={setUploadList}
 							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></ImportPlantsButton>
 						<Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancel}>Cancel</Button>
-					
 					</Grid>
 					</div>
                 : <div>
