@@ -104,12 +104,12 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
       <Grid
 					container
 					direction="column"
-  					justifyContent="center"
+  				justifyContent="center"
 					alignItems="center"
 					>
-                    <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"/>
-                    <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined"/>
-                    <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn} maxWidth="200px">Log in</Button>
+                    <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
+                    <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined"></TextField>
+                    <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn}>Log in</Button>
           </Grid>
     )
 }
