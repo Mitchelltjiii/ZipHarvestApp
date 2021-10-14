@@ -190,7 +190,7 @@ class ImportPlantsButton extends Component{
     }
 
     render() {    
-        return (<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}>Import</Button>)
+        return (<Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}>Import</Button>)
       }
 }
 
