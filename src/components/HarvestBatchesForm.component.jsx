@@ -7,7 +7,14 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 
 	return (
 		<div id="harvest-batches-form">
+			<Grid
+				container
+				direction="column"
+  				justifyContent="center"
+				alignItems="center"
+			>
 			<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants}></HBTable>
+			</Grid>
 		</div>
 	);
 }
