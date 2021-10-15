@@ -61,9 +61,9 @@ class ExportButton extends Component{
         fileName = "ZipHarvest_" + fileName.replace("/",".") + ".csv";
         console.log("FileName C: " + fileName);
 
-        return <div style={{width: "170px"}}>
+        return <div style={{width: "150px"}}>
             <CSVLink data={data} style={{textDecoration:"none"}} filename={fileName}>
-                 <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}  style={{width: "120px"}}>Export</Button>            
+                 <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}  style={{width: "100px",fontSize:"14px"}}>Export</Button>            
             </CSVLink>
         </div>;
       }
