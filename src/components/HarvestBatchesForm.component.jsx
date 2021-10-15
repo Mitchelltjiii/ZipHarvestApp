@@ -13,14 +13,16 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
   				justifyContent="center"
 				alignItems="center"
 			>
-				                <div className="full tr">
+				<div className="full tr">
 			    <Grid
 					container
 					direction="column"
-  					justify="center"
+  					justifyContent="center"
 					alignItems="center"
 				>
+					<div>
 					<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants}></HBTable>
+					</div>
 					</Grid>
 				</div>
 			</Grid>
