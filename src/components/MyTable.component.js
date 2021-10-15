@@ -93,7 +93,7 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
 
 
     function getCurrentWeightTag(weight){
-      return "Current Weight: " + weight;
+      return "Weight: " + weight;
     }
 
     function onDDChange(tag,text){
