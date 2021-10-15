@@ -9,11 +9,20 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 		<div id="harvest-batches-form">
 			<Grid
 				container
-				direction="column"
+				direction="row"
   				justifyContent="center"
 				alignItems="center"
 			>
-			<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants}></HBTable>
+				                <div className="full tr">
+			    <Grid
+					container
+					direction="column"
+  					justify="center"
+					alignItems="center"
+				>
+					<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants}></HBTable>
+					</Grid>
+				</div>
 			</Grid>
 		</div>
 	);
