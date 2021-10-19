@@ -111,23 +111,23 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="center">Name</TableCell>
-            <TableCell align="center">Strain</TableCell>
-            <TableCell align="center"># Plants</TableCell>
-            <TableCell align="center">Date</TableCell>
-            <TableCell align="center">Export</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell align="right">Strain</TableCell>
+            <TableCell align="right"># Plants</TableCell>
+            <TableCell align="right">Date</TableCell>
+            <TableCell align="center" style={{marginRight:"2px"}}>Export</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
             {parsedRows.map((row) => (
             <TableRow key={row.name}>
-              <TableCell align="center" component="th" scope="row">
+              <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="center">{row.strain}</TableCell>
-              <TableCell align="center">{row.plants}</TableCell>
-              <TableCell align="center">{row.date}</TableCell>
-              <TableCell align="center">
+              <TableCell align="right">{row.strain}</TableCell>
+              <TableCell align="right">{row.plants}</TableCell>
+              <TableCell align="right">{row.date}</TableCell>
+              <TableCell align="center" style={{ width: "170px"}}>
                     <ExportButton row={row} getHarvestRecords={getHarvestRecords} getHarvestBatches={getHarvestBatches}></ExportButton>
                   </TableCell>
             </TableRow>
