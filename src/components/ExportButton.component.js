@@ -48,7 +48,7 @@ class ExportButton extends Component{
 
         let data = ""; 
         for(let val of JSON.parse(this.props.getHarvestRecords())){
-            if(val.batchName == this.props.row.name){
+            if(val.batchName === this.props.row.name){
                 data += String(val.tag) + "," + val.weight + "," + val.unit + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
             }
         } 
@@ -60,7 +60,7 @@ class ExportButton extends Component{
         fileName = "ZipHarvest_" + fileName.replace("/",".") + ".csv";
         console.log("FileName C: " + fileName);
 
-        
+
         return <div style={{width: "170px"}}>
             <CSVLink data={data} style={{textDecoration:"none"}} filename={fileName} uFEFF={false}>
                  <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}  style={{width: "120px",fontSize:14}}>Export</Button>            
