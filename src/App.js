@@ -26,7 +26,7 @@ export default class App extends React.Component {
 
   
   engageReload = () => {
-    if(!this.state.usersLoading || !this.state.plantsLoading && !this.state.harvestRecordsLoading && !this.state.harvestBatchesLoading){
+    if((!this.state.usersLoading) || (!this.state.plantsLoading && !this.state.harvestRecordsLoading && !this.state.harvestBatchesLoading)){
       console.log("Force Updated In App.js");
       this.forceUpdate();
     }
