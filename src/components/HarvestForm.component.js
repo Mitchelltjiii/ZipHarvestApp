@@ -1101,7 +1101,13 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	return (
 		<div id="harvest-form" style={{margin:"auto"}}>
-			<div style={{margin:"auto"}}>
+				<Grid
+					container
+					direction="column"
+  					justify="center"
+					alignItems="center"
+				>
+					<div style={{margin:"auto"}}>
 			<Grid
 				container
 				direction="column"
@@ -1242,13 +1248,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				</Grid>
 				</div>
-
-				<Grid
-					container
-					direction="column"
-  					justify="center"
-					alignItems="center"
-				>
 					<Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
 					nextPlantFromSpeech={nextPlantFromSpeech} voiceCommand={voiceCommand}></Dictaphone>
 					<Grid
