@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, {useRef } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
 import Select from '@material-ui/core/Select';
@@ -8,24 +8,12 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import HarvestPlantButton from './HarvestPlantButton.component';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import AddHarvestBatchButton from './AddHarvestBatchButton.component';
 import EditButton from './EditButton.component';
 import TableWrapper from './TableWrapper.component';
-import { setGlobalCssModule } from 'reactstrap/es/utils';
-import Collapsible from 'react-collapsible';
 import Dictaphone from './Dictaphone.component';
 import LastHarvested from './LastHarvested.component';
 import edit from '../edit.png';
@@ -93,8 +81,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const [changeStrain, setChangeStrain] = React.useState("Don't Change Strain");
 
 	const [changeStrainHidden, setChangeStrainHidden] = React.useState(false);
-
-	const [hbInfoTabsHidden, setHbInfoTabsHidden] = React.useState(true);
 
 	const [changeHBHidden, setChangeHBHidden] = React.useState(false);
 
@@ -168,7 +154,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	let selHB = '';
 
 	console.log("JSON.stringify-currentharvest: " + JSON.stringify(currentHarvest));
-	if(currentHarvest !== undefined && JSON.stringify(currentHarvest)!= "[]"){
+	if((currentHarvest !== undefined) && (JSON.stringify(currentHarvest)!== "[]")){
 		selHB = currentHarvest.name;
 	}
 
@@ -400,16 +386,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("Set Hide Plants in HarvestForm: " + JSON.stringify(currHidePlants));
 	}
 
-	function getHidePlants(){
-		return currHidePlants;
-	}
-
-	/*
-					<ChangeStrainForm changeStrainHiddenNow={changeStrainHiddenNow}></ChangeStrainForm>
-				<AddNewChangeStrainForm changeStrainHiddenNow={changeStrainHiddenNow}></AddNewChangeStrainForm>
-*/
-	let changeStrainHiddenNow = changeStrainHidden;
-
 	if(changeStrain==="Add New Strain"){
 		changeStrainHiddenNow=true;
 	}
@@ -421,35 +397,21 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		changeHBHiddenNow=true;
 	}
 
-	let hbInfoTabsHiddenNow = hbInfoTabsHidden;
+	let hbInfoTabsHiddenNow = true;
 
 	if(!(currentHarvest === undefined || currentHarvest.name === '')){
 		hbInfoTabsHiddenNow=false;
 	}
 
 	let harvestTypeLabelText = "Harvest";
-	let harvestDateLabelText = "Today";
 	if(!(currentHarvest === undefined || currentHarvest.name === '')){
 		console.log("Currenharvest.type: " + currentHarvest.type);
 		if(currentHarvest.type===1){
 			harvestTypeLabelText = "Manicure";
 		}
-		if(currentHarvest.date===getTodayStr()){
-			harvestDateLabelText = "Today - " + currentHarvest.date;
-		}else if(currentHarvest.date===getYesterdayStr()){
-			harvestDateLabelText = "Yesterday - " + currentHarvest.date;
-		}else{
-			harvestDateLabelText = currentHarvest.date;
-		}
 	}
 
 	console.log("Harvest Type Text: " + harvestTypeLabelText);
-
-	const [searchText,setSearchText] = React.useState('');
-
-  const handleSearchFieldChange = (event) => {
-		setSearchText(event.target.value);
-	}
 
   const handleMonthSelect = (event) => {
 		setMonthValue(event.target.value);
@@ -953,42 +915,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					<HarvestDateTab></HarvestDateTab>
 				</Grid>
 			  		  
-		  </div>
-		);
-	  };
-
-	  
-
-	  
-
-//<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleImport}>Import</Button>
-
-
-	const ChangeStrainForm = ({changeStrainHiddenNow}) => {
-		if (changeStrainHiddenNow) return null;
-	  
-		return (
-		  <div className="full tr">
-			<FormLabel component="legend">Change Strain</FormLabel>
-			<Select id="change-strain-select" value={changeStrain} onChange={handleChangeStrainSelect} style={{minWidth: 80}}>
-                	{strainList.map((name, index) => (
-            			<MenuItem key={index} value={name}>
-             	 		{name}
-            			</MenuItem>
-          			))}
-             	</Select>
-		  </div>
-		);
-	  };
-
-	const AddNewChangeStrainForm = ({changeStrainHiddenNow}) => {
-		if (!changeStrainHiddenNow) return null;
-	  
-		return (
-		  <div className="full tr">
-			<TextField id="changeStrainField" label="New Strain"/>
-			<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddNewStrain}>Add</Button>
-
 		  </div>
 		);
 	  };

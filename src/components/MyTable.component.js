@@ -1,4 +1,4 @@
-import React, { createRef, useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,11 +14,6 @@ import DeleteButton from './DeleteButton.component';
 import {isMobile} from 'react-device-detect';
 
 function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWeightChanges,wrapper,getRemovePlantIDDelete,currHidePlants,setHidePlants,getPlants,reset}) {
-
-  console.log("MYTABLE STARTED");
-  console.log('HarvestRecords in Table: ' + JSON.stringify(getHarvestRecords()));
-  console.log("Curr Hide Plants: " + currHidePlants);
-  console.log("Curr Hide Plants(STRING): " + JSON.stringify(currHidePlants));
 
   function HarvestBatch(name,submitted,type,date){
 		this.name = name;
@@ -61,7 +56,7 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
 
     function getStrainFromTag(tag){
       for(let val of JSON.parse(getPlants())){
-        if(val.tag == tag){
+        if(val.tag === tag){
           return val.strain;
         }
       }
@@ -70,12 +65,12 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
     let rows = [];
       try{
         for(let val of JSON.parse(getHarvestRecords())) {  
-          if(val.batchName == currHarvest.name){
+          if(val.batchName === currHarvest.name){
             let hidden = false;
             for(let val2 of currHidePlants){
               console.log("VAL 2 : " + val2);
               console.log("Val.tag: " + val.tag);
-              if(val2 == val.tag){
+              if(val2 === val.tag){
                 hidden = true;
               }
             }
@@ -104,13 +99,13 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
       let foundRow = createData("","","","");
       for(let row of rows){
         console.log("row: " + JSON.stringify(row));
-        if(row.tag == tag){
+        if(row.tag === tag){
           foundIndex = i;
           foundRow = createData(row.tag,row.strain,row.weight,text);
         }
         i++;
       }
-      if(foundIndex != -1){
+      if(foundIndex !== -1){
         rows.splice(foundIndex,1,foundRow);
       }
 
@@ -120,14 +115,14 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
       foundIndex = -1;
       for(let val of currWeightChanges) {
         console.log("VAL: " + val);
-        if(val.tag == tag){
+        if(val.tag === tag){
           console.log("GRABBED tag: " + tag);
           foundIndex = i;
         }
         i++;
       }
 
-      if(foundIndex != -1){
+      if(foundIndex !== -1){
         currWeightChanges.splice(foundIndex,1,new weightChange(tag,currWeightChanges[foundIndex].newWeight,text));
       }else{
         currWeightChanges.push(new weightChange(tag,'',text));
@@ -156,7 +151,7 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
         for(let val of rows) {
          console.log("VAL: " + val);
          console.log("Val.tag: " + val.tag);
-          if(val.tag == tag){
+          if(val.tag === tag){
             console.log("GRABBED tag: " + tag);
             foundIndex = i;
           }  
@@ -166,7 +161,7 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
         console.log("Curr ROWS before edit: " + JSON.stringify(rows));
 
 
-        if(foundIndex != -1){
+        if(foundIndex !== -1){
           rows.splice(foundIndex,1);
         }
 
@@ -182,14 +177,14 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
       for(let val of currWeightChanges) {
         console.log("VAL: " + val);
         console.log("Val.tag: " + val.tag);
-        if(val.tag == tag){
+        if(val.tag === tag){
           console.log("GRABBED TAG: " + tag);
           foundIndex = i;
         }
         i++;
       }
 
-      if(foundIndex != -1){
+      if(foundIndex !== -1){
         currWeightChanges.splice(foundIndex,1,new weightChange(tag,text,currWeightChanges[foundIndex].newUnit));
       }else{
         currWeightChanges.push(new weightChange(tag,text,''));
@@ -205,8 +200,8 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
       let weightVal = '';
 
       for(let val of currWeightChanges){
-        if(val.tag == row.tag){
-          if(val.newWeight != ''){
+        if(val.tag === row.tag){
+          if(val.newWeight !== ''){
             weightVal = val.newWeight;
           }
         }
@@ -235,8 +230,8 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
       let unitVal = row.unit;
 
       for(let val of currWeightChanges){
-        if(val.tag == row.tag){
-          if(val.newUnit != ''){
+        if(val.tag === row.tag){
+          if(val.newUnit !== ''){
             unitVal = val.newUnit;
           }
         }
