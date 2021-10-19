@@ -59,8 +59,6 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
 
   const {
     transcript,
-    listening,
-    resetTranscript,
     browserSupportsSpeechRecognition
   } = useSpeechRecognition({commands});
 
