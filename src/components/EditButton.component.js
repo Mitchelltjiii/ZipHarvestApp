@@ -84,7 +84,7 @@ class EditButton extends Component{
   
                 while(this.state.busySettingHarvestRecords !== [] && x<this.props.timeLimit){
                   console.log("Set timeout");
-                  setTimeout('',200);
+                  setTimeout(null,200);
                   x++;
                 }
   
@@ -123,7 +123,7 @@ class EditButton extends Component{
 
                 while(this.state.busyAddingPlants !== [] && x<this.props.timeLimit){
                   console.log("Set timeout");
-                  setTimeout('',200);
+                  setTimeout(null,200);
                   x++;
                 }
 
@@ -169,7 +169,7 @@ class EditButton extends Component{
   
                 while(this.state.busyDeletingHarvestRecords !== [] && x<this.props.timeLimit){
                   console.log("Set timeout");
-                  setTimeout('',200);
+                  setTimeout(null,200);
                   x++;
                 }
   

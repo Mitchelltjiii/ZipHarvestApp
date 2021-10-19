@@ -3,8 +3,6 @@ import "./styles.css";
 import Header from './components/Header.component';
 import Outer from './components/Outer.component';
 import LogIn from './components/LogIn.component';
-import { Button } from "@material-ui/core";
-import {isMobile} from 'react-device-detect';
 
 export default class App extends React.Component {
   state = {
@@ -45,7 +43,7 @@ export default class App extends React.Component {
   }
 
   getPlantsFromDB = async (reload) => {
-    if(this.state.userID == ""){
+    if(this.state.userID === ""){
       return;
     }
     const response = await fetch(`/api/pl/${this.state.userID}`);
@@ -58,7 +56,7 @@ export default class App extends React.Component {
   }
 
   getHarvestRecordsFromDB = async (reload) => {
-    if(this.state.userID == ""){
+    if(this.state.userID === ""){
       return;
     }
     const response = await fetch(`/api/hr/${this.state.userID}`);
@@ -71,7 +69,7 @@ export default class App extends React.Component {
   }
 
   getHarvestBatchesFromDB = async () => {
-    if(this.state.userID == ""){
+    if(this.state.userID === ""){
       return;
     }
     const response = await fetch(`/api/hb/${this.state.userID}`);
@@ -111,7 +109,7 @@ export default class App extends React.Component {
     for(let val of parsedHarvestBatches){
 			console.log("Val: " + JSON.stringify(val));
       console.log("Val.name: " + val.name);
-			if(val.name == currHarvest.name){
+			if(val.name === currHarvest.name){
 				console.log("Found HarvestBatch: " + val.name);
         currHarvestID = val.id;
 			}
@@ -178,7 +176,7 @@ export default class App extends React.Component {
     let parsedHB = JSON.parse(this.state.harvestBatches);
 
     for(const val of parsedHB){
-      if(val.name == hbName){
+      if(val.name === hbName){
         return val.id;
       }
     }
@@ -188,7 +186,7 @@ export default class App extends React.Component {
       hr.id = newID;
 
       let tempHarvestRecords = this.state.harvestRecords;
-      if(tempHarvestRecords == "[]"){
+      if(tempHarvestRecords === "[]"){
         tempHarvestRecords = "[" + JSON.stringify(hr) + "]";
       }else{
         tempHarvestRecords = tempHarvestRecords.substring(0,tempHarvestRecords.length-1) + "," + JSON.stringify(hr) + "]";
@@ -277,7 +275,7 @@ export default class App extends React.Component {
   }
 
   render() {
-    if ((this.state.loggedIn != '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading))){
+    if ((this.state.loggedIn !== '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading))){
       return(<div>Loading...</div>);
     }
 
@@ -291,7 +289,7 @@ export default class App extends React.Component {
 
 	  console.log("Logged In: " + this.state.loggedIn);
 	  let showForm;
-    if (this.state.loggedIn != '') {
+    if (this.state.loggedIn !== '') {
 	  	showForm = <div>
 	    <Header currentPageSet={this.SetCurrentPage} currentPage={this.state.currentPage} executeLogout={this.executeLogout}/>
       <Outer currentPage={this.state.currentPage} setCurrentPage={this.SetCurrentPage} getPlants={this.getPlants} getHarvestRecords={this.getHarvestRecords} getHarvestBatches={this.getHarvestBatches}

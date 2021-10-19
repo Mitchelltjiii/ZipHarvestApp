@@ -22,7 +22,7 @@ export default class CSVReader1 extends Component {
         let newText = csvSplit[i].substring(1);
         newText = newText.substring(0,newText.indexOf('"'));
         let newTextSplit = newText.split(",");
-        if(newTextSplit[0] != undefined && newTextSplit[1] != undefined) {
+        if((newTextSplit[0] !== undefined) && (newTextSplit[1] !== undefined)) {
             plantList.push(newTextSplit[0] + "," + newTextSplit[1]);
         }
     }

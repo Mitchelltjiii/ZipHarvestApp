@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import HBTable from './HBTable.component';
 import RemoveUploadQueueItemButton from './RemoveUploadQueueItemButton';
 import CSVReader1 from './CsvReader1';
 import PlantTable from './PlantTable.component';
@@ -70,7 +69,7 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 
 		console.log("Found Index: " + JSON.stringify(foundIndex));
 
-		if(foundIndex != -1){
+		if(foundIndex !== -1){
 			removeList.splice(foundIndex,1);
 		}else{
 			removeList.push(tag);
@@ -161,14 +160,14 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 		for(let val of uploadList){
 			let splitList = val.split(",");
 			console.log("SplitList[0]: " + splitList[0]);
-			if(splitList[0]==name){
+			if(splitList[0]===name){
 				foundIndex = index;
 				console.log("Found Index: " + foundIndex);
 			}
 			index++;
 		}
 
-		if(foundIndex != -1){
+		if(foundIndex !== -1){
 			console.log("Found Index != -1");
 			let uList = uploadList;
 			uList.splice(foundIndex,1);

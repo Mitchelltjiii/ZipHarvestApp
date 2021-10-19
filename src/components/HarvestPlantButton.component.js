@@ -36,7 +36,7 @@ class HarvestPlantButton extends Component{
           const harvestRecordItem = this.props.getHarvestRecordItem();
           console.log("Harvseted Plant Item should be done");
 
-          const resp = fetch('/hr', {
+          fetch('/hr', {
             method: (harvestRecordItem.id) ? 'PUT' : 'POST',
             headers: {
               'Accept': 'application/json',
@@ -52,7 +52,7 @@ class HarvestPlantButton extends Component{
             console.log("Harvest Type: " + parent.props.harvestType);
             console.log("Harvest Type(STRING): " + JSON.stringify(parent.props.harvestType));
 
-            if(parent.props.harvestType == "harvest"){
+            if(parent.props.harvestType === "harvest"){
               parent.updatePlant(event,harvestRecordItem.tag,strain);
             }
           });
@@ -68,7 +68,7 @@ class HarvestPlantButton extends Component{
 
       console.log("getRemovedPlantID should be done");
 
-      const resp = fetch('/pl', {
+      fetch('/pl', {
         method: (plantItem.tag) ? 'PUT' : 'POST',
         headers: {
           'Accept': 'application/json',
@@ -103,9 +103,7 @@ class HarvestPlantButton extends Component{
       const harvestBatchItem = this.props.getHarvestBatchItem(false);
       console.log("Harvest Batch Item should be done");
 
-      let parent = this;
-
-      const resp = fetch('/hb', {
+      fetch('/hb', {
           method: (harvestBatchItem.id) ? 'PUT' : 'POST',
           headers: {
             'Accept': 'application/json',

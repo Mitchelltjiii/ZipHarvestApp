@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,8 +7,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import HarvestBatch from './HarvestBatchesForm.component';
-import Button from '@material-ui/core/Button';
 import ExportButton from './ExportButton.component';
 import {isMobile} from 'react-device-detect';
 
@@ -52,17 +50,17 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
       }
 
       for(let val of JSON.parse(getHarvestRecords())){
-        if(val.batchName == batchName){
+        if(val.batchName === batchName){
           plantCount++;
           let str = "";
           for(let val2 of parsedPlants){
-            if(val2.tag == val.tag){
+            if(val2.tag === val.tag){
               str = val2.strain;
             }
           }
-          if(strain == ""){
+          if(strain === ""){
             strain = str;
-          }else if(str != strain){
+          }else if(str !== strain){
             strain = "Multi-Harvest";
           }
         }
@@ -74,7 +72,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
 
     for(let val of JSON.parse(getHarvestBatches())) {
       checkPlantList(val.name);
-      if(strain == ""){
+      if(strain === ""){
         strain = "N/A";
       }
 
@@ -86,7 +84,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
     let x = 0;
     let latestDate = new Date();
     let parsedRows = [];
-    while(JSON.stringify(rows) != "" && JSON.stringify(rows) != "[]"){
+    while(JSON.stringify(rows) !== "" && JSON.stringify(rows) !== "[]"){
       x = 0;
       foundX = -1;
       latestDate = new Date(0);

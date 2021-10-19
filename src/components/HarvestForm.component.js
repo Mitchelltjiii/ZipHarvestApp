@@ -1,6 +1,5 @@
 import React, {useRef } from 'react';
 import Grid from '@material-ui/core/Grid';
-import Input from '@material-ui/core/Input';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -87,8 +86,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const [unit, setUnit] = React.useState('lbs');
 
 	const [branchValue, setBranchValue] = React.useState('');
-
-	const [strainList, setStrainList] = React.useState(["Don't Change Strain","Add New Strain"]);
 
 	const [editMode, setEditMode] = React.useState(false);
 
@@ -238,15 +235,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			setPlants(JSON.stringify(JSON.parse(getPlants()).splice(foundX,1,replaceEntry)));
 		}
 		console.log("Plant Map AFTER Remove Plant: " + getPlants());
-	}
-
-	function addHarvestRecord(plant){
-		console.log("Add Harvested Plant: " + JSON.stringify(plant));
-		let tempHarvestRecords = JSON.parse(getHarvestRecords());
-		console.log("Before Add Harvest Record - HarvestRecords: " + JSON.stringify(tempHarvestRecords));
-		tempHarvestRecords.push(plant);
-		setHarvestRecords(JSON.stringify(tempHarvestRecords));
-		console.log("After Add Harvest Record - HarvestRecords: " + getHarvestRecords());
 	}
 	
 	currentHarvest = getHarvestBatch(selectedHB);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -38,7 +38,7 @@ function PlantTable({plantsWithSearch,toggleDeleteAllSelected,getDeleteAllSelect
     const rows = [];
 
     for(const val of JSON.parse(plantsWithSearch)) {
-      if(val.active == 0){
+      if(val.active === 0){
         rows.push(createData(val.tag,val.strain));
       }
     }

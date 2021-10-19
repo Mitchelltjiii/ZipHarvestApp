@@ -19,7 +19,7 @@ class SaveHarvestDateButton extends Component{
 
 
       let parent = this;
-      const resp = fetch('/hb', {
+      fetch('/hb', {
           method: 'PUT',
           headers: {
             'Accept': 'application/json',
