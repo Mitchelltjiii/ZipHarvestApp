@@ -14,7 +14,7 @@ class ImportPlantsButton extends Component{
         console.log("Engage add Plant");
         
         let parent = this;
-        const resp = fetch('/pl', {
+        fetch('/pl', {
           method: (tagExists) ? 'PUT' : 'POST',
           headers: {
             'Accept': 'application/json',
@@ -29,7 +29,7 @@ class ImportPlantsButton extends Component{
           console.log("Before removing busy adding record");
           console.log("BUSYADDINGPL before: " + JSON.stringify(parent.state.busyAddingPlants)); 
           for( var i = 0; i < parent.state.busyAddingPlants.length; i++){ 
-            if ( parent.state.busyAddingPlants[i] == plantItem.tag) { 
+            if ( parent.state.busyAddingPlants[i] === plantItem.tag) { 
                 parent.state.busyAddingPlants.splice(i, 1); 
             }
           }
@@ -133,13 +133,13 @@ class ImportPlantsButton extends Component{
 
         let x = 0;
 
-        while(this.state.busyAddingPlants != [] && x<timeLimit){
+        while(this.state.busyAddingPlants !== [] && x<timeLimit){
                   console.log("Set timeout");
-                  setTimeout('',200);
+                  setTimeout(null,200);
                   x++;
                 }
 
-        if(x==timeLimit){
+        if(x===timeLimit){
                   console.log("TIMEOUT OPERATION FAILED");
                 }
 
@@ -162,10 +162,7 @@ class ImportPlantsButton extends Component{
 
     async executeAddPlant(event,plantItem){
       event.preventDefault();
-      console.log("Execute Import Plant");
-      const parent = this;
-      console.log("Plant Item**: " + JSON.stringify(plantItem));
-        const resp = fetch('/pl', {
+      fetch('/pl', {
             method: (plantItem.tag) ? 'PUT' : 'POST',
             headers: {
               'Accept': 'application/json',
@@ -176,7 +173,6 @@ class ImportPlantsButton extends Component{
             return response.json();
           }).then(function(data) {
             console.log("EXECUTE PLANT EXCT DATA: " + data); // this will be a string
-            //parent.props.setNewPlantID(data,plantItem);
           });
     }
     

@@ -123,7 +123,7 @@ class RemoveFromAvailablePlants extends Component{
 
         let x = 0;
 
-        while(this.state.busyAddingPlants != [] && x<timeLimit){
+        while(this.state.busyAddingPlants !== [] && x<timeLimit){
                   console.log("Set timeout");
                   setTimeout(null,200);
                   x++;
