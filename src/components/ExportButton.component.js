@@ -46,7 +46,6 @@ class ExportButton extends Component{
         }
 
         let data = ""; 
-
         for(let val of JSON.parse(this.props.getHarvestRecords())){
             if(val.batchName == this.props.row.name){
                 data += String(val.tag) + "," + val.weight + "," + val.unit + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
