@@ -61,6 +61,7 @@ class ExportButton extends Component{
         console.log("FileName C: " + fileName);
 
         return <div style={{width: "170px"}}>
+            
             <CSVLink data={data} style={{textDecoration:"none"}} filename={fileName} uFEFF={false}>
                  <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}  style={{width: "120px",fontSize:14}}>Export</Button>            
             </CSVLink>
