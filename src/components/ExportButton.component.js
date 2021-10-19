@@ -2,16 +2,7 @@ import React, { Component } from "react";
 import Button from '@material-ui/core/Button';
 import { CSVLink } from "react-csv";
 
-class ExportButton extends Component{
-
-    handleSubmit() {
-      console.log("Enter deletePlant");
-
-      //this.props.hideHarvestRecord(this.props.row.tag);
-    }
-
-    
-    
+class ExportButton extends Component{    
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +13,6 @@ class ExportButton extends Component{
                     "Red": "#E9573F",
                     "Yellow": "#F6BB42"}
         };
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     render() {  
@@ -53,16 +43,13 @@ class ExportButton extends Component{
         } 
               
         let fileName = this.props.row.name;
-        console.log("FileName A: " + fileName);
         fileName = fileName.replace(" ","_");
-        console.log("FileName B: " + fileName);
         fileName = "ZipHarvest_" + fileName.replace("/",".") + ".csv";
-        console.log("FileName C: " + fileName);
 
 
-        return <div style={{width: "170px"}}>
+        return <div>
             <CSVLink data={data} style={{textDecoration:"none"}} filename={fileName} uFEFF={false}>
-                 <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}  style={{width: "120px",fontSize:14}}>Export</Button>            
+                 <Button aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}}>Export</Button>            
             </CSVLink>
         </div>;
       }
