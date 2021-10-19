@@ -23,27 +23,11 @@ export default class App extends React.Component {
     userID: ""
   };
   componentDidMount() {
-    /*
-    axios.get("/users.json").then((response) => {
-      this.setState({ users: response.data });
-    });*/
-    console.log("Component Did Mount - App.js");
-    console.log("Before GetHarvestBatches")
-    //this.getHarvestBatchesFromDB();
-    console.log("After GetHarvestBatches")
-
-    console.log("Before GetPlants")
-    //this.getPlantsFromDB(true);
-    console.log("After GetPlants")
-
-    console.log("Before GetHarvestRecords")
-    //this.getHarvestRecordsFromDB(true);
-    console.log("After GetHarvestRecords")
+    
   }
 
   
   engageReload = () => {
-    console.log("Engage Reload || pl: " + this.state.plantsLoading + " | hpl: " + this.state.harvestRecordsLoading + " | hbl: " + this.state.harvestBatchesLoading);
     if(!this.state.usersLoading || !this.state.plantsLoading && !this.state.harvestRecordsLoading && !this.state.harvestBatchesLoading){
       console.log("Force Updated In App.js");
       this.forceUpdate();
@@ -51,132 +35,76 @@ export default class App extends React.Component {
   }
 
   getUsersFromDB = async (username,password) => {
-    console.log("In GetUsers FROM DB")
     const response = await fetch(`/api/users/${username}/${password}`);
     const text = await response.text();
-    console.log("API GET USERS: " + text);
     this.state.users = text;
     this.state.usersLoading = false;
     if(text === "0"){
       this.executeLogIn(username);
-    }
-    console.log("Leaving GetUsers FROM DB");
-    
+    }    
   }
 
   getPlantsFromDB = async (reload) => {
-    console.log("In GetPlants");
     if(this.state.userID == ""){
-      console.log("State.userID is empty");
       return;
     }
-    console.log("State.userid: " + this.state.userID);
     const response = await fetch(`/api/pl/${this.state.userID}`);
     const text = await response.text();
-    console.log("API GET PLANTS: " + text);
     this.state.plants = text;
     this.state.plantsLoading = false;
-    console.log("Leaving GetPlants")
     if(reload){
       this.engageReload();
     }
   }
 
   getHarvestRecordsFromDB = async (reload) => {
-    console.log("In GetHarvestRecords");
     if(this.state.userID == ""){
-      console.log("State.userID is empty");
       return;
     }
-    console.log("State.userid: " + this.state.userID);
     const response = await fetch(`/api/hr/${this.state.userID}`);
     const text = await response.text();
-    console.log("API GET HARVESRECORDS: " + text);
     this.state.harvestRecords = text;
     this.state.harvestRecordsLoading = false;
-    console.log("Leaving GetHarvestRecords")
     if(reload){
       this.engageReload();
     }
   }
 
   getHarvestBatchesFromDB = async () => {
-    console.log("In GetHarvestBatches")
     if(this.state.userID == ""){
-      console.log("State.userID is empty");
       return;
     }
-    console.log("State.userid: " + this.state.userID);
     const response = await fetch(`/api/hb/${this.state.userID}`);
     const text = await response.text();
-    console.log("API GET HARVESTBATCHES: " + text);
     this.state.harvestBatches = text;
     this.state.harvestBatchesLoading = false;
-    console.log("Leaving GetHarvestBatches")
     this.engageReload();
   }
 
   getHarvestBatchesForReset = async (currHarvest) => {
-    console.log("In GetHarvestBatchesFORRESET")
     const response = await fetch('/api/harvestbatches');
     const text = await response.text();
-    console.log("API GET HARVESTBATCHES: " + text);
     this.state.harvestBatches = text;
     this.state.harvestBatchesLoading = false;
-    console.log("Leaving GetHarvestBatchesFORRESET");
     this.executeResetHarvestBatches(currHarvest);
   }
 
 
   SetCurrentPage = (currentPage) => {
-		
-    console.log("Set Current Page: " + currentPage);
     this.state.currentPage = (currentPage);
     this.forceUpdate();
   }
 
-  doPost = () => {
-    console.log("Handle Post");
-
-    let plantItem = {
-      strain: 'JOHNNY',
-      tag: '666'
-      };    
-    console.log("PLANT ITEM: " + JSON.stringify(plantItem));
-//method: (plantItem.id) ? 'PUT' : 'POST',
-
-    fetch('/posttest', {
-      method: (plantItem.id) ? 'PUT' : 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(plantItem)
-    })
-    .then(res => res.text())
-    .then(responseFromPlants => this.setState({ responseFromPlants }));
-  }
-
   resetHarvestBatches = (currHarvest) => {
-    console.log("RESET HARVEST BATCHES-CurrHarvest: " + currHarvest);
-    console.log("RESET HARVEST BATCHES-CurrHarvest: " + JSON.stringify(currHarvest));
-
     setTimeout(() =>  this.getHarvestBatchesForReset(currHarvest),0); 
 
     this.setState({harvestBatchesLoading: true, currentHarvest: currHarvest});
   }
 
   executeResetHarvestBatches = (currHarvest) => {
-    console.log("Enter executeresetharvestbatches");
-
     setTimeout(() => this.engageReload(),0); 
 
     let currHarvestID = -1;
-
-    console.log("RESET Harvest Batches");
-    console.log("HarvestBatches: " + this.state.harvestBatches);
-    console.log("CurrHarvest: " + JSON.stringify(currHarvest));
-    console.log("CurrHarvest.name: " + currHarvest.name);
 
     let parsedHarvestBatches = JSON.parse(this.state.harvestBatches);
 
@@ -195,23 +123,10 @@ export default class App extends React.Component {
   resetAll = (currHarvest) => {
     this.setState({harvestBatchesLoading: true, plantsLoading: true, harvestRecordsLoading: true, currentHarvest: currHarvest});
 
-    console.log("RESETTING ALL");
-
-    console.log("Before Get Users");
     this.getUsersFromDB("","");
-    console.log("After Get Users");
-
-    console.log("Before GetHarvestBatches")
     this.getHarvestBatchesFromDB();
-    console.log("After GetHarvestBatches")
-
-    console.log("Before GetPlants")
     this.getPlantsFromDB(true);
-    console.log("After GetPlants")
-
-    console.log("Before GetHarvestRecords")
     this.getHarvestRecordsFromDB(true);
-    console.log("After GetHarvestRecords")
 
     this.forceUpdate();
   }
@@ -219,32 +134,20 @@ export default class App extends React.Component {
   reloadPlants = (currHarvest) => {
     this.setState({currentHarvest: currHarvest});
 
-    console.log("RELOAD PLANTS");
-    console.log("Before GetPlants");
     this.getPlantsFromDB(true);
-    
-    console.log("After GetPlants");
   }
 
   reloadHarvestRecords = () => {
-    console.log("RELOAD Harvest Reacords");
-    console.log("Before GetHarvestRecords");
     this.getHarvestRecordsFromDB(true);
-    
-    console.log("After getHarvestRecords");
   }
 
   reloadHarvestBatches = (currHarvest) => {
     this.setState({currentHarvest: currHarvest});
 
-    console.log("RELOAD Harvest Batches");
-    console.log("Before getHarvestBatces");
     this.getHarvestBatchesFromDB();
-    console.log("After getHarvestBatches");
   }
 
   reloadUsers = () => {
-    console.log("Timeout Reached");
     this.state.usersLoading=true;
     return this.getUsersFromDB("","");
   }
@@ -256,95 +159,51 @@ export default class App extends React.Component {
   reloadPlantsAndHarvestRecords = (currHarvest) => {
     this.setState({currentHarvest: currHarvest, plantsLoading: true, harvestRecordsLoading: true});
 
-    console.log("RELOAD PLANTS AND HARVEST RECORDS");
-    console.log("Before GetPlants");
     this.getPlantsFromDB(true);
-    console.log("After GetPlants");
 
-    console.log("Before GetHarvestRecordsFROMDB");
     this.getHarvestRecordsFromDB(true);
-    console.log("After GetHarvestRecordsFROMDB");
   }
 
   setNewHBID = (newID,hb) => {
-    console.log("SET NEW HB ID");
 		
-      console.log("NEW HB: " + hb);
-      console.log("NEW HB(STRING): " + JSON.stringify(hb));
       hb.id = newID;
-      console.log("NEW HB ID: " + hb.id);
-      console.log("NEW HB ID(STRING): " + JSON.stringify(hb.id));
-      console.log("NEW HB(STRING): " + JSON.stringify(hb));
 
       let tempHarvestBatches = this.state.harvestBatches;
-      console.log("TempHarvestBatches: " + tempHarvestBatches);
 			tempHarvestBatches = tempHarvestBatches.substring(0,tempHarvestBatches.length-1) + "," + JSON.stringify(hb) + "]";
-      console.log("TempHarvestBatches ADDED");
-      console.log("TempHarvestBatches: " + tempHarvestBatches);
 
       this.setState({harvestBatches: tempHarvestBatches});
-
-		  console.log("Harvest Batches Map AFTER SET NEW HB ID(STRINGIFIED): " + JSON.stringify(this.state.harvestBatches));
 	}
 
   getCurrentHarvestID = (hbName) => {
-    console.log("Get Current Harvest ID - HBName: " + hbName);
     let parsedHB = JSON.parse(this.state.harvestBatches);
 
     for(const val of parsedHB){
-      console.log("Val(String): " + JSON.stringify(val));
-      console.log("Val.name: " + val.name);
       if(val.name == hbName){
-        console.log("Found harvestbatch! ID - " + val.id);
         return val.id;
       }
     }
   }
 
   setNewHarvestRecordID = (newID,hr) => {
-    console.log("SET NEW HR ID");
-		
-      console.log("NEW HR: " + hr);
-      console.log("NEW HR(STRING): " + JSON.stringify(hr));
       hr.id = newID;
-      console.log("NEW HR ID: " + hr.id);
-      console.log("NEW HR ID(STRING): " + JSON.stringify(hr.id));
-      console.log("NEW HR(STRING): " + JSON.stringify(hr));
 
       let tempHarvestRecords = this.state.harvestRecords;
-      console.log("TempHarvestRecord: " + tempHarvestRecords);
       if(tempHarvestRecords == "[]"){
         tempHarvestRecords = "[" + JSON.stringify(hr) + "]";
       }else{
         tempHarvestRecords = tempHarvestRecords.substring(0,tempHarvestRecords.length-1) + "," + JSON.stringify(hr) + "]";
       }
-      console.log("TempHarvestRecords ADDED");
-      console.log("TempHarvestRecords: " + tempHarvestRecords);
 
       this.setState({harvestRecords: tempHarvestRecords});
-
-		  console.log("Harvest Record Map AFTER SET NEW HP ID(STRINGIFIED): " + JSON.stringify(this.state.harvestRecords));
 	}
 
   setNewPlantID = (newID,plant) => {
-    console.log("SET NEW PLANT ID");
-		
-      console.log("NEW PLANT: " + plant);
-      console.log("NEW PLANT(STRING): " + JSON.stringify(plant));
       plant.id = newID;
-      console.log("NEW PLANT ID: " + plant.id);
-      console.log("NEW PLANT ID(STRING): " + JSON.stringify(plant.id));
-      console.log("NEW PLANT(STRING): " + JSON.stringify(plant));
 
       let tempPlants = this.state.plants;
-      console.log("TempPlants: " + tempPlants);
 			tempPlants = tempPlants.substring(0,tempPlants.length-1) + "," + JSON.stringify(plant) + "]";
-      console.log("Tempplants ADDED");
-      console.log("TempPlants: " + tempPlants);
 
       this.setState({plants: tempPlants});
-
-		  console.log("Plants Map AFTER SET NEW PLANT ID(STRINGIFIED): " + JSON.stringify(this.state.plants));
 	}
 
   executeLogIn = (user) =>{
@@ -358,31 +217,17 @@ export default class App extends React.Component {
     this.state.plants = plants;
     this.state.harvestRecords = harvestRecords;
     this.state.harvestBatches = harvestBatches;
-    console.log("Set all!");
-    console.log("$$$$$$$$$$$$");
-    console.log("Plants: " + plants);
-    console.log("Plants(STRING): " + JSON.stringify(plants));
-    console.log("HarvestRecords: " + harvestRecords);
-    console.log("HarvestRecords(STRING): " + JSON.stringify(harvestRecords));
-    console.log("HarvestBatches: " + harvestBatches);
-    console.log("HarvestBatches(STRING): " + JSON.stringify(harvestBatches));
-    console.log("STATE.Plants(STRING): " + JSON.stringify(this.state.plants));
-    console.log("STATE.HarvestRecords(STRING): " + JSON.stringify(this.state.harvestRecords));
-    console.log("STATE.HarvestBatches(STRING): " + JSON.stringify(this.state.harvestBatches));
   }
 
   getPlants = () => {
-    console.log("In App.js - Get Plants: " + this.state.plants);
     return this.state.plants;
   }
 
   getHarvestRecords = () => {
-    console.log("In App.js - Get HarvestRecords: " + this.state.harvestRecords);
     return this.state.harvestRecords;
   }
 
   getHarvestBatches = () => {
-    console.log("In App.js - Get HarvestBatches: " + this.state.harvestBatches);
     return this.state.harvestBatches;
   }
 
@@ -391,9 +236,7 @@ export default class App extends React.Component {
   }
 
   setHarvestBatches = (harvestBatchesFromChild) => {
-    console.log("SET HARVEST BATCHES - HB from child: " + harvestBatchesFromChild);
     this.state.harvestBatches = harvestBatchesFromChild;
-    console.log("SET HARVEST BATCHES - state.hbMap after transfer: " + this.state.harvestBatches);
   }
 
   setPlants = (plantMapFromChild) => {
