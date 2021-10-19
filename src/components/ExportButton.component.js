@@ -32,7 +32,7 @@ class ExportButton extends Component{
             console.log("Get Date");
             for(let val of JSON.parse(parent.props.getHarvestBatches())){
                 console.log("Val: " + JSON.stringify(val));
-                if(val.name == batchName){
+                if(val.name === batchName){
                     let parsedDate = new Date(val.date);
                     var dd = String(parsedDate.getDate()).padStart(2, '0');
                     var mm = String(parsedDate.getMonth() + 1).padStart(2, '0'); //January is 0!
