@@ -110,9 +110,9 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
-            <TableCell align="right">Strain</TableCell>
-            <TableCell align="right"># Plants</TableCell>
-            <TableCell align="right">Date</TableCell>
+            <TableCell align="left">Strain</TableCell>
+            <TableCell align="left"># Plants</TableCell>
+            <TableCell align="left">Date</TableCell>
             <TableCell align="center" style={{marginRight:"2px"}}>Export</TableCell>
           </TableRow>
         </TableHead>
@@ -122,9 +122,9 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.strain}</TableCell>
-              <TableCell align="right">{row.plants}</TableCell>
-              <TableCell align="right">{row.date}</TableCell>
+              <TableCell align="left">{row.strain}</TableCell>
+              <TableCell align="left">{row.plants}</TableCell>
+              <TableCell align="left">{row.date}</TableCell>
               <TableCell align="center">
                     <ExportButton row={row} getHarvestRecords={getHarvestRecords} getHarvestBatches={getHarvestBatches}></ExportButton>
                   </TableCell>

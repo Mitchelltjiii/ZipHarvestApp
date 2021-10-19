@@ -74,10 +74,10 @@ class DeleteButton extends Component{
             );
           };
 
-        return <div style={{width: "170px"}}>
+        return <div>
             {this.state.readyToDelete
             ? <ConfirmDelete parent={this}></ConfirmDelete>	
-            : <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleGetReady}  style={{width: "120px"}}>Remove</Button>
+            : <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleGetReady}>Remove</Button>
             }
 
         </div>
