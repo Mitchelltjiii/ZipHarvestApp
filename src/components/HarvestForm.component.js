@@ -1100,14 +1100,14 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	return (
-		<div id="harvest-form">
+		<div id="harvest-form" style={{margin:"auto"}}>
+			<div style={{margin:"auto"}}>
 			<Grid
 				container
 				direction="row"
   				justify="center"
 				alignItems="center"
 			>
-				<div style={{margin:"auto"}}>
 				<Grid
 					container
 					direction="row"
@@ -1240,8 +1240,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					getPlantItem={getPlantItem} harvestType={harvestType}></LastHarvested>}		
 
 
-				</div>
 				</Grid>
+				</div>
 
 				<Grid
 					container
