@@ -18,7 +18,7 @@ function PlantTable({plantsWithSearch,toggleDeleteAllSelected,getDeleteAllSelect
     let tableWidth = 600;
     
     if(isMobile){
-      tableWidth = 345;
+      tableWidth = 340;
     }
     const useStyles = makeStyles({
         table: {
