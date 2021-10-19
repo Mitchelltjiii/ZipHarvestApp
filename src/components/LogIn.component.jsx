@@ -29,7 +29,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
         position: 'absolute', left: '50%', top: '50%',
         transform: 'translate(-50%, -50%)'
     }}>
-      <div style={{width:"350px",height:"500px",border:"1px solid #92a8d1",borderRadius:5}}>
+      <div style={{width:"350px",height:"500px",border:"1px solid #f3f6f4",borderRadius:5}}>
 				<div style={{
 			position: 'absolute', left: '50%', top: '50%',
 			transform: 'translate(-50%, -50%)'}}>
@@ -39,8 +39,8 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
   				justifyContent="center"
 					alignItems="center"
 					>
-                    <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
-                    <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+                    <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined" style={{height:"30px"}}></TextField>
+                    <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px",height:"40px"}}></TextField>
                     <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn}>Log in</Button>
           </Grid>
       </div>
