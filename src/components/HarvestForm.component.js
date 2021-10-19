@@ -149,7 +149,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	for (const val of JSON.parse(getPlants())) {
 		console.log("Val Search For: " + JSON.stringify(val));
 		console.log("Val.tag: " + val.tag);
-		if(getPlant(val.tag) != undefined){
+		if(getPlant(val.tag) !== undefined){
 			strain = getPlant(val.tag).strain;
 		}
 		console.log("Strain: " + JSON.stringify(strain));
@@ -168,7 +168,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	let selHB = '';
 
 	console.log("JSON.stringify-currentharvest: " + JSON.stringify(currentHarvest));
-	if(currentHarvest != undefined && JSON.stringify(currentHarvest)!= "[]"){
+	if(currentHarvest !== undefined && JSON.stringify(currentHarvest)!= "[]"){
 		selHB = currentHarvest.name;
 	}
 
@@ -194,7 +194,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			for(let val of JSON.parse(getHarvestBatches())) {
 				console.log("VAL(STRING): " + JSON.stringify(val));
 				console.log("Val.name: " + val.name);
-				if(val.name == selectedHB){
+				if(val.name === selectedHB){
 					console.log("GRABBED");
 					return new HarvestBatch(val.name,val.submitted,val.type,val.date,val.userID);
 				}
@@ -224,7 +224,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	function getPlant(plantTag){
 		console.log("GET PLANT - Tag: " + plantTag);
 		for(let val of JSON.parse(getPlants())) {
-			if(val.tag == plantTag){
+			if(val.tag === plantTag){
 				console.log("GRABBED PLANT");
 				return new Plant(val.userID,val.strain,val.tag,val.active);
 			}
@@ -240,11 +240,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		let foundX = -1;
 		let replaceEntry = "";
 		for(let val of JSON.parse(getPlants())) {
-			if(val.tag == plantTag){
+			if(val.tag === plantTag){
 				console.log("FOUND X: " + x);
 				foundX = x;
 				replaceEntry = val;
-				if(currentHarvest.type == 0){
+				if(currentHarvest.type === 0){
 					replaceEntry.active = 1;
 				}
 			}
@@ -252,7 +252,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}
 
 		console.log("Plant Map Before Remove Plant: " + getPlants());
-		if(foundX != -1){
+		if(foundX !== -1){
 			setPlants(JSON.stringify(JSON.parse(getPlants()).splice(foundX,1,replaceEntry)));
 		}
 		console.log("Plant Map AFTER Remove Plant: " + getPlants());
@@ -372,7 +372,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	console.log("ON REFRESH SELECTED TAG: " + selectedTag);
 	let currSelectedTag = selectedTag;
-	if(tagList.length>0 && selectedTag == ''){
+	if(tagList.length>0 && selectedTag === ''){
 		currSelectedTag = tagList[0];
 	}
 	console.log("CURRSELECTED TAG AFTER TRANSFORM: " + currSelectedTag);
@@ -423,20 +423,20 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	let hbInfoTabsHiddenNow = hbInfoTabsHidden;
 
-	if(!(currentHarvest == undefined || currentHarvest.name == '')){
+	if(!(currentHarvest === undefined || currentHarvest.name === '')){
 		hbInfoTabsHiddenNow=false;
 	}
 
 	let harvestTypeLabelText = "Harvest";
 	let harvestDateLabelText = "Today";
-	if(!(currentHarvest == undefined || currentHarvest.name == '')){
+	if(!(currentHarvest === undefined || currentHarvest.name === '')){
 		console.log("Currenharvest.type: " + currentHarvest.type);
-		if(currentHarvest.type==1){
+		if(currentHarvest.type===1){
 			harvestTypeLabelText = "Manicure";
 		}
-		if(currentHarvest.date==getTodayStr()){
+		if(currentHarvest.date===getTodayStr()){
 			harvestDateLabelText = "Today - " + currentHarvest.date;
-		}else if(currentHarvest.date==getYesterdayStr()){
+		}else if(currentHarvest.date===getYesterdayStr()){
 			harvestDateLabelText = "Yesterday - " + currentHarvest.date;
 		}else{
 			harvestDateLabelText = currentHarvest.date;
@@ -474,10 +474,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
   let dayList = [];
   let dayNumber = 31;
-  if(monthValue==4||monthValue==6||monthValue==9||monthValue==11){
+  if((monthValue===4)||(monthValue===6)||(monthValue===9)||(monthValue===11)){
     dayNumber = 30;
-  }else if(monthValue==2){
-    if(yearValue%4==0){
+  }else if(monthValue===2){
+    if((yearValue%4)===0){
       dayNumber=29;
     }else{
       dayNumber=28;
@@ -541,7 +541,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("Commit Search!!");
 
 		for (const val of JSON.parse(getPlants())) {
-			if(val.active == 0){
+			if(val.active === 0){
 				plantTags.push(val.tag);
 			}
 		}
@@ -550,8 +550,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		if(searchParam==="Contains"){
 			plantTags.map((tag) => {
 				let p = getPlant(tag);
-				if(p!=undefined&&p.tag.includes(searchTag)&&!p.harvested){
-					if(searchStrain == 'All Strains' || searchStrain == p.strain){
+				if((p!==undefined)&&(p.tag.includes(searchTag))&&(!p.harvested)){
+					if((searchStrain === 'All Strains') || (searchStrain === p.strain)){
 						newTagList.push(p.tag + " | " + p.strain);
 					}
 				}
@@ -559,8 +559,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}else if(searchParam==="Ends With"){
 			plantTags.map((tag) => {
 				let p = getPlant(tag);
-				if(p!=undefined&&p.tag.substring(p.tag.length-searchTag.length)===(searchTag)&&!p.harvested){
-					if(searchStrain == 'All Strains' || searchStrain == p.strain){
+				if((p!==undefined)&&(p.tag.substring(p.tag.length-searchTag.length)===(searchTag))&&(!p.harvested)){
+					if((searchStrain === 'All Strains' )|| (searchStrain === p.strain)){
 						newTagList.push(p.tag + " | " + p.strain);
 					}
 				}
@@ -573,7 +573,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const handleAddNewStrain = (event) => {
 		let strain = document.getElementById("changeStrainField").value;
 		console.log("Strain: " + strain);
-		if(strain!=""&&!strainList.includes(strain)){
+		if((strain!=="")&&(!strainList.includes(strain))){
 			strainList.push(strain);
 			console.log("Strain Added");
 		}
@@ -590,14 +590,14 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function addNewHB(){
 		let hbName = document.getElementById("changeHBField").value;
-		if(hbName != ""){
+		if(hbName !== ""){
 			let hbDate = getTodayStr();
 		if(day==='yesterday'){
 			hbDate=getYesterdayStr();
 		}
 
 		let harvType = 0;
-		if(harvestType == "manicure"){
+		if(harvestType === "manicure"){
 			harvType = 1;
 		}
 
@@ -666,7 +666,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	function isNumeric(str) {
-		if (typeof str != "string") return false // we only process strings!  
+		if (typeof str !== "string") return false // we only process strings!  
 		return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
 			   !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
 	  }
@@ -677,7 +677,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		
 		let plantCount = 0;
 		for(const val of JSON.parse(getHarvestRecords())) {  
-			if(val.batchName == currentHarvest.name){
+			if(val.batchName === currentHarvest.name){
                 plantCount++;
 			}
 		}
@@ -750,7 +750,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
       	console.log("ParsedHBs: " + JSON.stringify(parsedHBs));
 		for(const hb of parsedHBs){
 			console.log("HB: " + JSON.stringify(hb));
-			if(hb.id == hbID){
+			if(hb.id === hbID){
 				console.log("GOT HB!");
 				foundX = x;
 			}
@@ -768,14 +768,14 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		let i = 0;
 		textSplit.forEach((element) => {
 			console.log("Split Element: " + element);
-			if(element != ""){
+			if(element !== ""){
 				newPlantList += element + ",";
 				i++;
 			}
 		});
 		console.log("New Plant List after Loop: " + newPlantList);
 		newPlantList+= addID + "}";
-		if(i == 0){
+		if(i === 0){
 			newPlantList = "{" + addID + "}";
 		}
 		console.log("New Plant List after if: " + newPlantList);
@@ -851,24 +851,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		
 		setLastHarvestedPlant(lhp);
 		setNewHarvestRecordID(data.insertId,harvestRecordItem);
-	}
-
-	function removeHarvestRecord(removeID){
-		console.log("Remove Harvested Plant ID: " + removeID );
-		let x = 0;
-		let foundX = -1;
-		for(let val of JSON.parse(getHarvestRecords())){
-			console.log("Val: " + JSON.stringify(val));
-			if(val.id == removeID){
-				foundX=x;
-			}
-			x++;
-		}
-		if(foundX != -1){
-			console.log("HarvestRecords before splice: " + JSON.stringify(getHarvestRecords()) );
-			setHarvestRecords(JSON.stringify(JSON.parse(getHarvestRecords()).splice(foundX,1)));
-			console.log("HarvestRecords after splice: " + JSON.stringify(getHarvestRecords()) );
-		}
 	}
 
 	const ChangeHBForm = ({changeHBHiddenNow}) => {
@@ -1094,7 +1076,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("Get Remove Plant ID Delete: UID: " + uid)
 
 		for(let val of JSON.parse(getHarvestRecords())){
-			if(val.uid == uid){
+			if(val.uid === uid){
 				console.log("Found UID: " + uid);
 				console.log("Found hbItemID: " + val.id);
 
@@ -1156,13 +1138,13 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function getStrainForPlantItem(tag){
 		console.log("Get Strain For Plant Item");
-		if(tag == null){
+		if(tag === null){
 			tag = currentHarvestRecord.tag;
 		}
 		console.log("Searching For: " + tag);
 		for(let val of JSON.parse(getPlants())){
 			console.log("VAL(STRING): " + JSON.stringify(val));
-			if(val.tag == tag){
+			if(val.tag === tag){
 				return val.strain;
 			}
 		}
@@ -1361,7 +1343,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				</Grid>
 
-                {(errorMessageText.length!=0) ? <ErrorMessageLabel></ErrorMessageLabel> : null}
+                {(errorMessageText.length!==0) ? <ErrorMessageLabel></ErrorMessageLabel> : null}
 
 				{(lastHarvestedPlant.tag === undefined) ? 
 				<div></div> :
