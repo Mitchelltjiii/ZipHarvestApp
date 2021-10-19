@@ -13,7 +13,7 @@ class RemoveFromAvailablePlants extends Component{
     async addPlant(plantItem){
         console.log("Engage add Plant");
         let parent = this;
-        const resp = fetch('/pl', {
+        fetch('/pl', {
           method: 'PUT',
           headers: {
             'Accept': 'application/json',
@@ -28,7 +28,7 @@ class RemoveFromAvailablePlants extends Component{
           console.log("Before removing busy adding record");
           console.log("BUSYADDINGPL before: " + JSON.stringify(parent.state.busyAddingPlants)); 
           for( var i = 0; i < parent.state.busyAddingPlants.length; i++){ 
-            if ( parent.state.busyAddingPlants[i] == plantItem.tag) { 
+            if ( parent.state.busyAddingPlants[i] === plantItem.tag) { 
                 parent.state.busyAddingPlants.splice(i, 1); 
             }
           }
@@ -102,7 +102,7 @@ class RemoveFromAvailablePlants extends Component{
 
 			        for(const val2 of JSON.parse(this.props.getPlants())){
                 console.log("Checking against plant: " + JSON.stringify(val2));
-                if(val2.tag == val){
+                if(val2.tag === val){
                   addPlant = new Plant(val2.tag,val2.strain,this.props.userID,1);
 
                   const plantItem = getPlantItem(addPlant);
@@ -125,11 +125,11 @@ class RemoveFromAvailablePlants extends Component{
 
         while(this.state.busyAddingPlants != [] && x<timeLimit){
                   console.log("Set timeout");
-                  setTimeout('',200);
+                  setTimeout(null,200);
                   x++;
                 }
 
-        if(x==timeLimit){
+        if(x===timeLimit){
                   console.log("TIMEOUT OPERATION FAILED");
                 }
 
