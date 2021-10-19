@@ -485,23 +485,23 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("Commit Search... PlantTags Size:" + plantTags.length);
 
 		if(searchParam==="Contains"){
-			plantTags.map((tag) => {
+			for(const tag of plantTags){
 				let p = getPlant(tag);
 				if((p!==undefined)&&(p.tag.includes(searchTag))&&(!p.harvested)){
 					if((searchStrain === 'All Strains') || (searchStrain === p.strain)){
 						newTagList.push(p.tag + " | " + p.strain);
 					}
 				}
-			})
+			}
 		}else if(searchParam==="Ends With"){
-			plantTags.map((tag) => {
+			for(const tag of plantTags){
 				let p = getPlant(tag);
 				if((p!==undefined)&&(p.tag.substring(p.tag.length-searchTag.length)===(searchTag))&&(!p.harvested)){
 					if((searchStrain === 'All Strains' )|| (searchStrain === p.strain)){
 						newTagList.push(p.tag + " | " + p.strain);
 					}
 				}
-			})
+			}
 		}
 
 		return newTagList; 
