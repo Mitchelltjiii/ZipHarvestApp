@@ -52,7 +52,6 @@ class ExportButton extends Component{
                 data += String(val.tag) + "," + val.weight + "," + val.unit + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
             }
         }   
-    
         let fileName = this.props.row.name;
         console.log("FileName A: " + fileName);
         fileName = fileName.replace(" ","_");
