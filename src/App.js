@@ -88,8 +88,8 @@ export default class App extends React.Component {
   }
 
 
-  SetCurrentPage = (currentPage) => {
-    this.state.currentPage = (currentPage);
+  SetCurrentPage = (currPage) => {
+    this.setState({currentPage: currPage});
     this.forceUpdate();
   }
 
@@ -146,7 +146,7 @@ export default class App extends React.Component {
   }
 
   reloadUsers = () => {
-    this.state.usersLoading=true;
+    this.setState({usersLoading:true});
     return this.getUsersFromDB("","");
   }
 
@@ -205,16 +205,13 @@ export default class App extends React.Component {
 	}
 
   executeLogIn = (user) =>{
-    this.state.loggedIn=user;
-    this.state.userID=user;
+    this.setState({loggedIn:user,userID:user});
     this.resetAll([]);
     this.engageReload();
   }
 
-  setAll = (plants,harvestRecords,harvestBatches) => {
-    this.state.plants = plants;
-    this.state.harvestRecords = harvestRecords;
-    this.state.harvestBatches = harvestBatches;
+  setAll = (pl,hr,hb) => {
+    this.setState({plants:pl,harvestRecords:hr,harvestBatches:hb});
   }
 
   getPlants = () => {
@@ -234,39 +231,25 @@ export default class App extends React.Component {
   }
 
   setHarvestBatches = (harvestBatchesFromChild) => {
-    this.state.harvestBatches = harvestBatchesFromChild;
+    this.setState({harvestBatches:harvestBatchesFromChild});
   }
 
   setPlants = (plantMapFromChild) => {
-    console.log("SET PLANT MAP - PlantMap from child: " + plantMapFromChild);
-    this.state.plants = plantMapFromChild;
-    console.log("SET PLANTS - Plants after transfer: " + this.state.plants);
+    this.setState({plants:plantMapFromChild});
   }
 
   setHarvestRecords = (harvestRecordsMapFromChild) => {
-    console.log("SET HARVESTRECORDS MAP - HarvestRecordsMap from child: " + harvestRecordsMapFromChild);
-    this.state.harvestRecords = harvestRecordsMapFromChild;
-    console.log("SET HARVESTRECORDS - HarvestRecords after transfer: " + this.state.harvestRecords);
+    this.setState({harvestRecords:harvestRecordsMapFromChild});
   }
 
   setUsers = (usersMapFromChild) => {
-    console.log("SET Users MAP - UsersMap from child: " + usersMapFromChild);
-    this.state.users = usersMapFromChild;
-    console.log("SET Users - Users after transfer: " + this.state.users);
+    this.setState({users:usersMapFromChild});
   }
 
 
   executeLogout = () => {
-    this.state.loggedIn = '';
-    this.state.currentPage = 'harvest-form';
-    this.state.harvestBatches = [];
-    this.state.plants = [];
-    this.state.harvestRecords = [];
-    this.state.plantsLoading = true;
-    this.state.harvestBatchesLoading = true;
-    this.state.harvestRecordsLoading = true;
-    this.state.currentHarvest = [];
-    this.state.userID = "";
+    this.setState({loggedIn:'',currentPage:'harvest-form',harvestBatches:[],plants:[],harvestRecords:[],
+    plantsLoading:true,harvestBatchesLoading:true,harvestRecordsLoading:true,currentHarvest:[],userID:''});
     this.forceUpdate();
   }
 
