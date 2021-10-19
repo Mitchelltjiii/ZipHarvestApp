@@ -884,10 +884,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		if (!changeHBHiddenNow) return null;
 	  
 		return (
-		  <div className="full tr" style={{backgroundColor: bgColors.Green}}>
+		  <div className="full tr" style={{border:"1px solid #d7d7d7",borderRadius:5}}>
+			  <div style={{margin:"5px"}}>
 			<Grid
 					container
-					direction="row"
+					direction="column"
   					justify="center"
 					alignItems="center"
 				>
@@ -922,10 +923,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancelNewHB}>Cancel</Button>
 					<AddHarvestBatchButton getHarvestBatchItem={getHarvestBatchItem} addNewHB={addNewHB} resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} reloadHarvestBatchesFromAddHB={reloadHarvestBatchesFromAddHB}></AddHarvestBatchButton>
 				</Grid>
-
-
-            
-
+				</div>
 		  </div>
 		);
 	  };
