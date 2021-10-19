@@ -29,7 +29,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
         position: 'absolute', left: '50%', top: '50%',
         transform: 'translate(-50%, -50%)'
     }}>
-      <div style={{width:"350px",height:"500px",border:"1px solid #eeeeee",borderRadius:5}}>
+      <div style={{width:"350px",height:"500px",border:"1px solid #d7d7d7",borderRadius:5}}>
 				<div style={{
 			position: 'absolute', left: '50%', top: '50%',
 			transform: 'translate(-50%, -50%)'}}>

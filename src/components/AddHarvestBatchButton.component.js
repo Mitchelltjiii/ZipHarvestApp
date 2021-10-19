@@ -51,7 +51,7 @@ class AddHarvestBatchButton extends Component{
 
     render() {    
         return <div>
-            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}>Add</Button>
+            <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}>Create Batch</Button>
         </div>
       }
 }

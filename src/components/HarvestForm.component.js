@@ -902,6 +902,14 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					</RadioGroup>
 				</FormControl>
 				
+				<FormControl component="fieldset">
+  					<FormLabel component="legend">Harvest Type</FormLabel>
+  					<RadioGroup aria-label="Harvest Type" name="harvest-type" value={harvestType} onClick={handleHarvestTypeChange} row>
+						<FormControlLabel value="harvest" control={<Radio />} label="Harvest" />
+    					<FormControlLabel value="manicure" control={<Radio />} label="Manicure" />
+  					</RadioGroup>
+				</FormControl>
+
 				</Grid>
 
 
@@ -911,19 +919,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
-				
-				<FormControl component="fieldset">
-  					<FormLabel component="legend">Harvest Type</FormLabel>
-  					<RadioGroup aria-label="Harvest Type" name="harvest-type" value={harvestType} onClick={handleHarvestTypeChange} row>
-						<FormControlLabel value="harvest" control={<Radio />} label="Harvest" />
-    					<FormControlLabel value="manicure" control={<Radio />} label="Manicure" />
-  					</RadioGroup>
-				</FormControl>
+					<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancelNewHB}>Cancel</Button>
+					<AddHarvestBatchButton getHarvestBatchItem={getHarvestBatchItem} addNewHB={addNewHB} resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} reloadHarvestBatchesFromAddHB={reloadHarvestBatchesFromAddHB}></AddHarvestBatchButton>
 				</Grid>
 
 
-            <AddHarvestBatchButton getHarvestBatchItem={getHarvestBatchItem} addNewHB={addNewHB} resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} reloadHarvestBatchesFromAddHB={reloadHarvestBatchesFromAddHB}></AddHarvestBatchButton>
-			<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancelNewHB}>Cancel</Button>
+            
 
 		  </div>
 		);
