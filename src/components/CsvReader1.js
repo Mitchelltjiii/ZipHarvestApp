@@ -13,30 +13,19 @@ export default class CSVReader1 extends Component {
   };
 
   handleOnFileLoad = (data, file, e) => {
-    console.log('---------------------------');
-    console.log(JSON.stringify(data));
-    console.log('---------------------------');
-
     const csv = jsonToCSV(data);
-      
-    console.log('---------------------------');
-    console.log(csv);
-    console.log('---------------------------');
     
-    console.log("CSV SPLIT: ");
     let csvSplit = csv.split(/\r?\n/);
     let plantList = [];
     for (var i = 2; i < csvSplit.length; i++) {
         console.log(csvSplit[i]);
         let newText = csvSplit[i].substring(1);
         newText = newText.substring(0,newText.indexOf('"'));
-        console.log("New text: " + newText);
         let newTextSplit = newText.split(",");
         if(newTextSplit[0] != undefined && newTextSplit[1] != undefined) {
             plantList.push(newTextSplit[0] + "," + newTextSplit[1]);
         }
     }
-    console.log("Plantlist: " + JSON.stringify(plantList));
 
     let parent = this;
 
@@ -84,16 +73,3 @@ export default class CSVReader1 extends Component {
     );
   }
 }
-
-/*<button
-                style={{
-                  borderRadius: 0,
-                  marginLeft: 0,
-                  marginRight: 0,
-                  paddingLeft: 20,
-                  paddingRight: 20,
-                }}
-                onClick={this.handleRemoveFile}
-              >
-                Remove
-              </button>*/

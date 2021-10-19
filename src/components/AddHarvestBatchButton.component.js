@@ -16,21 +16,6 @@ class AddHarvestBatchButton extends Component{
         if(this.props.addNewHB()){
           this.executeAddNewHB();
         }
-
-        /*
-        const harvestBatchItem = this.props.getHarvestBatchItem(true);
-        console.log("HarvestBatchItem before fetch: " + JSON.stringify(harvestBatchItem));
-
-    
-        await fetch('/api/harvestbatch', {
-            method: (harvestBatchItem.id) ? 'PUT' : 'POST',
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(harvestBatchItem),
-      });
-        this.props.history.push('/plants');*/
     }
 
     async executeAddNewHB(){
@@ -41,7 +26,7 @@ class AddHarvestBatchButton extends Component{
       const harvestBatchItem = this.props.getHarvestBatchItem(true);
       console.log("HarvestBatchItem before fetch: " + JSON.stringify(harvestBatchItem));
     
-      const resp = fetch('/hb', {
+      fetch('/hb', {
         method: (harvestBatchItem.id) ? 'PUT' : 'POST',
         headers: {
           'Accept': 'application/json',
@@ -51,41 +36,8 @@ class AddHarvestBatchButton extends Component{
       }).then(function(response) {
         return response.json();
       }).then(function(data) {
-        //console.log("EXCT DATA: " + data); // this will be a string
-        //parent.props.setNewHBID(data,harvestBatchItem);
         parent.props.reloadHarvestBatchesFromAddHB();
       });
-      /*
-      var text = "Text before change";
-      try{
-        text = await response.text;
-      }catch(err){
-        console.log("CAUGHT ERROR EXECUTEADDNEWHB");
-      }
-      console.log("EXECUTE ADD NEW HB RESPONSE: " + response);
-
-      console.log("EXECUTE ADD NEW HB RESPONSE(STRING): " + JSON.stringify(response));
-
-      console.log("EXECUTE ADD NEW HB text: " + text);
-      
-      console.log("EXECUTE ADD NEW HB text(STRING): " + JSON.stringify(text));*/
-/*,function(error, results, fields) {
-        console.log("RESPONSE FUNCTION CALLED");
-        if (error) throw error;
-        console.log("POST RESULTS: " + results);
-        console.log(error);
-        res.send({postResults: results}); //<-- send back the JSON response
-      }*/
-
-      /*
-      fetch('/harvestbatch', {
-        method: (harvestBatchItem.id) ? 'PUT' : 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(harvestBatchItem)
-      });*/
     }
     
     constructor(props) {

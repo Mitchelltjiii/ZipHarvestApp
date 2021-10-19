@@ -46,12 +46,12 @@ class EditButton extends Component{
               let foundHarvestRecord = new HarvestRecord('','','','','','');
               for(const val2 of JSON.parse(this.props.getHarvestRecords())){
                 console.log("Val2 (HarvestRecords): " + JSON.stringify(val2));
-                if(val2.tag==val.tag){
+                if(val2.tag===val.tag){
                   foundIndex = i;
-                  if(isNaN(newWeight) || newWeight == 0){
+                  if(isNaN(newWeight) || newWeight === 0){
                     newWeight = val2.weight;
                   }
-                  if(newUnit == ''){
+                  if(newUnit === ''){
                     newUnit = val2.unit;
                   }
                   foundHarvestRecord = new HarvestRecord(val2.id,val2.tag,newWeight,newUnit,val2.batchName,val2.userID);
@@ -60,7 +60,7 @@ class EditButton extends Component{
                 i++;
               }
     
-              if(foundIndex != -1){
+              if(foundIndex !== -1){
                 let splicedHR = JSON.parse(this.props.getHarvestRecords());
                 splicedHR.splice(foundIndex,1,foundHarvestRecord)
                 this.props.setHarvestRecords(JSON.stringify(splicedHR));
@@ -82,13 +82,13 @@ class EditButton extends Component{
   
                 let x = 0;
   
-                while(this.state.busySettingHarvestRecords != [] && x<this.props.timeLimit){
+                while(this.state.busySettingHarvestRecords !== [] && x<this.props.timeLimit){
                   console.log("Set timeout");
                   setTimeout('',200);
                   x++;
                 }
   
-                if(x==this.props.timeLimit){
+                if(x===this.props.timeLimit){
                   console.log("TIMEOUT OPERATION FAILED");
                 }
                 console.log("Left timeout loop");
@@ -103,7 +103,7 @@ class EditButton extends Component{
           for(const tag of this.props.currHidePlants){
             let addPlant = new Plant("","","","");
             for(const val of JSON.parse(this.props.getHarvestRecords())){
-              if(val.tag == tag){
+              if(val.tag === tag){
                 addPlant = new Plant(val.tag,this.props.getStrainForPlantItem(val.tag),val.userID,0);
 
                 const plantItem = this.getPlantItem(addPlant);
@@ -121,13 +121,13 @@ class EditButton extends Component{
   
                 let x = 0;
 
-                while(this.state.busyAddingPlants != [] && x<this.props.timeLimit){
+                while(this.state.busyAddingPlants !== [] && x<this.props.timeLimit){
                   console.log("Set timeout");
                   setTimeout('',200);
                   x++;
                 }
 
-                if(x==this.props.timeLimit){
+                if(x===this.props.timeLimit){
                   console.log("TIMEOUT OPERATION FAILED");
                 }
               }
@@ -142,7 +142,7 @@ class EditButton extends Component{
               let foundID = '';
               for(const val2 of JSON.parse(this.props.getHarvestRecords())){
                 console.log("Val2 (HarvestRecords): " + JSON.stringify(val2));
-                if(val2.tag==tag){
+                if(val2.tag===tag){
                   foundIndex = i;
                   console.log("Found Index: " + i);
                   foundID = val2.id;
@@ -150,7 +150,7 @@ class EditButton extends Component{
                 i++;
               }
     
-              if(foundIndex != -1){
+              if(foundIndex !== -1){
                 let splicedHR = JSON.parse(this.props.getHarvestRecords());
                 splicedHR.splice(foundIndex,1);
                 this.props.setHarvestRecords(JSON.stringify(splicedHR));
@@ -167,13 +167,13 @@ class EditButton extends Component{
   
                 let x = 0;
   
-                while(this.state.busyDeletingHarvestRecords != [] && x<this.props.timeLimit){
+                while(this.state.busyDeletingHarvestRecords !== [] && x<this.props.timeLimit){
                   console.log("Set timeout");
                   setTimeout('',200);
                   x++;
                 }
   
-                if(x==this.props.timeLimit){
+                if(x===this.props.timeLimit){
                   console.log("TIMEOUT OPERATION FAILED");
                 }
                 console.log("Left timeout loop");
@@ -227,7 +227,7 @@ class EditButton extends Component{
       console.log("Before removing busy removing record");
       console.log("BUSYREMOVINGHR before: " + JSON.stringify(this.state.busyDeletingHarvestRecords)); 
       for( var i = 0; i < this.state.busyDeletingHarvestRecords.length; i++){ 
-        if (this.state.busyDeletingHarvestRecords[i] == removePlantID) { 
+        if (this.state.busyDeletingHarvestRecords[i] === removePlantID) { 
             this.state.busyDeletingHarvestRecords.splice(i, 1); 
         }
       }
@@ -256,7 +256,7 @@ class EditButton extends Component{
       console.log("Before removing busy setting record");
       console.log("BUSYSETTINGHR before: " + JSON.stringify(this.state.busySettingHarvestRecords)); 
       for( var i = 0; i < this.state.busySettingHarvestRecords.length; i++){ 
-        if ( this.state.busySettingHarvestRecords[i] == harvestRecordItem.id) { 
+        if ( this.state.busySettingHarvestRecords[i] === harvestRecordItem.id) { 
             this.state.busySettingHarvestRecords.splice(i, 1); 
         }
       }
@@ -267,7 +267,7 @@ class EditButton extends Component{
     async addPlant(plantItem){
       console.log("Engage add Plant");
       let parent = this;
-      const resp = fetch('/pl', {
+      fetch('/pl', {
         method: (plantItem.tag) ? 'PUT' : 'POST',
         headers: {
           'Accept': 'application/json',
@@ -282,7 +282,7 @@ class EditButton extends Component{
         console.log("Before removing busy adding record");
         console.log("BUSYADDINGPL before: " + JSON.stringify(parent.state.busyAddingPlants)); 
         for( var i = 0; i < parent.state.busyAddingPlants.length; i++){ 
-          if ( parent.state.busyAddingPlants[i] == plantItem.tag) { 
+          if ( parent.state.busyAddingPlants[i] === plantItem.tag) { 
               parent.state.busyAddingPlants.splice(i, 1); 
           }
         }

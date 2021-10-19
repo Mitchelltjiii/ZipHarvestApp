@@ -68,22 +68,6 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
     return <span>Browser doesn't support speech recognition.</span>;
   }
 
-  
-  const handleStartSpeechRecognition = () => {
-    if(!listening){
-      SpeechRecognition.startListening();
-    console.log("Handle Start Speech Recog")
-    console.log("Listening: " + listening);
-    let x = 0;
-    while(listening && x<1000){
-        console.log("Listening... x: " + x)
-        setTimeout('',100);
-        x++;
-    }
-    console.log("Done Listening");
-    }
-  }
-
   function startListeningFromVoiceButton(){
     console.log("Start Listening From Voice Button");
     SpeechRecognition.startListening();
