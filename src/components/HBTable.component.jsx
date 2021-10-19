@@ -111,23 +111,23 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Strain</TableCell>
-            <TableCell># Plants</TableCell>
-            <TableCell>Date</TableCell>
-            <TableCell>Export</TableCell>
+            <TableCell align="center">Name</TableCell>
+            <TableCell align="center">Strain</TableCell>
+            <TableCell align="center"># Plants</TableCell>
+            <TableCell align="center">Date</TableCell>
+            <TableCell align="center">Export</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
             {parsedRows.map((row) => (
             <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
+              <TableCell align="center" component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell>{row.strain}</TableCell>
-              <TableCell>{row.plants}</TableCell>
-              <TableCell>{row.date}</TableCell>
-              <TableCell>
+              <TableCell align="center">{row.strain}</TableCell>
+              <TableCell align="center">{row.plants}</TableCell>
+              <TableCell align="center">{row.date}</TableCell>
+              <TableCell align="center">
                     <ExportButton row={row} getHarvestRecords={getHarvestRecords} getHarvestBatches={getHarvestBatches}></ExportButton>
                   </TableCell>
             </TableRow>
