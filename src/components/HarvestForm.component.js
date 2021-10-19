@@ -887,13 +887,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		  <div className="full tr" style={{backgroundColor: bgColors.Green}}>
 			<Grid
 					container
-					direction="column"
+					direction="row"
   					justify="center"
 					alignItems="center"
 				>
 
 				<TextField id="changeHBField" label="Harvest Batch Name"/>
-
 				
 				<FormControl component="fieldset">
   					<FormLabel component="legend">Harvest Date</FormLabel>
@@ -902,7 +901,17 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
     					<FormControlLabel value="yesterday" control={<Radio />} label="Yesterday" />
   					</RadioGroup>
 				</FormControl>
+				
+				</Grid>
 
+
+				<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
+				
 				<FormControl component="fieldset">
   					<FormLabel component="legend">Harvest Type</FormLabel>
   					<RadioGroup aria-label="Harvest Type" name="harvest-type" value={harvestType} onClick={handleHarvestTypeChange} row>
@@ -911,10 +920,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					</RadioGroup>
 				</FormControl>
 				
-				<AddHarvestBatchButton getHarvestBatchItem={getHarvestBatchItem} addNewHB={addNewHB} resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} reloadHarvestBatchesFromAddHB={reloadHarvestBatchesFromAddHB}></AddHarvestBatchButton>
-				<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancelNewHB}>Cancel</Button>
+				</Grid>
 
-				</Grid>            
+            <AddHarvestBatchButton getHarvestBatchItem={getHarvestBatchItem} addNewHB={addNewHB} resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} reloadHarvestBatchesFromAddHB={reloadHarvestBatchesFromAddHB}></AddHarvestBatchButton>
+			<Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancelNewHB}>Cancel</Button>
+
 		  </div>
 		);
 	  };
