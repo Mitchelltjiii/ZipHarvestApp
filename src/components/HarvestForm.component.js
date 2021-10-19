@@ -1104,7 +1104,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			<div style={{margin:"auto"}}>
 			<Grid
 				container
-				direction="row"
+				direction="column"
   				justify="center"
 				alignItems="center"
 			>
