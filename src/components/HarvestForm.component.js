@@ -1107,13 +1107,13 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   				justify="center"
 				alignItems="center"
 			>
+				<div style={{margin:"auto"}}>
 				<Grid
 					container
 					direction="row"
   					justify="center"
 					alignItems="center"
 				>
-
 
 				<ChangeHBForm changeHBHiddenNow={changeHBHiddenNow}></ChangeHBForm>
 				<AddNewHBForm changeHBHiddenNow={changeHBHiddenNow}></AddNewHBForm>
@@ -1238,6 +1238,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} 
 					setChanges={setChanges} resetHarvestForm={resetHarvestForm}
 					getPlantItem={getPlantItem} harvestType={harvestType}></LastHarvested>}		
+
+
+				</div>
 				</Grid>
 
 				<Grid
