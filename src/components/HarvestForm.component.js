@@ -78,10 +78,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [searchParam, setSearchParam] = React.useState('Contains');
 
-	const [changeStrain, setChangeStrain] = React.useState("Don't Change Strain");
-
-	const [changeStrainHidden, setChangeStrainHidden] = React.useState(false);
-
 	const [changeHBHidden, setChangeHBHidden] = React.useState(false);
 
 	const [selectedTag, setSelectedTag] = React.useState('');
@@ -325,10 +321,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setSearchStrain(event.target.value);
 	  };  
 
-	const handleChangeStrainSelect = (event) => {
-		setChangeStrain(event.target.value);
-	  };
-
 	let dateText = "Harvest Date";
 
 	try{
@@ -385,11 +377,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		currHidePlants = currentHidePlants;
 		console.log("Set Hide Plants in HarvestForm: " + JSON.stringify(currHidePlants));
 	}
-
-	if(changeStrain==="Add New Strain"){
-		changeStrainHiddenNow=true;
-	}
-
 
 	let changeHBHiddenNow = changeHBHidden;
 
@@ -531,20 +518,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 		return newTagList; 
 	}
-
-	const handleAddNewStrain = (event) => {
-		let strain = document.getElementById("changeStrainField").value;
-		console.log("Strain: " + strain);
-		if((strain!=="")&&(!strainList.includes(strain))){
-			strainList.push(strain);
-			console.log("Strain Added");
-		}
-		setStrainList(strainList);
-		console.log("setStrainList");
-		setChangeStrainHidden(false);
-		console.log("setChangeStrainHidden");
-		setChangeStrain(strain);
-	};
 
 	function reloadHarvestBatchesFromAddHB(){
 		reloadHarvestBatches(currentHarvest)
