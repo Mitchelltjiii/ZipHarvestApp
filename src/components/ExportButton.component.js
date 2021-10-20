@@ -20,7 +20,7 @@ class ExportButton extends Component{
     render() {  
 
 
-        handleClickExport = () => {
+        const handleClickExport = () => {
             clickExport();
         }
 
@@ -28,7 +28,7 @@ class ExportButton extends Component{
             this.state.choosingUnit = true;
         }
     
-        handleExport = () => {
+        const handleExport = () => {
             exp();
         }
 
