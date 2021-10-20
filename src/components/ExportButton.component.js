@@ -18,12 +18,22 @@ class ExportButton extends Component{
     }
 
     render() {  
-        function handleClickExport() {
-            this.setState({choosingUnit:true});
+
+
+        handleClickExport = () => {
+            clickExport();
+        }
+
+        function clickExport(){
+            this.state.choosingUnit = true;
         }
     
-        function handleExport() {
-            this.setState({choosingUnit:false});
+        handleExport = () => {
+            exp();
+        }
+
+        function exp(){
+            this.state.choosingUnit = EditorFormatLineSpacing;
         }
 
         let parent = this;
