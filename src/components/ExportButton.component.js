@@ -15,7 +15,9 @@ class ExportButton extends Component{
                     "Yellow": "#F6BB42"},
             choosingUnit: false
         };
+        let parent = this
     }
+
 
     render() {  
 
@@ -25,7 +27,8 @@ class ExportButton extends Component{
         }
 
         function clickExport(){
-            this.state.choosingUnit = true;
+            parent.setState({choosingUnit:true});
+            parent.forceUpdate();
         }
     
         const handleExport = () => {
@@ -33,7 +36,8 @@ class ExportButton extends Component{
         }
 
         function exp(){
-            this.state.choosingUnit = false;
+            parent.setState({choosingUnit:false});
+            parent.forceUpdate();
         }
 
         let parent = this;
