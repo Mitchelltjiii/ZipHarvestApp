@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Button from '@material-ui/core/Button';
 import { CSVLink } from "react-csv";
+import Grid from '@material-ui/core/Grid';
 
 class ExportButton extends Component{    
     constructor(props) {
@@ -16,17 +17,15 @@ class ExportButton extends Component{
         };
     }
 
-    async handleClickExport(event) {
-        event.preventDefault();
-        this.setState({choosingUnit:true});
-    }
-
-    async handleExport(event) {
-        event.preventDefault();
-        this.setState({choosingUnit:false});
-    }
-
     render() {  
+        function handleClickExport() {
+            setState({choosingUnit:true});
+        }
+    
+        function handleExport() {
+            setState({choosingUnit:false});
+        }
+
         let parent = this;
         function getHBDate(batchName){
             console.log("Get Date");
