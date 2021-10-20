@@ -11,8 +11,19 @@ class ExportButton extends Component{
                     "Cyan": "#37BC9B",
                     "Green": "#E7F8E2",
                     "Red": "#E9573F",
-                    "Yellow": "#F6BB42"}
+                    "Yellow": "#F6BB42"},
+            choosingUnit: false
         };
+    }
+
+    async handleClickExport(event) {
+        event.preventDefault();
+        this.setState({choosingUnit:true});
+    }
+
+    async handleExport(event) {
+        event.preventDefault();
+        this.setState({choosingUnit:false});
     }
 
     render() {  
@@ -35,10 +46,13 @@ class ExportButton extends Component{
         }
 
 
-        let data = ""; 
+        let gramsData = ""; 
+        let poundsData = ""; 
+
         for(let val of JSON.parse(this.props.getHarvestRecords())){
             if(val.batchName === this.props.row.name){
-                data += String(val.tag) + "," + val.weight + "," + val.unit + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
+                gramsData += String(val.tag) + "," + val.weight + "," + val.unit + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
+                poundsData += String(val.tag) + "," + val.weight + "," + val.unit + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
             }
         } 
               
@@ -48,9 +62,22 @@ class ExportButton extends Component{
 
 
         return <div>
-            <CSVLink data={data} style={{textDecoration:"none"}} filename={fileName} uFEFF={false}>
-                 <Button aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}}>Export</Button>            
-            </CSVLink>
+            {this.state.choosingUnit ?
+            <Grid
+            container
+            direction="row"
+              justifyContent="center"
+            alignItems="center"
+            >
+                <CSVLink data={gramsData} style={{textDecoration:"none"}} filename={fileName} uFEFF={false}>
+                <Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleExport}>Grams</Button>            
+                </CSVLink>
+                <CSVLink data={poundsData} style={{textDecoration:"none"}} filename={fileName} uFEFF={false}>
+                <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleExport}>Pounds</Button>            
+                </CSVLink>
+            </Grid> :
+                <Button aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleClickExport}>Export</Button>            
+            }
         </div>;
       }
 }
