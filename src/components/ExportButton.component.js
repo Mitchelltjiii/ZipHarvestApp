@@ -19,11 +19,11 @@ class ExportButton extends Component{
 
     render() {  
         function handleClickExport() {
-            setState({choosingUnit:true});
+            this.setState({choosingUnit:true});
         }
     
         function handleExport() {
-            setState({choosingUnit:false});
+            this.setState({choosingUnit:false});
         }
 
         let parent = this;
