@@ -23,9 +23,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	resetAll, currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, setAll, 
 	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords}) { 
 
-	function HarvestBatch(name,submitted,type,date,userID){
+	function HarvestBatch(name,type,date,userID){
 		this.name = name;
-		this.submitted = submitted;
 		this.type = type;
 		this.date = date;
 		this.userID = userID;
@@ -175,7 +174,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				console.log("Val.name: " + val.name);
 				if(val.name === selectedHB){
 					console.log("GRABBED");
-					return new HarvestBatch(val.name,val.submitted,val.type,val.date,val.userID);
+					return new HarvestBatch(val.name,val.type,val.date,val.userID);
 				}
 			}
 		}catch(excc){
@@ -707,7 +706,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		parsedHBs.splice(foundX,1,replaceHB);
 		setHarvestBatches(JSON.stringify(parsedHBs));
 		let tempHB = parsedHBs[foundX];
-		currentHarvest = new HarvestBatch(tempHB.name,tempHB.submitted,tempHB.type,tempHB.date,userID);
+		currentHarvest = new HarvestBatch(tempHB.name,tempHB.type,tempHB.date,userID);
 	}
 
 	function resetHarvestForm(resetLastHarvested){
@@ -1071,7 +1070,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("Enter getharvestBatchitem")
 		let hb = {
 			name: '',
-			submitted: '',
 			userID: '',
 			type: '',
 			date: ''
@@ -1088,7 +1086,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			ch = addedHB;
 		}
 		hb.name = ch.name;
-		hb.submitted = ch.submitted;
 		hb.userID = userID;
 		hb.type = ch.type;
 		hb.date = ch.date;

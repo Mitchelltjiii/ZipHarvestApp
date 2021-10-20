@@ -15,9 +15,8 @@ import {isMobile} from 'react-device-detect';
 
 function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWeightChanges,wrapper,getRemovePlantIDDelete,currHidePlants,setHidePlants,getPlants,reset}) {
 
-  function HarvestBatch(name,submitted,type,date){
+  function HarvestBatch(name,type,date){
 		this.name = name;
-		this.submitted = submitted;
     this.type = type;
     this.date = date;
 	}
@@ -41,11 +40,11 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
       });
 
     const classes = useStyles();
-    let harvestBatch = new HarvestBatch('',0,'','');
+    let harvestBatch = new HarvestBatch('','','');
     console.log('CurrHarvest in Table: ' + JSON.stringify(currHarvest));
 
     if(currHarvest!==undefined){
-      harvestBatch = new HarvestBatch(currHarvest.name,currHarvest.finalized,currHarvest.type,currHarvest.date);
+      harvestBatch = new HarvestBatch(currHarvest.name,currHarvest.type,currHarvest.date);
     }
 
     console.log('HarvestBatch in Table: ' + JSON.stringify(harvestBatch));

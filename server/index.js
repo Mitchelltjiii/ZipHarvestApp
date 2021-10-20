@@ -265,7 +265,6 @@ app.post('/hb', (req, res) =>{
     var postData  = req.body;
 
   let name = postData.name;
-  let submitted = postData.submitted;
   let userID = postData.userID;
   let type = postData.type;
   let date = postData.date;
@@ -275,11 +274,11 @@ app.post('/hb', (req, res) =>{
   console.log("POST DATA: NAME: " + name);
 
   connection.query(`INSERT INTO hb 
-    (name, submitted, userID, type, date) 
+    (name, userID, type, date) 
     VALUES 
-    (?, ?, ?, ?, ?)`, 
+    (?, ?, ?, ?)`, 
     [
-      name, submitted, userID, type, date
+      name, userID, type, date
     ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
@@ -296,7 +295,6 @@ app.put('/hb', (req, res) =>{
     var postData  = req.body;
 
   let name = postData.name;
-  let submitted = postData.submitted;
   let userID = postData.userID;
   let type = postData.type;
   let date = postData.date;
@@ -306,9 +304,9 @@ app.put('/hb', (req, res) =>{
   console.log("PUT DATA: NAME: " + name);
 
   connection.query(`UPDATE hb set
-  submitted =?, userID =?, type =?, date =? WHERE name = ?`, 
+  userID =?, type =?, date =? WHERE name = ?`, 
   [
-    submitted, userID, type, date, name
+    userID, type, date, name
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;

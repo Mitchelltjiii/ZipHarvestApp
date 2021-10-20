@@ -68,7 +68,7 @@ class ExportButton extends Component{
                 let gramsWeight = weight;
                 let poundsWeight = weight;
                 if(val.unit==="g"){
-                    poundsWeight = Math.round((weight/gramsInAPound)*1000)/1000;
+                    poundsWeight = Math.round((weight/gramsInAPound)*100000)/100000;
                 }else{
                     gramsWeight = Math.round((weight*gramsInAPound)*100)/100;
                 }

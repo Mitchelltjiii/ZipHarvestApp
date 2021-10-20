@@ -359,14 +359,12 @@ class EditButton extends Component{
 		  console.log("Enter getharvestBatchitem")
 		  let hb = {
         name: '',
-        finalized: '',
         plantList: '{}',
         type: '',
         date: ''
         };
 
         hb.name = ch.name;
-	    	hb.finalized = ch.finalized;
 	    	hb.plantList = ch.plantList;
 	    	hb.type = ch.type;
 	    	hb.date = ch.date;

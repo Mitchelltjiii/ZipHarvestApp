@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 class SaveHarvestDateButton extends Component{
     emptyHarvestBatch = {
         name: '',
-        submitted: '',
         plantList: '{}',
         type: '',
         date: ''
