@@ -33,7 +33,7 @@ class ExportButton extends Component{
         }
 
         function exp(){
-            this.state.choosingUnit = EditorFormatLineSpacing;
+            this.state.choosingUnit = false;
         }
 
         let parent = this;
