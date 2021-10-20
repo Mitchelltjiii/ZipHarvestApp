@@ -59,6 +59,7 @@ class ExportButton extends Component{
         fileName = fileName.replace(" ","_");
         fileName = "ZipHarvest_" + fileName.replace("/",".") + ".csv";
 
+        console.log("ChoosingUnit: " + this.state.choosingUnit);
 
         return <div>
             {this.state.choosingUnit ?
