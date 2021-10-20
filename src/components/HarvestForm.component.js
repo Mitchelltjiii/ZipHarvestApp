@@ -1079,7 +1079,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("CURRENT HARVEST: " + currentHarvest);
 		console.log("CURRENT HARVEST(STRING): " + JSON.stringify(currentHarvest));
 
-		console.log("HarvestBatches in HarvestForm: " + getHarvestBatches());
 		console.log("HarvestBatches in HarvestForm(STRING): " + JSON.stringify(getHarvestBatches()));
 
 		if(addNew){
