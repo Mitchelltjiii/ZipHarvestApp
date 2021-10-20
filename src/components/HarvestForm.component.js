@@ -885,7 +885,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	  
 		return (
 		  <div className="full tr" style={{border:"1px solid #d7d7d7",borderRadius:5}}>
-			  <div style={{margin:"5px"}}>
+			  <div style={{margin:"10px"}}>
 			<Grid
 					container
 					direction="column"
@@ -893,9 +893,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 
-				<TextField id="changeHBField" label="Harvest Batch Name"/>
+				<FormLabel component="legend" style={{marginTop:"5px"}}>New Harvest Batch</FormLabel>
+
+				<TextField id="changeHBField" label="Batch Name"/>
 				
-				<FormControl component="fieldset">
+				<FormControl component="fieldset" style={{marginTop:"5px",marginBottom:"5px"}}>
   					<FormLabel component="legend">Harvest Date</FormLabel>
   					<RadioGroup aria-label="Harvest Date" name="harvest-date" value={day} onClick={handleDayChange} row>
 						<FormControlLabel value="today" control={<Radio />} label="Today" />
@@ -903,7 +905,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					</RadioGroup>
 				</FormControl>
 				
-				<FormControl component="fieldset">
+				<FormControl component="fieldset" style={{marginBottom:"5px"}}>
   					<FormLabel component="legend">Harvest Type</FormLabel>
   					<RadioGroup aria-label="Harvest Type" name="harvest-type" value={harvestType} onClick={handleHarvestTypeChange} row>
 						<FormControlLabel value="harvest" control={<Radio />} label="Harvest" />
