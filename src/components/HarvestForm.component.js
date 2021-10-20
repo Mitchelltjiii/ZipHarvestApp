@@ -776,22 +776,23 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setNewHarvestRecordID(data.insertId,harvestRecordItem);
 	}
 
-	const ChangeHBForm = ({changeHBHiddenNow}) => {
-		if (changeHBHiddenNow) return null;
-	  
+	const ChangeHBForm = () => {	  
 		return (
-		  <div className="full tr">
-			<FormLabel component="legend">Choose Harvest Batch</FormLabel>
-			<div style={{margin:"auto"}}>
-				<Select id="change-strain-select" value={selectedHB} onChange={handleSelectHB} style={{minWidth: 80}}>
+			<Grid
+				container
+				direction="row"
+			  	justifyContent="center"
+				alignItems="center"
+			>
+			<FormLabel>Choose Harvest Batch</FormLabel>
+				<Select id="change-strain-select" value={selectedHB} onChange={handleSelectHB}>
                 	{hbOptionsList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
             			</MenuItem>
           			))}
              	</Select>
-			</div>
-		  </div>
+			</Grid>
 		);
 	  };
 
@@ -882,9 +883,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		);
 	  };
 
-	const AddNewHBForm = ({changeHBHiddenNow}) => {
-		if (!changeHBHiddenNow) return null;
-	  
+	const AddNewHBForm = () => {	  
 		return (
 		  <div className="full tr" style={{border:"1px solid #d7d7d7",borderRadius:5}}>
 			  <div style={{margin:"10px"}}>
@@ -1125,8 +1124,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 
-				<ChangeHBForm changeHBHiddenNow={changeHBHiddenNow}></ChangeHBForm>
-				<AddNewHBForm changeHBHiddenNow={changeHBHiddenNow}></AddNewHBForm>
+				{changeHBHiddenNow ?
+				<AddNewHBForm></AddNewHBForm> :
+				<ChangeHBForm></ChangeHBForm>
+				}
 				
 
 				</Grid>
