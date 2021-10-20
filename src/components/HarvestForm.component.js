@@ -49,7 +49,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	let hbOptionsList = ["Add New Harvest Batch"];
 	let currentHarvestRecord = new HarvestRecord('','','','','','');
 
-	let addedHB = new HarvestBatch("",0,"","",userID);
+	let addedHB = new HarvestBatch("","","",userID);
 
 	console.log("ENTER HARVESTFORM, CURRENT HARVEST: " + JSON.stringify(currentHarvest));
 
@@ -523,7 +523,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			harvType = 1;
 		}
 
-		addedHB = new HarvestBatch(hbName,0,harvType,hbDate,userID);
+		addedHB = new HarvestBatch(hbName,harvType,hbDate,userID);
 
 		setSelectedHB(hbName);
 		setChangeHBHidden(false);
