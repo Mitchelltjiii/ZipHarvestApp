@@ -15,13 +15,11 @@ class ExportButton extends Component{
                     "Yellow": "#F6BB42"},
             choosingUnit: false
         };
-        let parent = this
+        let parent = this;
     }
 
 
     render() {  
-
-
         const handleClickExport = () => {
             clickExport();
         }
@@ -62,10 +60,20 @@ class ExportButton extends Component{
         let gramsData = ""; 
         let poundsData = ""; 
 
+        const gramsInAPound = 453.592;
+
         for(let val of JSON.parse(this.props.getHarvestRecords())){
             if(val.batchName === this.props.row.name){
-                gramsData += String(val.tag) + "," + val.weight + "," + val.unit + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
-                poundsData += String(val.tag) + "," + val.weight + "," + val.unit + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
+                let weight = val.weight;
+                let gramsWeight = weight;
+                let poundsWeight = weight;
+                if(val.unit==="g"){
+                    poundsWeight = ((weight/gramsInAPound)*100)/100;
+                }else{
+                    gramsWeight = ((weight*gramsInAPound)*100)/100;
+                }
+                gramsData += String(val.tag) + "," + gramsWeight + "," + "g" + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
+                poundsData += String(val.tag) + "," + poundsWeight + "," + "lbs" + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
             }
         } 
               
