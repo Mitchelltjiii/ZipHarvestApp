@@ -782,13 +782,15 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		return (
 		  <div className="full tr">
 			<FormLabel component="legend">Choose Harvest Batch</FormLabel>
-			<Select id="change-strain-select" value={selectedHB} onChange={handleSelectHB} style={{minWidth: 80}}>
+			<div style={{margin:"auto"}}>
+				<Select id="change-strain-select" value={selectedHB} onChange={handleSelectHB} style={{minWidth: 80}}>
                 	{hbOptionsList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
             			</MenuItem>
           			))}
              	</Select>
+			</div>
 		  </div>
 		);
 	  };
@@ -893,11 +895,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 
-				<FormLabel component="legend" style={{marginTop:"5px"}}>New Harvest Batch</FormLabel>
+				<FormLabel component="legend" style={{marginTop:"5px"}}><b>New Harvest Batch</b></FormLabel>
 
 				<TextField id="changeHBField" label="Batch Name"/>
 				
-				<FormControl component="fieldset" style={{marginTop:"5px",marginBottom:"5px"}}>
+				<FormControl component="fieldset" style={{marginTop:"10px",marginBottom:"5px"}}>
   					<FormLabel component="legend">Harvest Date</FormLabel>
   					<RadioGroup aria-label="Harvest Date" name="harvest-date" value={day} onClick={handleDayChange} row>
 						<FormControlLabel value="today" control={<Radio />} label="Today" />
