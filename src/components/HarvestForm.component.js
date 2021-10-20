@@ -780,7 +780,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		return (
 			<Grid
 				container
-				direction="row"
+				direction="column"
 			  	justifyContent="center"
 				alignItems="center"
 			>

@@ -41,8 +41,7 @@ function Header({currentPageSet, currentPage, executeLogout}){
   }
 
     return(
-        <div>
-            <div>
+            <div style={{margin:"auto"}}>
       <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
         Open Menu
       </Button>
@@ -61,7 +60,6 @@ function Header({currentPageSet, currentPage, executeLogout}){
       </Menu>
     </div>
             
-        </div>
 
     )
 
