@@ -273,7 +273,7 @@ export default class App extends React.Component {
 	  console.log("Logged In: " + this.state.loggedIn);
 	  let showForm;
     if (this.state.loggedIn !== '') {
-	  	showForm = <div>
+	  	showForm = <div style={{margin:"auto"}}>
 	    <Header currentPageSet={this.SetCurrentPage} currentPage={this.state.currentPage} executeLogout={this.executeLogout}/>
       <Outer currentPage={this.state.currentPage} setCurrentPage={this.SetCurrentPage} getPlants={this.getPlants} getHarvestRecords={this.getHarvestRecords} getHarvestBatches={this.getHarvestBatches}
       resetHarvestBatches={this.resetHarvestBatches} resetAll={this.resetAll} currentHarvest={this.state.currentHarvest} setNewHBID={this.setNewHBID} getCurrentHarvestID={this.getCurrentHarvestID}

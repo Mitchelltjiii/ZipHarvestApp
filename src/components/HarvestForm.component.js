@@ -785,7 +785,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				alignItems="center"
 			>
 			<FormLabel>Choose Harvest Batch</FormLabel>
-				<Select id="change-strain-select" value={selectedHB} onChange={handleSelectHB}>
+				<Select id="change-strain-select" value={selectedHB} onChange={handleSelectHB} style={{minWidth:"120px"}}>
                 	{hbOptionsList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
@@ -1150,7 +1150,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 				<FormLabel style={{marginTop:"8px"}} component="legend">Search For Strain</FormLabel>
-				<Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{minWidth: 80}}>
+				<Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{minWidth:"120px"}}>
                 	{searchForList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
@@ -1167,7 +1167,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 
-				<Select id="search-param-select" value={searchParam} onChange={handleSearchParamSelect} style={{minWidth: 80}}>
+				<Select id="search-param-select" value={searchParam} onChange={handleSearchParamSelect} style={{minWidth:"120px"}}>
                 	{searchOptionsList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
