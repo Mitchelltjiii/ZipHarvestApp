@@ -2,6 +2,8 @@ import React from 'react'
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import {isMobile} from 'react-device-detect';
+
 
 function Header({currentPageSet, currentPage, executeLogout}){
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -40,8 +42,13 @@ function Header({currentPageSet, currentPage, executeLogout}){
     currentPageSet('harvest-batches-form')
   }
 
+  let headerWidth = "650px";
+  if(isMobile){
+    headerWidth = "340px";
+  }
+
     return(
-            <div style={{margin:"auto"}}>
+            <div style={{margin:"auto",width:headerWidth}}>
       <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
         Open Menu
       </Button>

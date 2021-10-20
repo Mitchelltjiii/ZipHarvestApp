@@ -285,7 +285,7 @@ export default class App extends React.Component {
 		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin}></LogIn></div>;
     }
     return (
-      <div className="App">
+      <div className="App" style={{margin:"auto"}}>
 			{showForm}
 		</div>
     );
