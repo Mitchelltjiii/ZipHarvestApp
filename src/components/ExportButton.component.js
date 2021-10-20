@@ -68,9 +68,9 @@ class ExportButton extends Component{
                 let gramsWeight = weight;
                 let poundsWeight = weight;
                 if(val.unit==="g"){
-                    poundsWeight = ((weight/gramsInAPound)*100)/100;
+                    poundsWeight = Math.round((weight/gramsInAPound)*1000)/1000;
                 }else{
-                    gramsWeight = ((weight*gramsInAPound)*100)/100;
+                    gramsWeight = Math.round((weight*gramsInAPound)*100)/100;
                 }
                 gramsData += String(val.tag) + "," + gramsWeight + "," + "g" + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
                 poundsData += String(val.tag) + "," + poundsWeight + "," + "lbs" + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
@@ -88,14 +88,15 @@ class ExportButton extends Component{
             <Grid
             container
             direction="row"
-              justifyContent="center"
+            justifyContent="center"
             alignItems="center"
+            wrap="nowrap"
             >
                 <CSVLink data={gramsData} style={{textDecoration:"none"}} filename={fileName} uFEFF={false}>
-                <Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleExport}>Grams</Button>            
+                <Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14,marginRight:"3px"}} onClick={handleExport}>g</Button>            
                 </CSVLink>
                 <CSVLink data={poundsData} style={{textDecoration:"none"}} filename={fileName} uFEFF={false}>
-                <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleExport}>Pounds</Button>            
+                <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleExport}>lbs</Button>            
                 </CSVLink>
             </Grid> :
                 <Button aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleClickExport}>Export</Button>            
