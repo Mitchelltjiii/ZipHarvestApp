@@ -20,7 +20,11 @@ export default class App extends React.Component {
     usersLoading: true,
     userID: ""
   };
-  async componentDidMount() {
+  componentDidMount() {
+    func();
+  }
+
+  async func(){
     const stripe = require('stripe')('sk_test_51JmpUwGBqcLC10Hc726PkEo40kKzcKPHizxQYtbWfaXnDnvYDoBI67bVi8w93aWRTD9MhEJ3zDa8CDAxoongB0uw00uWN2eF1Z');
 
       const paymentIntent = await stripe.paymentIntents.create({
