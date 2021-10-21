@@ -4,7 +4,7 @@ import App from "./App";
 import {loadStripe} from "@stripe/stripe-js"
 import { Elements } from "@stripe/react-stripe-js";
 
-(async = () => {
+(async () => {
     const {publishableKey} = await fetch('/config').then(r => r.json());
     const stripePromise = loadStripe(publishableKey)
 
