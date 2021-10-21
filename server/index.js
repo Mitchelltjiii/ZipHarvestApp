@@ -13,6 +13,17 @@ var pool  = mysql.createPool({
   port: '25060'
 });
 
+// Set your secret key. Remember to switch to your live secret key in production.
+// See your keys here: https://dashboard.stripe.com/apikeys
+const stripe = require('stripe')('sk_test_51JmpUwGBqcLC10Hc726PkEo40kKzcKPHizxQYtbWfaXnDnvYDoBI67bVi8w93aWRTD9MhEJ3zDa8CDAxoongB0uw00uWN2eF1Z');
+
+const paymentIntent = await stripe.paymentIntents.create({
+  amount: 1000,
+  currency: 'usd',
+  payment_method_types: ['card'],
+  receipt_email: 'jenny.rosen@example.com',
+});
+
 const db = require('../app/config/db.config');
 
 const Plant = db.Plant;

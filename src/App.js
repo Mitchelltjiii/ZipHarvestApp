@@ -3,7 +3,6 @@ import "./styles.css";
 import Header from './components/Header.component';
 import Outer from './components/Outer.component';
 import LogIn from './components/LogIn.component';
-import { loadStripe } from "@stripe/stripe-js";
 
 
 export default class App extends React.Component {
@@ -258,8 +257,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    const stripePromise = loadStripe("pk_test_51JmpUwGBqcLC10HcR83rJs3pzuuVNBccQnf6InpAaLtuTdo6SWH9ITX1QZcCFze1n2St0yk3PEa8flb4QHvSgMR000sINbKwaM");
-
     if ((this.state.loggedIn !== '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading))){
       return(<div>Loading...</div>);
     }
