@@ -29,16 +29,6 @@ export default class App extends React.Component {
         payment_method_types: ['card'],
         receipt_email: 'jenny.rosen@example.com',
       });
-
-      try{
-        console.log("Payment Intent.text: " + paymentIntent.text());
-      }catch(err){
-      }
-
-      try{
-        console.log("Payment Intent: " + paymentIntent);
-      }catch(err){
-      }
   }
 
   
