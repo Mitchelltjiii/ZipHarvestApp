@@ -1,4 +1,3 @@
-import { withRouter } from "react-router-dom";
 import React from "react";
 import {CardElement, useElements, useStripe} from '@stripe/react-stripe-js';
 
@@ -25,4 +24,4 @@ const PaymentForm = () => {
 
 
 
-export default withRouter(PaymentForm);
+export default PaymentForm;
