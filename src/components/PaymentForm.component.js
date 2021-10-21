@@ -1,8 +1,20 @@
 import React, { Component } from "react";
-import {CardElement} from '@stripe/stripe-js';
+import {CardElement, useElements} from '@stripe/react-stripe-js';
 
 const PaymentForm = () => {
-    return <CardElement/>
+    const elements = useElements();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const cardElement = elements.getElement(CardElement);
+        console.log(cardElement);
+    }
+    return (
+    <form onSubmit={handleSubmit}>
+            <CardElement/>
+            <button>Pay</button>
+        </form>)
 }
 
 
