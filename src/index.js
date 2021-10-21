@@ -9,4 +9,4 @@ import { Elements } from "@stripe/react-stripe-js";
     const stripePromise = loadStripe(publishableKey)
 
     ReactDOM.render(<Elements stripe={stripePromise}><App/></Elements>, document.getElementById("root"));
-})
+})()
