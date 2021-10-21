@@ -4,9 +4,8 @@ import App from "./App";
 import {loadStripe} from "@stripe/stripe-js"
 import { Elements } from "@stripe/react-stripe-js";
 
-(async () => {
-    const {publishableKey} = await fetch('/config').then(r => r.json());
-    const stripePromise = loadStripe(publishableKey)
+
+    const stripePromise = loadStripe("pk_test_51JmpUwGBqcLC10HcR83rJs3pzuuVNBccQnf6InpAaLtuTdo6SWH9ITX1QZcCFze1n2St0yk3PEa8flb4QHvSgMR000sINbKwaM")
 
     ReactDOM.render(
         <React.StrictMode>
@@ -16,4 +15,4 @@ import { Elements } from "@stripe/react-stripe-js";
         </React.StrictMode>,
         document.getElementById("root")
     );
-})()
+
