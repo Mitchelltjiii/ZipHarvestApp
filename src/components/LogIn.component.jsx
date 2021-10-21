@@ -50,6 +50,17 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                     <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                     <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
                     <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn}>Log in</Button>
+                    <div>
+                    <head>
+    <title>Checkout</title>
+  </head>
+  <body>
+    <form action="/create-checkout-session" method="POST">
+      <input type="hidden" name="priceId" value="price_1JmqQvGBqcLC10Hc2RyeJqSA" />
+      <button type="submit">Checkout</button>
+    </form>
+  </body>
+                    </div>
           </Grid>
       </div>
 			</div>	
@@ -59,3 +70,4 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 }
 
 export default LogIn;
+//      -- Note: If using PHP set the action to /create-checkout-session.php --

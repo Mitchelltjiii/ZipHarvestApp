@@ -13,17 +13,6 @@ var pool  = mysql.createPool({
   port: '25060'
 });
 
-// Set your secret key. Remember to switch to your live secret key in production.
-// See your keys here: https://dashboard.stripe.com/apikeys
-const stripe = require('stripe')('sk_test_51JmpUwGBqcLC10Hc726PkEo40kKzcKPHizxQYtbWfaXnDnvYDoBI67bVi8w93aWRTD9MhEJ3zDa8CDAxoongB0uw00uWN2eF1Z');
-
-const paymentIntent = await stripe.paymentIntents.create({
-  amount: 1000,
-  currency: 'usd',
-  payment_method_types: ['card'],
-  receipt_email: 'jenny.rosen@example.com',
-});
-
 const db = require('../app/config/db.config');
 
 const Plant = db.Plant;
@@ -37,6 +26,87 @@ const harvestRecordsQueryString = "select * from hr where userID = '";
 const usersQueryString = "select * from users";
 
 const router = require('../app/routers/router');
+
+// Set your secret key. Remember to switch to your live secret key in production.
+// See your keys here: https://dashboard.stripe.com/apikeys
+const stripe = require('stripe')('sk_test_51JmpUwGBqcLC10Hc726PkEo40kKzcKPHizxQYtbWfaXnDnvYDoBI67bVi8w93aWRTD9MhEJ3zDa8CDAxoongB0uw00uWN2eF1Z');
+
+// The price ID passed from the client
+//   const {priceId} = req.body;
+const priceId = '{{PRICE_ID}}';
+
+const session = await stripe.checkout.sessions.create({
+  mode: 'subscription',
+  payment_method_types: ['card'],
+  line_items: [
+    {
+      price: priceId,
+      // For metered billing, do not pass quantity
+      quantity: 1,
+    },
+  ],
+  // {CHECKOUT_SESSION_ID} is a string literal; do not change it!
+  // the actual Session ID is returned in the query parameter when your customer
+  // is redirected to the success page.
+  success_url: 'https://example.com/success.html?session_id={CHECKOUT_SESSION_ID}',
+  cancel_url: 'https://example.com/canceled.html',
+});
+
+app.post("/webhook", async (req, res) => {
+  let data;
+  let eventType;
+  // Check if webhook signing is configured.
+  const webhookSecret = true;
+  if(webhookSecret){
+    // Retrieve the event by verifying the signature using the raw body and secret.
+    let event;
+    let signature = req.headers["stripe-signature"];
+
+    try {
+      event = stripe.webhooks.constructEvent(
+        req.body,
+        signature,
+        webhookSecret
+      );
+    } catch (err) {
+      console.log(`⚠️  Webhook signature verification failed.`);
+      return res.sendStatus(400);
+    }
+    // Extract the object from the event.
+    data = event.data;
+    eventType = event.type;
+  } else {
+    // Webhook signing is recommended, but if the secret is not configured in `config.js`,
+    // retrieve the event data directly from the request body.
+    data = req.body.data;
+    eventType = req.body.type;
+  }
+
+  switch (eventType) {
+      case 'checkout.session.completed':
+        // Payment is successful and the subscription is created.
+        // You should provision the subscription and save the customer ID to your database.
+        break;
+      case 'invoice.paid':
+        // Continue to provision the subscription as payments continue to be made.
+        // Store the status in your database and check when a user accesses your service.
+        // This approach helps you avoid hitting rate limits.
+        break;
+      case 'invoice.payment_failed':
+        // The payment failed or the customer does not have a valid payment method.
+        // The subscription becomes past_due. Notify your customer and send them to the
+        // customer portal to update their payment information.
+        break;
+      default:
+      // Unhandled event type
+    }
+
+  res.sendStatus(200);
+});
+
+// Redirect to the URL returned on the Checkout Session.
+// With express, you can redirect with:
+//   res.redirect(303, session.url);
 
 app.get("/api/users/:username/:password",(req,res) => {
   pool.getConnection((err, connection) => {
