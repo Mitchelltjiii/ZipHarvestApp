@@ -32,25 +32,32 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
       formHeight = "330px";
     }
 
-    // Set your secret key. Remember to switch to your live secret key in production.
-    // See your keys here: https://dashboard.stripe.com/apikeys
-    const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+    async function tryStripe(){
+      // Set your secret key. Remember to switch to your live secret key in production.
+      // See your keys here: https://dashboard.stripe.com/apikeys
+      const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
-    const paymentIntent = await stripe.paymentIntents.create({
+      const paymentIntent = await stripe.paymentIntents.create({
         amount: 1000,
         currency: 'usd',
         payment_method_types: ['card'],
         receipt_email: 'jenny.rosen@example.com',
       });
 
-    try{
-        console.log("AWAITING RESPONSE STRIPE")
-        await paymentIntent.text();
-        console.log("Payment Intent: " + paymentIntent.text());
-        console.log("RESPONSE RECIEVED STRIPE")
+      try{
+        console.log("Payment Intent.text: " + paymentIntent.text());
       }catch(err){
-        console.log("NO RESPONSE RECIEVED STRIPE")
       }
+
+      try{
+        console.log("Payment Intent: " + paymentIntent);
+      }catch(err){
+      }
+    }
+
+    tryStripe();
+
+    
 
     return(
       <div style={{
