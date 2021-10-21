@@ -8,5 +8,12 @@ import { Elements } from "@stripe/react-stripe-js";
     const {publishableKey} = await fetch('/config').then(r => r.json());
     const stripePromise = loadStripe(publishableKey)
 
-    ReactDOM.render(<Elements stripe={stripePromise}><App/></Elements>, document.getElementById("root"));
+    ReactDOM.render(
+        <React.StrictMode>
+            <Elements stripe={stripePromise}>
+                <App/>
+            </Elements>
+        </React.StrictMode>,
+        document.getElementById("root")
+    );
 })()
