@@ -56,12 +56,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                     <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
                     <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn}>Log in</Button>             
                           
-            <Grid
-					container
-					direction="column"
-  				justifyContent="center"
-					alignItems="center"
-					>   
+              <div>   
                     <h1>The Spatula Store</h1>
 			              {showItem ? (
 			              	<StripeContainer />
@@ -71,8 +66,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 				          	<button onClick={() => setShowItem(true)}>Purchase Spatula</button>
 				        </>
 			        )} 
-            </Grid>
-
+            </div>
       </Grid>
       </div>
 			</div>	
