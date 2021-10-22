@@ -34,7 +34,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
       formHeight = "330px";
     }    
 
-    const [showItem, setShowItem] = React.useState(false);
+    const [showItem, setShowItem] = useState(false);
 
 
     return(
@@ -55,6 +55,13 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                     <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                     <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
                     <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn}>Log in</Button>             
+                          
+            <Grid
+					container
+					direction="column"
+  				justifyContent="center"
+					alignItems="center"
+					>   
                     <h1>The Spatula Store</h1>
 			              {showItem ? (
 			              	<StripeContainer />
@@ -63,7 +70,10 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 				          	<h3>$10.00</h3>
 				          	<button onClick={() => setShowItem(true)}>Purchase Spatula</button>
 				        </>
-			)}          </Grid>
+			        )} 
+            </Grid>
+
+      </Grid>
       </div>
 			</div>	
         
