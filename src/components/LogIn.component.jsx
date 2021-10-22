@@ -3,7 +3,8 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import {isMobile} from 'react-device-detect';
-import PaymentForm from './PaymentForm.component';
+import StripeContainer from './StripeContainer';
+
 
 function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,attemptLogin}){
     const [username, setUsername] = React.useState('');
@@ -33,6 +34,9 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
       formHeight = "330px";
     }    
 
+    const [showItem, setShowItem] = useState(false);
+
+
     return(
       <div style={{
         position: 'absolute', left: '50%', top: '50%',
@@ -50,9 +54,16 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 					>
                     <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                     <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-                    <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn}>Log in</Button>
-                    <PaymentForm></PaymentForm>
-          </Grid>
+                    <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn}>Log in</Button>             
+                    <h1>The Spatula Store</h1>
+			              {showItem ? (
+			              	<StripeContainer />
+			              ) : (
+			            	<>
+				          	<h3>$10.00</h3>
+				          	<button onClick={() => setShowItem(true)}>Purchase Spatula</button>
+				        </>
+			)}          </Grid>
       </div>
 			</div>	
         
