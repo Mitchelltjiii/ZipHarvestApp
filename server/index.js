@@ -28,6 +28,8 @@ const usersQueryString = "select * from users";
 
 const router = require('../app/routers/router');
 
+app.use(cors());
+
 app.post("/payment", cors(), async (req, res) => {
 	let { amount, id } = req.body
 	try {
