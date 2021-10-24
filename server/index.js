@@ -4,8 +4,18 @@ const express = require("express");
 const app = express(); // create express app
 const port = process.env.PORT || 3000
 const mysql = require('mysql');
-const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 const cors = require('cors');
+const session = await stripe.checkout.sessions.create({
+  mode: "subsciption",
+  payment_method_types:["card"],
+  success_url: "https://example.com/success",
+  cancel_url: "https://example.com/cancel",
+  line_items: [{
+    price:"prod_KRjugpV2pVYhDL",
+    quantity: 1
+  }],
+});
 
 var pool  = mysql.createPool({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
@@ -31,7 +41,7 @@ const router = require('../app/routers/router');
 
 app.use(cors());
 
-app.post("/payment", cors(), async (req, res) => {
+/*app.post("/payment", cors(), async (req, res) => {
 	let { amount, id } = req.body
 	try {
 		const payment = await stripe.paymentIntents.create({
@@ -53,7 +63,7 @@ app.post("/payment", cors(), async (req, res) => {
 			success: false
 		})
 	}
-})
+})*/
 
 app.get("/api/users/:username/:password",(req,res) => {
   pool.getConnection((err, connection) => {
