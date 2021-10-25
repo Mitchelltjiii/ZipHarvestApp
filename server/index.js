@@ -9,8 +9,8 @@ const cors = require('cors');
 const session = await stripe.checkout.sessions.create({
   mode: "subsciption",
   payment_method_types:["card"],
-  success_url: "https://example.com/success",
-  cancel_url: "https://example.com/cancel",
+  success_url: "https://xp-r83j6.ondigitalocean.app/",
+  cancel_url: "https://xp-r83j6.ondigitalocean.app/",
   line_items: [{
     price:"prod_KRjugpV2pVYhDL",
     quantity: 1

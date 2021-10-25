@@ -40,7 +40,7 @@ export default function PaymentForm() {
         try {
             const {id} = paymentMethod
             const response = await axios.post("http://localhost:8080/payment", {
-                amount: 1000,
+                amount: 0.01,
                 id
             })
 
@@ -62,7 +62,7 @@ export default function PaymentForm() {
         {!success ? 
         <form onSubmit={handleSubmit}>
             <fieldset className="FormGroup">
-                <div className="FormRow">
+                <div className="FormRow" style={{margin:"auto"}}>
                     <CardElement options={CARD_OPTIONS}/>
                 </div>
             </fieldset>
