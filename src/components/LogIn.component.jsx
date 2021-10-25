@@ -3,15 +3,12 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import {isMobile} from 'react-device-detect';
-import StripeContainer from './StripeContainer';
 import Stripe from 'stripe';
 
 
 function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,attemptLogin}){
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-
-    var stripe = Stripe("pk_test_51JmpUwGBqcLC10HcR83rJs3pzuuVNBccQnf6InpAaLtuTdo6SWH9ITX1QZcCFze1n2St0yk3PEa8flb4QHvSgMR000sINbKwaM");
 
     const handleLogIn = (event) => {
 		  logIn();
