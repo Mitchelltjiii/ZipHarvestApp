@@ -4,7 +4,6 @@ const express = require("express");
 const app = express(); // create express app
 const port = process.env.PORT || 3000
 const mysql = require('mysql');
-const cors = require('cors');
 
 var pool  = mysql.createPool({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
@@ -27,8 +26,6 @@ const harvestRecordsQueryString = "select * from hr where userID = '";
 const usersQueryString = "select * from users";
 
 const router = require('../app/routers/router');
-
-app.use(cors());
 
 /*app.post("/payment", cors(), async (req, res) => {
 	let { amount, id } = req.body
