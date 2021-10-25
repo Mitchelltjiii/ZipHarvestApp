@@ -68,7 +68,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                     <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn}>Log in</Button>             
                     <Button color="secondary" type="submit" variant="contained" onClick={handleTryStripe}>Stripe</Button>             
                     <div class="product">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="14px" height="16px" viewBox="0 0 14 16" version="1.1">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="14px" height="16px" viewBox="0 0 14 16" version="1.1">
                    <defs/>
                    <g id="Flow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g id="0-Default" transform="translate(-121.000000, -40.000000)" fill="#E184DF">
