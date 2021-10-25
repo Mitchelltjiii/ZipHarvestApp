@@ -6,16 +6,7 @@ const port = process.env.PORT || 3000
 const mysql = require('mysql');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 const cors = require('cors');
-const session = await stripe.checkout.sessions.create({
-  mode: "subsciption",
-  payment_method_types:["card"],
-  success_url: "https://xp-r83j6.ondigitalocean.app/",
-  cancel_url: "https://xp-r83j6.ondigitalocean.app/",
-  line_items: [{
-    price:"prod_KRjugpV2pVYhDL",
-    quantity: 1
-  }],
-});
+
 
 var pool  = mysql.createPool({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
