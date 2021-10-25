@@ -16,29 +16,6 @@ var pool  = mysql.createPool({
   port: '25060'
 });
 
-const YOUR_DOMAIN = 'https://xp-r83j6.ondigitalocean.app/';
-app.post('/create-checkout-session', async (req, res) => {
-  const prices = await stripe.prices.list({
-    lookup_keys: [req.body.lookup_key],
-    expand: ['data.product'],
-  });
-  const session = await stripe.checkout.sessions.create({
-    billing_address_collection: 'auto',
-    payment_method_types: ['card'],
-    line_items: [
-      {
-        price: prices.data[0].id,
-        // For metered billing, do not pass quantity
-        quantity: 1,
-      },
-    ],
-    mode: 'subscription',
-    success_url: `${YOUR_DOMAIN}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${YOUR_DOMAIN}/cancel.html`,
-  });
-  res.redirect(303, session.url)
-});
-
 const db = require('../app/config/db.config');
 
 const Plant = db.Plant;
