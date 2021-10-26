@@ -28,7 +28,7 @@ const usersQueryString = "select * from users";
 
 const router = require('../app/routers/router');
 
-const YOUR_DOMAIN = 'http://localhost:3000/checkout';
+const YOUR_DOMAIN = 'https://xp-r83j6.ondigitalocean.app/checkout';
 
 app.post('/create-checkout-session', async (req, res) => {
   try{
