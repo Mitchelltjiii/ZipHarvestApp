@@ -4,7 +4,7 @@ const express = require("express");
 const app = express(); // create express app
 const port = process.env.PORT || 3000
 const mysql = require('mysql');
-const stripe = require('stripe')(process.env.STRIPE_SECRET);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 
 var pool  = mysql.createPool({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
@@ -29,6 +29,26 @@ const usersQueryString = "select * from users";
 const router = require('../app/routers/router');
 
 const YOUR_DOMAIN = 'https://xp-r83j6.ondigitalocean.app/checkout';
+
+
+
+app.post('/create-customer', async (req, res) => {
+  console.log("Creating Customer");
+  const customer = await stripe.customers.create({
+    description: 'My First Test Customer (created for API docs)',
+  });
+  try{
+    console.log("Customer: " + customer);
+  }catch(errr){
+
+  }
+  try{
+    console.log("Customer(STRING): " + JSON.stringify(customer));
+  }catch(errr){
+    
+  }
+  res.json(customer);
+})
 
 app.get('/check-subscription', async (req, res) => {
   console.log("Checking Sub");

@@ -34,15 +34,15 @@ export default class App extends React.Component {
   getUsersFromDB = async (username,password) => {
     const response = await fetch(`/api/users/${username}/${password}`);
     const text = await response.text();
-    const responseTwo = await fetch(`/check-subscription`);
+    const responseTwo = await fetch(`/create-customer`);
     const json = await responseTwo.json();
     try{
-      console.log("SUB JSON: " + json);
+      console.log("Customer JSON: " + json);
     }catch(err){
 
     }
     try{
-      console.log("SUB JSON(STRING): " + JSON.stringify(json));
+      console.log("Customer JSON(STRING): " + JSON.stringify(json));
     }catch(err){
       
     }

@@ -8,6 +8,7 @@ import {isMobile} from 'react-device-detect';
 function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,attemptLogin}){
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
+    
 
     const handleLogIn = (event) => {
 		  logIn();
@@ -41,14 +42,12 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
       formHeight = "330px";
     }    
 
-    const [showItem, setShowItem] = React.useState(false);
-
-
     return(
       <div style={{
         position: 'absolute', left: '50%', top: '50%',
         transform: 'translate(-50%, -50%)'
     }}>
+
       <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5}}>
 				<div style={{
 			position: 'absolute', left: '50%', top: '50%',
@@ -61,7 +60,8 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 					>
                     <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                     <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-                    <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn}>Log in</Button>             
+                    <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn}>Log in</Button> 
+                    <Button color="secondary" type="submit" variant="contained" onClick={handleTryStripe}>New Account</Button> 
       </Grid>
       </div>
 			</div>	
