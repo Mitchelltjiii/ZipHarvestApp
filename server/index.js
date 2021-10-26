@@ -27,7 +27,6 @@ const harvestRecordsQueryString = "select * from hr where userID = '";
 const usersQueryString = "select * from users";
 
 const router = require('../app/routers/router');
-const { nextTick } = require("process");
 
 const YOUR_DOMAIN = 'https://xp-r83j6.ondigitalocean.app/';
 
