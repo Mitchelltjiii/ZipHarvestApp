@@ -32,7 +32,7 @@ const YOUR_DOMAIN = 'https://xp-r83j6.ondigitalocean.app/checkout';
 
 
 
-app.post('/create-customer', async (req, res) => {
+app.get('/create-customer', async (req, res) => {
   console.log("Creating Customer");
   const customer = await stripe.customers.create({
     description: 'My First Test Customer (created for API docs)',
