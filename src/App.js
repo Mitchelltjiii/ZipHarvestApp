@@ -49,7 +49,7 @@ export default class App extends React.Component {
 
     this.state.users = text;
     this.state.usersLoading = false;
-    if(text == "0"){
+    if(text === "0"){
       this.executeLogIn(username,text);
     }
   }

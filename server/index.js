@@ -57,6 +57,7 @@ app.get('/check-subscription', async (req, res) => {
   }catch(errr){
     
   }
+  res.json(subscription);
 })
 
 app.post('/create-checkout-session', async (req, res) => {
