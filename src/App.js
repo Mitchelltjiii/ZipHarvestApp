@@ -304,5 +304,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-<LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin}></LogIn>
