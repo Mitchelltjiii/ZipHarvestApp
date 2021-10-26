@@ -6,11 +6,11 @@ const ProductDisplay = () => (
         <Logo />
         <div>
           <h3>Monthly Premium</h3>
-          <h5>$100.00 / month</h5>
+          <h5>$0.01 / month</h5>
         </div>
       </div>
       <form action="/create-checkout-session" method="POST">
-        <input type="hidden" name="monthlypremium100" value="price_1JocCxGBqcLC10HcgrnEMEn1" />
+      <input type="hidden" name="lookup_key" value="price_1JobruGBqcLC10HcS2Ts1I15" />
         <button id="checkout-and-portal-button" type="submit">
           Checkout
         </button>
