@@ -186,7 +186,7 @@ app.post(
 	}
 })*/
 
-app.get("/api/users/:username/:password",(req,res) => {
+app.get("/api/users/:username/:password", async (req,res) => {
   pool.getConnection((err, connection) => {
       if(err) throw err;
       console.log('connected as id ' + connection.threadId);
