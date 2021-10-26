@@ -3,11 +3,16 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import {isMobile} from 'react-device-detect';
+import StripeContainer from './StripeContainer';
+import Stripe from 'stripe';
+import StripeForm from './StipeForm.component';
 
 
 function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,attemptLogin}){
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
+
+    var stripe = Stripe("pk_test_51JmpUwGBqcLC10HcR83rJs3pzuuVNBccQnf6InpAaLtuTdo6SWH9ITX1QZcCFze1n2St0yk3PEa8flb4QHvSgMR000sINbKwaM");
 
     const handleLogIn = (event) => {
 		  logIn();
@@ -62,7 +67,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                     <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                     <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
                     <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn}>Log in</Button>             
-                    <Button color="secondary" type="submit" variant="contained" onClick={handleTryStripe}>Stripe</Button>             
+                    <StripeForm></StripeForm>
       </Grid>
       </div>
 			</div>	
@@ -74,14 +79,4 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 export default LogIn;
 
 
-/*<div>   
-                    <h1>The Spatula Store</h1>
-			              {showItem ? (
-			              	<StripeContainer />
-			              ) : (
-			            	<>
-				          	<h3>$10.00</h3>
-				          	<button onClick={() => setShowItem(true)}>Purchase Spatula</button>
-				        </>
-			        )} 
-            </div>*/
+/**/
