@@ -3,7 +3,7 @@ import "./styles.css";
 import Header from './components/Header.component';
 import Outer from './components/Outer.component';
 import LogIn from './components/LogIn.component';
-import StripeTest from '../stripe-billing-sample-code/src/App';
+import StripeTest from './stripe-billing-sample-code/src/App';
 
 
 export default class App extends React.Component {
