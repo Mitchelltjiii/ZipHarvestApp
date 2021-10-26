@@ -1,48 +1,44 @@
-import React, { useState, useEffect } from "react";
-import stripe from "@stripe/stripe-js";
-import Button from "@material-ui/core/Button";
+import React, { useState, useEffect } from 'react';
 
-const handleTryStripe = (event) => {
-  tryStripe();
-};
-
-function tryStripe(){
-fetch('/create-checkout-session', {
-  method: 'POST',
-})
-.then(function(response) {
-  return response.json();
-})
-.then(function(session) {
-  return stripe.redirectToCheckout({ sessionId: session.id });
-})
-.then(function(result) {
-  // If `redirectToCheckout` fails due to a browser or network
-  // error, you should display the localized error message to your
-  // customer using `error.message`.
-  if (result.error) {
-    alert(result.error.message);
-  }
-});
-}
 const ProductDisplay = () => (
-  <div>
-    <Button color="secondary" type="submit" variant="contained" onClick={handleTryStripe}>Try Stripe</Button> 
-  </div>
-  /*<section>
-    <div>
+    <section>
       <div>
-      <h3>Premium</h3>
-      <h5>$0.50</h5>
+        <div>
+          <h3>Monthly Premium</h3>
+          <h5>$0.01 / month</h5>
+        </div>
       </div>
-    </div>
-    <form action="/create-checkout-session" method="POST">
-      <button type="submit">
-        Checkout
-      </button>
-    </form>
-  </section>*/
-);
+      <form action="/create-checkout-session" method="POST">
+      <input type="hidden" name="lookup_key" value="price_1JouVZGBqcLC10Hc4rCefuG9" />
+        <button id="checkout-and-portal-button" type="submit">
+          Checkout
+        </button>
+      </form>
+    </section>
+  );
+
+const SuccessDisplay = ({ sessionId }) => {
+  return (
+    <section>
+      <div>
+        <div>
+          <h3>Subscription to starter plan successful!</h3>
+        </div>
+      </div>
+      <form action="/create-portal-session" method="POST">
+        <input
+          type="hidden"
+          id="session-id"
+          name="session_id"
+          value={sessionId}
+        />
+        <button id="checkout-and-portal-button" type="submit">
+          Manage your billing information
+        </button>
+      </form>
+    </section>
+  );
+};
 
 const Message = ({ message }) => (
   <section>
@@ -51,26 +47,32 @@ const Message = ({ message }) => (
 );
 
 export default function StripeForm() {
-  const [message, setMessage] = useState("");
+  let [message, setMessage] = useState('');
+  let [success, setSuccess] = useState(false);
+  let [sessionId, setSessionId] = useState('');
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
 
-    if (query.get("success")) {
-      setMessage("Order placed! You will receive an email confirmation.");
+    if (query.get('success')) {
+      setSuccess(true);
+      setSessionId(query.get('session_id'));
     }
 
-    if (query.get("canceled")) {
+    if (query.get('canceled')) {
+      setSuccess(false);
       setMessage(
         "Order canceled -- continue to shop around and checkout when you're ready."
       );
     }
-  }, []);
+  }, [sessionId]);
 
-  return message ? (
-    <Message message={message} />
-  ) : (
-    <ProductDisplay />
-  );
+  if (!success && message === '') {
+    return <ProductDisplay />;
+  } else if (success && sessionId !== '') {
+    return <SuccessDisplay sessionId={sessionId} />;
+  } else {
+    return <Message message={message} />;
+  }
 }

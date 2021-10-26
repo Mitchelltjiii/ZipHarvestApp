@@ -6,6 +6,28 @@ const port = process.env.PORT || 3000
 const mysql = require('mysql');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 
+app.post('/create-checkout-session', async (req, res) => {
+  console.log("Create Checkout Sesssion");
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        // TODO: replace this with the `price` of the product you want to sell
+        price: 'price_1JouVZGBqcLC10Hc4rCefuG9',
+        quantity: 1,
+      },
+    ],
+    payment_method_types: [
+      'card',
+    ],
+    mode: 'subscription',
+    success_url: `${YOUR_DOMAIN}?success=true`,
+    cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+  });
+  res.json({
+    id: session.id,
+  })
+});
+
 var pool  = mysql.createPool({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
   user     : 'doadmin',
@@ -27,182 +49,6 @@ const harvestRecordsQueryString = "select * from hr where userID = '";
 const usersQueryString = "select * from users";
 
 const router = require('../app/routers/router');
-
-const YOUR_DOMAIN = 'https://www.zipharvest.app/';
-
-app.post('/create-checkout-session', async (req, res) => {
-  console.log("Create Checkout Sesssion");
-  const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        // TODO: replace this with the `price` of the product you want to sell
-        price: 'price_1JouVZGBqcLC10Hc4rCefuG9',
-        quantity: 1,
-      },
-    ],
-    payment_method_types: [
-      'card',
-    ],
-    mode: 'payment',
-    success_url: `${YOUR_DOMAIN}?success=true`,
-    cancel_url: `${YOUR_DOMAIN}?canceled=true`,
-  });
-  res.redirect(303, session.url)
-});
-
-
-
-app.get('/create-customer', async (req, res) => {
-  console.log("Creating Customer");
-  const customer = await stripe.customers.create({
-    description: 'My First Test Customer (created for API docs)',
-  });
-  try{
-    console.log("Customer: " + customer);
-  }catch(errr){
-
-  }
-  try{
-    console.log("Customer(STRING): " + JSON.stringify(customer));
-  }catch(errr){
-    
-  }
-  res.json(customer);
-})
-
-app.get('/check-subscription', async (req, res) => {
-  console.log("Checking Sub");
-  const subscription = await stripe.subscriptions.retrieve(
-    'sub_1JovlfGBqcLC10HcKOJJsgPt'
-  );
-  try{
-    console.log("Sub: " + subscription);
-  }catch(errr){
-
-  }
-  try{
-    console.log("Sub(STRING): " + JSON.stringify(subscription));
-  }catch(errr){
-    
-  }
-  try{
-    if(subscription.id==="sub_1JovlfGBqcLC10HcKOJJsgPt"){
-      console.log("Sub ID match");
-    }
-  }catch(errr){
-    
-  }
-  try{
-    console.log("Sub Status: " + subscription.status);
-  }catch(errr){
-    
-  }
-  res.json(subscription);
-})
-
-app.post('/create-portal-session', async (req, res) => {
-  // For demonstration purposes, we're using the Checkout session to retrieve the customer ID.
-  // Typically this is stored alongside the authenticated user in your database.
-  const { session_id } = req.body;
-  const checkoutSession = await stripe.checkout.sessions.retrieve(session_id);
-  // This is the url to which the customer will be redirected when they are done
-  // managing their billing with the portal.
-  const returnUrl = YOUR_DOMAIN;
-  const portalSession = await stripe.billingPortal.sessions.create({
-    customer: checkoutSession.customer,
-    return_url: returnUrl,
-  });
-  res.redirect(303, portalSession.url);
-});
-app.post(
-  '/webhook',
-  express.raw({ type: 'application/json' }),
-  (request, response) => {
-    const event = request.body;
-    // Replace this endpoint secret with your endpoint's unique secret
-    // If you are testing with the CLI, find the secret by running 'stripe listen'
-    // If you are using an endpoint defined with the API or dashboard, look in your webhook settings
-    // at https://dashboard.stripe.com/webhooks
-    const endpointSecret = 'whsec_12345';
-    // Only verify the event if you have an endpoint secret defined.
-    // Otherwise use the basic event deserialized with JSON.parse
-    if (endpointSecret) {
-      // Get the signature sent by Stripe
-      const signature = request.headers['stripe-signature'];
-      try {
-        event = stripe.webhooks.constructEvent(
-          request.body,
-          signature,
-          endpointSecret
-        );
-      } catch (err) {
-        console.log(`⚠️  Webhook signature verification failed.`, err.message);
-        return response.sendStatus(400);
-      }
-    }
-    let subscription;
-    let status;
-    // Handle the event
-    switch (event.type) {
-      case 'customer.subscription.trial_will_end':
-        subscription = event.data.object;
-        status = subscription.status;
-        console.log(`Subscription status is ${status}.`);
-        // Then define and call a method to handle the subscription trial ending.
-        // handleSubscriptionTrialEnding(subscription);
-        break;
-      case 'customer.subscription.deleted':
-        subscription = event.data.object;
-        status = subscription.status;
-        console.log(`Subscription status is ${status}.`);
-        // Then define and call a method to handle the subscription deleted.
-        // handleSubscriptionDeleted(subscriptionDeleted);
-        break;
-      case 'customer.subscription.created':
-        subscription = event.data.object;
-        status = subscription.status;
-        console.log(`Subscription status is ${status}.`);
-        // Then define and call a method to handle the subscription created.
-        // handleSubscriptionCreated(subscription);
-        break;
-      case 'customer.subscription.updated':
-        subscription = event.data.object;
-        status = subscription.status;
-        console.log(`Subscription status is ${status}.`);
-        // Then define and call a method to handle the subscription update.
-        // handleSubscriptionUpdated(subscription);
-        break;
-      default:
-        // Unexpected event type
-        console.log(`Unhandled event type ${event.type}.`);
-    }
-    // Return a 200 response to acknowledge receipt of the event
-    response.send();
-  }
-);
-/*app.post("/payment", cors(), async (req, res) => {
-	let { amount, id } = req.body
-	try {
-		const payment = await stripe.paymentIntents.create({
-			amount,
-			currency: "USD",
-			description: "Spatula company",
-			payment_method: id,
-			confirm: true
-		})
-		console.log("Payment", payment)
-		res.json({
-			message: "Payment successful",
-			success: true
-		})
-	} catch (error) {
-		console.log("Error", error)
-		res.json({
-			message: "Payment failed",
-			success: false
-		})
-	}
-})*/
 
 app.get("/api/users/:username/:password",(req,res) => {
   pool.getConnection((err, connection) => {
