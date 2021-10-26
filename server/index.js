@@ -33,9 +33,8 @@ const YOUR_DOMAIN = 'https://xp-r83j6.ondigitalocean.app/checkout';
 app.get('/check-subscription', async (req, res) => {
   console.log("Checking Sub");
   const subscription = await stripe.subscriptions.retrieve(
-    'sub_1JoudfGBqcLC10Hc4sWbCxsm'
+    'sub_1JovlfGBqcLC10HcKOJJsgPt'
   );
-
   console.log("Subscription exists: " + subscription.active);
 })
 
