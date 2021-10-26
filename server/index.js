@@ -6,6 +6,7 @@ const port = process.env.PORT || 3000
 const mysql = require('mysql');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 
+const YOUR_DOMAIN = "www.zipharvest.app";
 app.post('/create-checkout-session', async (req, res) => {
   console.log("Create Checkout Sesssion");
   const session = await stripe.checkout.sessions.create({
