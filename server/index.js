@@ -45,6 +45,18 @@ app.get('/check-subscription', async (req, res) => {
   }catch(errr){
     
   }
+  try{
+    if(subscription.id==="sub_1JovlfGBqcLC10HcKOJJsgPt"){
+      console.log("Sub ID match");
+    }
+  }catch(errr){
+    
+  }
+  try{
+    console.log("Sub Status: " + subscription.status);
+  }catch(errr){
+    
+  }
 })
 
 app.post('/create-checkout-session', async (req, res) => {
