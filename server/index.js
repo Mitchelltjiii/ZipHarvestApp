@@ -28,7 +28,7 @@ const usersQueryString = "select * from users";
 
 const router = require('../app/routers/router');
 
-const YOUR_DOMAIN = 'https://xp-r83j6.ondigitalocean.app/';
+const YOUR_DOMAIN = 'http://localhost:3000/checkout';
 
 app.post('/create-checkout-session', async (req, res) => {
   try{
@@ -48,8 +48,8 @@ app.post('/create-checkout-session', async (req, res) => {
       },
     ],
     mode: 'subscription',
-    success_url: `${YOUR_DOMAIN}`,
-    cancel_url: `${YOUR_DOMAIN}`,
+    success_url: `${YOUR_DOMAIN}?success=true&session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${YOUR_DOMAIN}?canceled=true`,
   });
   console.log("Before Redirect");
   res.redirect(303, session.url)

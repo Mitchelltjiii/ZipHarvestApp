@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import {isMobile} from 'react-device-detect';
-import StripeForm from './StripeForm.component';
 
 
 function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,attemptLogin}){
@@ -63,7 +62,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                     <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                     <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
                     <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn}>Log in</Button>             
-                    <StripeForm></StripeForm>
       </Grid>
       </div>
 			</div>	
