@@ -1,44 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const ProductDisplay = () => (
-    <section>
+  <section>
+    <div>
       <div>
-        <div>
-          <h3>Monthly Premium</h3>
-          <h5>$0.01 / month</h5>
-        </div>
+      <h3>Premium</h3>
+      <h5>$0.50</h5>
       </div>
-      <form action="/create-checkout-session" method="POST">
-      <input type="hidden" name="lookup_key" value="price.lookup_key" />
-        <button id="checkout-and-portal-button" type="submit">
-          Checkout
-        </button>
-      </form>
-    </section>
-  );
-
-const SuccessDisplay = ({ sessionId }) => {
-  return (
-    <section>
-      <div>
-        <div>
-          <h3>Subscription to starter plan successful!</h3>
-        </div>
-      </div>
-      <form action="/create-portal-session" method="POST">
-        <input
-          type="hidden"
-          id="session-id"
-          name="session_id"
-          value={sessionId}
-        />
-        <button id="checkout-and-portal-button" type="submit">
-          Manage your billing information
-        </button>
-      </form>
-    </section>
-  );
-};
+    </div>
+    <form action="/create-checkout-session" method="POST">
+      <button type="submit">
+        Checkout
+      </button>
+    </form>
+  </section>
+);
 
 const Message = ({ message }) => (
   <section>
@@ -47,32 +23,26 @@ const Message = ({ message }) => (
 );
 
 export default function StripeForm() {
-  let [message, setMessage] = useState('');
-  let [success, setSuccess] = useState(false);
-  let [sessionId, setSessionId] = useState('');
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
 
-    if (query.get('success')) {
-      setSuccess(true);
-      setSessionId(query.get('session_id'));
+    if (query.get("success")) {
+      setMessage("Order placed! You will receive an email confirmation.");
     }
 
-    if (query.get('canceled')) {
-      setSuccess(false);
+    if (query.get("canceled")) {
       setMessage(
         "Order canceled -- continue to shop around and checkout when you're ready."
       );
     }
-  }, [sessionId]);
+  }, []);
 
-  if (!success && message === '') {
-    return <ProductDisplay />;
-  } else if (success && sessionId !== '') {
-    return <SuccessDisplay sessionId={sessionId} />;
-  } else {
-    return <Message message={message} />;
-  }
+  return message ? (
+    <Message message={message} />
+  ) : (
+    <ProductDisplay />
+  );
 }

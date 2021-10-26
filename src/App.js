@@ -3,9 +3,7 @@ import "./styles.css";
 import Header from './components/Header.component';
 import Outer from './components/Outer.component';
 import LogIn from './components/LogIn.component';
-import StripeLink from "./components/StripeLink.component";
 import StripeForm from "./components/StripeForm.component";
-import CheckoutApp from "./components/CheckoutApp";
 export default class App extends React.Component {
   state = {
     currentPage: 'harvest-form',
@@ -297,7 +295,7 @@ export default class App extends React.Component {
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}/>
     </div>;
     }else{
-		showForm = <div><CheckoutApp></CheckoutApp></div>;
+		showForm = <div><StripeForm></StripeForm></div>;
     }
     return (
       <div className="App" style={{margin:"auto"}}>

@@ -30,35 +30,24 @@ const router = require('../app/routers/router');
 
 const YOUR_DOMAIN = 'https://www.zipharvest.app/';
 
-const calculateOrderAmount = (items) => {
-  // Replace this constant with a calculation of the order's amount
-  // Calculate the order total on the server to prevent
-  // people from directly manipulating the amount on the client
-  return 1;
-};
-
-app.post("/create-payment-intent", async (req, res) => {
-  const { items } = req.body;
-
-  // Create a PaymentIntent with the order amount and currency
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: calculateOrderAmount(items),
-    currency: "usd",
-    payment_method_types: [
-      "giropay",
-      "eps",
-      "p24",
-      "sofort",
-      "sepa_debit",
-      "card",
-      "bancontact",
-      "ideal",
+app.post('/create-checkout-session', async (req, res) => {
+  console.log("Create Checkout Sesssion");
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        // TODO: replace this with the `price` of the product you want to sell
+        price: 'price_1JouVZGBqcLC10Hc4rCefuG9',
+        quantity: 1,
+      },
     ],
+    payment_method_types: [
+      'card',
+    ],
+    mode: 'payment',
+    success_url: `${YOUR_DOMAIN}?success=true`,
+    cancel_url: `${YOUR_DOMAIN}?canceled=true`,
   });
-
-  res.send({
-    clientSecret: paymentIntent.client_secret,
-  });
+  res.redirect(303, session.url)
 });
 
 
@@ -111,29 +100,6 @@ app.get('/check-subscription', async (req, res) => {
   res.json(subscription);
 })
 
-app.post('/create-checkout-session', async (req, res) => {
-  console.log("Create checkout session");
-  const prices = await stripe.prices.list({
-    lookup_keys: [req.body.lookup_key],
-    expand: ['data.product'],
-  });
-  const session = await stripe.checkout.sessions.create({
-    billing_address_collection: 'auto',
-    payment_method_types: ['card'],
-    line_items: [
-      {
-        price: prices.data[0].id,
-        // For metered billing, do not pass quantity
-        quantity: 1,
-      },
-    ],
-    mode: 'subscription',
-    success_url: `${YOUR_DOMAIN}?success=true&session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${YOUR_DOMAIN}?canceled=true`,
-  });
-  console.log("Before Redirect");
-  res.redirect(303, session.url);
-});
 app.post('/create-portal-session', async (req, res) => {
   // For demonstration purposes, we're using the Checkout session to retrieve the customer ID.
   // Typically this is stored alongside the authenticated user in your database.
