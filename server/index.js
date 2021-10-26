@@ -186,7 +186,7 @@ app.post(
 	}
 })*/
 
-app.get("/api/users/:username/:password", async (req,res) => {
+app.get("/api/users/:username/:password",(req,res) => {
   pool.getConnection((err, connection) => {
       if(err) throw err;
       console.log('connected as id ' + connection.threadId);
@@ -213,14 +213,7 @@ app.get("/api/users/:username/:password", async (req,res) => {
             console.log("Caught error 1");
           }
           if(foundLogin){
-            const subscription = await stripe.subscriptions.retrieve(
-              'sub_1JovlfGBqcLC10HcKOJJsgPt'
-            );
-            if(subscription.id==="sub_1JovlfGBqcLC10HcKOJJsgPt"){
-              res.json(subscription.status);
-            }else{
-              res.json(1);
-            }
+            res.json(0);
           }else{
             res.json(1);
           }

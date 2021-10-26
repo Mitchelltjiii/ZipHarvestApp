@@ -34,9 +34,22 @@ export default class App extends React.Component {
   getUsersFromDB = async (username,password) => {
     const response = await fetch(`/api/users/${username}/${password}`);
     const text = await response.text();
+    const responseTwo = await fetch(`/check-subscription`);
+    const json = await responseTwo.json();
+    try{
+      console.log("SUB JSON: " + json);
+    }catch(err){
+
+    }
+    try{
+      console.log("SUB JSON(STRING): " + JSON.stringify(json));
+    }catch(err){
+      
+    }
+
     this.state.users = text;
     this.state.usersLoading = false;
-    if(text != "1"){
+    if(text == "0"){
       this.executeLogIn(username,text);
     }
   }
