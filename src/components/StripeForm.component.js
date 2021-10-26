@@ -1,17 +1,16 @@
-/*import React, { useState, useEffect } from 'react';
-import '../App.css';
+import React, { useState, useEffect } from 'react';
 
 const ProductDisplay = () => (
     <section>
-      <div className="product">
+      <div>
         <Logo />
-        <div className="description">
+        <div>
           <h3>Monthly Premium</h3>
           <h5>$100.00 / month</h5>
         </div>
       </div>
       <form action="/create-checkout-session" method="POST">
-        <input type="hidden" name="lookup_key" value="monthlypremium100" />
+        <input type="hidden" name="monthlypremium100" value="price_1JocCxGBqcLC10HcgrnEMEn1" />
         <button id="checkout-and-portal-button" type="submit">
           Checkout
         </button>
@@ -22,9 +21,9 @@ const ProductDisplay = () => (
 const SuccessDisplay = ({ sessionId }) => {
   return (
     <section>
-      <div className="product Box-root">
+      <div>
         <Logo />
-        <div className="description Box-root">
+        <div>
           <h3>Subscription to starter plan successful!</h3>
         </div>
       </div>
@@ -104,4 +103,3 @@ const Logo = () => (
     </g>
   </svg>
 );
-*/
