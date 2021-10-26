@@ -30,6 +30,15 @@ const router = require('../app/routers/router');
 
 const YOUR_DOMAIN = 'https://xp-r83j6.ondigitalocean.app/checkout';
 
+app.get('/check-subscription', async (req, res) => {
+  console.log("Checking Sub");
+  const subscription = await stripe.subscriptions.retrieve(
+    'sub_1JoudfGBqcLC10Hc4sWbCxsm'
+  );
+
+  console.log("Subscription exists: " + subscription.active);
+})
+
 app.post('/create-checkout-session', async (req, res) => {
   console.log("Create checkout session");
   const prices = await stripe.prices.list({

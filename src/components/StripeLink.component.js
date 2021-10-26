@@ -8,7 +8,6 @@ function StripeLink() {
 
   return (
     <div>
-      <h2>Stripe</h2>
     </div>
   );
 }

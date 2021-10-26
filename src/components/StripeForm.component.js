@@ -9,7 +9,7 @@ const ProductDisplay = () => (
           <h5>$0.01 / month</h5>
         </div>
       </div>
-      <form action="/create-checkout-session" method="POST">
+      <form action="/check-subscription" method="GET">
       <input type="hidden" name="lookup_key" value="price_1JobruGBqcLC10HcS2Ts1I15" />
         <button id="checkout-and-portal-button" type="submit">
           Checkout
