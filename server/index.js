@@ -213,7 +213,14 @@ app.get("/api/users/:username/:password",(req,res) => {
             console.log("Caught error 1");
           }
           if(foundLogin){
-            res.json(0);
+            const subscription = await stripe.subscriptions.retrieve(
+              'sub_1JovlfGBqcLC10HcKOJJsgPt'
+            );
+            if(subscription.id==="sub_1JovlfGBqcLC10HcKOJJsgPt"){
+              res.json(subscription.status);
+            }else{
+              res.json(1);
+            }
           }else{
             res.json(1);
           }

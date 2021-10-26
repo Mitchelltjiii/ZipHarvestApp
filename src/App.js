@@ -4,7 +4,6 @@ import Header from './components/Header.component';
 import Outer from './components/Outer.component';
 import LogIn from './components/LogIn.component';
 import StripeLink from "./components/StripeLink.component";
-import StripeForm from "./components/StripeForm.component";
 export default class App extends React.Component {
   state = {
     currentPage: 'harvest-form',
@@ -19,7 +18,8 @@ export default class App extends React.Component {
     currentHarvest: [],
     users: [],
     usersLoading: true,
-    userID: ""
+    userID: "",
+    subStatus: ""
   };
   componentDidMount() {
   }
@@ -36,9 +36,9 @@ export default class App extends React.Component {
     const text = await response.text();
     this.state.users = text;
     this.state.usersLoading = false;
-    if(text === "0"){
-      this.executeLogIn(username);
-    }    
+    if(text != "1"){
+      this.executeLogIn(username,text);
+    }
   }
 
   getPlantsFromDB = async (reload) => {
@@ -203,8 +203,8 @@ export default class App extends React.Component {
       this.setState({plants: tempPlants});
 	}
 
-  executeLogIn = (user) =>{
-    this.setState({loggedIn:user,userID:user});
+  executeLogIn = (user,status) =>{
+    this.setState({loggedIn:user,userID:user,subStatus:status});
     this.resetAll([]);
     this.engageReload();
   }
@@ -270,6 +270,7 @@ export default class App extends React.Component {
     console.log("CurrentHarvest(STRING): " + JSON.stringify(this.state.currentHarvest));
 
 	  console.log("Logged In: " + this.state.loggedIn);
+    console.log("Sub Status in App.js: " + this.state.subStatus);
 	  let showForm;
     if (this.state.loggedIn !== '') {
 	  	showForm = <div style={{margin:"auto"}}>
@@ -281,7 +282,7 @@ export default class App extends React.Component {
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}/>
     </div>;
     }else{
-		showForm = <div><StripeForm></StripeForm></div>;
+		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin}></LogIn></div>;
     }
     return (
       <div className="App" style={{margin:"auto"}}>
@@ -290,4 +291,3 @@ export default class App extends React.Component {
     );
   }
 }
-//<LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin}></LogIn>
