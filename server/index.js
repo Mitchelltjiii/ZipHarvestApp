@@ -31,6 +31,7 @@ const router = require('../app/routers/router');
 const YOUR_DOMAIN = 'https://xp-r83j6.ondigitalocean.app/';
 
 app.post('/create-checkout-session', async (req, res) => {
+  console.log("Create checkout session");
   const prices = await stripe.prices.list({
     lookup_keys: [req.body.lookup_key],
     expand: ['data.product'],
@@ -49,6 +50,7 @@ app.post('/create-checkout-session', async (req, res) => {
     success_url: `${YOUR_DOMAIN}?success=true&session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${YOUR_DOMAIN}?canceled=true`,
   });
+  console.log("Before Redirect");
   res.redirect(303, session.url)
 });
 app.post('/create-portal-session', async (req, res) => {
