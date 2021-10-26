@@ -35,7 +35,16 @@ app.get('/check-subscription', async (req, res) => {
   const subscription = await stripe.subscriptions.retrieve(
     'sub_1JovlfGBqcLC10HcKOJJsgPt'
   );
-  console.log("Subscription exists: " + subscription.active);
+  try{
+    console.log("Sub: " + subscription);
+  }catch(errr){
+
+  }
+  try{
+    console.log("Sub(STRING): " + JSON.stringify(subscription));
+  }catch(errr){
+    
+  }
 })
 
 app.post('/create-checkout-session', async (req, res) => {
