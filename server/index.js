@@ -27,10 +27,12 @@ const harvestRecordsQueryString = "select * from hr where userID = '";
 const usersQueryString = "select * from users";
 
 const router = require('../app/routers/router');
+const { nextTick } = require("process");
 
 const YOUR_DOMAIN = 'https://xp-r83j6.ondigitalocean.app/';
 
 app.post('/create-checkout-session', async (req, res) => {
+  try{
   console.log("Create checkout session");
   const prices = await stripe.prices.list({
     lookup_keys: [req.body.lookup_key],
@@ -52,6 +54,9 @@ app.post('/create-checkout-session', async (req, res) => {
   });
   console.log("Before Redirect");
   res.redirect(303, session.url)
+}catch(err){
+  
+}
 });
 app.post('/create-portal-session', async (req, res) => {
   // For demonstration purposes, we're using the Checkout session to retrieve the customer ID.
