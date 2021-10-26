@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import {isMobile} from 'react-device-detect';
-import StripeContainer from './StripeContainer';
 import Stripe from 'stripe';
 import StripeForm from './StipeForm.component';
 
