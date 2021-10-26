@@ -31,14 +31,14 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
         body: JSON.stringify({
           quantity: 1,
         })
-        .then((response) => response.json())
-        .then((session) => {
-          stripe.redirectToCheckout({sessionId: session.id});
-        })
-        .catch((error) => {
-          console.error('Error:',error);
-        })
       })
+      .then((response) => response.json())
+      .then((session) => {
+          stripe.redirectToCheckout({sessionId: session.id});
+      })
+      .catch((error) => {
+          console.error('Error:',error);
+      });
 	  }
 
     const handleUsername = (event) => {
