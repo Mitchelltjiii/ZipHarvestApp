@@ -38,12 +38,12 @@ async function goToProduct(lookup_key){
   });
   const json = await response.json();
   try{
-      console.log("price json: " + json);
+      console.log("new session json: " + json);
   }catch(err){
   
   }
         try{
-          console.log("price json(STRING): " + JSON.stringify(json));
+          console.log("new session json(STRING): " + JSON.stringify(json));
         }catch(err){
       
         }
