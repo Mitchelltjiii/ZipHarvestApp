@@ -291,6 +291,19 @@ export default class App extends React.Component {
     let currUrl = window.location.href;
     console.log("Curr URL: " + currUrl);
 
+    let currUrlSuccess = false;
+    let successEqualsStr = "success=";
+    if(currUrl.contains("success")){
+      let successStr = currUrl.substring(currUrl.indexOf(successEqualsStr)+successEqualsStr.length,currUrl.indexOf(successEqualsStr)+successEqualsStr.length+5);
+      console.log("Success Str: " + successStr);
+      if(successStr.contains("true")){
+        currUrlSuccess = true;
+        if(this.state.currentPage !== 'stripe-form'){
+          this.setCurrentPage('stripe-form');
+        }
+      }
+    }
+
     if (this.state.loggedIn !== '' || this.state.currentPage === ('create-user-form') || this.state.currentPage === ('stripe-form')) {
 	  	showForm = <div style={{margin:"auto"}}>
 	    <Header setCurrentPage={this.setCurrentPage} currentPage={this.state.currentPage} executeLogout={this.executeLogout}/>
