@@ -502,7 +502,8 @@ app.post('/user', (req, res) =>{
 
   console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
 
-  connection.query(`INSERT INTO users 
+  if(apiid !== null && username !== null && password !== null && subid !== null){
+    connection.query(`INSERT INTO users 
   (apiid, username, password, subid) 
   VALUES 
   (?, ?, ?, ?)`,
@@ -514,6 +515,8 @@ app.post('/user', (req, res) =>{
     console.log('The post user result is: ', result);
     res.json(result);
     });
+  }
+  res.json("");
   }); 
 });
 
