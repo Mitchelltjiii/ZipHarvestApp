@@ -75,9 +75,9 @@ export default function StripeForm() {
     return json.subscription;
   }
 
-  async function getSubscription(subsctiptionId){
+  async function getSubscription(subscriptionId){
     console.log("Try to get subscription");
-    const response = await fetch(`/get-subscription/${subsctiptionId}`);
+    const response = await fetch(`/get-subscription/${subscriptionId}`);
     const json = await response.json();
     try{
       console.log("sub json: " + json);
