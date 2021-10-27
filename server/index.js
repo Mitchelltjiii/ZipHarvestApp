@@ -26,7 +26,7 @@ const harvestRecordsQueryString = "select * from hr where userID = '";
 
 const usersQueryString = "select * from users";
 
-const possibleSubsString = "select * from possibleSub";
+const possibleSubQueryString = "select * from possibleSub where sessionid = '";
 
 const router = require('../app/routers/router');
 
@@ -97,6 +97,23 @@ app.get('/get-subscription/:subscriptionId', async (req,res) =>{
   const subscription = await stripe.subscriptions.retrieve(req.params.subscriptionId);
   console.log("Before response from getSubscription")
   res.json(subscription);
+})
+
+app.get('/get-possible-subscription/:sessionId', async (req,res) =>{
+  pool.getConnection((err, connection) => {
+    console.log("get Possible sub");
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    let sessionId = req.params.sessionId;
+    var sql = `${sessionId}`;
+    console.log("Commit Query: " + possibleSubQueryString + sql);
+    connection.query(possibleSubQueryString + sql + "'", (err, rows) => {
+        connection.release(); // return the connection to pool
+        if(err) throw err;
+        console.log('The data from possiblesub table are: \n', rows);
+        res.json(rows);
+    });
+  })
 })
 
 app.get('/get-products', async (req,res) =>{

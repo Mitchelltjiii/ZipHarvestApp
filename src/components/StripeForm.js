@@ -230,7 +230,7 @@ async function getSession(seshId){
     }catch(err){
 
     }
-    return json.subscription;
+    return json;
   }
 
   async function getSubscription(subId){
@@ -247,7 +247,24 @@ async function getSession(seshId){
     }catch(err){
       
     }
-    return json.id;
+    return json;
+  }
+
+  async function getPossibleSubscription(seshId){
+    console.log("Try to get subscription");
+    const response = await fetch(`/get-possible-subscription/${seshId}`);
+    const json = await response.json();
+    try{
+      console.log("sub json: " + json);
+    }catch(err){
+  
+    }
+    try{
+      console.log("sub json(STRING): " + JSON.stringify(json));
+    }catch(err){
+      
+    }
+    return json;
   }
 
   useEffect(() => {
@@ -262,6 +279,10 @@ async function getSession(seshId){
       console.log("sesh(String): " + JSON.stringify(sesh));
 
       let sub = getSubscription(sesh.subscription);
+      console.log("Got sub: " + JSON.stringify(sub));
+
+      let possibleSub = getPossibleSubscription(query.get('session_id'));
+      console.log("Got possible sub: " + JSON.stringify(possibleSub));
 
       setSubscriptionId(sesh.subscription);
     }
