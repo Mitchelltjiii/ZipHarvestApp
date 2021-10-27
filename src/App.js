@@ -286,7 +286,7 @@ export default class App extends React.Component {
 	  console.log("Logged In: " + this.state.loggedIn);
     console.log("Sub Status in App.js: " + this.state.subStatus);
 	  let showForm;
-    if (this.state.loggedIn !== '') {
+    if (this.state.loggedIn !== '' || this.state.currentPage === ('create-user-form') || this.state.currentPage === ('stripe-form')) {
 	  	showForm = <div style={{margin:"auto"}}>
 	    <Header setCurrentPage={this.setCurrentPage} currentPage={this.state.currentPage} executeLogout={this.executeLogout}/>
       <Outer currentPage={this.state.currentPage} setCurrentPage={this.setCurrentPage} getPlants={this.getPlants} getHarvestRecords={this.getHarvestRecords} getHarvestBatches={this.getHarvestBatches}
