@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-let [busySettingUser, setBusySettingUser] = useState('');
+export default function StripeForm({user,pass}) {
+
+  const Message = ({ message }) => (
+    <section>
+      <p>{message}</p>
+    </section>
+  );
+
+  let [busySettingUser, setBusySettingUser] = useState('');
 let [username, setUsername] = useState('');
 let [password, setPassword] = useState('');
 
@@ -99,12 +107,6 @@ const SuccessDisplay = ({ sessionId }) => {
   );
 };
 
-const Message = ({ message }) => (
-  <section>
-    <p>{message}</p>
-  </section>
-);
-
 async function getSession(sessionId){
   console.log("Try to get session");
   const response = await fetch(`/get-session/${sessionId}`);
@@ -127,7 +129,7 @@ async function getSession(sessionId){
   return json.subscription;
 }
 
-export default function StripeForm({user,pass}) {
+
   console.log("Enter stripeform user: " + user);
   console.log("Enter stripeform pass: " + pass);
 
