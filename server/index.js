@@ -26,6 +26,8 @@ const harvestRecordsQueryString = "select * from hr where userID = '";
 
 const usersQueryString = "select * from users";
 
+const possibleSubsString = "select * from possibleSub";
+
 const router = require('../app/routers/router');
 
 app.get("/api/users/:username/:password",(req,res) => {
@@ -506,6 +508,38 @@ app.post('/user', (req, res) =>{
   (?, ?, ?, ?)`,
   [
     apiid, username, password, subid
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The post user result is: ', result);
+    res.json(result);
+    });
+  }); 
+});
+
+app.post('/possibleSub', (req, res) =>{
+
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    var postData  = req.body;
+
+  let sessionid = postData.sessionid;
+  let username = postData.username;
+  let password = postData.password;
+
+  console.log("POST DATA: sessionid: " + sessionid);
+  console.log("POST DATA: username: " + username);
+  console.log("POST DATA: password: " + password);
+
+  console.log("POST DATA: possiblesub STRINGIFIED: " + JSON.stringify(postData));
+
+  connection.query(`INSERT INTO users 
+  (sessionid, username, password) 
+  VALUES 
+  (?, ?, ?)`,
+  [
+    sessionid, username, password
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;

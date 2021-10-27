@@ -11,21 +11,35 @@ export default function StripeForm({username,password}) {
 let busySettingUser = false;
 
 const ProductDisplay = () => (
-  <section>
-    <div className="product">
-      <div className="description">
-        <h3>Premium One</h3>
-        <h5>$0.50 / month</h5>
-      </div>
-    </div>
-    <form action="/create-checkout-session" method="POST">
+  <Grid
+				container
+				direction="column"
+        justifyContent="center"
+				alignItems="center"
+			>
+        <div>Premium One</div>
+        <div>$0.50 per month</div>
       <input type="hidden" name="lookup_key" value="premiumone" />
-      <button id="checkout-and-portal-button" type="submit">
-        Checkout
-      </button>
-    </form>
-  </section>
+      <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToProduct}>Checkout</Button>
+    </Grid>
 );
+
+const handleGoToProduct = () => {
+  goToProduct();
+}
+
+
+async function goToProduct(){
+  console.log("Engage go to product");
+  const response = fetch('/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+  });
+  console.log("fetched create checkout sess");
+}
 
 function getUserItem(subscriptionId){
   console.log("Enter getUserItem")
@@ -127,7 +141,7 @@ async function getSession(seshId){
 }
 
   console.log("Enter stripeform username: " + username);
-  console.log("Enter stripeform password: " + username);
+  console.log("Enter stripeform password: " + password);
 
   let [message, setMessage] = useState('');
   let [success, setSuccess] = useState(false);
