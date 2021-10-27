@@ -18,6 +18,7 @@ const ProductDisplay = () => (
 );
 
 const SuccessDisplay = ({ sessionId }) => {
+  console.log("Session ID: " + sessionId);
   return (
     <section>
       <div>
