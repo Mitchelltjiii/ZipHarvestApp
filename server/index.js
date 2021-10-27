@@ -97,6 +97,12 @@ app.get('/get-subscription/:subscriptionId', async (req,res) =>{
   res.json(subscription);
 })
 
+app.get('/get-products', async (req,res) =>{
+  const products = await stripe.products.list({limit: 10,});
+  console.log("Before response from getProducts")
+  res.json(products);
+})
+
 app.post('/create-checkout-session', async (req, res) => {
   console.log("Create session in index.js");
   const prices = await stripe.prices.list({

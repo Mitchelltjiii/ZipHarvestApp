@@ -53,6 +53,25 @@ export default function StripeForm() {
   let [sessionId, setSessionId] = useState('');
   let [subscriptionId, setSubscriptionId] = useState('');
 
+
+  async function getProducts(){
+    console.log("Get Products");
+    const response = await fetch(`/get-products`);
+    const json = await response.json();
+    try{
+      console.log("products json: " + json);
+    }catch(err){
+  
+    }
+    try{
+      console.log("Products json(STRING): " + JSON.stringify(json));
+    }catch(err){
+      
+    }
+  }
+  
+  getProducts();
+
   console.log("Stripeform load - subscriptionID: " + subscriptionId)
 
   async function getSession(sessionId){
