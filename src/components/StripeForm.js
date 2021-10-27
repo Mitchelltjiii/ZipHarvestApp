@@ -8,8 +8,7 @@ export default function StripeForm({username,password}) {
     </section>
   );
 
-  let [busySettingUser, setBusySettingUser] = useState('');
-
+let busySettingUser = false;
 
 const ProductDisplay = () => (
   <section>
@@ -69,7 +68,7 @@ async function updateUser(userItem){
   }
   console.log("Before removing busy setting user");
   console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
-  setBusySettingUser(false);
+  busySettingUser = (false);
   console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
   console.log("Exit update user")
 }
@@ -80,7 +79,7 @@ const SuccessDisplay = ({ seshId }) => {
   let session = getSession(seshId);
   let subId = session.subscription;
   console.log("success sub ID: " + subId);
-  setBusySettingUser(true);
+  busySettingUser = true;
   updateUser(getUserItem(subId));
   
   return (
