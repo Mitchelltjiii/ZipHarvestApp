@@ -51,6 +51,7 @@ export default function StripeForm() {
   let [message, setMessage] = useState('');
   let [success, setSuccess] = useState(false);
   let [sessionId, setSessionId] = useState('');
+  let [subscriptionId, setSubscriptionId] = useState('');
 
   async function getSession(sessionId){
     console.log("Try to get session");
@@ -69,6 +70,23 @@ export default function StripeForm() {
     try{
       console.log("Sub ID: " + json.subscription);
     }catch(err){
+
+    }
+    return json.subscription;
+  }
+
+  async function getSubscription(subsctiptionId){
+    console.log("Try to get subscription");
+    const response = await fetch(`/get-subscription/${subsctiptionId}`);
+    const json = await response.json();
+    try{
+      console.log("sub json: " + json);
+    }catch(err){
+  
+    }
+    try{
+      console.log("sub json(STRING): " + JSON.stringify(json));
+    }catch(err){
       
     }
   }
@@ -80,7 +98,7 @@ export default function StripeForm() {
     if (query.get('success')) {
       setSuccess(true);
       setSessionId(query.get('session_id'));
-      getSession(query.get('session_id'))
+      setSubscription(getSubscription(getSession(query.get('session_id'))));
     }
 
     if (query.get('canceled')) {

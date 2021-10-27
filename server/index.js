@@ -90,6 +90,13 @@ app.get('/get-session/:sessionId', async (req,res) =>{
   console.log("Before response from getsession")
   res.json(session);
 })
+
+app.get('/get-subscription/:subscriptionId', async (req,res) =>{
+  const subscription = await stripe.subscriptions.retrieve(req.params.subscriptionId);
+  console.log("Before response from getSubscription")
+  res.json(subscription);
+})
+
 app.post('/create-checkout-session', async (req, res) => {
   console.log("Create session in index.js");
   const prices = await stripe.prices.list({
