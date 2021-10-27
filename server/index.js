@@ -133,7 +133,7 @@ app.get('/set-lookup-key/:priceId/:lookupKey', async (req,res) =>{
 
 
 
-app.post('/create-checkout-session', async (req, res) => {
+app.post('/create-checkout-session/:lookup_key', async (req, res) => {
   console.log("Create session in index.js");
   const prices = await stripe.prices.list({
     lookup_keys: [req.body.lookup_key],
