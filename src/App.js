@@ -4,6 +4,7 @@ import Header from './components/Header.component';
 import Outer from './components/Outer.component';
 import LogIn from './components/LogIn.component';
 import StripeForm from "./components/StripeForm";
+import ProductForm from "./components/ProductForm";
 export default class App extends React.Component {
   state = {
     currentPage: 'harvest-form',
@@ -295,7 +296,7 @@ export default class App extends React.Component {
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}/>
     </div>;
     }else{
-		showForm = <div><StripeForm></StripeForm></div>;
+		showForm = <div><ProductForm></ProductForm></div>;
     }
     return (
       <div className="App" style={{margin:"auto"}}>
