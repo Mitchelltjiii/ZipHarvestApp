@@ -109,6 +109,18 @@ app.get('/get-product/:productId', async (req,res) =>{
   res.json(product);
 })
 
+app.get('/get-prices', async (req,res) =>{
+  const prices = await stripe.prices.list({limit: 10,});
+  console.log("Before response from getPrices")
+  res.json(prices);
+})
+
+app.get('/get-price/:priceId', async (req,res) =>{
+  const price = await stripe.prices.retrieve(req.params.priceId);   
+  console.log("Before response from getprice")
+  res.json(price);
+})
+
 app.post('/create-checkout-session', async (req, res) => {
   console.log("Create session in index.js");
   const prices = await stripe.prices.list({

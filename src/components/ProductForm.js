@@ -67,17 +67,71 @@ function ProductForm() {
         }
         let jsonGood = json;
 
-        for (const val of jsonGood) {
-            console.log("product x val: " + val);
-            console.log("product x val(STRING): " + JSON.stringify(val));
-            console.log("Val ID: " + val.id)
-            getProduct(val.id);
+        try{
+            for (const val of jsonGood) {
+                console.log("product x val: " + val);
+                console.log("product x val(STRING): " + JSON.stringify(val));
+                console.log("Val ID: " + val.id)
+                getProduct(val.id);
+            }
+        }catch(err){
+
         }
+        
     }
       
       console.log("Before getproducts");
     getProducts();
     console.log("After getproducts");
+
+    async function getPrice(priceId){
+        console.log("Try to get price");
+        const response = await fetch(`/get-price/${priceId}`);
+        const json = await response.json();
+        try{
+          console.log("price json: " + json);
+        }catch(err){
+  
+        }
+        try{
+          console.log("price json(STRING): " + JSON.stringify(json));
+        }catch(err){
+      
+        }
+        return json;
+    }
+
+    async function getPrices(){
+        console.log("Get Prices");
+        const response = await fetch(`/get-prices`);
+        const json = await response.json();
+        try{
+          console.log("prices json: " + json);
+        }catch(err){
+      
+        }
+        try{
+          console.log("Prices json(STRING): " + JSON.stringify(json));
+        }catch(err){
+          
+        }
+        let jsonGood = json;
+
+        try{
+            for (const val of jsonGood) {
+                console.log("price x val: " + val);
+                console.log("price x val(STRING): " + JSON.stringify(val));
+                console.log("Val ID: " + val.id)
+                getPrice(val.id);
+            }
+        }catch(err){
+
+        }
+    }
+      
+      console.log("Before getprices");
+    getPrices();
+    console.log("After getprices");
 
     let formWidth = "450px";
     let formHeight = "250px";
