@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import {isMobile} from 'react-device-detect';
-import stripe from '@stripe/react-stripe-js'
+import Stripe from '@stripe/stripe-js'
 
 function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,attemptLogin}){
     const [username, setUsername] = React.useState('');
@@ -23,6 +23,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 	  };
     
     function tryStripe(){
+      /*
       fetch('/create-checkout-session',{
         method: 'POST',
         headers: {
@@ -44,7 +45,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
       })
       .catch((error) => {
           console.error('Error:',error);
-      });
+      });*/
 	  }
 
     const handleUsername = (event) => {

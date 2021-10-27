@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
 const ProductDisplay = () => (
-    <section>
+  <section>
+    <div>
       <div>
-        <div>
-          <h3>Monthly Premium</h3>
-          <h5>$0.01 / month</h5>
-        </div>
+        <h3>Monthly Premium</h3>
+        <h5>$0.01 / month</h5>
       </div>
-      <form action="/create-checkout-session" method="POST">
-      <input type="hidden" name="lookup_key" value="price_1JouVZGBqcLC10Hc4rCefuG9" />
-        <button id="checkout-and-portal-button" type="submit">
-          Checkout
-        </button>
-      </form>
-    </section>
-  );
+    </div>
+    <form action="/create-checkout-session" method="POST">
+      <input type="hidden" name="lookup_key" value="monthlypremium100" />
+      <button id="checkout-and-portal-button" type="submit">
+        Checkout
+      </button>
+    </form>
+  </section>
+);
 
 const SuccessDisplay = ({ sessionId }) => {
   return (
@@ -76,3 +76,6 @@ export default function StripeForm() {
     return <Message message={message} />;
   }
 }
+
+
+
