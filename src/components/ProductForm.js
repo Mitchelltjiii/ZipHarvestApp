@@ -65,7 +65,9 @@ function ProductForm() {
         }catch(err){
           
         }
-        for (const val of json) {
+        let jsonGood = json;
+
+        for (const val of jsonGood) {
             console.log("product x val: " + val);
             console.log("product x val(STRING): " + JSON.stringify(val));
             console.log("Val ID: " + val.id)
