@@ -36,6 +36,19 @@ async function goToProduct(lookup_key){
         method: 'POST',
         mode: 'no-cors'
   });
+  const json = await response.json();
+  try{
+      console.log("price json: " + json);
+  }catch(err){
+  
+  }
+        try{
+          console.log("price json(STRING): " + JSON.stringify(json));
+        }catch(err){
+      
+        }
+
+  window.location.replace(json.url);
   console.log("fetched create checkout sess");
 }
 

@@ -163,7 +163,7 @@ app.post('/create-checkout-session/:lookup_key', async (req, res) => {
   }catch(err){
 
   }
-  res.redirect(303, session.url)
+  res.json(session);
 });
 app.post('/create-portal-session', async (req, res) => {
   // For demonstration purposes, we're using the Checkout session to retrieve the customer ID.
