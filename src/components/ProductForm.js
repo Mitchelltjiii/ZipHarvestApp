@@ -34,6 +34,22 @@ function ProductForm() {
     const handlePasswordAgain = (event) => {
         setPasswordAgain(event.target.value);
     };*/
+    async function getProduct(productId){
+        console.log("Try to get product");
+        const response = await fetch(`/get-product/${productId}`);
+        const json = await response.json();
+        try{
+          console.log("product json: " + json);
+        }catch(err){
+  
+        }
+        try{
+          console.log("Product json(STRING): " + JSON.stringify(json));
+        }catch(err){
+      
+        }
+        return json;
+    }
 
     async function getProducts(){
         console.log("Get Products");
@@ -49,12 +65,18 @@ function ProductForm() {
         }catch(err){
           
         }
-      }
+        for (const val of json) {
+            console.log("product x val: " + val);
+            console.log("product x val(STRING): " + JSON.stringify(val));
+            console.log("Val ID: " + val.id)
+            getProduct(val.id);
+        }
+    }
       
       console.log("Before getproducts");
     getProducts();
     console.log("After getproducts");
-    
+
     let formWidth = "450px";
     let formHeight = "250px";
 

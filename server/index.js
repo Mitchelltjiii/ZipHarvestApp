@@ -103,6 +103,12 @@ app.get('/get-products', async (req,res) =>{
   res.json(products);
 })
 
+app.get('/get-product/:productId', async (req,res) =>{
+  const product = await stripe.products.retrieve(req.params.productId); 
+   console.log("Before response from getproduct")
+  res.json(product);
+})
+
 app.post('/create-checkout-session', async (req, res) => {
   console.log("Create session in index.js");
   const prices = await stripe.prices.list({
