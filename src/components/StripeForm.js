@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export default function StripeForm({user,pass}) {
+export default function StripeForm({username,password}) {
 
   const Message = ({ message }) => (
     <section>
@@ -9,8 +9,6 @@ export default function StripeForm({user,pass}) {
   );
 
   let [busySettingUser, setBusySettingUser] = useState('');
-let [username, setUsername] = useState('');
-let [password, setPassword] = useState('');
 
 
 const ProductDisplay = () => (
@@ -129,12 +127,6 @@ async function getSession(sessionId){
   return json.subscription;
 }
 
-
-  console.log("Enter stripeform user: " + user);
-  console.log("Enter stripeform pass: " + pass);
-
-  setUsername(user);
-  setPassword(pass);
   console.log("Enter stripeform username: " + username);
   console.log("Enter stripeform password: " + username);
 
