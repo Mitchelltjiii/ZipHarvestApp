@@ -22,8 +22,8 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setUser,setPass}) {
         if(!stepTwo){
             setStepTwo(true);
         }else{
-            setUser(username);
-            setPass(password);
+            setUsername(username);
+            setPassword(password);
             setCurrentPage('stripe-form');
         }
     }
