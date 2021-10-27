@@ -299,10 +299,10 @@ export default class App extends React.Component {
 
     let currUrlSuccess = false;
     let successEqualsStr = "success=";
-    if(currUrl.contains("success")){
+    if(currUrl.includes("success")){
       let successStr = currUrl.substring(currUrl.indexOf(successEqualsStr)+successEqualsStr.length,currUrl.indexOf(successEqualsStr)+successEqualsStr.length+5);
       console.log("Success Str: " + successStr);
-      if(successStr.contains("true")){
+      if(successStr.includes("true")){
         currUrlSuccess = true;
         if(this.state.currentPage !== 'stripe-form'){
           this.setCurrentPage('stripe-form');
