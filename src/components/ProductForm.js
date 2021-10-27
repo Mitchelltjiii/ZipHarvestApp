@@ -65,10 +65,9 @@ function ProductForm() {
         }catch(err){
           
         }
-        let jsonGood = json;
 
         try{
-            for (const val of jsonGood) {
+            for (const val of json.data) {
                 console.log("product x val: " + val);
                 console.log("product x val(STRING): " + JSON.stringify(val));
                 console.log("Val ID: " + val.id)
@@ -115,11 +114,9 @@ function ProductForm() {
         }catch(err){
           
         }
-        let str = JSON.stringify(json);
-        let jsonGood = JSON.parse("[" + str.substring(1,str.length-1) + "]");
 
         try{
-            for (const val of jsonGood) {
+            for (const val of json.data) {
                 console.log("price x val: " + val);
                 console.log("price x val(STRING): " + JSON.stringify(val));
                 console.log("Val ID: " + val.id)
