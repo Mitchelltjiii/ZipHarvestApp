@@ -125,6 +125,8 @@ function ProductForm() {
                 console.log("Val lookup-key: " + val.lookup_key)
                 if(val.lookup_key===null){
                     nextLookupKey = "lk_" + lookupKeyNum; 
+                    console.log("Val ID in loop: " + val.id);
+                    console.log("Next lookup key: " + nextLookupKey);
                     const responseTwo = await fetch(`/set-lookup-key/${val.id}/${nextLookupKey}`);
                     lookupKeyNum++;
                     const jsonTwo = await responseTwo.json();
