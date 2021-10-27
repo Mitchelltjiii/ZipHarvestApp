@@ -86,10 +86,12 @@ app.use(express.json());
 const YOUR_DOMAIN = 'https://www.zipharvest.app/';
 
 app.post('/get-session/:sessionId/', async (req,res) =>{
+  console.log("Get Session: " + req.params.sessionId);
   const session = await stripe.checkout.sessions.retrieve(
     req.params.sessionId
   );
-  res.json(session);
+  console.log("Before response from getsession")
+  res.json(session.JSON);
 })
 app.post('/create-checkout-session', async (req, res) => {
   const prices = await stripe.prices.list({
