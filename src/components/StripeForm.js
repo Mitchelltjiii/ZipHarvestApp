@@ -54,7 +54,7 @@ export default function StripeForm() {
 
   async function getSession(sessionId){
     console.log("Try to get session");
-    const response = await fetch(`/get-session`);
+    const response = await fetch(`/get-session/${sessionId}`);
     const json = await response.json();
     try{
       console.log("session json: " + json);
@@ -63,6 +63,11 @@ export default function StripeForm() {
     }
     try{
       console.log("Session json(STRING): " + JSON.stringify(json));
+    }catch(err){
+      
+    }
+    try{
+      console.log("Sub ID: " + json.subscription);
     }catch(err){
       
     }
