@@ -4,12 +4,12 @@ const ProductDisplay = () => (
   <section>
     <div className="product">
       <div className="description">
-        <h3>Premium one</h3>
+        <h3>Premium One</h3>
         <h5>$0.50 / month</h5>
       </div>
     </div>
     <form action="/create-checkout-session" method="POST">
-      <input type="hidden" name="lookup_key" value="premiumone" />
+      <input type="hidden" name="lookup_key" value="lk_1" />
       <button id="checkout-and-portal-button" type="submit">
         Checkout
       </button>

@@ -296,7 +296,7 @@ export default class App extends React.Component {
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}/>
     </div>;
     }else{
-		showForm = <div><ProductForm></ProductForm></div>;
+		showForm = <div><StripeForm></StripeForm></div>;
     }
     return (
       <div className="App" style={{margin:"auto"}}>
