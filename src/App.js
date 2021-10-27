@@ -289,23 +289,8 @@ export default class App extends React.Component {
     console.log("CurrentPage: " + this.state.currentPage);
     console.log("-*-*-*");
     let currUrl = "";
-
     try{
-      currUrl = window.location.href.toString;
-      console.log("CurrURL(toString): " + currUrl);
-    }catch(err){
-
-    }
-    try{
-      currUrl = window.location.href.toString();
-      console.log("CurrURL(toString()): " + currUrl);
-    }catch(err){
-
-    }
-    try{
-      currUrl = window.location.pathname;
-      console.log("CurrURL(pathname): " + currUrl);
-      console.log("CurrURL(STRING)(pathname): " + JSON.stringify(currUrl));
+      currUrl = JSON.stringify(window.location.pathname);
     }catch(err){
 
     }
