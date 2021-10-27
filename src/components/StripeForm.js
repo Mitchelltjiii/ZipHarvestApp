@@ -19,19 +19,18 @@ const ProductDisplay = () => (
 			>
         <div>Premium One</div>
         <div>$0.50 per month</div>
-      <input type="hidden" name="lookup_key" value="premiumone" />
       <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToProduct}>Checkout</Button>
     </Grid>
 );
 
 const handleGoToProduct = () => {
-  goToProduct();
+  goToProduct("premiumone");
 }
 
 
-async function goToProduct(){
+async function goToProduct(lookup_key){
   console.log("Engage go to product");
-  const response = fetch('/create-checkout-session', {
+  const response = fetch(`/create-checkout-session/${lookup_key}`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
