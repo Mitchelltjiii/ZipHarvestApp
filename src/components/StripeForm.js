@@ -33,7 +33,8 @@ const handleGoToProduct = () => {
 async function goToProduct(lookup_key){
   console.log("Engage go to product");
   const response = fetch(`/create-checkout-session/${lookup_key}`, {
-        method: 'POST'
+        method: 'POST',
+        mode: 'no-cors'
   });
   console.log("fetched create checkout sess");
 }
