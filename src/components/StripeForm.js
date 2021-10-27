@@ -52,6 +52,21 @@ export default function StripeForm() {
   let [success, setSuccess] = useState(false);
   let [sessionId, setSessionId] = useState('');
 
+  async function getSession(sessionId){
+    const response = await fetch(`/get-session/${sessionId}`);
+    const text = await response.text();
+    try{
+      console.log("session text: " + text);
+    }catch(err){
+  
+    }
+    try{
+      console.log("Session text(STRING): " + JSON.stringify(text));
+    }catch(err){
+      
+    }
+  }
+
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
@@ -59,6 +74,7 @@ export default function StripeForm() {
     if (query.get('success')) {
       setSuccess(true);
       setSessionId(query.get('session_id'));
+      getSession(query.get('session_id'))
     }
 
     if (query.get('canceled')) {
