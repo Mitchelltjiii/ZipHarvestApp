@@ -53,6 +53,8 @@ export default function StripeForm() {
   let [sessionId, setSessionId] = useState('');
   let [subscriptionId, setSubscriptionId] = useState('');
 
+  console.log("Stripeform load - subscriptionID: " + subscriptionId)
+
   async function getSession(sessionId){
     console.log("Try to get session");
     const response = await fetch(`/get-session/${sessionId}`);
@@ -89,6 +91,7 @@ export default function StripeForm() {
     }catch(err){
       
     }
+    return json.id;
   }
 
   useEffect(() => {
@@ -98,7 +101,7 @@ export default function StripeForm() {
     if (query.get('success')) {
       setSuccess(true);
       setSessionId(query.get('session_id'));
-      setSubscription(getSubscription(getSession(query.get('session_id'))));
+      setSubscriptionId(getSubscription(getSession(query.get('session_id'))));
     }
 
     if (query.get('canceled')) {
