@@ -53,7 +53,8 @@ export default function StripeForm() {
   let [sessionId, setSessionId] = useState('');
 
   async function getSession(sessionId){
-    const response = await fetch(`/get-session/${sessionId}`);
+    console.log("Try to get session");
+    const response = await fetch(`/get-session`);
     const json = await response.json();
     try{
       console.log("session json: " + json);
