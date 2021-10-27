@@ -11,6 +11,7 @@ export default function StripeForm({username,password}) {
   );
 
 let busySettingUser = false;
+let busySettingPossibleSub = false;
 
 const ProductDisplay = () => (
   <Grid
@@ -48,8 +49,55 @@ async function goToProduct(lookup_key){
       
         }
 
+  busySettingPossibleSub = true;
+  updatePossibleSub(getPossibleSubItem(json.id));
+
   window.location.replace(json.url);
   console.log("fetched create checkout sess");
+}
+
+function getPossibleSubItem(seshId){
+  console.log("Enter getPossibleSubItem")
+  console.log("Enter sesh ID: " + seshId);
+
+  let subItem = {
+    sessionid: '',
+    username: '',
+    password: '',
+    };
+
+    subItem.sessionid = seshId;
+    subItem.username = username;
+    subItem.password = password;
+
+  console.log("Stringified before passed: " + JSON.stringify(subItem));
+  console.log("Exit getPossibleSubItem")
+  return subItem;
+}
+
+async function updatePossibleSub(possibleSubItem){
+  console.log("Engage update possiblesub");
+  const response = fetch('/possibleSub', {
+        method: (possibleSubItem.id) ? 'PUT' : 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(possibleSubItem)
+  });
+  console.log("Create possiblesubitem should be done - no indicator");
+  try{
+    console.log("AWAITING RESPONSE UPDATE possiblesubitem")
+    await response.text();
+    console.log("RESPONSE RECIEVED UPDATE possiblesubitem")
+  }catch(err){
+    console.log("NO RESPONSE RECIEVED UPDATE possiblesubitem")
+  }
+  console.log("Before removing busy setting possiblesubitem");
+  console.log("BUSYSETTINGpossiblesubitem before: " + JSON.stringify(busySettingPossibleSub)); 
+  busySettingPossibleSub = (false);
+  console.log("BUSYSETTINGpossiblesubitem after: " + JSON.stringify(busySettingPossibleSub));       
+  console.log("Exit update possiblesubitem")
 }
 
 function getUserItem(subscriptionId){
