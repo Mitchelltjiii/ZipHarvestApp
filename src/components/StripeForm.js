@@ -33,11 +33,7 @@ const handleGoToProduct = () => {
 async function goToProduct(lookup_key){
   console.log("Engage go to product");
   const response = fetch(`/create-checkout-session/${lookup_key}`, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
+        method: 'POST'
   });
   console.log("fetched create checkout sess");
 }
