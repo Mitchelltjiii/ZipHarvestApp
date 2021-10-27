@@ -43,11 +43,11 @@ async function goToProduct(lookup_key){
   }catch(err){
   
   }
-        try{
+  try{
           console.log("new session json(STRING): " + JSON.stringify(json));
-        }catch(err){
+  }catch(err){
       
-        }
+  }
 
   busySettingPossibleSub = true;
   updatePossibleSub(getPossibleSubItem(json.id));
