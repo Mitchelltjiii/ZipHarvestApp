@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 
 const ProductDisplay = () => (
   <section>
-    <div>
-      <div>
-        <h3>Monthly Premium</h3>
-        <h5>$0.01 / month</h5>
+    <div className="product">
+      <Logo />
+      <div className="description">
+        <h3>Premium one</h3>
+        <h5>$0.50 / month</h5>
       </div>
     </div>
     <form action="/create-checkout-session" method="POST">
-      <input type="hidden" name="lookup_key" value="monthlypremium100" />
+      <input type="hidden" name="lookup_key" value="premiumone" />
       <button id="checkout-and-portal-button" type="submit">
         Checkout
       </button>
