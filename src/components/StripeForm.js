@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 const ProductDisplay = () => (
   <section>
     <div className="product">
-      <Logo />
       <div className="description">
         <h3>Premium one</h3>
         <h5>$0.50 / month</h5>
