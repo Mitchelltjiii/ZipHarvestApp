@@ -9,14 +9,14 @@ const ProductDisplay = () => (
       </div>
     </div>
     <form action="/create-checkout-session" method="POST">
-      <input type="hidden" name="lookup_key" value="lk_1" />
+      <input type="hidden" name="lookup_key" value="premiumone" />
       <button id="checkout-and-portal-button" type="submit">
         Checkout
       </button>
     </form>
   </section>
 );
-
+//value lk_1
 const SuccessDisplay = ({ sessionId }) => {
   console.log("Session ID: " + sessionId);
   return (
@@ -54,6 +54,8 @@ export default function StripeForm() {
   let [subscriptionId, setSubscriptionId] = useState('');
 
   console.log("Stripeform load - subscriptionID: " + subscriptionId)
+  console.log("Stripeform load - sessionID: " + sessionId)
+
 
   async function getSession(sessionId){
     console.log("Try to get session");
@@ -101,10 +103,13 @@ export default function StripeForm() {
     if (query.get('success')) {
       setSuccess(true);
       setSessionId(query.get('session_id'));
-      let seshId = getSession(query.get('session_id'));
-      console.log("seshId: " + seshId);
-      let subId = getSubscription(subId);
-      setSubscriptionId(subId);
+      let sesh = getSession(query.get('session_id'));
+      console.log("sesh: " + sesh);
+      console.log("sesh(String): " + JSON.stringify(sesh));
+
+      let sub = getSubscription(sesh.subscription);
+
+      setSubscriptionId(sesh.subscription);
     }
 
     if (query.get('canceled')) {
