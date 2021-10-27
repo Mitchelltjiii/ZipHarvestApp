@@ -121,6 +121,16 @@ app.get('/get-price/:priceId', async (req,res) =>{
   res.json(price);
 })
 
+app.get('/set-lookup-key/:priceId/:lookupKey', async (req,res) =>{
+  const price = await stripe.prices.update(
+    req.params.priceId,
+    {lookup_key: req.params.lookupKey}); 
+  console.log("Before response from setprice")
+  res.json(price);
+})
+
+
+
 app.post('/create-checkout-session', async (req, res) => {
   console.log("Create session in index.js");
   const prices = await stripe.prices.list({

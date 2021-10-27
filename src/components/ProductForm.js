@@ -115,14 +115,15 @@ function ProductForm() {
         }catch(err){
           
         }
-        let jsonGood = json;
+        let str = JSON.stringify(json);
+        let jsonGood = JSON.parse("[" + str.substring(1,str.length-1) + "]");
 
         try{
             for (const val of jsonGood) {
                 console.log("price x val: " + val);
                 console.log("price x val(STRING): " + JSON.stringify(val));
                 console.log("Val ID: " + val.id)
-                getPrice(val.id);
+                console.log("Val lookup-key: " + val.lookup_key)
             }
         }catch(err){
 
