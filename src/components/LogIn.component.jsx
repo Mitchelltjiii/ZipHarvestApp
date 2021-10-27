@@ -34,6 +34,12 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
       })
       .then((response) => response.json())
       .then((session) => {
+          console.log("Redirect now");
+          try{
+            console.log("SessionID: " + session.id);
+          }catch(err){
+            
+          }
           stripe.redirectToCheckout({sessionId: session.id});
       })
       .catch((error) => {
