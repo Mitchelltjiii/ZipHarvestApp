@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import {isMobile} from 'react-device-detect';
 import Stripe from '@stripe/stripe-js'
 
-function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,attemptLogin}){
+function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,attemptLogin,setCurrentPage}){
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     
@@ -23,29 +23,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 	  };
     
     function tryStripe(){
-      /*
-      fetch('/create-checkout-session',{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          quantity: 1,
-        })
-      })
-      .then((response) => response.json())
-      .then((session) => {
-          console.log("Redirect now");
-          try{
-            console.log("SessionID: " + session.id);
-          }catch(err){
-            
-          }
-          stripe.redirectToCheckout({sessionId: session.id});
-      })
-      .catch((error) => {
-          console.error('Error:',error);
-      });*/
+      setCurrentPage('create-user-form');
 	  }
 
     const handleUsername = (event) => {

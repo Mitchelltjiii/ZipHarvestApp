@@ -31,7 +31,7 @@ class Outer extends Component {
       getCurrentHarvestID={this.props.getCurrentHarvestID} refreshOuter={this.refreshOuter} setNewHarvestRecordID={this.props.setNewHarvestRecordID} 
       setNewPlantID={this.props.setNewPlantID} userID={this.props.userID} setAll={this.props.setAll} reloadPlants={this.props.reloadPlants} 
       reloadPlantsAndHarvestRecords={this.props.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.props.reloadHarvestBatches}
-      reloadHarvestRecords={this.props.reloadHarvestRecords}/>
+      reloadHarvestRecords={this.props.reloadHarvestRecords} setCurrentPage={this.props.setCurrentPage}/>
 		</div>
     );
   }

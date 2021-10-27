@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {isMobile} from 'react-device-detect';
 
 
-function Header({currentPageSet, currentPage, executeLogout}){
+function Header({setCurrentPage, currentPage, executeLogout}){
     const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -23,23 +23,23 @@ function Header({currentPageSet, currentPage, executeLogout}){
 
   const handleMyAccount = () => {
     handleClose()
-    currentPageSet('account-form');
+    setCurrentPage('account-form');
   }
 
   const handleHarvestNow = () => {
     handleClose()
-    currentPageSet('harvest-form')
+    setCurrentPage('harvest-form')
   }
 
   const handleManagePlants = () => {
     handleClose()
-    currentPageSet('manage-plants-form')
+    setCurrentPage('manage-plants-form')
   }
 
   const handleExistingBatches = () => {
     console.log("Handle Existing Batches");
     handleClose()
-    currentPageSet('harvest-batches-form')
+    setCurrentPage('harvest-batches-form')
   }
 
   let headerWidth = "650px";
