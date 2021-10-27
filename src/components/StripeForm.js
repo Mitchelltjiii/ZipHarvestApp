@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
+let [busySettingUser, setBusySettingUser] = useState('');
+let [username, setUsername] = useState('');
+let [password, setPassword] = useState('');
+
+
 const ProductDisplay = () => (
   <section>
     <div className="product">
@@ -16,9 +21,65 @@ const ProductDisplay = () => (
     </form>
   </section>
 );
+
+function getUserItem(subscriptionId){
+  console.log("Enter getUserItem")
+  console.log("Enter sub ID: " + subscriptionId);
+
+  let userItem = {
+    apiid: '',
+    username: '',
+    password: '',
+    subid: ''
+    };
+
+    userItem.apiid = "apiid";
+    userItem.username = username;
+    userItem.password = password;
+    userItem.subid = subscriptionId;
+  if(user.id!==""){
+    userItem.id = user.id;
+  }
+
+  console.log("Stringified before passed: " + JSON.stringify(userItem));
+  console.log("Exit getUserItem")
+  return userItem;
+}
+
+async function updateUser(userItem){
+  console.log("Engage update user");
+  const response = fetch('/user', {
+        method: (userItem.id) ? 'PUT' : 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userItem)
+  });
+  console.log("Create user should be done - no indicator");
+  try{
+    console.log("AWAITING RESPONSE UPDATEUser")
+    await response.text();
+    console.log("RESPONSE RECIEVED UPDATEUser")
+  }catch(err){
+    console.log("NO RESPONSE RECIEVED UPDATEUser")
+  }
+  console.log("Before removing busy setting user");
+  console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
+  setBusySettingUser(false);
+  console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
+  console.log("Exit update user")
+}
+
 //value lk_1
 const SuccessDisplay = ({ sessionId }) => {
-  console.log("Session ID: " + sessionId);
+  console.log("success Session ID: " + sessionId);
+  let session = getSession(sessionId);
+  let subId = session.subscription;
+  console.log("success sub ID: " + sessionId);
+  setBusySettingUser(true);
+  updateUser(getUserItem(subId));
+  
   return (
     <section>
       <div>
@@ -47,7 +108,37 @@ const Message = ({ message }) => (
   </section>
 );
 
-export default function StripeForm() {
+async function getSession(sessionId){
+  console.log("Try to get session");
+  const response = await fetch(`/get-session/${sessionId}`);
+  const json = await response.json();
+  try{
+    console.log("session json: " + json);
+  }catch(err){
+
+  }
+  try{
+    console.log("Session json(STRING): " + JSON.stringify(json));
+  }catch(err){
+    
+  }
+  try{
+    console.log("Sub ID: " + json.subscription);
+  }catch(err){
+
+  }
+  return json.subscription;
+}
+
+export default function StripeForm({user,pass}) {
+  console.log("Enter stripeform user: " + user);
+  console.log("Enter stripeform pass: " + pass);
+
+  setUsername(user);
+  setPassword(pass);
+  console.log("Enter stripeform username: " + username);
+  console.log("Enter stripeform password: " + username);
+
   let [message, setMessage] = useState('');
   let [success, setSuccess] = useState(false);
   let [sessionId, setSessionId] = useState('');

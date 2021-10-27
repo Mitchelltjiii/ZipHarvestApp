@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-function CreateUserForm({refreshOuter, userID,setCurrentPage}) {
+function CreateUserForm({refreshOuter, userID,setCurrentPage,setUser,setPass}) {
 
     const [email, setEmail] = React.useState('');
     const [username, setUsername] = React.useState('');
@@ -22,6 +22,8 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage}) {
         if(!stepTwo){
             setStepTwo(true);
         }else{
+            setUser(username);
+            setPass(password);
             setCurrentPage('stripe-form');
         }
     }

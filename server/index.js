@@ -481,6 +481,40 @@ app.put('/hb', (req, res) =>{
   });
 });
 
+app.post('/user', (req, res) =>{
+
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    var postData  = req.body;
+
+  let apiid = postData.apiid;
+  let username = postData.username;
+  let password = postData.password;
+  let subid = postData.subid;
+
+  console.log("POST DATA: apiid: " + apiid);
+  console.log("POST DATA: username: " + username);
+  console.log("POST DATA: password: " + password);
+  console.log("POST DATA: subid: " + subid);
+
+  console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
+
+  connection.query(`INSERT INTO users 
+  (apiid, username, password, subid) 
+  VALUES 
+  (?, ?, ?, ?)`,
+  [
+    apiid, username, password, subid
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The post user result is: ', result);
+    res.json(result);
+    });
+  }); 
+});
+
 app.post('/hr', (req, res) =>{
 
   pool.getConnection((err, connection) => {
