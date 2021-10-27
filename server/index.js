@@ -537,7 +537,7 @@ app.post('/possibleSub', (req, res) =>{
 
   console.log("POST DATA: possiblesub STRINGIFIED: " + JSON.stringify(postData));
 
-  connection.query(`INSERT INTO users 
+  connection.query(`INSERT INTO possibleSub 
   (sessionid, username, password) 
   VALUES 
   (?, ?, ?)`,

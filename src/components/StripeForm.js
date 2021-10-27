@@ -52,7 +52,7 @@ async function goToProduct(lookup_key){
   busySettingPossibleSub = true;
   updatePossibleSub(getPossibleSubItem(json.id));
 
-  //window.location.replace(json.url);
+  window.location.replace(json.url);
   console.log("fetched create checkout sess");
 }
 
