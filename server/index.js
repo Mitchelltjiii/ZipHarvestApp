@@ -85,7 +85,7 @@ app.use(express.json());
 
 const YOUR_DOMAIN = 'https://www.zipharvest.app/';
 
-app.post('/get-session/:sessionId/', async (req,res) =>{
+app.post('/get-session/:sessionId', async (req,res) =>{
   console.log("Get Session: " + req.params.sessionId);
   const session = await stripe.checkout.sessions.retrieve(
     req.params.sessionId
@@ -94,6 +94,7 @@ app.post('/get-session/:sessionId/', async (req,res) =>{
   res.json(session.JSON);
 })
 app.post('/create-checkout-session', async (req, res) => {
+  console.log("Create session in index.js");
   const prices = await stripe.prices.list({
     lookup_keys: [req.body.lookup_key],
     expand: ['data.product'],
@@ -112,6 +113,16 @@ app.post('/create-checkout-session', async (req, res) => {
     success_url: `${YOUR_DOMAIN}?success=true&session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${YOUR_DOMAIN}?canceled=true`,
   });
+  try{
+    console.log("Session in index.js: " + session);
+  }catch(err){
+
+  }
+  try{
+    console.log("Session(text) in index.js: " + JSON.stringify(session));
+  }catch(err){
+
+  }
   res.redirect(303, session.url)
 });
 app.post('/create-portal-session', async (req, res) => {
