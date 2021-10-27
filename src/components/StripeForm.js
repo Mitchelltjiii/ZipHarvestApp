@@ -75,11 +75,11 @@ async function updateUser(userItem){
 }
 
 //value lk_1
-const SuccessDisplay = ({ sessionId }) => {
-  console.log("success Session ID: " + sessionId);
-  let session = getSession(sessionId);
+const SuccessDisplay = ({ seshId }) => {
+  console.log("success Session ID: " + seshId);
+  let session = getSession(seshId);
   let subId = session.subscription;
-  console.log("success sub ID: " + sessionId);
+  console.log("success sub ID: " + subId);
   setBusySettingUser(true);
   updateUser(getUserItem(subId));
   
@@ -105,9 +105,9 @@ const SuccessDisplay = ({ sessionId }) => {
   );
 };
 
-async function getSession(sessionId){
+async function getSession(seshId){
   console.log("Try to get session");
-  const response = await fetch(`/get-session/${sessionId}`);
+  const response = await fetch(`/get-session/${seshId}`);
   const json = await response.json();
   try{
     console.log("session json: " + json);
@@ -139,9 +139,9 @@ async function getSession(sessionId){
   console.log("Stripeform load - sessionID: " + sessionId)
 
 
-  async function getSession(sessionId){
+  async function getSession(seshId){
     console.log("Try to get session");
-    const response = await fetch(`/get-session/${sessionId}`);
+    const response = await fetch(`/get-session/${seshId}`);
     const json = await response.json();
     try{
       console.log("session json: " + json);
@@ -161,9 +161,9 @@ async function getSession(sessionId){
     return json.subscription;
   }
 
-  async function getSubscription(subscriptionId){
+  async function getSubscription(subId){
     console.log("Try to get subscription");
-    const response = await fetch(`/get-subscription/${subscriptionId}`);
+    const response = await fetch(`/get-subscription/${subId}`);
     const json = await response.json();
     try{
       console.log("sub json: " + json);
