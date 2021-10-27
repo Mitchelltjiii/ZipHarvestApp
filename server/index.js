@@ -5,6 +5,7 @@ const app = express(); // create express app
 const port = process.env.PORT || 3000
 const mysql = require('mysql');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
+var currSessionId = "";
 
 var pool  = mysql.createPool({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
@@ -85,13 +86,11 @@ app.use(express.json());
 
 const YOUR_DOMAIN = 'https://www.zipharvest.app/';
 
-app.post('/get-session/:sessionId', async (req,res) =>{
-  console.log("Get Session: " + req.params.sessionId);
-  const session = await stripe.checkout.sessions.retrieve(
-    req.params.sessionId
-  );
+app.post('/get-session', async (req,res) =>{
+  console.log("Get Session: " + currSessionId);
+  const session = await stripe.checkout.sessions.retrieve(currSessionId);
   console.log("Before response from getsession")
-  res.json(session.JSON);
+  res.json(session);
 })
 app.post('/create-checkout-session', async (req, res) => {
   console.log("Create session in index.js");
@@ -123,6 +122,7 @@ app.post('/create-checkout-session', async (req, res) => {
   }catch(err){
 
   }
+  currSessionId = session.id;
   res.redirect(303, session.url)
 });
 app.post('/create-portal-session', async (req, res) => {
