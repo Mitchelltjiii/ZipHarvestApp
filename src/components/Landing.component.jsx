@@ -36,7 +36,7 @@ setNewHarvestRecordID, setNewPlantID, userID, setAll,reloadPlants,reloadPlantsAn
 			) : currentPage === 'create-user-form' ? (
 				<CreateUserForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} setUser={setUser} setPass={setPass}></CreateUserForm>
 			) : currentPage === 'stripe-form' ? (
-				<StripeForm user={user} pass={pass}></StripeForm>
+				<StripeForm username={user} password={pass}></StripeForm>
 			) : null}
         </div>
     )

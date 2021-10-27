@@ -205,7 +205,7 @@ async function getSession(seshId){
   if (!success && message === '') {
     return <ProductDisplay />;
   } else if (success && sessionId !== '') {
-    return <SuccessDisplay sessionId={sessionId} />;
+    return <SuccessDisplay seshId={sessionId} />;
   } else {
     return <Message message={message} />;
   }
