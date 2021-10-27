@@ -290,7 +290,7 @@ export default class App extends React.Component {
     console.log("-*-*-*");
     let currUrl = "";
     try{
-      currUrl = JSON.stringify(window.location.pathname);
+      currUrl = window.location.href.toString();
     }catch(err){
 
     }
