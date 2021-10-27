@@ -288,7 +288,8 @@ export default class App extends React.Component {
 	  let showForm;
     console.log("CurrentPage: " + this.state.currentPage);
     console.log("-*-*-*");
-
+    let currUrl = window.location.href;
+    console.log("Curr URL: " + currUrl);
 
     if (this.state.loggedIn !== '' || this.state.currentPage === ('create-user-form') || this.state.currentPage === ('stripe-form')) {
 	  	showForm = <div style={{margin:"auto"}}>
