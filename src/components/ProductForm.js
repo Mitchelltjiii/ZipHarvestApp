@@ -115,12 +115,30 @@ function ProductForm() {
           
         }
 
+        let lookupKeyNum = 1;
+        let nextLookupKey = "";
         try{
             for (const val of json.data) {
                 console.log("price x val: " + val);
                 console.log("price x val(STRING): " + JSON.stringify(val));
                 console.log("Val ID: " + val.id)
                 console.log("Val lookup-key: " + val.lookup_key)
+                if(val.lookup_key===null){
+                    nextLookupKey = "lk_" + lookupKeyNum; 
+                    const responseTwo = await fetch(`/set-lookup-key/${val.id}/${nextLookupKey}`);
+                    lookupKeyNum++;
+                    const jsonTwo = await responseTwo.json();
+                    try{
+                        console.log("setlookup json: " + jsonTwo);
+                      }catch(err){
+                    
+                      }
+                      try{
+                        console.log("setlookup json(STRING): " + JSON.stringify(jsonTwo));
+                      }catch(err){
+                        
+                      }
+                }
             }
         }catch(err){
 
