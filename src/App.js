@@ -286,6 +286,10 @@ export default class App extends React.Component {
 	  console.log("Logged In: " + this.state.loggedIn);
     console.log("Sub Status in App.js: " + this.state.subStatus);
 	  let showForm;
+    console.log("CurrentPage: " + this.state.currentPage);
+    console.log("-*-*-*");
+
+
     if (this.state.loggedIn !== '' || this.state.currentPage === ('create-user-form') || this.state.currentPage === ('stripe-form')) {
 	  	showForm = <div style={{margin:"auto"}}>
 	    <Header setCurrentPage={this.setCurrentPage} currentPage={this.state.currentPage} executeLogout={this.executeLogout}/>
