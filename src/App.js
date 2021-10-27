@@ -288,7 +288,7 @@ export default class App extends React.Component {
 	  let showForm;
     console.log("CurrentPage: " + this.state.currentPage);
     console.log("-*-*-*");
-    let currUrl = window.location.href;
+    let currUrl = window.location.href.text;
     console.log("Curr URL: " + currUrl);
 
     let currUrlSuccess = false;
