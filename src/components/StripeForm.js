@@ -37,9 +37,6 @@ function getUserItem(subscriptionId){
     userItem.username = username;
     userItem.password = password;
     userItem.subid = subscriptionId;
-  if(user.id!==""){
-    userItem.id = user.id;
-  }
 
   console.log("Stringified before passed: " + JSON.stringify(userItem));
   console.log("Exit getUserItem")
