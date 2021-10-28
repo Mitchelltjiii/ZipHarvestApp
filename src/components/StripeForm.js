@@ -153,7 +153,7 @@ async function updateUser(userItem){
 const SuccessDisplay = ({ seshId }) => {
   console.log("Checking session now");
 
-  if(session === null || session === [] || session === undefined){
+  if(session === null || session === [] || session === undefined || JSON.stringify(session) === "[]"){
     console.log("Get session now");
     let sesh = getSession(sessionId);
   } 
