@@ -156,7 +156,20 @@ const SuccessDisplay = ({ seshId }) => {
   if(session === null || session === [] || session === undefined || JSON.stringify(session) === "[]"){
     console.log("Get session now");
     getSession(sessionId);
+  }else{
+    console.log("About to update user");
+    let userItem = getUserItem(subId);
+    console.log("User Item in success display: " + JSON.stringify(userItem));
+    if(userItem.apiid !== null && userItem.apiid !== "" && userItem.apiid !== undefined){
+    if(userItem.username !== null && userItem.username !== "" && userItem.username !== undefined){
+      if(userItem.password !== null && userItem.password !== "" && userItem.password !== undefined){
+        if(userItem.subid !== null && userItem.subid !== "" && userItem.subid !== undefined){
+          updateUser(userItem);
+        }
+      }
+    }
   }
+}
 
   return (
     <section>
@@ -226,17 +239,6 @@ async function getSession(seshId){
       console.log("sub json(STRING): " + JSON.stringify(json));
     }catch(err){
       
-    }
-    let userItem = getUserItem(subId);
-    console.log("User Item in success display: " + JSON.stringify(userItem));
-    if(userItem.apiid !== null && userItem.apiid !== "" && userItem.apiid !== undefined){
-    if(userItem.username !== null && userItem.username !== "" && userItem.username !== undefined){
-      if(userItem.password !== null && userItem.password !== "" && userItem.password !== undefined){
-        if(userItem.subid !== null && userItem.subid !== "" && userItem.subid !== undefined){
-          updateUser(userItem);
-        }
-      }
-    }
     }
     setSubscription(json);
   }
