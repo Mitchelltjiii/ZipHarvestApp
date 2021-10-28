@@ -25,7 +25,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     
     function tryStripe(){
       //setCurrentPage('create-user-form');
-      PostData();
 	  }
 
     const handleUsername = (event) => {
