@@ -274,17 +274,18 @@ async function getSession(seshId){
     if (query.get('success')) {
       setSuccess(true);
       setSessionId(query.get('session_id'));
-      let sesh = getSession(query.get('session_id'));
+      /*let sesh = getSession(query.get('session_id'));
       console.log("sesh: " + sesh);
       console.log("sesh(String): " + JSON.stringify(sesh));
 
       let sub = getSubscription(sesh.subscription);
-      console.log("Got sub: " + JSON.stringify(sub));
+      console.log("Got sub: " + JSON.stringify(sub));*/
 
       let possibleSub = getPossibleSubscription(query.get('session_id'));
       console.log("Got possible sub: " + JSON.stringify(possibleSub));
 
-      setSubscriptionId(sesh.subscription);
+      
+      //setSubscriptionId(sesh.subscription);
     }
 
     if (query.get('canceled')) {

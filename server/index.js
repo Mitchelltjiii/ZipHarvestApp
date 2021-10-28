@@ -512,6 +512,10 @@ app.post('/user', (req, res) =>{
   let password = postData.password;
   let subid = postData.subid;
 
+  if(subid === null || subid === undefined){
+    res.json("");
+  }
+
   console.log("POST DATA: apiid: " + apiid);
   console.log("POST DATA: username: " + username);
   console.log("POST DATA: password: " + password);
