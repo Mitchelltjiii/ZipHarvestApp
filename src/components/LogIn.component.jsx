@@ -35,22 +35,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     const handlePassword = (event) => {
 		setPassword(event.target.value);
 	  };
-
-    const [nm,setNm] = React.useState("Name");
-    const [email,setEmail] = React.useState("Mitchelltjiii");
-    const [subject,setSubject] = React.useState("Hey Therr");
-    const [message,setMessage] = React.useState("Its been a while");
-
-    const PostData = () => {
-      fetch("/send",{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({nm,email,subject,message})
-        }).then(res=>res.json()).then(data=>{
-        alert(data.message)}).catch(err=>{
-        console.log(err)
-        })
-      }
       
 
     let formWidth = "350px";

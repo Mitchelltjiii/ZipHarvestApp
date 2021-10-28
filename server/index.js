@@ -30,27 +30,23 @@ const possibleSubQueryString = "select * from possibleSub where sessionid = '";
 
 const router = require('../app/routers/router');
 
-const nodemailer = require('nodemailer')
-  const sendGridTransport = require('nodemailer-sendgrid-transport');
-  const {SENDGRID_API} = require('./sendgridconfig.js');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
-  const transporter = nodemailer.createTransport(sendGridTransport({
-    auth:{
-    api_key:SENDGRID_API
-    }
-    }))
+const msg = {
+  to: 'mitchelltjiii@gmail.com', // Change to your recipient
+  from: 'support@zipharvest.app', // Change to your verified sender
+  subject: 'Sending with SendGrid is Fun',
+  text: 'and easy to do anywhere, even with Node.js',
+  html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+}
 
-    app.post('/send', (req, res) => {
-      const { nm, email, message, subject } = req.body
-      transporter.sendMail({
-      to:'YOUR EMAIL',
-      from: email,
-      subject:subject,
-      html:`<h3>${nm}</h3>
-      <p>${message}</p>`
-      }).then(resp => {res.json({resp})})
-      .catch(err => {console.log(err)})
-      })
+sgMail.send(msg).then((response) => {
+    console.log(response[0].statusCode)
+    console.log(response[0].headers)
+  }).catch((error) => {
+    console.error(error)
+  })
 
 app.get("/api/users/:username/:password",(req,res) => {
   pool.getConnection((err, connection) => {
