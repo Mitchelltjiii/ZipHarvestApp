@@ -272,19 +272,19 @@ async function getSession(seshId){
     const query = new URLSearchParams(window.location.search);
 
     if (query.get('success')) {
-      setSuccess(true);
-      setSessionId(query.get('session_id'));
-      /*let sesh = getSession(query.get('session_id'));
+      
+      let sesh = getSession(query.get('session_id'));
       console.log("sesh: " + sesh);
       console.log("sesh(String): " + JSON.stringify(sesh));
 
       let sub = getSubscription(sesh.subscription);
-      console.log("Got sub: " + JSON.stringify(sub));*/
+      console.log("Got sub: " + JSON.stringify(sub));
 
       let possibleSub = getPossibleSubscription(query.get('session_id'));
       console.log("Got possible sub: " + JSON.stringify(possibleSub));
 
-      
+      setSuccess(true);
+      setSessionId(query.get('session_id'));
       //setSubscriptionId(sesh.subscription);
     }
 
