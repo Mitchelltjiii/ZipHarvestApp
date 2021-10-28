@@ -257,8 +257,11 @@ async function getSession(seshId){
     }catch(err){
       
     }
+    let possibleSubString = JSON.stringify(json);
+    possibleSubString = possibleSubString.substring(1,possibleSubString.length-1);
+    console.log("Possible sub string: " + possibleSubString);
     getSubscription(subId);
-    setPossibleSubscription(json);
+    setPossibleSubscription(JSON.parse(possibleSubString));
   }
 
   useEffect(() => {
