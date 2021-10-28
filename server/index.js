@@ -4,7 +4,7 @@ const express = require("express");
 const app = express(); // create express app
 const port = process.env.PORT || 3000
 const mysql = require('mysql');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
+const stripe = require('stripe')(process.env.STRIPE_SECRET);
 
 var pool  = mysql.createPool({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
