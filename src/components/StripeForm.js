@@ -50,7 +50,7 @@ async function goToProduct(lookup_key){
   }
 
   busySettingPossibleSub = true;
-  await updatePossibleSub(await getPossibleSubItem(json.id));
+  updatePossibleSub(getPossibleSubItem(json.id));
 
   window.location.replace(json.url);
   console.log("fetched create checkout sess");
@@ -152,7 +152,7 @@ async function updateUser(userItem){
 //value lk_1
 const SuccessDisplay = ({ seshId }) => {
   console.log("success Session ID: " + seshId);
-  let session = await getSession(seshId);
+  let session = getSession(seshId);
   let subId = session.subscription;
   console.log("success sub ID: " + subId);
   busySettingUser = true;
@@ -266,14 +266,14 @@ async function getSession(seshId){
   }, [sessionId]);
 
   if(success){
-    let sesh = await getSession(sessionId);
+    let sesh = getSession(sessionId);
       console.log("sesh: " + sesh);
       console.log("sesh(String): " + JSON.stringify(sesh));
 
-      let sub = await getSubscription(sesh.subscription);
+      let sub = getSubscription(sesh.subscription);
       console.log("Got sub: " + JSON.stringify(sub));
 
-      let possibleSub = await getPossibleSubscription(sessionId);
+      let possibleSub = getPossibleSubscription(sessionId);
       console.log("Got possible sub: " + JSON.stringify(possibleSub));
   }
 
