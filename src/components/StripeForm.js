@@ -157,19 +157,7 @@ const SuccessDisplay = ({ seshId }) => {
     console.log("Get session now");
     getSession(sessionId);
   }
-  
-  /*let userItem = getUserItem(subscriptionId);
-  console.log("User Item in success display: " + JSON.stringify(userItem));*/
-  /*
-  if(userItem.apiid !== null && userItem.apiid !== "" && userItem.apiid !== undefined){
-    if(userItem.username !== null && userItem.username !== "" && userItem.username !== undefined){
-      if(userItem.password !== null && userItem.password !== "" && userItem.password !== undefined){
-        if(userItem.subid !== null && userItem.subid !== "" && userItem.subid !== undefined){
-          updateUser(userItem);
-        }
-      }
-    }
-  } */
+
   return (
     <section>
       <div>
@@ -238,6 +226,17 @@ async function getSession(seshId){
     }catch(err){
       
     }
+    let userItem = getUserItem(subscriptionId);
+    console.log("User Item in success display: " + JSON.stringify(userItem));
+    if(userItem.apiid !== null && userItem.apiid !== "" && userItem.apiid !== undefined){
+    if(userItem.username !== null && userItem.username !== "" && userItem.username !== undefined){
+      if(userItem.password !== null && userItem.password !== "" && userItem.password !== undefined){
+        if(userItem.subid !== null && userItem.subid !== "" && userItem.subid !== undefined){
+          updateUser(userItem);
+        }
+      }
+    }
+  }
     setSubscription(json);
   }
 
