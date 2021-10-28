@@ -36,27 +36,18 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 		setPassword(event.target.value);
 	  };
 
-    let nm = "Name";
-    let email = "Mitchelltjiii@gmail.com";
-    let subject = "Hey There";
-    let message = "It's been a while.";
+    const [nm,setNm] = React.useState("Name");
+    const [email,setEmail] = React.useState("Mitchelltjiii");
+    const [subject,setSubject] = React.useState("Hey Therr");
+    const [message,setMessage] = React.useState("Its been a while");
 
     const PostData = () => {
       fetch("/send",{
-        method:"post",
-        headers:{
-          "Content-Type":"application/json"
-        },
-        body:JSON.stringify({
-        nm,
-        email,
-        subject,
-        message
-        })
-        }).then(res=>res.json())
-        .then(data=>{
-        alert(data.message)
-        }).catch(err=>{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({nm,email,subject,message})
+        }).then(res=>res.json()).then(data=>{
+        alert(data.message)}).catch(err=>{
         console.log(err)
         })
       }
