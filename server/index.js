@@ -4,7 +4,7 @@ const express = require("express");
 const app = express(); // create express app
 const port = process.env.PORT || 3000
 const mysql = require('mysql');
-const stripe = require('stripe')(process.env.STRIPE_SECRET);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
 
 var pool  = mysql.createPool({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
@@ -29,6 +29,28 @@ const usersQueryString = "select * from users";
 const possibleSubQueryString = "select * from possibleSub where sessionid = '";
 
 const router = require('../app/routers/router');
+
+const nodemailer = require('nodemailer')
+  const sendGridTransport = require('nodemailer-sendgrid-transport');
+  const {SENDGRID_API} = require('../sendgrid.config/keys');
+
+  const transporter = nodemailer.createTransport(sendGridTransport({
+    auth:{
+    api_key:SENDGRID_API
+    }
+    }))
+
+    app.post('/send', (req, res) => {
+      const { nm, email, message, subject } = req.body
+      transporter.sendMail({
+      to:'YOUR EMAIL',
+      from: email,
+      subject:subject,
+      html:`<h3>${nm}</h3>
+      <p>${message}</p>`
+      }).then(resp => {res.json({resp})})
+      .catch(err => {console.log(err)})
+      })
 
 app.get("/api/users/:username/:password",(req,res) => {
   pool.getConnection((err, connection) => {

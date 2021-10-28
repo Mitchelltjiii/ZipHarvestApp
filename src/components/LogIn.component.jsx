@@ -6,6 +6,7 @@ import {isMobile} from 'react-device-detect';
 import Stripe from '@stripe/stripe-js'
 
 function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,attemptLogin,setCurrentPage}){
+
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     
@@ -23,7 +24,8 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 	  };
     
     function tryStripe(){
-      setCurrentPage('create-user-form');
+      //setCurrentPage('create-user-form');
+      PostData();
 	  }
 
     const handleUsername = (event) => {
@@ -33,6 +35,32 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     const handlePassword = (event) => {
 		setPassword(event.target.value);
 	  };
+
+    let nm = "Name";
+    let email = "Mitchelltjiii@gmail.com";
+    let subject = "Hey There";
+    let message = "It's been a while.";
+
+    const PostData = () => {
+      fetch("/send",{
+        method:"post",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+        nm,
+        email,
+        subject,
+        message
+        })
+        }).then(res=>res.json())
+        .then(data=>{
+        alert(data.message)
+        }).catch(err=>{
+        console.log(err)
+        })
+      }
+      
 
     let formWidth = "350px";
     let formHeight = "500px";
