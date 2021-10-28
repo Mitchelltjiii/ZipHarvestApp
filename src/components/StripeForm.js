@@ -112,8 +112,8 @@ function getUserItem(subscriptionId){
     };
 
     userItem.apiid = "apiid";
-    userItem.username = username;
-    userItem.password = password;
+    userItem.username = possibleSubscription.username;
+    userItem.password = possibleSubscription.password;
     userItem.subid = subscriptionId;
 
   console.log("Stringified before passed: " + JSON.stringify(userItem));
@@ -199,7 +199,7 @@ async function getSession(seshId){
   }catch(err){
 
   }
-  getSubscription(json.subscription);
+  getPossibleSubscription(seshId,json.subscription);
   setSession(json);
 }
 
@@ -210,6 +210,7 @@ async function getSession(seshId){
   let [success, setSuccess] = useState(false);
   let [sessionId, setSessionId] = useState('');
   let [session,setSession] = useState([]);
+  let [possibleSubscription,setPossibleSubscription] = useState([]);
   let [subscription,setSubscription] = useState([]);
 
   async function getSubscription(subId){
@@ -226,7 +227,7 @@ async function getSession(seshId){
     }catch(err){
       
     }
-    let userItem = getUserItem(subscriptionId);
+    let userItem = getUserItem(subId);
     console.log("User Item in success display: " + JSON.stringify(userItem));
     if(userItem.apiid !== null && userItem.apiid !== "" && userItem.apiid !== undefined){
     if(userItem.username !== null && userItem.username !== "" && userItem.username !== undefined){
@@ -236,11 +237,11 @@ async function getSession(seshId){
         }
       }
     }
-  }
+    }
     setSubscription(json);
   }
 
-  async function getPossibleSubscription(seshId){
+  async function getPossibleSubscription(seshId,subId){
     console.log("Try to get subscription");
     const response = await fetch(`/get-possible-subscription/${seshId}`);
     const json = await response.json();
@@ -254,7 +255,8 @@ async function getSession(seshId){
     }catch(err){
       
     }
-    return json;
+    getSubscription(subId);
+    setPossibleSubscription(json);
   }
 
   useEffect(() => {
@@ -276,6 +278,7 @@ async function getSession(seshId){
 
   console.log("Session**: " + JSON.stringify(session));
   console.log("Subscription**: " + JSON.stringify(subscription));
+  console.log("Possible Subscription**: " + JSON.stringify(possibleSubscription));
 
   if (!success && message === '') {
     return <ProductDisplay />;
