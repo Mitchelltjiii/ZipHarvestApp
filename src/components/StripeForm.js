@@ -155,11 +155,11 @@ const SuccessDisplay = ({ seshId }) => {
 
   if(session === null || session === [] || session === undefined || JSON.stringify(session) === "[]"){
     console.log("Get session now");
-    let sesh = getSession(sessionId);
-  } 
+    getSession(sessionId);
+  }
   
-  let userItem = getUserItem(subscriptionId);
-  console.log("User Item in success display: " + JSON.stringify(userItem));
+  /*let userItem = getUserItem(subscriptionId);
+  console.log("User Item in success display: " + JSON.stringify(userItem));*/
   /*
   if(userItem.apiid !== null && userItem.apiid !== "" && userItem.apiid !== undefined){
     if(userItem.username !== null && userItem.username !== "" && userItem.username !== undefined){
@@ -211,6 +211,7 @@ async function getSession(seshId){
   }catch(err){
 
   }
+  getSubscription(json.subscription);
   setSession(json);
 }
 
@@ -220,12 +221,8 @@ async function getSession(seshId){
   let [message, setMessage] = useState('');
   let [success, setSuccess] = useState(false);
   let [sessionId, setSessionId] = useState('');
-  let [subscriptionId, setSubscriptionId] = useState('');
-
   let [session,setSession] = useState([]);
-
-  console.log("Stripeform load - subscriptionID: " + subscriptionId)
-  console.log("Stripeform load - sessionID: " + sessionId)
+  let [subscription,setSubscription] = useState([]);
 
   async function getSubscription(subId){
     console.log("Try to get subscription");
@@ -241,7 +238,7 @@ async function getSession(seshId){
     }catch(err){
       
     }
-    return json;
+    setSubscription(json);
   }
 
   async function getPossibleSubscription(seshId){
@@ -268,7 +265,6 @@ async function getSession(seshId){
     if (query.get('success')) {
       setSuccess(true);
       setSessionId(query.get('session_id'));
-      //setSubscriptionId(sesh.subscription);
     }
 
     if (query.get('canceled')) {
@@ -280,6 +276,7 @@ async function getSession(seshId){
   }, [sessionId]);
 
   console.log("Session**: " + JSON.stringify(session));
+  console.log("Subscription**: " + JSON.stringify(subscription));
 
   if (!success && message === '') {
     return <ProductDisplay />;
