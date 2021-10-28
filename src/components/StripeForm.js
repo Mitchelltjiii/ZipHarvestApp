@@ -151,8 +151,16 @@ async function updateUser(userItem){
 
 //value lk_1
 const SuccessDisplay = ({ seshId }) => {
-  let sesh = getSession(sessionId);
+  console.log("Checking session now");
+
+  if(session === null || session === [] || session === undefined){
+    console.log("Get session now");
+    let sesh = getSession(sessionId);
+  } 
+  
   let userItem = getUserItem(subscriptionId);
+  console.log("User Item in success display: " + JSON.stringify(userItem));
+  /*
   if(userItem.apiid !== null && userItem.apiid !== "" && userItem.apiid !== undefined){
     if(userItem.username !== null && userItem.username !== "" && userItem.username !== undefined){
       if(userItem.password !== null && userItem.password !== "" && userItem.password !== undefined){
@@ -161,7 +169,7 @@ const SuccessDisplay = ({ seshId }) => {
         }
       }
     }
-  } 
+  } */
   return (
     <section>
       <div>
@@ -214,7 +222,7 @@ async function getSession(seshId){
   let [sessionId, setSessionId] = useState('');
   let [subscriptionId, setSubscriptionId] = useState('');
 
-  let [session,setSession] = useState('');
+  let [session,setSession] = useState([]);
 
   console.log("Stripeform load - subscriptionID: " + subscriptionId)
   console.log("Stripeform load - sessionID: " + sessionId)
