@@ -50,7 +50,7 @@ async function goToProduct(lookup_key){
   }
 
   busySettingPossibleSub = true;
-  updatePossibleSub(getPossibleSubItem(json.id));
+  await updatePossibleSub(await getPossibleSubItem(json.id));
 
   window.location.replace(json.url);
   console.log("fetched create checkout sess");
@@ -123,6 +123,9 @@ function getUserItem(subscriptionId){
 
 async function updateUser(userItem){
   console.log("Engage update user");
+  if(userItem.subid === null || userItem.subid === undefined){
+    return;
+  }
   const response = fetch('/user', {
         method: (userItem.id) ? 'PUT' : 'POST',
         headers: {
@@ -149,7 +152,7 @@ async function updateUser(userItem){
 //value lk_1
 const SuccessDisplay = ({ seshId }) => {
   console.log("success Session ID: " + seshId);
-  let session = getSession(seshId);
+  let session = await getSession(seshId);
   let subId = session.subscription;
   console.log("success sub ID: " + subId);
   busySettingUser = true;
@@ -263,14 +266,14 @@ async function getSession(seshId){
   }, [sessionId]);
 
   if(success){
-    let sesh = getSession(sessionId);
+    let sesh = await getSession(sessionId);
       console.log("sesh: " + sesh);
       console.log("sesh(String): " + JSON.stringify(sesh));
 
-      let sub = getSubscription(sesh.subscription);
+      let sub = await getSubscription(sesh.subscription);
       console.log("Got sub: " + JSON.stringify(sub));
 
-      let possibleSub = getPossibleSubscription(sessionId);
+      let possibleSub = await getPossibleSubscription(sessionId);
       console.log("Got possible sub: " + JSON.stringify(possibleSub));
   }
 
