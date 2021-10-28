@@ -32,7 +32,7 @@ const router = require('../app/routers/router');
 
 const nodemailer = require('nodemailer')
   const sendGridTransport = require('nodemailer-sendgrid-transport');
-  const {SENDGRID_API} = require('./sendgridconfig');
+  const {SENDGRID_API} = require('./sendgridconfig.js');
 
   const transporter = nodemailer.createTransport(sendGridTransport({
     auth:{
