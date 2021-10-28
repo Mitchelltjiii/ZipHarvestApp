@@ -151,6 +151,7 @@ async function updateUser(userItem){
 
 //value lk_1
 const SuccessDisplay = ({ seshId }) => {
+  let sesh = getSession(sessionId);
   updateUser(getUserItem(subscriptionId));
   return (
     <section>
@@ -273,4 +274,14 @@ async function getSession(seshId){
 }
 
 
+/* if(success){
+    let sesh = await getSession(sessionId);
+      console.log("sesh: " + sesh);
+      console.log("sesh(String): " + JSON.stringify(sesh));
 
+      let sub = await getSubscription(sesh.subscription);
+      console.log("Got sub: " + JSON.stringify(sub));
+
+      let possibleSub = await getPossibleSubscription(sessionId);
+      console.log("Got possible sub: " + JSON.stringify(possibleSub));
+  }*/
