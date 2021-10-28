@@ -100,9 +100,9 @@ async function updatePossibleSub(possibleSubItem){
   console.log("Exit update possiblesubitem")
 }
 
-function getUserItem(subscriptionId){
+function getUserItem(){
   console.log("Enter getUserItem")
-  console.log("Enter sub ID: " + subscriptionId);
+  console.log("Enter sub ID: " + subscription.id);
 
   let userItem = {
     apiid: '',
@@ -114,7 +114,7 @@ function getUserItem(subscriptionId){
     userItem.apiid = "apiid";
     userItem.username = possibleSubscription.username;
     userItem.password = possibleSubscription.password;
-    userItem.subid = subscriptionId;
+    userItem.subid = subscription.id;
 
   console.log("Stringified before passed: " + JSON.stringify(userItem));
   console.log("Exit getUserItem")
@@ -158,7 +158,7 @@ const SuccessDisplay = ({ seshId }) => {
     getSession(sessionId);
   }else{
     console.log("About to update user");
-    let userItem = getUserItem(subId);
+    let userItem = getUserItem();
     console.log("User Item in success display: " + JSON.stringify(userItem));
     if(userItem.apiid !== null && userItem.apiid !== "" && userItem.apiid !== undefined){
     if(userItem.username !== null && userItem.username !== "" && userItem.username !== undefined){
