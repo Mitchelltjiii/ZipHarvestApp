@@ -210,29 +210,6 @@ async function getSession(seshId){
   console.log("Stripeform load - subscriptionID: " + subscriptionId)
   console.log("Stripeform load - sessionID: " + sessionId)
 
-
-  async function getSession(seshId){
-    console.log("Try to get session");
-    const response = await fetch(`/get-session/${seshId}`);
-    const json = await response.json();
-    try{
-      console.log("session json: " + json);
-    }catch(err){
-  
-    }
-    try{
-      console.log("Session json(STRING): " + JSON.stringify(json));
-    }catch(err){
-      
-    }
-    try{
-      console.log("Sub ID: " + json.subscription);
-    }catch(err){
-
-    }
-    return json;
-  }
-
   async function getSubscription(subId){
     console.log("Try to get subscription");
     const response = await fetch(`/get-subscription/${subId}`);
@@ -272,17 +249,6 @@ async function getSession(seshId){
     const query = new URLSearchParams(window.location.search);
 
     if (query.get('success')) {
-      
-      let sesh = getSession(query.get('session_id'));
-      console.log("sesh: " + sesh);
-      console.log("sesh(String): " + JSON.stringify(sesh));
-
-      let sub = getSubscription(sesh.subscription);
-      console.log("Got sub: " + JSON.stringify(sub));
-
-      let possibleSub = getPossibleSubscription(query.get('session_id'));
-      console.log("Got possible sub: " + JSON.stringify(possibleSub));
-
       setSuccess(true);
       setSessionId(query.get('session_id'));
       //setSubscriptionId(sesh.subscription);
@@ -295,6 +261,18 @@ async function getSession(seshId){
       );
     }
   }, [sessionId]);
+
+  if(success){
+    let sesh = getSession(sessionId);
+      console.log("sesh: " + sesh);
+      console.log("sesh(String): " + JSON.stringify(sesh));
+
+      let sub = getSubscription(sesh.subscription);
+      console.log("Got sub: " + JSON.stringify(sub));
+
+      let possibleSub = getPossibleSubscription(sessionId);
+      console.log("Got possible sub: " + JSON.stringify(possibleSub));
+  }
 
   if (!success && message === '') {
     return <ProductDisplay />;
