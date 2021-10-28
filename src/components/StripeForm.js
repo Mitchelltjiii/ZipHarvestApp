@@ -152,7 +152,16 @@ async function updateUser(userItem){
 //value lk_1
 const SuccessDisplay = ({ seshId }) => {
   let sesh = getSession(sessionId);
-  updateUser(getUserItem(subscriptionId));
+  let userItem = getUserItem(subscriptionId);
+  if(userItem.apiid !== null && userItem.apiid !== "" && userItem.apiid !== undefined){
+    if(userItem.username !== null && userItem.username !== "" && userItem.username !== undefined){
+      if(userItem.password !== null && userItem.password !== "" && userItem.password !== undefined){
+        if(userItem.subid !== null && userItem.subid !== "" && userItem.subid !== undefined){
+          updateUser(userItem);
+        }
+      }
+    }
+  } 
   return (
     <section>
       <div>
