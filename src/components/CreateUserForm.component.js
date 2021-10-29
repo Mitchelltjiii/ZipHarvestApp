@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-function CreateUserForm({refreshOuter, userID,setCurrentPage,setUser,setPass}) {
+function CreateUserForm({refreshOuter, userID,setCurrentPage,setUser,setPass,setVerificationCode}) {
 
     const [email, setEmail] = React.useState('');
     const [username, setUsername] = React.useState('');
@@ -24,9 +24,42 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setUser,setPass}) {
         }else{
             setUser(username);
             setPass(password);
-            setCurrentPage('stripe-form');
+            //setCurrentPage('stripe-form');
+            sendVerificationEmail();
+            setCurrentPage('verification-form');
         }
     }
+
+    function makeid(length) {
+        var result           = '';
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < length; i++ ) {
+          result += characters.charAt(Math.floor(Math.random() * 
+          charactersLength));
+       }
+       return result;
+    }
+
+    async function sendVerificationEmail(){
+        console.log("Try to send ver email");
+        let address = "Mitchelltjiii@gmail.com";
+        let newCode = makeid(8);
+        console.log("New Code: " + newCode);
+        const response = await fetch(`/send-verification-email/${address}/${newCode}`);
+        const json = await response.json();
+        try{
+          console.log("Send Verification json: " + json);
+        }catch(err){
+      
+        }
+        try{
+          console.log("Send Verification json(STRING): " + JSON.stringify(json));
+        }catch(err){
+          
+        }
+        setVerificationCode(newCode);
+      }
 
     const handleFacilityName = (event) => {
         setFacilityName(event.target.value);

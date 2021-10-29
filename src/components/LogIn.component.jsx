@@ -24,26 +24,9 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 	  };
     
     function tryStripe(){
-      //setCurrentPage('create-user-form');
-      sendVerificationEmail();
+      setCurrentPage('create-user-form');
+      //sendVerificationEmail();
 	  }
-
-    async function sendVerificationEmail(){
-      console.log("Try to send ver email");
-      let address = "Mitchelltjiii@gmail.com"
-      const response = await fetch(`/send-verification-email/${address}`);
-      const json = await response.json();
-      try{
-        console.log("Send Verification json: " + json);
-      }catch(err){
-    
-      }
-      try{
-        console.log("Send Verification json(STRING): " + JSON.stringify(json));
-      }catch(err){
-        
-      }
-    }
 
     const handleUsername = (event) => {
 		setUsername(event.target.value);

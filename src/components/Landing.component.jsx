@@ -5,6 +5,7 @@ import ManagePlantsForm from './ManagePlantsForm.component';
 import AccountForm from './AccountForm.component';
 import CreateUserForm from './CreateUserForm.component';
 import StripeForm from './StripeForm';
+import VerificationForm from './VerificationForm.component';
 
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
 	setHarvestBatches, resetHarvestBatches, resetAll, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
@@ -18,6 +19,7 @@ setNewHarvestRecordID, setNewPlantID, userID, setAll,reloadPlants,reloadPlantsAn
 
 	const [user,setUser] = React.useState("");
 	const [pass,setPass] = React.useState("");
+	const [verificationCode,setVerificationCode] = React.useState("");
 
     return(
 		
@@ -34,9 +36,11 @@ setNewHarvestRecordID, setNewPlantID, userID, setAll,reloadPlants,reloadPlantsAn
 			) : currentPage === 'account-form' ? (
 				<AccountForm refreshOuter={refreshOuter} userID={userID}/>
 			) : currentPage === 'create-user-form' ? (
-				<CreateUserForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} setUser={setUser} setPass={setPass}></CreateUserForm>
+				<CreateUserForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} setUser={setUser} setPass={setPass} setVerificationCode={setVerificationCode}></CreateUserForm>
 			) : currentPage === 'stripe-form' ? (
 				<StripeForm username={user} password={pass}></StripeForm>
+			) : currentPage === 'verification-form' ? (
+				<VerificationForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} verificationCode={verificationCode}></VerificationForm>
 			) : null}
         </div>
     )
