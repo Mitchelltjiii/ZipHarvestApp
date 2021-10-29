@@ -51,7 +51,7 @@ async function goToProduct(lookup_key){
   }
 
   busySettingPossibleSub = true;
-  updatePossibleSub(getPossibleSubItem(possibleSubscription,sessionId));
+  updatePossibleSub(getPossibleSubItem(possibleSubscription,json.id));
 
   window.location.replace(json.url);
   console.log("fetched create checkout sess");
@@ -273,7 +273,7 @@ async function getSession(seshId){
     //getSubscription(subId);
 
     console.log("Update possible subscription verified");
-    if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null){
+    if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null && possibleSubString !== "[]"){
       let newPossibleSub = JSON.parse(possibleSubString);
       updatePossibleSub(getPossibleSubItem(newPossibleSub,""));
       setPossibleSubscription(newPossibleSub);
