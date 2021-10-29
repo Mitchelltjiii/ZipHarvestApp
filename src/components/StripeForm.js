@@ -73,6 +73,8 @@ function getPossibleSubItem(){
     subItem.verificationCode = verCode;
     subItem.username = username;
     subItem.password = password;
+    subItem.verified = 0;
+    subItem.sessionid = "";
 
   console.log("Stringified before passed: " + JSON.stringify(subItem));
   console.log("Exit getPossibleSubItem")
