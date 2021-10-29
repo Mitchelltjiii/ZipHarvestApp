@@ -317,8 +317,8 @@ export default class App extends React.Component {
     }
 
     let userFromUrl = "";
-    let userEqualsStr = "user=";
-    if(currUrl.includes("user")){
+    let userEqualsStr = "username=";
+    if(currUrl.includes("username")){
       let userString = currUrl.substring(currUrl.indexOf(userEqualsStr)+userEqualsStr.length);
       console.log("User Str: " + userString);
       userFromUrl = userString;
