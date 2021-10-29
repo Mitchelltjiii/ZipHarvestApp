@@ -33,6 +33,7 @@ const router = require('../app/routers/router');
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
+/*
 const msg = {
   to: 'sophiameryn@gmail.com', // Change to your recipient
   from: 'support@zipharvest.app', // Change to your verified sender
@@ -46,6 +47,27 @@ sgMail.send(msg).then((response) => {
     console.log(response[0].headers)
   }).catch((error) => {
     console.error(error)
+  })*/
+
+app.get('/send-verification-email/:address', async (req,res) =>{
+    let verificationCode = "VCode1";
+
+    const msg = {
+      to: req.params.address, // Change to your recipient
+      from: 'support@zipharvest.app', // Change to your verified sender
+      subject: 'Verification Code',
+      text: 'Here is your verification code: ',
+      html: '<strong>' + verificationCode + '</strong>',
+    }
+    
+    sgMail.send(msg).then((response) => {
+        console.log(response[0].statusCode)
+        console.log(response[0].headers)
+        res.json(0);
+      }).catch((error) => {
+        console.error(error)
+        res.json(1);
+      })
   })
 
 app.get("/api/users/:username/:password",(req,res) => {
