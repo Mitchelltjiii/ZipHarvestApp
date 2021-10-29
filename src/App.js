@@ -315,6 +315,7 @@ export default class App extends React.Component {
       console.log("VerCode Str: " + verCodeString);
       verCode = verCodeString;
     }
+    
 
     let userFromUrl = "";
     let userEqualsStr = "username=";
