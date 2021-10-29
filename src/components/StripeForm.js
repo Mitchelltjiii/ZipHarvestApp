@@ -255,6 +255,10 @@ async function getSession(seshId){
   }
 
   async function getPossibleSubscription(){
+    console.log("User from url: " + userFromUrl);
+    if(userFromUrl === undefined){
+      return;
+    }
     console.log("Try to get possible subscription");
     const response = await fetch(`/get-possible-subscription/${userFromUrl}`);
     const json = await response.json();
@@ -273,7 +277,9 @@ async function getSession(seshId){
     console.log("Possible sub string: " + possibleSubString);
     //getSubscription(subId);
 
-    setPossibleSubscription(JSON.parse(possibleSubString));
+    if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null){
+      setPossibleSubscription(JSON.parse(possibleSubString));
+    }
   }
 
   useEffect(() => {
