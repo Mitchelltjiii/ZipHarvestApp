@@ -231,10 +231,12 @@ async function getSession(seshId){
 
   console.log("From PossibleSubscription**");
 
-  if(!(possibleSubscription === null || possibleSubscription === [] || possibleSubscription === undefined || JSON.stringify(possibleSubscription) === "[]")){
+  try{
     username = possibleSubscription.username;
     password = possibleSubscription.password;
     console.log("From PossibleSubscription: Username: " + username + " | password: " + password);
+  }catch(err){
+    console.log("no possibleSub");
   }
 
   async function getSubscription(subId){
