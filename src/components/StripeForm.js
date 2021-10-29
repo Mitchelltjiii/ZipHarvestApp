@@ -51,13 +51,13 @@ async function goToProduct(lookup_key){
   }
 
   busySettingPossibleSub = true;
-  updatePossibleSub(getPossibleSubItem(json.id));
+  updatePossibleSub(getPossibleSubItem(null));
 
   window.location.replace(json.url);
   console.log("fetched create checkout sess");
 }
 
-function getPossibleSubItem(){
+function getPossibleSubItem(newPossibleSub){
   console.log("Enter getPossibleSubItem")
 
   let subItem = {
@@ -69,8 +69,8 @@ function getPossibleSubItem(){
     };
 
     subItem.verificationCode = verCode;
-    subItem.username = possibleSubscription.username;
-    subItem.password = possibleSubscription.password;
+    subItem.username = newPossibleSub.username;
+    subItem.password = newPossibleSub.password;
     subItem.verified = 0;
     subItem.sessionid = "";
 
@@ -273,9 +273,10 @@ async function getSession(seshId){
     //getSubscription(subId);
 
     console.log("Update possible subscription verified");
-    updatePossibleSub(getPossibleSubItem());
     if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null){
-      setPossibleSubscription(JSON.parse(possibleSubString));
+      let newPossibleSub = JSON.parse(possibleSubString);
+      updatePossibleSub(getPossibleSubItem(newPossibleSub));
+      setPossibleSubscription(newPossibleSub);
     }
   }
 
