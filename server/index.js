@@ -52,12 +52,26 @@ sgMail.send(msg).then((response) => {
 app.get('/send-verification-email/:address', async (req,res) =>{
     let verificationCode = "VCode1";
 
+    function makeid(length) {
+      var result           = '';
+      var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      var charactersLength = characters.length;
+      for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * 
+        charactersLength));
+     }
+     return result;
+  }
+
+    let newCode = makeid(8);
+    console.log("New Code: " + newCode);
+
     const msg = {
       to: req.params.address, // Change to your recipient
       from: 'support@zipharvest.app', // Change to your verified sender
       subject: 'Verification Code',
       text: 'Here is your verification code: ',
-      html: '<strong>' + verificationCode + " {{email}}" + '</strong>',
+      html: '<strong>' + verificationCode + '</strong>',
     }
     
     sgMail.send(msg).then((response) => {
