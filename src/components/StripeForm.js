@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
-export default function StripeForm({username,password}) {
+export default function StripeForm() {
 
   const Message = ({ message }) => (
     <section>
@@ -12,6 +12,9 @@ export default function StripeForm({username,password}) {
 
 let busySettingUser = false;
 let busySettingPossibleSub = false;
+
+let username = "user";
+let password = "pass";
 
 const ProductDisplay = () => (
   <Grid
