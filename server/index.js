@@ -143,7 +143,7 @@ app.get('/get-possible-subscription/:username', async (req,res) =>{
     if(err) throw err;
     console.log('connected as id ' + connection.threadId);
     let username = req.params.username;
-    var sql = `${verCode}`;
+    var sql = `${username}`;
     console.log("Commit Query: " + possibleSubQueryString + sql);
     connection.query(possibleSubQueryString + sql + "'", (err, rows) => {
         connection.release(); // return the connection to pool

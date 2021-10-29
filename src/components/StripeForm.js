@@ -229,6 +229,14 @@ async function getSession(seshId){
   let [possibleSubscription,setPossibleSubscription] = useState([]);
   let [subscription,setSubscription] = useState([]);
 
+  console.log("From PossibleSubscription**");
+
+  if(!(possibleSubscription === null || possibleSubscription === [] || possibleSubscription === undefined || JSON.stringify(possibleSubscription) === "[]")){
+    username = possibleSubscription.username;
+    password = possibleSubscription.password;
+    console.log("From PossibleSubscription: Username: " + username + " | password: " + password);
+  }
+
   async function getSubscription(subId){
     console.log("Try to get subscription");
     const response = await fetch(`/get-subscription/${subId}`);
