@@ -13,8 +13,6 @@ export default function StripeForm({verCode,userFromUrl}) {
 let busySettingUser = false;
 let busySettingPossibleSub = false;
 
-let username = "user";
-let password = "pass";
 
 const ProductDisplay = () => (
   <Grid
@@ -71,8 +69,8 @@ function getPossibleSubItem(){
     };
 
     subItem.verificationCode = verCode;
-    subItem.username = username;
-    subItem.password = password;
+    subItem.username = possibleSubscription.username;
+    subItem.password = possibleSubscription.password;
     subItem.verified = 0;
     subItem.sessionid = "";
 
@@ -222,8 +220,7 @@ async function getSession(seshId){
   setSession(json);
 }
 
-  console.log("Enter stripeform username: " + username);
-  console.log("Enter stripeform password: " + password);
+  
 
   let [message, setMessage] = useState('');
   let [success, setSuccess] = useState(false);
@@ -232,15 +229,10 @@ async function getSession(seshId){
   let [possibleSubscription,setPossibleSubscription] = useState([]);
   let [subscription,setSubscription] = useState([]);
 
-  console.log("From PossibleSubscription**");
+  console.log("Enter stripeform username: " + username);
+  console.log("Enter stripeform password: " + password);
 
-  try{
-    username = possibleSubscription.username;
-    password = possibleSubscription.password;
-    console.log("From PossibleSubscription: Username: " + username + " | password: " + password);
-  }catch(err){
-    console.log("no possibleSub");
-  }
+  console.log("From PossibleSubscription**");
 
   async function getSubscription(subId){
     console.log("Try to get subscription");
