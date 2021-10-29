@@ -13,6 +13,7 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setUser,setPass,set
     const [lastName, setLastName] = React.useState('');
     const [facilityName, setFacilityName] = React.useState('');
     const [stepTwo,setStepTwo] = React.useState(false);
+    let busySettingPossibleSub = false;
 
     const handleContinue = () => {
 		doContinue();
@@ -41,6 +42,53 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setUser,setPass,set
        return result;
     }
 
+    function getPossibleSubItem(newCode){
+        console.log("Enter getPossibleSubItem")
+      
+        let subItem = {
+          verificationCode: '',
+          username: '',
+          password: '',
+          sessionid: '',
+          verified: 1
+          };
+      
+          subItem.verificationCode = newCode;
+          subItem.username = username;
+          subItem.password = password;
+      
+        console.log("Stringified before passed: " + JSON.stringify(subItem));
+        console.log("Exit getPossibleSubItem")
+        return subItem;
+      }
+      
+      async function updatePossibleSub(possibleSubItem){
+        console.log("Engage update possiblesub");
+        const response = fetch('/possibleSub', {
+              method: 'PUT',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(possibleSubItem)
+        });
+        console.log("Create possiblesubitem should be done - no indicator");
+        try{
+          console.log("AWAITING RESPONSE UPDATE possiblesubitem")
+          await response.text();
+          console.log("RESPONSE RECIEVED UPDATE possiblesubitem")
+        }catch(err){
+          console.log("NO RESPONSE RECIEVED UPDATE possiblesubitem")
+        }
+        console.log("Before removing busy setting possiblesubitem");
+        console.log("BUSYSETTINGpossiblesubitem before: " + JSON.stringify(busySettingPossibleSub)); 
+        busySettingPossibleSub = (false);
+        console.log("BUSYSETTINGpossiblesubitem after: " + JSON.stringify(busySettingPossibleSub));       
+        console.log("Exit update possiblesubitem")
+      }
+
+    
+
     async function sendVerificationEmail(){
         console.log("Try to send ver email");
         let address = "Mitchelltjiii@gmail.com";
@@ -58,7 +106,8 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setUser,setPass,set
         }catch(err){
           
         }
-        setVerificationCode(newCode);
+        busySettingPossibleSub = true;
+        updatePossibleSub(getPossibleSubItem(newCode));
       }
 
     const handleFacilityName = (event) => {

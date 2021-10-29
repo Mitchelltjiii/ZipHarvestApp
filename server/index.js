@@ -585,14 +585,18 @@ app.post('/possibleSub', (req, res) =>{
     if(err) throw err;
     console.log('connected as id ' + connection.threadId);
     var postData  = req.body;
-
-  let sessionid = postData.sessionid;
-  let username = postData.username;
-  let password = postData.password;
-
-  console.log("POST DATA: sessionid: " + sessionid);
-  console.log("POST DATA: username: " + username);
-  console.log("POST DATA: password: " + password);
+    
+    let verificationCode = postData.verificationCode;
+    let username = postData.username;
+    let password = postData.password;
+    let sessionid = postData.sessionid;
+    let verified = postData.verified;
+  
+    console.log("POST DATA: sessionid: " + sessionid);
+    console.log("POST DATA: username: " + username);
+    console.log("POST DATA: password: " + password);
+    console.log("POST DATA: verficationCode: " + verificationCode);
+    console.log("POST DATA: verified: " + verified);
 
   console.log("POST DATA: possiblesub STRINGIFIED: " + JSON.stringify(postData));
 
@@ -602,6 +606,40 @@ app.post('/possibleSub', (req, res) =>{
   (?, ?, ?)`,
   [
     sessionid, username, password
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The post user result is: ', result);
+    res.json(result);
+    });
+  }); 
+});
+
+app.put('/possibleSub', (req, res) =>{
+
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    var postData  = req.body;
+
+  let verificationCode = postData.verificationCode;
+  let username = postData.username;
+  let password = postData.password;
+  let sessionid = postData.sessionid;
+  let verified = postData.verified;
+
+  console.log("POST DATA: sessionid: " + sessionid);
+  console.log("POST DATA: username: " + username);
+  console.log("POST DATA: password: " + password);
+  console.log("POST DATA: verficationCode: " + verificationCode);
+  console.log("POST DATA: verified: " + verified);
+
+  console.log("POST DATA: possiblesub STRINGIFIED: " + JSON.stringify(postData));
+
+  connection.query(`UPDATE possibleSub set
+  username =?, password =?, sessionid =?, verified =? WHERE verificationCode = ?`,
+  [
+    username, password, sessionid, verified, verificationCode
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
