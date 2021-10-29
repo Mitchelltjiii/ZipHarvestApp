@@ -51,7 +51,7 @@ async function goToProduct(lookup_key){
   }
 
   busySettingPossibleSub = true;
-  updatePossibleSub(getPossibleSubItem(possibleSubscription,sessionid));
+  updatePossibleSub(getPossibleSubItem(possibleSubscription,sessionId));
 
   window.location.replace(json.url);
   console.log("fetched create checkout sess");
