@@ -310,7 +310,20 @@ export default class App extends React.Component {
       }
     }
 
-    if (this.state.loggedIn !== '' || this.state.currentPage === ('create-user-form') || this.state.currentPage === ('stripe-form')) {
+    let currUrlVerification = false;
+    let verificationEqualsStr = "verCode=";
+    if(currUrl.includes("verCode")){
+      let verCodeString = currUrl.substring(currUrl.indexOf(verificationEqualsStr)+verificationEqualsStr.length,currUrl.indexOf(verificationEqualsStr)+verificationEqualsStr.length+5);
+      console.log("VerCode Str: " + verCodeString);
+        currUrlVerification = true;
+        if(this.state.currentPage !== 'stripe-form'){
+          this.setCurrentPage('stripe-form');
+        }
+    }
+
+    
+
+    if (this.state.loggedIn !== '' || this.state.currentPage === ('create-user-form') || this.state.currentPage === ('stripe-form') || this.state.currentPage === ('verification-form')) {
 	  	showForm = <div style={{margin:"auto"}}>
 	    <Header setCurrentPage={this.setCurrentPage} currentPage={this.state.currentPage} executeLogout={this.executeLogout}/>
       <Outer currentPage={this.state.currentPage} setCurrentPage={this.setCurrentPage} getPlants={this.getPlants} getHarvestRecords={this.getHarvestRecords} getHarvestBatches={this.getHarvestBatches}

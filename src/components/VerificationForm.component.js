@@ -5,14 +5,13 @@ import TextField from '@material-ui/core/TextField';
 
 function VerificationForm({refreshOuter, userID,setCurrentPage}) {
 
-    const [codeFromUser, setCodeFromUser] = React.useState('');
 
-    const handleContinue = () => {
-		doContinue();
+    const handleResend = () => {
+		resend();
 	}
 
-    function doContinue(){
-        console.log("Click verify");
+    function resend(){
+        console.log("Click resend");
         /*if(verificationCode===codeFromUser){
             setCurrentPage('stripe-form');
         }*/
@@ -41,10 +40,11 @@ function VerificationForm({refreshOuter, userID,setCurrentPage}) {
   				justifyContent="center"
 				alignItems="center"
 			    >
-                    <TextField id="VerificationCode" value={codeFromUser} onChange={setCodeFromUser} label="Verification Code" variant="outlined"></TextField>
+                    <div>We sent you a link to verify your account. If you haven't recieved it, try checking your spam folder.</div>
+                    <div>If you are still having trouble, you can send a new code below. Code will expire 15 minutes after creation.</div>
                     </Grid>
                     </div>                
-                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Verify</Button>
+                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
 			</Grid>
 		</div>
 	);

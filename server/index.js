@@ -55,7 +55,7 @@ app.get('/send-verification-email/:address/:verificationCode', async (req,res) =
       from: 'support@zipharvest.app', // Change to your verified sender
       subject: 'Verification Code',
       text: 'Here is your verification code: ',
-      html: '<strong>' + req.params.verificationCode + '</strong>',
+      html: 'Here is your verification link: <strong>' + "https://www.zipharvest.app/verCode=" + req.params.verificationCode + '/</strong>',
     }
     
     sgMail.send(msg).then((response) => {
