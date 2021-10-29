@@ -17,10 +17,6 @@ setNewHarvestRecordID, setNewPlantID, userID, setAll,reloadPlants,reloadPlantsAn
 
 	console.log("ENTER LANDING, GET harvestbatches(STRINGIFIED): " + JSON.stringify(getHarvestBatches()));
 
-	const [user,setUser] = React.useState("");
-	const [pass,setPass] = React.useState("");
-	const [verificationCode,setVerificationCode] = React.useState("");
-
     return(
 		
         <div>
@@ -36,11 +32,11 @@ setNewHarvestRecordID, setNewPlantID, userID, setAll,reloadPlants,reloadPlantsAn
 			) : currentPage === 'account-form' ? (
 				<AccountForm refreshOuter={refreshOuter} userID={userID}/>
 			) : currentPage === 'create-user-form' ? (
-				<CreateUserForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} setUser={setUser} setPass={setPass} setVerificationCode={setVerificationCode}></CreateUserForm>
+				<CreateUserForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage}></CreateUserForm>
 			) : currentPage === 'stripe-form' ? (
 				<StripeForm username={user} password={pass}></StripeForm>
 			) : currentPage === 'verification-form' ? (
-				<VerificationForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} verificationCode={verificationCode}></VerificationForm>
+				<VerificationForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage}></VerificationForm>
 			) : null}
         </div>
     )

@@ -579,6 +579,15 @@ app.post('/user', (req, res) =>{
   }); 
 });
 
+/*
+app.post('/justPost', (req, res) => {
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+  }
+})
+*/
+
 app.post('/possibleSub', (req, res) =>{
 
   pool.getConnection((err, connection) => {
