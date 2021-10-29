@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
-export default function StripeForm() {
+export default function StripeForm({verCode,userFromUrl}) {
 
   const Message = ({ message }) => (
     <section>
@@ -215,7 +215,7 @@ async function getSession(seshId){
   }catch(err){
 
   }
-  getPossibleSubscription(seshId,json.subscription);
+  getPossibleSubscription();
   setSession(json);
 }
 
@@ -246,9 +246,9 @@ async function getSession(seshId){
     setSubscription(json);
   }
 
-  async function getPossibleSubscription(seshId,subId){
-    console.log("Try to get subscription");
-    const response = await fetch(`/get-possible-subscription/${seshId}`);
+  async function getPossibleSubscription(){
+    console.log("Try to get possible subscription");
+    const response = await fetch(`/get-possible-subscription/${userFromUrl}`);
     const json = await response.json();
     try{
       console.log("sub json: " + json);
@@ -288,6 +288,14 @@ async function getSession(seshId){
   console.log("Session**: " + JSON.stringify(session));
   console.log("Subscription**: " + JSON.stringify(subscription));
   console.log("Possible Subscription**: " + JSON.stringify(possibleSubscription));
+  
+
+  if(!success){
+    if(possibleSubscription === null || possibleSubscription === [] || possibleSubscription === undefined || JSON.stringify(possibleSubscription) === "[]"){
+      console.log("Get possiblesubcription now*");
+      getPossibleSubscription();
+    }
+  }
 
   if (!success && message === '') {
     return <ProductDisplay />;

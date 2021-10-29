@@ -297,28 +297,34 @@ export default class App extends React.Component {
 
     console.log("Curr URL: " + currUrl);
 
-    let currUrlSuccess = false;
     let successEqualsStr = "success=";
     if(currUrl.includes("success")){
       let successStr = currUrl.substring(currUrl.indexOf(successEqualsStr)+successEqualsStr.length,currUrl.indexOf(successEqualsStr)+successEqualsStr.length+5);
       console.log("Success Str: " + successStr);
       if(successStr.includes("true")){
-        currUrlSuccess = true;
         if(this.state.currentPage !== 'stripe-form'){
           this.setCurrentPage('stripe-form');
         }
       }
     }
 
-    let currUrlVerification = false;
+    let verCode = "";
     let verificationEqualsStr = "verCode=";
     if(currUrl.includes("verCode")){
-      let verCodeString = currUrl.substring(currUrl.indexOf(verificationEqualsStr)+verificationEqualsStr.length,currUrl.indexOf(verificationEqualsStr)+verificationEqualsStr.length+5);
+      let verCodeString = currUrl.substring(currUrl.indexOf(verificationEqualsStr)+verificationEqualsStr.length,currUrl.indexOf(verificationEqualsStr)+verificationEqualsStr.length+8);
       console.log("VerCode Str: " + verCodeString);
-        currUrlVerification = true;
-        if(this.state.currentPage !== 'stripe-form'){
-          this.setCurrentPage('stripe-form');
-        }
+      verCode = verCodeString;
+    }
+
+    let userFromUrl = "";
+    let userEqualsStr = "user=";
+    if(currUrl.includes("user")){
+      let userString = currUrl.substring(currUrl.indexOf(userEqualsStr)+userEqualsStr.length);
+      console.log("User Str: " + userString);
+      userFromUrl = userString;
+      if(this.state.currentPage !== 'stripe-form'){
+        this.setCurrentPage('stripe-form');
+      }
     }
 
     
@@ -330,7 +336,8 @@ export default class App extends React.Component {
       resetHarvestBatches={this.resetHarvestBatches} resetAll={this.resetAll} currentHarvest={this.state.currentHarvest} setNewHBID={this.setNewHBID} getCurrentHarvestID={this.getCurrentHarvestID}
       setNewHarvestRecordID={this.setNewHarvestRecordID} setNewPlantID={this.setNewPlantID} userID={this.state.userID} setAll={this.setAll}
       setHarvestBatches={this.setHarvestBatches} setHarvestRecords={this.setHarvestRecords} setPlants={this.setPlants} reloadPlants={this.reloadPlants} 
-      reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}/>
+      reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}
+      verCode={this.verCode} userFromUrl={this.userFromUrl}/>
     </div>;
     }else{
 		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage}></LogIn></div>;

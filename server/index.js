@@ -26,7 +26,7 @@ const harvestRecordsQueryString = "select * from hr where userID = '";
 
 const usersQueryString = "select * from users";
 
-const possibleSubQueryString = "select * from possibleSub where sessionid = '";
+const possibleSubQueryString = "select * from possibleSub where username = '";
 
 const router = require('../app/routers/router');
 
@@ -49,13 +49,13 @@ sgMail.send(msg).then((response) => {
     console.error(error)
   })*/
 
-app.get('/send-verification-email/:address/:verificationCode', async (req,res) =>{
+app.get('/send-verification-email/:address/:verificationCode/:username', async (req,res) =>{
     const msg = {
       to: req.params.address, // Change to your recipient
       from: 'support@zipharvest.app', // Change to your verified sender
       subject: 'Verification Code',
       text: 'Here is your verification code: ',
-      html: 'Here is your verification link: <strong>' + "https://www.zipharvest.app/verCode=" + req.params.verificationCode + '/</strong>',
+      html: 'Here is your verification link: <strong>' + "https://www.zipharvest.app/verCode=" + req.params.verificationCode + '/username=' + req.params.username + '</strong>',
     }
     
     sgMail.send(msg).then((response) => {
@@ -137,13 +137,13 @@ app.get('/get-subscription/:subscriptionId', async (req,res) =>{
   res.json(subscription);
 })
 
-app.get('/get-possible-subscription/:sessionId', async (req,res) =>{
+app.get('/get-possible-subscription/:username', async (req,res) =>{
   pool.getConnection((err, connection) => {
     console.log("get Possible sub");
     if(err) throw err;
     console.log('connected as id ' + connection.threadId);
-    let sessionId = req.params.sessionId;
-    var sql = `${sessionId}`;
+    let username = req.params.username;
+    var sql = `${verCode}`;
     console.log("Commit Query: " + possibleSubQueryString + sql);
     connection.query(possibleSubQueryString + sql + "'", (err, rows) => {
         connection.release(); // return the connection to pool
@@ -610,11 +610,11 @@ app.post('/possibleSub', (req, res) =>{
   console.log("POST DATA: possiblesub STRINGIFIED: " + JSON.stringify(postData));
 
   connection.query(`INSERT INTO possibleSub 
-  (verificationCode, username, password, verified, sessionid) 
+  (username, password, verificationCode, verified, sessionid) 
   VALUES 
   (?, ?, ?, ?, ?)`,
   [
-    verificationCode, username, password, verified, sessionid 
+    username, password, verificationCode, verified, sessionid 
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
@@ -646,9 +646,9 @@ app.put('/possibleSub', (req, res) =>{
   console.log("POST DATA: possiblesub STRINGIFIED: " + JSON.stringify(postData));
 
   connection.query(`UPDATE possibleSub set
-  username =?, password =?, verified =?, sessionid =? WHERE verificationCode = ?`,
+  password =?, verificationCode =?, verified =?, sessionid =? WHERE username = ?`,
   [
-    username, password, verified, sessionid, verificationCode
+    password, verificationCode, verified, sessionid, username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;

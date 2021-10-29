@@ -9,7 +9,8 @@ import VerificationForm from './VerificationForm.component';
 
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
 	setHarvestBatches, resetHarvestBatches, resetAll, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
-setNewHarvestRecordID, setNewPlantID, userID, setAll,reloadPlants,reloadPlantsAndHarvestRecords, reloadHarvestBatches,reloadHarvestRecords,setCurrentPage}){
+setNewHarvestRecordID, setNewPlantID, userID, setAll,reloadPlants,reloadPlantsAndHarvestRecords, reloadHarvestBatches,
+reloadHarvestRecords,setCurrentPage,verCode,userFromUrl}){
 
 	console.log("ENTER LANDING, GET PLANTS(STRINGIFIED): " + JSON.stringify(getPlants()));
 
@@ -34,7 +35,7 @@ setNewHarvestRecordID, setNewPlantID, userID, setAll,reloadPlants,reloadPlantsAn
 			) : currentPage === 'create-user-form' ? (
 				<CreateUserForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage}></CreateUserForm>
 			) : currentPage === 'stripe-form' ? (
-				<StripeForm></StripeForm>
+				<StripeForm verCode={verCode} userFromUrl={userFromUrl}></StripeForm>
 			) : currentPage === 'verification-form' ? (
 				<VerificationForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage}></VerificationForm>
 			) : null}
