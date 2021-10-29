@@ -59,17 +59,18 @@ async function goToProduct(lookup_key){
   console.log("fetched create checkout sess");
 }
 
-function getPossibleSubItem(seshId){
+function getPossibleSubItem(){
   console.log("Enter getPossibleSubItem")
-  console.log("Enter sesh ID: " + seshId);
 
   let subItem = {
-    sessionid: '',
+    verificationCode: '',
     username: '',
     password: '',
+    sessionid: '',
+    verified: 0
     };
 
-    subItem.sessionid = seshId;
+    subItem.verificationCode = verCode;
     subItem.username = username;
     subItem.password = password;
 
@@ -81,7 +82,7 @@ function getPossibleSubItem(seshId){
 async function updatePossibleSub(possibleSubItem){
   console.log("Engage update possiblesub");
   const response = fetch('/possibleSub', {
-        method: (possibleSubItem.id) ? 'PUT' : 'POST',
+        method: 'PUT',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -279,6 +280,8 @@ async function getSession(seshId){
     console.log("Possible sub string: " + possibleSubString);
     //getSubscription(subId);
 
+    console.log("Update possible subscription verified");
+    updatePossibleSub(getPossibleSubItem());
     if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null){
       setPossibleSubscription(JSON.parse(possibleSubString));
     }
