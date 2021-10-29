@@ -585,7 +585,7 @@ app.post('/possibleSub', (req, res) =>{
     if(err) throw err;
     console.log('connected as id ' + connection.threadId);
     var postData  = req.body;
-    
+
     let verificationCode = postData.verificationCode;
     let username = postData.username;
     let password = postData.password;
@@ -601,11 +601,11 @@ app.post('/possibleSub', (req, res) =>{
   console.log("POST DATA: possiblesub STRINGIFIED: " + JSON.stringify(postData));
 
   connection.query(`INSERT INTO possibleSub 
-  (sessionid, username, password) 
+  (verificationCode, username, password, verified, sessionid) 
   VALUES 
   (?, ?, ?)`,
   [
-    sessionid, username, password
+    verificationCode, username, password, verified, sessionid 
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
@@ -637,9 +637,9 @@ app.put('/possibleSub', (req, res) =>{
   console.log("POST DATA: possiblesub STRINGIFIED: " + JSON.stringify(postData));
 
   connection.query(`UPDATE possibleSub set
-  username =?, password =?, sessionid =?, verified =? WHERE verificationCode = ?`,
+  username =?, password =?, verified =?, sessionid =? WHERE verificationCode = ?`,
   [
-    username, password, sessionid, verified, verificationCode
+    username, password, verified, sessionid, verificationCode
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;

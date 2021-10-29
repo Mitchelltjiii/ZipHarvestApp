@@ -41,7 +41,7 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setUser,setPass,set
        }
        return result;
     }
-    
+
 
     function getPossibleSubItem(newCode){
         console.log("Enter getPossibleSubItem")
@@ -66,7 +66,7 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setUser,setPass,set
       async function updatePossibleSub(possibleSubItem){
         console.log("Engage update possiblesub");
         const response = fetch('/possibleSub', {
-              method: 'PUT',
+              method: 'POST',
               headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
