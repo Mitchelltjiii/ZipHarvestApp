@@ -229,8 +229,6 @@ async function getSession(seshId){
   let [possibleSubscription,setPossibleSubscription] = useState([]);
   let [subscription,setSubscription] = useState([]);
 
-  console.log("Enter stripeform username: " + username);
-  console.log("Enter stripeform password: " + password);
 
   console.log("From PossibleSubscription**");
 
