@@ -603,7 +603,7 @@ app.post('/possibleSub', (req, res) =>{
   connection.query(`INSERT INTO possibleSub 
   (verificationCode, username, password, verified, sessionid) 
   VALUES 
-  (?, ?, ?)`,
+  (?, ?, ?, ?, ?)`,
   [
     verificationCode, username, password, verified, sessionid 
   ], (err, result) => {
