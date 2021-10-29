@@ -93,7 +93,7 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage}) {
         let address = "Mitchelltjiii@gmail.com";
         let newCode = makeid(8);
         console.log("New Code: " + newCode);
-        const response = await fetch(`/send-verification-email/${address}/${newCode}`);
+        const response = await fetch(`/send-verification-email/${address}/${newCode}/${username}`);
         const json = await response.json();
         try{
           console.log("Send Verification json: " + json);
