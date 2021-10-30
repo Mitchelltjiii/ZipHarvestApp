@@ -216,7 +216,7 @@ async function getSession(seshId){
   }catch(err){
 
   }
-  getPossibleSubscription(false,session.subscription,seshId);
+  getPossibleSubscription(false,json.subscription,seshId);
   setSession(json);
 }
 
