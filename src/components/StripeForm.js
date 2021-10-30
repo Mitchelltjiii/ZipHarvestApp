@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import { setUserAgent } from 'react-device-detect';
 
 export default function StripeForm({verCode,userFromUrl}) {
 
@@ -150,7 +151,8 @@ async function updateUser(userItem){
   console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
   busySettingUser = (false);
   console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
-  console.log("Exit update user")
+  console.log("Exit update user");
+  setUserUpdated(true);
 }
 
 //value lk_1
@@ -168,7 +170,9 @@ const SuccessDisplay = ({ seshId }) => {
     if(userItem.username !== null && userItem.username !== "" && userItem.username !== undefined){
       if(userItem.password !== null && userItem.password !== "" && userItem.password !== undefined){
         if(userItem.subid !== null && userItem.subid !== "" && userItem.subid !== undefined){
-          updateUser(userItem);
+          if(!userUpdated){
+            updateUser(userItem);
+          }
         }
       }
     }
@@ -228,6 +232,7 @@ async function getSession(seshId){
   let [session,setSession] = useState([]);
   let [possibleSubscription,setPossibleSubscription] = useState([]);
   let [subscription,setSubscription] = useState([]);
+  let [userUpdated,setUserUpdated] = useState(false);
 
 
   console.log("From PossibleSubscription**");
