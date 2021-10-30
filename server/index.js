@@ -154,6 +154,24 @@ app.get('/get-possible-subscription/:username', async (req,res) =>{
   })
 })
 
+app.get('/get-possible-subscription-seshId/:seshId', async (req,res) =>{
+  pool.getConnection((err, connection) => {
+    console.log("get Possible sub with sesh ID");
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    connection.query("select * from possibleSub", (err, rows) => {
+        connection.release(); // return the connection to pool
+        if(err) throw err;
+        console.log('The data from possiblesub all table are: \n', rows);
+        for(const val of rows){
+          if(val.sessionid === req.params.seshId){
+            res.json(val);
+          }
+        }
+    });
+  })
+})
+
 app.get('/get-products', async (req,res) =>{
   const products = await stripe.products.list({limit: 10,});
   console.log("Before response from getProducts")
