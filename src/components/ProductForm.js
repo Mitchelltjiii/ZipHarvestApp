@@ -114,7 +114,6 @@ function ProductForm() {
         }catch(err){
           
         }
-
         let lookupKeyNum = 1;
         let nextLookupKey = "";
         try{
