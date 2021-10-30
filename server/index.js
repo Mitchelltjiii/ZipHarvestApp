@@ -592,8 +592,9 @@ app.post('/user', (req, res) =>{
     console.log('The post user result is: ', result);
     res.json(result);
     });
+  }else{
+    res.json("");
   }
-  res.json("");
   }); 
 });
 
