@@ -115,7 +115,7 @@ function getUserItem(){
     subid: ''
     };
 
-    userItem.apiid = "apiid";
+    userItem.apiid = possibleSubscription.username;
     userItem.username = possibleSubscription.username;
     userItem.password = possibleSubscription.password;
     userItem.subid = subscription.id;
@@ -216,7 +216,7 @@ async function getSession(seshId){
   }catch(err){
 
   }
-  getPossibleSubscription();
+  getPossibleSubscription(false,session.subscription);
   setSession(json);
 }
 
@@ -249,10 +249,13 @@ async function getSession(seshId){
     setSubscription(json);
   }
 
-  async function getPossibleSubscription(){
+  async function getPossibleSubscription(fromUrl,subId){
     console.log("User from url: " + userFromUrl);
-    if(userFromUrl === undefined){
+    if(fromUrl && userFromUrl === undefined){
       return;
+    }
+    if(!fromUrl){
+      userFromUrl = username;
     }
     console.log("Try to get possible subscription");
     const response = await fetch(`/get-possible-subscription/${userFromUrl}`);
@@ -270,13 +273,17 @@ async function getSession(seshId){
     let possibleSubString = JSON.stringify(json);
     possibleSubString = possibleSubString.substring(1,possibleSubString.length-1);
     console.log("Possible sub string: " + possibleSubString);
+    let newPossibleSub = JSON.parse(possibleSubString);
     //getSubscription(subId);
 
-    console.log("Update possible subscription verified");
-    if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null && possibleSubString !== "[]"){
-      let newPossibleSub = JSON.parse(possibleSubString);
-      updatePossibleSub(getPossibleSubItem(newPossibleSub,""));
-      setPossibleSubscription(newPossibleSub);
+    if(fromUrl){
+      console.log("Update possible subscription verified");
+      if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null && possibleSubString !== "[]"){
+        updatePossibleSub(getPossibleSubItem(newPossibleSub,""));
+        setPossibleSubscription(newPossibleSub);
+      }
+    }else{
+      getSubscription(subId);
     }
   }
 
@@ -305,7 +312,7 @@ async function getSession(seshId){
   if(!success){
     if(possibleSubscription === null || possibleSubscription === [] || possibleSubscription === undefined || JSON.stringify(possibleSubscription) === "[]"){
       console.log("Get possiblesubcription now*");
-      getPossibleSubscription();
+      getPossibleSubscription(true,"");
     }
   }
 
