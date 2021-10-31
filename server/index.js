@@ -753,11 +753,11 @@ app.delete(`/plant/:id`, (req, res) =>{
   });
 });
 
-app.delete(`/possibleSub/:id`, (req, res) =>{
+app.delete(`/possibleSub/:username`, (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
     console.log("Delete PossibleSub: " + req.params.username);
-    connection.query(`DELETE FROM possibleSub WHERE id = ${req.params.id}`);
+    connection.query(`DELETE FROM possibleSub WHERE username = ${req.params.username}`);
   });
 });
 

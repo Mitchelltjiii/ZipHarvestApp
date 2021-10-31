@@ -156,8 +156,8 @@ async function updateUser(userItem){
 
 async function deletePossibleSub() {
   console.log("Enter deletePossibleSub");
-  console.log("Possible Sub ID: " + possibleSubscription.id);
-  await fetch(`/possibleSub/${possibleSubscription.id}`, {
+  console.log("Possible Sub username: " + possibleSubscription.username);
+  await fetch(`/possibleSub/${possibleSubscription.username}`, {
   method: 'DELETE',
   headers: {
     'Accept': 'application/json',
