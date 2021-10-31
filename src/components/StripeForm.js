@@ -142,7 +142,7 @@ async function updateUser(userItem){
     console.log("Response from updateUser: " + resp);
     if(resp !== "" && resp !== null && resp !== undefined){
       console.log("remove possiblesub now");
-      deletePossibleSub(userItem.username);
+      deletePossibleSub();
     }
   }).then(function(data) {
   });
@@ -154,9 +154,10 @@ async function updateUser(userItem){
   setUserUpdated(true);
 }
 
-async function deletePossibleSub(username) {
+async function deletePossibleSub() {
   console.log("Enter deletePossibleSub");
-  await fetch(`/possibleSub/${username}`, {
+  console.log("Possible Sub ID: " + possibleSubscription.id);
+  await fetch(`/possibleSub/${possibleSubscription.id}`, {
   method: 'DELETE',
   headers: {
     'Accept': 'application/json',

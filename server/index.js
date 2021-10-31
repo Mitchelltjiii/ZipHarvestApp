@@ -569,6 +569,7 @@ app.post('/user', (req, res) =>{
   let subid = postData.subid;
 
   if(subid === null || subid === undefined){
+    console.log("Post user failed");
     res.json("");
   }
 
@@ -593,6 +594,7 @@ app.post('/user', (req, res) =>{
     res.json(result);
     });
   }else{
+    console.log("Post user failed");
     res.json("");
   }
   }); 
@@ -751,11 +753,11 @@ app.delete(`/plant/:id`, (req, res) =>{
   });
 });
 
-app.delete(`/possibleSub/:username`, (req, res) =>{
+app.delete(`/possibleSub/:id`, (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
     console.log("Delete PossibleSub: " + req.params.username);
-    connection.query(`DELETE FROM possibleSub WHERE username = ${req.params.username}`);
+    connection.query(`DELETE FROM possibleSub WHERE id = ${req.params.id}`);
   });
 });
 
