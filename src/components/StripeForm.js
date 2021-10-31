@@ -138,8 +138,9 @@ async function updateUser(userItem){
         },
         body: JSON.stringify(userItem)
   }).then(function(response) {
-    console.log("Response from updateUser: " + response);
-    if(response !== "" && response !== null && response !== undefined){
+    let resp = JSON.stringify(response);
+    console.log("Response from updateUser: " + resp);
+    if(resp !== "" && resp !== null && resp !== undefined){
       console.log("remove possiblesub now");
       deletePossibleSub(userItem.username);
     }
