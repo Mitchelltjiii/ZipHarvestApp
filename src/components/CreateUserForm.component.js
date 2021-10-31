@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-function CreateUserForm({refreshOuter, userID,setCurrentPage}) {
+function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername}) {
 
     const [email, setEmail] = React.useState('');
     const [username, setUsername] = React.useState('');
@@ -25,6 +25,7 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage}) {
         }else{
             //setCurrentPage('stripe-form');
             sendVerificationEmail();
+            setPossibleUsername(username);
             setCurrentPage('verification-form');
         }
     }

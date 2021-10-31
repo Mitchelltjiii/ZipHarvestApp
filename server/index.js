@@ -749,7 +749,7 @@ app.delete(`/plant/:id`, (req, res) =>{
     console.log('connected as id ' + connection.threadId);
     console.log("Delete Plant: " + req.params.id);
     let plantID = req.params.id;
-    connection.query(`DELETE FROM plants WHERE id = ${plantID}`);
+    connection.query(`DELETE FROM plants WHERE id = '${plantID}'`);
   });
 });
 
@@ -895,22 +895,6 @@ app.put('/pl/active', (req, res) =>{
 });
 
 
-
-app.delete(`/zhplant/:id`, (req, res) =>{
-  console.log("Delete Plant: " + req.params.id);
-  let plantID = req.params.id;
-
-  const result = connection.query(`DELETE FROM zhplants WHERE id = ${plantID}`);
-
-    let message = 'Error in creating programming language';
-  
-    if (result.affectedRows) {
-      message = 'Programming language created successfully';
-    }
-  
-    res.json(message);
-});
-
 /*
 app.delete(`/hr/:id`, (req, res) =>{
   console.log("Delete HarvestRecord: " + req.params.id);
@@ -933,7 +917,7 @@ app.delete(`/hr/:id`, (req, res) =>{
     console.log('connected as id ' + connection.threadId);
     console.log("Delete HarvestRecord: " + req.params.id);
   let plantID = req.params.id;
-  var sql = `DELETE FROM hr WHERE id = ${plantID}`;
+  var sql = `DELETE FROM hr WHERE id = '${plantID}'`;
 
   connection.query(sql, (err, result) => {
     connection.release(); // return the connection to pool

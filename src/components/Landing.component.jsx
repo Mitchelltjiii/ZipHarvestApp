@@ -18,6 +18,7 @@ reloadHarvestRecords,setCurrentPage,verCode,userFromUrl}){
 
 	console.log("ENTER LANDING, GET harvestbatches(STRINGIFIED): " + JSON.stringify(getHarvestBatches()));
 
+	const [possibleUsername,setPossibleUsername] = React.useState('');
     return(
 		
         <div>
@@ -33,11 +34,11 @@ reloadHarvestRecords,setCurrentPage,verCode,userFromUrl}){
 			) : currentPage === 'account-form' ? (
 				<AccountForm refreshOuter={refreshOuter} userID={userID}/>
 			) : currentPage === 'create-user-form' ? (
-				<CreateUserForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage}></CreateUserForm>
+				<CreateUserForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} setPossibleUsername={setPossibleUsername}></CreateUserForm>
 			) : currentPage === 'stripe-form' ? (
 				<StripeForm verCode={verCode} userFromUrl={userFromUrl}></StripeForm>
 			) : currentPage === 'verification-form' ? (
-				<VerificationForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage}></VerificationForm>
+				<VerificationForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} possibleUsername={possibleUsername}></VerificationForm>
 			) : null}
         </div>
     )
