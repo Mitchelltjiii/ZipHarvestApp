@@ -944,18 +944,11 @@ app.delete(`/hr/:id`, (req, res) =>{
   });
 });
 
-
 app.delete(`/possibleSub/:username`, (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
-    console.log("Delete possiblesub: " + req.params.username);
-  var sql = `DELETE FROM possibleSub WHERE username = ${req.params.username}`;
-  connection.query(sql, (err, result) => {
-    connection.release(); // return the connection to pool
-    if(err) throw err;
-    console.log('The delete active possiblesub result is: ', result);
-    res.json(result);
-    });
+    console.log("Delete PossibleSub: " + req.params.username);
+    connection.query(`DELETE FROM possibleSub WHERE username = '${req.params.username}'`);
   });
 });
 
