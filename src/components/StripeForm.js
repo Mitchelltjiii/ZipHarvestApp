@@ -137,25 +137,32 @@ async function updateUser(userItem){
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(userItem)
-  });
-  console.log("Create user should be done - no indicator");
-  try{
-    console.log("AWAITING RESPONSE UPDATEUser")
-    let resp = await response.text();
-    console.log("Response from updateUser: " + resp);
-    if(resp !== "" && resp !== null && resp !== undefined){
+  }).then(function(response) {
+    console.log("Response from updateUser: " + response);
+    if(response !== "" && response !== null && response !== undefined){
       console.log("remove possiblesub now");
+      deletePossibleSub(userItem.username);
     }
-    console.log("RESPONSE RECIEVED UPDATEUser")
-  }catch(err){
-    console.log("NO RESPONSE RECIEVED UPDATEUser")
-  }
+  }).then(function(data) {
+  });
   console.log("Before removing busy setting user");
   console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
   busySettingUser = (false);
   console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
   console.log("Exit update user");
   setUserUpdated(true);
+}
+
+async function deletePossibleSub(username) {
+  console.log("Enter deletePossibleSub");
+  await fetch(`/possibleSub/${username}`, {
+  method: 'DELETE',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+  });
+  console.log("Exit deletePossibleSub");
 }
 
 //value lk_1
