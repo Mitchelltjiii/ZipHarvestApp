@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import { setUserAgent } from 'react-device-detect';
 
 export default function StripeForm({verCode,userFromUrl}) {
 
@@ -142,7 +141,11 @@ async function updateUser(userItem){
   console.log("Create user should be done - no indicator");
   try{
     console.log("AWAITING RESPONSE UPDATEUser")
-    await response.text();
+    let resp = await response.text();
+    console.log("Response from updateUser: " + resp);
+    if(resp !== "" && resp !== null && resp !== undefined){
+      console.log("remove possiblesub now");
+    }
     console.log("RESPONSE RECIEVED UPDATEUser")
   }catch(err){
     console.log("NO RESPONSE RECIEVED UPDATEUser")
