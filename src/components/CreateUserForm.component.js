@@ -16,8 +16,8 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername
     let busySettingPossibleSub = false;
 
     const handleContinue = () => {
-		doContinue();
-	}
+		  doContinue();
+	  }
 
     function doContinue(){
         if(!stepTwo){
@@ -50,12 +50,14 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername
           username: '',
           password: '',
           sessionid: '',
-          verified: 1
+          verified: 1,
+          verCodeTime: 0
           };
       
           subItem.verificationCode = newCode;
           subItem.username = username;
           subItem.password = password;
+          subItem.verCodeTime = (new Date()).getTime();
       
         console.log("Stringified before passed: " + JSON.stringify(subItem));
         console.log("Exit getPossibleSubItem")
