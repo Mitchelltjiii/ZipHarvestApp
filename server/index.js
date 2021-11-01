@@ -102,6 +102,34 @@ app.get("/api/users/:username/:password",(req,res) => {
     });
   });
 });
+
+app.get("/api/user-exists/:username",(req,res) => {
+  pool.getConnection((err, connection) => {
+      if(err) throw err;
+      console.log('connected as id ' + connection.threadId);
+      console.log("Does user exists");
+      connection.query(usersQueryString, (err, rows) => {
+          connection.release(); // return the connection to pool
+          if(err) throw err;
+          console.log('The data from users table are: \n', rows);
+          try{
+            console.log("Trying iteration without parse");
+            for(const val of rows){
+              console.log("Row: " + val);
+              console.log("Row.stringify: " + JSON.stringify(val));
+              if(val.username==req.params.username){
+                console.log("yes user exists");
+                res.json(0);
+              }
+            }
+          }catch(error){
+            console.log("Caught error 1");
+          }
+          console.log("no user does not exists");
+          res.json(1);
+    });
+  });
+});
 /*
 const connection = mysql.createConnection({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',

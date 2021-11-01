@@ -270,6 +270,24 @@ export default class App extends React.Component {
     this.getUsersFromDB(username,password);
   }
 
+  getUserExists = async (username) => {
+    console.log("Get user exists")
+    const response = await fetch(`/api/user-exists/${username}`);
+    const text = await response.text();
+    try{
+      console.log("User exists JSON: " + json);
+    }catch(err){
+
+    }
+    try{
+      console.log("User exists JSON(STRING): " + JSON.stringify(json));
+    }catch(err){
+      
+    }
+
+    return(text === "0");
+  }
+
   render() {
     if ((this.state.loggedIn !== '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading))){
       return(<div>Loading...</div>);
@@ -327,6 +345,11 @@ export default class App extends React.Component {
         this.setCurrentPage('stripe-form');
       }
     }
+
+
+    function userExists(username){
+      return getUserExists(username);
+    }
     
 
     if (this.state.loggedIn !== '' || this.state.currentPage === ('create-user-form') || this.state.currentPage === ('stripe-form') || this.state.currentPage === ('verification-form')) {
@@ -337,7 +360,7 @@ export default class App extends React.Component {
       setNewHarvestRecordID={this.setNewHarvestRecordID} setNewPlantID={this.setNewPlantID} userID={this.state.userID} setAll={this.setAll}
       setHarvestBatches={this.setHarvestBatches} setHarvestRecords={this.setHarvestRecords} setPlants={this.setPlants} reloadPlants={this.reloadPlants} 
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}
-      verCode={verCode} userFromUrl={userFromUrl}/>
+      verCode={verCode} userFromUrl={userFromUrl} userExists={userExists}/>
     </div>;
     }else{
 		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage}></LogIn></div>;

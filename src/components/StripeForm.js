@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
-export default function StripeForm({verCode,userFromUrl}) {
+export default function StripeForm({verCode,userFromUrl,userExists}) {
 
   const Message = ({ message }) => (
     <section>
@@ -140,6 +140,10 @@ function getUserItem(){
 async function updateUser(userItem){
   console.log("Engage update user");
   if(userItem.subid === null || userItem.subid === undefined){
+    return;
+  }
+  if(userExists(userItem.username)){
+    console.log("User Exists");
     return;
   }
   const response = fetch('/user', {
@@ -314,7 +318,7 @@ async function getSession(seshId){
         console.log("Curr Date Value: " + (new Date()).getTime());
         console.log("New Possible Sub Date Value: " + newPossibleSub.verCodeTime);
         console.log("Difference: " + ((new Date()).getTime()-newPossibleSub.verCodeTime));
-        if(((new Date()).getTime()-newPossibleSub.verCodeTime) > 60000){
+        if(((new Date()).getTime()-newPossibleSub.verCodeTime) > 900000){
           console.log("Code Expired");
           setExpired(true);
           return;
