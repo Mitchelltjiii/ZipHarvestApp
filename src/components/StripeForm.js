@@ -400,9 +400,89 @@ async function getSession(seshId){
     )
   }
 
+  let busySettingPossibleSub = false;
+
+    const handleResend = () => {
+		resend();
+	}
+
+    function resend(){
+        console.log("Click resend");
+        sendVerificationEmail(possibleSubscription);
+    }
+
+    function getPossibleSubItemForResend(possibleSub,newCode){
+        console.log("Enter getPossibleSubItem")
+      
+        let subItem = {
+          verificationCode: '',
+          username: '',
+          password: '',
+          sessionid: '',
+          verified: 1,
+          verCodeTime: ""
+          };
+      
+          subItem.verificationCode = newCode;
+          subItem.username = possibleUsername;
+          subItem.password = possibleSub.password;
+          subItem.verCodeTime = JSON.stringify((new Date().getTime()));
+      
+        console.log("Stringified before passed: " + JSON.stringify(subItem));
+        console.log("Exit getPossibleSubItem")
+        return subItem;
+      }
+
+    function makeid(length) {
+        var result           = '';
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < length; i++ ) {
+          result += characters.charAt(Math.floor(Math.random() * 
+          charactersLength));
+       }
+       return result;
+    }
+
+    async function sendVerificationEmail(possibleSub){
+        console.log("Try to send ver email");
+        let address = "Mitchelltjiii@gmail.com";
+        let newCode = makeid(8);
+        console.log("New Code: " + newCode);
+        const response = await fetch(`/send-verification-email/${address}/${newCode}/${possibleSub.username}`);
+        const json = await response.json();
+        try{
+          console.log("Send Verification json: " + json);
+        }catch(err){
+      
+        }
+        try{
+          console.log("Send Verification json(STRING): " + JSON.stringify(json));
+        }catch(err){
+          
+        }
+        busySettingPossibleSub = true;
+        updatePossibleSub(getPossibleSubItemForResend(possibleSub,newCode));
+      }
+
+  const ExpiredForm = () => {
+    return(
+      <div>
+        Expired Form
+        <Grid
+				container
+				direction="column"
+  				justifyContent="center"
+				alignItems="center"
+			    >
+                    <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
+            </Grid>
+      </div>
+    )
+  }
   
   if(expired){
-    return <div>Expired</div>
+    return <ExpiredForm></ExpiredForm>
   }
   if(continued){
     if (!success && message === '') {
