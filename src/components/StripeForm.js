@@ -20,6 +20,7 @@ export default function StripeForm({verCode,userFromUrl}) {
 
 let busySettingUser = false;
 let busySettingPossibleSub = false;
+let expired = false;
 
 
 const ProductDisplay = () => (
@@ -313,8 +314,9 @@ async function getSession(seshId){
         console.log("Curr Date Value: " + (new Date()).getTime());
         console.log("New Possible Sub Date Value: " + newPossibleSub.verCodeTime);
         console.log("Difference: " + ((new Date()).getTime()-newPossibleSub.verCodeTime));
-        if(((new Date()).getTime()-newPossibleSub.verCodeTime) > 900000){
+        if(((new Date()).getTime()-newPossibleSub.verCodeTime) > 60000){
           console.log("Code Expired");
+          expired = true;
           return;
         }else{
           console.log("Code Working still!");
@@ -399,6 +401,9 @@ async function getSession(seshId){
   }
 
   
+  if(expired){
+    return <div>Expired</div>
+  }
   if(continued){
     if (!success && message === '') {
       return <ProductDisplay />;
