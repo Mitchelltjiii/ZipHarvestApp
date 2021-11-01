@@ -246,7 +246,7 @@ async function getSession(seshId){
   let [possibleSubscription,setPossibleSubscription] = useState([]);
   let [subscription,setSubscription] = useState([]);
   let [userUpdated,setUserUpdated] = useState(false);
-
+  let [verified,setVerified] = useState(false);
 
   console.log("From PossibleSubscription**");
 
@@ -354,12 +354,23 @@ async function getSession(seshId){
     }
   }
 
-  if (!success && message === '') {
-    return <ProductDisplay />;
-  } else if (success && sessionId !== '') {
-    return <SuccessDisplay seshId={sessionId} />;
-  } else {
-    return <Message message={message} />;
+  
+  if(verified){
+    if (!success && message === '') {
+      return <ProductDisplay />;
+    } else if (success && sessionId !== '') {
+      return <SuccessDisplay seshId={sessionId} />;
+    } else {
+      return <Message message={message} />;
+    }
+  }else{
+    if(possibleSubscription !== null && possibleSubscription !== undefined && possibleSubscription !== [] && JSON.stringify(possibleSubscription) !== "[]"){
+      if(possibleSubscription.verificationCode===verCode){
+        return <div>Verified</div>
+      }else{
+        return <div>Code Doesn't Match</div>
+      }
+    }
   }
 }
 
