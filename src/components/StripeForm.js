@@ -246,8 +246,7 @@ async function getSession(seshId){
   let [possibleSubscription,setPossibleSubscription] = useState([]);
   let [subscription,setSubscription] = useState([]);
   let [userUpdated,setUserUpdated] = useState(false);
-  let [verified,setVerified] = useState(false);
-
+  let verified = false;
   console.log("From PossibleSubscription**");
 
   async function getSubscription(subId){
@@ -296,6 +295,7 @@ async function getSession(seshId){
         console.log("No Match");
         return;
       }else{
+        verified = true;
         console.log("Match!");
       }
 
@@ -354,6 +354,14 @@ async function getSession(seshId){
     }
   }
 
+  const VerifiedForm = () => {
+    return(
+      <div>
+        Verified Form
+      </div>
+    )
+  }
+
   
   if(verified){
     if (!success && message === '') {
@@ -366,7 +374,7 @@ async function getSession(seshId){
   }else{
     if(possibleSubscription !== null && possibleSubscription !== undefined && possibleSubscription !== [] && JSON.stringify(possibleSubscription) !== "[]"){
       if(possibleSubscription.verificationCode===verCode){
-        return <div>Verified</div>
+        return <VerifiedForm></VerifiedForm>
       }else{
         return <div>Code Doesn't Match</div>
       }
