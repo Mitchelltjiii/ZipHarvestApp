@@ -400,8 +400,6 @@ async function getSession(seshId){
     )
   }
 
-  let busySettingPossibleSub = false;
-
     const handleResend = () => {
 		resend();
 	}
