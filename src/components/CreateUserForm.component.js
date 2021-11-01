@@ -42,24 +42,10 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername
         
       }
   
-      console.log("JSON.stringify(text) === 0 : " + (JSON.stringify(text) === "0"));
-      if(JSON.stringify(text) === "1"){
-        console.log("JSON.stringify(text) === 1")
+      if(text === "1"){
         sendVerificationEmail();
         setPossibleUsername(username);
         setCurrentPage('verification-form');
-      }
-
-      if(JSON.stringify(text) === "0"){
-        console.log("JSON.stringify(text) === 0");
-      }
-
-      if(text === "0"){
-        console.log("(text) === 0");
-      }
-
-      if(text === "1"){
-        console.log("(text) === 1");
       }
     }
 
