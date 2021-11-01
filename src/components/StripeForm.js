@@ -411,7 +411,7 @@ async function getSession(seshId){
 
     async function getPossibleSubscriptionForResend(){
       console.log("Try to get possible subscription");
-      const response = await fetch(`/get-possible-subscription/${possibleUsername}`);
+      const response = await fetch(`/get-possible-subscription/${userFromUrl}`);
       const json = await response.json();
       try{
         console.log("sub json: " + json);
