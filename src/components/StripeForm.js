@@ -15,7 +15,7 @@ export default function StripeForm({verCode,userFromUrl}) {
 	}
 
   function doContinue(){
-    setSuccess(false);
+    setContinued(true);
   }
 
 let busySettingUser = false;
@@ -254,7 +254,7 @@ async function getSession(seshId){
   let [possibleSubscription,setPossibleSubscription] = useState([]);
   let [subscription,setSubscription] = useState([]);
   let [userUpdated,setUserUpdated] = useState(false);
-  let continued = false;
+  let [continued,setContinued] = useState(false);
 
   console.log("From PossibleSubscription**");
 
@@ -314,13 +314,12 @@ async function getSession(seshId){
           setPossibleSubscription(newPossibleSub);
         }
       }else{
-        continued = true;
         if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null && possibleSubString !== "[]"){
+          setContinued(true);
           setPossibleSubscription(newPossibleSub);
         }
       }
     }else{
-      continued = true;
       console.log("Try to get possible subscription");
       const response = await fetch(`/get-possible-subscription-seshId/${seshId}`);
       const json = await response.json();
@@ -334,8 +333,8 @@ async function getSession(seshId){
       }catch(err){
         
       }
-      
       getSubscription(subId);
+      setContinued(true);
       setPossibleSubscription(json)
     }
   }
