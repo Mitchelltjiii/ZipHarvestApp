@@ -26,6 +26,8 @@ const harvestRecordsQueryString = "select * from hr where userID = '";
 
 const usersQueryString = "select * from users";
 
+const possibleSubQueryStringGetAll = "select * from possibleSub";
+
 const possibleSubQueryString = "select * from possibleSub where username = '";
 
 const router = require('../app/routers/router');
@@ -126,6 +128,34 @@ app.get("/api/user-exists/:username",(req,res) => {
             console.log("Caught error 1");
           }
           console.log("no user does not exists");
+          res.json(1);
+    });
+  });
+});
+
+app.get("/api/possible-subscription-exists/:username",(req,res) => {
+  pool.getConnection((err, connection) => {
+      if(err) throw err;
+      console.log('connected as id ' + connection.threadId);
+      console.log("Does user exists");
+      connection.query(possibleSubQueryStringGetAll, (err, rows) => {
+          connection.release(); // return the connection to pool
+          if(err) throw err;
+          console.log('The data from users table are: \n', rows);
+          try{
+            console.log("Trying iteration without parse");
+            for(const val of rows){
+              console.log("Row: " + val);
+              console.log("Row.stringify: " + JSON.stringify(val));
+              if(val.username==req.params.username){
+                console.log("yes possible user exists");
+                res.json(0);
+              }
+            }
+          }catch(error){
+            console.log("Caught error 1");
+          }
+          console.log("no possible user does not exists");
           res.json(1);
     });
   });

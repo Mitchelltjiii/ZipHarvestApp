@@ -43,6 +43,26 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername
       }
   
       if(text === "1"){
+        getPossibleUserExists();
+      }
+    }
+
+    async function getPossibleUserExists(){
+      console.log("Get possible user exists")
+      const response = await fetch(`/api/possible-subscription-exists/${username}`);
+      const text = await response.text();
+      try{
+        console.log("Possible User exists JSON: " + text);
+      }catch(err){
+  
+      }
+      try{
+        console.log("Possible User exists JSON(STRING): " + JSON.stringify(text));
+      }catch(err){
+        
+      }
+  
+      if(text === "1"){
         sendVerificationEmail();
         setPossibleUsername(username);
         setCurrentPage('verification-form');
