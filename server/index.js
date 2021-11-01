@@ -621,21 +621,24 @@ app.post('/possibleSub', (req, res) =>{
     let password = postData.password;
     let sessionid = postData.sessionid;
     let verified = postData.verified;
+    let verCodeTime = postData.verCodeTime;
   
     console.log("POST DATA: sessionid: " + sessionid);
     console.log("POST DATA: username: " + username);
     console.log("POST DATA: password: " + password);
     console.log("POST DATA: verficationCode: " + verificationCode);
     console.log("POST DATA: verified: " + verified);
+    console.log("POST DATA: vercodetime: " + verCodeTime);
+
 
   console.log("POST DATA: possiblesub STRINGIFIED: " + JSON.stringify(postData));
 
   connection.query(`INSERT INTO possibleSub 
-  (username, password, verificationCode, verified, sessionid) 
+  (username, password, verificationCode, verified, sessionid, verCodeTime) 
   VALUES 
-  (?, ?, ?, ?, ?)`,
+  (?, ?, ?, ?, ?, ?)`,
   [
-    username, password, verificationCode, verified, sessionid 
+    username, password, verificationCode, verified, sessionid, verCodeTime 
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
@@ -657,19 +660,21 @@ app.put('/possibleSub', (req, res) =>{
   let password = postData.password;
   let sessionid = postData.sessionid;
   let verified = postData.verified;
+  let verCodeTime = postData.verCodeTime;
 
   console.log("POST DATA: sessionid: " + sessionid);
   console.log("POST DATA: username: " + username);
   console.log("POST DATA: password: " + password);
   console.log("POST DATA: verficationCode: " + verificationCode);
   console.log("POST DATA: verified: " + verified);
+  console.log("POST DATA: verified: " + verCodeTime);
 
   console.log("POST DATA: possiblesub STRINGIFIED: " + JSON.stringify(postData));
 
   connection.query(`UPDATE possibleSub set
-  password =?, verificationCode =?, verified =?, sessionid =? WHERE username = ?`,
+  password =?, verificationCode =?, verified =?, sessionid =?, verCodeTime =? WHERE username = ?`,
   [
-    password, verificationCode, verified, sessionid, username
+    password, verificationCode, verified, sessionid, verCodeTime, username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
