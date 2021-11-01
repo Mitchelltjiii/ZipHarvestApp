@@ -75,7 +75,7 @@ function getPossibleSubItem(newPossibleSub,sessionid){
     password: '',
     sessionid: '',
     verified: 0,
-    verCodeTime: 0
+    verCodeTime: ''
     };
 
     subItem.verificationCode = newPossibleSub.verificationCode;
@@ -83,7 +83,7 @@ function getPossibleSubItem(newPossibleSub,sessionid){
     subItem.password = newPossibleSub.password;
     subItem.verified = 0;
     subItem.sessionid = sessionid;
-    subItem.verCodeTime = 0;
+    subItem.verCodeTime = '';
 
   console.log("Stringified before passed: " + JSON.stringify(subItem));
   console.log("Exit getPossibleSubItem")

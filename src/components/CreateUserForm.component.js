@@ -51,13 +51,13 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername
           password: '',
           sessionid: '',
           verified: 1,
-          verCodeTime: 0
+          verCodeTime: ''
           };
       
           subItem.verificationCode = newCode;
           subItem.username = username;
           subItem.password = password;
-          subItem.verCodeTime = (new Date()).getTime();
+          subItem.verCodeTime = JSON.stringify((new Date()).getTime());
       
         console.log("Stringified before passed: " + JSON.stringify(subItem));
         console.log("Exit getPossibleSubItem")
