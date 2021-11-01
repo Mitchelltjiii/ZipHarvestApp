@@ -320,6 +320,7 @@ async function getSession(seshId){
         }
       }
     }else{
+      continued = true;
       console.log("Try to get possible subscription");
       const response = await fetch(`/get-possible-subscription-seshId/${seshId}`);
       const json = await response.json();
