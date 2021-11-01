@@ -343,7 +343,8 @@ export default class App extends React.Component {
         
       }
   
-      return(text === "0");
+      console.log("Text === 0 : " + (text === "0"));
+      return (text === "0");
     }
 
     function userExists(username){
