@@ -348,9 +348,9 @@ export default class App extends React.Component {
     }
 
     function userExists(username){
-      let userExistsC = getUserExists(username);
-      console.log("UserExistsC: " + userExistsC);
-      return userExistsC;
+      getUserExists(username).then(function(response) {
+        return JSON.stringify(response.text()) === "0";
+      });
     }
     
 

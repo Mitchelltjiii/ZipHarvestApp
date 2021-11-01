@@ -24,16 +24,19 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername
             setStepTwo(true);
         }else{
             //setCurrentPage('stripe-form');
-            let userExistsB = userExists(username);
-            console.log("User Exists b: " + userExistsB);
-            if(!userExistsB){
+            userExists(username).then(function(response) {
+              let userExistsB = JSON.stringify(response.text()) === "0";
+              console.log("User Exists b: " + userExistsB);
+              if(!userExistsB){
               console.log("User Does Not Exist");
               sendVerificationEmail();
               setPossibleUsername(username);
               setCurrentPage('verification-form');
-            }else{
-              console.log("User Exists");
-            }
+              }else{
+                console.log("User Exists");
+              }
+            });
+            
         }
     }
 
