@@ -406,8 +406,33 @@ async function getSession(seshId){
 
     function resend(){
         console.log("Click resend");
-        sendVerificationEmail(possibleSubscription);
+        getPossibleSubscriptionForResend();
     }
+
+    async function getPossibleSubscriptionForResend(){
+      console.log("Try to get possible subscription");
+      const response = await fetch(`/get-possible-subscription/${possibleUsername}`);
+      const json = await response.json();
+      try{
+        console.log("sub json: " + json);
+      }catch(err){
+  
+      }
+      try{
+        console.log("sub json(STRING): " + JSON.stringify(json));
+      }catch(err){
+      
+      }
+      let possibleSubString = JSON.stringify(json);
+      possibleSubString = possibleSubString.substring(1,possibleSubString.length-1);
+      console.log("Possible sub string: " + possibleSubString);
+      let newPossibleSub = JSON.parse(possibleSubString);
+
+      console.log("Update possible subscription verified");
+      if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null && possibleSubString !== "[]"){
+        sendVerificationEmail(newPossibleSub);
+      }
+  }
 
     function getPossibleSubItemForResend(possibleSub,newCode){
         console.log("Enter getPossibleSubItem")
