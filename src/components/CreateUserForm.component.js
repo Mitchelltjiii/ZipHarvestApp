@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername,userExists}) {
+function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername}) {
 
     const [email, setEmail] = React.useState('');
     const [username, setUsername] = React.useState('');
@@ -23,21 +23,31 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername
         if(!stepTwo){
             setStepTwo(true);
         }else{
-            //setCurrentPage('stripe-form');
-            userExists(username).then(function(response) {
-              let userExistsB = JSON.stringify(response.text()) === "0";
-              console.log("User Exists b: " + userExistsB);
-              if(!userExistsB){
-              console.log("User Does Not Exist");
-              sendVerificationEmail();
-              setPossibleUsername(username);
-              setCurrentPage('verification-form');
-              }else{
-                console.log("User Exists");
-              }
-            });
-            
+            getUserExists();
         }
+    }
+
+    async function getUserExists(){
+      console.log("Get user exists")
+      const response = await fetch(`/api/user-exists/${username}`);
+      const text = await response.text();
+      try{
+        console.log("User exists JSON: " + text);
+      }catch(err){
+  
+      }
+      try{
+        console.log("User exists JSON(STRING): " + JSON.stringify(text));
+      }catch(err){
+        
+      }
+  
+      console.log("JSON.stringify(text) === 0 : " + (JSON.stringify(text) === "0"));
+      if(JSON.stringify(text) === "1"){
+        sendVerificationEmail();
+        setPossibleUsername(username);
+        setCurrentPage('verification-form');
+      }
     }
 
     function makeid(length) {
