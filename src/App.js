@@ -343,8 +343,8 @@ export default class App extends React.Component {
         
       }
   
-      console.log("Text === 0 : " + (text === "0"));
-      return (text === "0");
+      console.log("JSON.stringify(text) === 0 : " + (JSON.stringify(text) === "0"));
+      return (JSON.stringify(text) === "0");
     }
 
     function userExists(username){
