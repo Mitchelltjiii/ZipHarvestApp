@@ -422,7 +422,7 @@ async function getSession(seshId){
           };
       
           subItem.verificationCode = newCode;
-          subItem.username = possibleUsername;
+          subItem.username = possibleSub.username;
           subItem.password = possibleSub.password;
           subItem.verCodeTime = JSON.stringify((new Date().getTime()));
       
