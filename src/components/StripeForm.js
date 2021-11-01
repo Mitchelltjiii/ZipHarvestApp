@@ -370,6 +370,8 @@ async function getSession(seshId){
       }else{
         return <div>Code Doesn't Match</div>
       }
+    }else{
+      return <div>Code Doesn't Match</div>
     }
   }
 }
