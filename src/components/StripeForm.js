@@ -60,6 +60,7 @@ async function goToProduct(lookup_key){
 function getPossibleSubItem(newPossibleSub,sessionid){
   console.log("Enter getPossibleSubItem")
 
+
   let subItem = {
     verificationCode: '',
     username: '',
@@ -68,7 +69,7 @@ function getPossibleSubItem(newPossibleSub,sessionid){
     verified: 0
     };
 
-    subItem.verificationCode = verCode;
+    subItem.verificationCode = newPossibleSub.verificationCode;
     subItem.username = newPossibleSub.username;
     subItem.password = newPossibleSub.password;
     subItem.verified = 0;
@@ -289,6 +290,14 @@ async function getSession(seshId){
       possibleSubString = possibleSubString.substring(1,possibleSubString.length-1);
       console.log("Possible sub string: " + possibleSubString);
       let newPossibleSub = JSON.parse(possibleSubString);
+
+      console.log("Checking VerCode");
+      if(verCode !== newPossibleSub.verificationCode){
+        console.log("No Match");
+        return;
+      }else{
+        console.log("Match!");
+      }
 
       console.log("Update possible subscription verified");
       if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null && possibleSubString !== "[]"){
