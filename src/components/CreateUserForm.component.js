@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername}) {
+function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername,userExists}) {
 
     const [email, setEmail] = React.useState('');
     const [username, setUsername] = React.useState('');
@@ -24,9 +24,14 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername
             setStepTwo(true);
         }else{
             //setCurrentPage('stripe-form');
-            sendVerificationEmail();
-            setPossibleUsername(username);
-            setCurrentPage('verification-form');
+            if(!userExists(userItem.username)){
+              console.log("User Does Not Exist");
+              sendVerificationEmail();
+              setPossibleUsername(username);
+              setCurrentPage('verification-form');
+            }else{
+              console.log("User Exists");
+            }
         }
     }
 
@@ -40,6 +45,8 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername
        }
        return result;
     }
+
+    
 
 
     function getPossibleSubItem(newCode){

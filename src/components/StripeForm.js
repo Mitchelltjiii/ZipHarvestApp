@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
-export default function StripeForm({verCode,userFromUrl,userExists}) {
+export default function StripeForm({verCode,userFromUrl}) {
 
   const Message = ({ message }) => (
     <section>
@@ -140,10 +140,6 @@ function getUserItem(){
 async function updateUser(userItem){
   console.log("Engage update user");
   if(userItem.subid === null || userItem.subid === undefined){
-    return;
-  }
-  if(userExists(userItem.username)){
-    console.log("User Exists");
     return;
   }
   const response = fetch('/user', {

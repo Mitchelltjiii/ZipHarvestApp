@@ -34,9 +34,9 @@ reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,userExists}){
 			) : currentPage === 'account-form' ? (
 				<AccountForm refreshOuter={refreshOuter} userID={userID}/>
 			) : currentPage === 'create-user-form' ? (
-				<CreateUserForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} setPossibleUsername={setPossibleUsername}></CreateUserForm>
+				<CreateUserForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} setPossibleUsername={setPossibleUsername}  userExists={userExists}></CreateUserForm>
 			) : currentPage === 'stripe-form' ? (
-				<StripeForm verCode={verCode} userFromUrl={userFromUrl} userExists={userExists}></StripeForm>
+				<StripeForm verCode={verCode} userFromUrl={userFromUrl}></StripeForm>
 			) : currentPage === 'verification-form' ? (
 				<VerificationForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} possibleUsername={possibleUsername}></VerificationForm>
 			) : null}
