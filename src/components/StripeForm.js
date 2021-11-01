@@ -309,6 +309,17 @@ async function getSession(seshId){
         }else{
           console.log("Match!");
         }
+
+        console.log("Curr Date Value: " + (new Date()).getTime());
+        console.log("New Possible Sub Date Value: " + newPossibleSub.verCodeTime);
+        console.log("Difference: " + ((new Date()).getTime()-newPossibleSub.verCodeTime));
+        if(((new Date()).getTime()-newPossibleSub.verCodeTime) > 900000){
+          console.log("Code Expired");
+          return;
+        }else{
+          console.log("Code Working still!");
+        }
+
   
         console.log("Update possible subscription verified");
         if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null && possibleSubString !== "[]"){

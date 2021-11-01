@@ -49,12 +49,14 @@ function VerificationForm({refreshOuter, userID,setCurrentPage,possibleUsername}
           username: '',
           password: '',
           sessionid: '',
-          verified: 1
+          verified: 1,
+          verCodeTime: ""
           };
       
           subItem.verificationCode = newCode;
           subItem.username = possibleUsername;
           subItem.password = possibleSub.password;
+          subItem.verCodeTime = JSON.stringify((new Date().getTime()));
       
         console.log("Stringified before passed: " + JSON.stringify(subItem));
         console.log("Exit getPossibleSubItem")
