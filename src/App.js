@@ -270,24 +270,6 @@ export default class App extends React.Component {
     this.getUsersFromDB(username,password);
   }
 
-  getUserExists = async (username) => {
-    console.log("Get user exists")
-    const response = await fetch(`/api/user-exists/${username}`);
-    const text = await response.text();
-    try{
-      console.log("User exists JSON: " + json);
-    }catch(err){
-
-    }
-    try{
-      console.log("User exists JSON(STRING): " + JSON.stringify(json));
-    }catch(err){
-      
-    }
-
-    return(text === "0");
-  }
-
   render() {
     if ((this.state.loggedIn !== '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading))){
       return(<div>Loading...</div>);
@@ -346,6 +328,23 @@ export default class App extends React.Component {
       }
     }
 
+    async function getUserExists(username){
+      console.log("Get user exists")
+      const response = await fetch(`/api/user-exists/${username}`);
+      const text = await response.text();
+      try{
+        console.log("User exists JSON: " + text);
+      }catch(err){
+  
+      }
+      try{
+        console.log("User exists JSON(STRING): " + JSON.stringify(text));
+      }catch(err){
+        
+      }
+  
+      return(text === "0");
+    }
 
     function userExists(username){
       return getUserExists(username);
