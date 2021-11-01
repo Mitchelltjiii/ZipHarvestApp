@@ -13,7 +13,7 @@ function VerificationForm({refreshOuter, userID,setCurrentPage,possibleUsername}
 
     function resend(){
         console.log("Click resend");
-        sendVerificationEmail();
+        getPossibleSubscription();
     }
 
     async function getPossibleSubscription(){
