@@ -24,7 +24,7 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername
             setStepTwo(true);
         }else{
             //setCurrentPage('stripe-form');
-            if(!userExists(userItem.username)){
+            if(!userExists(username)){
               console.log("User Does Not Exist");
               sendVerificationEmail();
               setPossibleUsername(username);
