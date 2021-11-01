@@ -300,18 +300,24 @@ async function getSession(seshId){
       console.log("Possible sub string: " + possibleSubString);
       let newPossibleSub = JSON.parse(possibleSubString);
 
-      console.log("Checking VerCode");
-      if(verCode !== newPossibleSub.verificationCode){
-        console.log("No Match");
-        return;
+      if(newPossibleSub.verified===1){
+        console.log("Checking VerCode");
+        if(verCode !== newPossibleSub.verificationCode){
+          console.log("No Match");
+          return;
+        }else{
+          console.log("Match!");
+        }
+  
+        console.log("Update possible subscription verified");
+        if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null && possibleSubString !== "[]"){
+          updatePossibleSub(getPossibleSubItem(newPossibleSub,""));
+          setPossibleSubscription(newPossibleSub);
+        }
       }else{
-        console.log("Match!");
-      }
-
-      console.log("Update possible subscription verified");
-      if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null && possibleSubString !== "[]"){
-        updatePossibleSub(getPossibleSubItem(newPossibleSub,""));
-        setPossibleSubscription(newPossibleSub);
+        if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null && possibleSubString !== "[]"){
+          setPossibleSubscription(newPossibleSub);
+        }
       }
     }else{
       console.log("Try to get possible subscription");
