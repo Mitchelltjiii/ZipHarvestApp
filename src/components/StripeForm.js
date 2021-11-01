@@ -10,6 +10,15 @@ export default function StripeForm({verCode,userFromUrl}) {
     </section>
   );
 
+  const handleContinue = () => {
+		doContinue();
+	}
+
+  function doContinue(){
+    setContinued(true);
+  }
+
+
 let busySettingUser = false;
 let busySettingPossibleSub = false;
 
@@ -246,7 +255,8 @@ async function getSession(seshId){
   let [possibleSubscription,setPossibleSubscription] = useState([]);
   let [subscription,setSubscription] = useState([]);
   let [userUpdated,setUserUpdated] = useState(false);
-  let verified = false;
+  let [continued,setContinued] = useState(false);
+
   console.log("From PossibleSubscription**");
 
   async function getSubscription(subId){
@@ -295,7 +305,6 @@ async function getSession(seshId){
         console.log("No Match");
         return;
       }else{
-        verified = true;
         console.log("Match!");
       }
 
@@ -305,7 +314,6 @@ async function getSession(seshId){
         setPossibleSubscription(newPossibleSub);
       }
     }else{
-      verified = true;
       console.log("Try to get possible subscription");
       const response = await fetch(`/get-possible-subscription-seshId/${seshId}`);
       const json = await response.json();
@@ -358,12 +366,21 @@ async function getSession(seshId){
     return(
       <div>
         Verified Form
+        <Grid
+				container
+				direction="column"
+  				justifyContent="center"
+				alignItems="center"
+			    >
+                    <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
+
+            </Grid>
       </div>
     )
   }
 
   
-  if(verified){
+  if(continued){
     if (!success && message === '') {
       return <ProductDisplay />;
     } else if (success && sessionId !== '') {
