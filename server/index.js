@@ -75,7 +75,7 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
       to: req.params.address, // Change to your recipient
       from: 'support@zipharvest.app', // Change to your verified sender
       subject: 'Reset Password Link',
-      text: '',
+      text: 'Here',
       html: 'Here is the link to reset your password: <strong>' + "https://www.zipharvest.app/linkCode=" + req.params.linkCode + '/username=' + req.params.username + '</strong>',
     }
     
