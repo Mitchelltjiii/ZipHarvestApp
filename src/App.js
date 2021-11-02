@@ -308,13 +308,7 @@ export default class App extends React.Component {
       }
     }
 
-    let verCode = "";
-    let verificationEqualsStr = "verCode=";
-    if(currUrl.includes("verCode")){
-      let verCodeString = currUrl.substring(currUrl.indexOf(verificationEqualsStr)+verificationEqualsStr.length,currUrl.indexOf(verificationEqualsStr)+verificationEqualsStr.length+8);
-      console.log("VerCode Str: " + verCodeString);
-      verCode = verCodeString;
-    }
+    
     
 
     let userFromUrl = "";
@@ -323,8 +317,28 @@ export default class App extends React.Component {
       let userString = currUrl.substring(currUrl.indexOf(userEqualsStr)+userEqualsStr.length);
       console.log("User Str: " + userString);
       userFromUrl = userString;
+    }
+
+    let verCode = "";
+    let verificationEqualsStr = "verCode=";
+    if(currUrl.includes("verCode")){
+      let verCodeString = currUrl.substring(currUrl.indexOf(verificationEqualsStr)+verificationEqualsStr.length,currUrl.indexOf(verificationEqualsStr)+verificationEqualsStr.length+8);
+      console.log("VerCode Str: " + verCodeString);
+      verCode = verCodeString;
       if(this.state.currentPage !== 'stripe-form'){
         this.setCurrentPage('stripe-form');
+      }
+    }
+
+    let linkCode = "";
+    let linkEqualsStr = "linkCode=";
+    if(currUrl.includes("linkCode")){
+      
+      let linkCodeString = currUrl.substring(currUrl.indexOf(linkEqualsStr)+linkEqualsStr.length,currUrl.indexOf(linkEqualsStr)+linkEqualsStr.length+8);
+      console.log("LinkCode Str: " + linkCodeString);
+      linkCode = linkCodeString;
+      if(this.state.currentPage !== 'reset-password-form'){
+        this.setCurrentPage('reset-password-form');
       }
     }
 
@@ -336,7 +350,7 @@ export default class App extends React.Component {
       setNewHarvestRecordID={this.setNewHarvestRecordID} setNewPlantID={this.setNewPlantID} userID={this.state.userID} setAll={this.setAll}
       setHarvestBatches={this.setHarvestBatches} setHarvestRecords={this.setHarvestRecords} setPlants={this.setPlants} reloadPlants={this.reloadPlants} 
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}
-      verCode={verCode} userFromUrl={userFromUrl}/>
+      verCode={verCode} userFromUrl={userFromUrl} linkCode={linkCode}/>
     </div>;
     }else{
 		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage}></LogIn></div>;

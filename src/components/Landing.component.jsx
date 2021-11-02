@@ -11,7 +11,7 @@ import ResetPasswordForm from './ResetPasswordForm.component';
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
 	setHarvestBatches, resetHarvestBatches, resetAll, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
 setNewHarvestRecordID, setNewPlantID, userID, setAll,reloadPlants,reloadPlantsAndHarvestRecords, reloadHarvestBatches,
-reloadHarvestRecords,setCurrentPage,verCode,userFromUrl}){
+reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode}){
 
 	console.log("ENTER LANDING, GET PLANTS(STRINGIFIED): " + JSON.stringify(getPlants()));
 
@@ -41,7 +41,7 @@ reloadHarvestRecords,setCurrentPage,verCode,userFromUrl}){
 			) : currentPage === 'verification-form' ? (
 				<VerificationForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} possibleUsername={possibleUsername}></VerificationForm>
 			) : currentPage === 'reset-password-form' ? (
-				<ResetPasswordForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage}></ResetPasswordForm>
+				<ResetPasswordForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} linkCode={linkCode} userFromUrl={userFromUrl}></ResetPasswordForm>
 			) : null}
         </div>
     )

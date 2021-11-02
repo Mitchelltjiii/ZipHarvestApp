@@ -3,13 +3,14 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-function ResetPasswordForm({refreshOuter, userID,setCurrentPage}) {
+function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFromUrl}) {
 
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [passwordAgain, setPasswordAgain] = React.useState('');
     let busySettingUser = false;
-    let fromUrl = false;
+    let fromUrl = userFromUrl.length!==0;
+    console.log("From Url Reset Password Form");
 
     const handleSendResetLink = () => {
 		  sendResetLink();
