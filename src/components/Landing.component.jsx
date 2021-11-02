@@ -6,6 +6,7 @@ import AccountForm from './AccountForm.component';
 import CreateUserForm from './CreateUserForm.component';
 import StripeForm from './StripeForm';
 import VerificationForm from './VerificationForm.component';
+import ResetPasswordForm from './ResetPasswordForm.component';
 
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
 	setHarvestBatches, resetHarvestBatches, resetAll, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
