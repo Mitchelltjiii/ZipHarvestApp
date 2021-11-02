@@ -8,6 +8,8 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFro
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [passwordAgain, setPasswordAgain] = React.useState('');
+    const [success,setSuccess] = React.useState(false);
+    const [linkSent,setLinkSent] = React.useState(false);
     let busySettingUser = false;
     let fromUrl = (userFromUrl.length!==0);
     console.log("From Url Reset Password Form: " + fromUrl);
@@ -15,6 +17,10 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFro
     const handleSendResetLink = () => {
 		  sendResetLink();
 	  }
+
+    const handleGoToHome = () => {
+        window.location.replace("https://www.zipharvest.app/");
+    }  
 
     const handleConfirmReset = () => {
         if(password === passwordAgain){
@@ -75,6 +81,7 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFro
         busySettingUser = (false);
         console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
         console.log("Exit update user");
+        setLinkSent(true);
       }
 
       async function updateUserPassword(){
@@ -98,7 +105,7 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFro
         busySettingUser = (false);
         console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
         console.log("Exit update user");
-        window.location.replace("https://www.zipharvest.app/");
+        setSuccess(true);
     }
 
     const handleUsername = (event) => {
@@ -122,7 +129,12 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFro
             position: 'absolute', left: '50%', top: '50%',
             transform: 'translate(-50%, -50%)'
         }}>
-			<Grid
+            {success ?
+            <div>
+                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Return to Login</Button>
+            </div>
+        :
+        <Grid
 				container
 				direction="column"
   				justifyContent="center"
@@ -132,15 +144,20 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFro
                 <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5}}>
                 
                     {!fromUrl ?
-                        <Grid
-				container
-				direction="column"
-  				justifyContent="center"
-				alignItems="center"
-			    >
+
+                        <div>
+                    {linkSent ? <div>Link Sent</div> :
+                    <Grid
+				        container
+				        direction="column"
+  				        justifyContent="center"
+				        alignItems="center"
+			        >
                     <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSendResetLink}>Send Reset Link</Button>
                     </Grid>
+                    }  
+                    </div>
                 :
                 <Grid
 				container
@@ -155,6 +172,8 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFro
                     }
                     </div>                
 			</Grid>
+        }
+			
 		</div>
 	);
 }
