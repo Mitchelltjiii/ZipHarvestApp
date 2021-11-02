@@ -43,7 +43,7 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername
       }
   
       if(text === "1"){
-        getPossibleUserExists();
+        getPossibleSubscriptionExists();
       }
     }
 
