@@ -503,7 +503,6 @@ async function getSession(seshId){
       </div>
     )
   }
-  
   if(expired){
     return <ExpiredForm></ExpiredForm>
   }
