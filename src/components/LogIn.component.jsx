@@ -9,7 +9,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-    
 
     const handleLogIn = (event) => {
 		  logIn();
