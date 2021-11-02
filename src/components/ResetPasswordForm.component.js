@@ -16,6 +16,10 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFro
 		  sendResetLink();
 	  }
 
+    const handleConfirmReset = () => {
+
+    }  
+
     function makeid(length) {
         var result           = '';
         var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -45,8 +49,60 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFro
           
         }
         busySettingUser = true;
-        //updatePossibleSub(getPossibleSubItem(newCode));
+        //updateUser(getUserItem(newCode));
       }
+
+      /*
+      function getUserItem(newCode){
+        console.log("Enter getUserItem")
+      
+        let userItem = {
+          apiid: '',
+          username: '',
+          password: '',
+          subid: '',
+          linkCode: ''
+          };
+      
+          userItem.apiid = possibleSubscription.username;
+          userItem.username = possibleSubscription.username;
+          userItem.password = possibleSubscription.password;
+          userItem.subid = subscription.id;
+          userItem.linkCode = newCode
+      
+        console.log("Stringified before passed: " + JSON.stringify(userItem));
+        console.log("Exit getUserItem")
+        return userItem;
+      }
+      
+    async function updateUser(userItem){
+        console.log("Engage update user");
+        if(userItem.subid === null || userItem.subid === undefined){
+          return;
+        }
+        const response = fetch(`/user/${linkCode}/${linkCode}`, {
+              method: (userItem.id) ? 'PUT' : 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(userItem)
+        }).then(function(response) {
+          let resp = JSON.stringify(response);
+          console.log("Response from updateUser: " + resp);
+          if(resp !== "" && resp !== null && resp !== undefined){
+            console.log("remove possiblesub now");
+            deletePossibleSub();
+          }
+        }).then(function(data) {
+        });
+        console.log("Before removing busy setting user");
+        console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
+        busySettingUser = (false);
+        console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
+        console.log("Exit update user");
+        setUserUpdated(true);
+      }*/
 
     const handleUsername = (event) => {
         setUsername(event.target.value);
@@ -97,6 +153,7 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFro
 			    >
                     <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined"></TextField>
                     <TextField id="PasswordAgain" value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined"></TextField>
+                    <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleConfirmReset}>Confirm</Button>
                     </Grid>
                     }
                     </div>                

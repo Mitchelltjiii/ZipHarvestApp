@@ -678,6 +678,29 @@ app.post('/user', (req, res) =>{
 });
 
 /*
+app.put('/user/:linkCode/:id', (req, res) =>{
+
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+  if(req.params.linkCode !== null){
+    connection.query(`UPDATE users SET 'linkCode' = ? WHERE ('id' = ?)`,
+  [
+    req.params.linkCode, req.params.id
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The post user result is: ', result);
+    res.json(result);
+    });
+  }else{
+    console.log("Post user failed");
+    res.json("");
+  }
+  }); 
+});*/
+
+/*
 app.post('/justPost', (req, res) => {
   pool.getConnection((err, connection) => {
     if(err) throw err;
