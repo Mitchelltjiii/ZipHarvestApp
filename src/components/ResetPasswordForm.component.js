@@ -10,7 +10,7 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFro
     const [passwordAgain, setPasswordAgain] = React.useState('');
     let busySettingUser = false;
     let fromUrl = (userFromUrl.length!==0);
-    console.log("From Url Reset Password Form");
+    console.log("From Url Reset Password Form: " + fromUrl);
 
     const handleSendResetLink = () => {
 		  sendResetLink();
