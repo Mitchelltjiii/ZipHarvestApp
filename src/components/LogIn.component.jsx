@@ -24,7 +24,8 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 	  };
     
     function tryStripe(){
-      setCurrentPage('create-user-form');
+      setCurrentPage('reset-password-form');
+      //setCurrentPage('create-user-form');
       //sendVerificationEmail();
 	  }
 

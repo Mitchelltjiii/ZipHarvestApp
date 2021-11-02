@@ -39,6 +39,8 @@ reloadHarvestRecords,setCurrentPage,verCode,userFromUrl}){
 				<StripeForm verCode={verCode} userFromUrl={userFromUrl}></StripeForm>
 			) : currentPage === 'verification-form' ? (
 				<VerificationForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} possibleUsername={possibleUsername}></VerificationForm>
+			) : currentPage === 'reset-password-form' ? (
+				<ResetPasswordForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage}></ResetPasswordForm>
 			) : null}
         </div>
     )
