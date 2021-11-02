@@ -523,7 +523,11 @@ async function getSession(seshId){
         return <div>Code Doesn't Match</div>
       }
     }else{
-      return <div>Expired by def</div>
+      if (success && sessionId !== '') {
+        return <SuccessDisplay seshId={sessionId} />;
+      }else{
+        return <div>Expired by def</div>
+      }
     }
   }
 }
