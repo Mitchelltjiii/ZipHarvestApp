@@ -16,7 +16,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     };
 
     function clickForgotID(){
-      setCurrentPage("forgot-id");
+      //setCurrentPage("forgot-id");
     }
 
     const handleForgotPassword = () => {
@@ -25,7 +25,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 
     function clickForgotPassword(){
       console.log("Click forgot Password");
-      setCurrentPage("forgot-password");
+      setCurrentPage('reset-password-form');
     }
 
     const handleCreateID = () => {
@@ -33,7 +33,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     };
 
     function clickCreateID(){
-      setCurrentPage("create-user");
+      setCurrentPage("create-user-form");
     }
 
     const handleTermsOfService = () => {
@@ -64,16 +64,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     
     function logIn(){
       attemptLogin(username,password);
-	  }
-
-    const handleTryStripe = (event) => {
-		  tryStripe();
-	  };
-    
-    function tryStripe(){
-      setCurrentPage('reset-password-form');
-      //setCurrentPage('create-user-form');
-      //sendVerificationEmail();
 	  }
 
     const handleUsername = (event) => {
