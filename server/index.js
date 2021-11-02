@@ -695,6 +695,25 @@ app.put('/user/:linkCode/:username', (req, res) =>{
   });
 });
 
+
+app.put('/user/resetPassword/:username/:password', (req, res) =>{
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+
+  connection.query(`UPDATE users SET
+  password = ? WHERE (username = ?)`, 
+  [
+    req.params.password, req.params.username
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The update active users result is: ', result);
+    res.json(result);
+    });
+  });
+});
+
 app.put('/pl/active', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;

@@ -32,7 +32,7 @@ class Outer extends Component {
       setNewPlantID={this.props.setNewPlantID} userID={this.props.userID} setAll={this.props.setAll} reloadPlants={this.props.reloadPlants} 
       reloadPlantsAndHarvestRecords={this.props.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.props.reloadHarvestBatches}
       reloadHarvestRecords={this.props.reloadHarvestRecords} setCurrentPage={this.props.setCurrentPage} verCode={this.props.verCode} 
-      userFromUrl={this.props.userFromUrl} linkCode={this.props.linkCode}/>
+      userFromUrl={this.props.userFromUrl} linkCode={this.props.linkCode} executeLogout={this.props.executeLogout}/>
 		</div>
     );
   }

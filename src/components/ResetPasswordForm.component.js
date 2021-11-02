@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFromUrl}) {
+function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFromUrl,executeLogout}) {
 
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -17,7 +17,9 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFro
 	  }
 
     const handleConfirmReset = () => {
-
+        if(password === passwordAgain){
+            updateUserPassword();
+        }
     }  
 
     function makeid(length) {
@@ -73,6 +75,30 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFro
         busySettingUser = (false);
         console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
         console.log("Exit update user");
+      }
+
+      async function updateUserPassword(){
+        console.log("Engage update user password");
+        const response = fetch(`/user/resetPassword/${userFromUrl}/${password}`, {
+              method: 'PUT',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              }
+        }).then(function(response) {
+          let resp = JSON.stringify(response);
+          console.log("Response from updateUser: " + resp);
+          if(resp !== "" && resp !== null && resp !== undefined){
+            console.log("Updateuser responded");
+          }
+        }).then(function(data) {
+        });
+        console.log("Before removing busy setting user");
+        console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
+        busySettingUser = (false);
+        console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
+        console.log("Exit update user");
+        executeLogout();
       }
 
     const handleUsername = (event) => {
