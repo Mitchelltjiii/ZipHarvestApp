@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 
 function ResetPasswordForm({refreshOuter, userID,setCurrentPage}) {
 
+    const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [passwordAgain, setPasswordAgain] = React.useState('');
     let busySettingUser = false;
@@ -46,6 +47,11 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage}) {
         //updatePossibleSub(getPossibleSubItem(newCode));
       }
 
+    const handleUsername = (event) => {
+        setUsername(event.target.value);
+    };
+
+
     const handlePassword = (event) => {
         setPassword(event.target.value);
     };
@@ -78,6 +84,7 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage}) {
   				justifyContent="center"
 				alignItems="center"
 			    >
+                    <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSendResetLink}>Send Reset Link</Button>
                     </Grid>
                 :
