@@ -677,28 +677,48 @@ app.post('/user', (req, res) =>{
   }); 
 });
 
-/*
-app.put('/user/:linkCode/:id', (req, res) =>{
-
+app.put('/user/:linkCode/:username', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
     console.log('connected as id ' + connection.threadId);
-  if(req.params.linkCode !== null){
-    connection.query(`UPDATE users SET 'linkCode' = ? WHERE ('id' = ?)`,
+
+  connection.query(`UPDATE users SET
+  linkCode = ? WHERE (username = ?)`, 
   [
-    req.params.linkCode, req.params.id
+    req.params.linkCode, req.params.username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
-    console.log('The post user result is: ', result);
+    console.log('The update active users result is: ', result);
     res.json(result);
     });
-  }else{
-    console.log("Post user failed");
-    res.json("");
-  }
-  }); 
-});*/
+  });
+});
+
+app.put('/pl/active', (req, res) =>{
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    var postData  = req.body;
+
+  let tag = postData.tag;
+  let active = postData.active;
+
+  console.log("PUT DATA ACTIVE: PLANT STRINGIFIED: " + JSON.stringify(postData));
+
+
+  connection.query(`UPDATE pl SET
+  active = ? WHERE (tag = ?)`, 
+  [
+    active, tag
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The update active pl result is: ', result);
+    res.json(result);
+    });
+  });
+});
 
 /*
 app.post('/justPost', (req, res) => {

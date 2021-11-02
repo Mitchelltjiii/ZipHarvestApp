@@ -49,50 +49,22 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFro
           
         }
         busySettingUser = true;
-        //updateUser(getUserItem(newCode));
-      }
-
-      /*
-      function getUserItem(newCode){
-        console.log("Enter getUserItem")
-      
-        let userItem = {
-          apiid: '',
-          username: '',
-          password: '',
-          subid: '',
-          linkCode: ''
-          };
-      
-          userItem.apiid = possibleSubscription.username;
-          userItem.username = possibleSubscription.username;
-          userItem.password = possibleSubscription.password;
-          userItem.subid = subscription.id;
-          userItem.linkCode = newCode
-      
-        console.log("Stringified before passed: " + JSON.stringify(userItem));
-        console.log("Exit getUserItem")
-        return userItem;
+        updateUser(newCode);
       }
       
-    async function updateUser(userItem){
+    async function updateUser(linkCode){
         console.log("Engage update user");
-        if(userItem.subid === null || userItem.subid === undefined){
-          return;
-        }
-        const response = fetch(`/user/${linkCode}/${linkCode}`, {
-              method: (userItem.id) ? 'PUT' : 'POST',
+        const response = fetch(`/user/${linkCode}/${username}`, {
+              method: 'PUT',
               headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(userItem)
+              }
         }).then(function(response) {
           let resp = JSON.stringify(response);
           console.log("Response from updateUser: " + resp);
           if(resp !== "" && resp !== null && resp !== undefined){
-            console.log("remove possiblesub now");
-            deletePossibleSub();
+            console.log("Updateuser responded");
           }
         }).then(function(data) {
         });
@@ -101,8 +73,7 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFro
         busySettingUser = (false);
         console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
         console.log("Exit update user");
-        setUserUpdated(true);
-      }*/
+      }
 
     const handleUsername = (event) => {
         setUsername(event.target.value);
