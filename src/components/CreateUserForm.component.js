@@ -47,8 +47,8 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername
       }
     }
 
-    async function getPossibleUserExists(){
-      console.log("Get possible user exists")
+    async function getPossibleSubscriptionExists(){
+      console.log("Get possible subscription exists")
       const response = await fetch(`/api/possible-subscription-exists/${username}`);
       const text = await response.text();
       try{
