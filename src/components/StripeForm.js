@@ -116,6 +116,27 @@ async function updatePossibleSub(possibleSubItem){
   console.log("Exit update possiblesubitem")
 }
 
+function getUserItem(){
+  console.log("Enter getUserItem")
+  console.log("Enter sub ID: " + subscription.id);
+
+  let userItem = {
+    apiid: '',
+    username: '',
+    password: '',
+    subid: ''
+    };
+
+    userItem.apiid = possibleSubscription.username;
+    userItem.username = possibleSubscription.username;
+    userItem.password = possibleSubscription.password;
+    userItem.subid = subscription.id;
+
+  console.log("Stringified before passed: " + JSON.stringify(userItem));
+  console.log("Exit getUserItem")
+  return userItem;
+}
+
 async function updateUser(userItem){
   console.log("Engage update user");
   if(userItem.subid === null || userItem.subid === undefined){
