@@ -98,8 +98,8 @@ function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFro
         busySettingUser = (false);
         console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
         console.log("Exit update user");
-        executeLogout();
-      }
+        window.location.replace("https://www.zipharvest.app/");
+    }
 
     const handleUsername = (event) => {
         setUsername(event.target.value);

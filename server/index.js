@@ -702,9 +702,9 @@ app.put('/user/resetPassword/:username/:password', (req, res) =>{
     console.log('connected as id ' + connection.threadId);
 
   connection.query(`UPDATE users SET
-  password = ? WHERE (username = ?)`, 
+  password = ?, linkCode = ? WHERE (username = ?)`, 
   [
-    req.params.password, req.params.username
+    req.params.password, "", req.params.username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
