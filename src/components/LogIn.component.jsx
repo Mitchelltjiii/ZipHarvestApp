@@ -18,7 +18,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     };
 
     function clickForgotID(){
-      //setCurrentPage("forgot-id");
+      setCurrentPage("find-user-form");
     }
 
     const handleForgotPassword = () => {
@@ -106,11 +106,11 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                     </div>
                     <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                     <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-                    <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn}>Log in</Button> 
+                    <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn} style={{marginBottom:"10px"}}>Log in</Button> 
                     <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"100%"}}></div>
-                    <div style={{marginTop:"5px",marginBottom:"5px"}}>Forgot {forgotIDLink} or {forgotPasswordLink}</div>
+                    <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"14px"}}>Forgot {forgotIDLink} or {forgotPasswordLink}</div>
                     <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"100%"}}></div>
-                    <div style={{marginTop:"5px",marginBottom:"5px"}}>Don't have an ID? {createIDLink}</div>
+                    <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"14px"}}>Don't have an ID? {createIDLink}</div>
                     <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"100%"}}></div>
                     <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px"}}>By signing in, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
               </Grid>

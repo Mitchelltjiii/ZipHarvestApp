@@ -7,6 +7,7 @@ import CreateUserForm from './CreateUserForm.component';
 import StripeForm from './StripeForm';
 import VerificationForm from './VerificationForm.component';
 import ResetPasswordForm from './ResetPasswordForm.component';
+import FindUserForm from './FindUserForm.component';
 
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
 	setHarvestBatches, resetHarvestBatches, resetAll, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
@@ -42,6 +43,8 @@ reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout})
 				<VerificationForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} possibleUsername={possibleUsername}></VerificationForm>
 			) : currentPage === 'reset-password-form' ? (
 				<ResetPasswordForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} linkCode={linkCode} userFromUrl={userFromUrl} executeLogout={executeLogout}></ResetPasswordForm>
+			) : currentPage === 'find-user-form' ? (
+				<FindUserForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage}></FindUserForm>
 			) : null}
         </div>
     )
