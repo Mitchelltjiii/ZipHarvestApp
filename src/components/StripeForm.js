@@ -383,11 +383,11 @@ async function getSession(seshId){
 
       console.log("Update user verified");
       if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
-        sendVerificationEmail(newUser);
+        sendVerificationEmail(newUser.username);
       }
   }
 
-  function getUserItemForResend(user,newCode){
+  function getUserItemForResend(userForResend,newCode){
     console.log("Enter getUserItem")
   
     let userItem = {
@@ -401,19 +401,19 @@ async function getSession(seshId){
       lastName: '',
       email: '',
       verificationCode: '',
-      verified: 0,
+      verified: 1,
       sessionid: '',
       verCodeTime: ''
       };
   
-      userItem.apiid = user.username;
-      userItem.facilityName = user.facilityName;
-      userItem.firstName = user.firstName;
-      userItem.lastName = user.lastName;
-      userItem.email = user.email;
+      userItem.apiid = userForResend.username;
+      userItem.facilityName = userForResend.facilityName;
+      userItem.firstName = userForResend.firstName;
+      userItem.lastName = userForResend.lastName;
+      userItem.email = userForResend.email;
       userItem.verificationCode = newCode;
-      userItem.username = user.username;
-      userItem.password = user.password;
+      userItem.username = userForResend.username;
+      userItem.password = userForResend.password;
       userItem.verCodeTime = JSON.stringify((new Date().getTime()));
   
     console.log("Stringified before passed: " + JSON.stringify(userItem));
@@ -432,12 +432,12 @@ async function getSession(seshId){
        return result;
     }
 
-    async function sendVerificationEmail(user){
+    async function sendVerificationEmail(username){
         console.log("Try to send ver email");
         let address = "Mitchelltjiii@gmail.com";
         let newCode = makeid(8);
         console.log("New Code: " + newCode);
-        const response = await fetch(`/send-verification-email/${address}/${newCode}/${user.username}`);
+        const response = await fetch(`/send-verification-email/${address}/${newCode}/${username}`);
         const json = await response.json();
         try{
           console.log("Send Verification json: " + json);
