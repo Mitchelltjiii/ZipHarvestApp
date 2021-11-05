@@ -41,10 +41,11 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setNewUsername}) {
       }catch(err){
         
       }
+      let newUsername = username;
   
       if(text === "1"){
         sendVerificationEmail();
-        setNewUsername(username);
+        setNewUsername(newUsername);
         setCurrentPage('verification-form');      
       }
     }
