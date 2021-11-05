@@ -133,6 +133,7 @@ async function updateUserSubId(username,subid){
   }).then(function(response) {
     let resp = JSON.stringify(response);
   }).then(function(data) {
+    setUserUpdated(true);
   });
   console.log("Before removing busy setting user");
   console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
@@ -151,7 +152,7 @@ const SuccessDisplay = ({ seshId }) => {
   }else{
     console.log("About to update user");
     if(!userUpdated){
-      updateUserSubId(newUser.username,subscription.id);
+      updateUserSubId(user.username,subscription.id);
     }  
   }
 
