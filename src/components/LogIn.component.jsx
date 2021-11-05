@@ -18,7 +18,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     };
 
     function clickForgotID(){
-      setCurrentPage("find-user-form");
+      setCurrentPage('find-user-form');
     }
 
     const handleForgotPassword = () => {
@@ -35,7 +35,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     };
 
     function clickCreateID(){
-      setCurrentPage("create-user-form");
+      setCurrentPage('create-user-form');
     }
 
     const handleTermsOfService = () => {
@@ -108,9 +108,9 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                     <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
                     <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn} style={{marginBottom:"10px"}}>Log in</Button> 
                     <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"100%"}}></div>
-                    <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"14px"}}>Forgot {forgotIDLink} or {forgotPasswordLink}</div>
+                    <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"15px"}}>Forgot {forgotIDLink} or {forgotPasswordLink}</div>
                     <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"100%"}}></div>
-                    <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"14px"}}>Don't have an ID? {createIDLink}</div>
+                    <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"15px"}}>Don't have an ID? {createIDLink}</div>
                     <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"100%"}}></div>
                     <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px"}}>By signing in, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
               </Grid>
