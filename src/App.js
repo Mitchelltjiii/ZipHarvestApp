@@ -332,7 +332,7 @@ export default class App extends React.Component {
       }
     }
 
-    if (this.state.loggedIn !== '' || this.state.currentPage === ('create-user-form') || this.state.currentPage === ('stripe-form') || this.state.currentPage === ('verification-form') || this.state.currentPage === ('reset-password-form')) {
+    if (this.state.loggedIn !== '' || this.state.currentPage === ('create-user-form') || this.state.currentPage === ('stripe-form') || this.state.currentPage === ('verification-form') || this.state.currentPage === ('reset-password-form') || this.state.currentPage === ('find-user-form')) {
 	  	showForm = <div style={{margin:"auto"}}>
 	    <Header setCurrentPage={this.setCurrentPage} currentPage={this.state.currentPage} executeLogout={this.executeLogout}/>
       <Outer currentPage={this.state.currentPage} setCurrentPage={this.setCurrentPage} getPlants={this.getPlants} getHarvestRecords={this.getHarvestRecords} getHarvestBatches={this.getHarvestBatches}
