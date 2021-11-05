@@ -132,7 +132,6 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername
       busySettingUser = (false);
       console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
       console.log("Exit update user");
-      setUserUpdated(true);
     }
 
     async function sendVerificationEmail(){
