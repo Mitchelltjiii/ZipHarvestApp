@@ -87,7 +87,26 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
         console.error(error)
         res.json(1);
       })
-  })  
+  }) 
+  
+  app.get('/send-find-email-link/:email/:username', async (req,res) =>{
+    const msg = {
+      to: req.params.email, // Change to your recipient
+      from: 'support@zipharvest.app', // Change to your verified sender
+      subject: 'Username Recovery',
+      text: 'Here',
+      html: 'Your username is ' + req.params.username,
+    }
+    
+    sgMail.send(msg).then((response) => {
+        console.log(response[0].statusCode)
+        console.log(response[0].headers)
+        res.json(0);
+      }).catch((error) => {
+        console.error(error)
+        res.json(1);
+      })
+  }) 
 
 app.get("/api/users/:username/:password",(req,res) => {
   pool.getConnection((err, connection) => {
