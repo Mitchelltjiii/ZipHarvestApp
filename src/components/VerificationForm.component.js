@@ -55,7 +55,7 @@ function VerificationForm({refreshOuter, userID,setCurrentPage,newUsername}) {
           lastName: '',
           email: '',
           verificationCode: '',
-          verified: 1,
+          verified: 0,
           sessionid: '',
           verCodeTime: ''
           };
@@ -65,11 +65,10 @@ function VerificationForm({refreshOuter, userID,setCurrentPage,newUsername}) {
           userItem.firstName = newUser.firstName;
           userItem.lastName = newUser.lastName;
           userItem.email = newUser.email;
-          userItem.verificationCode = newCode;
           userItem.verCodeTime = JSON.stringify((new Date()).getTime());
           userItem.sessionid = sessionid;
           userItem.username = newUsername;
-          userItem.password = username.password;
+          userItem.password = newUser.password;
       
         console.log("Stringified before passed: " + JSON.stringify(userItem));
         console.log("Exit getUserItem")
