@@ -652,6 +652,47 @@ app.put('/hb', (req, res) =>{
   });
 });
 
+app.put('/user', (req, res) =>{
+
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    var postData  = req.body;
+
+  let apiid = postData.apiid;
+  let username = postData.username;
+  let password = postData.password;
+  let subid = postData.subid;
+  let linkCode = postData.linkCode;
+  let facilityName = postData.facilityName;
+  let firstName = postData.firstName;
+  let lastName = postData.lastName;
+  let email = postData.email;
+  let verificationCode = postData.verificationCode;
+  let verified = postData.verified;
+  let sessionid = postData.sessionid;
+  let verCodeTime = postData.verCodeTime;
+
+  console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
+
+  if(apiid !== null && username !== null && password !== null && subid !== null){
+    connection.query(`UPDATE users set
+  apiid =?, password =?, subid =?, linkCode =?, facilityName =?, firstName =?, lastName =?, email =?, verificationCode =?, verified =?, sessionid =?, verCodeTime =? WHERE username = ?`,
+  [
+    apiid, password, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, username
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The post user result is: ', result);
+    res.json(result);
+    });
+  }else{
+    console.log("Post user failed");
+    res.json("");
+  }
+  }); 
+});
+
 app.post('/user', (req, res) =>{
 
   pool.getConnection((err, connection) => {
@@ -663,26 +704,25 @@ app.post('/user', (req, res) =>{
   let username = postData.username;
   let password = postData.password;
   let subid = postData.subid;
-
-  if(subid === null || subid === undefined){
-    console.log("Post user failed");
-    res.json("");
-  }
-
-  console.log("POST DATA: apiid: " + apiid);
-  console.log("POST DATA: username: " + username);
-  console.log("POST DATA: password: " + password);
-  console.log("POST DATA: subid: " + subid);
+  let linkCode = postData.linkCode;
+  let facilityName = postData.facilityName;
+  let firstName = postData.firstName;
+  let lastName = postData.lastName;
+  let email = postData.email;
+  let verificationCode = postData.verificationCode;
+  let verified = postData.verified;
+  let sessionid = postData.sessionid;
+  let verCodeTime = postData.verCodeTime;
 
   console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
 
   if(apiid !== null && username !== null && password !== null && subid !== null){
     connection.query(`INSERT INTO users 
-  (apiid, username, password, subid) 
+  (apiid, username, password, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime) 
   VALUES 
-  (?, ?, ?, ?)`,
+  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
   [
-    apiid, username, password, subid
+    apiid, username, password, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
