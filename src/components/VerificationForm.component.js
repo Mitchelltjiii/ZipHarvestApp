@@ -3,9 +3,9 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-function VerificationForm({refreshOuter, userID,setCurrentPage,possibleUsername}) {
+function VerificationForm({refreshOuter, userID,setCurrentPage,newUsername}) {
 
-    let busySettingPossibleSub = false;
+    let busySettingUser = false;
 
     const handleResend = () => {
 		resend();
@@ -13,12 +13,12 @@ function VerificationForm({refreshOuter, userID,setCurrentPage,possibleUsername}
 
     function resend(){
         console.log("Click resend");
-        getPossibleSubscription();
+        getUser();
     }
 
-    async function getPossibleSubscription(){
-          console.log("Try to get possible subscription");
-          const response = await fetch(`/get-possible-subscription/${possibleUsername}`);
+    async function getUser(){
+          console.log("Try to get user");
+          const response = await fetch(`/get-user/${newUsername}`);
           const json = await response.json();
           try{
             console.log("sub json: " + json);
@@ -30,64 +30,71 @@ function VerificationForm({refreshOuter, userID,setCurrentPage,possibleUsername}
           }catch(err){
           
           }
-          let possibleSubString = JSON.stringify(json);
-          possibleSubString = possibleSubString.substring(1,possibleSubString.length-1);
-          console.log("Possible sub string: " + possibleSubString);
-          let newPossibleSub = JSON.parse(possibleSubString);
+          let userString = JSON.stringify(json);
+          userString = userString.substring(1,userString.length-1);
+          console.log("userString: " + userString);
+          let newUser = JSON.parse(userString);
     
-          console.log("Update possible subscription verified");
-          if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null && possibleSubString !== "[]"){
-            sendVerificationEmail(newPossibleSub);
+          console.log("Update user verified");
+          if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
+            sendVerificationEmail(newUser);
           }
       }
 
-    function getPossibleSubItem(possibleSub,newCode){
-        console.log("Enter getPossibleSubItem")
+      function getUserItem(newUser,sessionid){
+        console.log("Enter getUserItem")
       
-        let subItem = {
-          verificationCode: '',
+        let userItem = {
+          apiid: '',
           username: '',
           password: '',
-          sessionid: '',
+          subid: '',
+          linkCode: '',
+          facilityName: '',
+          firstName: '',
+          lastName: '',
+          email: '',
+          verificationCode: '',
           verified: 1,
-          verCodeTime: ""
+          sessionid: '',
+          verCodeTime: ''
           };
       
-          subItem.verificationCode = newCode;
-          subItem.username = possibleUsername;
-          subItem.password = possibleSub.password;
-          subItem.verCodeTime = JSON.stringify((new Date().getTime()));
+          userItem.apiid = newUsername;
+          userItem.facilityName = newUser.facilityName;
+          userItem.firstName = newUser.firstName;
+          userItem.lastName = newUser.lastName;
+          userItem.email = newUser.email;
+          userItem.verificationCode = newCode;
+          userItem.verCodeTime = JSON.stringify((new Date()).getTime());
+          userItem.sessionid = sessionid;
+          userItem.username = newUsername;
+          userItem.password = username.password;
       
-        console.log("Stringified before passed: " + JSON.stringify(subItem));
-        console.log("Exit getPossibleSubItem")
-        return subItem;
+        console.log("Stringified before passed: " + JSON.stringify(userItem));
+        console.log("Exit getUserItem")
+        return userItem;
       }
       
-      async function updatePossibleSub(possibleSubItem){
-        console.log("Engage update possiblesub");
-        const response = fetch('/possibleSub', {
+      async function updateUser(userItem){
+        console.log("Engage update user");
+        const response = fetch('/user', {
               method: 'PUT',
               headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
               },
-              body: JSON.stringify(possibleSubItem)
+              body: JSON.stringify(userItem)
+        }).then(function(response) {
+          let resp = JSON.stringify(response);
+        }).then(function(data) {
         });
-        console.log("Create possiblesubitem should be done - no indicator");
-        try{
-          console.log("AWAITING RESPONSE UPDATE possiblesubitem")
-          await response.text();
-          console.log("RESPONSE RECIEVED UPDATE possiblesubitem")
-        }catch(err){
-          console.log("NO RESPONSE RECIEVED UPDATE possiblesubitem")
-        }
-        console.log("Before removing busy setting possiblesubitem");
-        console.log("BUSYSETTINGpossiblesubitem before: " + JSON.stringify(busySettingPossibleSub)); 
-        busySettingPossibleSub = (false);
-        console.log("BUSYSETTINGpossiblesubitem after: " + JSON.stringify(busySettingPossibleSub));       
-        console.log("Exit update possiblesubitem")
+        console.log("Before removing busy setting user");
+        console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
+        busySettingUser = (false);
+        console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
+        console.log("Exit update user");
       }
-
 
     function makeid(length) {
         var result           = '';
@@ -100,12 +107,12 @@ function VerificationForm({refreshOuter, userID,setCurrentPage,possibleUsername}
        return result;
     }
 
-    async function sendVerificationEmail(possibleSub){
+    async function sendVerificationEmail(user){
         console.log("Try to send ver email");
         let address = "Mitchelltjiii@gmail.com";
         let newCode = makeid(8);
         console.log("New Code: " + newCode);
-        const response = await fetch(`/send-verification-email/${address}/${newCode}/${possibleUsername}`);
+        const response = await fetch(`/send-verification-email/${address}/${newCode}/${newUsername}`);
         const json = await response.json();
         try{
           console.log("Send Verification json: " + json);
@@ -117,8 +124,8 @@ function VerificationForm({refreshOuter, userID,setCurrentPage,possibleUsername}
         }catch(err){
           
         }
-        busySettingPossibleSub = true;
-        updatePossibleSub(getPossibleSubItem(possibleSub,newCode));
+        busySettingUser = true;
+        updateUser(getUserItem(user,newCode));
       }
 
 

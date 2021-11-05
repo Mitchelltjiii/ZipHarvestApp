@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import { useRadioGroup } from '@material-ui/core';
 
 export default function StripeForm({verCode,userFromUrl}) {
 
@@ -19,7 +20,6 @@ export default function StripeForm({verCode,userFromUrl}) {
   }
 
 let busySettingUser = false;
-let busySettingPossibleSub = false;
 const [expired,setExpired] = React.useState(false);
 
 
@@ -59,78 +59,42 @@ async function goToProduct(lookup_key){
       
   }
 
-  busySettingPossibleSub = true;
-  updatePossibleSub(getPossibleSubItem(possibleSubscription,json.id));
+  busySettingUser = true;
+  updateUser(getUserItem(user,json.id));
 
   window.location.replace(json.url);
   console.log("fetched create checkout sess");
 }
 
-function getPossibleSubItem(newPossibleSub,sessionid){
-  console.log("Enter getPossibleSubItem")
-
-
-  let subItem = {
-    verificationCode: '',
-    username: '',
-    password: '',
-    sessionid: '',
-    verified: 0,
-    verCodeTime: ''
-    };
-
-    subItem.verificationCode = newPossibleSub.verificationCode;
-    subItem.username = newPossibleSub.username;
-    subItem.password = newPossibleSub.password;
-    subItem.verified = 0;
-    subItem.sessionid = sessionid;
-    subItem.verCodeTime = '';
-
-  console.log("Stringified before passed: " + JSON.stringify(subItem));
-  console.log("Exit getPossibleSubItem")
-  return subItem;
-}
-
-async function updatePossibleSub(possibleSubItem){
-  console.log("Engage update possiblesub");
-  const response = fetch('/possibleSub', {
-        method: 'PUT',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(possibleSubItem)
-  });
-  console.log("Create possiblesubitem should be done - no indicator");
-  try{
-    console.log("AWAITING RESPONSE UPDATE possiblesubitem")
-    await response.text();
-    console.log("RESPONSE RECIEVED UPDATE possiblesubitem")
-  }catch(err){
-    console.log("NO RESPONSE RECIEVED UPDATE possiblesubitem")
-  }
-  console.log("Before removing busy setting possiblesubitem");
-  console.log("BUSYSETTINGpossiblesubitem before: " + JSON.stringify(busySettingPossibleSub)); 
-  busySettingPossibleSub = (false);
-  console.log("BUSYSETTINGpossiblesubitem after: " + JSON.stringify(busySettingPossibleSub));       
-  console.log("Exit update possiblesubitem")
-}
-
-function getUserItem(){
+function getUserItem(newUser,sessionid){
   console.log("Enter getUserItem")
-  console.log("Enter sub ID: " + subscription.id);
 
   let userItem = {
     apiid: '',
     username: '',
     password: '',
-    subid: ''
+    subid: '',
+    linkCode: '',
+    facilityName: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    verificationCode: '',
+    verified: 0,
+    sessionid: '',
+    verCodeTime: ''
     };
 
-    userItem.apiid = possibleSubscription.username;
-    userItem.username = possibleSubscription.username;
-    userItem.password = possibleSubscription.password;
-    userItem.subid = subscription.id;
+    userItem.apiid = newUser.username;
+    userItem.username = newUser.username;
+    userItem.password = newUser.password;
+    userItem.facilityName = newUser.facilityName;
+    userItem.firstName = newUser.firstName;
+    userItem.lastName = newUser.lastName;
+    userItem.email = newUser.email;
+    userItem.verificationCode = newUser.verificationCode;
+    userItem.verCodeTime = JSON.stringify((new Date()).getTime());
+    userItem.sessionid = sessionid;
 
   console.log("Stringified before passed: " + JSON.stringify(userItem));
   console.log("Exit getUserItem")
@@ -139,11 +103,8 @@ function getUserItem(){
 
 async function updateUser(userItem){
   console.log("Engage update user");
-  if(userItem.subid === null || userItem.subid === undefined){
-    return;
-  }
   const response = fetch('/user', {
-        method: (userItem.id) ? 'PUT' : 'POST',
+        method: 'PUT',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -151,11 +112,6 @@ async function updateUser(userItem){
         body: JSON.stringify(userItem)
   }).then(function(response) {
     let resp = JSON.stringify(response);
-    console.log("Response from updateUser: " + resp);
-    if(resp !== "" && resp !== null && resp !== undefined){
-      console.log("remove possiblesub now");
-      deletePossibleSub();
-    }
   }).then(function(data) {
   });
   console.log("Before removing busy setting user");
@@ -163,20 +119,25 @@ async function updateUser(userItem){
   busySettingUser = (false);
   console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
   console.log("Exit update user");
-  setUserUpdated(true);
 }
 
-async function deletePossibleSub() {
-  console.log("Enter deletePossibleSub");
-  console.log("Possible Sub username: " + possibleSubscription.username);
-  await fetch(`/possibleSub/${possibleSubscription.username}`, {
-  method: 'DELETE',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
+async function updateUserSubId(username,subid){
+  console.log("Engage update user subid");
+  const response = fetch(`/user/${subid}/${username}`, {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+  }).then(function(response) {
+    let resp = JSON.stringify(response);
+  }).then(function(data) {
   });
-  console.log("Exit deletePossibleSub");
+  console.log("Before removing busy setting user");
+  console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
+  busySettingUser = (false);
+  console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
+  console.log("Exit update user");
 }
 
 //value lk_1
@@ -188,18 +149,9 @@ const SuccessDisplay = ({ seshId }) => {
     getSession(sessionId);
   }else{
     console.log("About to update user");
-    let userItem = getUserItem();
-    console.log("User Item in success display: " + JSON.stringify(userItem));
-    if(userItem.apiid !== null && userItem.apiid !== "" && userItem.apiid !== undefined){
-    if(userItem.username !== null && userItem.username !== "" && userItem.username !== undefined){
-      if(userItem.password !== null && userItem.password !== "" && userItem.password !== undefined){
-        if(userItem.subid !== null && userItem.subid !== "" && userItem.subid !== undefined){
-          if(!userUpdated){
-            updateUser(userItem);
-          }
-        }
-      }
-    }
+    if(!userUpdated){
+      updateUserSubId(newUser.username,subscription.id);
+    }  
   }
 }
 
@@ -223,7 +175,6 @@ const SuccessDisplay = ({ seshId }) => {
       </form>
     </section>
   );
-};
 
 async function getSession(seshId){
   console.log("Try to get session");
@@ -244,7 +195,7 @@ async function getSession(seshId){
   }catch(err){
 
   }
-  getPossibleSubscription(false,json.subscription,seshId);
+  getUser(false,json.subscription,seshId);
   setSession(json);
 }
 
@@ -254,12 +205,12 @@ async function getSession(seshId){
   let [success, setSuccess] = useState(false);
   let [sessionId, setSessionId] = useState('');
   let [session,setSession] = useState([]);
-  let [possibleSubscription,setPossibleSubscription] = useState([]);
+  let [user,setUser] = useState([]);
   let [subscription,setSubscription] = useState([]);
   let [userUpdated,setUserUpdated] = useState(false);
   let [continued,setContinued] = useState(false);
 
-  console.log("From PossibleSubscription**");
+  console.log("From User**");
 
   async function getSubscription(subId){
     console.log("Try to get subscription");
@@ -278,14 +229,14 @@ async function getSession(seshId){
     setSubscription(json);
   }
 
-  async function getPossibleSubscription(fromUrl,subId,seshId){
+  async function getUser(fromUrl,subId,seshId){
     console.log("User from url: " + userFromUrl);
     if(fromUrl){
       if(userFromUrl === undefined){
         return;
       }
-      console.log("Try to get possible subscription");
-      const response = await fetch(`/get-possible-subscription/${userFromUrl}`);
+      console.log("Try to get user");
+      const response = await fetch(`/get-user/${userFromUrl}`);
       const json = await response.json();
       try{
         console.log("sub json: " + json);
@@ -297,14 +248,14 @@ async function getSession(seshId){
       }catch(err){
       
       }
-      let possibleSubString = JSON.stringify(json);
-      possibleSubString = possibleSubString.substring(1,possibleSubString.length-1);
-      console.log("Possible sub string: " + possibleSubString);
-      let newPossibleSub = JSON.parse(possibleSubString);
+      let userString = JSON.stringify(json);
+      userString = userString.substring(1,userString.length-1);
+      console.log("User string: " + userString);
+      let newUser = JSON.parse(userString);
 
-      if(newPossibleSub.verified===1){
+      if(newUser.verified===1){
         console.log("Checking VerCode");
-        if(verCode !== newPossibleSub.verificationCode){
+        if(verCode !== newUser.verificationCode){
           console.log("No Match");
           return;
         }else{
@@ -312,9 +263,9 @@ async function getSession(seshId){
         }
 
         console.log("Curr Date Value: " + (new Date()).getTime());
-        console.log("New Possible Sub Date Value: " + newPossibleSub.verCodeTime);
-        console.log("Difference: " + ((new Date()).getTime()-newPossibleSub.verCodeTime));
-        if(((new Date()).getTime()-newPossibleSub.verCodeTime) > 900000){
+        console.log("New User Date Value: " + newUser.verCodeTime);
+        console.log("Difference: " + ((new Date()).getTime()-newUser.verCodeTime));
+        if(((new Date()).getTime()-newUser.verCodeTime) > 900000){
           console.log("Code Expired");
           setExpired(true);
           return;
@@ -323,20 +274,20 @@ async function getSession(seshId){
         }
 
   
-        console.log("Update possible subscription verified");
-        if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null && possibleSubString !== "[]"){
-          updatePossibleSub(getPossibleSubItem(newPossibleSub,""));
-          setPossibleSubscription(newPossibleSub);
+        console.log("Update user verified");
+        if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
+          updateUser(getUserItem(newUser,""));
+          setUser(newUser);
         }
       }else{
-        if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null && possibleSubString !== "[]"){
+        if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
           setContinued(true);
-          setPossibleSubscription(newPossibleSub);
+          setUser(newUser);
         }
       }
     }else{
-      console.log("Try to get possible subscription");
-      const response = await fetch(`/get-possible-subscription-seshId/${seshId}`);
+      console.log("Try to get user");
+      const response = await fetch(`/get-user-seshId/${seshId}`);
       const json = await response.json();
       try{
        console.log("sub json: " + json);
@@ -350,7 +301,7 @@ async function getSession(seshId){
       }
       getSubscription(subId);
       setContinued(true);
-      setPossibleSubscription(json)
+      setUser(json)
     }
   }
 
@@ -373,13 +324,13 @@ async function getSession(seshId){
 
   console.log("Session**: " + JSON.stringify(session));
   console.log("Subscription**: " + JSON.stringify(subscription));
-  console.log("Possible Subscription**: " + JSON.stringify(possibleSubscription));
+  console.log("User**: " + JSON.stringify(user));
   
 
   if(!success){
-    if(possibleSubscription === null || possibleSubscription === [] || possibleSubscription === undefined || JSON.stringify(possibleSubscription) === "[]"){
-      console.log("Get possiblesubcription now*");
-      getPossibleSubscription(true,"","");
+    if(user === null || user === [] || user === undefined || JSON.stringify(user) === "[]"){
+      console.log("Get user now*");
+      getUser(true,"","");
     }
   }
 
@@ -400,18 +351,18 @@ async function getSession(seshId){
     )
   }
 
-    const handleResend = () => {
+  const handleResend = () => {
 		resend();
 	}
 
     function resend(){
         console.log("Click resend");
-        getPossibleSubscriptionForResend();
+        getUserForResend();
     }
 
-    async function getPossibleSubscriptionForResend(){
-      console.log("Try to get possible subscription");
-      const response = await fetch(`/get-possible-subscription/${userFromUrl}`);
+    async function getUserForResend(){
+      console.log("Try to get user");
+      const response = await fetch(`/get-user/${userFromUrl}`);
       const json = await response.json();
       try{
         console.log("sub json: " + json);
@@ -423,38 +374,50 @@ async function getSession(seshId){
       }catch(err){
       
       }
-      let possibleSubString = JSON.stringify(json);
-      possibleSubString = possibleSubString.substring(1,possibleSubString.length-1);
-      console.log("Possible sub string: " + possibleSubString);
-      let newPossibleSub = JSON.parse(possibleSubString);
+      let userString = JSON.stringify(json);
+      userString = userString.substring(1,userString.length-1);
+      console.log("userString: " + userString);
+      let newUser = JSON.parse(userString);
 
-      console.log("Update possible subscription verified");
-      if(possibleSubString !== "" && possibleSubString !== undefined && possibleSubString !== null && possibleSubString !== "[]"){
-        sendVerificationEmail(newPossibleSub);
+      console.log("Update user verified");
+      if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
+        sendVerificationEmail(newUser);
       }
   }
 
-    function getPossibleSubItemForResend(possibleSub,newCode){
-        console.log("Enter getPossibleSubItem")
-      
-        let subItem = {
-          verificationCode: '',
-          username: '',
-          password: '',
-          sessionid: '',
-          verified: 1,
-          verCodeTime: ""
-          };
-      
-          subItem.verificationCode = newCode;
-          subItem.username = possibleSub.username;
-          subItem.password = possibleSub.password;
-          subItem.verCodeTime = JSON.stringify((new Date().getTime()));
-      
-        console.log("Stringified before passed: " + JSON.stringify(subItem));
-        console.log("Exit getPossibleSubItem")
-        return subItem;
-      }
+  function getUserItemForResend(user,newCode){
+    console.log("Enter getUserItem")
+  
+    let userItem = {
+      apiid: '',
+      username: '',
+      password: '',
+      subid: '',
+      linkCode: '',
+      facilityName: '',
+      firstName: '',
+      lastName: '',
+      email: '',
+      verificationCode: '',
+      verified: 0,
+      sessionid: '',
+      verCodeTime: ''
+      };
+  
+      userItem.apiid = user.username;
+      userItem.facilityName = user.facilityName;
+      userItem.firstName = user.firstName;
+      userItem.lastName = user.lastName;
+      userItem.email = user.email;
+      userItem.verificationCode = newCode;
+      userItem.username = user.username;
+      userItem.password = user.password;
+      userItem.verCodeTime = JSON.stringify((new Date().getTime()));
+  
+    console.log("Stringified before passed: " + JSON.stringify(userItem));
+    console.log("Exit getUserItem")
+    return userItem;
+  }
 
     function makeid(length) {
         var result           = '';
@@ -467,12 +430,12 @@ async function getSession(seshId){
        return result;
     }
 
-    async function sendVerificationEmail(possibleSub){
+    async function sendVerificationEmail(user){
         console.log("Try to send ver email");
         let address = "Mitchelltjiii@gmail.com";
         let newCode = makeid(8);
         console.log("New Code: " + newCode);
-        const response = await fetch(`/send-verification-email/${address}/${newCode}/${possibleSub.username}`);
+        const response = await fetch(`/send-verification-email/${address}/${newCode}/${user.username}`);
         const json = await response.json();
         try{
           console.log("Send Verification json: " + json);
@@ -484,8 +447,8 @@ async function getSession(seshId){
         }catch(err){
           
         }
-        busySettingPossibleSub = true;
-        updatePossibleSub(getPossibleSubItemForResend(possibleSub,newCode));
+        busySettingUser = true;
+        updateUser(getUserItemForResend(user,newCode));
       }
 
   const ExpiredForm = () => {
@@ -515,8 +478,8 @@ async function getSession(seshId){
       return <Message message={message} />;
     }
   }else{
-    if(possibleSubscription !== null && possibleSubscription !== undefined && possibleSubscription !== [] && JSON.stringify(possibleSubscription) !== "[]"){
-      if(possibleSubscription.verificationCode===verCode){
+    if(user !== null && user !== undefined && user !== [] && JSON.stringify(user) !== "[]"){
+      if(user.verificationCode===verCode){
         return <VerifiedForm></VerifiedForm>
       }else{
         return <div>Code Doesn't Match</div>
@@ -530,16 +493,3 @@ async function getSession(seshId){
     }
   }
 }
-
-
-/* if(success){
-    let sesh = await getSession(sessionId);
-      console.log("sesh: " + sesh);
-      console.log("sesh(String): " + JSON.stringify(sesh));
-
-      let sub = await getSubscription(sesh.subscription);
-      console.log("Got sub: " + JSON.stringify(sub));
-
-      let possibleSub = await getPossibleSubscription(sessionId);
-      console.log("Got possible sub: " + JSON.stringify(possibleSub));
-  }*/

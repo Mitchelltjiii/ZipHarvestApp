@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername}) {
+function CreateUserForm({refreshOuter, userID,setCurrentPage,setNewUsername}) {
 
     const [email, setEmail] = React.useState('');
     const [username, setUsername] = React.useState('');
@@ -43,29 +43,9 @@ function CreateUserForm({refreshOuter, userID,setCurrentPage,setPossibleUsername
       }
   
       if(text === "1"){
-        getPossibleSubscriptionExists();
-      }
-    }
-
-    async function getPossibleSubscriptionExists(){
-      console.log("Get possible subscription exists")
-      const response = await fetch(`/api/possible-subscription-exists/${username}`);
-      const text = await response.text();
-      try{
-        console.log("Possible User exists JSON: " + text);
-      }catch(err){
-  
-      }
-      try{
-        console.log("Possible User exists JSON(STRING): " + JSON.stringify(text));
-      }catch(err){
-        
-      }
-  
-      if(text === "1"){
         sendVerificationEmail();
-        setPossibleUsername(username);
-        setCurrentPage('verification-form');
+        setNewUsername(username);
+        setCurrentPage('verification-form');      
       }
     }
 

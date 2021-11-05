@@ -26,9 +26,7 @@ const harvestRecordsQueryString = "select * from hr where userID = '";
 
 const usersQueryString = "select * from users";
 
-const possibleSubQueryStringGetAll = "select * from possibleSub";
-
-const possibleSubQueryString = "select * from possibleSub where username = '";
+const usersQueryStringFromUsername = "select * from users where username = '";
 
 const router = require('../app/routers/router');
 
@@ -170,34 +168,6 @@ app.get("/api/user-exists/:username",(req,res) => {
     });
   });
 });
-
-app.get("/api/possible-subscription-exists/:username",(req,res) => {
-  pool.getConnection((err, connection) => {
-      if(err) throw err;
-      console.log('connected as id ' + connection.threadId);
-      console.log("Does user exists");
-      connection.query(possibleSubQueryStringGetAll, (err, rows) => {
-          connection.release(); // return the connection to pool
-          if(err) throw err;
-          console.log('The data from users table are: \n', rows);
-          try{
-            console.log("Trying iteration without parse");
-            for(const val of rows){
-              console.log("Row: " + val);
-              console.log("Row.stringify: " + JSON.stringify(val));
-              if(val.username==req.params.username){
-                console.log("yes possible user exists");
-                res.json(0);
-              }
-            }
-          }catch(error){
-            console.log("Caught error 1");
-          }
-          console.log("no possible user does not exists");
-          res.json(1);
-    });
-  });
-});
 /*
 const connection = mysql.createConnection({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
@@ -233,32 +203,32 @@ app.get('/get-subscription/:subscriptionId', async (req,res) =>{
   res.json(subscription);
 })
 
-app.get('/get-possible-subscription/:username', async (req,res) =>{
+app.get('/get-user/:username', async (req,res) =>{
   pool.getConnection((err, connection) => {
-    console.log("get Possible sub");
+    console.log("get user sub");
     if(err) throw err;
     console.log('connected as id ' + connection.threadId);
     let username = req.params.username;
     var sql = `${username}`;
-    console.log("Commit Query: " + possibleSubQueryString + sql);
-    connection.query(possibleSubQueryString + sql + "'", (err, rows) => {
+    console.log("Commit Query: " + usersQueryStringFromUsername + sql);
+    connection.query(userQueryString + sql + "'", (err, rows) => {
         connection.release(); // return the connection to pool
         if(err) throw err;
-        console.log('The data from possiblesub table are: \n', rows);
+        console.log('The data from user table are: \n', rows);
         res.json(rows);
     });
   })
 })
 
-app.get('/get-possible-subscription-seshId/:seshId', async (req,res) =>{
+app.get('/get-user-seshId/:seshId', async (req,res) =>{
   pool.getConnection((err, connection) => {
-    console.log("get Possible sub with sesh ID");
+    console.log("get user with sesh ID");
     if(err) throw err;
     console.log('connected as id ' + connection.threadId);
-    connection.query("select * from possibleSub", (err, rows) => {
+    connection.query("select * from users", (err, rows) => {
         connection.release(); // return the connection to pool
         if(err) throw err;
-        console.log('The data from possiblesub all table are: \n', rows);
+        console.log('The data from users all table are: \n', rows);
         for(const val of rows){
           if(val.sessionid === req.params.seshId){
             res.json(val);
@@ -754,6 +724,23 @@ app.put('/user/:linkCode/:username', (req, res) =>{
   });
 });
 
+app.put('/user/:subid/:username', (req, res) =>{
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+
+  connection.query(`UPDATE users SET
+  subid = ? WHERE (username = ?)`, 
+  [
+    req.params.subid, req.params.username
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The update active users result is: ', result);
+    res.json(result);
+    });
+  });
+});
 
 app.put('/user/resetPassword/:username/:password', (req, res) =>{
   pool.getConnection((err, connection) => {
@@ -806,81 +793,6 @@ app.post('/justPost', (req, res) => {
   }
 })
 */
-
-app.post('/possibleSub', (req, res) =>{
-
-  pool.getConnection((err, connection) => {
-    if(err) throw err;
-    console.log('connected as id ' + connection.threadId);
-    var postData  = req.body;
-
-    let verificationCode = postData.verificationCode;
-    let username = postData.username;
-    let password = postData.password;
-    let sessionid = postData.sessionid;
-    let verified = postData.verified;
-    let verCodeTime = postData.verCodeTime;
-  
-    console.log("POST DATA: sessionid: " + sessionid);
-    console.log("POST DATA: username: " + username);
-    console.log("POST DATA: password: " + password);
-    console.log("POST DATA: verficationCode: " + verificationCode);
-    console.log("POST DATA: verified: " + verified);
-    console.log("POST DATA: vercodetime: " + verCodeTime);
-
-
-  console.log("POST DATA: possiblesub STRINGIFIED: " + JSON.stringify(postData));
-
-  connection.query(`INSERT INTO possibleSub 
-  (username, password, verificationCode, verified, sessionid, verCodeTime) 
-  VALUES 
-  (?, ?, ?, ?, ?, ?)`,
-  [
-    username, password, verificationCode, verified, sessionid, verCodeTime 
-  ], (err, result) => {
-    connection.release(); // return the connection to pool
-    if(err) throw err;
-    console.log('The post user result is: ', result);
-    res.json(result);
-    });
-  }); 
-});
-
-app.put('/possibleSub', (req, res) =>{
-
-  pool.getConnection((err, connection) => {
-    if(err) throw err;
-    console.log('connected as id ' + connection.threadId);
-    var postData  = req.body;
-
-  let verificationCode = postData.verificationCode;
-  let username = postData.username;
-  let password = postData.password;
-  let sessionid = postData.sessionid;
-  let verified = postData.verified;
-  let verCodeTime = postData.verCodeTime;
-
-  console.log("POST DATA: sessionid: " + sessionid);
-  console.log("POST DATA: username: " + username);
-  console.log("POST DATA: password: " + password);
-  console.log("POST DATA: verficationCode: " + verificationCode);
-  console.log("POST DATA: verified: " + verified);
-  console.log("POST DATA: verified: " + verCodeTime);
-
-  console.log("POST DATA: possiblesub STRINGIFIED: " + JSON.stringify(postData));
-
-  connection.query(`UPDATE possibleSub set
-  password =?, verificationCode =?, verified =?, sessionid =?, verCodeTime =? WHERE username = ?`,
-  [
-    password, verificationCode, verified, sessionid, verCodeTime, username
-  ], (err, result) => {
-    connection.release(); // return the connection to pool
-    if(err) throw err;
-    console.log('The post user result is: ', result);
-    res.json(result);
-    });
-  }); 
-});
 
 app.post('/hr', (req, res) =>{
 
@@ -1128,14 +1040,6 @@ app.delete(`/hr/:id`, (req, res) =>{
     console.log('The update active pl result is: ', result);
     res.json(result);
     });
-  });
-});
-
-app.delete(`/possibleSub/:username`, (req, res) =>{
-  pool.getConnection((err, connection) => {
-    if(err) throw err;
-    console.log("Delete PossibleSub: " + req.params.username);
-    connection.query(`DELETE FROM possibleSub WHERE username = '${req.params.username}'`);
   });
 });
 

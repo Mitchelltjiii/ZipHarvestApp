@@ -20,7 +20,7 @@ reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout})
 
 	console.log("ENTER LANDING, GET harvestbatches(STRINGIFIED): " + JSON.stringify(getHarvestBatches()));
 
-	const [possibleUsername,setPossibleUsername] = React.useState('');
+	const [newUsername,setNewUsername] = React.useState('');
     return(
 		
         <div>
@@ -36,11 +36,11 @@ reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout})
 			) : currentPage === 'account-form' ? (
 				<AccountForm refreshOuter={refreshOuter} userID={userID}/>
 			) : currentPage === 'create-user-form' ? (
-				<CreateUserForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} setPossibleUsername={setPossibleUsername}></CreateUserForm>
+				<CreateUserForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} setNewUsername={setNewUsername}></CreateUserForm>
 			) : currentPage === 'stripe-form' ? (
 				<StripeForm verCode={verCode} userFromUrl={userFromUrl}></StripeForm>
 			) : currentPage === 'verification-form' ? (
-				<VerificationForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} possibleUsername={possibleUsername}></VerificationForm>
+				<VerificationForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} newUsername={newUsername}></VerificationForm>
 			) : currentPage === 'reset-password-form' ? (
 				<ResetPasswordForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} linkCode={linkCode} userFromUrl={userFromUrl} executeLogout={executeLogout}></ResetPasswordForm>
 			) : currentPage === 'find-user-form' ? (
