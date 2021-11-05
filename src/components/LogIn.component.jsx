@@ -4,6 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import {isMobile} from 'react-device-detect';
 import Stripe from '@stripe/stripe-js'
+import logo from './logo.png'
+
 
 function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,attemptLogin,setCurrentPage}){
 
@@ -99,6 +101,9 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
   				justifyContent="center"
 					alignItems="center"
 					>
+                    <div style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"10px"}}>
+                        <img alt="logo" src={logo} style={{minHeight:"60px",maxHeight: "60px"}}/>
+                    </div>
                     <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                     <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
                     <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn}>Log in</Button> 
