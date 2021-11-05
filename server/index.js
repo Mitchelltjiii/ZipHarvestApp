@@ -89,7 +89,7 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
       })
   }) 
   
-  app.get('/send-find-email-link/:email/:username', async (req,res) =>{
+  app.get('/send-find-user/:email/:username', async (req,res) =>{
     const msg = {
       to: req.params.email, // Change to your recipient
       from: 'support@zipharvest.app', // Change to your verified sender
