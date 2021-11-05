@@ -121,6 +121,7 @@ async function updateUser(userItem){
   console.log("Exit update user");
 }
 
+
 async function updateUserSubId(username,subid){
   console.log("Engage update user subid");
   const response = fetch(`/user/${subid}/${username}`, {
@@ -153,7 +154,7 @@ const SuccessDisplay = ({ seshId }) => {
       updateUserSubId(newUser.username,subscription.id);
     }  
   }
-}
+
 
   return (
     <section>
@@ -175,6 +176,7 @@ const SuccessDisplay = ({ seshId }) => {
       </form>
     </section>
   );
+}
 
 async function getSession(seshId){
   console.log("Try to get session");
