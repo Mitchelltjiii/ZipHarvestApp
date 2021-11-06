@@ -18,7 +18,10 @@ function LoginHeader({setCurrentPage, currentPage, executeLogout}){
   
       return(
           <div style={{margin:"auto",width:headerWidth,backgroundColor:"#444444",height:"50px"}}>
-              <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
+              <div style={{position: 'absolute', left: '50%', top: '50%',
+			            transform: 'translate(-50%, -50%)'}}>
+                            <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
+                        </div>
           </div>
       )
 }
