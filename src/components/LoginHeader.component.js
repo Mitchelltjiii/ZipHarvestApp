@@ -3,6 +3,8 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import {isMobile} from 'react-device-detect';
+import Grid from '@material-ui/core/Grid';
+
 
 
 function LoginHeader({setCurrentPage, currentPage, executeLogout}){
@@ -18,10 +20,13 @@ function LoginHeader({setCurrentPage, currentPage, executeLogout}){
   
       return(
           <div style={{margin:"auto",width:headerWidth,backgroundColor:"#444444",height:"50px"}}>
-              <div style={{position: 'absolute', left: '50%', top: '50%',
-			            transform: 'translate(-50%, -50%)'}}>
-                            <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
-                        </div>
+                <Grid
+				container
+				direction="column"
+			  	justifyContent="center"
+				alignItems="center">
+                    <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
+                </Grid>
           </div>
       )
 }
