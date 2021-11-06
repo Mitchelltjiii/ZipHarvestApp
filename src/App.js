@@ -372,14 +372,15 @@ export default class App extends React.Component {
       if(!loginForm){
         showForm = (<div>
           <LoginHeader setCurrentPage={this.setCurrentPage} currentPage={this.state.currentPage} executeLogout={this.executeLogout}/>
-          {showForm}
-          </div>)
+          <Grid
+			  	container
+			  	direction="column"
+  				justifyContent="center"
+				  alignItems="center"
+		  	  >{showForm}</Grid>
+        </div>)
       } 
     }
-    return (
-      <div className="App" style={{margin:"auto"}}>
-			{showForm}
-		</div>
-    );
+    return ({showForm});
   }
 }
