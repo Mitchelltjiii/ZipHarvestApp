@@ -9,6 +9,7 @@ import CreateUserForm from './components/CreateUserForm.component';
 import VerificationForm from './components/VerificationForm.component';
 import ResetPasswordForm from './components/ResetPasswordForm.component';
 import FindUserForm from './components/FindUserForm.component'
+import LoginHeader from "./components/LoginHeader.component";
 
 export default class App extends React.Component {
   state = {
@@ -353,6 +354,7 @@ export default class App extends React.Component {
       verCode={verCode} userFromUrl={userFromUrl} linkCode={linkCode} executeLogout={this.executeLogout}/>
     </div>;
     }else{
+      let loginForm = false;
       if(this.state.currentPage === 'create-user-form'){
 				showForm = <CreateUserForm setCurrentPage={this.setCurrentPage} setNewUsername={this.setNewUsername}></CreateUserForm>
       }else if(this.state.currentPage === 'stripe-form'){
@@ -365,7 +367,14 @@ export default class App extends React.Component {
 				showForm = <FindUserForm setCurrentPage={this.setCurrentPage}></FindUserForm>
       }else{
         showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage}></LogIn></div>;
+        loginForm = true;
       }
+      if(!loginForm){
+        showForm = (<div>
+          <LoginHeader setCurrentPage={this.setCurrentPage} currentPage={this.state.currentPage} executeLogout={this.executeLogout}/>
+          {showForm}
+          </div>)
+      } 
     }
     return (
       <div className="App" style={{margin:"auto"}}>

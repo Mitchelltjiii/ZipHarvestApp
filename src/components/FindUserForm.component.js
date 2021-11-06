@@ -41,6 +41,8 @@ function FindUserForm({setCurrentPage}) {
     let formHeight = "250px";
 
 	return (
+    <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5}}>
+
 		<div id="find-user-form" style={{
             position: 'absolute', left: '50%', top: '50%',
             transform: 'translate(-50%, -50%)'
@@ -52,6 +54,7 @@ function FindUserForm({setCurrentPage}) {
   				        justifyContent="center"
 				        alignItems="center"
 			        >
+                <div>Recover Username</div>
                 {emailSent ? <div>Username Sent</div> :
                     <Grid
 				        container
@@ -69,6 +72,7 @@ function FindUserForm({setCurrentPage}) {
 
                     </div>
 		</div>
+    </div>
 	);
 }
 
