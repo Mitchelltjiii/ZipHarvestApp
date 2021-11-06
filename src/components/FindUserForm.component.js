@@ -46,7 +46,13 @@ function FindUserForm({setCurrentPage}) {
             transform: 'translate(-50%, -50%)'
         }}>
             <div>
-                    {emailSent ? <div>Username Sent</div> :
+            <Grid
+				        container
+				        direction="column"
+  				        justifyContent="center"
+				        alignItems="center"
+			        >
+                {emailSent ? <div>Username Sent</div> :
                     <Grid
 				        container
 				        direction="column"
@@ -57,6 +63,10 @@ function FindUserForm({setCurrentPage}) {
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSendFindUserLink}>Send Email</Button>
                     </Grid>
                     }  
+                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
+                </Grid>
+                    
+
                     </div>
 		</div>
 	);
