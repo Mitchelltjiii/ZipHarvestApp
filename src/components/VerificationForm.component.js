@@ -69,6 +69,7 @@ function VerificationForm({refreshOuter, userID,setCurrentPage,newUsername}) {
           userItem.sessionid = sessionid;
           userItem.username = newUsername;
           userItem.password = newUser.password;
+          userItem.verificationCode = newCode;
       
         console.log("Stringified before passed: " + JSON.stringify(userItem));
         console.log("Exit getUserItem")
