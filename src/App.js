@@ -5,11 +5,10 @@ import Outer from './components/Outer.component';
 import LogIn from './components/LogIn.component';
 import StripeForm from "./components/StripeForm";
 import ProductForm from "./components/ProductForm";
-import CreateUserForm from './CreateUserForm.component';
-import StripeForm from './StripeForm';
-import VerificationForm from './VerificationForm.component';
-import ResetPasswordForm from './ResetPasswordForm.component';
-import FindUserForm from './FindUserForm.component';
+import CreateUserForm from './components/CreateUserForm.component';
+import VerificationForm from './components/VerificationForm.component';
+import ResetPasswordForm from './components/ResetPasswordForm.component';
+import FindUserForm from './components/FindUserForm.component'
 
 export default class App extends React.Component {
   state = {
