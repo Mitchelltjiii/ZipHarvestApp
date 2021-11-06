@@ -25,7 +25,8 @@ export default class App extends React.Component {
     users: [],
     usersLoading: true,
     userID: "",
-    subStatus: ""
+    subStatus: "",
+    newUsername: ""
   };
   componentDidMount() {
   }
@@ -265,6 +266,10 @@ export default class App extends React.Component {
     this.getUsersFromDB(username,password);
   }
 
+  setNewUsername = (newUser) => {
+    this.setState({newUsername:newUser});
+  }
+
   render() {
     if ((this.state.loggedIn !== '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading))){
       return(<div>Loading...</div>);
@@ -349,15 +354,15 @@ export default class App extends React.Component {
     </div>;
     }else{
       if(this.state.currentPage === 'create-user-form'){
-				showForm = <CreateUserForm setCurrentPage={setCurrentPage} setNewUsername={setNewUsername}></CreateUserForm>
+				showForm = <CreateUserForm setCurrentPage={this.setCurrentPage} setNewUsername={this.setNewUsername}></CreateUserForm>
       }else if(this.state.currentPage === 'stripe-form'){
 				showForm = <StripeForm verCode={verCode} userFromUrl={userFromUrl}></StripeForm>
       }else if(this.state.currentPage === 'verification-form'){
-				showForm = <VerificationForm setCurrentPage={setCurrentPage} newUsername={newUsername}></VerificationForm>
+				showForm = <VerificationForm setCurrentPage={this.setCurrentPage} newUsername={this.state.newUsername}></VerificationForm>
       }else if(this.state.currentPage === 'reset-password-form'){
-				showForm = <ResetPasswordForm setCurrentPage={setCurrentPage} linkCode={linkCode} userFromUrl={userFromUrl} executeLogout={executeLogout}></ResetPasswordForm>
+				showForm = <ResetPasswordForm setCurrentPage={this.setCurrentPage} linkCode={linkCode} userFromUrl={userFromUrl} executeLogout={this.executeLogout}></ResetPasswordForm>
       }else if(this.state.currentPage === 'find-user-form'){
-				showForm = <FindUserForm setCurrentPage={setCurrentPage}></FindUserForm>
+				showForm = <FindUserForm setCurrentPage={this.setCurrentPage}></FindUserForm>
       }else{
         showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage}></LogIn></div>;
       }

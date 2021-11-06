@@ -15,7 +15,6 @@ reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout})
 
 	console.log("ENTER LANDING, GET harvestbatches(STRINGIFIED): " + JSON.stringify(getHarvestBatches()));
 
-	const [newUsername,setNewUsername] = React.useState('');
     return(
 		
         <div>
