@@ -210,8 +210,8 @@ app.get('/get-user/:username', async (req,res) =>{
     console.log('connected as id ' + connection.threadId);
     let username = req.params.username;
     var sql = `${username}`;
-    console.log("Commit Query: " + usersQueryStringFromUsername + sql);
-    connection.query(userQueryString + sql + "'", (err, rows) => {
+    console.log("Commit Query: " + usersQueryStringFromUsername + sql + "'");
+    connection.query(usersQueryStringFromUsername + sql + "'", (err, rows) => {
         connection.release(); // return the connection to pool
         if(err) throw err;
         console.log('The data from user table are: \n', rows);
