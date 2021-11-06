@@ -87,24 +87,49 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
       })
   }) 
   
-  app.get('/send-find-user/:email/:username', async (req,res) =>{
-    const msg = {
-      to: req.params.email, // Change to your recipient
-      from: 'support@zipharvest.app', // Change to your verified sender
-      subject: 'Username Recovery',
-      text: 'Here',
-      html: 'Your username is ' + req.params.username,
-    }
-    
-    sgMail.send(msg).then((response) => {
-        console.log(response[0].statusCode)
-        console.log(response[0].headers)
-        res.json(0);
-      }).catch((error) => {
-        console.error(error)
-        res.json(1);
-      })
-  }) 
+  app.get('/send-find-user/:email', async (req,res) =>{
+    pool.getConnection((err, connection) => {
+      if(err) throw err;
+      console.log('connected as id ' + connection.threadId);
+      console.log("Send Find User");
+      connection.query(usersQueryString, (err, rows) => {
+          connection.release(); // return the connection to pool
+          if(err) throw err;
+          console.log('The data from users table are: \n', rows);
+          try{
+            console.log("Trying iteration without parse");
+            for(const val of rows){
+              console.log("Row: " + val);
+              console.log("Row.stringify: " + JSON.stringify(val));
+              if(val.email==req.params.email){
+                console.log("yes user exists");
+
+                const msg = {
+                  to: req.params.email, // Change to your recipient
+                  from: 'support@zipharvest.app', // Change to your verified sender
+                  subject: 'Username Recovery',
+                  text: 'Here',
+                  html: 'Your username is ' + val.username,
+                }
+                
+                sgMail.send(msg).then((response) => {
+                    console.log(response[0].statusCode)
+                    console.log(response[0].headers)
+                    res.json(0);
+                  }).catch((error) => {
+                    console.error(error)
+                    res.json(1);
+                  })
+              }
+            }
+          }catch(error){
+            console.log("Caught error 1");
+          }
+          console.log("no user does not exists");
+          res.json(1);
+    });
+  });    
+}) 
 
 app.get("/api/users/:username/:password",(req,res) => {
   pool.getConnection((err, connection) => {

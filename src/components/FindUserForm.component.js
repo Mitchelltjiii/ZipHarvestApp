@@ -7,7 +7,6 @@ function FindUserForm({refreshOuter, userID,setCurrentPage}) {
 
     const [email,setEmail] = React.useState('');
     const [emailSent,setEmailSent] = React.useState(false);
-    let username = "Username";
 
     const handleSendFindUserLink = () => {
 		  sendFindUserLink();
@@ -19,7 +18,7 @@ function FindUserForm({refreshOuter, userID,setCurrentPage}) {
 
     async function sendFindUserLink(){
         console.log("Try to send find user Link");
-        const response = await fetch(`/send-find-user/${email}/${username}`);
+        const response = await fetch(`/send-find-user/${email}`);
         const json = await response.json();
         try{
           console.log("Send find user email json: " + json);
