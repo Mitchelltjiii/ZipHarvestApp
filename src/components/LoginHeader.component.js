@@ -4,7 +4,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import {isMobile} from 'react-device-detect';
 import Grid from '@material-ui/core/Grid';
-
+import logo from './logo.png';
 
 
 function LoginHeader({setCurrentPage, currentPage, executeLogout}){
@@ -25,7 +25,15 @@ function LoginHeader({setCurrentPage, currentPage, executeLogout}){
 				direction="column"
 			  	justifyContent="center"
 				alignItems="center">
-                    <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
+                     <Grid
+				container
+				direction="row"
+			  	justifyContent="center"
+				alignItems="center">
+                    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome} style={{width: "100%"}}>
+                        <img alt="logo" src={logo} style={{maxHeight: "50px"}}/>
+                    </Button>
+                    </Grid>
                 </Grid>
           </div>
       )
