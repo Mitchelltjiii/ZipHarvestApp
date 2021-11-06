@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-function FindUserForm({refreshOuter, userID,setCurrentPage}) {
+function FindUserForm({setCurrentPage}) {
 
     const [email,setEmail] = React.useState('');
     const [emailSent,setEmailSent] = React.useState(false);

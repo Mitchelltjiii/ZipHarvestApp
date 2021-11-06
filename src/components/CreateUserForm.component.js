@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-function CreateUserForm({refreshOuter, userID,setCurrentPage,setNewUsername}) {
+function CreateUserForm({setCurrentPage,setNewUsername}) {
 
     const [email, setEmail] = React.useState('');
     const [username, setUsername] = React.useState('');

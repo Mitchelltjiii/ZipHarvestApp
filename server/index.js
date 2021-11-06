@@ -109,7 +109,7 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
                   from: 'support@zipharvest.app', // Change to your verified sender
                   subject: 'Username Recovery',
                   text: 'Here',
-                  html: 'Your username is ' + val.username,
+                  html: 'Your username is ' + val.username +'.\nhttps://www.zipharvest.app/',
                 }
                 
                 sgMail.send(msg).then((response) => {

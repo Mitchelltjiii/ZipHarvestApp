@@ -3,11 +3,6 @@ import HarvestForm from './HarvestForm.component';
 import HarvestBatchesForm from './HarvestBatchesForm.component';
 import ManagePlantsForm from './ManagePlantsForm.component';
 import AccountForm from './AccountForm.component';
-import CreateUserForm from './CreateUserForm.component';
-import StripeForm from './StripeForm';
-import VerificationForm from './VerificationForm.component';
-import ResetPasswordForm from './ResetPasswordForm.component';
-import FindUserForm from './FindUserForm.component';
 
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
 	setHarvestBatches, resetHarvestBatches, resetAll, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
@@ -35,16 +30,6 @@ reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout})
 				<ManagePlantsForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} refreshOuter={refreshOuter} userID={userID} setPlants={setPlants} setNewPlantID={setNewPlantID} reloadPlants={reloadPlants}/>
 			) : currentPage === 'account-form' ? (
 				<AccountForm refreshOuter={refreshOuter} userID={userID}/>
-			) : currentPage === 'create-user-form' ? (
-				<CreateUserForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} setNewUsername={setNewUsername}></CreateUserForm>
-			) : currentPage === 'stripe-form' ? (
-				<StripeForm verCode={verCode} userFromUrl={userFromUrl}></StripeForm>
-			) : currentPage === 'verification-form' ? (
-				<VerificationForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} newUsername={newUsername}></VerificationForm>
-			) : currentPage === 'reset-password-form' ? (
-				<ResetPasswordForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} linkCode={linkCode} userFromUrl={userFromUrl} executeLogout={executeLogout}></ResetPasswordForm>
-			) : currentPage === 'find-user-form' ? (
-				<FindUserForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage}></FindUserForm>
 			) : null}
         </div>
     )

@@ -5,6 +5,12 @@ import Outer from './components/Outer.component';
 import LogIn from './components/LogIn.component';
 import StripeForm from "./components/StripeForm";
 import ProductForm from "./components/ProductForm";
+import CreateUserForm from './CreateUserForm.component';
+import StripeForm from './StripeForm';
+import VerificationForm from './VerificationForm.component';
+import ResetPasswordForm from './ResetPasswordForm.component';
+import FindUserForm from './FindUserForm.component';
+
 export default class App extends React.Component {
   state = {
     currentPage: 'harvest-form',
@@ -343,7 +349,19 @@ export default class App extends React.Component {
       verCode={verCode} userFromUrl={userFromUrl} linkCode={linkCode} executeLogout={this.executeLogout}/>
     </div>;
     }else{
-		showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage}></LogIn></div>;
+      if(this.state.currentPage === 'create-user-form'){
+				showForm = <CreateUserForm setCurrentPage={setCurrentPage} setNewUsername={setNewUsername}></CreateUserForm>
+      }else if(this.state.currentPage === 'stripe-form'){
+				showForm = <StripeForm verCode={verCode} userFromUrl={userFromUrl}></StripeForm>
+      }else if(this.state.currentPage === 'verification-form'){
+				showForm = <VerificationForm setCurrentPage={setCurrentPage} newUsername={newUsername}></VerificationForm>
+      }else if(this.state.currentPage === 'reset-password-form'){
+				showForm = <ResetPasswordForm setCurrentPage={setCurrentPage} linkCode={linkCode} userFromUrl={userFromUrl} executeLogout={executeLogout}></ResetPasswordForm>
+      }else if(this.state.currentPage === 'find-user-form'){
+				showForm = <FindUserForm setCurrentPage={setCurrentPage}></FindUserForm>
+      }else{
+        showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage}></LogIn></div>;
+      }
     }
     return (
       <div className="App" style={{margin:"auto"}}>

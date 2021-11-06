@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 
-function ResetPasswordForm({refreshOuter, userID,setCurrentPage,linkCode,userFromUrl,executeLogout}) {
+function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) {
 
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
