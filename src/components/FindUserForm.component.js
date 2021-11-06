@@ -41,12 +41,11 @@ function FindUserForm({setCurrentPage}) {
     let formHeight = "250px";
 
 	return (
-    <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5}}>
 
-		<div id="find-user-form" style={{
-            position: 'absolute', left: '50%', top: '50%',
-            transform: 'translate(-50%, -50%)'
-        }}>
+    <div id="find-user-form" style={{
+      position: 'absolute', left: '50%', top: '50%',
+      transform: 'translate(-50%, -50%)'
+    }}>
             <div>
             <Grid
 				        container
@@ -55,6 +54,8 @@ function FindUserForm({setCurrentPage}) {
 				        alignItems="center"
 			        >
                 <div>Recover Username</div>
+                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5}}>
+
                 {emailSent ? <div>Username Sent</div> :
                     <Grid
 				        container
@@ -66,13 +67,12 @@ function FindUserForm({setCurrentPage}) {
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSendFindUserLink}>Send Email</Button>
                     </Grid>
                     }  
+                </div>
                 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                 </Grid>
-                    
-
-                    </div>
+                
+      </div>
 		</div>
-    </div>
 	);
 }
 
