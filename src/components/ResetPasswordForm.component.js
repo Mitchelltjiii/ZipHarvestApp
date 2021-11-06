@@ -143,6 +143,10 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
                 <div style={{fontSize:"20px",marginTop:"10px",marginBottom:"10px"}}>Create your account</div>
                 <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5}}>
                 
+                <div id="find-user-form" style={{
+      position: 'absolute', left: '50%', top: '50%',
+      transform: 'translate(-50%, -50%)'
+    }}>
                     {!fromUrl ?
 
                         <div>
@@ -170,6 +174,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleConfirmReset}>Confirm</Button>
                     </Grid>
                     }
+                    </div>
                     </div>                
 			</Grid>
         }
