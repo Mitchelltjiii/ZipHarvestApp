@@ -61,7 +61,7 @@ function FindUserForm({setCurrentPage}) {
   				        justifyContent="center"
 				        alignItems="center"
 			        >
-                    <div style={{letterSpacing:"1px"}}>Recover Username</div>
+                    <div style={{letterSpacing:"1px"}}>RECOVER USERNAME</div>
                     <TextField id="Email" value={email} onChange={handleEmail} label="Email" variant="outlined"></TextField>
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSendFindUserLink}>Send Email</Button>
                     </Grid>

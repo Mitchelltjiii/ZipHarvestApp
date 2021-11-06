@@ -382,6 +382,6 @@ export default class App extends React.Component {
         </div>)
       } 
     }
-    return (<div style={{width:"100%"}}>{showForm}</div>);
+    return (<div>{showForm}</div>);
   }
 }
