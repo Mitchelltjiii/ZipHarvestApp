@@ -12,10 +12,6 @@ function FindUserForm({setCurrentPage}) {
 		  sendFindUserLink();
 	  }
 
-    const handleGoToHome = () => {
-        window.location.replace("https://www.zipharvest.app/");
-    }  
-
     async function sendFindUserLink(){
         console.log("Try to send find user Link");
         const response = await fetch(`/send-find-user/${email}`);
@@ -53,8 +49,7 @@ function FindUserForm({setCurrentPage}) {
   				        justifyContent="center"
 				        alignItems="center"
 			        >
-                <div>Recover Username</div>
-                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5}}>
+                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto"}}>
 
                 {emailSent ? <div>Username Sent</div> :
                     <Grid
@@ -63,12 +58,12 @@ function FindUserForm({setCurrentPage}) {
   				        justifyContent="center"
 				        alignItems="center"
 			        >
+                    <div style={{letterSpacing:"1px"}}>Recover Username</div>
                     <TextField id="Email" value={email} onChange={handleEmail} label="Email" variant="outlined"></TextField>
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSendFindUserLink}>Send Email</Button>
                     </Grid>
                     }  
                 </div>
-                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                 </Grid>
                 
       </div>

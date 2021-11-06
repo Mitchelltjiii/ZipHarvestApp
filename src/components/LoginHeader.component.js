@@ -7,6 +7,9 @@ import {isMobile} from 'react-device-detect';
 
 function LoginHeader({setCurrentPage, currentPage, executeLogout}){
 
+    const handleGoToHome = () => {
+        window.location.replace("https://www.zipharvest.app/");
+    }  
 
     let headerWidth = "100%";
     if(isMobile){
@@ -14,7 +17,9 @@ function LoginHeader({setCurrentPage, currentPage, executeLogout}){
     }
   
       return(
-          <div style={{margin:"auto",width:headerWidth,backgroundColor:"#444444",height:"50px"}}></div>
+          <div style={{margin:"auto",width:headerWidth,backgroundColor:"#444444",height:"50px"}}>
+              <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
+          </div>
       )
 }
 
