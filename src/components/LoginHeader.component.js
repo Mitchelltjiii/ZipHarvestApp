@@ -30,9 +30,9 @@ function LoginHeader({setCurrentPage, currentPage, executeLogout}){
 				direction="row"
 			  	justifyContent="center"
 				alignItems="center">
-                    <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome} style={{width: "100%"}}>
-                        <img alt="logo" src={logo} style={{maxHeight: "50px"}}/>
-                    </Button>
+                        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome} style={{width: "100%"}}>
+                            <img alt="logo" src={logo} style={{maxHeight: "40px"}}/>
+                        </Button>
                     </Grid>
                 </Grid>
           </div>
