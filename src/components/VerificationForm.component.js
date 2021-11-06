@@ -41,7 +41,7 @@ function VerificationForm({refreshOuter, userID,setCurrentPage,newUsername}) {
           }
       }
 
-      function getUserItem(newUser,sessionid){
+      function getUserItem(newUser,newCode){
         console.log("Enter getUserItem")
       
         let userItem = {
@@ -66,7 +66,6 @@ function VerificationForm({refreshOuter, userID,setCurrentPage,newUsername}) {
           userItem.lastName = newUser.lastName;
           userItem.email = newUser.email;
           userItem.verCodeTime = JSON.stringify((new Date()).getTime());
-          userItem.sessionid = sessionid;
           userItem.username = newUsername;
           userItem.password = newUser.password;
           userItem.verificationCode = newCode;
