@@ -10,6 +10,7 @@ import VerificationForm from './components/VerificationForm.component';
 import ResetPasswordForm from './components/ResetPasswordForm.component';
 import FindUserForm from './components/FindUserForm.component'
 import LoginHeader from "./components/LoginHeader.component";
+import Grid from '@material-ui/core/Grid';
 
 export default class App extends React.Component {
   state = {
