@@ -132,7 +132,7 @@ function VerificationForm({setCurrentPage,newUsername}) {
     let formHeight = "250px";
 
 	return (
-		<div id="forgot-password-form" style={{display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+		<div id="forgot-password-form" style={{position:"absolute",top:"0px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
 			<Grid
 				container
 				direction="column"

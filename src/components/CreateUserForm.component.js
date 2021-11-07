@@ -164,7 +164,11 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     };
 
     let formWidth = "450px";
-    let formHeight = "250px";
+    let formHeight = "300px";
+
+    if(stepTwo){
+      formHeight = "250px";
+    }
 
 	return (
 		<div id="forgot-password-form" style={{position:"absolute",top:"0px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
