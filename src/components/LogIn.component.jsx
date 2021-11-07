@@ -107,7 +107,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                   alignItems="center"
                   >
                           <div style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"10px"}}>
-                              <img alt="logo" src={logo} style={{minHeight:"60px",maxHeight: "60px"}}/>
+                              <img alt="logo" src={logo} style={{minHeight:"62px",maxHeight: "62px"}}/>
                           </div>    
                           <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                           <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>

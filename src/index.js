@@ -10,7 +10,7 @@ import { Elements } from "@stripe/react-stripe-js";
     ReactDOM.render(
         <React.StrictMode>
             <div style={{position:"absolute",top:"0px",bottom:"0px",left:"0px",right:"0px",margin:"auto"}}>
-                <Elements stripe={stripePromise} style={{innerHeight:"100%",outerHeight:"100%",innerWidth:"100%",outerWidth:"100%"}}>
+                <Elements stripe={stripePromise}>
                     <App/>
                 </Elements>
             </div>
