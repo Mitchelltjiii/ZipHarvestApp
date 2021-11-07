@@ -382,9 +382,7 @@ export default class App extends React.Component {
           </Grid>)
       } 
     }
-    return (<div style={{position:"absolute",top:"0px",bottom:"0px",left:"0px",right:"0px",backgroundColor:"#4287f5",display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',}}>
+    return (<div style={{position:"absolute",top:"0px",bottom:"0px",left:"0px",right:"0px",backgroundColor:"#4287f5",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
               <div style={{width:"100%",height:"100%",backgroundColor:"#e642f5"}}>
                {showForm}
               </div>
