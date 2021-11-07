@@ -9,10 +9,11 @@ import { Elements } from "@stripe/react-stripe-js";
 
     ReactDOM.render(
         <React.StrictMode style={{innerHeight:"100%",outerHeight:"100%",innerWidth:"100%",outerWidth:"100%"}}>
-            <Elements stripe={stripePromise} style={{innerHeight:"100%",outerHeight:"100%",innerWidth:"100%",outerWidth:"100%"}}>
-                <App style={{innerHeight:"100%",outerHeight:"100%",innerWidth:"100%",outerWidth:"100%"}}/>
-            </Elements>
+           <div style={{backgroundColor:"#a83232"}}></div>
         </React.StrictMode>,
         document.getElementById("root")
     );
 
+/* <Elements stripe={stripePromise} style={{innerHeight:"100%",outerHeight:"100%",innerWidth:"100%",outerWidth:"100%"}}>
+                <App style={{innerHeight:"100%",outerHeight:"100%",innerWidth:"100%",outerWidth:"100%"}}/>
+            </Elements>*/
