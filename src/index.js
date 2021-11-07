@@ -10,6 +10,7 @@ import { Elements } from "@stripe/react-stripe-js";
     ReactDOM.render(
         <React.StrictMode>
             <div style={{width:"100%",height:"100%",backgroundColor:"#a83232",padding:"0px",margin:"0px"}}>
+                What the fuck
             </div>
         </React.StrictMode>,
         document.getElementById("root")
