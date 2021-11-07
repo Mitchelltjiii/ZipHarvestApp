@@ -11,8 +11,8 @@ import { Elements } from "@stripe/react-stripe-js";
         <React.StrictMode>
             <Elements stripe={stripePromise}>
                 <div style={{backgroundColor:"#a83232"}}>
-                    </div>
                 <App/>
+                    </div>
             </Elements>
         </React.StrictMode>,
         document.getElementById("root")
