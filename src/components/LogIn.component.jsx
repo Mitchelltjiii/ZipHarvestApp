@@ -85,42 +85,50 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     }    
 
     return(
-      <div style={{
-        position: 'absolute', left: '50%', top: '50%',
-        transform: 'translate(-50%, -50%)'
-    }}>
+      <Grid
+					  container
+					  direction="column"
+  				  justifyContent="center"
+					  alignItems="center"
+					  ><div style={{display:"flex",justifyContent:"center",alignContent:"center",height:"100vh"}}>
+            <div style={{width:formWidth,height:formHeight,display:"flex",justifyContent:"center",alignContent:"center",height:"100vh"}}>
+      
+                  <Grid
+                  container
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="center"
+                  >
+                    <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px"}}>
+                    <Grid
+                  container
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="center"
+                  >
+                          <div style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"10px"}}>
+                              <img alt="logo" src={logo} style={{minHeight:"60px",maxHeight: "60px"}}/>
+                          </div>    
+                          <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
+                          <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+                          <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn} style={{marginTop:"10px",marginBottom:"20px"}}>Sign in</Button>
+                          <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
+                          <div style={{marginTop:"5px",marginBottom:"5px"}}>Forgot {forgotIDLink} or {forgotPasswordLink}</div>
+                          <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
+                          <div style={{marginTop:"5px",marginBottom:"5px"}}>Don't have an ID? {createIDLink}</div>
+                          <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
+                          <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px"}}>By signing in, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
+                      </Grid>
 
-      <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5}}>
-				<div style={{
-			position: 'absolute', left: '50%', top: '50%',
-			transform: 'translate(-50%, -50%)'}}>
-        <Grid
-					container
-					direction="column"
-  				justifyContent="center"
-					alignItems="center"
-					>
-                    <div style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"10px"}}>
-                        <img alt="logo" src={logo} style={{minHeight:"60px",maxHeight: "60px"}}/>
-                    </div>
-                    <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
-                    <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-                    <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn} style={{marginBottom:"10px"}}>Log in</Button> 
-                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"100%"}}></div>
-                    <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"17px"}}>Forgot {forgotIDLink} or {forgotPasswordLink}</div>
-                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"100%"}}></div>
-                    <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"17px"}}>Don't have an ID? {createIDLink}</div>
-                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"100%"}}></div>
-                    <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px"}}>By signing in, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
-              </Grid>
-      </div>
-			</div>	
-        
-      </div>
+                    </div> 
+                </Grid>
+                </div> 
+            </div></Grid>
     )
 }
 
 export default LogIn;
 
 
-/**/
+/*                          <FormControlLabel control={<Checkbox/>} label="Stay signed in" />
+*/
