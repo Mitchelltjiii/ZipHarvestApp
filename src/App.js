@@ -367,9 +367,7 @@ export default class App extends React.Component {
       }else if(this.state.currentPage === 'find-user-form'){
 				showForm = <FindUserForm setCurrentPage={this.setCurrentPage}></FindUserForm>
       }else{
-        showForm = <div style={{width:"100%",height:"100%",display:"flex",margin:"auto",backgroundColor:"#f5429b"}}>
-          <LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage}></LogIn>
-        </div>;
+        showForm = <LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage}></LogIn>;
         loginForm = true;
       }
       if(!loginForm){
@@ -384,7 +382,9 @@ export default class App extends React.Component {
           </Grid>)
       } 
     }
-    return (<div style={{position:"absolute",top:"0px",bottom:"0px",left:"0px",right:"0px",margin:"auto",backgroundColor:"#4287f5"}}>
+    return (<div style={{position:"absolute",top:"0px",bottom:"0px",left:"0px",right:"0px",backgroundColor:"#4287f5",display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',}}>
               <div style={{width:"100%",height:"100%",backgroundColor:"#e642f5"}}>
                {showForm}
               </div>
