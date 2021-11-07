@@ -8,13 +8,12 @@ import { Elements } from "@stripe/react-stripe-js";
     const stripePromise = loadStripe("pk_test_51JmpUwGBqcLC10HcR83rJs3pzuuVNBccQnf6InpAaLtuTdo6SWH9ITX1QZcCFze1n2St0yk3PEa8flb4QHvSgMR000sINbKwaM")
 
     ReactDOM.render(
-        <div>
-        <Elements stripe={stripePromise}>
+        <div style={{width:"100%",height:"100%"}}>
+        <React.StrictMode>
+            <Elements stripe={stripePromise}>
                 <App/>
             </Elements>
-            </div>,
+        </React.StrictMode></div>,
         document.getElementById("root")
     );
 
-    /*<React.StrictMode>
-        </React.StrictMode> */
