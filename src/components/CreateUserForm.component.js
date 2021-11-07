@@ -167,10 +167,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     let formHeight = "250px";
 
 	return (
-		<div id="forgot-password-form" style={{
-            position: 'absolute', left: '50%', top: '50%',
-            transform: 'translate(-50%, -50%)'
-        }}>
+		<div id="forgot-password-form" style={{display:'flex',alignItems: 'center',justifyContent: 'center'}}>
 			<Grid
 				container
 				direction="column"
