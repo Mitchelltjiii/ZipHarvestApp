@@ -38,11 +38,7 @@ function FindUserForm({setCurrentPage}) {
 
 	return (
 
-    <div id="find-user-form" style={{
-      position: 'absolute', left: '50%', top: '50%',
-      transform: 'translate(-50%, -50%)'
-    }}>
-            <div>
+    <div id="find-user-form" style={{display:'flex',alignItems: 'center',justifyContent: 'center'}}>
             <Grid
 				        container
 				        direction="column"
@@ -50,10 +46,6 @@ function FindUserForm({setCurrentPage}) {
 				        alignItems="center"
 			        >
                 <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto"}}>
-
-                <div style={{
-			            position: 'absolute', left: '50%', top: '50%',
-			            transform: 'translate(-50%, -50%)'}}>
                 {emailSent ? <div>Username Sent</div> :
                     <Grid
 				        container
@@ -67,10 +59,8 @@ function FindUserForm({setCurrentPage}) {
                     </Grid>
                     }
                     </div>  
-                </div>
                 </Grid>
                 
-      </div>
 		</div>
 	);
 }
