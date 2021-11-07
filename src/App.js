@@ -367,7 +367,9 @@ export default class App extends React.Component {
       }else if(this.state.currentPage === 'find-user-form'){
 				showForm = <FindUserForm setCurrentPage={this.setCurrentPage}></FindUserForm>
       }else{
-        showForm = <div><LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage}></LogIn></div>;
+        showForm = <div style={{width:"100%",height:"100%",display:"flex",margin:"auto"}}>
+          <LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage}></LogIn>
+        </div>;
         loginForm = true;
       }
       if(!loginForm){
@@ -382,6 +384,6 @@ export default class App extends React.Component {
           </Grid>)
       } 
     }
-    return (<div style={{width:"100%",height:"100%"}}>{showForm}</div>);
+    return (<div style={{width:"100%",height:"100%",display:"flex",margin:"auto"}}>{showForm}</div>);
   }
 }
