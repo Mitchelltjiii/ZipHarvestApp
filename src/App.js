@@ -384,7 +384,12 @@ export default class App extends React.Component {
           </Grid>)
       } 
     }
-    return (            <div style={{position:"absolute",top:"0px",bottom:"0px",left:"0px",right:"0px",margin:"auto"}}>
-    <div style={{width:"100%",height:"100%",display:"flex",margin:"auto"}}>{showForm}</div></div>);
+    return (<div style={{position:"absolute",top:"0px",bottom:"0px",left:"0px",right:"0px",margin:"auto",backgroundColor:"#4287f5"}}>
+      Fuck
+              <div style={{width:"100%",height:"100%",display:"flex",margin:"auto",backgroundColor:"#e642f5"}}>
+                LOL
+              </div>
+            </div>);
   }
 }
+//{showForm}
