@@ -79,11 +79,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     let formWidth = "350px";
     let formHeight = "500px";
 
-    if(isMobile){
-      formWidth = "230px";
-      formHeight = "330px";
-    }    
-
     return(
       <Grid
 					  container
