@@ -9,7 +9,7 @@ import { Elements } from "@stripe/react-stripe-js";
 
     ReactDOM.render(
         <React.StrictMode>
-            <div style={{width:"100%",height:"100%",backgroundColor:"#a83232",padding:"0px",margin:"0px"}}>
+            <div style={{width:"100%",height:"100%",backgroundColor:"#a83232",padding:"0px",margin:"0px",position:"absolute",top:"0px",bottom:"0px",left:"0px",right:"0px"}}>
                 What the fuck
             </div>
         </React.StrictMode>,
