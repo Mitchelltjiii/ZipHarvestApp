@@ -9,11 +9,12 @@ import { Elements } from "@stripe/react-stripe-js";
 
     ReactDOM.render(
         <React.StrictMode>
+            <div style={{backgroundColor:"#a83232"}}>
             <Elements stripe={stripePromise}>
-                <div style={{backgroundColor:"#a83232"}}>
                 <App/>
-                    </div>
             </Elements>
+            </div>
+
         </React.StrictMode>,
         document.getElementById("root")
     );
