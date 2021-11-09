@@ -136,15 +136,9 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
                 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Return to Login</Button>
             </div>
         :
-        <Grid
-				container
-				direction="column"
-  				justifyContent="center"
-				alignItems="center"
-			>
-                <div style={{fontSize:"20px",marginTop:"10px",marginBottom:"10px"}}>Create your account</div>
+        <div>
                 {isMobile ? 
-                <div style={{width:formWidth,height:formHeight}}>
+                <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
                 {!fromUrl ?
 
                     <div>
@@ -203,7 +197,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
                     </Grid>
                     }
                     </div>}
-			</Grid>
+			</div>
         }
         </div>
 		</div>
