@@ -44,7 +44,7 @@ function FindUserForm({setCurrentPage}) {
     const OuterDiv = () => {	
       if(isMobile){
         return (
-          <div style={{width:formWidth,height:formHeight,margin:"auto"}}>
+          <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
                 {emailSent ? <div>Username Sent</div> :
                     <Grid
 				        container
@@ -61,7 +61,7 @@ function FindUserForm({setCurrentPage}) {
         )
       }else{
         return (
-            <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto"}}>
+            <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
                 {emailSent ? <div>Username Sent</div> :
                     <Grid
 				        container
@@ -81,16 +81,8 @@ function FindUserForm({setCurrentPage}) {
 
 	return (
 
-    <div id="find-user-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-            <Grid
-				        container
-				        direction="column"
-  				        justifyContent="center"
-				        alignItems="center"
-			        >
-                <OuterDiv></OuterDiv> 
-                </Grid>
-                
+    <div id="find-user-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
+      <OuterDiv></OuterDiv>         
 		</div>
 	);
 }
