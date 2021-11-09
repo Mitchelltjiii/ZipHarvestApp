@@ -171,6 +171,10 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       formHeight = "250px";
     }
 
+    if(isMobile){
+      formWidth = "100%";
+    }
+
     const OuterDiv = () => {	
       if(isMobile){
         return (
