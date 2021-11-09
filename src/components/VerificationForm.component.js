@@ -134,25 +134,25 @@ function VerificationForm({setCurrentPage,newUsername}) {
 
 	return (
 		<div id="forgot-password-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-			<Grid
-				container
-				direction="column"
-  				justifyContent="center"
-				alignItems="center"
-			>
-                <div style={{fontSize:"20px",marginTop:"10px",marginBottom:"10px"}}>Create your account</div>
                 {isMobile ? 
                                 <div style={{width:formWidth,height:formHeight}}>
-                
                                 <Grid
                 container
                 direction="column"
                   justifyContent="center"
                 alignItems="center"
                   >
+                    <Grid
+            container
+            direction="column"
+              justifyContent="center"
+            alignItems="center"
+              >
                             <div>We sent you a link to verify your account. If you haven't recieved it, try checking your spam folder.</div>
                             <div>If you are still having trouble, you can send a new code below. Code will expire 15 minutes after creation.</div>
                             </Grid>
+                            <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
+                        </Grid>
                             </div>
                             :
                             <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5}}>
@@ -163,12 +163,19 @@ function VerificationForm({setCurrentPage,newUsername}) {
               justifyContent="center"
             alignItems="center"
               >
+                <Grid
+            container
+            direction="column"
+              justifyContent="center"
+            alignItems="center"
+              >
                         <div>We sent you a link to verify your account. If you haven't recieved it, try checking your spam folder.</div>
                         <div>If you are still having trouble, you can send a new code below. Code will expire 15 minutes after creation.</div>
                         </Grid>
+                        <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
+                        </Grid>
+
                         </div>}                
-                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
-			</Grid>
 		</div>
 	);
 }
