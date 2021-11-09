@@ -184,32 +184,61 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 				alignItems="center"
 			>
                 <div style={{fontSize:"20px",marginTop:"10px",marginBottom:"10px"}}>Create your account</div>
-                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px"}}>
-          {stepTwo ?
-              <Grid
+                {isMobile ?
+                <div style={{width:formWidth,height:formHeight,paddingTop:"40px"}}>
+                {stepTwo ?
+                    <Grid
+      container
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      >
+                <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+                <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined"style={{marginBottom:"10px"}}></TextField>
+                <TextField id="PasswordAgain" value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+                </Grid>
+            :
+            <Grid
+      container
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      >
+                <TextField id="FacilityName" value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+                <TextField id="First Name" value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+                <TextField id="Last Name" value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+                <TextField id="Email" value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+            </Grid>
+                }
+      </div> :
+      <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px"}}>
+      {stepTwo ?
+          <Grid
 container
 direction="column"
 justifyContent="center"
 alignItems="center"
 >
-          <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-          <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined"style={{marginBottom:"10px"}}></TextField>
-          <TextField id="PasswordAgain" value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-          </Grid>
-      :
-      <Grid
-container
-direction="column"
-justifyContent="center"
-alignItems="center"
->
-          <TextField id="FacilityName" value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-          <TextField id="First Name" value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-          <TextField id="Last Name" value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-          <TextField id="Email" value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+      <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+      <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined"style={{marginBottom:"10px"}}></TextField>
+      <TextField id="PasswordAgain" value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined" style={{marginBottom:"10px"}}></TextField>
       </Grid>
-          }
+  :
+  <Grid
+container
+direction="column"
+justifyContent="center"
+alignItems="center"
+>
+      <TextField id="FacilityName" value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+      <TextField id="First Name" value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+      <TextField id="Last Name" value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+      <TextField id="Email" value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+  </Grid>
+      }
 </div>
+                }
+                
       <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
 			</Grid>
 		</div>
