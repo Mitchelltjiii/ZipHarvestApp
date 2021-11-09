@@ -168,9 +168,8 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
                 }
                 </div>
                 :
-                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5}}>
+                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
                     {!fromUrl ?
-
                         <div>
                     {linkSent ? <div>Link Sent</div> :
                     <Grid
