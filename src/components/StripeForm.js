@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import {isMobile} from 'react-device-detect';
 
 export default function StripeForm({verCode,userFromUrl}) {
 
@@ -37,6 +38,10 @@ const ProductDisplay = () => (
 
 const handleGoToProduct = () => {
   goToProduct("lk_1");
+}
+
+const handleGetStarted = () => {
+  window.location.replace("https://www.zipharvest.app/");
 }
 
 
@@ -157,24 +162,33 @@ const SuccessDisplay = ({ seshId }) => {
 
 
   return (
-    <section>
-      <div>
-        <div>
-          <h3>Subscription to starter plan successful!</h3>
+    <div id="Success Display" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
+      {isMobile ?
+        <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+                <Grid
+            container
+            direction="column"
+              justifyContent="center"
+            alignItems="center"
+          >
+                <div>Congrats, your Zipharvest subscription has been created!</div>
+                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetStarted}>Get Started</Button>
+                </Grid>
+                </div>
+                :
+                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+                <Grid
+            container
+            direction="column"
+              justifyContent="center"
+            alignItems="center"
+          >
+                <div>Congrats, your Zipharvest subscription has been created!</div>
+                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetStarted}>Get Started</Button>
+                </Grid>
         </div>
-      </div>
-      <form action="/create-portal-session" method="POST">
-        <input
-          type="hidden"
-          id="session-id"
-          name="session_id"
-          value={sessionId}
-        />
-        <button id="checkout-and-portal-button" type="submit">
-          Manage your billing information
-        </button>
-      </form>
-    </section>
+       }
+		</div>
   );
 }
 
@@ -495,3 +509,22 @@ async function getSession(seshId){
     }
   }
 }
+
+/*<section>
+      <div>
+        <div>
+          <h3>Subscription to starter plan successful!</h3>
+        </div>
+      </div>
+      <form action="/create-portal-session" method="POST">
+        <input
+          type="hidden"
+          id="session-id"
+          name="session_id"
+          value={sessionId}
+        />
+        <button id="checkout-and-portal-button" type="submit">
+          Manage your billing information
+        </button>
+      </form>
+    </section> */
