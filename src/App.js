@@ -40,6 +40,48 @@ export default class App extends React.Component {
     }
   }
 
+  getSubscription = async (subId) => {
+    console.log("Try to get subscription");
+    const response = await fetch(`/get-subscription/${subId}`);
+    const json = await response.json();
+    try{
+      console.log("sub json: " + json);
+    }catch(err){
+  
+    }
+    try{
+      console.log("sub json(STRING): " + JSON.stringify(json));
+    }catch(err){
+      
+    }
+    if(json.active){
+      this.executeLogIn(username,text);
+    }else{
+      console.log("Sub cancelled");
+    }
+  }
+
+  getSubId = async (username) => {
+    console.log("Try to get subid");
+    const response = await fetch(`/get-subid/${username}`);
+    const json = await response.json();
+    try{
+      console.log("subid json: " + json);
+    }catch(err){
+  
+    }
+    try{
+      console.log("subid json(STRING): " + JSON.stringify(json));
+    }catch(err){
+      
+    }
+    if(json !== undefined){
+        this.getSubscription(JSON.stringify(json));
+      }else{
+        console.log("Subid undefined");
+      }
+  }
+
   getUsersFromDB = async (username,password) => {
     const response = await fetch(`/api/users/${username}/${password}`);
     const text = await response.text();
@@ -50,7 +92,7 @@ export default class App extends React.Component {
     this.state.usersLoading = false;
     console.log("Try Login Response: " + text);
     if(text === "0"){
-      this.executeLogIn(username,text);
+      this.getSubId(username);
     }else if(text === "1"){
       this.setState({newUsername:username,currentPage:'stripe-form'});
       console.log("Text === 1");

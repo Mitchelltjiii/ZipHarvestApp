@@ -31,7 +31,6 @@ const usersQueryStringFromUsername = "select * from users where username = '";
 const router = require('../app/routers/router');
 
 const sgMail = require('@sendgrid/mail');
-const { reset } = require("nodemon");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 /*
@@ -143,7 +142,6 @@ app.get("/api/users/:username/:password",(req,res) => {
           let foundLogin = false;
           let verified = false;
           let subscription = false;
-          let subCanceled = false;
 
           try{
             console.log("Trying iteration without parse");
@@ -161,14 +159,7 @@ app.get("/api/users/:username/:password",(req,res) => {
                   }
                   if(val.subid !== ""){
                     console.log("Sub found");
-                    const sub = await stripe.subscriptions.retrieve(req.params.subscriptionId);
-                    console.log("Checking Sub in Checking user/pass");
-                    console.log("Sub: " + JSON.stringify(sub));
-                    if(sub.active){
-                      subscription = true;
-                    }else{
-                      subCanceled = true;
-                    }
+                    subscription = true;
                   }
                 }
               }
@@ -182,8 +173,6 @@ app.get("/api/users/:username/:password",(req,res) => {
               res.json(0);
             }else if(verified){
               res.json(1);
-            }else if(subCanceled){
-              res.json(4);
             }else{
               res.json(2);
             }
@@ -268,6 +257,24 @@ app.get('/get-user/:username', async (req,res) =>{
         if(err) throw err;
         console.log('The data from user table are: \n', rows);
         res.json(rows);
+    });
+  })
+})
+
+app.get('/get-subid/:username', async (req,res) =>{
+  pool.getConnection((err, connection) => {
+    console.log("get user subid");
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    let username = req.params.username;
+    var sql = `${username}`;
+    console.log("Commit Query: " + usersQueryStringFromUsername + sql + "'");
+    connection.query(usersQueryStringFromUsername + sql + "'", (err, rows) => {
+        connection.release(); // return the connection to pool
+        if(err) throw err;
+        console.log('The data from user table are: \n', rows);
+        console.log('rows.subid: ' + rows.subid);
+        res.json(rows.subid);
     });
   })
 })
