@@ -155,7 +155,7 @@ async function updateUser(userItem){
 async function updateUserSubId(username,subid){
   console.log("Engage update user subid");
   console.log("**Username: " + username + "**subid: " + subid);
-  const response = fetch(`/user/${subid}/${username}`, {
+  const response = fetch(`/user/subid/${subid}/${username}`, {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',

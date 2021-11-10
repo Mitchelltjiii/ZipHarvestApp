@@ -765,7 +765,7 @@ app.put('/user/:linkCode/:username', (req, res) =>{
   });
 });
 
-app.put('/user/:subid/:username', (req, res) =>{
+app.put('/user/subid/:subid/:username', (req, res) =>{
   console.log("Update Sub ID: " + req.params.subid);
   console.log("Username: " + req.params.username);
   pool.getConnection((err, connection) => {
