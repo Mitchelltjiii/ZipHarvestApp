@@ -182,7 +182,7 @@ const SuccessDisplay = ({ seshId }) => {
     getSession(sessionId);
   }else{
     console.log("About to update user");
-    if(!userUpdated){
+    if(user.username !== undefined && subscription.id !== undefined && !userUpdated){
       updateUserSubId(user.username,subscription.id);
     }  
   }
