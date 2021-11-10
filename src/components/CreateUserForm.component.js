@@ -135,46 +135,46 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     function doContinue(){
       console.log("Do Continue in Create User Form")
         if(!stepTwo){
-            if(facilityName.length !== 0 && firstName.length !== 0 && lastName.length !== 0 && email.length !== 0 && email.includes("@")){
+            if(email.includes("@") && isValidString(facilityName) && isValidString(firstName) && isValidString(lastName) && (email.includes("@")) && isValidStringEmail(email)){
               console.log("Pass set step two")
               setStepTwo(true);
             }else{
               console.log("Something's not right");
-              if(facilityName.length === 0 || !isValidString(facilityName)){
+              if(!isValidString(facilityName)){
                 console.log("FacilityName not correct");
                 setFacilityNameError(true);
               }
-              if(firstName.length === 0 || !isValidString(firstName)){
+              if(!isValidString(firstName)){
                 console.log("FirstName not correct");
                 setFirstNameError(true);
               }
-              if(lastName.length === 0 || !isValidString(lastName)){
+              if(!isValidString(lastName)){
                 console.log("LastName not correct");
                 setLastNameError(true);
               }
-              if(email.length === 0 || !(email.includes("@")) || !isValidStringEmail(email)){
+              if(!(email.includes("@")) || !isValidStringEmail(email)){
                 console.log("Email not correct");
                 setEmailError(true);
               }
             }
         }else{
-            if(username.length !== 0 && password.length !== 0 && passwordAgain.length !== 0){
+            if(isUsernameValid() && isPasswordValid(password) && isPasswordValid(passwordAgain) && (password === passwordAgain)){
               console.log("Get user Exists")
               getUserExists();
             }else{
               console.log("Something's not right");
-              if(username.length === 0 || !isUsernameValid()){
+              if(!isUsernameValid()){
                 console.log("Username not correct");
-                setFailedUsername(username);
-                setUsernameHelperText("Username must be 8-16 characters (letters and numbers)")
+                setFailedUsername(username.value);
+                setUsernameHelperText("(8-16 letters & numbers)")
                 setUsernameError(true);
               }
-              if(password.length === 0 || !isPasswordValid(password)){
+              if(!isPasswordValid(password)){
                 console.log("Password not correct");
-                setPasswordHelperText("Password must be 8-16 characters (letters,numbers,!@#$%^&*")
+                setPasswordHelperText("(8-16 letters,numbers,!@#$%^&*")
                 setPasswordError(true);
               }
-              if(passwordAgain.length === 0 || !isPasswordValid(passwordAgain) || (password !== passwordAgain)){
+              if(!isPasswordValid(passwordAgain) || (password !== passwordAgain)){
                 console.log("PasswordAgain not correct");
                 setVerifyPasswordError(true);
               }
@@ -204,7 +204,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
         setCurrentPage('verification-form');      
       }else{
         setUsernameHelperText("Username already exists");
-        setFailedUsername(username);
+        setFailedUsername(username.value);
         setUsernameError(true);
       }
     }
