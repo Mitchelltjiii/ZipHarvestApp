@@ -69,13 +69,8 @@ export default class App extends React.Component {
     }catch(err){
   
     }
-    try{
-      console.log("subid json(STRING): " + JSON.stringify(json));
-    }catch(err){
-      
-    }
     if(json !== undefined){
-        this.getSubscription(JSON.stringify(json),username);
+        this.getSubscription(json,username);
       }else{
         console.log("Subid undefined");
       }
