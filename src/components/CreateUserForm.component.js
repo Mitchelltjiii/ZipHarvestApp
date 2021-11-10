@@ -110,7 +110,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
                 console.log("Username not correct");
                 setUsernameError(true);
               }
-              if(password.length === 0 || !isPasswordValid){
+              if(password.length === 0 || !isPasswordValid()){
                 console.log("Password not correct");
                 setPasswordError(true);
               }
