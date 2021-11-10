@@ -14,10 +14,6 @@ var pool  = mysql.createPool({
   port: '25060'
 });
 
-const db = require('../app/config/db.config');
-
-const Plant = db.Plant;
-
 const hbQueryString = "select * from hb where userID = '";
 
 const plantsQueryString = "select * from pl where userID = '";
@@ -27,8 +23,6 @@ const harvestRecordsQueryString = "select * from hr where userID = '";
 const usersQueryString = "select * from users";
 
 const usersQueryStringFromUsername = "select * from users where username = '";
-
-const router = require('../app/routers/router');
 
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
@@ -214,14 +208,6 @@ app.get("/api/user-exists/:username",(req,res) => {
     });
   });
 });
-/*
-const connection = mysql.createConnection({
-  host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
-  user     : 'doadmin',
-  password : 'xo6wgtevue3qzrmw',
-  database : 'defaultdb',
-  port: '25060'
-});*/
 
 let appPostDone = true;
 
@@ -542,17 +528,6 @@ app.get('/api/hb/:id', (req, res) => {
 });
 
 app.get('/api/pl/:id', (req, res) => {
-  /*
-  console.log('api/pl');
-  let userID = req.params.id;
-  console.log("User ID: " + userID);
-  var sql = `${userID}`;
-  console.log("Commit Query: " + plantsQueryString + sql);
-  connection.query(plantsQueryString + sql + "'",
-    function(err, result) {
-        console.log("GET PLANTS RESULT(STRING)- " + JSON.stringify(result));
-        res.json(result);
-    });*/
     pool.getConnection((err, connection) => {
       if(err) throw err;
       console.log('connected as id ' + connection.threadId);
@@ -1111,24 +1086,6 @@ app.delete(`/hr/:id`, (req, res) =>{
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, "..", "build", "index.html"));
 });
-/*
-db.sequelize.sync({force: true}).then(() => {
-  console.log('Drop and Resync with { force: true }');
-  Plant.sync().then(() => {
-    const plants = [
-      { id: '1', strain: 'Runtz', tag: '001'},
-      { id: '2', strain: 'Venom OG', tag: '002'},
-      { id: '3', strain: 'Bruce Banner', tag: '003'},
-      { id: '4', strain: 'Key Lime Pie', tag: '004'},
-      { id: '5', strain: 'Gelato 41', tag: '005'},
-      { id: '6', strain: 'Sour Sunset Sherbert', tag: '006'}
-    ]
-    
-    for(let i=0; i<plants.length; i++){
-      Plant.create(plants[i]);
-    }
-  });
-});*/ 
 
 // start express server on port
 app.listen(port, () => {

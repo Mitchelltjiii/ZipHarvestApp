@@ -53,7 +53,7 @@ export default class App extends React.Component {
     }catch(err){
       
     }
-    if(json.active){
+    if(json.plan.active){
       this.executeLogIn(username);
     }else{
       console.log("Sub cancelled");
