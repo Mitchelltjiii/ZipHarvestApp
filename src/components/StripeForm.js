@@ -197,7 +197,7 @@ const SuccessDisplay = ({ seshId }) => {
               justifyContent="center"
             alignItems="center"
           >
-                <div>Congrats, your Zipharvest subscription has been created!</div>
+                <div style={{textAlign:"center"}}>Congrats, your Zipharvest subscription has been created!</div>
                 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetStarted}>Get Started</Button>
                 </Grid>
                 </div>
@@ -387,8 +387,8 @@ async function getSession(seshId){
   				          justifyContent="center"
 				            alignItems="center"
 			              >
-                    <div>You have verified your account!</div>
-                    <div>Please continue to choose your subscription plan.</div>
+                    <div style={{textAlign:"center"}}>You have verified your account!</div>
+                    <div style={{textAlign:"center"}}>Please continue to choose your subscription plan.</div>
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
                   </Grid>    
           </div> :
@@ -399,8 +399,8 @@ async function getSession(seshId){
   				          justifyContent="center"
 				            alignItems="center"
 			              >
-                    <div>You have verified your account!</div>
-                    <div>Please continue to choose your subscription plan.</div>
+                    <div style={{textAlign:"center"}}>You have verified your account!</div>
+                    <div style={{textAlign:"center"}}>Please continue to choose your subscription plan.</div>
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
                   </Grid>
           </div>
