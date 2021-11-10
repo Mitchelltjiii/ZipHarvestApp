@@ -27,7 +27,6 @@ export default class App extends React.Component {
     users: [],
     usersLoading: true,
     userID: "",
-    subStatus: "",
     newUsername: ""
   };
   componentDidMount() {
@@ -40,7 +39,7 @@ export default class App extends React.Component {
     }
   }
 
-  getSubscription = async (subId) => {
+  getSubscription = async (subId,username) => {
     console.log("Try to get subscription");
     const response = await fetch(`/get-subscription/${subId}`);
     const json = await response.json();
@@ -55,7 +54,7 @@ export default class App extends React.Component {
       
     }
     if(json.active){
-      this.executeLogIn(username,text);
+      this.executeLogIn(username);
     }else{
       console.log("Sub cancelled");
     }
@@ -76,7 +75,7 @@ export default class App extends React.Component {
       
     }
     if(json !== undefined){
-        this.getSubscription(JSON.stringify(json));
+        this.getSubscription(JSON.stringify(json),username);
       }else{
         console.log("Subid undefined");
       }
@@ -266,8 +265,8 @@ export default class App extends React.Component {
       this.setState({plants: tempPlants});
 	}
 
-  executeLogIn = (user,status) =>{
-    this.setState({loggedIn:user,userID:user,subStatus:status});
+  executeLogIn = (user) =>{
+    this.setState({loggedIn:user,userID:user});
     this.resetAll([]);
     this.engageReload();
   }
@@ -337,7 +336,6 @@ export default class App extends React.Component {
     console.log("CurrentHarvest(STRING): " + JSON.stringify(this.state.currentHarvest));
 
 	  console.log("Logged In: " + this.state.loggedIn);
-    console.log("Sub Status in App.js: " + this.state.subStatus);
 	  let showForm;
     console.log("CurrentPage: " + this.state.currentPage);
     console.log("-*-*-*");
