@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import {isMobile} from 'react-device-detect';
 
-export default function StripeForm({verCode,userFromUrl}) {
+export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
 
   let formWidth = "450px";
   let formHeight = "250px";
@@ -275,11 +275,12 @@ async function getSession(seshId){
   async function getUser(fromUrl,subId,seshId){
     console.log("User from url: " + userFromUrl);
     if(fromUrl){
-      if(userFromUrl === undefined){
-        return;
+      let userForFetch = userFromUrl;
+      if(userFromUrl === undefined || userFromUrl === ""){
+        userForFetch = userFromLogin;
       }
       console.log("Try to get user");
-      const response = await fetch(`/get-user/${userFromUrl}`);
+      const response = await fetch(`/get-user/${userForFetch}`);
       const json = await response.json();
       try{
         console.log("sub json: " + json);

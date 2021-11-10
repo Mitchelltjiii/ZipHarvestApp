@@ -52,11 +52,13 @@ export default class App extends React.Component {
     if(text === "0"){
       this.executeLogIn(username,text);
     }else if(text === "1"){
+      this.setState({newUsername:username,currentPage:'stripe-form'});
       console.log("Text === 1");
     }else if(text === "2"){
+      //go to ver form
+      this.setState({newUsername:username,currentPage:'verification-form'});
       console.log("Text === 2");
     }else if(text === "3"){
-      console.log("Text === 3");
     }
   }
 
@@ -366,7 +368,7 @@ export default class App extends React.Component {
       if(this.state.currentPage === 'create-user-form'){
 				showForm = <CreateUserForm setCurrentPage={this.setCurrentPage} setNewUsername={this.setNewUsername}></CreateUserForm>
       }else if(this.state.currentPage === 'stripe-form'){
-				showForm = <StripeForm verCode={verCode} userFromUrl={userFromUrl}></StripeForm>
+				showForm = <StripeForm verCode={verCode} userFromUrl={userFromUrl} userFromLogin={this.state.newUsername}></StripeForm>
       }else if(this.state.currentPage === 'verification-form'){
 				showForm = <VerificationForm setCurrentPage={this.setCurrentPage} newUsername={this.state.newUsername}></VerificationForm>
       }else if(this.state.currentPage === 'reset-password-form'){

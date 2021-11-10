@@ -56,7 +56,7 @@ function FindUserForm({setCurrentPage}) {
                         justifyContent="center"
                         alignItems="center"
                         >
-                                <div>Username Sent</div>
+                                <div>We sent you an email with your username.</div>
                                 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                                 </Grid>
                                 :
@@ -80,7 +80,7 @@ function FindUserForm({setCurrentPage}) {
                         justifyContent="center"
                         alignItems="center"
                         >
-                                <div>Username Sent</div>
+                                <div>We sent you an email with your username.</div>
                                 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                                 </Grid> :
                     <Grid
