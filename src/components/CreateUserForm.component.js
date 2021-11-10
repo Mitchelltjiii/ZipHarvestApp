@@ -99,7 +99,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
               }
               if(passwordAgain.length === 0){
                 console.log("PasswordAgain not correct");
-                setPasswordAgainError(true);
+                setVerifyPasswordError(true);
               }
             }
         }
