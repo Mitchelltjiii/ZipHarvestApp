@@ -25,6 +25,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     const [passwordError, setPasswordError] = React.useState(false);
     const [passwordHelperText, setPasswordHelperText] = React.useState(false);
     const [verifyPasswordError, setVerifyPasswordError] = React.useState(false);
+    const [verifyPasswordHelperText, setVerifyPasswordHelperText] = React.useState(false);
     const [failedUsername,setFailedUsername] = React.useState('');
 
     const handleContinue = () => {
@@ -128,6 +129,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     }
 
     if(verifyPasswordError && passwordAgain.length !== 0){
+      setVerifyPasswordHelperText("");
       setVerifyPasswordError(false);
     }
     
@@ -176,6 +178,9 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
               }
               if(!isPasswordValid(passwordAgain) || (password !== passwordAgain)){
                 console.log("PasswordAgain not correct");
+                if(password !== passwordAgain){
+                  setVerifyPasswordHelperText("Passwords do not match");
+                }
                 setVerifyPasswordError(true);
               }
             }
@@ -353,7 +358,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       >
                 <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
                 <TextField id="Password" helperText={passwordHelperText} error={passwordError} value={password} onChange={handlePassword} label="Password" variant="outlined"style={{marginBottom:"10px"}}></TextField>
-                <TextField id="PasswordAgain" error={verifyPasswordError} value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+                <TextField id="PasswordAgain" helperText={verifyPasswordHelperText} error={verifyPasswordError} value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined" style={{marginBottom:"10px"}}></TextField>
                 </Grid>
             :
             <Grid
@@ -379,7 +384,7 @@ alignItems="center"
 >
       <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
       <TextField id="Password" helperText={passwordHelperText} error={passwordError} value={password} onChange={handlePassword} label="Password" variant="outlined"style={{marginBottom:"10px"}}></TextField>
-      <TextField id="PasswordAgain" error={verifyPasswordError} value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+      <TextField id="PasswordAgain" helperText={verifyPasswordHelperText} error={verifyPasswordError} value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined" style={{marginBottom:"10px"}}></TextField>
       </Grid>
   :
   <Grid
