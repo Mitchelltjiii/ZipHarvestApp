@@ -26,6 +26,11 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     if(facilityName.length !== 0 && !facilityNameEngaged){
       setFacilityNameEngaged(true);
     } 
+
+    if(facilityNameError && facilityName.length !== 0){
+      setFacilityNameError(false);
+      setFacilityNameHelperText("");
+    }
     
     if(facilityName.length === 0 && facilityNameEngaged && facilityNameHelperText===""){
       setFacilityNameError(true);
