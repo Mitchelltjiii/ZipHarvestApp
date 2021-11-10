@@ -262,6 +262,7 @@ export default class App extends React.Component {
 	}
 
   executeLogIn = (user) =>{
+    localStorage.setItem('user', user);
     this.setState({loggedIn:user,userID:user});
     this.resetAll([]);
     this.engageReload();
@@ -305,6 +306,7 @@ export default class App extends React.Component {
 
 
   executeLogout = () => {
+    localStorage.clear();
     this.setState({loggedIn:'',currentPage:'harvest-form',harvestBatches:[],plants:[],harvestRecords:[],
     plantsLoading:true,harvestBatchesLoading:true,harvestRecordsLoading:true,currentHarvest:[],userID:''});
     this.forceUpdate();
@@ -357,6 +359,13 @@ export default class App extends React.Component {
   }
 
   render() {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      console.log("***Found User: " + foundUser);
+      this.setState({loggedIn:foundUser,userID:foundUser});
+    }
+
     if ((this.state.loggedIn !== '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading))){
       return(<div>Loading...</div>);
     }

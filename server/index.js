@@ -226,8 +226,8 @@ app.get("/api/email-exists/:email",(req,res) => {
               console.log("Row.stringify: " + JSON.stringify(val));
               if(val.email==req.params.email){
                 console.log("yes email exists");
-                emailExists=true;
-                res.json(0);
+                /*emailExists=true;
+                res.json(0);*/
               }
             }
           }catch(error){
