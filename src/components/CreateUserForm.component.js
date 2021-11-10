@@ -40,7 +40,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       setFacilityNameError(false);
     }
     
-    if(facilityName.length === 0 && facilityNameEngaged){
+    if(facilityName.length === 0 && facilityNameEngaged && !facilityNameError){
       setFacilityNameError(true);
     }
 
@@ -52,7 +52,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       setFirstNameError(false);
     }
     
-    if(firstName.length === 0 && firstNameEngaged){
+    if(firstName.length === 0 && firstNameEngaged && !firstNameError){
       setFirstNameError(true);
     }
 
@@ -64,7 +64,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       setLastNameError(false);
     }
     
-    if(lastName.length === 0 && lastNameEngaged){
+    if(lastName.length === 0 && lastNameEngaged  && !lastNameError){
       setLastNameError(true);
     }
 
@@ -76,7 +76,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       setEmailError(false);
     }
     
-    if(email.length === 0 && emailEngaged){
+    if(email.length === 0 && emailEngaged && !emailError){
       setEmailError(true);
     }
 
