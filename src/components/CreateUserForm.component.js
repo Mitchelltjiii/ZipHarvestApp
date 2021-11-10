@@ -28,6 +28,23 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 		  doContinue();
 	  }
 
+    function usernameIsGood(){
+      console.log("is Username good?")
+      for(let i = 0; i<username.length;i++){
+        console.log("username i=" + i);
+        if(!isCharacterALetter(username.substring(i,i+1))){
+          console.log("Return false username is bad")
+          return false;
+        }
+      }
+      console.log("Return true username is good")
+      return true;
+    }
+
+    function isCharacterALetter(char) {
+      return (/[a-zA-Z]/).test(char)
+    }
+
 
     if(facilityNameError && facilityName.length !== 0){
       setFacilityNameError(false);
@@ -89,7 +106,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
               getUserExists();
             }else{
               console.log("Something's not right");
-              if(username.length === 0){
+              if(username.length === 0 || !usernameIsGood()){
                 console.log("Username not correct");
                 setUsernameError(true);
               }
@@ -270,9 +287,9 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       justifyContent="center"
       alignItems="center"
       >
-                <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-                <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined"style={{marginBottom:"10px"}}></TextField>
-                <TextField id="PasswordAgain" value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+                <TextField id="Username" error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+                <TextField id="Password" error={passwordError} value={password} onChange={handlePassword} label="Password" variant="outlined"style={{marginBottom:"10px"}}></TextField>
+                <TextField id="PasswordAgain" error={verifyPasswordError} value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined" style={{marginBottom:"10px"}}></TextField>
                 </Grid>
             :
             <Grid
@@ -296,9 +313,9 @@ direction="column"
 justifyContent="center"
 alignItems="center"
 >
-      <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-      <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined"style={{marginBottom:"10px"}}></TextField>
-      <TextField id="PasswordAgain" value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+      <TextField id="Username" error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+      <TextField id="Password" error={passwordError} value={password} onChange={handlePassword} label="Password" variant="outlined"style={{marginBottom:"10px"}}></TextField>
+      <TextField id="PasswordAgain" error={verifyPasswordError} value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined" style={{marginBottom:"10px"}}></TextField>
       </Grid>
   :
   <Grid
