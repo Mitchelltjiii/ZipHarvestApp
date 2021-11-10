@@ -17,76 +17,34 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     let busySettingUser = false;
 
     const [facilityNameError, setFacilityNameError] = React.useState(false);
-    const [facilityNameEngaged,setFacilityNameEngaged] = React.useState(false);
 
     const [firstNameError, setFirstNameError] = React.useState(false);
-    const [firstNameEngaged,setFirstNameEngaged] = React.useState(false);
 
     const [lastNameError, setLastNameError] = React.useState(false);
-    const [lastNameEngaged,setLastNameEngaged] = React.useState(false);
 
     const [emailError, setEmailError] = React.useState(false);
-    const [emailEngaged,setEmailEngaged] = React.useState(false);
-    const [emailErrorAt,setEmailErrorAt] = React.useState(false);
 
     const handleContinue = () => {
 		  doContinue();
 	  }
 
-    if(facilityName.length !== 0 && !facilityNameEngaged){
-      setFacilityNameEngaged(true);
-    } 
 
     if(facilityNameError && facilityName.length !== 0){
       setFacilityNameError(false);
     }
-    
-    if(facilityName.length === 0 && facilityNameEngaged && !facilityNameError){
-      setFacilityNameError(true);
-    }
-
-    if(firstName.length !== 0 && !firstNameEngaged){
-      setFirstNameEngaged(true);
-    } 
 
     if(firstNameError && firstName.length !== 0){
       setFirstNameError(false);
     }
-    
-    if(firstName.length === 0 && firstNameEngaged && !firstNameError){
-      setFirstNameError(true);
-    }
-
-    if(lastName.length !== 0 && !lastNameEngaged){
-      setLastNameEngaged(true);
-    } 
 
     if(lastNameError && lastName.length !== 0){
       setLastNameError(false);
     }
-    
-    if(lastName.length === 0 && lastNameEngaged  && !lastNameError){
-      setLastNameError(true);
-    }
-
-    if(email.length !== 0 && !emailEngaged){
-      setEmailEngaged(true);
-    } 
 
     if(emailError && email.length !== 0){
-      if(emailErrorAt){
-        if(email.includes("@")){
-          setEmailError(false);
-          setEmailErrorAt(false);
-        }
-      }else{
-        setEmailError(false);
-      }
+      setEmailError(false);
     }
     
-    if(email.length === 0 && emailEngaged && !emailError){
-      setEmailError(true);
-    }
 
     function doContinue(){
       console.log("Do Continue in Create User Form")
@@ -98,25 +56,18 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
               console.log("Something's not right");
               if(facilityName.length === 0){
                 console.log("FacilityName not correct");
-                setFacilityNameEngaged(true);
                 setFacilityNameError(true);
               }
               if(firstName.length === 0){
                 console.log("FirstName not correct");
-                setFirstNameEngaged(true);
                 setFirstNameError(true);
               }
               if(lastName.length === 0){
                 console.log("LastName not correct");
-                setLastNameEngaged(true);
                 setLastNameError(true);
               }
               if(email.length === 0 || !(email.includes("@"))){
                 console.log("Email not correct");
-                if(!(email.includes("@"))){
-                  setEmailErrorAt(true);
-                }
-                setEmailEngaged(true);
                 setEmailError(true);
               }
             }
