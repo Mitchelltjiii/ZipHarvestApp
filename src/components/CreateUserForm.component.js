@@ -17,12 +17,12 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     let busySettingUser = false;
 
     const [facilityNameError, setFacilityNameError] = React.useState(false);
-
     const [firstNameError, setFirstNameError] = React.useState(false);
-
     const [lastNameError, setLastNameError] = React.useState(false);
-
     const [emailError, setEmailError] = React.useState(false);
+    const [usernameError, setUsernameError] = React.useState(false);
+    const [passwordError, setPasswordError] = React.useState(false);
+    const [verifyPasswordError, setVerifyPasswordError] = React.useState(false);
 
     const handleContinue = () => {
 		  doContinue();
@@ -43,6 +43,18 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 
     if(emailError && email.length !== 0){
       setEmailError(false);
+    }
+
+    if(usernameError && username.length !== 0){
+      setUsernameError(false);
+    }
+
+    if(passwordError && password.length !== 0){
+      setPasswordError(false);
+    }
+
+    if(verifyPasswordError && passwordAgain.length !== 0){
+      setVerifyPasswordError(false);
     }
     
 
@@ -72,7 +84,24 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
               }
             }
         }else{
-            getUserExists();
+            if(username.length !== 0 && password.length !== 0 && passwordAgain.length !== 0){
+              console.log("Get user Exists")
+              getUserExists();
+            }else{
+              console.log("Something's not right");
+              if(username.length === 0){
+                console.log("Username not correct");
+                setUsernameError(true);
+              }
+              if(password.length === 0){
+                console.log("Password not correct");
+                setPasswordError(true);
+              }
+              if(passwordAgain.length === 0){
+                console.log("PasswordAgain not correct");
+                setPasswordAgainError(true);
+              }
+            }
         }
     }
 
