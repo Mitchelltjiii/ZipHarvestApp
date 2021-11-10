@@ -165,7 +165,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
               console.log("Something's not right");
               if(!isUsernameValid()){
                 console.log("Username not correct");
-                setFailedUsername(username.value);
+                setFailedUsername(username);
                 setUsernameHelperText("(8-16 letters & numbers)")
                 setUsernameError(true);
               }
@@ -204,7 +204,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
         setCurrentPage('verification-form');      
       }else{
         setUsernameHelperText("Username already exists");
-        setFailedUsername(username.value);
+        setFailedUsername(username);
         setUsernameError(true);
       }
     }
@@ -341,7 +341,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
   				justifyContent="center"
 				alignItems="center"
 			>
-                <div style={{fontSize:"20px",marginTop:"10px",marginBottom:"10px"}}>Create your account</div>
+                <div style={{fontSize:"22px",marginTop:"10px",marginBottom:"10px"}}><b>Welcome to ZipHarvest!</b></div>
                 {isMobile ?
                 <div style={{width:formWidth,height:formHeight,paddingTop:"40px"}}>
                 {stepTwo ?
