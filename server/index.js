@@ -766,6 +766,8 @@ app.put('/user/:linkCode/:username', (req, res) =>{
 });
 
 app.put('/user/:subid/:username', (req, res) =>{
+  console.log("Update Sub ID: " + req.params.subid);
+  console.log("Username: " + req.params.username);
   pool.getConnection((err, connection) => {
     if(err) throw err;
     console.log('connected as id ' + connection.threadId);
@@ -777,7 +779,7 @@ app.put('/user/:subid/:username', (req, res) =>{
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
-    console.log('The update active users result is: ', result);
+    console.log('The update subid users result is: ', result);
     res.json(result);
     });
   });

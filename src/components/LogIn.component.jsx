@@ -42,7 +42,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     };
 
     function clickTermsOfService(){
-
+      window.location.replace("https://app.termly.io/document/terms-of-use-for-saas/0fc8020f-e374-48f6-b222-fdaa3d482d39");
     }
 
     const handlePrivacyPolicy = () => {
