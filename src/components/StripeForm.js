@@ -181,7 +181,7 @@ const SuccessDisplay = ({ seshId }) => {
     console.log("Get session now");
     getSession(sessionId);
   }else{
-    console.log("About to update user");
+    console.log("About to update user.");
     if(user.username !== undefined && subscription.id !== undefined && !userUpdated){
       updateUserSubId(user.username,subscription.id);
     }  
