@@ -23,7 +23,9 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     const [usernameError, setUsernameError] = React.useState(false);
     const [usernameHelperText, setUsernameHelperText] = React.useState(false);
     const [passwordError, setPasswordError] = React.useState(false);
+    const [passwordHelperText, setPasswordHelperText] = React.useState(false);
     const [verifyPasswordError, setVerifyPasswordError] = React.useState(false);
+    const [failedUsername,setFailedUsername] = React.useState('');
 
     const handleContinue = () => {
 		  doContinue();
@@ -114,12 +116,14 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       setEmailError(false);
     }
 
-    if(usernameError && username.length !== 0){
-      setUsernameError(false);
+    if(usernameError && username.length !== 0 && username !== failedUsername){
+      setFailedUsername("");
       setUsernameHelperText("");
+      setUsernameError(false);
     }
 
     if(passwordError && password.length !== 0){
+      setPasswordHelperText("");
       setPasswordError(false);
     }
 
@@ -161,10 +165,13 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
               console.log("Something's not right");
               if(username.length === 0 || !isUsernameValid()){
                 console.log("Username not correct");
+                setFailedUsername(username);
+                setUsernameHelperText("Username must be 8-16 characters (letters and numbers)")
                 setUsernameError(true);
               }
               if(password.length === 0 || !isPasswordValid(password)){
                 console.log("Password not correct");
+                setPasswordHelperText("Password must be 8-16 characters (letters,numbers,!@#$%^&*")
                 setPasswordError(true);
               }
               if(passwordAgain.length === 0 || !isPasswordValid(passwordAgain) || (password !== passwordAgain)){
@@ -196,8 +203,9 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
         setNewUsername(newUsername);
         setCurrentPage('verification-form');      
       }else{
-        setUsernameError(true);
         setUsernameHelperText("Username already exists");
+        setFailedUsername(username);
+        setUsernameError(true);
       }
     }
 
@@ -344,7 +352,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       alignItems="center"
       >
                 <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-                <TextField id="Password" error={passwordError} value={password} onChange={handlePassword} label="Password" variant="outlined"style={{marginBottom:"10px"}}></TextField>
+                <TextField id="Password" helperText={passwordHelperText} error={passwordError} value={password} onChange={handlePassword} label="Password" variant="outlined"style={{marginBottom:"10px"}}></TextField>
                 <TextField id="PasswordAgain" error={verifyPasswordError} value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined" style={{marginBottom:"10px"}}></TextField>
                 </Grid>
             :
@@ -370,7 +378,7 @@ justifyContent="center"
 alignItems="center"
 >
       <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-      <TextField id="Password" error={passwordError} value={password} onChange={handlePassword} label="Password" variant="outlined"style={{marginBottom:"10px"}}></TextField>
+      <TextField id="Password" helperText={passwordHelperText} error={passwordError} value={password} onChange={handlePassword} label="Password" variant="outlined"style={{marginBottom:"10px"}}></TextField>
       <TextField id="PasswordAgain" error={verifyPasswordError} value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined" style={{marginBottom:"10px"}}></TextField>
       </Grid>
   :
