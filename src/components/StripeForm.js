@@ -31,16 +31,35 @@ const [expired,setExpired] = React.useState(false);
 
 
 const ProductDisplay = () => (
-  <Grid
-				container
-				direction="column"
-        justifyContent="center"
-				alignItems="center"
-			>
-        <div>Premium One</div>
-        <div>$0.50 per month</div>
+  <div id="product-display" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+          {isMobile ?
+          <div style={{width:formWidth,height:formHeight,paddingTop:"40px"}}>
+              <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <div>Premium One</div>
+              <div>$0.50 per month</div>
+                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToProduct}>Checkout</Button>
+              </Grid>  
+          </div> :
+          <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px"}}>
+              <Grid
+				        container
+				        direction="column"
+                justifyContent="center"
+				        alignItems="center"
+			        >
+            <div>Premium One</div>
+            <div>$0.50 per month</div>
       <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToProduct}>Checkout</Button>
     </Grid>
+          </div>
+          }
+          
+</div>
 );
 
 const handleGoToProduct = () => {
@@ -368,6 +387,8 @@ async function getSession(seshId){
   				          justifyContent="center"
 				            alignItems="center"
 			              >
+                    <div>You have verified your account!</div>
+                    <div>Please continue to choose your subscription plan.</div>
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
                   </Grid>    
           </div> :
@@ -378,6 +399,8 @@ async function getSession(seshId){
   				          justifyContent="center"
 				            alignItems="center"
 			              >
+                    <div>You have verified your account!</div>
+                    <div>Please continue to choose your subscription plan.</div>
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
                   </Grid>
           </div>
