@@ -29,7 +29,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 	  }
 
     function usernameIsGood(){
-      console.log("is Username good?")
+      console.log("is Username good??")
       for(let i = 0; i<username.length;i++){
         console.log("username i=" + i);
         if(!isCharacterALetter(username.substring(i,i+1))){
