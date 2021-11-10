@@ -264,8 +264,6 @@ export default class App extends React.Component {
   executeLogIn = (user) =>{
     console.log("set user in local storage: " + user);
     localStorage.setItem('user', user);
-    const loggedInUser = localStorage.getItem("user");
-    console.log("Loggin in user (in executelogin): " + loggedInUser);
     this.setState({loggedIn:user,userID:user});
     this.resetAll([]);
     this.engageReload();
@@ -366,10 +364,9 @@ export default class App extends React.Component {
     const loggedInUser = localStorage.getItem("user");
     console.log("Loggin in user: " + loggedInUser);
 
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      console.log("***Found User: " + foundUser);
-      this.setState({loggedIn:foundUser,userID:foundUser});
+    if (loggedInUser !== undefined && loggedInUser !== "") {
+      console.log("***Found User: " + loggedInUser);
+      this.setState({loggedIn:loggedInUser,userID:foundUser});
     }
 
     if ((this.state.loggedIn !== '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading))){
