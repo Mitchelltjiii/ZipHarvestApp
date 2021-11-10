@@ -140,6 +140,9 @@ app.get("/api/users/:username/:password",(req,res) => {
           if(err) throw err;
           console.log('The data from users table are: \n', rows);
           let foundLogin = false;
+          let verified = false;
+          let subscription = false;
+
           try{
             console.log("Trying iteration without parse");
             for(const val of rows){
@@ -150,6 +153,14 @@ app.get("/api/users/:username/:password",(req,res) => {
                 if(val.password==req.params.password){
                   console.log("Password Correct!");
                   foundLogin = true;
+                  if(val.verified===0){
+                    console.log("Verified");
+                    verified = true;
+                  }
+                  if(val.subid !== ""){
+                    console.log("Sub found");
+                    subscription = true;
+                  }
                 }
               }
             }
@@ -158,9 +169,15 @@ app.get("/api/users/:username/:password",(req,res) => {
             console.log("Caught error 1");
           }
           if(foundLogin){
-            res.json(0);
+            if(subscription){
+              res.json(0);
+            }else if(verified){
+              res.json(1);
+            }else{
+              res.json(2);
+            }
           }else{
-            res.json(1);
+            res.json(3);
           }
     });
   });

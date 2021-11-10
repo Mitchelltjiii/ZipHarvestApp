@@ -209,7 +209,7 @@ const SuccessDisplay = ({ seshId }) => {
               justifyContent="center"
             alignItems="center"
           >
-                <div>Congrats, your Zipharvest subscription has been created!</div>
+                <div style={{textAlign:"center"}}>Congrats, your Zipharvest subscription has been created!</div>
                 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetStarted}>Get Started</Button>
                 </Grid>
         </div>

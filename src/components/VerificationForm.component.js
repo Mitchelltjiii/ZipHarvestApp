@@ -17,6 +17,10 @@ function VerificationForm({setCurrentPage,newUsername}) {
         getUser();
     }
 
+    const handleGoToHome = () => {
+      window.location.replace("https://www.zipharvest.app/");
+    }  
+
     async function getUser(){
           console.log("Try to get user");
           const response = await fetch(`/get-user/${newUsername}`);
@@ -151,7 +155,15 @@ function VerificationForm({setCurrentPage,newUsername}) {
                             <div>We sent you a link to verify your account. If you haven't recieved it, try checking your spam folder.</div>
                             <div>If you are still having trouble, you can send a new code below. Code will expire 15 minutes after creation.</div>
                             </Grid>
-                            <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
+                            <Grid
+                            container
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            >
+                            <Button style={{marginTop:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
+                            <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
+                            </Grid>
                         </Grid>
                             </div>
                             :

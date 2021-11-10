@@ -48,8 +48,15 @@ export default class App extends React.Component {
 
     this.state.users = text;
     this.state.usersLoading = false;
+    console.log("Try Login Response: " + text);
     if(text === "0"){
       this.executeLogIn(username,text);
+    }else if(text === "1"){
+      console.log("Text === 1");
+    }else if(text === "2"){
+      console.log("Text === 2");
+    }else if(text === "3"){
+      console.log("Text === 3");
     }
   }
 
