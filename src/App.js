@@ -366,7 +366,7 @@ export default class App extends React.Component {
 
     if (loggedInUser !== undefined && loggedInUser !== "") {
       console.log("***Found User: " + loggedInUser);
-      this.setState({loggedIn:loggedInUser,userID:foundUser});
+      this.setState({loggedIn:loggedInUser,userID:loggedInUser});
     }
 
     if ((this.state.loggedIn !== '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading))){
