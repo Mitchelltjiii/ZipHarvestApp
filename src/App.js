@@ -311,10 +311,10 @@ export default class App extends React.Component {
   }
 
   cancelSub = () => {
-    this.getSubIdForCancel(loggedIn);
+    this.getSubIdForCancel(this.state.loggedIn);
   }
 
-  cancelSubscription = async (subid) => {
+  cancelSubscription = async (subId) => {
     console.log("Try to get subscription");
     const response = await fetch(`/cancel-subscription/${subId}`);
     const json = await response.json();
