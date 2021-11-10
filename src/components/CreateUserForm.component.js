@@ -27,6 +27,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 
     const [emailError, setEmailError] = React.useState(false);
     const [emailEngaged,setEmailEngaged] = React.useState(false);
+    const [emailErrorAt,setEmailErrorAt] = React.useState(false);
 
     const handleContinue = () => {
 		  doContinue();
@@ -73,7 +74,14 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     } 
 
     if(emailError && email.length !== 0){
-      setEmailError(false);
+      if(emailErrorAt){
+        if(email.includes("@")){
+          setEmailError(false);
+          setEmailErrorAt(false);
+        }
+      }else{
+        setEmailError(false);
+      }
     }
     
     if(email.length === 0 && emailEngaged && !emailError){
@@ -103,8 +111,11 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
                 setLastNameEngaged(true);
                 setLastNameError(true);
               }
-              if(email.length === 0 || !email.includes("@")){
+              if(email.length === 0 || !(email.includes("@"))){
                 console.log("Email not correct");
+                if(!(email.includes("@"))){
+                  setEmailErrorAt(true);
+                }
                 setEmailEngaged(true);
                 setEmailError(true);
               }
@@ -262,7 +273,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     }
 
 	return (
-		<div id="forgot-password-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+		<div id="create-user-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
 			<Grid
 				container
 				direction="column"
