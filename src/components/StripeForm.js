@@ -359,18 +359,31 @@ async function getSession(seshId){
 
   const VerifiedForm = () => {
     return(
-      <div>
-        Verified Form
-        <Grid
-				container
-				direction="column"
-  				justifyContent="center"
-				alignItems="center"
-			    >
+  <div id="verified-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+          {isMobile ?
+          <div style={{width:formWidth,height:formHeight,paddingTop:"40px"}}>
+              <Grid
+				            container
+				            direction="column"
+  				          justifyContent="center"
+				            alignItems="center"
+			              >
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
-
-            </Grid>
-      </div>
+                  </Grid>    
+          </div> :
+          <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px"}}>
+              <Grid
+				            container
+				            direction="column"
+  				          justifyContent="center"
+				            alignItems="center"
+			              >
+                    <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
+                  </Grid>
+          </div>
+          }
+          
+</div>
     )
   }
 
