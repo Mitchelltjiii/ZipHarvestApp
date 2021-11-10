@@ -14,13 +14,23 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     const [lastName, setLastName] = React.useState('');
     const [facilityName, setFacilityName] = React.useState('');
     const [facilityNameError, setFacilityNameError] = React.useState(false);
-    const [facilityNameHelperText, setFacilityNameHelperText] = React.useState('Please Enter Facility Name');
+    const [facilityNameHelperText, setFacilityNameHelperText] = React.useState('');
     const [stepTwo,setStepTwo] = React.useState(false);
     let busySettingUser = false;
+    const [facilityNameEngaged,setFacilityNameEngaged] = React.useState(false);
 
     const handleContinue = () => {
 		  doContinue();
 	  }
+
+    if(facilityName.length !== 0 && !facilityNameEngaged){
+      setFacilityNameEngaged(true);
+    } 
+    
+    if(facilityName.length === 0 && !facilityNameEngaged && facilityNameHelperText===""){
+      setFacilityNameError(true);
+      setFacilityNameHelperText("Please enter a facility name");
+    }
 
     function doContinue(){
         if(!stepTwo){
@@ -232,7 +242,7 @@ direction="column"
 justifyContent="center"
 alignItems="center"
 >
-      <TextField id="FacilityName" error={facilityName.length === 0} helperText={facilityNameHelperText} value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+      <TextField id="FacilityName" error={facilityNameError} helperText={facilityNameHelperText} value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
       <TextField id="First Name" value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
       <TextField id="Last Name" value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
       <TextField id="Email" value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
