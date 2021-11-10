@@ -81,23 +81,30 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     }
 
     function doContinue(){
+      console.log("Do Continue in Create User Form")
         if(!stepTwo){
             if(facilityName.length !== 0 && firstName.length !== 0 && lastName.length !== 0 && email.length !== 0 && email.includes("@")){
+              console.log("Pass set step two")
               setStepTwo(true);
             }else{
+              console.log("Something's not right");
               if(facilityName.length === 0){
+                console.log("FacilityName not correct");
                 setFacilityNameEngaged(true);
                 setFacilityNameError(true);
               }
               if(firstName.length === 0){
+                console.log("FirstName not correct");
                 setFirstNameEngaged(true);
                 setFirstNameError(true);
               }
               if(lastName.length === 0){
+                console.log("LastName not correct");
                 setLastNameEngaged(true);
                 setLastNameError(true);
               }
               if(email.length === 0 || !email.includes("@")){
+                console.log("Email not correct");
                 setEmailEngaged(true);
                 setEmailError(true);
               }
