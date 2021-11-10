@@ -108,7 +108,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     }
 
     async function getUserExists(){
-      console.log("Get user exists")
+      console.log("Get user exist")
       const response = await fetch(`/api/user-exists/${username}`);
       const text = await response.text();
       try{
