@@ -146,7 +146,9 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
         if(!stepTwo){
             if(email.includes("@") && isValidString(facilityName) && isValidString(firstName) && isValidString(lastName) && (email.includes("@")) && isValidStringEmail(email)){
               console.log("Pass set step two")
-              setStepTwo(true);
+              getEmailExists();
+
+              //setStepTwo(true);
             }else{
               console.log("Something's not right");
               if(!isValidString(facilityName)){
@@ -185,7 +187,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
               if(!isPasswordValid(password)){
                 console.log("Password not correct");
                 setFailedPassword(password);
-                setPasswordHelperText("(8-16 letters,numbers,!@#$%^&*")
+                setPasswordHelperText("(8-16 letters,numbers,!@#$%^&*)")
                 setPasswordError(true);
               }
               if(!isPasswordValid(passwordAgain) || (password !== passwordAgain)){
@@ -224,6 +226,30 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
         setUsernameHelperText("Username already exists");
         setFailedUsername(username);
         setUsernameError(true);
+      }
+    }
+
+    async function getEmailExists(){
+      console.log("Get email exist")
+      const response = await fetch(`/api/email-exists/${email}`);
+      const text = await response.text();
+      try{
+        console.log("Email exists JSON: " + text);
+      }catch(err){
+  
+      }
+      try{
+        console.log("Email exists JSON(STRING): " + JSON.stringify(text));
+      }catch(err){
+        
+      }
+  
+      if(text === "1"){
+        setStepTwo(true);    
+      }else{
+        setEmailHelperText("Email is already registered");
+        setFailedEmail(email);
+        setEmailError(true);
       }
     }
 

@@ -209,6 +209,38 @@ app.get("/api/user-exists/:username",(req,res) => {
   });
 });
 
+app.get("/api/email-exists/:email",(req,res) => {
+  pool.getConnection((err, connection) => {
+      if(err) throw err;
+      console.log('connected as id ' + connection.threadId);
+      console.log("Does email exists");
+      connection.query(usersQueryString, (err, rows) => {
+          connection.release(); // return the connection to pool
+          let emailExists = false;
+          if(err) throw err;
+          console.log('The data from users table are: \n', rows);
+          try{
+            console.log("Trying iteration without parse");
+            for(const val of rows){
+              console.log("Row: " + val);
+              console.log("Row.stringify: " + JSON.stringify(val));
+              if(val.email==req.params.email){
+                console.log("yes email exists");
+                emailExists=true;
+                res.json(0);
+              }
+            }
+          }catch(error){
+            console.log("Caught error 1");
+          }
+          console.log("no email does not exists");
+          if(!emailExists){
+            res.json(1);
+          }
+    });
+  });
+});
+
 let appPostDone = true;
 
 // add middlewares
