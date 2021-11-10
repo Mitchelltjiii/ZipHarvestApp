@@ -28,12 +28,63 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 		  doContinue();
 	  }
 
-    function isPasswordValid(){
+    function isUsernameValid(){
+      var minNumberofChars = 8;
+      var maxNumberofChars = 16;
+      var regularExpression = /^[a-zA-Z0-9]{8,16}$/;
+      console.log("Is Username Valid")
+      if(username.length < minNumberofChars || username.length > maxNumberofChars){
+        console.log("Wrong length")
+        return false;
+      }
+      if(!regularExpression.test(username)) {
+        console.log("Nope, somethings wrong")
+        return false;
+      }
+      console.log("Successful password")
+      return true;
+    }
+
+    function isPasswordValid(str){
       var minNumberofChars = 8;
       var maxNumberofChars = 16;
       var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
       console.log("Is Password Valid")
-      if(password.length < minNumberofChars || password.length > maxNumberofChars){
+      if(str.length < minNumberofChars || str.length > maxNumberofChars){
+        console.log("Wrong length")
+        return false;
+      }
+      if(!regularExpression.test(str)) {
+        console.log("Nope, somethings wrong")
+        return false;
+      }
+      console.log("Successful password")
+      return true;
+    }
+
+    function isValidString(str){
+      var minNumberofChars = 1;
+      var maxNumberofChars = 24;
+      var regularExpression = /^[a-zA-Z0-9!@#$%^&*]{1,24}$/;
+      console.log("Is String Valid: " + str)
+      if(str.length < minNumberofChars || str.length > maxNumberofChars){
+        console.log("Wrong length")
+        return false;
+      }
+      if(!regularExpression.test(password)) {
+        console.log("Nope, somethings wrong")
+        return false;
+      }
+      console.log("Successful password")
+      return true;
+    }
+
+    function isValidStringEmail(str){
+      var minNumberofChars = 1;
+      var maxNumberofChars = 24;
+      var regularExpression = /^[a-zA-Z0-9!@#$%^&*.]{1,24}$/;
+      console.log("Is String Valid: " + str)
+      if(str.length < minNumberofChars || str.length > maxNumberofChars){
         console.log("Wrong length")
         return false;
       }
@@ -83,19 +134,19 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
               setStepTwo(true);
             }else{
               console.log("Something's not right");
-              if(facilityName.length === 0){
+              if(facilityName.length === 0 || !isValidString(facilityName)){
                 console.log("FacilityName not correct");
                 setFacilityNameError(true);
               }
-              if(firstName.length === 0){
+              if(firstName.length === 0 || !isValidString(firstName)){
                 console.log("FirstName not correct");
                 setFirstNameError(true);
               }
-              if(lastName.length === 0){
+              if(lastName.length === 0 || !isValidString(lastName)){
                 console.log("LastName not correct");
                 setLastNameError(true);
               }
-              if(email.length === 0 || !(email.includes("@"))){
+              if(email.length === 0 || !(email.includes("@")) || !isValidStringEmail(email)){
                 console.log("Email not correct");
                 setEmailError(true);
               }
@@ -106,15 +157,15 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
               getUserExists();
             }else{
               console.log("Something's not right");
-              if(username.length === 0){
+              if(username.length === 0 || !isUsernameValid()){
                 console.log("Username not correct");
                 setUsernameError(true);
               }
-              if(password.length === 0 || !isPasswordValid()){
+              if(password.length === 0 || !isPasswordValid(password)){
                 console.log("Password not correct");
                 setPasswordError(true);
               }
-              if(passwordAgain.length === 0){
+              if(passwordAgain.length === 0 || !isPasswordValid(passwordAgain) || (password !== passwordAgain)){
                 console.log("PasswordAgain not correct");
                 setVerifyPasswordError(true);
               }
