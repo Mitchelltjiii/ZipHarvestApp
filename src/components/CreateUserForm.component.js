@@ -29,6 +29,9 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     const [failedUsername,setFailedUsername] = React.useState('');
     const [emailHelperText, setEmailHelperText] = React.useState(false);    
     const [failedEmail,setFailedEmail] = React.useState('');
+    const [failedPassword,setFailedPassword] = React.useState('');
+    const [failedVerifyPassword,setFailedVerifyPassword] = React.useState('');
+
 
     const handleContinue = () => {
 		  doContinue();
@@ -127,12 +130,12 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       setUsernameError(false);
     }
 
-    if(passwordError && password.length !== 0){
+    if(passwordError && password.length !== 0 && password !== failedPassword){
       setPasswordHelperText("");
       setPasswordError(false);
     }
 
-    if(verifyPasswordError && passwordAgain.length !== 0){
+    if(verifyPasswordError && passwordAgain.length !== 0 && (passwordAgain !== failedVerifyPassword)){
       setVerifyPasswordHelperText("");
       setVerifyPasswordError(false);
     }
@@ -181,12 +184,14 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
               }
               if(!isPasswordValid(password)){
                 console.log("Password not correct");
+                setFailedPassword(password);
                 setPasswordHelperText("(8-16 letters,numbers,!@#$%^&*")
                 setPasswordError(true);
               }
               if(!isPasswordValid(passwordAgain) || (password !== passwordAgain)){
                 console.log("PasswordAgain not correct");
                 if(password !== passwordAgain){
+                  setFailedVerifyPassword(passwordAgain);
                   setVerifyPasswordHelperText("Passwords do not match");
                 }
                 setVerifyPasswordError(true);
