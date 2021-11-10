@@ -27,7 +27,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       setFacilityNameEngaged(true);
     } 
     
-    if(facilityName.length === 0 && !facilityNameEngaged && facilityNameHelperText===""){
+    if(facilityName.length === 0 && facilityNameEngaged && facilityNameHelperText===""){
       setFacilityNameError(true);
       setFacilityNameHelperText("Please enter a facility name");
     }
