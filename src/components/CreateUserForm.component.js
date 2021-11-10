@@ -13,6 +13,8 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     const [firstName, setFirstName] = React.useState('');
     const [lastName, setLastName] = React.useState('');
     const [facilityName, setFacilityName] = React.useState('');
+    const [facilityNameError, setFacilityNameError] = React.useState(false);
+    const [facilityNameHelperText, setFacilityNameHelperText] = React.useState('Please Enter Facility Name');
     const [stepTwo,setStepTwo] = React.useState(false);
     let busySettingUser = false;
 
@@ -230,7 +232,7 @@ direction="column"
 justifyContent="center"
 alignItems="center"
 >
-      <TextField id="FacilityName" value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+      <TextField id="FacilityName" error={facilityName.length === 0} helperText={facilityNameHelperText} value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
       <TextField id="First Name" value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
       <TextField id="Last Name" value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
       <TextField id="Email" value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
