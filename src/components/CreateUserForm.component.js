@@ -31,7 +31,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     function isUsernameValid(){
       var minNumberofChars = 8;
       var maxNumberofChars = 16;
-      var regularExpression = /[a-zA-Z0-9]{8,16}$/;
+      var regularExpression = /^[a-zA-Z0-9]{8,16}$/;
       console.log("Is Username Valid")
       if(username.length < minNumberofChars || username.length > maxNumberofChars){
         console.log("Wrong length")
