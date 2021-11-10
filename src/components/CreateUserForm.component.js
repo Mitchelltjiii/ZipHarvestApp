@@ -13,11 +13,16 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     const [firstName, setFirstName] = React.useState('');
     const [lastName, setLastName] = React.useState('');
     const [facilityName, setFacilityName] = React.useState('');
-    const [facilityNameError, setFacilityNameError] = React.useState(false);
-    const [facilityNameHelperText, setFacilityNameHelperText] = React.useState('');
     const [stepTwo,setStepTwo] = React.useState(false);
     let busySettingUser = false;
+
+    const [facilityNameError, setFacilityNameError] = React.useState(false);
+    const [facilityNameHelperText, setFacilityNameHelperText] = React.useState('');
     const [facilityNameEngaged,setFacilityNameEngaged] = React.useState(false);
+
+    const [firstNameError, setFirstNameError] = React.useState(false);
+    const [firstNameHelperText, setFirstNameHelperText] = React.useState('');
+    const [firstNameEngaged,setFirstNameEngaged] = React.useState(false);
 
     const handleContinue = () => {
 		  doContinue();
@@ -34,12 +39,39 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     
     if(facilityName.length === 0 && facilityNameEngaged && facilityNameHelperText===""){
       setFacilityNameError(true);
-      setFacilityNameHelperText("Please enter a facility name");
+      setFacilityNameHelperText("Please enter your facility's name");
+    }
+
+    if(firstName.length !== 0 && !firstNameEngaged){
+      setFirstNameEngaged(true);
+    } 
+
+    if(firstNameError && firstName.length !== 0){
+      setFirstNameError(false);
+      setFirstNameHelperText("");
+    }
+    
+    if(firstName.length === 0 && firstNameEngaged && firstNameHelperText===""){
+      setFirstNameError(true);
+      setFirstNameHelperText("Please enter your first name");
     }
 
     function doContinue(){
         if(!stepTwo){
-            setStepTwo(true);
+            if(facilityName.length !== 0 && firstName.length !== 0){
+              setStepTwo(true);
+            }else{
+              if(facilityName.length === 0){
+                setFacilityNameEngaged(true);
+                setFacilityNameError(true);
+                setFacilityNameHelperText("Please enter your facility's name");
+              }
+              if(firstName.length === 0){
+                setFirstNameEngaged(true);
+                setFirstNameError(true);
+                setFirstNameHelperText("Please enter your first name");
+              }
+            }
         }else{
             getUserExists();
         }
@@ -221,8 +253,8 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       justifyContent="center"
       alignItems="center"
       >
-                <TextField id="FacilityName" value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-                <TextField id="First Name" value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+                <TextField id="FacilityName" error={facilityNameError} helperText={facilityNameHelperText} value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+                <TextField id="First Name" error={firstNameError} helperText={firstNameHelperText} value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
                 <TextField id="Last Name" value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
                 <TextField id="Email" value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
             </Grid>
@@ -248,7 +280,7 @@ justifyContent="center"
 alignItems="center"
 >
       <TextField id="FacilityName" error={facilityNameError} helperText={facilityNameHelperText} value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-      <TextField id="First Name" value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+      <TextField id="First Name" error={firstNameError} helperText={firstNameHelperText} value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
       <TextField id="Last Name" value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
       <TextField id="Email" value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
   </Grid>
