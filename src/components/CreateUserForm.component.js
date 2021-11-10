@@ -28,21 +28,21 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 		  doContinue();
 	  }
 
-    function usernameIsGood(){
-      console.log("is Username good??")
-      for(let i = 0; i<username.length;i++){
-        console.log("username i=" + i);
-        if(!isCharacterALetter(username.substring(i,i+1))){
-          console.log("Return false username is bad")
-          return false;
-        }
+    function isPasswordValid(){
+      var minNumberofChars = 8;
+      var maxNumberofChars = 16;
+      var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+      console.log("Is Password Valid")
+      if(password.length < minNumberofChars || password.length > maxNumberofChars){
+        console.log("Wrong length")
+        return false;
       }
-      console.log("Return true username is good")
+      if(!regularExpression.test(password)) {
+        console.log("Nope, somethings wrong")
+        return false;
+      }
+      console.log("Successful password")
       return true;
-    }
-
-    function isCharacterALetter(char) {
-      return (/[a-zA-Z]/).test(char)
     }
 
 
@@ -106,11 +106,11 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
               getUserExists();
             }else{
               console.log("Something's not right");
-              if(username.length === 0 || !usernameIsGood()){
+              if(username.length === 0){
                 console.log("Username not correct");
                 setUsernameError(true);
               }
-              if(password.length === 0){
+              if(password.length === 0 || !isPasswordValid){
                 console.log("Password not correct");
                 setPasswordError(true);
               }
