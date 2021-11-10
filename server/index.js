@@ -277,8 +277,8 @@ app.get('/get-subid/:username', async (req,res) =>{
         connection.release(); // return the connection to pool
         if(err) throw err;
         console.log('The data from user table are: \n', rows);
-        console.log('rows.subid: ' + rows.subid);
-        res.json(rows.subid);
+        console.log('rows.subid: ' + rows[0].subid);
+        res.json(rows[0].subid);
     });
   })
 })
