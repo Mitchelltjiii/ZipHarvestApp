@@ -190,6 +190,7 @@ app.get("/api/user-exists/:username",(req,res) => {
       console.log("Does user exists");
       connection.query(usersQueryString, (err, rows) => {
           connection.release(); // return the connection to pool
+          let userExists = false;
           if(err) throw err;
           console.log('The data from users table are: \n', rows);
           try{
@@ -199,6 +200,7 @@ app.get("/api/user-exists/:username",(req,res) => {
               console.log("Row.stringify: " + JSON.stringify(val));
               if(val.username==req.params.username){
                 console.log("yes user exists");
+                userExists=true;
                 res.json(0);
               }
             }
@@ -206,7 +208,9 @@ app.get("/api/user-exists/:username",(req,res) => {
             console.log("Caught error 1");
           }
           console.log("no user does not exists");
-          res.json(1);
+          if(!userExists){
+            res.json(1);
+          }
     });
   });
 });
