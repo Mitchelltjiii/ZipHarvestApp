@@ -54,12 +54,7 @@ export default class App extends React.Component {
       
     }
 
-    try{
-      console.log("Cancelled at: " + json.canceled_at);
-    }catch(err){
-      
-    }
-    if(json.canceled_at.length !== 0){
+    if(json.canceled_at === null){
       this.executeLogIn(username);
     }else{
       console.log("Sub cancelled");
@@ -78,7 +73,7 @@ export default class App extends React.Component {
     if(json !== undefined){
         this.getSubscription(json,username);
       }else{
-        console.log("Subid undefined");
+        this.setState({newUsername:username,currentPage:'stripe-form'});
       }
   }
 
@@ -315,6 +310,44 @@ export default class App extends React.Component {
     this.forceUpdate();
   }
 
+  cancelSub = () => {
+    this.getSubIdForCancel(loggedIn);
+  }
+
+  cancelSubscription = async (subid) => {
+    console.log("Try to get subscription");
+    const response = await fetch(`/cancel-subscription/${subId}`);
+    const json = await response.json();
+    try{
+      console.log("sub json: " + json);
+    }catch(err){
+  
+    }
+    try{
+      console.log("sub json(STRING): " + JSON.stringify(json));
+    }catch(err){
+      
+    }
+
+    console.log("Sub cancelled yeahh");
+    this.executeLogout();
+  }
+
+  getSubIdForCancel = async (username) => {
+    console.log("Try to get subid");
+    const response = await fetch(`/get-subid/${username}`);
+    const json = await response.json();
+    try{
+      console.log("subid json: " + json);
+    }catch(err){
+  
+    }
+    if(json !== undefined){
+        this.cancelSubscription(json);
+      }else{
+      }
+  }
+
   attemptLogin = (username,password) => {
     this.getUsersFromDB(username,password);
   }
@@ -396,7 +429,7 @@ export default class App extends React.Component {
 
     if (this.state.loggedIn !== '') {
 	  	showForm = <div style={{margin:"auto"}}>
-	    <Header setCurrentPage={this.setCurrentPage} currentPage={this.state.currentPage} executeLogout={this.executeLogout}/>
+	    <Header setCurrentPage={this.setCurrentPage} currentPage={this.state.currentPage} executeLogout={this.executeLogout} cancelSub={this.cancelSub}/>
       <Outer currentPage={this.state.currentPage} setCurrentPage={this.setCurrentPage} getPlants={this.getPlants} getHarvestRecords={this.getHarvestRecords} getHarvestBatches={this.getHarvestBatches}
       resetHarvestBatches={this.resetHarvestBatches} resetAll={this.resetAll} currentHarvest={this.state.currentHarvest} setNewHBID={this.setNewHBID} getCurrentHarvestID={this.getCurrentHarvestID}
       setNewHarvestRecordID={this.setNewHarvestRecordID} setNewPlantID={this.setNewPlantID} userID={this.state.userID} setAll={this.setAll}

@@ -234,6 +234,11 @@ app.get('/get-subscription/:subscriptionId', async (req,res) =>{
   res.json(subscription);
 })
 
+app.get('/cancel-subscription/:subscriptionId', async (req,res) =>{
+  const deleted = await stripe.subscriptions.del(req.params.subscriptionId);
+  res.json(deleted);
+})
+
 app.get('/get-user/:username', async (req,res) =>{
   pool.getConnection((err, connection) => {
     console.log("get user sub");
