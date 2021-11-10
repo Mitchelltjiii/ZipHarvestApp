@@ -178,7 +178,6 @@ export default class App extends React.Component {
   resetAll = (currHarvest) => {
     this.setState({harvestBatchesLoading: true, plantsLoading: true, harvestRecordsLoading: true, currentHarvest: currHarvest});
 
-    this.getUsersFromDB("","");
     this.getHarvestBatchesFromDB();
     this.getPlantsFromDB(true);
     this.getHarvestRecordsFromDB(true);
@@ -204,7 +203,7 @@ export default class App extends React.Component {
 
   reloadUsers = () => {
     this.setState({usersLoading:true});
-    return this.getUsersFromDB("","");
+    return "";
   }
 
   getUsersLoading = () => {
