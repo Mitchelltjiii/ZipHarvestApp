@@ -5,6 +5,13 @@ import {isMobile} from 'react-device-detect';
 
 export default function StripeForm({verCode,userFromUrl}) {
 
+  let formWidth = "450px";
+  let formHeight = "250px";
+
+  if(isMobile){
+    formWidth = "100%";
+  }
+
   const Message = ({ message }) => (
     <section>
       <p>{message}</p>
