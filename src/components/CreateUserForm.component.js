@@ -65,13 +65,13 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     function isValidString(str){
       var minNumberofChars = 1;
       var maxNumberofChars = 24;
-      var regularExpression = /[a-zA-Z0-9!@#$%^&*]{1,24}$/;
+      var regularExpression = /^[a-zA-Z0-9!@#$%^&*]{1,24}$/;
       console.log("Is String Valid: " + str)
       if(str.length < minNumberofChars || str.length > maxNumberofChars){
         console.log("Wrong length")
         return false;
       }
-      if(!regularExpression.test(password)) {
+      if(!regularExpression.test(str)) {
         console.log("Nope, somethings wrong")
         return false;
       }
@@ -88,7 +88,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
         console.log("Wrong length")
         return false;
       }
-      if(!regularExpression.test(password)) {
+      if(!regularExpression.test(str)) {
         console.log("Nope, somethings wrong")
         return false;
       }

@@ -31,6 +31,7 @@ const usersQueryStringFromUsername = "select * from users where username = '";
 const router = require('../app/routers/router');
 
 const sgMail = require('@sendgrid/mail');
+const { reset } = require("nodemon");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 /*
@@ -142,6 +143,7 @@ app.get("/api/users/:username/:password",(req,res) => {
           let foundLogin = false;
           let verified = false;
           let subscription = false;
+          let subCanceled = false;
 
           try{
             console.log("Trying iteration without parse");
@@ -159,7 +161,14 @@ app.get("/api/users/:username/:password",(req,res) => {
                   }
                   if(val.subid !== ""){
                     console.log("Sub found");
-                    subscription = true;
+                    const sub = await stripe.subscriptions.retrieve(req.params.subscriptionId);
+                    console.log("Checking Sub in Checking user/pass");
+                    console.log("Sub: " + JSON.stringify(sub));
+                    if(sub.active){
+                      subscription = true;
+                    }else{
+                      subCanceled = true;
+                    }
                   }
                 }
               }
@@ -173,6 +182,8 @@ app.get("/api/users/:username/:password",(req,res) => {
               res.json(0);
             }else if(verified){
               res.json(1);
+            }else if(subCanceled){
+              res.json(4);
             }else{
               res.json(2);
             }
