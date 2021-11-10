@@ -21,6 +21,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     const [lastNameError, setLastNameError] = React.useState(false);
     const [emailError, setEmailError] = React.useState(false);
     const [usernameError, setUsernameError] = React.useState(false);
+    const [usernameHelperText, setUsernameHelperText] = React.useState(false);
     const [passwordError, setPasswordError] = React.useState(false);
     const [verifyPasswordError, setVerifyPasswordError] = React.useState(false);
 
@@ -115,6 +116,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 
     if(usernameError && username.length !== 0){
       setUsernameError(false);
+      setUsernameHelperText("");
     }
 
     if(passwordError && password.length !== 0){
@@ -193,6 +195,9 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
         sendVerificationEmail();
         setNewUsername(newUsername);
         setCurrentPage('verification-form');      
+      }else{
+        setUsernameError(true);
+        setUsernameHelperText("Username already exists");
       }
     }
 
@@ -338,7 +343,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       justifyContent="center"
       alignItems="center"
       >
-                <TextField id="Username" error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+                <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
                 <TextField id="Password" error={passwordError} value={password} onChange={handlePassword} label="Password" variant="outlined"style={{marginBottom:"10px"}}></TextField>
                 <TextField id="PasswordAgain" error={verifyPasswordError} value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined" style={{marginBottom:"10px"}}></TextField>
                 </Grid>
@@ -364,7 +369,7 @@ direction="column"
 justifyContent="center"
 alignItems="center"
 >
-      <TextField id="Username" error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+      <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
       <TextField id="Password" error={passwordError} value={password} onChange={handlePassword} label="Password" variant="outlined"style={{marginBottom:"10px"}}></TextField>
       <TextField id="PasswordAgain" error={verifyPasswordError} value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined" style={{marginBottom:"10px"}}></TextField>
       </Grid>
