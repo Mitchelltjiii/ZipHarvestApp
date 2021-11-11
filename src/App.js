@@ -29,6 +29,7 @@ export default class App extends React.Component {
     userID: "",
     newUsername: ""
   };
+
   componentDidMount() {
   }
   
@@ -387,6 +388,7 @@ export default class App extends React.Component {
         .includes('reload'));
       }
   render() {
+    localStorage.setItem("currentPage","harvest-form");
     console.log("Page accessed by reload?");
     let reloaded = this.pageAccessedByReload();
     console.log("Reloaded: " + reloaded);
@@ -399,7 +401,8 @@ export default class App extends React.Component {
     if(localStorage.getItem("staySignedIn")!==null && localStorage.getItem("staySignedIn")!==undefined && localStorage.getItem("staySignedIn")!==""){
       staySignedInLocal = localStorage.getItem("staySignedIn");
     }
-    console.log("localstorage.staysignedin: " + staySignedInLocal);
+    console.log("Deciding staysignedin: " + staySignedInLocal);
+    console.log("Deciding reloaded: " + reloaded);
 
     if ((reloaded || staySignedInLocal) && loggedInUser !== null && loggedInUser !== undefined && loggedInUser !== "" && this.state.loggedIn === "") {
       console.log("***Found User: " + loggedInUser);
