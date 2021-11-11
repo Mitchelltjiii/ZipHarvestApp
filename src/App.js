@@ -364,6 +364,7 @@ export default class App extends React.Component {
     console.log("render app.js")
     const loggedInUser = localStorage.getItem("user");
     console.log("Loggin in user: " + loggedInUser);
+    console.log("this.state.loggedin: " + this.state.loggedIn);
 
     if (loggedInUser !== null && loggedInUser !== undefined && loggedInUser !== "" && this.state.loggedIn === "") {
       console.log("***Found User: " + loggedInUser);
