@@ -378,7 +378,12 @@ export default class App extends React.Component {
     this.setState({newUsername:newUser});
   }
 
+  
   render() {
+    $(window).bind('beforeunload', function(){
+      return '>>>>>Before You Go<<<<<<<< \n Your custom message go here';
+    });
+    
     console.log("render app.js")
     const loggedInUser = localStorage.getItem("user");
     console.log("Loggin in user: " + loggedInUser);

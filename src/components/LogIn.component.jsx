@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import {isMobile} from 'react-device-detect';
 import Stripe from '@stripe/stripe-js'
 import logo from './logo.png'
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
 function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,attemptLogin,setCurrentPage}){
@@ -111,6 +113,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                                    </div>    
                                    <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                                    <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+                                   <FormControlLabel control={<Checkbox/>} label="Stay signed in" />
                                    <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn} style={{marginTop:"10px",marginBottom:"20px"}}>Sign in</Button>
                                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
                                    <div style={{marginTop:"5px",marginBottom:"5px"}}>Forgot {forgotIDLink} or {forgotPasswordLink}</div>
@@ -132,6 +135,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                                    </div>    
                                    <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                                    <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+                                   <FormControlLabel control={<Checkbox/>} label="Stay signed in" />
                                    <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn} style={{marginTop:"10px",marginBottom:"20px"}}>Sign in</Button>
                                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
                                    <div style={{marginTop:"5px",marginBottom:"5px"}}>Forgot {forgotIDLink} or {forgotPasswordLink}</div>
