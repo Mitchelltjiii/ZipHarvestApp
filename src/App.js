@@ -126,6 +126,7 @@ export default class App extends React.Component {
   }
 
   getHarvestBatchesFromDB = async () => {
+    console.log("This.state.userID: " + this.state.userID);
     if(this.state.userID === ""){
       return;
     }
@@ -178,6 +179,7 @@ export default class App extends React.Component {
   resetAll = (currHarvest) => {
     this.setState({harvestBatchesLoading: true, plantsLoading: true, harvestRecordsLoading: true, currentHarvest: currHarvest});
 
+    console.log("Reset all");
     this.getHarvestBatchesFromDB();
     this.getPlantsFromDB(true);
     this.getHarvestRecordsFromDB(true);
@@ -263,7 +265,7 @@ export default class App extends React.Component {
   executeLogIn = (user) =>{
     console.log("set user in local storage: " + user);
     localStorage.setItem('user', user);
-    this.setState({loggedIn:user,userID:user,usersLoading:false});
+    this.setState({loggedIn:user,userID:user});
     this.resetAll([]);
     this.engageReload();
   }
@@ -365,6 +367,7 @@ export default class App extends React.Component {
 
     if (loggedInUser !== null && loggedInUser !== undefined && loggedInUser !== "" && this.state.loggedIn === "") {
       console.log("***Found User: " + loggedInUser);
+      this.setState({loggedIn:loggedInUser,userID:loggedInUser,usersLoading:false});
       this.executeLogIn(loggedInUser);
     }
 
