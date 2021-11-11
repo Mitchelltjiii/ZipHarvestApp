@@ -512,8 +512,7 @@ async function getSession(seshId){
         updateUser(getUserItemForResend(user,newCode));
       }
 
-  const ExpiredForm = ({msg}) => {
-    
+  const ExpiredForm = (msg) => {
     return(
       <div id="Expired Form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
       {isMobile ?
@@ -544,47 +543,28 @@ async function getSession(seshId){
 		</div>
     )
   }
-  console.log("FUCK");
   if(expired){
-    console.log("GOD DAMNIT");
-
     return <ExpiredForm msg={"Your verification code expired. Please resend email."}></ExpiredForm>
   }
   if(continued){
-    console.log("ASSS");
-
     if (!success && message === '') {
-      console.log("FUCKKKK");
       return <ProductDisplay />;
     } else if (success && sessionId !== '') {
-      console.log("BRO");
-
       return <SuccessDisplay seshId={sessionId} />;
     } else {
-      console.log("SHIT");
-
       return <Message message={message} />;
     }
   }else{
-    console.log("UHHH");
-
     if(user !== null && user !== undefined && user !== [] && JSON.stringify(user) !== "[]"){
       if(user.verificationCode===verCode){
-        console.log("FUCKIT");
         return <VerifiedForm></VerifiedForm>
       }else{
-        console.log("FUCKTHIS");
-
         return <ExpiredForm msg={"This code doesn't match the last code we sent.\nTry resending or looking for the correct email."}></ExpiredForm>
       }
     }else{
       if (success && sessionId !== '') {
-        console.log("FUCKINGFUCK");
-
         return <SuccessDisplay seshId={sessionId} />;
       }else{
-        console.log("SHIT");
-
         return <ExpiredForm msg={"This code isn't correct.\nTry resending or looking for the correct email."}></ExpiredForm>
       }
     }
