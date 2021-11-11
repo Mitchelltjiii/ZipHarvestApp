@@ -288,6 +288,23 @@ app.get('/get-user/:username', async (req,res) =>{
   })
 })
 
+app.get('/get-email/:username', async (req,res) =>{
+  pool.getConnection((err, connection) => {
+    console.log("get email");
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    let username = req.params.username;
+    var sql = `${username}`;
+    console.log("Commit Query: " + usersQueryStringFromUsername + sql + "'");
+    connection.query(usersQueryStringFromUsername + sql + "'", (err, rows) => {
+        connection.release(); // return the connection to pool
+        if(err) throw err;
+        console.log('GET EMAIL - The data from users table are: \n', rows);
+        res.json(rows[0].email);
+    });
+  })
+})
+
 app.get('/get-subid/:username', async (req,res) =>{
   pool.getConnection((err, connection) => {
     console.log("get user subid");

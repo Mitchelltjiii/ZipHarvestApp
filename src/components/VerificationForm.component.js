@@ -7,6 +7,14 @@ import {isMobile} from 'react-device-detect';
 function VerificationForm({setCurrentPage,newUsername}) {
 
     let busySettingUser = false;
+    const [email,setEmail] = React.useState('');
+
+    console.log("welcome to verification form");
+    console.log("NEw Username: " + newUsername);
+    console.log("Email: " + email); 
+    if(email === '' && newUsername !== ""){
+      getEmail();
+    }
 
     const handleResend = () => {
 		resend();
@@ -45,6 +53,23 @@ function VerificationForm({setCurrentPage,newUsername}) {
             sendVerificationEmail(newUser);
           }
       }
+
+      async function getEmail(){
+        console.log("Try to get email");
+        const response = await fetch(`/get-email/${newUsername}`);
+        const json = await response.json();
+        try{
+          console.log("get email json: " + json);
+        }catch(err){
+    
+        }
+        try{
+          console.log("get email json(STRING): " + JSON.stringify(json));
+        }catch(err){
+        
+        }
+        setEmail(json);
+    }
 
       function getUserItem(newUser,newCode){
         console.log("Enter getUserItem")
