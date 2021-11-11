@@ -405,9 +405,20 @@ export default class App extends React.Component {
     console.log("Deciding reloaded: " + reloaded);
 
     if (loggedInUser !== null && loggedInUser !== undefined && loggedInUser !== "" && this.state.loggedIn === "") {
+      if(reloaded){
+        console.log("**RELOADED");
+      }else{
+        console.log("**NOT RELOADED");
+      }
+      if(staySignedInLocal){
+        console.log("**STAY SIGNED IN LOCAL");
+      }else{
+        console.log("**NOT STAY SIGNED IN LOCAL");
+      }
+
       if(reloaded || staySignedInLocal){
         console.log("***Found User: " + loggedInUser);
-        
+
         this.setState({loggedIn:loggedInUser,userID:loggedInUser,usersLoading:false});
         console.log("Stay signed in**: " + staySignedInLocal);
         this.executeLogIn(loggedInUser,staySignedInLocal);
