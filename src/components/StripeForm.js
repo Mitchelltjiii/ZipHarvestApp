@@ -521,7 +521,7 @@ async function getSession(seshId){
             container
             direction="column"
               justifyContent="center"
-            alignItems="center"
+              alignItems="center"
           >
                 <div style={{textAlign:"center"}}>{msg}</div>
                 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
