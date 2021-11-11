@@ -378,12 +378,16 @@ export default class App extends React.Component {
     this.setState({newUsername:newUser});
   }
 
-  
+  pageAccessedByReload = () => {
+    return (window.performance
+        .getEntriesByType('navigation')
+        .map((nav) => nav.type)
+        .includes('reload'));
+      }
   render() {
-    $(window).bind('beforeunload', function(){
-      return '>>>>>Before You Go<<<<<<<< \n Your custom message go here';
-    });
-    
+    console.log("Page accessed by reload?");
+    let reloaded = this.pageAccessedByReload();
+    console.log("Reloaded: " + reloaded);
     console.log("render app.js")
     const loggedInUser = localStorage.getItem("user");
     console.log("Loggin in user: " + loggedInUser);
