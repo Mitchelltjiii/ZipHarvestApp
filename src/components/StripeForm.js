@@ -296,6 +296,7 @@ async function getSession(seshId){
       userString = userString.substring(1,userString.length-1);
       console.log("User string: " + userString);
       let newUser = JSON.parse(userString);
+      console.log("New user: " + JSON.stringify(newUser));
 
       if(newUser.verified===1){
         console.log("Checking VerCode");
@@ -324,7 +325,9 @@ async function getSession(seshId){
           setUser(newUser);
         }
       }else{
+        console.log("Verified, Userstring: " + userString);
         if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
+          console.log("Setcontinued: true");
           setContinued(true);
           setUser(newUser);
         }
