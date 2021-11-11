@@ -39,7 +39,7 @@ export default class App extends React.Component {
     }
   }
 
-  getSubscription = async (subId,username) => {
+  getSubscription = async (subId,username,staySignedIn) => {
     console.log("Try to get subscription");
     const response = await fetch(`/get-subscription/${subId}`);
     const json = await response.json();
@@ -55,13 +55,13 @@ export default class App extends React.Component {
     }
 
     if(json.canceled_at === null){
-      this.executeLogIn(username);
+      this.executeLogIn(username,staySignedIn);
     }else{
       console.log("Sub cancelled");
     }
   }
 
-  getSubId = async (username) => {
+  getSubId = async (username,staySignedIn) => {
     console.log("Try to get subid");
     const response = await fetch(`/get-subid/${username}`);
     const json = await response.json();
@@ -71,13 +71,13 @@ export default class App extends React.Component {
   
     }
     if(json !== undefined){
-        this.getSubscription(json,username);
+        this.getSubscription(json,username,staySignedIn);
       }else{
         this.setState({newUsername:username,currentPage:'stripe-form'});
       }
   }
 
-  getUsersFromDB = async (username,password) => {
+  getUsersFromDB = async (username,password,staySignedIn) => {
     const response = await fetch(`/api/users/${username}/${password}`);
     const text = await response.text();
     /*const responseTwo = await fetch(`/create-customer`);
@@ -87,7 +87,7 @@ export default class App extends React.Component {
     this.state.usersLoading = false;
     console.log("Try Login Response: " + text);
     if(text === "0"){
-      this.getSubId(username);
+      this.getSubId(username,staySignedIn);
     }else if(text === "1"){
       this.setState({newUsername:username,currentPage:'stripe-form'});
       console.log("Text === 1");
@@ -275,9 +275,11 @@ export default class App extends React.Component {
       this.setState({plants: tempPlants});
 	}
 
-  executeLogIn = (user) =>{
+  executeLogIn = (user,staySignedIn) =>{
     console.log("set user in localstorage: " + user);
+    console.log("set staysignedin in localstorage: " + staySignedIn);
     localStorage.setItem('user', user);
+    localStorage.setItem('staySignedIn',staySignedIn);
     let currPage = localStorage.getItem("currentPage");
     if(currPage !== null && currPage !== undefined && currPage !== ""){
       this.setState({loggedIn:user,userID:user,currentPage:currPage});
@@ -370,8 +372,8 @@ export default class App extends React.Component {
       }
   }
 
-  attemptLogin = (username,password) => {
-    this.getUsersFromDB(username,password);
+  attemptLogin = (username,password,staySignedIn) => {
+    this.getUsersFromDB(username,password,staySignedIn);
   }
 
   setNewUsername = (newUser) => {
@@ -396,7 +398,12 @@ export default class App extends React.Component {
     if (loggedInUser !== null && loggedInUser !== undefined && loggedInUser !== "" && this.state.loggedIn === "") {
       console.log("***Found User: " + loggedInUser);
       this.setState({loggedIn:loggedInUser,userID:loggedInUser,usersLoading:false});
-      this.executeLogIn(loggedInUser);
+      let staySignedIn = false
+      if(localStorage.getItem("staySignedIn")){
+        staySignedIn = true;
+      }
+      console.log("Stay signed in**: " + staySignedIn);
+      this.executeLogIn(loggedInUser,staySignedIn);
     }
 
     if ((this.state.loggedIn !== '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading))){
