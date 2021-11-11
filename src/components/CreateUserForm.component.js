@@ -396,8 +396,51 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       alignItems="center"
       >
                 <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-                <TextField id="Password" helperText={passwordHelperText} error={passwordError} value={password} onChange={handlePassword} label="Password" variant="outlined"style={{marginBottom:"10px"}}></TextField>
-                <TextField id="PasswordAgain" helperText={verifyPasswordHelperText} error={verifyPasswordError} value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+                <TextField
+  helperText={passwordHelperText} error={passwordError} 
+  style={{marginBottom:"10px",width:"70%"}}
+  value={password}
+  label='Password'
+  variant="outlined"
+  type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+  onChange={handlePassword} 
+  InputProps={{ // <-- This is where the toggle button is added.
+    endAdornment: (
+      <InputAdornment position="end">
+        <IconButton
+          aria-label="toggle password visiblity"
+          onClick={handleClickShowPassword}
+          onMouseDown={handleMouseDownPassword}
+        >
+          {showPassword ? <Visibility /> : <VisibilityOff />}
+        </IconButton>
+      </InputAdornment>
+    )
+  }}
+/>         
+<TextField
+  helperText={verifyPasswordHelperText} error={verifyPasswordError} 
+  style={{marginBottom:"10px",width:"70%"}}
+  value={passwordAgain}
+  label='PasswordAgain'
+  variant="outlined"
+  type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
+  onChange={handlePasswordAgain} 
+  InputProps={{ // <-- This is where the toggle button is added.
+    endAdornment: (
+      <InputAdornment position="end">
+        <IconButton
+          aria-label="toggle password visiblity"
+          onClick={handleClickShowPassword}
+          onMouseDown={handleMouseDownPassword}
+        >
+          {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
+        </IconButton>
+      </InputAdornment>
+    )
+  }}
+/> 
+                    
                 </Grid>
             :
             <Grid
@@ -422,9 +465,50 @@ justifyContent="center"
 alignItems="center"
 >
       <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-      <TextField id="Password" helperText={passwordHelperText} error={passwordError} value={password} onChange={handlePassword} label="Password" variant="outlined"style={{marginBottom:"10px"}}></TextField>
-      <TextField id="PasswordAgain" helperText={verifyPasswordHelperText} error={verifyPasswordError} value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-      </Grid>
+      <TextField
+  helperText={passwordHelperText} error={passwordError} 
+  style={{marginBottom:"10px",width:"70%"}}
+  value={password}
+  label='Password'
+  variant="outlined"
+  type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+  onChange={handlePassword} 
+  InputProps={{ // <-- This is where the toggle button is added.
+    endAdornment: (
+      <InputAdornment position="end">
+        <IconButton
+          aria-label="toggle password visiblity"
+          onClick={handleClickShowPassword}
+          onMouseDown={handleMouseDownPassword}
+        >
+          {showPassword ? <Visibility /> : <VisibilityOff />}
+        </IconButton>
+      </InputAdornment>
+    )
+  }}
+/>         
+<TextField
+  helperText={verifyPasswordHelperText} error={verifyPasswordError} 
+  style={{marginBottom:"10px",width:"70%"}}
+  value={passwordAgain}
+  label='PasswordAgain'
+  variant="outlined"
+  type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
+  onChange={handlePasswordAgain} 
+  InputProps={{ // <-- This is where the toggle button is added.
+    endAdornment: (
+      <InputAdornment position="end">
+        <IconButton
+          aria-label="toggle password visiblity"
+          onClick={handleClickShowPassword}
+          onMouseDown={handleMouseDownPassword}
+        >
+          {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
+        </IconButton>
+      </InputAdornment>
+    )
+  }}
+/> </Grid>
   :
   <Grid
 container
