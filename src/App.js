@@ -159,6 +159,7 @@ export default class App extends React.Component {
 
 
   setCurrentPage = (currPage) => {
+    localStorage.setItem("currentPage",currPage);
     this.setState({currentPage: currPage});
     this.forceUpdate();
   }
@@ -277,7 +278,12 @@ export default class App extends React.Component {
   executeLogIn = (user) =>{
     console.log("set user in localstorage: " + user);
     localStorage.setItem('user', user);
-    this.setState({loggedIn:user,userID:user});
+    let currPage = localStorage.getItem("currentPage");
+    if(currPage !== null && currPage !== undefined && currPage !== ""){
+      this.setState({loggedIn:user,userID:user,currentPage:currPage});
+    }else{
+      this.setState({loggedIn:user,userID:user});
+    }
     this.resetAll([]);
     this.engageReload();
   }
