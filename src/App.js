@@ -401,7 +401,11 @@ export default class App extends React.Component {
     if(localStorage.getItem("staySignedIn")!==null && localStorage.getItem("staySignedIn")!==undefined && localStorage.getItem("staySignedIn")!==""){
       staySignedInLocal = localStorage.getItem("staySignedIn");
     }
-    console.log("Deciding staysignedin: " + staySignedInLocal);
+    let staySignedIn = false;
+    if(staySignedInLocal === "true"){
+      staySignedIn = true;
+    }
+    console.log("Deciding staysignedin: " + staySignedIn);
     console.log("Deciding reloaded: " + reloaded);
 
     if (loggedInUser !== null && loggedInUser !== undefined && loggedInUser !== "" && this.state.loggedIn === "") {
@@ -410,18 +414,18 @@ export default class App extends React.Component {
       }else{
         console.log("**NOT RELOADED");
       }
-      if(staySignedInLocal){
+      if(staySignedIn){
         console.log("**STAY SIGNED IN LOCAL");
       }else{
         console.log("**NOT STAY SIGNED IN LOCAL");
       }
 
-      if(reloaded || staySignedInLocal){
+      if(reloaded || staySignedIn){
         console.log("***Found User: " + loggedInUser);
 
         this.setState({loggedIn:loggedInUser,userID:loggedInUser,usersLoading:false});
-        console.log("Stay signed in**: " + staySignedInLocal);
-        this.executeLogIn(loggedInUser,staySignedInLocal);
+        console.log("Stay signed in**: " + staySignedIn);
+        this.executeLogIn(loggedInUser,staySignedIn);
       }
     }
 
