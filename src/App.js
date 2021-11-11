@@ -103,7 +103,11 @@ export default class App extends React.Component {
     if(this.state.userID === "" && localStorage.getItem("user")===""){
       return;
     }
-    const response = await fetch(`/api/pl/${this.state.userID}`);
+    let userForFetch = this.state.userID;
+    if(localStorage.getItem("user")!==null && localStorage.getItem("user")!==undefined && localStorage.getItem("user")!==""){
+      userForFetch = localStorage.getItem("user");
+    }
+    const response = await fetch(`/api/pl/${this.state.userForFetch}`);
     const text = await response.text();
     this.state.plants = text;
     this.state.plantsLoading = false;
@@ -116,7 +120,11 @@ export default class App extends React.Component {
     if(this.state.userID === "" && localStorage.getItem("user")===""){
       return;
     }
-    const response = await fetch(`/api/hr/${this.state.userID}`);
+    let userForFetch = this.state.userID;
+    if(localStorage.getItem("user")!==null && localStorage.getItem("user")!==undefined && localStorage.getItem("user")!==""){
+      userForFetch = localStorage.getItem("user");
+    }
+    const response = await fetch(`/api/hr/${this.state.userForFetch}`);
     const text = await response.text();
     this.state.harvestRecords = text;
     this.state.harvestRecordsLoading = false;
@@ -130,7 +138,11 @@ export default class App extends React.Component {
     if(this.state.userID === "" && localStorage.getItem("user")===""){
       return;
     }
-    const response = await fetch(`/api/hb/${this.state.userID}`);
+    let userForFetch = this.state.userID;
+    if(localStorage.getItem("user")!==null && localStorage.getItem("user")!==undefined && localStorage.getItem("user")!==""){
+      userForFetch = localStorage.getItem("user");
+    }
+    const response = await fetch(`/api/hb/${this.state.userForFetch}`);
     const text = await response.text();
     this.state.harvestBatches = text;
     this.state.harvestBatchesLoading = false;
@@ -362,7 +374,7 @@ export default class App extends React.Component {
 
   render() {
     console.log("render app.js")
-    const loggedInUser = "";
+    const loggedInUser = localStorage.getItem("user");
     console.log("Loggin in user: " + loggedInUser);
     console.log("this.state.loggedin: " + this.state.loggedIn);
 
