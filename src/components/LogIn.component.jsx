@@ -6,14 +6,22 @@ import {isMobile} from 'react-device-detect';
 import Stripe from '@stripe/stripe-js'
 import logo from './logo.png'
 import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-
-
+import FormControlLabel from '@material-ui/core/FormControlLabel';import {
+  TextField,
+  InputAdornment,
+  IconButton
+} from "@material-ui/core";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,attemptLogin,setCurrentPage}){
 
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [staySignedIn, setStaySignedIn] = React.useState(false);
+    const [showPassword,setShowPassword] = React.useState(false);
+
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
     const handleForgotID = () => {
       clickForgotID();
@@ -118,8 +126,24 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                                        <img alt="logo" src={logo} style={{minHeight:"62px",maxHeight: "62px"}}/>
                                    </div>    
                                    <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
-                                   <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-                                   <FormControlLabel onChange={handleStaySignedInChanged} control={<Checkbox/>} label="Stay signed in" />
+                                   <TextField
+  label='Password'
+  variant="outlined"
+  type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+  InputProps={{ // <-- This is where the toggle button is added.
+    endAdornment: (
+      <InputAdornment position="end">
+        <IconButton
+          aria-label="toggle password visibility"
+          onClick={handleClickShowPassword}
+          onMouseDown={handleMouseDownPassword}
+        >
+          {showPassword ? <Visibility /> : <VisibilityOff />}
+        </IconButton>
+      </InputAdornment>
+    )
+  }}
+/>                                   <FormControlLabel onChange={handleStaySignedInChanged} control={<Checkbox/>} label="Stay signed in" />
                                    <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn} style={{marginTop:"10px",marginBottom:"20px"}}>Sign in</Button>
                                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
                                    <div style={{marginTop:"5px",marginBottom:"5px"}}>Forgot {forgotIDLink} or {forgotPasswordLink}</div>
