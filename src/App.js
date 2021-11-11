@@ -404,12 +404,8 @@ export default class App extends React.Component {
     if ((reloaded || staySignedInLocal) && loggedInUser !== null && loggedInUser !== undefined && loggedInUser !== "" && this.state.loggedIn === "") {
       console.log("***Found User: " + loggedInUser);
       this.setState({loggedIn:loggedInUser,userID:loggedInUser,usersLoading:false});
-      let staySignedIn = false
-      if(localStorage.getItem("staySignedIn")){
-        staySignedIn = true;
-      }
-      console.log("Stay signed in**: " + staySignedIn);
-      this.executeLogIn(loggedInUser,staySignedIn);
+      console.log("Stay signed in**: " + staySignedInLocal);
+      this.executeLogIn(loggedInUser,staySignedInLocal);
     }
 
     if ((this.state.loggedIn !== '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading))){
