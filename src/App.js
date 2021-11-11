@@ -263,7 +263,7 @@ export default class App extends React.Component {
 	}
 
   executeLogIn = (user) =>{
-    console.log("set user in local storage: " + user);
+    console.log("set user in localstorage: " + user);
     localStorage.setItem('user', user);
     this.setState({loggedIn:user,userID:user});
     this.resetAll([]);
