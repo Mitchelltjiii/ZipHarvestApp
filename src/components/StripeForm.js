@@ -512,7 +512,7 @@ async function getSession(seshId){
         updateUser(getUserItemForResend(user,newCode));
       }
 
-  const ExpiredForm = (msg) => {
+  const ExpiredForm = ({msg}) => {
     
     return(
       <div id="Expired Form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
