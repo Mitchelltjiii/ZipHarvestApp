@@ -6,13 +6,11 @@ import {isMobile} from 'react-device-detect';
 import Stripe from '@stripe/stripe-js'
 import logo from './logo.png'
 import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';import {
-  TextField,
-  InputAdornment,
-  IconButton
-} from "@material-ui/core";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import {InputAdornment,IconButton} from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+
 function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,attemptLogin,setCurrentPage}){
 
     const [username, setUsername] = React.useState('');
