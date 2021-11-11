@@ -362,8 +362,7 @@ export default class App extends React.Component {
 
   render() {
     console.log("render app.js")
-    const loggedInUser = localStorage.getItem("user");
-    loggedInUser = "";
+    const loggedInUser = "";
     console.log("Loggin in user: " + loggedInUser);
     console.log("this.state.loggedin: " + this.state.loggedIn);
 
