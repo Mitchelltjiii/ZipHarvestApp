@@ -334,12 +334,12 @@ async function getSession(seshId){
       const response = await fetch(`/get-user-seshId/${seshId}`);
       const json = await response.json();
       try{
-       console.log("sub json: " + json);
+       console.log("user json: " + json);
      }catch(err){
       
       }
       try{
-        console.log("sub json(STRING): " + JSON.stringify(json));
+        console.log("user json(STRING): " + JSON.stringify(json));
       }catch(err){
         
       }
