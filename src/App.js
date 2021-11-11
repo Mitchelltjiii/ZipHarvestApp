@@ -100,7 +100,7 @@ export default class App extends React.Component {
   }
 
   getPlantsFromDB = async (reload) => {
-    if(this.state.userID === ""){
+    if(this.state.userID === "" && localStorage.getItem("user")===""){
       return;
     }
     const response = await fetch(`/api/pl/${this.state.userID}`);
@@ -113,7 +113,7 @@ export default class App extends React.Component {
   }
 
   getHarvestRecordsFromDB = async (reload) => {
-    if(this.state.userID === ""){
+    if(this.state.userID === "" && localStorage.getItem("user")===""){
       return;
     }
     const response = await fetch(`/api/hr/${this.state.userID}`);
@@ -127,7 +127,7 @@ export default class App extends React.Component {
 
   getHarvestBatchesFromDB = async () => {
     console.log("This.state.userID: " + this.state.userID);
-    if(this.state.userID === ""){
+    if(this.state.userID === "" && localStorage.getItem("user")===""){
       return;
     }
     const response = await fetch(`/api/hb/${this.state.userID}`);

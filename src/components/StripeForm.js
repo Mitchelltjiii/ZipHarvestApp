@@ -512,23 +512,39 @@ async function getSession(seshId){
         updateUser(getUserItemForResend(user,newCode));
       }
 
-  const ExpiredForm = () => {
+  const ExpiredForm = (msg) => {
     return(
-      <div>
-        Expired Form
-        <Grid
-				container
-				direction="column"
-  				justifyContent="center"
-				alignItems="center"
-			    >
-                    <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
-            </Grid>
-      </div>
+      <div id="Expired Form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
+      {isMobile ?
+        <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+                <Grid
+            container
+            direction="column"
+              justifyContent="center"
+            alignItems="center"
+          >
+                <div style={{textAlign:"center"}}>{msg}</div>
+                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
+                </Grid>
+                </div>
+                :
+                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+                <Grid
+            container
+            direction="column"
+              justifyContent="center"
+            alignItems="center"
+          >
+                <div style={{textAlign:"center"}}>{msg}</div>
+                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
+                </Grid>
+        </div>
+       }
+		</div>
     )
   }
   if(expired){
-    return <ExpiredForm></ExpiredForm>
+    return <ExpiredForm msg={"Your verification code expired. Please resend email."}></ExpiredForm>
   }
   if(continued){
     if (!success && message === '') {
@@ -543,13 +559,13 @@ async function getSession(seshId){
       if(user.verificationCode===verCode){
         return <VerifiedForm></VerifiedForm>
       }else{
-        return <div>Code Doesn't Match</div>
+        return <ExpiredForm msg={"This code doesn't match the last code we sent.\nTry resending or looking for the correct email."}></ExpiredForm>
       }
     }else{
       if (success && sessionId !== '') {
         return <SuccessDisplay seshId={sessionId} />;
       }else{
-        return <div>Expired by def</div>
+        return <ExpiredForm msg={"This code isn't correct.\nTry resending or looking for the correct email."}></ExpiredForm>
       }
     }
   }
