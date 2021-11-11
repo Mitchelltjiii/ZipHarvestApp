@@ -134,7 +134,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     endAdornment: (
       <InputAdornment position="end">
         <IconButton
-          aria-label="toggle password visibility"
+          aria-label="toggle password visiblity"
           onClick={handleClickShowPassword}
           onMouseDown={handleMouseDownPassword}
         >
