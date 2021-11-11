@@ -395,7 +395,7 @@ export default class App extends React.Component {
     console.log("Loggin in user: " + loggedInUser);
     console.log("this.state.loggedin: " + this.state.loggedIn);
 
-    if (loggedInUser !== null && loggedInUser !== undefined && loggedInUser !== "" && this.state.loggedIn === "") {
+    if ((reloaded || localStorage.getItem("staySignedIn")) && loggedInUser !== null && loggedInUser !== undefined && loggedInUser !== "" && this.state.loggedIn === "") {
       console.log("***Found User: " + loggedInUser);
       this.setState({loggedIn:loggedInUser,userID:loggedInUser,usersLoading:false});
       let staySignedIn = false
