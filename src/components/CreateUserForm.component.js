@@ -382,10 +382,6 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     let formWidth = "450px";
     let formHeight = "300px";
 
-    if(stepTwo){
-      formHeight = "250px";
-    }
-
     if(isMobile){
       formWidth = "100%";
     }
