@@ -382,6 +382,10 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     let formWidth = "450px";
     let formHeight = "300px";
 
+    if(stepTwo){
+      formHeight = "250px";
+    }
+
     if(isMobile){
       formWidth = "100%";
     }
@@ -407,7 +411,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
                 <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
                 <TextField
   helperText={passwordHelperText} error={passwordError} 
-  style={{marginBottom:"10px"}}
+  style={{marginBottom:"10px",width:"100%"}}
   value={password}
   label='Password'
   variant="outlined"
@@ -429,9 +433,9 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 />         
 <TextField
   helperText={verifyPasswordHelperText} error={verifyPasswordError} 
-  style={{marginBottom:"10px"}}
+  style={{marginBottom:"10px",width:"100%"}}
   value={passwordAgain}
-  label='Verify Password'
+  label='Verify'
   variant="outlined"
   type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
   onChange={handlePasswordAgain} 
@@ -473,16 +477,10 @@ direction="column"
 justifyContent="center"
 alignItems="center"
 >
-<Grid
-container
-direction="column"
-justifyContent="center"
-alignItems="center"
->
       <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
       <TextField
   helperText={passwordHelperText} error={passwordError} 
-  style={{marginBottom:"10px"}}
+  style={{marginBottom:"10px",width:"100%"}}
   value={password}
   label='Password'
   variant="outlined"
@@ -504,9 +502,9 @@ alignItems="center"
 />         
 <TextField
   helperText={verifyPasswordHelperText} error={verifyPasswordError} 
-  style={{marginBottom:"10px"}}
+  style={{marginBottom:"10px",width:"100%"}}
   value={passwordAgain}
-  label='Verify Password'
+  label='PasswordAgain'
   variant="outlined"
   type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
   onChange={handlePasswordAgain} 
@@ -523,7 +521,7 @@ alignItems="center"
       </InputAdornment>
     )
   }}
-/> </Grid></Grid>
+/> </Grid>
   :
   <Grid
 container
