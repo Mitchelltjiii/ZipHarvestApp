@@ -172,7 +172,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
   variant="outlined"
   type={showPassword ? "text" : "password"} // <-- This is where the magic happens
   onChange={handlePassword} 
-  InputProps={{ // <-- This is where the toggle button is added.
+  InputProps={{ // <-- This is where the toggle button is added
     endAdornment: (
       <InputAdornment position="end">
         <IconButton
