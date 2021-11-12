@@ -865,7 +865,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	  const HarvestBatchInfoTabs = ({hbInfoTabsHiddenNow}) => {
 		if (hbInfoTabsHiddenNow) return null;
-	  
 		return (
 		  <div className="full tr">
 			  <Grid
