@@ -516,7 +516,7 @@ alignItems="center"
           onClick={handleClickShowVerifyPassword}
           onMouseDown={handleMouseDownVerifyPassword}
         >
-          {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
+        {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
         </IconButton>
       </InputAdornment>
     )
