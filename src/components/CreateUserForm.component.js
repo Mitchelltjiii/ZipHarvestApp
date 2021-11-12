@@ -500,7 +500,7 @@ alignItems="center"
   helperText={verifyPasswordHelperText} error={verifyPasswordError} 
   style={{marginBottom:"10px",width:"100%"}}
   value={passwordAgain}
-  label='PasswordAgain'
+  label='Verify'
   variant="outlined"
   type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
   onChange={handlePasswordAgain} 
