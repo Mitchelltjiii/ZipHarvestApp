@@ -411,7 +411,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
                 <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
                 <TextField
   helperText={passwordHelperText} error={passwordError} 
-  style={{marginBottom:"10px",width:"70%"}}
+  style={{marginBottom:"10px",width:"100%"}}
   value={password}
   label='Password'
   variant="outlined"
@@ -433,7 +433,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 />         
 <TextField
   helperText={verifyPasswordHelperText} error={verifyPasswordError} 
-  style={{marginBottom:"10px",width:"70%"}}
+  style={{marginBottom:"10px",width:"100%"}}
   value={passwordAgain}
   label='PasswordAgain'
   variant="outlined"
@@ -480,7 +480,7 @@ alignItems="center"
       <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
       <TextField
   helperText={passwordHelperText} error={passwordError} 
-  style={{marginBottom:"10px",width:"70%"}}
+  style={{marginBottom:"10px",width:"100%"}}
   value={password}
   label='Password'
   variant="outlined"
@@ -502,7 +502,7 @@ alignItems="center"
 />         
 <TextField
   helperText={verifyPasswordHelperText} error={verifyPasswordError} 
-  style={{marginBottom:"10px",width:"70%"}}
+  style={{marginBottom:"10px",width:"100%"}}
   value={passwordAgain}
   label='PasswordAgain'
   variant="outlined"

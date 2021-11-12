@@ -125,7 +125,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                                    </div>    
                                    <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                                    <TextField
-  style={{marginTop:"10px",marginBottom:"10px",width:"70%"}}
+  style={{marginTop:"10px",marginBottom:"10px",width:"100%"}}
   value={password}
   label='Password'
   variant="outlined"
@@ -166,7 +166,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                                    </div>    
                                    <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                                    <TextField
-  style={{marginTop:"10px",marginBottom:"10px",width:"70%"}}
+  style={{marginTop:"10px",marginBottom:"10px",width:"100%"}}
   value={password}
   label='Password'
   variant="outlined"
