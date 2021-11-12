@@ -300,7 +300,11 @@ app.get('/get-email/:username', async (req,res) =>{
         connection.release(); // return the connection to pool
         if(err) throw err;
         console.log('GET EMAIL - The data from users table are: \n', rows);
-        res.json(rows[0].email);
+        if(rows[0] !== null && rows[0] !== undefined && rows[0] !== []){
+          res.json(rows[0].email);
+        }else{
+          res.json("");
+        }
     });
   })
 })

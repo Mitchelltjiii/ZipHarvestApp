@@ -68,7 +68,9 @@ function VerificationForm({setCurrentPage,newUsername}) {
         }catch(err){
         
         }
-        setEmail(json);
+        if(json !== null && json !== undefined && json !== ""){
+          setEmail(json);
+        }
     }
 
       function getUserItem(newUser,newCode){
