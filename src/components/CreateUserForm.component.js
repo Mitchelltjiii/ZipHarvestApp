@@ -39,6 +39,13 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     const [showVerifyPassword,setShowVerifyPassword] = React.useState(false);
 
 
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleMouseDownPassword = () => setShowPassword(!showPassword);
+
+    const handleClickShowVerifyPassword = () => setShowVerifyPassword(!showVerifyPassword);
+    const handleMouseDownVerifyPassword = () => setShowVerifyPassword(!showVerifyPassword);
+
+
     const handleContinue = () => {
 		  doContinue();
 	  }
@@ -437,8 +444,8 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       <InputAdornment position="end">
         <IconButton
           aria-label="toggle password visiblity"
-          onClick={handleClickShowPassword}
-          onMouseDown={handleMouseDownPassword}
+          onClick={handleClickShowVerifyPassword}
+          onMouseDown={handleMouseDownVerifyPassword}
         >
           {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
         </IconButton>
@@ -506,8 +513,8 @@ alignItems="center"
       <InputAdornment position="end">
         <IconButton
           aria-label="toggle password visiblity"
-          onClick={handleClickShowPassword}
-          onMouseDown={handleMouseDownPassword}
+          onClick={handleClickShowVerifyPassword}
+          onMouseDown={handleMouseDownVerifyPassword}
         >
           {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
         </IconButton>
