@@ -407,7 +407,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
                 <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
                 <TextField
   helperText={passwordHelperText} error={passwordError} 
-  style={{marginBottom:"10px",width:"80px"}}
+  style={{marginBottom:"10px"}}
   value={password}
   label='Password'
   variant="outlined"
@@ -429,7 +429,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 />         
 <TextField
   helperText={verifyPasswordHelperText} error={verifyPasswordError} 
-  style={{marginBottom:"10px",width:"100px"}}
+  style={{marginBottom:"10px"}}
   value={passwordAgain}
   label='Verify Password'
   variant="outlined"
@@ -473,10 +473,16 @@ direction="column"
 justifyContent="center"
 alignItems="center"
 >
+<Grid
+container
+direction="column"
+justifyContent="center"
+alignItems="center"
+>
       <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
       <TextField
   helperText={passwordHelperText} error={passwordError} 
-  style={{marginBottom:"10px",width:"80px"}}
+  style={{marginBottom:"10px"}}
   value={password}
   label='Password'
   variant="outlined"
@@ -498,7 +504,7 @@ alignItems="center"
 />         
 <TextField
   helperText={verifyPasswordHelperText} error={verifyPasswordError} 
-  style={{marginBottom:"10px",width:"100px"}}
+  style={{marginBottom:"10px"}}
   value={passwordAgain}
   label='Verify Password'
   variant="outlined"
@@ -517,7 +523,7 @@ alignItems="center"
       </InputAdornment>
     )
   }}
-/> </Grid>
+/> </Grid></Grid>
   :
   <Grid
 container
