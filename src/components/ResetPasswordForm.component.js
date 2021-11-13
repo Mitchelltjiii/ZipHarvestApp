@@ -46,7 +46,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
 
     async function getEmail(){
       console.log("Get email")
-      const response = await fetch(`/api/get-email/${username}`);
+      const response = await fetch(`/get-email/${username}`);
       const text = await response.text();
       try{
         console.log("Get Email JSON: " + text);
