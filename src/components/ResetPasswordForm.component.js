@@ -46,7 +46,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
 
     async function getEmail(){
       console.log("Get email")
-      const response = await fetch(`/api/get-email/${email}`);
+      const response = await fetch(`/api/get-email/${username}`);
       const text = await response.text();
       try{
         console.log("Get Email JSON: " + text);
@@ -63,7 +63,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
         sendResetLink(text);
       }else{
         setFailedUsername(username);
-        setUsernameHelperText("(8-16 letters & numbers)")
+        setUsernameHelperText("Username does not exist")
         setUsernameError(true);
       }
     }
