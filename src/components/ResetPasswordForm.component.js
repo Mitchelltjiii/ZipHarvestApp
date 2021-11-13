@@ -64,7 +64,10 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
       }catch(err){
       }
       let str = text;
+      console.log("GEt email str: " + str);
       let textWithoutQuotes = str.substring(1,str.length-1);
+      console.log("Text without quotes str: " + str);
+
       if(textWithoutQuotes !== null && textWithoutQuotes !== undefined && textWithoutQuotes !== ""){
         sendResetLink(textWithoutQuotes);
       }else{
