@@ -505,7 +505,6 @@ async function getSession(seshId){
         try{
           console.log("Send Verification json(STRING): " + JSON.stringify(json));
         }catch(err){
-          
         }
         busySettingUser = true;
         updateUser(getUserItemForResend(newUser,newCode));
