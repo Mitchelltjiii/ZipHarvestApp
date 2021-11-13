@@ -379,6 +379,26 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
         setPasswordAgain(event.target.value);
     };
 
+    const handleTermsOfService = () => {
+      clickTermsOfService();
+    };
+
+    function clickTermsOfService(){
+      window.open("https://app.termly.io/document/terms-of-use-for-saas/0fc8020f-e374-48f6-b222-fdaa3d482d39", '_blank');
+    }
+
+    const handlePrivacyPolicy = () => {
+      clickPrivacyPolicy();
+    };
+
+    function clickPrivacyPolicy(){
+      window.open("https://app.termly.io/document/privacy-policy/a880128c-82ae-40b1-bec3-7d5b495a1d24", '_blank');
+    }
+
+
+    var termsOfServiceLink = <a onClick={handleTermsOfService} style={{cursor:"pointer",color:"#3d85c6"}}>Terms of Service</a>;
+    var privacyPolicyLink = <a onClick={handlePrivacyPolicy} style={{cursor:"pointer",color:"#3d85c6"}}>Privacy Policy.</a>;  
+
     let formWidth = "450px";
     let formHeight = "300px";
 
@@ -449,7 +469,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     )
   }}
 /> 
-                    
+<div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>                
                 </Grid>
             :
             <Grid
@@ -517,7 +537,9 @@ alignItems="center"
       </InputAdornment>
     )
   }}
-/> </Grid>
+/> 
+<div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
+</Grid>
   :
   <Grid
 container

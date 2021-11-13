@@ -150,7 +150,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
                                    <div style={{marginTop:"5px",marginBottom:"5px"}}>Don't have an ID? {createIDLink}</div>
                                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
-                                   <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px"}}>By signing in, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
+                                   <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center"}}>By signing in, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
                                </Grid>
                    </div> :
                    <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px"}}>
@@ -192,7 +192,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
                                    <div style={{marginTop:"5px",marginBottom:"5px"}}>Don't have an ID? {createIDLink}</div>
                                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
-                                   <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px"}}>By signing in, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
+                                   <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center"}}>By signing in, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
                                </Grid>
                    </div>
                   }  
