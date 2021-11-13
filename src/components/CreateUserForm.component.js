@@ -332,7 +332,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     }
 
     async function sendVerificationEmail(){
-        console.log("Try to send ver email");
+        console.log("Try to send veri email");
         let newCode = makeid(8);
         console.log("New Code: " + newCode);
         const response = await fetch(`/send-verification-email/${email}/${newCode}/${username}`);
