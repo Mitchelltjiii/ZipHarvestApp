@@ -278,7 +278,6 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
     
           if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
             updateUser(getUserItem(newUser));
-            setUser(newUser);
           }
         }else{
           console.log("No Match")
