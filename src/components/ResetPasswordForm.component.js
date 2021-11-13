@@ -37,8 +37,28 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
     const handleMouseDownVerifyPassword = () => setShowVerifyPassword(!showVerifyPassword);
 
     const handleSendResetLink = () => {
-		  sendResetLink();
+      getEmail();
 	  }
+
+    async function getEmail(){
+      console.log("Get email")
+      const response = await fetch(`/api/get-email/${email}`);
+      const text = await response.text();
+      try{
+        console.log("Get Email JSON: " + text);
+      }catch(err){
+  
+      }
+      try{
+        console.log("Get Email JSON(STRING): " + JSON.stringify(text));
+      }catch(err){
+        
+      }
+  
+      if(text !== null && text !== undefined && text !== ""){
+        sendResetLink(text);
+      }
+    }
 
     function isPasswordValid(str){
       var minNumberofChars = 8;
@@ -105,9 +125,9 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
        return result;
     }
 
-    async function sendResetLink(){
+    async function sendResetLink(address){
         console.log("Try to send reset Link");
-        let address = "Mitchelltjiii@gmail.com";
+        console.log("Username: " + username)
         let newCode = makeid(8);
         console.log("New Code: " + newCode);
         const response = await fetch(`/send-reset-link/${address}/${newCode}/${username}`);
