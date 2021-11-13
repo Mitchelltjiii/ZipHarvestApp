@@ -246,7 +246,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
             justifyContent="center"
             alignItems="center"
             >
-                <div style={{textAlign:"center"}}>Your password has been reset!.</div>
+                <div style={{textAlign:"center"}}>Your password has been reset!</div>
                 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Return to Login</Button>
                 <div style={{marginTop:"5px",marginBottom:"5px"}}>Forgot {forgotIDLink}</div>
             </Grid>

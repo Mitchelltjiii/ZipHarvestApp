@@ -8,6 +8,7 @@ function VerificationForm({setCurrentPage,newUsername}) {
 
     let busySettingUser = false;
     const [email,setEmail] = React.useState('');
+    const [resent,setResent] = React.useState(false);
 
     console.log("welcome to verification form");
     console.log("NEw Username: " + newUsername);
@@ -125,6 +126,7 @@ function VerificationForm({setCurrentPage,newUsername}) {
         busySettingUser = (false);
         console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
         console.log("Exit update user");
+        setResent(true);
       }
 
     function makeid(length) {
@@ -159,6 +161,11 @@ function VerificationForm({setCurrentPage,newUsername}) {
         updateUser(getUserItem(user,newCode));
       }
 
+    let newLink = "";
+    if(resent){
+      newLink = "new "
+    }
+
 
     let formWidth = "450px";
     let formHeight = "250px";
@@ -179,7 +186,7 @@ function VerificationForm({setCurrentPage,newUsername}) {
               justifyContent="center"
             alignItems="center"
               >
-                            <div style={{textAlign:"center"}}>We sent you a link to verify your account. If you haven't recieved it, try checking your spam folder.</div>
+                            <div style={{textAlign:"center"}}>We sent you a {newLink}link to verify your account. If you haven't recieved it, try checking your spam folder.</div>
                             <div style={{textAlign:"center"}}>If you are still having trouble, you can send a new code below. Code will expire 15 minutes after creation.</div>
                             </Grid>
                             <Grid
@@ -208,7 +215,7 @@ function VerificationForm({setCurrentPage,newUsername}) {
               justifyContent="center"
             alignItems="center"
               >
-                        <div style={{textAlign:"center"}}>We sent you a link to verify your account. If you haven't recieved it, try checking your spam folder.</div>
+                        <div style={{textAlign:"center"}}>We sent you a {newLink}link to verify your account. If you haven't recieved it, try checking your spam folder.</div>
                         <div style={{textAlign:"center"}}>If you are still having trouble, you can send a new code below. Code will expire 15 minutes after creation.</div>
                         </Grid>
                         <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
