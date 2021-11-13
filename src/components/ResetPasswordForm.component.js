@@ -61,13 +61,10 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
         console.log("Get Email JSON: " + text);
       }catch(err){
       }
-      try{
-        console.log("Get Email JSON(STRING): " + JSON.stringify(text));
-      }catch(err){
-        
-      }
-      if(text !== null && text !== undefined && text !== ""){
-        sendResetLink(text);
+      let str = text;
+      let textWithoutQuotes = str.substring(1,str.length-1);
+      if(textWithoutQuotes !== null && textWithoutQuotes !== undefined && textWithoutQuotes !== ""){
+        sendResetLink(textWithoutQuotes);
       }else{
         setFailedUsername(username);
         setUsernameHelperText("Username does not exist")
@@ -149,8 +146,10 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
     async function sendResetLink(address){
         console.log("Try to send reset Link");
         console.log("Username: " + username)
+        console.log("Email: " + address);
         let newCode = makeid(8);
         console.log("New Code: " + newCode);
+        
         const response = await fetch(`/send-reset-link/${address}/${newCode}/${username}`);
         const json = await response.json();
         try{
