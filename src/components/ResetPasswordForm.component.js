@@ -39,6 +39,8 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
     const handleClickShowVerifyPassword = () => setShowVerifyPassword(!showVerifyPassword);
     const handleMouseDownVerifyPassword = () => setShowVerifyPassword(!showVerifyPassword);
 
+    const [expired,setExpired] = React.useState(false);
+
     const handleSendResetLink = () => {
       getEmail();
 	  }
@@ -235,6 +237,108 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
       formWidth = "100%";
     }
 
+    if(fromUrl){
+      getUser()
+    }
+
+    async function getUser(){
+      console.log("User from url: " + userFromUrl);
+        console.log("Try to get user");
+        const response = await fetch(`/get-user/${userFromUrl}`);
+        const json = await response.json();
+        try{
+          console.log("sub json: " + json);
+        }catch(err){
+    
+        }
+        try{
+          console.log("sub json(STRING): " + JSON.stringify(json));
+        }catch(err){
+        
+        }
+        let userString = JSON.stringify(json);
+        userString = userString.substring(1,userString.length-1);
+        console.log("User string: " + userString);
+        let newUser = JSON.parse(userString);
+        console.log("New user: " + JSON.stringify(newUser));
+  
+        if(newUser.linkCode===linkCodeDuh){
+          console.log("Match");
+          console.log("Curr date Value: " + (new Date()).getTime());
+          console.log("New User linkcodetime date Value: " + newUser.linkCodeTime);
+          console.log("Difference: " + ((new Date()).getTime()-newUser.linkCodeTime));
+          if(((new Date()).getTime()-newUser.linkCodeTime) > 900000){
+            console.log("Code Expired");
+            setExpired(true);
+            return;
+          }else{
+            console.log("Code Working still!");
+            
+          }
+    
+          if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
+            updateUser(getUserItem(newUser));
+            setUser(newUser);
+          }
+        }else{
+          console.log("No Match")
+        }
+    }
+
+    function getUserItem(newUser){
+      console.log("Enter getUserItem")
+    
+      let userItem = {
+        apiid: '',
+        username: '',
+        password: '',
+        subid: '',
+        linkCode: '',
+        facilityName: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        verificationCode: '',
+        verified: 0,
+        sessionid: '',
+        verCodeTime: '',
+        linkCodeTime: ''
+        };
+    
+        userItem.apiid = newUser.username;
+        userItem.username = newUser.username;
+        userItem.password = newUser.password;
+        userItem.facilityName = newUser.facilityName;
+        userItem.firstName = newUser.firstName;
+        userItem.lastName = newUser.lastName;
+        userItem.email = newUser.email;
+        userItem.sessionid = newUser.sessionid;
+    
+      console.log("Stringified before passed: " + JSON.stringify(userItem));
+      console.log("Exit getUserItem")
+      return userItem;
+    }
+    
+    async function updateUser(userItem){
+      console.log("Engage update user");
+      const response = fetch('/user', {
+            method: 'PUT',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userItem)
+      }).then(function(response) {
+        let resp = JSON.stringify(response);
+      }).then(function(data) {
+      });
+      console.log("Before removing busy setting user");
+      console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
+      busySettingUser = (false);
+      console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
+      console.log("Exit update user");
+    }
+
 	return (
 		<div id="reset-password-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
           <div>  {success ?
@@ -372,57 +476,63 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
                     }  
                     </div>
                 :
-                <Grid
-				container
-				direction="column"
-  				justifyContent="center"
-				alignItems="center"
-			    >
-                    <TextField
-  helperText={passwordHelperText} error={passwordError} 
-  style={{marginBottom:"10px",width:"248px"}}
-  value={password}
-  label='Password'
-  variant="outlined"
-  type={showPassword ? "text" : "password"} // <-- This is where the magic happens
-  onChange={handlePassword} 
-  InputProps={{ // <-- This is where the toggle button is added.
-    endAdornment: (
-      <InputAdornment position="end">
-        <IconButton
-          aria-label="toggle password visiblity"
-          onClick={handleClickShowPassword}
-          onMouseDown={handleMouseDownPassword}
-        >
-          {showPassword ? <Visibility /> : <VisibilityOff />}
-        </IconButton>
-      </InputAdornment>
-    )
-  }}
-/>         
-<TextField
-  helperText={verifyPasswordHelperText} error={verifyPasswordError} 
-  style={{marginBottom:"10px",width:"248px"}}
-  value={passwordAgain}
-  label='Verify'
-  variant="outlined"
-  type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
-  onChange={handlePasswordAgain} 
-  InputProps={{ // <-- This is where the toggle button is added.
-    endAdornment: (
-      <InputAdornment position="end">
-        <IconButton
-          aria-label="toggle password visiblity"
-          onClick={handleClickShowVerifyPassword}
-          onMouseDown={handleMouseDownVerifyPassword}
-        >
-        {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
-        </IconButton>
-      </InputAdornment>
-    )
-  }}
-/> <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleConfirmReset}>Confirm</Button>
-                    </Grid>
+                <div>
+                {!expired ?
+            <Grid
+            container
+            direction="column"
+              justifyContent="center"
+            alignItems="center"
+              >
+                        <TextField
+      helperText={passwordHelperText} error={passwordError} 
+      style={{marginBottom:"10px",width:"248px"}}
+      value={password}
+      label='Password'
+      variant="outlined"
+      type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+      onChange={handlePassword} 
+      InputProps={{ // <-- This is where the toggle button is added.
+        endAdornment: (
+          <InputAdornment position="end">
+            <IconButton
+              aria-label="toggle password visiblity"
+              onClick={handleClickShowPassword}
+              onMouseDown={handleMouseDownPassword}
+            >
+              {showPassword ? <Visibility /> : <VisibilityOff />}
+            </IconButton>
+          </InputAdornment>
+        )
+      }}
+    />         
+    <TextField
+      helperText={verifyPasswordHelperText} error={verifyPasswordError} 
+      style={{marginBottom:"10px",width:"248px"}}
+      value={passwordAgain}
+      label='Verify'
+      variant="outlined"
+      type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
+      onChange={handlePasswordAgain} 
+      InputProps={{ // <-- This is where the toggle button is added.
+        endAdornment: (
+          <InputAdornment position="end">
+            <IconButton
+              aria-label="toggle password visiblity"
+              onClick={handleClickShowVerifyPassword}
+              onMouseDown={handleMouseDownVerifyPassword}
+            >
+            {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
+            </IconButton>
+          </InputAdornment>
+        )
+      }}
+    /> <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleConfirmReset}>Confirm</Button>
+                        </Grid>
+                  :
+                  <div>Code Expired</div>
+                  }
+                  </div>
                     }
                     </div>}
 			</div>
