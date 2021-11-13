@@ -239,6 +239,8 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
 	return (
 		<div id="reset-password-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
           <div>  {success ?
+            <div>
+            {isMobile ?
             <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
             <Grid
             container
@@ -248,8 +250,20 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
             >
                 <div style={{textAlign:"center"}}>Your password has been reset!</div>
                 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Return to Login</Button>
-                <div style={{marginTop:"5px",marginBottom:"5px"}}>Forgot {forgotIDLink}</div>
             </Grid>
+            </div> :
+            <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+            <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            >
+                <div style={{textAlign:"center"}}>Your password has been reset!</div>
+                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Return to Login</Button>
+            </Grid>
+            </div>
+            }
             </div>
         :
         <div>
@@ -354,6 +368,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
 			        >
                     <TextField helperText={usernameHelperText} error={usernameError} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSendResetLink}>Send Reset Link</Button>
+                    <div style={{marginTop:"5px",marginBottom:"5px"}}>Forgot {forgotIDLink}</div>
                     </Grid>
                     }  
                     </div>
