@@ -3,6 +3,9 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import {isMobile} from 'react-device-detect';
+import {InputAdornment,IconButton} from "@material-ui/core";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) {
 
@@ -14,19 +17,81 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
     let busySettingUser = false;
     let fromUrl = (userFromUrl.length!==0);
     console.log("From Url Reset Password Form: " + fromUrl);
+    const [passwordError, setPasswordError] = React.useState(false);
+    const [passwordHelperText, setPasswordHelperText] = React.useState(false);
+    const [verifyPasswordError, setVerifyPasswordError] = React.useState(false);
+    const [verifyPasswordHelperText, setVerifyPasswordHelperText] = React.useState(false);
+
+    const [failedPassword,setFailedPassword] = React.useState('');
+    const [failedVerifyPassword,setFailedVerifyPassword] = React.useState('');
+
+
+    const [showPassword,setShowPassword] = React.useState(false);
+    const [showVerifyPassword,setShowVerifyPassword] = React.useState(false);
+
+
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleMouseDownPassword = () => setShowPassword(!showPassword);
+
+    const handleClickShowVerifyPassword = () => setShowVerifyPassword(!showVerifyPassword);
+    const handleMouseDownVerifyPassword = () => setShowVerifyPassword(!showVerifyPassword);
 
     const handleSendResetLink = () => {
 		  sendResetLink();
 	  }
 
+    function isPasswordValid(str){
+      var minNumberofChars = 8;
+      var maxNumberofChars = 16;
+      var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+      console.log("Is Password Valid")
+      if(str.length < minNumberofChars || str.length > maxNumberofChars){
+        console.log("Wrong length")
+        return false;
+      }
+      if(!regularExpression.test(str)) {
+        console.log("Nope, somethings wrong")
+        return false;
+      }
+      console.log("Successful password")
+      return true;
+    }
+
+    if(passwordError && password.length !== 0 && password !== failedPassword){
+      setPasswordHelperText("");
+      setPasswordError(false);
+    }
+
+    if(verifyPasswordError && passwordAgain.length !== 0 && (passwordAgain !== failedVerifyPassword)){
+      setVerifyPasswordHelperText("");
+      setVerifyPasswordError(false);
+    }
+    
     const handleGoToHome = () => {
         window.location.replace("https://www.zipharvest.app/");
     }  
 
     const handleConfirmReset = () => {
-        if(password === passwordAgain){
-            updateUserPassword();
+      if(isPasswordValid(password) && isPasswordValid(passwordAgain) && (password === passwordAgain)){
+        console.log("Get user Exists")
+        updateUserPassword();
+      }else{
+        console.log("Something's not right");
+        if(!isPasswordValid(password)){
+          console.log("Password not correct");
+          setFailedPassword(password);
+          setPasswordHelperText("(8-16 letters,numbers,!@#$%^&*)")
+          setPasswordError(true);
         }
+        if(!isPasswordValid(passwordAgain) || (password !== passwordAgain)){
+          console.log("PasswordAgain not correct");
+          if(password !== passwordAgain){
+            setFailedVerifyPassword(passwordAgain);
+            setVerifyPasswordHelperText("Passwords do not match");
+          }
+          setVerifyPasswordError(true);
+        }
+      }
     }  
 
     function makeid(length) {
@@ -121,6 +186,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
     const handlePasswordAgain = (event) => {
         setPasswordAgain(event.target.value);
     };
+    
 
     let formWidth = "450px";
     let formHeight = "250px";
@@ -169,9 +235,50 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
       justifyContent="center"
     alignItems="center"
       >
-                <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined"></TextField>
-                <TextField id="PasswordAgain" value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined"></TextField>
-                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleConfirmReset}>Confirm</Button>
+                <TextField
+  helperText={passwordHelperText} error={passwordError} 
+  style={{marginBottom:"10px",width:"248px"}}
+  value={password}
+  label='Password'
+  variant="outlined"
+  type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+  onChange={handlePassword} 
+  InputProps={{ // <-- This is where the toggle button is added.
+    endAdornment: (
+      <InputAdornment position="end">
+        <IconButton
+          aria-label="toggle password visiblity"
+          onClick={handleClickShowPassword}
+          onMouseDown={handleMouseDownPassword}
+        >
+          {showPassword ? <Visibility /> : <VisibilityOff />}
+        </IconButton>
+      </InputAdornment>
+    )
+  }}
+/>         
+<TextField
+  helperText={verifyPasswordHelperText} error={verifyPasswordError} 
+  style={{marginBottom:"10px",width:"248px"}}
+  value={passwordAgain}
+  label='Verify'
+  variant="outlined"
+  type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
+  onChange={handlePasswordAgain} 
+  InputProps={{ // <-- This is where the toggle button is added.
+    endAdornment: (
+      <InputAdornment position="end">
+        <IconButton
+          aria-label="toggle password visiblity"
+          onClick={handleClickShowVerifyPassword}
+          onMouseDown={handleMouseDownVerifyPassword}
+        >
+        {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
+        </IconButton>
+      </InputAdornment>
+    )
+  }}
+/><Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleConfirmReset}>Confirm</Button>
                 </Grid>
                 }
                 </div>
@@ -206,9 +313,50 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
   				justifyContent="center"
 				alignItems="center"
 			    >
-                    <TextField id="Password" value={password} onChange={handlePassword} label="Password" variant="outlined"></TextField>
-                    <TextField id="PasswordAgain" value={passwordAgain} onChange={handlePasswordAgain} label="Password (Verify)" variant="outlined"></TextField>
-                    <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleConfirmReset}>Confirm</Button>
+                    <TextField
+  helperText={passwordHelperText} error={passwordError} 
+  style={{marginBottom:"10px",width:"248px"}}
+  value={password}
+  label='Password'
+  variant="outlined"
+  type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+  onChange={handlePassword} 
+  InputProps={{ // <-- This is where the toggle button is added.
+    endAdornment: (
+      <InputAdornment position="end">
+        <IconButton
+          aria-label="toggle password visiblity"
+          onClick={handleClickShowPassword}
+          onMouseDown={handleMouseDownPassword}
+        >
+          {showPassword ? <Visibility /> : <VisibilityOff />}
+        </IconButton>
+      </InputAdornment>
+    )
+  }}
+/>         
+<TextField
+  helperText={verifyPasswordHelperText} error={verifyPasswordError} 
+  style={{marginBottom:"10px",width:"248px"}}
+  value={passwordAgain}
+  label='Verify'
+  variant="outlined"
+  type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
+  onChange={handlePasswordAgain} 
+  InputProps={{ // <-- This is where the toggle button is added.
+    endAdornment: (
+      <InputAdornment position="end">
+        <IconButton
+          aria-label="toggle password visiblity"
+          onClick={handleClickShowVerifyPassword}
+          onMouseDown={handleMouseDownVerifyPassword}
+        >
+        {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
+        </IconButton>
+      </InputAdornment>
+    )
+  }}
+/> <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleConfirmReset}>Confirm</Button>
                     </Grid>
                     }
                     </div>}
