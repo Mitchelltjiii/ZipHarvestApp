@@ -802,15 +802,15 @@ app.post('/user', (req, res) =>{
   }); 
 });
 
-app.put('/user/:linkCode/:username', (req, res) =>{
+app.put('/user/:linkCode/:linkCodeTime/:username', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
     console.log('connected as id ' + connection.threadId);
 
   connection.query(`UPDATE users SET
-  linkCode = ? WHERE (username = ?)`, 
+  linkCode = ?, linkCodeTime = ? WHERE (username = ?)`, 
   [
-    req.params.linkCode, req.params.username
+    req.params.linkCode, req.params.linkCodeTime, req.params.username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;

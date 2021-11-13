@@ -293,7 +293,8 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
         verificationCode: '',
         verified: 1,
         sessionid: '',
-        verCodeTime: ''
+        verCodeTime: '',
+        linkCodetime: ''
         };
     
         userItem.apiid = username;

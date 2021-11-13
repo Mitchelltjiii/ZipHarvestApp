@@ -90,7 +90,8 @@ function VerificationForm({setCurrentPage,newUsername}) {
           verificationCode: '',
           verified: 0,
           sessionid: '',
-          verCodeTime: ''
+          verCodeTime: '',
+          linkCodeTime: ''
           };
       
           userItem.apiid = newUsername;

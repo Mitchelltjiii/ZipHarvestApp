@@ -7,7 +7,7 @@ import {InputAdornment,IconButton} from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
-function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) {
+function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout}) {
 
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -163,12 +163,12 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
           
         }
         busySettingUser = true;
-        updateUser(newCode);
+        updateUser(newCode,JSON.stringify((new Date().getTime())));
       }
       
-    async function updateUser(linkCode){
+    async function updateUser(linkCode,linkCodeTime){
         console.log("Engage update user");
-        const response = fetch(`/user/${linkCode}/${username}`, {
+        const response = fetch(`/user/${linkCode}/${linkCodeTime}/${username}`, {
               method: 'PUT',
               headers: {
                 'Accept': 'application/json',

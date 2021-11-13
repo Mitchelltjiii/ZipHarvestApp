@@ -112,7 +112,8 @@ function getUserItem(newUser,sessionid){
     verificationCode: '',
     verified: 0,
     sessionid: '',
-    verCodeTime: ''
+    verCodeTime: '',
+    linkCodeTime: ''
     };
 
     userItem.apiid = newUser.username;
@@ -462,7 +463,8 @@ async function getSession(seshId){
       verificationCode: '',
       verified: 1,
       sessionid: '',
-      verCodeTime: ''
+      verCodeTime: '',
+      linkCodeTime: ''
       };
   
       userItem.apiid = userForResend.username;
