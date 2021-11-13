@@ -69,7 +69,7 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
       console.log("Text without quotes str: " + str);
 
       if(textWithoutQuotes !== null && textWithoutQuotes !== undefined && textWithoutQuotes !== ""){
-        sendResetLink(textWithoutQuotes);
+        sendResetLink(str);
       }else{
         setFailedUsername(username);
         setUsernameHelperText("Username does not exist")
