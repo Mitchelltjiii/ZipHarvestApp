@@ -57,7 +57,6 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
       }catch(err){
         
       }
-  
       if(text !== null && text !== undefined && text !== ""){
         sendResetLink(text);
       }else{
