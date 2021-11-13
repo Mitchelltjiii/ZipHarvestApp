@@ -82,11 +82,11 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 	  }
 
     const handleUsername = (event) => {
-		setUsername(event.target.value);
+		  setUsername(event.target.value);
 	  };
 
     const handlePassword = (event) => {
-		setPassword(event.target.value);
+		  setPassword(event.target.value);
 	  };
       
     let formWidth = "350px";
@@ -124,7 +124,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                                    </div>    
                                    <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                                    <TextField
-  style={{marginTop:"10px",marginBottom:"10px",width:"300px"}}
+  style={{marginTop:"10px",marginBottom:"10px",width:"260px"}}
   value={password}
   label='Password'
   variant="outlined"
@@ -165,7 +165,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                                    </div>    
                                    <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                                    <TextField
-  style={{marginTop:"10px",marginBottom:"10px",width:"300px"}}
+  style={{marginTop:"10px",marginBottom:"10px",width:"260px"}}
   value={password}
   label='Password'
   variant="outlined"
