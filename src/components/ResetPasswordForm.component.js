@@ -29,6 +29,9 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
     const [showPassword,setShowPassword] = React.useState(false);
     const [showVerifyPassword,setShowVerifyPassword] = React.useState(false);
 
+    const [usernameError, setUsernameError] = React.useState(false);
+    const [usernameHelperText, setUsernameHelperText] = React.useState(false);
+    const [failedUsername,setFailedUsername] = React.useState('');
 
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
@@ -39,6 +42,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
     const handleSendResetLink = () => {
       getEmail();
 	  }
+    
 
     async function getEmail(){
       console.log("Get email")
@@ -57,6 +61,10 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
   
       if(text !== null && text !== undefined && text !== ""){
         sendResetLink(text);
+      }else{
+        setFailedUsername(username);
+        setUsernameHelperText("(8-16 letters & numbers)")
+        setUsernameError(true);
       }
     }
 
@@ -85,6 +93,12 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
     if(verifyPasswordError && passwordAgain.length !== 0 && (passwordAgain !== failedVerifyPassword)){
       setVerifyPasswordHelperText("");
       setVerifyPasswordError(false);
+    }
+
+    if(usernameError && username.length !== 0 && username !== failedUsername){
+      setFailedUsername("");
+      setUsernameHelperText("");
+      setUsernameError(false);
     }
     
     const handleGoToHome = () => {
@@ -243,7 +257,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
               justifyContent="center"
             alignItems="center"
           >
-                <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
+                <TextField helperText={usernameHelperText} error={usernameError} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSendResetLink}>Send Reset Link</Button>
                 </Grid>
                 }  
@@ -321,7 +335,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
   				        justifyContent="center"
 				        alignItems="center"
 			        >
-                    <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
+                    <TextField helperText={usernameHelperText} error={usernameError} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSendResetLink}>Send Reset Link</Button>
                     </Grid>
                     }  
