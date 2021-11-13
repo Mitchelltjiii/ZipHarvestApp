@@ -51,7 +51,6 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
       try{
         console.log("Get Email JSON: " + text);
       }catch(err){
-  
       }
       try{
         console.log("Get Email JSON(STRING): " + JSON.stringify(text));
