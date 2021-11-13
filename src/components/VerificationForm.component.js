@@ -170,6 +170,10 @@ function VerificationForm({setCurrentPage,newUsername}) {
     let formWidth = "450px";
     let formHeight = "250px";
 
+    if(isMobile){
+      formWidth = "100%";
+    }
+
 	return (
 		<div id="verification-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
                 {isMobile ? 

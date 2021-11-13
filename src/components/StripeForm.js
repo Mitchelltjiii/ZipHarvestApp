@@ -442,7 +442,7 @@ async function getSession(seshId){
 
       console.log("Update user verified");
       if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
-        sendVerificationEmail(newUser.username);
+        sendVerificationEmail(newUser);
       }
   }
 
@@ -491,12 +491,11 @@ async function getSession(seshId){
        return result;
     }
 
-    async function sendVerificationEmail(username){
+    async function sendVerificationEmail(newUser){
         console.log("Try to send ver email");
-        let address = "Mitchelltjiii@gmail.com";
         let newCode = makeid(8);
         console.log("New Code: " + newCode);
-        const response = await fetch(`/send-verification-email/${address}/${newCode}/${username}`);
+        const response = await fetch(`/send-verification-email/${newUser.email}/${newCode}/${newUser.username}`);
         const json = await response.json();
         try{
           console.log("Send Verification json: " + json);
@@ -509,7 +508,7 @@ async function getSession(seshId){
           
         }
         busySettingUser = true;
-        updateUser(getUserItemForResend(user,newCode));
+        updateUser(getUserItemForResend(newUser,newCode));
       }
 
   const ExpiredForm = ({msg}) => {
