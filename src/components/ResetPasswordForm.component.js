@@ -167,7 +167,7 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
       }
       
     async function updateUser(linkCode,linkCodeTime){
-        console.log("Engage update user");
+        console.log("Engage update user with link code");
         const response = fetch(`/user/${linkCode}/${linkCodeTime}/${username}`, {
               method: 'PUT',
               headers: {
