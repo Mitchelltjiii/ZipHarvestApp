@@ -157,6 +157,7 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
         
         const response = await fetch(`/send-reset-link/${address}/${newCode}/${username}`);
         const json = await response.json();
+        console.log("Waiting for sendresetlinkfetch")
         try{
           console.log("Send Reset link json: " + json);
         }catch(err){
@@ -167,7 +168,10 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
         }catch(err){
           
         }
+        console.log("Done Waiting for sendresetlinkfetch")
         busySettingUser = true;
+        console.log("Go to updateuser")
+        console.log("JSON.stringify currentdatetime: " + JSON.stringify((new Date().getTime())));
         updateUser(newCode,JSON.stringify((new Date().getTime())));
       }
       

@@ -63,6 +63,7 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
   })
 
   app.get('/send-reset-link/:address/:linkCode/:username', async (req,res) =>{
+    console.log("Send reset link");
     const msg = {
       to: req.params.address, // Change to your recipient
       from: 'support@zipharvest.app', // Change to your verified sender
@@ -70,12 +71,15 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
       text: 'Here',
       html: 'Here is the link to reset your password: <strong>' + "https://www.zipharvest.app/linkCode=" + req.params.linkCode + '/username=' + req.params.username + '</strong>',
     }
-    
+    console.log("Msg created");
+
     sgMail.send(msg).then((response) => {
+      console.log("Sent email");
         console.log(response[0].statusCode)
         console.log(response[0].headers)
         res.json(0);
       }).catch((error) => {
+        console.log("Email not sent");
         console.error(error)
         res.json(1);
       })
