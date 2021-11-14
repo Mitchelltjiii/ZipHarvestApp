@@ -174,14 +174,14 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
         busySettingUser = true;
         console.log("Go to updateuser")
         console.log("JSON.stringify currentdatetime: " + JSON.stringify((new Date().getTime())));
-        updateUserLinkCode(newCode,JSON.stringify((new Date().getTime())));
+        updateUserLinkCode(newCode,JSON.stringify((new Date().getTime())),username);
       }
       
-    async function updateUserLinkCode(linkCode,linkCodeTime){
+    async function updateUserLinkCode(linkCode,linkCodeTime,userID){
         console.log("Engage update user with link code");
         console.log("LinkCode: " + linkCode);
         console.log("LinkCodeTime: " + linkCodeTime)
-        const response = fetch(`/user/${linkCode}/${linkCodeTime}/${username}`, {
+        const response = fetch(`/user/${linkCode}/${linkCodeTime}/${userID}`, {
               method: 'PUT',
               headers: {
                 'Accept': 'application/json',
@@ -201,6 +201,7 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
         console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
         console.log("Exit update user");
         setLinkSent(true);
+        setGotUser(true);
       }
 
       async function updateUserPassword(){
@@ -282,71 +283,16 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
             console.log("Code Expired");
             setExpired(true);
             return;
-          }else{
-            console.log("Code Working still!");
-            
           }
+          
+          console.log("Code Working still!");
     
           if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
-            updateUser(getUserItem(newUser));
+            updateUserLinkCode('','',newUser.username);
           }
         }else{
           console.log("No Match")
         }
-    }
-
-    function getUserItem(newUser){
-      console.log("Enter getUserItem")
-    
-      let userItem = {
-        apiid: '',
-        username: '',
-        password: '',
-        subid: '',
-        linkCode: '',
-        facilityName: '',
-        firstName: '',
-        lastName: '',
-        email: '',
-        verificationCode: '',
-        verified: 0,
-        sessionid: '',
-        verCodeTime: '',
-        linkCodeTime: ''
-        };
-    
-        userItem.apiid = newUser.username;
-        userItem.username = newUser.username;
-        userItem.password = newUser.password;
-        userItem.facilityName = newUser.facilityName;
-        userItem.firstName = newUser.firstName;
-        userItem.lastName = newUser.lastName;
-        userItem.email = newUser.email;
-    
-      console.log("Stringified before passed: " + JSON.stringify(userItem));
-      console.log("Exit getUserItem")
-      return userItem;
-    }
-    
-    async function updateUser(userItem){
-      console.log("Engage update user");
-      const response = fetch('/user', {
-            method: 'PUT',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(userItem)
-      }).then(function(response) {
-        let resp = JSON.stringify(response);
-      }).then(function(data) {
-      });
-      console.log("Before removing busy setting user");
-      console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
-      busySettingUser = (false);
-      console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
-      console.log("Exit update user");
-      setGotUser(true);
     }
 
 	return (
