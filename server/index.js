@@ -812,11 +812,19 @@ app.put('/user/updateLinkCode/:linkCode/:linkCodeTime/:username', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
     console.log('connected as id ' + connection.threadId);
+    let linkCode = req.params.linkCode;
+    let linkCodeTime = req.params.linkCodeTime;
+    if(linkCode==="blank"){
+      linkCode = "";
+    }
+    if(linkCodeTime==="blank"){
+      linkCodeTime = "";
+    }
 
   connection.query(`UPDATE users SET
   linkCode = ?, linkCodeTime = ? WHERE (username = ?)`, 
   [
-    req.params.linkCode, req.params.linkCodeTime, req.params.username
+    linkCode, linkCodeTime, req.params.username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
@@ -826,7 +834,7 @@ app.put('/user/updateLinkCode/:linkCode/:linkCodeTime/:username', (req, res) =>{
   });
 });
 
-app.put('/user/updatesubid/subid/:subid/:username', (req, res) =>{
+app.put('/user/subid/:subid/:username', (req, res) =>{
   console.log("Update Sub ID: " + req.params.subid);
   console.log("Username: " + req.params.username);
   pool.getConnection((err, connection) => {
