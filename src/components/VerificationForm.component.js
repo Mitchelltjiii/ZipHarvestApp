@@ -176,10 +176,10 @@ function VerificationForm({setCurrentPage,newUsername}) {
     }
 
 	return (
-		<div id="verification-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-                {isMobile ? 
-                                <div style={{width:formWidth,height:formHeight}}>
-                                <Grid
+    <div id="verification-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
+      {isMobile ?
+        <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+            <Grid
                 container
                 direction="column"
                   justifyContent="center"
@@ -204,11 +204,10 @@ function VerificationForm({setCurrentPage,newUsername}) {
                             <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                             </Grid>
                         </Grid>
-                            </div>
-                            :
-                            <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5}}>
-                
-                            <Grid
+                </div>
+                :
+                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+                <Grid
             container
             direction="column"
               justifyContent="center"
@@ -225,8 +224,8 @@ function VerificationForm({setCurrentPage,newUsername}) {
                         </Grid>
                         <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
                         </Grid>
-
-                        </div>}                
+        </div>
+       }
 		</div>
 	);
 }
