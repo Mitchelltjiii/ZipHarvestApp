@@ -97,7 +97,7 @@ export default class App extends React.Component {
       //go to ver form
       this.setState({newUsername:username,currentPage:'verification-form'});
       console.log("Text === 2");
-    }else if(text === "3"){
+    }else{
       this.executeLogInFailed();
     }
   }

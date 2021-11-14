@@ -10,17 +10,15 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-function AccountForm({refreshOuter, userID, setCurrentPage}) {
+function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
 
     const handleClick = (title) => {
       if(title==="Change Password"){
         console.log("Change Password Clicked")
       }else if(title==="Logout"){
         console.log("Logout Clicked")
-      }else if(title==="Subscription"){
-		setCurrentPage('subscription-form');
+      }
 	  }
-	}
 
     const Tab = ({title,subtitle}) => {
         return(
@@ -59,16 +57,12 @@ function AccountForm({refreshOuter, userID, setCurrentPage}) {
 
     const rows = [];
 
-    rows.push(createData("Email","Example@fl.com"));
-    rows.push(createData("Change Password",""));
-    rows.push(createData("Subscription",""));
-    rows.push(createData("Permissions",""));
-    rows.push(createData("About",""));
-    rows.push(createData("Version","Beta Test v0.0.0"));
-    rows.push(createData("Terms and Conditions",""));
-    rows.push(createData("Privacy Policy",""));
-    rows.push(createData("Support",""));
-    rows.push(createData("Logout",""));
+    rows.push(createData("Subscription Type","Premium"));
+    rows.push(createData("Unique Plant Tags Exported This Month",""));
+    rows.push(createData("Unique Plant Tags Per Month",""));
+    rows.push(createData("Renewal Date",""));
+    rows.push(createData("Change Subscription",""));
+    rows.push(createData("End Subscription",""));
 
     return(
       <TableContainer component={Paper}>
@@ -76,7 +70,7 @@ function AccountForm({refreshOuter, userID, setCurrentPage}) {
         <TableHead>
           <TableRow>
           <TableCell align="left">
-              <div style={{fontSize: "25px"}}>Account</div>
+              <div style={{fontSize: "25px"}}>Subscription</div>
             </TableCell>
           </TableRow>
         </TableHead>
@@ -109,5 +103,5 @@ function AccountForm({refreshOuter, userID, setCurrentPage}) {
 */		
 
 
-export default AccountForm;
+export default SubscriptionForm;
 
