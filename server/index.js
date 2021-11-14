@@ -806,7 +806,7 @@ app.post('/user', (req, res) =>{
   }); 
 });
 
-app.put('/user/:linkCode/:linkCodeTime/:username', (req, res) =>{
+app.put('/user/updateLinkCode/:linkCode/:linkCodeTime/:username', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
     console.log('connected as id ' + connection.threadId);

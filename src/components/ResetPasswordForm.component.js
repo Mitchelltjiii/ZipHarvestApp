@@ -182,7 +182,14 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
         console.log("Engage update user with link code");
         console.log("LinkCode: " + newLinkCode);
         console.log("LinkCodeTime: " + linkCodeTime)
-        const response = fetch(`/user/${newLinkCode}/${linkCodeTime}/${userID}`, {
+        /*
+        if(newLinkCode === ""){
+          newLinkCode = "blank";
+        }
+        if(linkCodeTime === ""){
+          linkCodeTime = "blank";
+        }*/
+        const response = fetch(`/user/updateLinkCode/${newLinkCode}/${linkCodeTime}/${userID}`, {
               method: 'PUT',
               headers: {
                 'Accept': 'application/json',
