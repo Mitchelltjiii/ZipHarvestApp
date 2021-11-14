@@ -12,10 +12,6 @@ function EndSubscriptionForm({setCurrentPage}) {
       window.location.replace("https://www.zipharvest.app/");
     }  
 
-    const handleEmail = (event) => {
-        setEmail(event.target.value);
-    };
-
     let formWidth = "450px";
     let formHeight = "250px";
 
