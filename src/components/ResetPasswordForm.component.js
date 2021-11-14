@@ -66,10 +66,10 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
       let str = text;
       console.log("GEt email str: " + str);
       let textWithoutQuotes = str.substring(1,str.length-1);
-      console.log("Text without quotes str: " + str);
+      console.log("Text without quotes str: " + textWithoutQuotes);
 
       if(textWithoutQuotes !== null && textWithoutQuotes !== undefined && textWithoutQuotes !== ""){
-        sendResetLink(str);
+        sendResetLink(textWithoutQuotes);
       }else{
         setFailedUsername(username);
         setUsernameHelperText("Username does not exist")
@@ -173,6 +173,8 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
       
     async function updateUser(linkCode,linkCodeTime){
         console.log("Engage update user with link code");
+        console.log("LinkCode: " + linkCode);
+        console.log("LinkCodeTime: " + linkCodeTime)
         const response = fetch(`/user/${linkCode}/${linkCodeTime}/${username}`, {
               method: 'PUT',
               headers: {
