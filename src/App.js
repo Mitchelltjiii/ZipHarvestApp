@@ -11,6 +11,7 @@ import ResetPasswordForm from './components/ResetPasswordForm.component';
 import FindUserForm from './components/FindUserForm.component'
 import LoginHeader from "./components/LoginHeader.component";
 import Grid from '@material-ui/core/Grid';
+import EndSubscriptionForm from "./components/EndSubscriptionForm.component";
 
 export default class App extends React.Component {
   state = {
@@ -88,18 +89,24 @@ export default class App extends React.Component {
     this.state.users = text;
     this.state.usersLoading = false;
     console.log("Try Login Response: " + text);
+    let gotResponse = false;
     if(text === "0"){
       console.log("Text === 0");
+      gotResponse = true;
       this.getSubId(username,staySignedIn);
     }else if(text === "1"){
+      gotResponse = true;
       console.log("Text === 1");
       this.setState({newUsername:username,currentPage:'stripe-form'});
     }else if(text === "2"){
-      //go to ver form
+      //go to ver 
+      gotResponse = true;
       console.log("Text === 2");
       this.setState({newUsername:username,currentPage:'verification-form'});
-    }else if(text !== "3"){
-      console.log("Text !== 3");
+    }
+    
+    if(!gotResponse){
+      console.log("Not Got Response");
       this.executeLogInFailed();
     }
     console.log("Text === over");
@@ -501,7 +508,6 @@ export default class App extends React.Component {
     let linkCode = "";
     let linkEqualsStr = "linkCode=";
     if(currUrl.includes("linkCode")){
-      
       let linkCodeString = currUrl.substring(currUrl.indexOf(linkEqualsStr)+linkEqualsStr.length,currUrl.indexOf(linkEqualsStr)+linkEqualsStr.length+8);
       console.log("LinkCode Str: " + linkCodeString);
       linkCode = linkCodeString;
@@ -509,6 +515,7 @@ export default class App extends React.Component {
         this.setCurrentPage('reset-password-form');
       }
     }
+    console.log("Link Code In App.js: " + linkCode);
 
     if (this.state.loggedIn !== '') {
 	  	showForm = <div style={{margin:"auto"}}>
@@ -532,6 +539,8 @@ export default class App extends React.Component {
 				showForm = <ResetPasswordForm setCurrentPage={this.setCurrentPage} linkCode={linkCode} userFromUrl={userFromUrl} executeLogout={this.executeLogout}></ResetPasswordForm>
       }else if(this.state.currentPage === 'find-user-form'){
 				showForm = <FindUserForm setCurrentPage={this.setCurrentPage}></FindUserForm>
+      }else if(this.state.currentPage === 'end-subscription-form'){
+				showForm = <EndSubscriptionForm setCurrentPage={this.setCurrentPage}></EndSubscriptionForm>
       }else{
         showForm = <LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin}
         setCurrentPage={this.setCurrentPage} logInFailed={this.state.logInFailed}></LogIn>;

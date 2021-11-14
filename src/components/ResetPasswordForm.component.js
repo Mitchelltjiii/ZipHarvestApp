@@ -7,7 +7,7 @@ import {InputAdornment,IconButton} from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
-function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout}) {
+function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) {
 
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -17,6 +17,7 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
     let busySettingUser = false;
     let fromUrl = (userFromUrl.length!==0);
     console.log("From Url Reset Password Form: " + fromUrl);
+    console.log("Link Code: " + linkCode);
     const [passwordError, setPasswordError] = React.useState(false);
     const [passwordHelperText, setPasswordHelperText] = React.useState(false);
     const [verifyPasswordError, setVerifyPasswordError] = React.useState(false);
@@ -177,11 +178,11 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
         updateUserLinkCode(newCode,JSON.stringify((new Date().getTime())),username);
       }
       
-    async function updateUserLinkCode(linkCode,linkCodeTime,userID){
+    async function updateUserLinkCode(newLinkCode,linkCodeTime,userID){
         console.log("Engage update user with link code");
-        console.log("LinkCode: " + linkCode);
+        console.log("LinkCode: " + newLinkCode);
         console.log("LinkCodeTime: " + linkCodeTime)
-        const response = fetch(`/user/${linkCode}/${linkCodeTime}/${userID}`, {
+        const response = fetch(`/user/${newLinkCode}/${linkCodeTime}/${userID}`, {
               method: 'PUT',
               headers: {
                 'Accept': 'application/json',
@@ -273,10 +274,10 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
         console.log("User string: " + userString);
         let newUser = JSON.parse(userString);
         console.log("New user: " + JSON.stringify(newUser));
-        console.log("Link code duh: " + linkCodeDuh)
+        console.log("Link code duh: " + linkCode)
         console.log("Stringify newUser.linkCode: " + JSON.stringify(newUser.linkCode))
   
-        if(JSON.stringify(newUser.linkCode) === linkCodeDuh){
+        if(JSON.stringify(newUser.linkCode) === linkCode){
           console.log("Match");
           console.log("Curr date Value: " + (new Date()).getTime());
           console.log("New User linkcodetime date Value: " + newUser.linkCodeTime);

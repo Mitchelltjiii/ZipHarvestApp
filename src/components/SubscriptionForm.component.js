@@ -17,7 +17,8 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
         console.log("Change Password Clicked")
       }else if(title==="Logout"){
         console.log("Logout Clicked")
-      }
+      }else if(title==="Cancel Subscription");
+        setCurrentPage('end-subscription-form');
 	  }
 
     const Tab = ({title,subtitle}) => {
@@ -62,7 +63,7 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
     rows.push(createData("Unique Plant Tags Per Month",""));
     rows.push(createData("Renewal Date",""));
     rows.push(createData("Change Subscription",""));
-    rows.push(createData("End Subscription",""));
+    rows.push(createData("Cancel Subscription",""));
 
     return(
       <TableContainer component={Paper}>
