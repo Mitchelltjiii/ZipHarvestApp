@@ -10,7 +10,6 @@ import ResetPasswordForm from './components/ResetPasswordForm.component';
 import FindUserForm from './components/FindUserForm.component'
 import LoginHeader from "./components/LoginHeader.component";
 import Grid from '@material-ui/core/Grid';
-import EndSubscriptionForm from "./components/EndSubscriptionForm.component";
 
 export default class App extends React.Component {
   state = {
@@ -540,8 +539,6 @@ export default class App extends React.Component {
 				showForm = <ResetPasswordForm setCurrentPage={this.setCurrentPage} linkCode={linkCode} userFromUrl={userFromUrl} executeLogout={this.executeLogout}></ResetPasswordForm>
       }else if(this.state.currentPage === 'find-user-form'){
 				showForm = <FindUserForm setCurrentPage={this.setCurrentPage}></FindUserForm>
-      }else if(this.state.currentPage === 'end-subscription-form'){
-				showForm = <EndSubscriptionForm setCurrentPage={this.setCurrentPage}></EndSubscriptionForm>
       }else{
         showForm = <LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin}
         setCurrentPage={this.setCurrentPage} logInFailed={this.state.logInFailed}></LogIn>;

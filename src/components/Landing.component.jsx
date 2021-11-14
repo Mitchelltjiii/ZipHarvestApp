@@ -4,6 +4,7 @@ import HarvestBatchesForm from './HarvestBatchesForm.component';
 import ManagePlantsForm from './ManagePlantsForm.component';
 import AccountForm from './AccountForm.component';
 import SubscriptionForm from './SubscriptionForm.component';
+import EndSubscriptionForm from './EndSubscriptionForm.component';
 
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
 	setHarvestBatches, resetHarvestBatches, resetAll, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
@@ -32,6 +33,8 @@ reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout})
 				<AccountForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage}/>
 			) : currentPage === 'subscription-form' ? (
 				<SubscriptionForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage}/>
+			) : currentPage === 'end-subscription-form' ? (
+				<EndSubscriptionForm setCurrentPage={setCurrentPage}></EndSubscriptionForm>
 			) : null}
         </div>
     )
