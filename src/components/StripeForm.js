@@ -124,7 +124,6 @@ function getUserItem(newUser,sessionid){
     userItem.lastName = newUser.lastName;
     userItem.email = newUser.email;
     userItem.verificationCode = newUser.verificationCode;
-    userItem.verCodeTime = JSON.stringify((new Date()).getTime());
     userItem.sessionid = sessionid;
 
   console.log("Stringified before passed: " + JSON.stringify(userItem));

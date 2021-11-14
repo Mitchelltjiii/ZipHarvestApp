@@ -88,7 +88,7 @@ function VerificationForm({setCurrentPage,newUsername}) {
           lastName: '',
           email: '',
           verificationCode: '',
-          verified: 0,
+          verified: 1,
           sessionid: '',
           verCodeTime: '',
           linkCodeTime: ''
