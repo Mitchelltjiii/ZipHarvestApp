@@ -273,8 +273,10 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
         console.log("User string: " + userString);
         let newUser = JSON.parse(userString);
         console.log("New user: " + JSON.stringify(newUser));
+        console.log("Link code duh: " + linkCodeDuh)
+        console.log("Stringify newUser.linkCode: " + JSON.stringify(newUser.linkCode))
   
-        if(newUser.linkCode===linkCodeDuh){
+        if(JSON.stringify(newUser.linkCode) === linkCodeDuh){
           console.log("Match");
           console.log("Curr date Value: " + (new Date()).getTime());
           console.log("New User linkcodetime date Value: " + newUser.linkCodeTime);
