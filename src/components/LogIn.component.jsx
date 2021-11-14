@@ -30,7 +30,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 
     const [usernameError, setUsernameError] = React.useState(failedLogIn);
     const [passwordError, setPasswordError] = React.useState(failedLogIn);
-    const [errorText, setErrorText] = React.useState("");
+    const [errorText, setErrorText] = React.useState(errorText);
 
     const handleForgotID = () => {
       clickForgotID();
