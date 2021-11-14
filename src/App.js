@@ -193,8 +193,7 @@ export default class App extends React.Component {
   }
 
   resetAll = (currHarvest) => {
-    this.setState({harvestBatchesLoading: true, plantsLoading: true, harvestRecordsLoading: true, currentHarvest: currHarvest});
-
+    this.setState({harvestBatchesLoading: true, plantsLoading: true, harvestRecordsLoading: true, currentHarvest: currHarvest, logInFailed: false});
     console.log("Reset all");
     this.getHarvestBatchesFromDB();
     this.getPlantsFromDB(true);
@@ -532,7 +531,7 @@ export default class App extends React.Component {
 				showForm = <FindUserForm setCurrentPage={this.setCurrentPage}></FindUserForm>
       }else{
         showForm = <LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin}
-         setCurrentPage={this.setCurrentPage} logInFailed={this.state.logInFailed}></LogIn>;
+        setCurrentPage={this.setCurrentPage} logInFailed={this.state.logInFailed}></LogIn>;
         loginForm = true;
       }
       if(!loginForm){
