@@ -88,6 +88,10 @@ export default class App extends React.Component {
     this.state.usersLoading = false;
     console.log("Try Login Response: " + text);
     let gotResponse = false;
+    console.log("Got Response A: " + gotResponse);
+    let fuck = text;
+    console.log("Fuck: " + fuck);
+
     if(text === "0"){
       console.log("Text === 0");
       gotResponse = true;
@@ -101,7 +105,10 @@ export default class App extends React.Component {
       gotResponse = true;
       console.log("Text === 2");
       this.setState({newUsername:username,currentPage:'verification-form'});
+    }else{
+      console.log("ELSE");
     }
+    console.log("After tree");
 
     console.log("Got Response: " + gotResponse);
     
