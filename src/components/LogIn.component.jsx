@@ -21,8 +21,16 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
-    const [usernameError, setUsernameError] = React.useState(logInFailed);
-    const [passwordError, setPasswordError] = React.useState(logInFailed);
+    let errorTxt = "";
+    let failedLogIn = false;
+    if(logInFailed){
+      failedLogIn = true;
+      errorTxt = "Username or password is incorrect."
+    }
+
+    const [usernameError, setUsernameError] = React.useState(failedLogIn);
+    const [passwordError, setPasswordError] = React.useState(failedLogIn);
+    const [errorText, setErrorText] = React.useState("");
 
     const handleForgotID = () => {
       clickForgotID();
@@ -66,10 +74,12 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     }
 
     if(passwordError && password.length !== 0){
+      setErrorText("");
       setPasswordError(false);
     }
 
     if(usernameError && username.length !== 0){
+      setErrorText("");
       setUsernameError(false);
     }
 
@@ -133,8 +143,9 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                                    <div style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"10px"}}>
                                        <img alt="logo" src={logo} style={{minHeight:"62px",maxHeight: "62px"}}/>
                                    </div>    
-                                   <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
+                                   <TextField error={usernameError} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                                    <TextField
+  error={passwordError}
   style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}
   value={password}
   label='Password'
@@ -154,7 +165,9 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
       </InputAdornment>
     )
   }}
-/>                                   <FormControlLabel onChange={handleStaySignedInChanged} control={<Checkbox/>} label="Stay signed in" />
+/>
+<div>{errorText}</div>
+                                     <FormControlLabel onChange={handleStaySignedInChanged} control={<Checkbox/>} label="Stay signed in" />
                                    <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn} style={{marginTop:"10px",marginBottom:"20px"}}>Sign in</Button>
                                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
                                    <div style={{marginTop:"5px",marginBottom:"5px"}}>Forgot {forgotIDLink} or {forgotPasswordLink}</div>
@@ -174,8 +187,9 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                                    <div style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"10px"}}>
                                        <img alt="logo" src={logo} style={{minHeight:"62px",maxHeight: "62px"}}/>
                                    </div>    
-                                   <TextField id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
+                                   <TextField error={usernameError} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                                    <TextField
+  error={passwordError}
   style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}
   value={password}
   label='Password'
@@ -195,7 +209,8 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
       </InputAdornment>
     )
   }}
-/>       
+/>   
+<div>{errorText}</div>    
                                    <FormControlLabel onChange={handleStaySignedInChanged} control={<Checkbox/>} label="Stay signed in" />
                                    <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn} style={{marginTop:"10px",marginBottom:"20px"}}>Sign in</Button>
                                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
