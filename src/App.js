@@ -89,17 +89,20 @@ export default class App extends React.Component {
     this.state.usersLoading = false;
     console.log("Try Login Response: " + text);
     if(text === "0"){
+      console.log("Text === 0");
       this.getSubId(username,staySignedIn);
     }else if(text === "1"){
-      this.setState({newUsername:username,currentPage:'stripe-form'});
       console.log("Text === 1");
+      this.setState({newUsername:username,currentPage:'stripe-form'});
     }else if(text === "2"){
       //go to ver form
-      this.setState({newUsername:username,currentPage:'verification-form'});
       console.log("Text === 2");
+      this.setState({newUsername:username,currentPage:'verification-form'});
     }else{
+      console.log("Text === SUMnelse");
       this.executeLogInFailed();
     }
+    console.log("Text === over");
   }
 
   getPlantsFromDB = async (reload) => {
