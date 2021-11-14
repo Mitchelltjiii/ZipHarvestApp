@@ -11,7 +11,7 @@ import {InputAdornment,IconButton} from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
-function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,attemptLogin,setCurrentPage}){
+function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,attemptLogin,setCurrentPage,logInFailed}){
 
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -20,6 +20,9 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
+
+    const [usernameError, setUsernameError] = React.useState(logInFailed);
+    const [passwordError, setPasswordError] = React.useState(logInFailed);
 
     const handleForgotID = () => {
       clickForgotID();
@@ -60,6 +63,14 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 
     function clickPrivacyPolicy(){
       window.open("https://app.termly.io/document/privacy-policy/a880128c-82ae-40b1-bec3-7d5b495a1d24", '_blank');
+    }
+
+    if(passwordError && password.length !== 0){
+      setPasswordError(false);
+    }
+
+    if(usernameError && username.length !== 0){
+      setUsernameError(false);
     }
 
     var forgotIDLink = <a onClick={handleForgotID} style={{cursor:"pointer",color:"#3d85c6"}}>ID</a>;

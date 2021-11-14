@@ -27,7 +27,8 @@ export default class App extends React.Component {
     users: [],
     usersLoading: true,
     userID: "",
-    newUsername: ""
+    newUsername: "",
+    logInFailed: false
   };
 
   componentDidMount() {
@@ -59,6 +60,7 @@ export default class App extends React.Component {
       this.executeLogIn(username,staySignedIn);
     }else{
       console.log("Sub cancelled");
+      this.executeLogInFailed();
     }
   }
 
@@ -283,10 +285,17 @@ export default class App extends React.Component {
     localStorage.setItem('staySignedIn',staySignedIn);
     let currPage = localStorage.getItem("currentPage");
     if(currPage !== null && currPage !== undefined && currPage !== ""){
-      this.setState({loggedIn:user,userID:user,currentPage:currPage});
+      this.setState({loggedIn:user,userID:user,currentPage:currPage,logInFailed:false});
     }else{
-      this.setState({loggedIn:user,userID:user});
+      this.setState({loggedIn:user,userID:user,logInFailed:false});
     }
+    this.resetAll([]);
+    this.engageReload();
+  }
+
+  executeLogInFailed = () =>{
+    this.setState({logInFailed:true});
+    
     this.resetAll([]);
     this.engageReload();
   }
@@ -522,7 +531,8 @@ export default class App extends React.Component {
       }else if(this.state.currentPage === 'find-user-form'){
 				showForm = <FindUserForm setCurrentPage={this.setCurrentPage}></FindUserForm>
       }else{
-        showForm = <LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage}></LogIn>;
+        showForm = <LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin}
+         setCurrentPage={this.setCurrentPage} logInFailed={this.state.logInFailed}></LogIn>;
         loginForm = true;
       }
       if(!loginForm){
