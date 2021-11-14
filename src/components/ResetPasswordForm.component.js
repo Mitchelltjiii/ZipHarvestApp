@@ -174,10 +174,10 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
         busySettingUser = true;
         console.log("Go to updateuser")
         console.log("JSON.stringify currentdatetime: " + JSON.stringify((new Date().getTime())));
-        updateUser(newCode,JSON.stringify((new Date().getTime())));
+        updateUserLinkCode(newCode,JSON.stringify((new Date().getTime())));
       }
       
-    async function updateUser(linkCode,linkCodeTime){
+    async function updateUserLinkCode(linkCode,linkCodeTime){
         console.log("Engage update user with link code");
         console.log("LinkCode: " + linkCode);
         console.log("LinkCodeTime: " + linkCodeTime)
