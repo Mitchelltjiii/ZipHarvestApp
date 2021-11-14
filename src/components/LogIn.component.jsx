@@ -30,7 +30,9 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 
     const [usernameError, setUsernameError] = React.useState(failedLogIn);
     const [passwordError, setPasswordError] = React.useState(failedLogIn);
-    const [errorText, setErrorText] = React.useState(errorText);
+    const [errorText, setErrorText] = React.useState(errorTxt);
+
+    console.log("Log in UsernameError: " + usernameError);
 
     const handleForgotID = () => {
       clickForgotID();
@@ -84,10 +86,10 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     }
 
     var forgotIDLink = <a onClick={handleForgotID} style={{cursor:"pointer",color:"#3d85c6"}}>ID</a>;
-  var forgotPasswordLink = <a onClick={handleForgotPassword} style={{cursor:"pointer",color:"#3d85c6"}}>password</a>;
-  var createIDLink = <a onClick={handleCreateID} style={{cursor:"pointer",color:"#3d85c6"}}>Create one</a>;
-  var termsOfServiceLink = <a onClick={handleTermsOfService} style={{cursor:"pointer",color:"#3d85c6"}}>Terms of Service</a>;
-  var privacyPolicyLink = <a onClick={handlePrivacyPolicy} style={{cursor:"pointer",color:"#3d85c6"}}>Privacy Policy.</a>;
+    var forgotPasswordLink = <a onClick={handleForgotPassword} style={{cursor:"pointer",color:"#3d85c6"}}>password</a>;
+    var createIDLink = <a onClick={handleCreateID} style={{cursor:"pointer",color:"#3d85c6"}}>Create one</a>;
+    var termsOfServiceLink = <a onClick={handleTermsOfService} style={{cursor:"pointer",color:"#3d85c6"}}>Terms of Service</a>;
+    var privacyPolicyLink = <a onClick={handlePrivacyPolicy} style={{cursor:"pointer",color:"#3d85c6"}}>Privacy Policy.</a>;
 
     const handleLogIn = (event) => {
 		  logIn();

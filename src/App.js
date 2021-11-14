@@ -99,6 +99,7 @@ export default class App extends React.Component {
       this.setState({newUsername:username,currentPage:'verification-form'});
       console.log("Text === 2");
     }else if(text === "3"){
+      this.executeLogInFailed();
     }
   }
 
@@ -293,11 +294,10 @@ export default class App extends React.Component {
     this.engageReload();
   }
 
-  executeLogInFailed = () =>{
+  executeLogInFailed = () => {
+    console.log("Execute log in failed");
     this.setState({logInFailed:true});
-    
-    this.resetAll([]);
-    this.engageReload();
+    this.forceUpdate();
   }
 
   setAll = (pl,hr,hb) => {
@@ -451,6 +451,7 @@ export default class App extends React.Component {
     console.log("CurrentHarvest(STRING): " + JSON.stringify(this.state.currentHarvest));
 
 	  console.log("Logged In: " + this.state.loggedIn);
+    console.log("Log in Failed: " + this.state.logInFailed);
 	  let showForm;
     console.log("CurrentPage: " + this.state.currentPage);
     console.log("-*-*-*");
