@@ -103,6 +103,8 @@ export default class App extends React.Component {
       console.log("Text === 2");
       this.setState({newUsername:username,currentPage:'verification-form'});
     }
+
+    console.log("Got Response: " + gotResponse);
     
     if(!gotResponse){
       console.log("Not Got Response");
