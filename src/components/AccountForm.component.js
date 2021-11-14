@@ -40,7 +40,6 @@ function AccountForm({refreshOuter, userID, setCurrentPage}) {
                     </div>
 			    </Grid>
             </div>
-
         );
     };
 	const useStyles = makeStyles({
