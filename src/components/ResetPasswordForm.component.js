@@ -40,6 +40,8 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
     const handleMouseDownVerifyPassword = () => setShowVerifyPassword(!showVerifyPassword);
 
     const [expired,setExpired] = React.useState(false);
+    const [gotUser,setGotUser] = React.useState(false);
+
 
     const handleSendResetLink = () => {
       getEmail();
@@ -246,7 +248,7 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
       formWidth = "100%";
     }
 
-    if(fromUrl){
+    if(fromUrl && !gotUser){
       getUser()
     }
 
@@ -320,7 +322,6 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
         userItem.firstName = newUser.firstName;
         userItem.lastName = newUser.lastName;
         userItem.email = newUser.email;
-        userItem.sessionid = newUser.sessionid;
     
       console.log("Stringified before passed: " + JSON.stringify(userItem));
       console.log("Exit getUserItem")
@@ -345,6 +346,7 @@ function ResetPasswordForm({setCurrentPage,linkCodeDuh,userFromUrl,executeLogout
       busySettingUser = (false);
       console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
       console.log("Exit update user");
+      setGotUser(true);
     }
 
 	return (
