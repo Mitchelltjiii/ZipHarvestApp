@@ -71,7 +71,6 @@ export default class App extends React.Component {
     try{
       console.log("subid json: " + json);
     }catch(err){
-  
     }
     if(json !== undefined){
         this.getSubscription(json,username,staySignedIn);
