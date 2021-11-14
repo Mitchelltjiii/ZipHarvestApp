@@ -99,7 +99,7 @@ export default class App extends React.Component {
       console.log("Text === 2");
       this.setState({newUsername:username,currentPage:'verification-form'});
     }else{
-      console.log("Text === SUMnelse");
+      console.log("Text === SUMnelsee");
       this.executeLogInFailed();
     }
     console.log("Text === over");
