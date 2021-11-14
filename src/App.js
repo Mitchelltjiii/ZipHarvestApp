@@ -4,7 +4,6 @@ import Header from './components/Header.component';
 import Outer from './components/Outer.component';
 import LogIn from './components/LogIn.component';
 import StripeForm from "./components/StripeForm";
-import ProductForm from "./components/ProductForm";
 import CreateUserForm from './components/CreateUserForm.component';
 import VerificationForm from './components/VerificationForm.component';
 import ResetPasswordForm from './components/ResetPasswordForm.component';
