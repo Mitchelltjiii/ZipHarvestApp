@@ -742,14 +742,15 @@ app.put('/user', (req, res) =>{
   let verified = postData.verified;
   let sessionid = postData.sessionid;
   let verCodeTime = postData.verCodeTime;
+  let linkCodeTime = postData.linkCodeTime;
 
   console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
 
   if(apiid !== null && username !== null && password !== null && subid !== null){
     connection.query(`UPDATE users set
-  apiid =?, password =?, subid =?, linkCode =?, facilityName =?, firstName =?, lastName =?, email =?, verificationCode =?, verified =?, sessionid =?, verCodeTime =? WHERE username = ?`,
+  apiid =?, password =?, subid =?, linkCode =?, facilityName =?, firstName =?, lastName =?, email =?, verificationCode =?, verified =?, sessionid =?, verCodeTime =?, linkCodeTime =? WHERE username = ?`,
   [
-    apiid, password, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, username
+    apiid, password, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime, username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
@@ -783,16 +784,17 @@ app.post('/user', (req, res) =>{
   let verified = postData.verified;
   let sessionid = postData.sessionid;
   let verCodeTime = postData.verCodeTime;
+  let linkCodeTime = postData.linkCodeTime;
 
   console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
 
   if(apiid !== null && username !== null && password !== null && subid !== null){
     connection.query(`INSERT INTO users 
-  (apiid, username, password, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime) 
+  (apiid, username, password, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime,linkCodeTime) 
   VALUES 
-  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
   [
-    apiid, username, password, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime
+    apiid, username, password, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
@@ -824,7 +826,7 @@ app.put('/user/updateLinkCode/:linkCode/:linkCodeTime/:username', (req, res) =>{
   });
 });
 
-app.put('/user/subid/:subid/:username', (req, res) =>{
+app.put('/user/updatesubid/subid/:subid/:username', (req, res) =>{
   console.log("Update Sub ID: " + req.params.subid);
   console.log("Username: " + req.params.username);
   pool.getConnection((err, connection) => {
