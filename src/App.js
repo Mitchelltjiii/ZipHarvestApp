@@ -59,7 +59,7 @@ export default class App extends React.Component {
     if(json.canceled_at === null){
       this.executeLogIn(username,staySignedIn);
     }else{
-      console.log("Sub cancelled");
+      console.log("Sub cancelled.");
       this.executeLogInFailed();
     }
   }
