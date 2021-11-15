@@ -79,10 +79,17 @@ export default class App extends React.Component {
   }
 
   getUsersFromDB = async (username,password,staySignedIn) => {
+    console.log("Get users from DB");
+    if(username === "" || password === ""){
+      this.executeLogInFailed();
+      return;
+    }
     const response = await fetch(`/api/users/${username}/${password}`);
     const text = await response.text();
     /*const responseTwo = await fetch(`/create-customer`);
     const json = await responseTwo.json();*/
+
+    console.log("Fetched password attempt");
 
     this.state.users = text;
     this.state.usersLoading = false;
