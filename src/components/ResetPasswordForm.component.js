@@ -361,7 +361,9 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
                 }  
                 </div>
             :
-            <Grid
+            <div>
+            {!expired ? 
+              <Grid
     container
     direction="column"
       justifyContent="center"
@@ -412,6 +414,18 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
   }}
 /><Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleConfirmReset}>Confirm</Button>
                 </Grid>
+                :
+                <Grid
+            container
+            direction="column"
+              justifyContent="center"
+              alignItems="center"
+                >
+                <div style={{textAlign:"center"}}>Your password reset link has expired.</div>
+                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
+                </Grid>
+            }
+            </div>
                 }
                 </div>
                 :
@@ -494,33 +508,15 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
     /> <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleConfirmReset}>Confirm</Button>
                         </Grid>
                   :
-                  <div id="Expired Form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
-      {isMobile ?
-        <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-                <Grid
+                  <Grid
             container
             direction="column"
               justifyContent="center"
               alignItems="center"
-          >
+                >
                 <div style={{textAlign:"center"}}>Your password reset link has expired.</div>
                 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                 </Grid>
-                </div>
-                :
-                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-                <Grid
-            container
-            direction="column"
-              justifyContent="center"
-            alignItems="center"
-          >
-                <div style={{textAlign:"center"}}>Your password reset link has expired.</div>
-                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
-                </Grid>
-        </div>
-       }
-		</div>
                   }
                   </div>
                     }

@@ -21,6 +21,8 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
         setCurrentPage('end-subscription-form');
 	  }
 
+    const [subscription,setSubscription] = React.useState([]);
+
     const Tab = ({title,subtitle}) => {
         return(
             <div>
@@ -64,6 +66,41 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
     rows.push(createData("Renewal Date",""));
     rows.push(createData("Change Subscription",""));
     rows.push(createData("Cancel Subscription",""));
+
+    async function getSubId(){
+      console.log("Try to get subid");
+      const response = await fetch(`/get-subid/${userID}`);
+      const json = await response.json();
+      try{
+        console.log("subid json: " + json);
+      }catch(err){
+      }
+      if(json !== undefined){
+          getSubscription(json);
+        }
+    }
+
+    async function getSubscription(subId){
+      console.log("Try to get subscription");
+      const response = await fetch(`/get-subscription/${subId}`);
+      const json = await response.json();
+      try{
+        console.log("sub json: " + json);
+      }catch(err){
+    
+      }
+      try{
+        console.log("sub json(STRING): " + JSON.stringify(json));
+      }catch(err){
+        
+      }
+  
+      setSubscription(json);
+    }
+
+    if(JSON.stringify(subscription) === "[]"){
+      getSubId();
+    }
 
     return(
       <TableContainer component={Paper}>

@@ -95,6 +95,8 @@ function AccountForm({refreshOuter, userID, setCurrentPage}) {
       getEmail();
     }
 
+    
+
     return(
       <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
