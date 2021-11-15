@@ -17,11 +17,20 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
         console.log("Change Password Clicked")
       }else if(title==="Logout"){
         console.log("Logout Clicked")
-      }else if(title==="Cancel Subscription");
+      }else if(title==="Cancel Subscription"){
         setCurrentPage('end-subscription-form');
+      }
 	  }
 
     const [subscription,setSubscription] = React.useState([]);
+    const [product,setProduct] = React.useState([]);
+
+    let renewalDate = "Renewal Date"
+    if(JSON.stringify(subscription) !== "[]"){
+      console.log("Current period end: " + subscription.current_period_end)
+      renewalDate = (new Date(subscription.current_period_end).toLocaleDateString(undefined, options));
+      console.log("Renewal Date: " + renewalDate);
+    }
 
     const Tab = ({title,subtitle}) => {
         return(
@@ -82,7 +91,7 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
 
     async function getSubscription(subId){
       console.log("Try to get subscription");
-      const response = await fetch(`/get-subscription/${subId}`);
+      const response = await fetch(`/get-subscriptionsubscription/${subId}`);
       const json = await response.json();
       try{
         console.log("sub json: " + json);
@@ -95,8 +104,27 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
         
       }
   
-      setSubscription(json);
+      getProduct(json);
     }
+
+    async function getProduct(sub){
+      console.log("Try to get product");
+      console.log("subscription.plan.product: " + sub.plan.product)
+      const response = await fetch(`/get-product/${sub.plan.product}`);
+      const json = await response.json();
+      try{
+        console.log("product json: " + json);
+      }catch(err){
+
+      }
+      try{
+        console.log("Product json(STRING): " + JSON.stringify(json));
+      }catch(err){
+    
+      }
+      setSubscription(sub);
+      setProduct(json);
+  }
 
     if(JSON.stringify(subscription) === "[]"){
       getSubId();
