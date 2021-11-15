@@ -126,7 +126,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
       if(isPasswordValid(password) && isPasswordValid(passwordAgain) && (password === passwordAgain)){
         console.log("Get user Exists")
         if(fromAccountSettings){
-          console.log("Confirm Reset from account settings");
+          console.log("Confirm Reset from account settingss");
         }else{
           updateUserPassword();
         }
