@@ -68,12 +68,12 @@ function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettin
     rows.push(createData("Email",email));
     rows.push(createData("Change Password",""));
     rows.push(createData("Subscription",""));
-    rows.push(createData("Permissions",""));
-    rows.push(createData("About",""));
-    rows.push(createData("Version","Beta Test v0.0.0"));
+    //rows.push(createData("Permissions",""));
+    //rows.push(createData("About",""));
+    rows.push(createData("Version","v1.1.1"));
     rows.push(createData("Terms of Service",""));
     rows.push(createData("Privacy Policy",""));
-    rows.push(createData("Support",""));
+    rows.push(createData("Support","Zipharvest-support@flora-sol.com"));
 
     async function getEmail(){
       console.log("Get email")

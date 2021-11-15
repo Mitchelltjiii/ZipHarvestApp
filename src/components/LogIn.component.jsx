@@ -24,10 +24,12 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     console.log("loginfailed: " + logInFailed);
 
     const [logInFailedHandeled,setLoginFailedHandled] = React.useState(false);
+    const [failed,setFailed] = React.useState(false);
 
     if(!logInFailedHandeled && logInFailed){
       setUsername("");
       setPassword("");
+      setFailed(true);
       setLoginFailedHandled(true);
     }
 
@@ -45,7 +47,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     const [errorText, setErrorText] = React.useState(errorTxt);
 
     console.log("Log in UsernameError: " + usernameError);
-    if(failedLogIn && !usernameError && !passwordError){
+    if(failed && !usernameError && !passwordError){
       console.log("Set username error true");
       setUsernameError(true);
       setPasswordError(true);
@@ -96,12 +98,14 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
       setErrorText("");
       setPasswordError(false);
       setUsernameError(false);
+      setFailed(false);
     }
 
     if(usernameError && username.length !== 0){
       setErrorText("");
       setUsernameError(false);
       setPasswordError(false);
+      setFailed(false);
     }
 
     var forgotIDLink = <a onClick={handleForgotID} style={{cursor:"pointer",color:"#3d85c6"}}>ID</a>;
