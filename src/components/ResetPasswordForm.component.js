@@ -293,7 +293,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout}) 
             return;
           }
           
-          console.log("Code Working still!");
+          console.log("Code Working still");
     
           if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
             updateUserLinkCode('','',newUser.username);
