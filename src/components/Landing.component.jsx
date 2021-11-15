@@ -5,6 +5,7 @@ import ManagePlantsForm from './ManagePlantsForm.component';
 import AccountForm from './AccountForm.component';
 import SubscriptionForm from './SubscriptionForm.component';
 import EndSubscriptionForm from './EndSubscriptionForm.component';
+import ResetPasswordForm from './ResetPasswordForm.component';
 
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
 	setHarvestBatches, resetHarvestBatches, resetAll, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
@@ -17,6 +18,8 @@ reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout,s
 
 	console.log("ENTER LANDING, GET harvestbatches(STRINGIFIED): " + JSON.stringify(getHarvestBatches()));
 
+	let fromAccountSettings = true;
+	
     return(
 		
         <div>
