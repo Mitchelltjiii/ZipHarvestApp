@@ -19,9 +19,11 @@ export default class App extends React.Component {
     plants: [],
     harvestRecords: [],
     responseFromPlants: [],
+    dryRooms: [],
     plantsLoading: true,
     harvestRecordsLoading: true,    
     harvestBatchesLoading: true,
+    dryRoomsLoading: true,
     currentHarvest: [],
     users: [],
     usersLoading: true,
@@ -37,7 +39,7 @@ export default class App extends React.Component {
   }
   
   engageReload = () => {
-    if((!this.state.usersLoading) || (!this.state.plantsLoading && !this.state.harvestRecordsLoading && !this.state.harvestBatchesLoading)){
+    if((!this.state.usersLoading) || (!this.state.plantsLoading && !this.state.harvestRecordsLoading && !this.state.harvestBatchesLoading || !this.state.dryRoomsLoading)){
       console.log("Force Updated In App.js");
       this.forceUpdate();
     }
@@ -179,6 +181,23 @@ export default class App extends React.Component {
     }
   }
 
+  getDryRoomsFromDB = async (reload) => {
+    if(this.state.userID === "" && localStorage.getItem("user")===""){
+      return;
+    }
+    let userForFetch = this.state.userID;
+    if(localStorage.getItem("user")!==null && localStorage.getItem("user")!==undefined && localStorage.getItem("user")!==""){
+      userForFetch = localStorage.getItem("user");
+    }
+    const response = await fetch(`/api/dryrooms/${this.state.userForFetch}`);
+    const text = await response.text();
+    this.state.dryRooms = text;
+    this.state.dryRoomsLoading = false;
+    if(reload){
+      this.engageReload();
+    }
+  }
+
   getHarvestRecordsFromDB = async (reload) => {
     if(this.state.userID === "" && localStorage.getItem("user")===""){
       return;
@@ -258,6 +277,7 @@ export default class App extends React.Component {
     this.getHarvestBatchesFromDB();
     this.getPlantsFromDB(true);
     this.getHarvestRecordsFromDB(true);
+    this.getDryRoomsFromDB(true);
 
     this.forceUpdate();
   }
@@ -266,6 +286,12 @@ export default class App extends React.Component {
     this.setState({currentHarvest: currHarvest});
 
     this.getPlantsFromDB(true);
+  }
+
+  reloadDryRooms = (currHarvest) => {
+    this.setState({currentHarvest: currHarvest});
+
+    this.getDryRoomsFromDB(true);
   }
 
   reloadHarvestRecords = () => {
@@ -363,10 +389,6 @@ export default class App extends React.Component {
     this.forceUpdate();
   }
 
-  setAll = (pl,hr,hb) => {
-    this.setState({plants:pl,harvestRecords:hr,harvestBatches:hb});
-  }
-
   getPlants = () => {
     return this.state.plants;
   }
@@ -383,6 +405,10 @@ export default class App extends React.Component {
     return this.state.users;
   }
 
+  getDryRooms = () => {
+    return this.state.dryRooms;
+  }
+
   setHarvestBatches = (harvestBatchesFromChild) => {
     this.setState({harvestBatches:harvestBatchesFromChild});
   }
@@ -395,6 +421,10 @@ export default class App extends React.Component {
     this.setState({harvestRecords:harvestRecordsMapFromChild});
   }
 
+  setDryRooms = (dryRoomMapFromChild) => {
+    this.setState({dryRooms:dryRoomMapFromChild});
+  }
+
   setUsers = (usersMapFromChild) => {
     this.setState({users:usersMapFromChild});
   }
@@ -403,7 +433,7 @@ export default class App extends React.Component {
   executeLogout = () => {
     localStorage.clear();
     this.setState({loggedIn:'',currentPage:'harvest-form',harvestBatches:[],plants:[],harvestRecords:[],
-    plantsLoading:true,harvestBatchesLoading:true,harvestRecordsLoading:true,currentHarvest:[],userID:''});
+    plantsLoading:true,harvestBatchesLoading:true,harvestRecordsLoading:true,currentHarvest:[],userID:'',dryRooms:[]});
     this.forceUpdate();
   }
 
@@ -509,7 +539,7 @@ export default class App extends React.Component {
       }
     }
 
-    if ((this.state.loggedIn !== '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading))){
+    if ((this.state.loggedIn !== '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading || this.state.dryRoomsLoading))){
       return(<div>Loading...</div>);
     }
 
@@ -520,6 +550,7 @@ export default class App extends React.Component {
     console.log("HarvestRecords In State: " + this.state.harvestRecords);
     console.log("ResponseFromPlant In State: " + this.state.responseFromPlants);
     console.log("CurrentHarvest(STRING): " + JSON.stringify(this.state.currentHarvest));
+    console.log("DryRooms In State: " + this.state.dryRooms);
 
 	  console.log("Logged In: " + this.state.loggedIn);
     console.log("Log in Failed: " + this.state.logInFailed);
@@ -584,11 +615,12 @@ export default class App extends React.Component {
 	  	showForm = <div style={{margin:"auto"}}>
 	    <Header setCurrentPage={this.setCurrentPage} currentPage={this.state.currentPage} executeLogout={this.executeLogout}/>
       <Outer currentPage={this.state.currentPage} setCurrentPage={this.setCurrentPage} getPlants={this.getPlants} getHarvestRecords={this.getHarvestRecords} getHarvestBatches={this.getHarvestBatches}
-      resetHarvestBatches={this.resetHarvestBatches} resetAll={this.resetAll} currentHarvest={this.state.currentHarvest} setNewHBID={this.setNewHBID} getCurrentHarvestID={this.getCurrentHarvestID}
-      setNewHarvestRecordID={this.setNewHarvestRecordID} setNewPlantID={this.setNewPlantID} userID={this.state.userID} setAll={this.setAll}
+      resetHarvestBatches={this.resetHarvestBatches} currentHarvest={this.state.currentHarvest} setNewHBID={this.setNewHBID} getCurrentHarvestID={this.getCurrentHarvestID}
+      setNewHarvestRecordID={this.setNewHarvestRecordID} setNewPlantID={this.setNewPlantID} userID={this.state.userID}
       setHarvestBatches={this.setHarvestBatches} setHarvestRecords={this.setHarvestRecords} setPlants={this.setPlants} reloadPlants={this.reloadPlants} 
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}
-      verCode={verCode} userFromUrl={userFromUrl} linkCode={linkCode} executeLogout={this.executeLogout} setFromAccountSettings={this.setFromAccountSettings} attemptLogInFromEndSubForm={this.attemptLogInFromEndSubForm}/>
+      verCode={verCode} userFromUrl={userFromUrl} linkCode={linkCode} executeLogout={this.executeLogout} setFromAccountSettings={this.setFromAccountSettings} attemptLogInFromEndSubForm={this.attemptLogInFromEndSubForm}
+      getDryRooms={this.getDryRooms}/>
     </div>;
     }else{
       let loginForm = false;

@@ -19,8 +19,8 @@ import edit from '../edit.png';
 import SaveHarvestDateButton from './SaveHarvestDateButton.component';
 
 
-function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches, 
-	resetAll, currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, setAll, 
+function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches,
+	currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
 	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords}) { 
 
 	function HarvestBatch(name,type,date,userID){

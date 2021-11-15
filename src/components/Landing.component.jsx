@@ -9,10 +9,10 @@ import ResetPasswordForm from './ResetPasswordForm.component';
 import ManageDryRoomsForm from './ManageDryRoomsForm.component';
 
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
-	setHarvestBatches, resetHarvestBatches, resetAll, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
-setNewHarvestRecordID, setNewPlantID, userID, setAll,reloadPlants,reloadPlantsAndHarvestRecords, reloadHarvestBatches,
+	setHarvestBatches, resetHarvestBatches, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
+setNewHarvestRecordID, setNewPlantID, userID,reloadPlants,reloadPlantsAndHarvestRecords, reloadHarvestBatches,
 reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout,setFromAccountSettings,attemptLogInFromEndSubForm,
-logInSuccess}){
+logInSuccess,getDryRooms}){
 
 	console.log("ENTER LANDING, GET PLANTS(STRINGIFIED): " + JSON.stringify(getPlants()));
 
@@ -21,17 +21,13 @@ logInSuccess}){
 	console.log("ENTER LANDING, GET harvestbatches(STRINGIFIED): " + JSON.stringify(getHarvestBatches()));
 
 	let fromAccountSettings = true;
-
-	getDryRooms = () => {
-		return "[]"
-	}
 	
     return(
         <div>
 			{currentPage === 'harvest-form' ? (
 				<HarvestForm getHarvestBatches={getHarvestBatches} setHarvestBatches={setHarvestBatches} getPlants={getPlants} setPlants={setPlants} getHarvestRecords={getHarvestRecords} setHarvestRecords={setHarvestRecords} 
-				resetHarvestBatches={resetHarvestBatches} resetAll={resetAll} currentHarvest={currentHarvest} setNewHBID={setNewHBID} getCurrentHarvestID={getCurrentHarvestID} refreshOuter={refreshOuter} 
-				setNewHarvestRecordID={setNewHarvestRecordID} setNewPlantID={setNewPlantID} userID={userID} setAll={setAll} reloadPlants={reloadPlants} reloadPlantsAndHarvestRecords={reloadPlantsAndHarvestRecords}
+				resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} getCurrentHarvestID={getCurrentHarvestID} refreshOuter={refreshOuter} 
+				setNewHarvestRecordID={setNewHarvestRecordID} setNewPlantID={setNewPlantID} userID={userID} reloadPlants={reloadPlants} reloadPlantsAndHarvestRecords={reloadPlantsAndHarvestRecords}
 				reloadHarvestBatches={reloadHarvestBatches} reloadHarvestRecords={reloadHarvestRecords}/>
 			) : currentPage === 'harvest-batches-form' ? (
 				<HarvestBatchesForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID}/>
