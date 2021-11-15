@@ -19,6 +19,8 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
         console.log("Logout Clicked")
       }else if(title==="Cancel Subscription"){
         setCurrentPage('end-subscription-form');
+      }else if(title==="Change Subscription"){
+        setCurrentPage('change-subscription-form');
       }
 	  }
 

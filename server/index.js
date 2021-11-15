@@ -1167,6 +1167,30 @@ app.put('/pl/active', (req, res) =>{
   });
 });
 
+app.put('/user/set-session-id/:userID/:sessionID', (req, res) =>{
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    var postData  = req.body;
+
+  let sessionID = req.params.sessionID;
+  let userID = req.params.userID;
+
+  console.log("PUT DATA ACTIVE: PLANT STRINGIFIED: " + JSON.stringify(postData));
+
+  connection.query(`UPDATE users SET
+  sessionID = ? WHERE (userID = ?)`, 
+  [
+    sessionID, userID
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The update user sessionid result is: ', result);
+    res.json(result);
+    });
+  });
+});
+
 
 /*
 app.delete(`/hr/:id`, (req, res) =>{
