@@ -241,7 +241,6 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
         setUsername(event.target.value);
     };
 
-
     const handlePassword = (event) => {
         setPassword(event.target.value);
     };
@@ -249,6 +248,10 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
     const handlePasswordAgain = (event) => {
         setPasswordAgain(event.target.value);
     };
+
+    const handleTryPassword = () => {
+      console.log("Try Password");
+  };
     
 
     let formWidth = "450px";
@@ -309,7 +312,72 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
 		<div id="reset-password-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
           <div>
             {fromAccountSettings ?
-            <div>From account settings</div>
+            <div>{isMobile ?
+              <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+              <Grid
+              container
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+              >
+<TextField
+  error={passwordError}
+  style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}
+  value={password}
+  label='Password'
+  variant="outlined"
+  type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+  onChange={handlePassword} 
+  InputProps={{ // <-- This is where the toggle button is added.
+    endAdornment: (
+      <InputAdornment position="end">
+        <IconButton
+          aria-label="toggle password visiblity"
+          onClick={handleClickShowPassword}
+          onMouseDown={handleMouseDownPassword}
+        >
+          {showPassword ? <Visibility /> : <VisibilityOff />}
+        </IconButton>
+      </InputAdornment>
+    )
+  }}
+/>
+<Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleTryPassword}>Next</Button>
+
+              </Grid>
+              </div> :
+              <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+              <Grid
+              container
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+              >
+<TextField
+  error={passwordError}
+  style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}
+  value={password}
+  label='Password'
+  variant="outlined"
+  type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+  onChange={handlePassword} 
+  InputProps={{ // <-- This is where the toggle button is added.
+    endAdornment: (
+      <InputAdornment position="end">
+        <IconButton
+          aria-label="toggle password visiblity"
+          onClick={handleClickShowPassword}
+          onMouseDown={handleMouseDownPassword}
+        >
+          {showPassword ? <Visibility /> : <VisibilityOff />}
+        </IconButton>
+      </InputAdornment>
+    )
+  }}
+/>                  <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleTryPassword}>Next</Button>
+              </Grid>
+              </div>
+              }</div>
             :
             <div>  {success ?
               <div>
