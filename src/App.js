@@ -130,7 +130,9 @@ export default class App extends React.Component {
   }
 
   tryLogInFromEndSubForm = async (password) => {
-    console.log("Get users from DB");
+    console.log("Try Login From end sub form");
+    console.log("this.state.userID: " + this.state.userID)
+
     if(this.state.userID === "" || password === ""){
       this.setState({logInSuccess:false,currentPage:"end-subscription-form"});
       return;

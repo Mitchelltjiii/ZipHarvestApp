@@ -11,16 +11,17 @@ function EndSubscriptionForm({setCurrentPage,logInFailed,executeLogout,attemptLo
 
     const [stepOne,setStepOne] = React.useState(true);
     const [password, setPassword] = React.useState('');
-
+    
+    
+    let errorText = "";
     let error = false;
     if(!logInSuccess && password === ""){
       error = true;
+      errorText = "Password is incorrect."
     }
-    let errorText = "";
     let failedLogIn = false;
     if(!logInSuccess){
       failedLogIn = true;
-      errorText = "Password is incorrect."
     }
     console.log("failedlogin: " + failedLogIn);
     console.log("errorTxt: " + errorText);
@@ -40,7 +41,7 @@ function EndSubscriptionForm({setCurrentPage,logInFailed,executeLogout,attemptLo
 
     const handleAttemptCancel = () => {
       attemptLogInFromEndSubForm(password);
-      executeLogout();
+      setPassword("");
     }  
 
     const handlePassword = (event) => {
@@ -83,6 +84,7 @@ function EndSubscriptionForm({setCurrentPage,logInFailed,executeLogout,attemptLo
                         alignItems="center"
                         >
                                 <TextField
+  helperText={errorText}                              
   error={error}
   style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}
   value={password}
@@ -104,7 +106,6 @@ function EndSubscriptionForm({setCurrentPage,logInFailed,executeLogout,attemptLo
     )
   }}
 />
-<div>{errorText}</div>
                                 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleAttemptCancel}>Cancel Subscription</Button>
                                 <Button style={{marginTop:"30px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                                 </Grid>
@@ -137,6 +138,7 @@ function EndSubscriptionForm({setCurrentPage,logInFailed,executeLogout,attemptLo
                                             alignItems="center"
                                             >
                                                     <TextField
+                      helperText={errorText}                                                            
                       error={error}
                       style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}
                       value={password}
@@ -158,7 +160,6 @@ function EndSubscriptionForm({setCurrentPage,logInFailed,executeLogout,attemptLo
                         )
                       }}
                     />
-                    <div>{errorText}</div>
                                                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleAttemptCancel}>Cancel Subscription</Button>
                                                     <Button style={{marginTop:"30px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                                                     </Grid>

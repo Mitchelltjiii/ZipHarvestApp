@@ -278,6 +278,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
 
   async function executeLogInFailed(){
     console.log("ExecuteLoginFailed");
+    setPassword("")
     setLogInFailed(true);
   }
 

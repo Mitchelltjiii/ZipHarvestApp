@@ -6,6 +6,7 @@ import AccountForm from './AccountForm.component';
 import SubscriptionForm from './SubscriptionForm.component';
 import EndSubscriptionForm from './EndSubscriptionForm.component';
 import ResetPasswordForm from './ResetPasswordForm.component';
+import ManageDryRoomsForm from './ManageDryRoomsForm.component';
 
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
 	setHarvestBatches, resetHarvestBatches, resetAll, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
@@ -20,6 +21,10 @@ logInSuccess}){
 	console.log("ENTER LANDING, GET harvestbatches(STRINGIFIED): " + JSON.stringify(getHarvestBatches()));
 
 	let fromAccountSettings = true;
+
+	function getDryRooms(){
+		return "[]"
+	}
 	
     return(
         <div>
@@ -30,6 +35,8 @@ logInSuccess}){
 				reloadHarvestBatches={reloadHarvestBatches} reloadHarvestRecords={reloadHarvestRecords}/>
 			) : currentPage === 'harvest-batches-form' ? (
 				<HarvestBatchesForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID}/>
+			) : currentPage === 'manage-dry-rooms-form' ? (
+				<ManageDryRoomsForm getDryRooms={getDryRooms} refreshOuter={refreshOuter}/>
 			) : currentPage === 'manage-plants-form' ? (
 				<ManagePlantsForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} refreshOuter={refreshOuter} userID={userID} setPlants={setPlants} setNewPlantID={setNewPlantID} reloadPlants={reloadPlants}/>
 			) : currentPage === 'account-form' ? (

@@ -142,6 +142,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                                    <TextField error={error} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                                    <TextField
   error={error}
+  helperText={errorText}
   style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}
   value={password}
   label='Password'
@@ -162,7 +163,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     )
   }}
 />
-<div>{errorText}</div>
                                      <FormControlLabel onChange={handleStaySignedInChanged} control={<Checkbox/>} label="Stay signed in" />
                                    <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn} style={{marginTop:"10px",marginBottom:"20px"}}>Sign in</Button>
                                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
@@ -185,6 +185,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                                    </div>    
                                    <TextField error={error} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                                    <TextField
+  helperText={errorText}
   error={error}
   style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}
   value={password}
@@ -206,7 +207,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     )
   }}
 />   
-<div>{errorText}</div>    
                                    <FormControlLabel onChange={handleStaySignedInChanged} control={<Checkbox/>} label="Stay signed in" />
                                    <Button color="secondary" type="submit" variant="contained" onClick={handleLogIn} style={{marginTop:"10px",marginBottom:"20px"}}>Sign in</Button>
                                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
