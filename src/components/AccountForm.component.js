@@ -10,11 +10,13 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-function AccountForm({refreshOuter, userID, setCurrentPage}) {
+function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettings}) {
 
     const handleClick = (title) => {
       if(title==="Change Password"){
         console.log("Change Password Clicked")
+        setFromAccountSettings(true);
+        setCurrentPage('reset-password-form');
       }else if(title==="Subscription"){
 		    setCurrentPage('subscription-form');
 	    }else if(title==="Terms of Service"){
@@ -61,7 +63,7 @@ function AccountForm({refreshOuter, userID, setCurrentPage}) {
     }
 
     const rows = [];
-    
+
 
     rows.push(createData("Email",email));
     rows.push(createData("Change Password",""));

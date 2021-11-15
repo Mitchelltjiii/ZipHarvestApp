@@ -9,7 +9,7 @@ import EndSubscriptionForm from './EndSubscriptionForm.component';
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
 	setHarvestBatches, resetHarvestBatches, resetAll, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
 setNewHarvestRecordID, setNewPlantID, userID, setAll,reloadPlants,reloadPlantsAndHarvestRecords, reloadHarvestBatches,
-reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout}){
+reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout,setFromAccountSettings}){
 
 	console.log("ENTER LANDING, GET PLANTS(STRINGIFIED): " + JSON.stringify(getPlants()));
 
@@ -30,7 +30,7 @@ reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout})
 			) : currentPage === 'manage-plants-form' ? (
 				<ManagePlantsForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} refreshOuter={refreshOuter} userID={userID} setPlants={setPlants} setNewPlantID={setNewPlantID} reloadPlants={reloadPlants}/>
 			) : currentPage === 'account-form' ? (
-				<AccountForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage}/>
+				<AccountForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} setFromAccountSettings={setFromAccountSettings}/>
 			) : currentPage === 'subscription-form' ? (
 				<SubscriptionForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage}/>
 			) : currentPage === 'end-subscription-form' ? (

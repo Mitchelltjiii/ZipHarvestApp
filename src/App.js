@@ -27,7 +27,8 @@ export default class App extends React.Component {
     usersLoading: true,
     userID: "",
     newUsername: "",
-    logInFailed: false
+    logInFailed: false,
+    fromAccountSettings: false
   };
 
   componentDidMount() {
@@ -268,6 +269,11 @@ export default class App extends React.Component {
 
       this.setState({harvestBatches: tempHarvestBatches});
 	}
+
+  setFromAccountSettings = (from) => {
+		
+    this.setState({fromAccountSettings: from});
+}
 
   getCurrentHarvestID = (hbName) => {
     let parsedHB = JSON.parse(this.state.harvestBatches);
@@ -539,7 +545,7 @@ export default class App extends React.Component {
       setNewHarvestRecordID={this.setNewHarvestRecordID} setNewPlantID={this.setNewPlantID} userID={this.state.userID} setAll={this.setAll}
       setHarvestBatches={this.setHarvestBatches} setHarvestRecords={this.setHarvestRecords} setPlants={this.setPlants} reloadPlants={this.reloadPlants} 
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}
-      verCode={verCode} userFromUrl={userFromUrl} linkCode={linkCode} executeLogout={this.executeLogout}/>
+      verCode={verCode} userFromUrl={userFromUrl} linkCode={linkCode} executeLogout={this.executeLogout} setFromAccountSettings={this.setFromAccountSettings}/>
     </div>;
     }else{
       let loginForm = false;
@@ -550,7 +556,7 @@ export default class App extends React.Component {
       }else if(this.state.currentPage === 'verification-form'){
 				showForm = <VerificationForm setCurrentPage={this.setCurrentPage} newUsername={this.state.newUsername}></VerificationForm>
       }else if(this.state.currentPage === 'reset-password-form'){
-				showForm = <ResetPasswordForm setCurrentPage={this.setCurrentPage} linkCode={linkCode} userFromUrl={userFromUrl} executeLogout={this.executeLogout}></ResetPasswordForm>
+				showForm = <ResetPasswordForm setCurrentPage={this.setCurrentPage} linkCode={linkCode} userFromUrl={userFromUrl} executeLogout={this.executeLogout} fromAccountSettings={this.state.fromAccountSettings}></ResetPasswordForm>
       }else if(this.state.currentPage === 'find-user-form'){
 				showForm = <FindUserForm setCurrentPage={this.setCurrentPage}></FindUserForm>
       }else{
