@@ -35,6 +35,8 @@ reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout,s
 				<SubscriptionForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage}/>
 			) : currentPage === 'end-subscription-form' ? (
 				<EndSubscriptionForm setCurrentPage={setCurrentPage}></EndSubscriptionForm>
+			) : currentPage === 'reset-password-form' ? (
+				<ResetPasswordForm setCurrentPage={setCurrentPage} linkCode='' userFromUrl='' executeLogout={executeLogout} fromAccountSettings={fromAccountSettings}></ResetPasswordForm>
 			) : null}
         </div>
     )

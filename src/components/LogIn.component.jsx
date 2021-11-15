@@ -23,6 +23,14 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 
     console.log("loginfailed: " + logInFailed);
 
+    const [logInFailedHandeled,setLoginFailedHandled] = React.useState(false);
+
+    if(!logInFailedHandeled && logInFailed){
+      setUsername("");
+      setPassword("");
+      setLoginFailedHandled(true);
+    }
+
     let errorTxt = "";
     let failedLogIn = false;
     if(logInFailed){

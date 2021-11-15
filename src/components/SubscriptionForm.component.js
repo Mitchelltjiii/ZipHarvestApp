@@ -25,14 +25,22 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
     const [subscription,setSubscription] = React.useState([]);
     const [product,setProduct] = React.useState([]);
 
+    let subscriptionType = "";
+
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
     let renewalDate = "Renewal Date"
     if(JSON.stringify(subscription) !== "[]"){
       console.log("Current period end: " + subscription.current_period_end)
-      renewalDate = (new Date(subscription.current_period_end).toLocaleDateString(undefined, options));
+      renewalDate = (new Date().setTime(subscription.current_period_end).toLocaleDateString(undefined, options));
       console.log("Renewal Date: " + renewalDate);
     }
+
+    if(JSON.stringify(product) !== "[]"){
+      console.log("Product: " + JSON.stringify(product));
+      subscriptionType = product.name;
+      console.log("SubscriptionType");
+    }    
 
     const Tab = ({title,subtitle}) => {
         return(
@@ -71,10 +79,10 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
 
     const rows = [];
 
-    rows.push(createData("Subscription Type","Premium"));
+    rows.push(createData("Subscription Type",subscriptionType));
     rows.push(createData("Unique Plant Tags Exported This Month",""));
     rows.push(createData("Unique Plant Tags Per Month",""));
-    rows.push(createData("Renewal Date",""));
+    rows.push(createData("Renewal Date",renewalDate));
     rows.push(createData("Change Subscription",""));
     rows.push(createData("Cancel Subscription",""));
 
