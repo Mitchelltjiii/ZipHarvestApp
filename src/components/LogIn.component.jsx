@@ -23,15 +23,15 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 
     console.log("loginfailed: " + logInFailed);
 
+    let errorText = "";
     let error = false;
     if(logInFailed && username === "" && password === ""){
       error = true;
+      errorText = "Username or password is incorrect."
     }
-    let errorText = "";
     let failedLogIn = false;
     if(logInFailed){
       failedLogIn = true;
-      errorText = "Username or password is incorrect."
     }
     console.log("failedlogin: " + failedLogIn);
     console.log("errorText: " + errorText);

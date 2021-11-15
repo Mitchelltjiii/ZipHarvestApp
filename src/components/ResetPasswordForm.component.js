@@ -361,8 +361,37 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
 		<div id="reset-password-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
           <div>
             {fromAccountSettings ?
-            <div>{isMobile ?
+            <div>{success ?
+              <div>
+              {isMobile ?
               <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+              <Grid
+              container
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+              >
+                  <div style={{textAlign:"center"}}>Your password has been reset!</div>
+                  <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Return to Login</Button>
+              </Grid>
+              </div> :
+              <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+              <Grid
+              container
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+              >
+                  <div style={{textAlign:"center"}}>Your password has been reset!</div>
+                  <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Return to Login</Button>
+              </Grid>
+              </div>
+              }
+              </div>
+          :
+          <div>{isMobile ?
+              <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+              
               {stepOne ? 
                 <Grid
               container
@@ -539,6 +568,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
               }
               </div>
               }</div>
+          }</div>
             :
             <div>  {success ?
               <div>

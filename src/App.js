@@ -131,7 +131,7 @@ export default class App extends React.Component {
   tryLogInFromEndSubForm = async (password) => {
     console.log("Get users from DB");
     if(this.state.userID === "" || password === ""){
-      this.executeLogInEndSubFailed();
+      this.setState({logInSuccess:false,currentPage:"end-subscription-form"});
       return;
     }
     const response = await fetch(`/api/users/${this.state.userID}/${password}`);
@@ -156,10 +156,6 @@ export default class App extends React.Component {
 
     console.log("Got Response: " + gotResponse);
     
-    if(!gotResponse){
-      console.log("Not Got Response");
-      this.executeLogInEndSubFailed();
-    }
     console.log("Text === over");
   }
 
