@@ -6,7 +6,6 @@ class VoiceButton extends Component{
     handleClick(event) {
         event.preventDefault();
         console.log("Click");
-        
         this.props.startListeningFromVoiceButton();
     }
     
