@@ -15,8 +15,6 @@ function AccountForm({refreshOuter, userID, setCurrentPage}) {
     const handleClick = (title) => {
       if(title==="Change Password"){
         console.log("Change Password Clicked")
-      }else if(title==="Logout"){
-        console.log("Logout Clicked")
       }else if(title==="Subscription"){
 		    setCurrentPage('subscription-form');
 	    }else if(title==="Terms of Service"){
@@ -73,7 +71,6 @@ function AccountForm({refreshOuter, userID, setCurrentPage}) {
     rows.push(createData("Terms of Service",""));
     rows.push(createData("Privacy Policy",""));
     rows.push(createData("Support",""));
-    rows.push(createData("Logout",""));
 
     async function getEmail(){
       console.log("Get email")

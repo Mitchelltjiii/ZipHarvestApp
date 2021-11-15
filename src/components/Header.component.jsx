@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {isMobile} from 'react-device-detect';
 
 
-function Header({setCurrentPage, currentPage, executeLogout,cancelSub}){
+function Header({setCurrentPage, currentPage, executeLogout}){
     const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -19,11 +19,6 @@ function Header({setCurrentPage, currentPage, executeLogout,cancelSub}){
   const handleSignOut = () => {
     handleClose();
     executeLogout();
-  }
-
-  const handleCancelSub = () => {
-    handleClose();
-    cancelSub();
   }
 
   const handleMyAccount = () => {
@@ -69,7 +64,6 @@ function Header({setCurrentPage, currentPage, executeLogout,cancelSub}){
         <MenuItem onClick={()=>{handleExistingBatches() }}>Harvest Batches</MenuItem>
         <MenuItem onClick={()=>{handleMyAccount() }}>My Account</MenuItem>
         <MenuItem onClick={()=>{handleSignOut()}}>Logout</MenuItem>
-        <MenuItem onClick={()=>{handleCancelSub()}}>Cancel Sub</MenuItem>
       </Menu>
     </div>
             
