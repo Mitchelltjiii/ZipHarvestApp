@@ -147,6 +147,7 @@ export default class App extends React.Component {
 
     if(text === "0" || text === "1" || text === "2"){
       console.log("Text === 0,1 or 2");
+      this.cancelSub();
       this.executeLogout();
     }else{
       console.log("ELSE");

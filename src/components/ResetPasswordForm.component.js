@@ -287,6 +287,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
     if(text === "0" || text === "1" || text === "2"){
       console.log("Text === 0,1 or 2");
       gotResponse = true;
+      setPassword("")
       setStepOne(false);
     }else{
       console.log("ELSE");
