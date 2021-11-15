@@ -271,8 +271,6 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
 
     console.log("Fetched password attempt");
 
-    this.state.users = text;
-    this.state.usersLoading = false;
     console.log("Try Login Response: " + text);
     let gotResponse = false;
     console.log("Got Response A: " + gotResponse);
