@@ -260,11 +260,13 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
 
   async function attemptLogin(){
     console.log("Get users from DB");
+    console.log("User ID: " + userID);
+    console.log("Password: " + password)
     if(userID === "" || password === ""){
         executeLogInFailed();      
         return;
     }
-    const response = await fetch(`/api/users/${username}/${password}`);
+    const response = await fetch(`/api/users/${userID}/${password}`);
     const text = await response.text();
     /*const responseTwo = await fetch(`/create-customer`);
     const json = await responseTwo.json();*/
