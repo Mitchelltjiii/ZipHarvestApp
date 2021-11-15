@@ -70,7 +70,6 @@ function EndSubscriptionForm({setCurrentPage,logInFailed}) {
       setPasswordError(false);
       setFailed(false);
     }
-
 	return (
 
     <div id="end-subscription-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
