@@ -35,6 +35,10 @@ function Header({setCurrentPage, currentPage, executeLogout}){
     handleClose()
     setCurrentPage('manage-plants-form')
   }
+  const handleManageDryRooms = () => {
+    handleClose()
+    setCurrentPage('manage-dry-rooms-form')
+  }
 
   const handleExistingBatches = () => {
     console.log("Handle Existing Batches");
@@ -60,6 +64,7 @@ function Header({setCurrentPage, currentPage, executeLogout}){
         onClose={handleClose}
       >
         <MenuItem onClick={()=>{handleManagePlants() }}>Manage Plants</MenuItem>
+        <MenuItem onClick={()=>{handleManageDryRooms() }}>Manage Dry Rooms</MenuItem>
         <MenuItem onClick={()=>{handleHarvestNow() }}>Harvest Now</MenuItem>
         <MenuItem onClick={()=>{handleExistingBatches() }}>Harvest Batches</MenuItem>
         <MenuItem onClick={()=>{handleMyAccount() }}>My Account</MenuItem>

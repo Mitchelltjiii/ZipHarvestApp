@@ -62,6 +62,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
       }
       console.log("failedlogin: " + failedLogIn);
       console.log("errorText: " + errorText);  
+      console.log("Error: " + error);
     }
 
     const handleSendResetLink = () => {
@@ -419,7 +420,8 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
               alignItems="center"
               >
 <TextField
-  error={passwordError}
+  helperText={errorText}
+  error={error}
   style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}
   value={password}
   label='Current Password'
@@ -508,7 +510,8 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
               alignItems="center"
               >
 <TextField
-  error={passwordError}
+  helperText={errorText}
+  error={error}
   style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}
   value={password}
   label='Current Password'
