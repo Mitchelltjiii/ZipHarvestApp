@@ -62,7 +62,6 @@ class ExportButton extends Component{
             }
         }
 
-
         let gramsData = ""; 
         let poundsData = ""; 
         let exportRecordsData = [];
