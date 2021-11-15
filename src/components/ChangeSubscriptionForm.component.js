@@ -48,7 +48,6 @@ async function goToProduct(lookup_key){
         
     }
   
-    busySettingUser = true;
     updateUserSessionID(json.id);
   
     window.location.replace(json.url);
@@ -70,59 +69,6 @@ async function goToProduct(lookup_key){
     }
   }).then(function(data) {
   });
-  }
-  
-  function getUserItem(newUser,sessionid){
-    console.log("Enter getUserItem")
-  
-    let userItem = {
-      apiid: '',
-      username: '',
-      password: '',
-      subid: '',
-      linkCode: '',
-      facilityName: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      verificationCode: '',
-      verified: 0,
-      sessionid: '',
-      verCodeTime: '',
-      linkCodeTime: ''
-      };
-  
-      userItem.apiid = newUser.username;
-      userItem.username = newUser.username;
-      userItem.password = newUser.password;
-      userItem.facilityName = newUser.facilityName;
-      userItem.firstName = newUser.firstName;
-      userItem.lastName = newUser.lastName;
-      userItem.email = newUser.email;
-      userItem.sessionid = sessionid;
-    console.log("Stringified before passed: " + JSON.stringify(userItem));
-    console.log("Exit getUserItem")
-    return userItem;
-  }
-  
-  async function updateUser(userItem){
-    console.log("Engage update user");
-    const response = fetch('/user', {
-          method: 'PUT',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(userItem)
-    }).then(function(response) {
-      let resp = JSON.stringify(response);
-    }).then(function(data) {
-    });
-    console.log("Before removing busy setting user");
-    console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
-    busySettingUser = (false);
-    console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
-    console.log("Exit update user");
   }
 
 	return (
