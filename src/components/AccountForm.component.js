@@ -18,9 +18,15 @@ function AccountForm({refreshOuter, userID, setCurrentPage}) {
       }else if(title==="Logout"){
         console.log("Logout Clicked")
       }else if(title==="Subscription"){
-		setCurrentPage('subscription-form');
+		    setCurrentPage('subscription-form');
+	    }else if(title==="Terms of Service"){
+        window.open("https://app.termly.io/document/terms-of-use-for-saas/0fc8020f-e374-48f6-b222-fdaa3d482d39", '_blank');
+      }else if(title==="Privacy Policy"){
+        window.open("https://app.termly.io/document/privacy-policy/a880128c-82ae-40b1-bec3-7d5b495a1d24", '_blank');
+      }
 	  }
-	}
+
+    const [email,setEmail] = React.useState('');
 
     const Tab = ({title,subtitle}) => {
         return(
@@ -58,16 +64,36 @@ function AccountForm({refreshOuter, userID, setCurrentPage}) {
 
     const rows = [];
 
-    rows.push(createData("Email","Example@fl.com"));
+    rows.push(createData("Email",email));
     rows.push(createData("Change Password",""));
     rows.push(createData("Subscription",""));
     rows.push(createData("Permissions",""));
     rows.push(createData("About",""));
     rows.push(createData("Version","Beta Test v0.0.0"));
-    rows.push(createData("Terms and Conditions",""));
+    rows.push(createData("Terms of Service",""));
     rows.push(createData("Privacy Policy",""));
     rows.push(createData("Support",""));
     rows.push(createData("Logout",""));
+
+    async function getEmail(){
+      console.log("Get email")
+      const response = await fetch(`/get-email/${userID}`);
+      const text = await response.text();
+      try{
+        console.log("Get Email JSON: " + text);
+      }catch(err){
+      }
+      let str = text;
+      console.log("GEt email str: " + str);
+      let textWithoutQuotes = str.substring(1,str.length-1);
+      console.log("Text without quotes str: " + textWithoutQuotes);
+
+      setEmail(textWithoutQuotes);
+    }
+
+    if(email === ""){
+      getEmail();
+    }
 
     return(
       <TableContainer component={Paper}>
