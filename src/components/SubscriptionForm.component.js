@@ -33,7 +33,7 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
     if(JSON.stringify(subscription) !== "[]"){
       console.log("Current period end: " + subscription.current_period_end)
       let newDate = new Date();
-      newDate.setTime(subscription.current_period_end);
+      newDate.setTime(Number(subscription.current_period_end));
       renewalDate = (newDate.toLocaleDateString(undefined, options));
       console.log("Renewal Date: " + renewalDate);
     }
@@ -41,7 +41,7 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
     if(JSON.stringify(product) !== "[]"){
       console.log("Product: " + JSON.stringify(product));
       subscriptionType = product.name;
-      console.log("SubscriptionType");
+      console.log("SubscriptionType: " + subscriptionType);
     }    
 
     const Tab = ({title,subtitle}) => {
