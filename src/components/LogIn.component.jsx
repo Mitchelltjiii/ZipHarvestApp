@@ -47,7 +47,11 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     const [errorText, setErrorText] = React.useState(errorTxt);
 
     console.log("Log in UsernameError: " + usernameError);
-    if(failed && !usernameError && !passwordError){
+    console.log("Log in PasswordError: " + passwordError);
+
+    console.log("Failed: " + failed);
+
+    if(failed && (!usernameError || !passwordError)){
       console.log("Set username error true");
       setUsernameError(true);
       setPasswordError(true);

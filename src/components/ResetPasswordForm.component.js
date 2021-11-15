@@ -287,7 +287,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
     
     if(!gotResponse){
       console.log("Not Got Response");
-      this.executeLogInFailed();
+      executeLogInFailed();
     }
     console.log("Text === over");
   }
