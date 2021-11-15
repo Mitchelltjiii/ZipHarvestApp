@@ -32,12 +32,12 @@ function DryRoomTable({dryRooms,toggleDeleteAllSelected,getDeleteAllSelected,tog
     const classes = useStyles();
 
     function createData(dryRoomName) {
-      return { dryRoomName};
+      return {dryRoomName};
     }
 
     const rows = [];
 
-    for(const val of JSON.parse(dryRooms)) {
+    for(const val of dryRooms) {
         rows.push(createData(val.name));
     }
        

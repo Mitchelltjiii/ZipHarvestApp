@@ -75,12 +75,13 @@ const ProductDisplay = () => (
               </Grid> 
               </Grid>
           </div> :
-          <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px"}}>
+          <div style={{width:"650px",height:"400px",border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px"}}>
               <Grid
 				    container
 				    direction="row"
             justifyContent="center"
 				    alignItems="center"
+            wrap="nowrap"
 			        >
               <Grid
 				    container

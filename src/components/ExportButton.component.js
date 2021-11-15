@@ -13,7 +13,8 @@ class ExportButton extends Component{
                     "Green": "#E7F8E2",
                     "Red": "#E9573F",
                     "Yellow": "#F6BB42"},
-            choosingUnit: false
+            choosingUnit: false,
+            exportRecords: []
         };
         let parent = this;
     }
@@ -33,8 +34,14 @@ class ExportButton extends Component{
         }
 
         function exp(){
+            commitExportRecords();
             parent.setState({choosingUnit:false});
             parent.forceUpdate();
+        }
+
+        function commitExportRecords(){
+            console.log("Commit Export Records: " + this.state.exportRecords);
+            console.log("Commit Export Records(STRING): " + JSON.stringify(this.state.exportRecords));
         }
 
         let parent = this;
@@ -58,23 +65,28 @@ class ExportButton extends Component{
 
         let gramsData = ""; 
         let poundsData = ""; 
+        let exportRecordsData = [];
 
         const gramsInAPound = 453.592;
 
-        for(let val of JSON.parse(this.props.getHarvestRecords())){
-            if(val.batchName === this.props.row.name){
-                let weight = val.weight;
-                let gramsWeight = weight;
-                let poundsWeight = weight;
-                if(val.unit==="g"){
-                    poundsWeight = Math.round((weight/gramsInAPound)*100000)/100000;
-                }else{
-                    gramsWeight = Math.round((weight*gramsInAPound)*100)/100;
+        if(JSON.stringify(exportRecords) !== "[]"){
+            for(let val of JSON.parse(this.props.getHarvestRecords())){
+                if(val.batchName === this.props.row.name){
+                    let weight = val.weight;
+                    let gramsWeight = weight;
+                    let poundsWeight = weight;
+                    if(val.unit==="g"){
+                        poundsWeight = Math.round((weight/gramsInAPound)*100000)/100000;
+                    }else{
+                        gramsWeight = Math.round((weight*gramsInAPound)*100)/100;
+                    }
+                    gramsData += String(val.tag) + "," + gramsWeight + "," + "g" + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
+                    poundsData += String(val.tag) + "," + poundsWeight + "," + "lbs" + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
+                    exportRecordsData.push(val.tag);
                 }
-                gramsData += String(val.tag) + "," + gramsWeight + "," + "g" + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
-                poundsData += String(val.tag) + "," + poundsWeight + "," + "lbs" + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
-            }
-        } 
+            } 
+            this.setState({exportRecords:exportRecordsData});
+        }
               
         let fileName = this.props.row.name;
         fileName = fileName.replace(" ","_");
