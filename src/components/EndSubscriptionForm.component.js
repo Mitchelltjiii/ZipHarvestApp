@@ -7,37 +7,25 @@ import {InputAdornment,IconButton} from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
-function EndSubscriptionForm({setCurrentPage,logInFailed,executeLogout,cancelSub}) {
+function EndSubscriptionForm({setCurrentPage,logInFailed,executeLogout,attemptLogInFromEndSubForm,logInSuccess}) {
 
     const [stepOne,setStepOne] = React.useState(true);
     const [password, setPassword] = React.useState('');
-    const [passwordError, setPasswordError] = React.useState(false);
 
-    let errorTxt = "";
+    let error = false;
+    if(!logInSuccess && password === ""){
+      error = true;
+    }
+    let errorText = "";
     let failedLogIn = false;
-    if(logInFailed){
+    if(!logInSuccess){
       failedLogIn = true;
-      errorTxt = "Username or password is incorrect."
+      errorText = "Password is incorrect."
     }
     console.log("failedlogin: " + failedLogIn);
-    console.log("errorTxt: " + errorTxt);
-
-    const [errorText, setErrorText] = React.useState(errorTxt);
-    const [logInFailedHandeled,setLoginFailedHandled] = React.useState(false);
-    const [failed,setFailed] = React.useState(false);
+    console.log("errorTxt: " + errorText);
 
     const [showPassword,setShowPassword] = React.useState(false);
-
-    if(!logInFailedHandeled && logInFailed){
-      setPassword("");
-      setFailed(true);
-      setLoginFailedHandled(true);
-    }
-
-    if(failed && !passwordError){
-      console.log("Set username error true");
-      setPasswordError(true);
-    }
 
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
@@ -51,7 +39,7 @@ function EndSubscriptionForm({setCurrentPage,logInFailed,executeLogout,cancelSub
     }  
 
     const handleAttemptCancel = () => {
-      cancelSub();
+      attemptLogInFromEndSubForm(password);
       executeLogout();
     }  
 
@@ -66,11 +54,6 @@ function EndSubscriptionForm({setCurrentPage,logInFailed,executeLogout,cancelSub
       formWidth = "100%";
     }
 
-    if(passwordError && password.length !== 0){
-      setErrorText("");
-      setPasswordError(false);
-      setFailed(false);
-    }
 	return (
 
     <div id="end-subscription-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
@@ -100,7 +83,7 @@ function EndSubscriptionForm({setCurrentPage,logInFailed,executeLogout,cancelSub
                         alignItems="center"
                         >
                                 <TextField
-  error={passwordError}
+  error={error}
   style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}
   value={password}
   label='Password'
@@ -154,7 +137,7 @@ function EndSubscriptionForm({setCurrentPage,logInFailed,executeLogout,cancelSub
                                             alignItems="center"
                                             >
                                                     <TextField
-                      error={passwordError}
+                      error={error}
                       style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}
                       value={password}
                       label='Password'

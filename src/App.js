@@ -28,7 +28,8 @@ export default class App extends React.Component {
     userID: "",
     newUsername: "",
     logInFailed: false,
-    fromAccountSettings: false
+    fromAccountSettings: false,
+    logInSuccess: false
   };
 
   componentDidMount() {
@@ -127,6 +128,41 @@ export default class App extends React.Component {
     console.log("Text === over");
   }
 
+  tryLogInFromEndSubForm = async (password) => {
+    console.log("Get users from DB");
+    if(userID === "" || password === ""){
+      this.executeLogInEndSubFailed();
+      return;
+    }
+    const response = await fetch(`/api/users/${userID}/${password}`);
+    const text = await response.text();
+    /*const responseTwo = await fetch(`/create-customer`);
+    const json = await responseTwo.json();*/
+
+    console.log("Fetched password attempt");
+
+    console.log("Try Login Response: " + text);
+    let gotResponse = false;
+    console.log("Got Response A: " + gotResponse);
+
+    if(text === "0" || text === "1" || text === "2"){
+      console.log("Text === 0,1 or 2");
+      this.executeLogout();
+    }else{
+      console.log("ELSE");
+      this.setState({logInSuccess:false,currentPage:"end-subscription-form"});
+    }
+    console.log("After tree");
+
+    console.log("Got Response: " + gotResponse);
+    
+    if(!gotResponse){
+      console.log("Not Got Response");
+      this.executeLogInEndSubFailed();
+    }
+    console.log("Text === over");
+  }
+
   getPlantsFromDB = async (reload) => {
     if(this.state.userID === "" && localStorage.getItem("user")===""){
       return;
@@ -218,7 +254,7 @@ export default class App extends React.Component {
   }
 
   resetAll = (currHarvest) => {
-    this.setState({harvestBatchesLoading: true, plantsLoading: true, harvestRecordsLoading: true, currentHarvest: currHarvest, logInFailed: false});
+    this.setState({harvestBatchesLoading: true, plantsLoading: true, harvestRecordsLoading: true, currentHarvest: currHarvest, logInFailed: false, logInSuccess: false});
     console.log("Reset all");
     this.getHarvestBatchesFromDB();
     this.getPlantsFromDB(true);
@@ -375,6 +411,10 @@ export default class App extends React.Component {
   cancelSub = () => {
     this.getSubIdForCancel(this.state.loggedIn);
   }
+
+  attemptLogInFromEndSubForm = (attemptedPassword) => {
+    this.tryLogInFromEndSubForm(attemptedPassword);
+  } 
 
   cancelSubscription = async (subId) => {
     console.log("Try to get subscription");
@@ -545,7 +585,7 @@ export default class App extends React.Component {
       setNewHarvestRecordID={this.setNewHarvestRecordID} setNewPlantID={this.setNewPlantID} userID={this.state.userID} setAll={this.setAll}
       setHarvestBatches={this.setHarvestBatches} setHarvestRecords={this.setHarvestRecords} setPlants={this.setPlants} reloadPlants={this.reloadPlants} 
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}
-      verCode={verCode} userFromUrl={userFromUrl} linkCode={linkCode} executeLogout={this.executeLogout} setFromAccountSettings={this.setFromAccountSettings} cancelSub={this.cancelSub}/>
+      verCode={verCode} userFromUrl={userFromUrl} linkCode={linkCode} executeLogout={this.executeLogout} setFromAccountSettings={this.setFromAccountSettings} attemptLogInFromEndSubForm={this.attemptLogInFromEndSubForm}/>
     </div>;
     }else{
       let loginForm = false;

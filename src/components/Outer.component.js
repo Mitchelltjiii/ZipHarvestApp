@@ -33,7 +33,7 @@ class Outer extends Component {
       reloadPlantsAndHarvestRecords={this.props.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.props.reloadHarvestBatches}
       reloadHarvestRecords={this.props.reloadHarvestRecords} setCurrentPage={this.props.setCurrentPage} verCode={this.props.verCode} 
       userFromUrl={this.props.userFromUrl} linkCode={this.props.linkCode} executeLogout={this.props.executeLogout} setFromAccountSettings={this.props.setFromAccountSettings}
-      cancelSub={this.cancelSub}/>
+      attemptLogInFromEndSubForm={this.props.attemptLogInFromEndSubForm} logInSuccess={this.props.logInSuccess}/>
 		</div>
     );
   }
