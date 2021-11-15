@@ -254,11 +254,11 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
       attemptLogin();
   };
 
-  executeLogInFailed = async () => {
+  async function executeLogInFailed(){
     console.log("ExecuteLoginFailed");
   }
 
-  attemptLogin = async () => {
+  async function attemptLogin(){
     console.log("Get users from DB");
     if(userID === "" || password === ""){
         executeLogInFailed();      
