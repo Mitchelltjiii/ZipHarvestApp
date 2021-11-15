@@ -12,7 +12,7 @@ function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarve
 	setHarvestBatches, resetHarvestBatches, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
 setNewHarvestRecordID, setNewPlantID, userID,reloadPlants,reloadPlantsAndHarvestRecords, reloadHarvestBatches,
 reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout,setFromAccountSettings,attemptLogInFromEndSubForm,
-logInSuccess,getDryRooms}){
+logInSuccess,getDryRooms,getExportRecords}){
 
 	console.log("ENTER LANDING, GET PLANTS(STRINGIFIED): " + JSON.stringify(getPlants()));
 

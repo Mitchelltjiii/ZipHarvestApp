@@ -20,6 +20,8 @@ const plantsQueryString = "select * from pl where userID = '";
 
 const dryRoomsQueryString = "select * from dr where userID = '";
 
+const exportRecordsQueryString = "select * from er where userID = '";
+
 const harvestRecordsQueryString = "select * from hr where userID = '";
 
 const usersQueryString = "select * from users";
@@ -601,6 +603,25 @@ app.get('/api/dr/:id', (req, res) => {
     var sql = `${userID}`;
     console.log("Commit Query: " + dryRoomsQueryString + sql);
     connection.query(dryRoomsQueryString + sql + "'", (err, rows) => {
+        connection.release(); // return the connection to pool
+        if(err) throw err;
+        console.log('The data from dry rooms table are: \n', rows);
+        res.json(rows);
+    });
+  });
+});
+
+
+app.get('/api/er/:id', (req, res) => {
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    console.log('api/er');
+    let userID = req.params.id;
+    console.log("User ID: " + userID);
+    var sql = `${userID}`;
+    console.log("Commit Query: " + exportRecordsQueryString + sql);
+    connection.query(exportRecordsQueryString + sql + "'", (err, rows) => {
         connection.release(); // return the connection to pool
         if(err) throw err;
         console.log('The data from dry rooms table are: \n', rows);

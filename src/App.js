@@ -20,10 +20,12 @@ export default class App extends React.Component {
     harvestRecords: [],
     responseFromPlants: [],
     dryRooms: [],
+    exportRecords: [],
     plantsLoading: true,
     harvestRecordsLoading: true,    
     harvestBatchesLoading: true,
     dryRoomsLoading: true,
+    exportRecordsLoading: true,
     currentHarvest: [],
     users: [],
     usersLoading: true,
@@ -39,7 +41,8 @@ export default class App extends React.Component {
   }
   
   engageReload = () => {
-    if((!this.state.usersLoading) || (!this.state.plantsLoading && !this.state.harvestRecordsLoading && !this.state.harvestBatchesLoading || !this.state.dryRoomsLoading)){
+    if((!this.state.usersLoading) || (!this.state.plantsLoading && !this.state.harvestRecordsLoading && !this.state.harvestBatchesLoading || !this.state.dryRoomsLoading
+      || !this.state.exportRecordsLoading)){
       console.log("Force Updated In App.js");
       this.forceUpdate();
     }
@@ -198,6 +201,23 @@ export default class App extends React.Component {
     }
   }
 
+  getExportRecordsFromDB = async (reload) => {
+    if(this.state.userID === "" && localStorage.getItem("user")===""){
+      return;
+    }
+    let userForFetch = this.state.userID;
+    if(localStorage.getItem("user")!==null && localStorage.getItem("user")!==undefined && localStorage.getItem("user")!==""){
+      userForFetch = localStorage.getItem("user");
+    }
+    const response = await fetch(`/api/exportrecords/${this.state.userForFetch}`);
+    const text = await response.text();
+    this.state.exportRecords = text;
+    this.state.exportRecordsLoading = false;
+    if(reload){
+      this.engageReload();
+    }
+  }
+
   getHarvestRecordsFromDB = async (reload) => {
     if(this.state.userID === "" && localStorage.getItem("user")===""){
       return;
@@ -272,12 +292,15 @@ export default class App extends React.Component {
   }
 
   resetAll = (currHarvest) => {
-    this.setState({harvestBatchesLoading: true, plantsLoading: true, harvestRecordsLoading: true, currentHarvest: currHarvest, logInFailed: false, logInSuccess: false});
+    this.setState({harvestBatchesLoading: true, plantsLoading: true, harvestRecordsLoading: true, currentHarvest: currHarvest, logInFailed: false, logInSuccess: false, 
+      dryRoomsLoading: true, exportRecordsLoading: true});
     console.log("Reset all");
     this.getHarvestBatchesFromDB();
     this.getPlantsFromDB(true);
     this.getHarvestRecordsFromDB(true);
     this.getDryRoomsFromDB(true);
+    this.getExportRecordsFromDB(true);
+
 
     this.forceUpdate();
   }
@@ -292,6 +315,12 @@ export default class App extends React.Component {
     this.setState({currentHarvest: currHarvest});
 
     this.getDryRoomsFromDB(true);
+  }
+
+  reloadExportRecords = (currHarvest) => {
+    this.setState({currentHarvest: currHarvest});
+
+    this.getExportRecordsFromDB(true);
   }
 
   reloadHarvestRecords = () => {
@@ -409,6 +438,10 @@ export default class App extends React.Component {
     return this.state.dryRooms;
   }
 
+  getExportRecords = () => {
+    return this.state.exportRecords;
+  }
+
   setHarvestBatches = (harvestBatchesFromChild) => {
     this.setState({harvestBatches:harvestBatchesFromChild});
   }
@@ -425,6 +458,10 @@ export default class App extends React.Component {
     this.setState({dryRooms:dryRoomMapFromChild});
   }
 
+  setExportRecords = (exportRecordsMapFromChild) => {
+    this.setState({exportRecords:exportRecordsMapFromChild});
+  }
+
   setUsers = (usersMapFromChild) => {
     this.setState({users:usersMapFromChild});
   }
@@ -433,7 +470,8 @@ export default class App extends React.Component {
   executeLogout = () => {
     localStorage.clear();
     this.setState({loggedIn:'',currentPage:'harvest-form',harvestBatches:[],plants:[],harvestRecords:[],
-    plantsLoading:true,harvestBatchesLoading:true,harvestRecordsLoading:true,currentHarvest:[],userID:'',dryRooms:[]});
+    plantsLoading:true,harvestBatchesLoading:true,harvestRecordsLoading:true,currentHarvest:[],userID:'',
+    dryRooms:[],exportRecords:[]});
     this.forceUpdate();
   }
 
@@ -539,7 +577,8 @@ export default class App extends React.Component {
       }
     }
 
-    if ((this.state.loggedIn !== '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || this.state.harvestBatchesLoading || this.state.dryRoomsLoading))){
+    if ((this.state.loggedIn !== '' && (this.state.plantsLoading || this.state.harvestRecordsLoading || 
+      this.state.harvestBatchesLoading || this.state.dryRoomsLoading || this.state.exportRecordsLoading))){
       return(<div>Loading...</div>);
     }
 
@@ -551,6 +590,7 @@ export default class App extends React.Component {
     console.log("ResponseFromPlant In State: " + this.state.responseFromPlants);
     console.log("CurrentHarvest(STRING): " + JSON.stringify(this.state.currentHarvest));
     console.log("DryRooms In State: " + this.state.dryRooms);
+    console.log("ExportRecords In State: " + this.state.exportRecords);
 
 	  console.log("Logged In: " + this.state.loggedIn);
     console.log("Log in Failed: " + this.state.logInFailed);
@@ -620,7 +660,7 @@ export default class App extends React.Component {
       setHarvestBatches={this.setHarvestBatches} setHarvestRecords={this.setHarvestRecords} setPlants={this.setPlants} reloadPlants={this.reloadPlants} 
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}
       verCode={verCode} userFromUrl={userFromUrl} linkCode={linkCode} executeLogout={this.executeLogout} setFromAccountSettings={this.setFromAccountSettings} attemptLogInFromEndSubForm={this.attemptLogInFromEndSubForm}
-      getDryRooms={this.getDryRooms} logInSuccess={this.state.logInSuccess}/>
+      getDryRooms={this.getDryRooms} getExportRecords={this.getExportRecords} logInSuccess={this.state.logInSuccess}/>
     </div>;
     }else{
       let loginForm = false;
