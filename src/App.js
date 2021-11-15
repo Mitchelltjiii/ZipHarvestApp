@@ -175,7 +175,7 @@ export default class App extends React.Component {
     if(localStorage.getItem("user")!==null && localStorage.getItem("user")!==undefined && localStorage.getItem("user")!==""){
       userForFetch = localStorage.getItem("user");
     }
-    const response = await fetch(`/api/pl/${this.state.userForFetch}`);
+    const response = await fetch(`/api/pl/${userForFetch}`);
     const text = await response.text();
     this.state.plants = text;
     this.state.plantsLoading = false;
@@ -192,7 +192,7 @@ export default class App extends React.Component {
     if(localStorage.getItem("user")!==null && localStorage.getItem("user")!==undefined && localStorage.getItem("user")!==""){
       userForFetch = localStorage.getItem("user");
     }
-    const response = await fetch(`/api/dryrooms/${this.state.userForFetch}`);
+    const response = await fetch(`/api/dryrooms/${userForFetch}`);
     const text = await response.text();
     this.state.dryRooms = text;
     this.state.dryRoomsLoading = false;
@@ -209,7 +209,7 @@ export default class App extends React.Component {
     if(localStorage.getItem("user")!==null && localStorage.getItem("user")!==undefined && localStorage.getItem("user")!==""){
       userForFetch = localStorage.getItem("user");
     }
-    const response = await fetch(`/api/exportrecords/${this.state.userForFetch}`);
+    const response = await fetch(`/api/exportrecords/${userForFetch}`);
     const text = await response.text();
     this.state.exportRecords = text;
     this.state.exportRecordsLoading = false;
@@ -226,7 +226,7 @@ export default class App extends React.Component {
     if(localStorage.getItem("user")!==null && localStorage.getItem("user")!==undefined && localStorage.getItem("user")!==""){
       userForFetch = localStorage.getItem("user");
     }
-    const response = await fetch(`/api/hr/${this.state.userForFetch}`);
+    const response = await fetch(`/api/hr/${userForFetch}`);
     const text = await response.text();
     this.state.harvestRecords = text;
     this.state.harvestRecordsLoading = false;
@@ -244,7 +244,7 @@ export default class App extends React.Component {
     if(localStorage.getItem("user")!==null && localStorage.getItem("user")!==undefined && localStorage.getItem("user")!==""){
       userForFetch = localStorage.getItem("user");
     }
-    const response = await fetch(`/api/hb/${this.state.userForFetch}`);
+    const response = await fetch(`/api/hb/${userForFetch}`);
     const text = await response.text();
     this.state.harvestBatches = text;
     this.state.harvestBatchesLoading = false;
