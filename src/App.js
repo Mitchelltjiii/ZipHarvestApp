@@ -192,7 +192,7 @@ export default class App extends React.Component {
     if(localStorage.getItem("user")!==null && localStorage.getItem("user")!==undefined && localStorage.getItem("user")!==""){
       userForFetch = localStorage.getItem("user");
     }
-    const response = await fetch(`/api/dryrooms/${userForFetch}`);
+    const response = await fetch(`/api/dr/${userForFetch}`);
     const text = await response.text();
     this.state.dryRooms = text;
     this.state.dryRoomsLoading = false;
@@ -209,7 +209,7 @@ export default class App extends React.Component {
     if(localStorage.getItem("user")!==null && localStorage.getItem("user")!==undefined && localStorage.getItem("user")!==""){
       userForFetch = localStorage.getItem("user");
     }
-    const response = await fetch(`/api/exportrecords/${userForFetch}`);
+    const response = await fetch(`/api/er/${userForFetch}`);
     const text = await response.text();
     this.state.exportRecords = text;
     this.state.exportRecordsLoading = false;
