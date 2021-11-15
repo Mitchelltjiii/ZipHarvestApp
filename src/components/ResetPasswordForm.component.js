@@ -112,7 +112,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
         return false;
       }
       if(!regularExpression.test(str)) {
-        console.log("Nope, somethings wrong")
+        console.log("Nope, something wrong")
         return false;
       }
       console.log("Successful password")
