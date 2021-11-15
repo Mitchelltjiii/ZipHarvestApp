@@ -32,7 +32,9 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
     let renewalDate = "Renewal Date"
     if(JSON.stringify(subscription) !== "[]"){
       console.log("Current period end: " + subscription.current_period_end)
-      renewalDate = (new Date().setTime(subscription.current_period_end).toLocaleDateString(undefined, options));
+      let newDate = new Date();
+      newDate.setTime(subscription.current_period_end);
+      renewalDate = (newDate.toLocaleDateString(undefined, options));
       console.log("Renewal Date: " + renewalDate);
     }
 

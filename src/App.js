@@ -556,7 +556,7 @@ export default class App extends React.Component {
       }else if(this.state.currentPage === 'verification-form'){
 				showForm = <VerificationForm setCurrentPage={this.setCurrentPage} newUsername={this.state.newUsername}></VerificationForm>
       }else if(this.state.currentPage === 'reset-password-form'){
-				showForm = <ResetPasswordForm setCurrentPage={this.setCurrentPage} linkCode={linkCode} userFromUrl={userFromUrl} executeLogout={this.executeLogout} fromAccountSettings={this.state.fromAccountSettings}></ResetPasswordForm>
+				showForm = <ResetPasswordForm setCurrentPage={this.setCurrentPage} linkCode={linkCode} userFromUrl={userFromUrl} executeLogout={this.executeLogout} fromAccountSettings={this.state.fromAccountSettings} userID=""></ResetPasswordForm>
       }else if(this.state.currentPage === 'find-user-form'){
 				showForm = <FindUserForm setCurrentPage={this.setCurrentPage}></FindUserForm>
       }else{

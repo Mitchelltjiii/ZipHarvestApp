@@ -21,7 +21,6 @@ reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout,s
 	let fromAccountSettings = true;
 	
     return(
-		
         <div>
 			{currentPage === 'harvest-form' ? (
 				<HarvestForm getHarvestBatches={getHarvestBatches} setHarvestBatches={setHarvestBatches} getPlants={getPlants} setPlants={setPlants} getHarvestRecords={getHarvestRecords} setHarvestRecords={setHarvestRecords} 
@@ -39,7 +38,7 @@ reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout,s
 			) : currentPage === 'end-subscription-form' ? (
 				<EndSubscriptionForm setCurrentPage={setCurrentPage}></EndSubscriptionForm>
 			) : currentPage === 'reset-password-form' ? (
-				<ResetPasswordForm setCurrentPage={setCurrentPage} linkCode='' userFromUrl='' executeLogout={executeLogout} fromAccountSettings={fromAccountSettings}></ResetPasswordForm>
+				<ResetPasswordForm setCurrentPage={setCurrentPage} linkCode='' userFromUrl='' executeLogout={executeLogout} fromAccountSettings={fromAccountSettings} userID={userID}></ResetPasswordForm>
 			) : null}
         </div>
     )

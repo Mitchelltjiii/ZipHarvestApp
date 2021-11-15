@@ -7,7 +7,7 @@ import {InputAdornment,IconButton} from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
-function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fromAccountSettings}) {
+function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fromAccountSettings,userID}) {
   console.log("Reset Password Form");
   console.log("From Account Settings: " + fromAccountSettings);
 
@@ -251,7 +251,48 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
 
     const handleTryPassword = () => {
       console.log("Try Password");
+      attemptLogin();
   };
+
+  executeLogInFailed = async () => {
+    console.log("ExecuteLoginFailed");
+  }
+
+  attemptLogin = async () => {
+    console.log("Get users from DB");
+    if(userID === "" || password === ""){
+        executeLogInFailed();      
+        return;
+    }
+    const response = await fetch(`/api/users/${username}/${password}`);
+    const text = await response.text();
+    /*const responseTwo = await fetch(`/create-customer`);
+    const json = await responseTwo.json();*/
+
+    console.log("Fetched password attempt");
+
+    this.state.users = text;
+    this.state.usersLoading = false;
+    console.log("Try Login Response: " + text);
+    let gotResponse = false;
+    console.log("Got Response A: " + gotResponse);
+
+    if(text === "0" || text === "1" || text === "2"){
+      console.log("Text === 0,1 or 2");
+      gotResponse = true;
+    }else{
+      console.log("ELSE");
+    }
+    console.log("After tree");
+
+    console.log("Got Response: " + gotResponse);
+    
+    if(!gotResponse){
+      console.log("Not Got Response");
+      this.executeLogInFailed();
+    }
+    console.log("Text === over");
+  }
     
 
     let formWidth = "450px";
@@ -324,7 +365,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
   error={passwordError}
   style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}
   value={password}
-  label='Password'
+  label='Current Password'
   variant="outlined"
   type={showPassword ? "text" : "password"} // <-- This is where the magic happens
   onChange={handlePassword} 
