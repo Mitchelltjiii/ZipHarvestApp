@@ -25,6 +25,8 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
     const [subscription,setSubscription] = React.useState([]);
     const [product,setProduct] = React.useState([]);
 
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
     let renewalDate = "Renewal Date"
     if(JSON.stringify(subscription) !== "[]"){
       console.log("Current period end: " + subscription.current_period_end)
