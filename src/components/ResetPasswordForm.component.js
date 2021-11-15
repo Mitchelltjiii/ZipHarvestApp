@@ -307,227 +307,232 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
 
 	return (
 		<div id="reset-password-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-          <div>  {success ?
-            <div>
-            {isMobile ?
-            <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-            <Grid
-            container
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            >
-                <div style={{textAlign:"center"}}>Your password has been reset!</div>
-                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Return to Login</Button>
-            </Grid>
-            </div> :
-            <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-            <Grid
-            container
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            >
-                <div style={{textAlign:"center"}}>Your password has been reset!</div>
-                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Return to Login</Button>
-            </Grid>
-            </div>
-            }
-            </div>
-        :
-        <div>
-                {isMobile ? 
-                <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-                {!fromUrl ?
-
-                    <div>
-                {linkSent ? <Grid
-                        container
-                        direction="column"
-                        justifyContent="center"
-                        alignItems="center"
-                        >
-                                <div style={{textAlign:"center"}}>Your password reset link has been sent.</div>
-                                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
-                                </Grid>  :
-                <Grid
-            container
-            direction="column"
-              justifyContent="center"
-            alignItems="center"
-          >
-                <TextField helperText={usernameHelperText} error={usernameError} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
-                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSendResetLink}>Send Reset Link</Button>
-                <div style={{marginTop:"5px",marginBottom:"5px"}}>Forgot {forgotIDLink}</div>
-                </Grid>
-                }  
-                </div>
+          <div>
+            {fromAccountSettings ?
+            <div>From account settings</div>
             :
-            <div>
-            {!expired ? 
+            <div>  {success ?
+              <div>
+              {isMobile ?
+              <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
               <Grid
-    container
-    direction="column"
-      justifyContent="center"
-    alignItems="center"
-      >
-                <TextField
-  helperText={passwordHelperText} error={passwordError} 
-  style={{marginBottom:"10px",width:"248px"}}
-  value={password}
-  label='Password'
-  variant="outlined"
-  type={showPassword ? "text" : "password"} // <-- This is where the magic happens
-  onChange={handlePassword} 
-  InputProps={{ // <-- This is where the toggle button is added.
-    endAdornment: (
-      <InputAdornment position="end">
-        <IconButton
-          aria-label="toggle password visiblity"
-          onClick={handleClickShowPassword}
-          onMouseDown={handleMouseDownPassword}
-        >
-          {showPassword ? <Visibility /> : <VisibilityOff />}
-        </IconButton>
-      </InputAdornment>
-    )
-  }}
-/>         
-<TextField
-  helperText={verifyPasswordHelperText} error={verifyPasswordError} 
-  style={{marginBottom:"10px",width:"248px"}}
-  value={passwordAgain}
-  label='Verify'
-  variant="outlined"
-  type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
-  onChange={handlePasswordAgain} 
-  InputProps={{ // <-- This is where the toggle button is added.
-    endAdornment: (
-      <InputAdornment position="end">
-        <IconButton
-          aria-label="toggle password visiblity"
-          onClick={handleClickShowVerifyPassword}
-          onMouseDown={handleMouseDownVerifyPassword}
-        >
-        {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
-        </IconButton>
-      </InputAdornment>
-    )
-  }}
-/><Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleConfirmReset}>Confirm</Button>
-                </Grid>
-                :
-                <Grid
-            container
-            direction="column"
+              container
+              direction="column"
               justifyContent="center"
               alignItems="center"
-                >
-                <div style={{textAlign:"center"}}>Your password reset link has expired.</div>
-                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
-                </Grid>
-            }
-            </div>
-                }
-                </div>
-                :
-                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-                    {!fromUrl ?
-                        <div>
-                    {linkSent ? <Grid
-                        container
-                        direction="column"
-                        justifyContent="center"
-                        alignItems="center"
-                        >
-                                <div style={{textAlign:"center"}}>Your password reset link has been sent.</div>
-                                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
-                                </Grid> :
-                    <Grid
-				        container
-				        direction="column"
-  				        justifyContent="center"
-				        alignItems="center"
-			        >
-                    <TextField helperText={usernameHelperText} error={usernameError} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
-                    <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSendResetLink}>Send Reset Link</Button>
-                    <div style={{marginTop:"5px",marginBottom:"5px"}}>Forgot {forgotIDLink}</div>
-                    </Grid>
-                    }  
-                    </div>
-                :
-                <div>
-                {!expired ?
-            <Grid
-            container
-            direction="column"
-              justifyContent="center"
-            alignItems="center"
               >
-                        <TextField
-      helperText={passwordHelperText} error={passwordError} 
-      style={{marginBottom:"10px",width:"248px"}}
-      value={password}
-      label='Password'
-      variant="outlined"
-      type={showPassword ? "text" : "password"} // <-- This is where the magic happens
-      onChange={handlePassword} 
-      InputProps={{ // <-- This is where the toggle button is added.
-        endAdornment: (
-          <InputAdornment position="end">
-            <IconButton
-              aria-label="toggle password visiblity"
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
+                  <div style={{textAlign:"center"}}>Your password has been reset!</div>
+                  <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Return to Login</Button>
+              </Grid>
+              </div> :
+              <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+              <Grid
+              container
+              direction="column"
+              justifyContent="center"
+              alignItems="center"
+              >
+                  <div style={{textAlign:"center"}}>Your password has been reset!</div>
+                  <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Return to Login</Button>
+              </Grid>
+              </div>
+              }
+              </div>
+          :
+          <div>
+                  {isMobile ? 
+                  <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+                  {!fromUrl ?
+  
+                      <div>
+                  {linkSent ? <Grid
+                          container
+                          direction="column"
+                          justifyContent="center"
+                          alignItems="center"
+                          >
+                                  <div style={{textAlign:"center"}}>Your password reset link has been sent.</div>
+                                  <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
+                                  </Grid>  :
+                  <Grid
+              container
+              direction="column"
+                justifyContent="center"
+              alignItems="center"
             >
-              {showPassword ? <Visibility /> : <VisibilityOff />}
-            </IconButton>
-          </InputAdornment>
-        )
-      }}
-    />         
-    <TextField
-      helperText={verifyPasswordHelperText} error={verifyPasswordError} 
-      style={{marginBottom:"10px",width:"248px"}}
-      value={passwordAgain}
-      label='Verify'
-      variant="outlined"
-      type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
-      onChange={handlePasswordAgain} 
-      InputProps={{ // <-- This is where the toggle button is added.
-        endAdornment: (
-          <InputAdornment position="end">
-            <IconButton
-              aria-label="toggle password visiblity"
-              onClick={handleClickShowVerifyPassword}
-              onMouseDown={handleMouseDownVerifyPassword}
-            >
-            {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
-            </IconButton>
-          </InputAdornment>
-        )
-      }}
-    /> <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleConfirmReset}>Confirm</Button>
-                        </Grid>
+                  <TextField helperText={usernameHelperText} error={usernameError} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
+                  <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSendResetLink}>Send Reset Link</Button>
+                  <div style={{marginTop:"5px",marginBottom:"5px"}}>Forgot {forgotIDLink}</div>
+                  </Grid>
+                  }  
+                  </div>
+              :
+              <div>
+              {!expired ? 
+                <Grid
+      container
+      direction="column"
+        justifyContent="center"
+      alignItems="center"
+        >
+                  <TextField
+    helperText={passwordHelperText} error={passwordError} 
+    style={{marginBottom:"10px",width:"248px"}}
+    value={password}
+    label='Password'
+    variant="outlined"
+    type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+    onChange={handlePassword} 
+    InputProps={{ // <-- This is where the toggle button is added.
+      endAdornment: (
+        <InputAdornment position="end">
+          <IconButton
+            aria-label="toggle password visiblity"
+            onClick={handleClickShowPassword}
+            onMouseDown={handleMouseDownPassword}
+          >
+            {showPassword ? <Visibility /> : <VisibilityOff />}
+          </IconButton>
+        </InputAdornment>
+      )
+    }}
+  />         
+  <TextField
+    helperText={verifyPasswordHelperText} error={verifyPasswordError} 
+    style={{marginBottom:"10px",width:"248px"}}
+    value={passwordAgain}
+    label='Verify'
+    variant="outlined"
+    type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
+    onChange={handlePasswordAgain} 
+    InputProps={{ // <-- This is where the toggle button is added.
+      endAdornment: (
+        <InputAdornment position="end">
+          <IconButton
+            aria-label="toggle password visiblity"
+            onClick={handleClickShowVerifyPassword}
+            onMouseDown={handleMouseDownVerifyPassword}
+          >
+          {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
+          </IconButton>
+        </InputAdornment>
+      )
+    }}
+  /><Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleConfirmReset}>Confirm</Button>
+                  </Grid>
                   :
                   <Grid
-            container
-            direction="column"
-              justifyContent="center"
-              alignItems="center"
-                >
-                <div style={{textAlign:"center"}}>Your password reset link has expired.</div>
-                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
-                </Grid>
+              container
+              direction="column"
+                justifyContent="center"
+                alignItems="center"
+                  >
+                  <div style={{textAlign:"center"}}>Your password reset link has expired.</div>
+                  <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
+                  </Grid>
+              }
+              </div>
                   }
                   </div>
+                  :
+                  <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+                      {!fromUrl ?
+                          <div>
+                      {linkSent ? <Grid
+                          container
+                          direction="column"
+                          justifyContent="center"
+                          alignItems="center"
+                          >
+                                  <div style={{textAlign:"center"}}>Your password reset link has been sent.</div>
+                                  <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
+                                  </Grid> :
+                      <Grid
+                  container
+                  direction="column"
+                    justifyContent="center"
+                  alignItems="center"
+                >
+                      <TextField helperText={usernameHelperText} error={usernameError} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
+                      <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSendResetLink}>Send Reset Link</Button>
+                      <div style={{marginTop:"5px",marginBottom:"5px"}}>Forgot {forgotIDLink}</div>
+                      </Grid>
+                      }  
+                      </div>
+                  :
+                  <div>
+                  {!expired ?
+              <Grid
+              container
+              direction="column"
+                justifyContent="center"
+              alignItems="center"
+                >
+                          <TextField
+        helperText={passwordHelperText} error={passwordError} 
+        style={{marginBottom:"10px",width:"248px"}}
+        value={password}
+        label='Password'
+        variant="outlined"
+        type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+        onChange={handlePassword} 
+        InputProps={{ // <-- This is where the toggle button is added.
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visiblity"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              >
+                {showPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
+          )
+        }}
+      />         
+      <TextField
+        helperText={verifyPasswordHelperText} error={verifyPasswordError} 
+        style={{marginBottom:"10px",width:"248px"}}
+        value={passwordAgain}
+        label='Verify'
+        variant="outlined"
+        type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
+        onChange={handlePasswordAgain} 
+        InputProps={{ // <-- This is where the toggle button is added.
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visiblity"
+                onClick={handleClickShowVerifyPassword}
+                onMouseDown={handleMouseDownVerifyPassword}
+              >
+              {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
+          )
+        }}
+      /> <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleConfirmReset}>Confirm</Button>
+                          </Grid>
+                    :
+                    <Grid
+              container
+              direction="column"
+                justifyContent="center"
+                alignItems="center"
+                  >
+                  <div style={{textAlign:"center"}}>Your password reset link has expired.</div>
+                  <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
+                  </Grid>
                     }
-                    </div>}
-			</div>
-        }
+                    </div>
+                      }
+                      </div>}
         </div>
+          }
+          </div>
+            }
 		</div>
-
+    </div>
 	);
 }
 
