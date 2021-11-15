@@ -130,11 +130,11 @@ export default class App extends React.Component {
 
   tryLogInFromEndSubForm = async (password) => {
     console.log("Get users from DB");
-    if(userID === "" || password === ""){
+    if(this.state.userID === "" || password === ""){
       this.executeLogInEndSubFailed();
       return;
     }
-    const response = await fetch(`/api/users/${userID}/${password}`);
+    const response = await fetch(`/api/users/${this.state.userID}/${password}`);
     const text = await response.text();
     /*const responseTwo = await fetch(`/create-customer`);
     const json = await responseTwo.json();*/
