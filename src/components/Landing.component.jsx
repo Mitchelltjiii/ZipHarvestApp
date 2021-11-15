@@ -22,7 +22,7 @@ logInSuccess}){
 
 	let fromAccountSettings = true;
 
-	function getDryRooms(){
+	getDryRooms = () => {
 		return "[]"
 	}
 	
