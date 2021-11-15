@@ -123,7 +123,6 @@ function getUserItem(newUser,sessionid){
     userItem.firstName = newUser.firstName;
     userItem.lastName = newUser.lastName;
     userItem.email = newUser.email;
-    userItem.verificationCode = newUser.verificationCode;
     userItem.sessionid = sessionid;
   console.log("Stringified before passed: " + JSON.stringify(userItem));
   console.log("Exit getUserItem")

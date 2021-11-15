@@ -21,12 +21,16 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
+    console.log("loginfailed: " + logInFailed);
+
     let errorTxt = "";
     let failedLogIn = false;
     if(logInFailed){
       failedLogIn = true;
       errorTxt = "Username or password is incorrect."
     }
+    console.log("failedlogin: " + failedLogIn);
+    console.log("errorTxt: " + errorTxt);
 
     const [usernameError, setUsernameError] = React.useState(failedLogIn);
     const [passwordError, setPasswordError] = React.useState(failedLogIn);
