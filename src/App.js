@@ -29,7 +29,8 @@ export default class App extends React.Component {
     newUsername: "",
     logInFailed: false,
     fromAccountSettings: false,
-    logInSuccess: false
+    logInSuccess: true,
+    resetPasswordLogInFailed: false
   };
 
   componentDidMount() {
@@ -407,7 +408,7 @@ export default class App extends React.Component {
   cancelSub = () => {
     console.log("In Cancel SUb");
     console.log("Logged IN: " + this.state.loggedIn);
-    this.getSubIdForCancel(this.state.loggedIn);
+    this.getSubIdForCancel();
   }
 
   attemptLogInFromEndSubForm = (attemptedPassword) => {
@@ -433,9 +434,11 @@ export default class App extends React.Component {
     this.executeLogout();
   }
 
-  getSubIdForCancel = async (username) => {
+  getSubIdForCancel = async () => {
     console.log("Try to get subid");
-    const response = await fetch(`/get-subid/${username}`);
+    console.log("Logged IN: " + this.state.loggedIn);
+    console.log("UserID: " + this.state.userID);
+    const response = await fetch(`/get-subid/${this.state.userID}`);
     const json = await response.json();
     try{
       console.log("subid json: " + json);

@@ -11,6 +11,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
   console.log("Reset Password Form");
   console.log("From Account Settings: " + fromAccountSettings);
 
+    const [logInFailed,setLogInFailed] = React.useState(false);
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [passwordAgain, setPasswordAgain] = React.useState('');
@@ -27,7 +28,6 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
 
     const [failedPassword,setFailedPassword] = React.useState('');
     const [failedVerifyPassword,setFailedVerifyPassword] = React.useState('');
-
 
     const [showPassword,setShowPassword] = React.useState(false);
     const [showVerifyPassword,setShowVerifyPassword] = React.useState(false);
@@ -47,7 +47,22 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
 
     const [stepOne, setStepOne] = React.useState(true);
 
+    if(stepOne && fromAccountSettings){
+      console.log("loginfailed: " + logInFailed);
 
+      let errorText = "";
+      let error = false;
+      if(logInFailed && password === ""){
+        error = true;
+        errorText = "Password is incorrect."
+      }
+      let failedLogIn = false;
+      if(logInFailed){
+        failedLogIn = true;
+      }
+      console.log("failedlogin: " + failedLogIn);
+      console.log("errorText: " + errorText);  
+    }
 
     const handleSendResetLink = () => {
       getEmail();
@@ -263,6 +278,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
 
   async function executeLogInFailed(){
     console.log("ExecuteLoginFailed");
+    setLogInFailed(true);
   }
 
   async function attemptLogin(){
@@ -288,6 +304,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
       console.log("Text === 0,1 or 2");
       gotResponse = true;
       setPassword("")
+      setLogInFailed(false);
       setStepOne(false);
     }else{
       console.log("ELSE");
