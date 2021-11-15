@@ -10,7 +10,7 @@ import ResetPasswordForm from './ResetPasswordForm.component';
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
 	setHarvestBatches, resetHarvestBatches, resetAll, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
 setNewHarvestRecordID, setNewPlantID, userID, setAll,reloadPlants,reloadPlantsAndHarvestRecords, reloadHarvestBatches,
-reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout,setFromAccountSettings}){
+reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout,setFromAccountSettings,cancelSub}){
 
 	console.log("ENTER LANDING, GET PLANTS(STRINGIFIED): " + JSON.stringify(getPlants()));
 
@@ -36,7 +36,7 @@ reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout,s
 			) : currentPage === 'subscription-form' ? (
 				<SubscriptionForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage}/>
 			) : currentPage === 'end-subscription-form' ? (
-				<EndSubscriptionForm setCurrentPage={setCurrentPage}></EndSubscriptionForm>
+				<EndSubscriptionForm setCurrentPage={setCurrentPage} cancelSub={cancelSub} executeLogout={executeLogout}></EndSubscriptionForm>
 			) : currentPage === 'reset-password-form' ? (
 				<ResetPasswordForm setCurrentPage={setCurrentPage} linkCode='' userFromUrl='' executeLogout={executeLogout} fromAccountSettings={fromAccountSettings} userID={userID}></ResetPasswordForm>
 			) : null}

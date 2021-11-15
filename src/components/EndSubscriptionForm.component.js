@@ -7,7 +7,7 @@ import {InputAdornment,IconButton} from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
-function EndSubscriptionForm({setCurrentPage,logInFailed}) {
+function EndSubscriptionForm({setCurrentPage,logInFailed,executeLogout}) {
 
     const [stepOne,setStepOne] = React.useState(true);
     const [password, setPassword] = React.useState('');
@@ -51,7 +51,8 @@ function EndSubscriptionForm({setCurrentPage,logInFailed}) {
     }  
 
     const handleAttemptCancel = () => {
-      console.log("Attempt Cancel");
+      cancelSub();
+      executeLogout();
     }  
 
     const handlePassword = (event) => {

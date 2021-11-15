@@ -94,6 +94,8 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     
     function logIn(){
       attemptLogin(username,password,staySignedIn);
+      setUsername("");
+      setPassword("");
 	  }
 
     const handleUsername = (event) => {
