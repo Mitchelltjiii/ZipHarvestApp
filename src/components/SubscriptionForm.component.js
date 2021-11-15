@@ -93,7 +93,7 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
 
     async function getSubscription(subId){
       console.log("Try to get subscription");
-      const response = await fetch(`/get-subscriptionsubscription/${subId}`);
+      const response = await fetch(`/get-subscription/${subId}`);
       const json = await response.json();
       try{
         console.log("sub json: " + json);

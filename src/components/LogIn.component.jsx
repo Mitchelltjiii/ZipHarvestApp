@@ -38,6 +38,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 
     console.log("Log in UsernameError: " + usernameError);
     if(failedLogIn && !usernameError && !passwordError){
+      console.log("Set username error true");
       setUsernameError(true);
       setPasswordError(true);
     }
