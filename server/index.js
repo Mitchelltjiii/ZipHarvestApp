@@ -605,7 +605,7 @@ app.get('/api/dr/:id', (req, res) => {
     connection.query(dryRoomsQueryString + sql + "'", (err, rows) => {
         connection.release(); // return the connection to pool
         if(err) throw err;
-        console.log('The data from dry rooms table are: \n', rows);
+        console.log('The data from dry rooms table are:\n', rows);
         res.json(rows);
     });
   });
