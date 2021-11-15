@@ -23,31 +23,18 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 
     console.log("loginfailed: " + logInFailed);
 
-    const [logInFailedHandeled,setLoginFailedHandled] = React.useState(false);
-
-    let errorTxt = "";
+    let error = false;
+    if(logInFailed && username === "" && password === ""){
+      error = true;
+    }
+    let errorText = "";
     let failedLogIn = false;
     if(logInFailed){
       failedLogIn = true;
-      errorTxt = "Username or password is incorrect."
+      errorText = "Username or password is incorrect."
     }
     console.log("failedlogin: " + failedLogIn);
-    console.log("errorTxt: " + errorTxt);
-
-    const [usernameError, setUsernameError] = React.useState(false);
-    const [passwordError, setPasswordError] = React.useState(false);
-    const [errorText, setErrorText] = React.useState(errorTxt);
-
-    if(!logInFailedHandeled && logInFailed){
-      setUsername("");
-      setPassword("");
-      setUsernameError(true);
-      setPasswordError(true);
-      setLoginFailedHandled(true);
-    }
-
-    console.log("Log in UsernameError: " + usernameError);
-    console.log("Log in PasswordError: " + passwordError);
+    console.log("errorText: " + errorText);
 
     const handleForgotID = () => {
       clickForgotID();
@@ -88,20 +75,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 
     function clickPrivacyPolicy(){
       window.open("https://app.termly.io/document/privacy-policy/a880128c-82ae-40b1-bec3-7d5b495a1d24", '_blank');
-    }
-
-    if(passwordError && password.length !== 0){
-      setErrorText("");
-      setPasswordError(false);
-      setUsernameError(false);
-      setLoginFailedHandled(false);
-    }
-
-    if(usernameError && username.length !== 0){
-      setErrorText("");
-      setUsernameError(false);
-      setPasswordError(false);
-      setLoginFailedHandled(false);
     }
 
     var forgotIDLink = <a onClick={handleForgotID} style={{cursor:"pointer",color:"#3d85c6"}}>ID</a>;
@@ -164,9 +137,9 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                                    <div style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"10px"}}>
                                        <img alt="logo" src={logo} style={{minHeight:"62px",maxHeight: "62px"}}/>
                                    </div>    
-                                   <TextField error={usernameError} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
+                                   <TextField error={error} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                                    <TextField
-  error={passwordError}
+  error={error}
   style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}
   value={password}
   label='Password'
@@ -208,9 +181,9 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                                    <div style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"10px"}}>
                                        <img alt="logo" src={logo} style={{minHeight:"62px",maxHeight: "62px"}}/>
                                    </div>    
-                                   <TextField error={usernameError} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
+                                   <TextField error={error} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                                    <TextField
-  error={passwordError}
+  error={error}
   style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}
   value={password}
   label='Password'

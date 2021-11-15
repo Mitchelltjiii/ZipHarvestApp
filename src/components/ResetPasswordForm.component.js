@@ -125,11 +125,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
     const handleConfirmReset = () => {
       if(isPasswordValid(password) && isPasswordValid(passwordAgain) && (password === passwordAgain)){
         console.log("Get user Exists")
-        if(fromAccountSettings){
-          console.log("Confirm Reset from account settingss");
-        }else{
-          updateUserPassword();
-        }
+        updateUserPassword();
       }else{
         console.log("Something's not right");
         if(!isPasswordValid(password)){
@@ -222,7 +218,11 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
 
       async function updateUserPassword(){
         console.log("Engage update user password");
-        const response = fetch(`/user/resetPassword/${userFromUrl}/${password}`, {
+        let userForFetch = userFromUrl;
+        if(fromAccountSettings){
+          userForFetch = userID;
+        }
+        const response = fetch(`/user/resetPassword/${userForFetch}/${password}`, {
               method: 'PUT',
               headers: {
                 'Accept': 'application/json',
