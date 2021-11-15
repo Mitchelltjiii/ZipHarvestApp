@@ -16,10 +16,11 @@ class ExportButton extends Component{
             choosingUnit: false,
             exportRecords: []
         };
-        let parent = this;
     }
 
     render() {  
+        let parent = this;
+
         const handleClickExport = () => {
             clickExport();
         }
@@ -40,11 +41,10 @@ class ExportButton extends Component{
         }
 
         function commitExportRecords(){
-            console.log("Commit Export Records: " + this.state.exportRecords);
-            console.log("Commit Export Records(STRING): " + JSON.stringify(this.state.exportRecords));
+            console.log("Commit Export Records: " + parent.state.exportRecords);
+            console.log("Commit Export Records(STRING): " + JSON.stringify(parent.state.exportRecords));
         }
 
-        let parent = this;
         function getHBDate(batchName){
             console.log("Get Date");
             for(let val of JSON.parse(parent.props.getHarvestBatches())){

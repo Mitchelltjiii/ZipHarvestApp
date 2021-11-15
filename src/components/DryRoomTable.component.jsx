@@ -14,6 +14,8 @@ import {isMobile} from 'react-device-detect';
 function DryRoomTable({dryRooms,toggleDeleteAllSelected,getDeleteAllSelected,toggleDeleteDryRoomSelected,getDeleteDryRoomSelected}) {
 
     console.log("ENTER Dryroomtable, dryrooms: " + dryRooms);
+    console.log("ENTER Dryroomtable, JSON.stringifiydryrooms: " + JSON.stringify(dryRooms));
+
 
     let tableWidth = 600;
     
@@ -31,16 +33,20 @@ function DryRoomTable({dryRooms,toggleDeleteAllSelected,getDeleteAllSelected,tog
 
     const classes = useStyles();
 
-    function createData(dryRoomName) {
-      return {dryRoomName};
+    function createData(id,dryRoomName) {
+      return {id,dryRoomName};
     }
 
     const rows = [];
 
     for(const val of dryRooms) {
-        rows.push(createData(val.name));
+      console.log("Val of dryrooms:  " + val);
+      console.log("String Val of dryrooms:  " + JSON.stringify(val));
+        rows.push(createData(val.id,val.name));
     }
-       
+    console.log("Rows: " + rows);
+    console.log("Rows(STRING): " + JSON.stringify(rows));
+
     return(
       <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -59,7 +65,7 @@ function DryRoomTable({dryRooms,toggleDeleteAllSelected,getDeleteAllSelected,tog
                   <SelectDeleteDryRoomButton toggleDeleteDryRoomSelected={toggleDeleteDryRoomSelected} getDeleteDryRoomSelected={getDeleteDryRoomSelected} dryRoomId={row.id}></SelectDeleteDryRoomButton>
               </TableCell>
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.dryRoomName}
               </TableCell>
             </TableRow>
             ))}

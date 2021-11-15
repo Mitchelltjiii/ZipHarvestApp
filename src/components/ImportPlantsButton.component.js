@@ -95,7 +95,7 @@ class ImportPlantsButton extends Component{
 			}
 		}*/
 
-    let timeLimit = 100000;
+    let timeLimit = 3000;
             let addPlant = new Plant("","","","");
             let plantList = JSON.parse(this.props.getPlants());
             for(const val of this.props.uploadList){
