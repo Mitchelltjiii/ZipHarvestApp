@@ -45,6 +45,9 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
     const [expired,setExpired] = React.useState(false);
     const [gotUser,setGotUser] = React.useState(false);
 
+    const [stepOne, setStepOne] = React.useState(true);
+
+
 
     const handleSendResetLink = () => {
       getEmail();
@@ -122,7 +125,11 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
     const handleConfirmReset = () => {
       if(isPasswordValid(password) && isPasswordValid(passwordAgain) && (password === passwordAgain)){
         console.log("Get user Exists")
-        updateUserPassword();
+        if(fromAccountSettings){
+          console.log("Confirm Reset from account settings");
+        }else{
+          updateUserPassword();
+        }
       }else{
         console.log("Something's not right");
         if(!isPasswordValid(password)){
@@ -355,7 +362,8 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
             {fromAccountSettings ?
             <div>{isMobile ?
               <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-              <Grid
+              {stepOne ? 
+                <Grid
               container
               direction="column"
               justifyContent="center"
@@ -386,9 +394,65 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleTryPassword}>Next</Button>
 
               </Grid>
+              :
+              <Grid
+      container
+      direction="column"
+        justifyContent="center"
+      alignItems="center"
+        >
+                  <TextField
+    helperText={passwordHelperText} error={passwordError} 
+    style={{marginBottom:"10px",width:"248px"}}
+    value={password}
+    label='Password'
+    variant="outlined"
+    type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+    onChange={handlePassword} 
+    InputProps={{ // <-- This is where the toggle button is added.
+      endAdornment: (
+        <InputAdornment position="end">
+          <IconButton
+            aria-label="toggle password visiblity"
+            onClick={handleClickShowPassword}
+            onMouseDown={handleMouseDownPassword}
+          >
+            {showPassword ? <Visibility /> : <VisibilityOff />}
+          </IconButton>
+        </InputAdornment>
+      )
+    }}
+  />         
+  <TextField
+    helperText={verifyPasswordHelperText} error={verifyPasswordError} 
+    style={{marginBottom:"10px",width:"248px"}}
+    value={passwordAgain}
+    label='Verify'
+    variant="outlined"
+    type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
+    onChange={handlePasswordAgain} 
+    InputProps={{ // <-- This is where the toggle button is added.
+      endAdornment: (
+        <InputAdornment position="end">
+          <IconButton
+            aria-label="toggle password visiblity"
+            onClick={handleClickShowVerifyPassword}
+            onMouseDown={handleMouseDownVerifyPassword}
+          >
+          {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
+          </IconButton>
+        </InputAdornment>
+      )
+    }}
+  /><Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleConfirmReset}>Confirm</Button>
+                  </Grid>
+              }
+              
               </div> :
               <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-              <Grid
+              
+              {stepOne ? 
+                <Grid
               container
               direction="column"
               justifyContent="center"
@@ -398,7 +462,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
   error={passwordError}
   style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}
   value={password}
-  label='Password'
+  label='Current Password'
   variant="outlined"
   type={showPassword ? "text" : "password"} // <-- This is where the magic happens
   onChange={handlePassword} 
@@ -415,8 +479,63 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
       </InputAdornment>
     )
   }}
-/>                  <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleTryPassword}>Next</Button>
+/>
+<Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleTryPassword}>Next</Button>
+
               </Grid>
+              :
+              <Grid
+      container
+      direction="column"
+        justifyContent="center"
+      alignItems="center"
+        >
+                  <TextField
+    helperText={passwordHelperText} error={passwordError} 
+    style={{marginBottom:"10px",width:"248px"}}
+    value={password}
+    label='Password'
+    variant="outlined"
+    type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+    onChange={handlePassword} 
+    InputProps={{ // <-- This is where the toggle button is added.
+      endAdornment: (
+        <InputAdornment position="end">
+          <IconButton
+            aria-label="toggle password visiblity"
+            onClick={handleClickShowPassword}
+            onMouseDown={handleMouseDownPassword}
+          >
+            {showPassword ? <Visibility /> : <VisibilityOff />}
+          </IconButton>
+        </InputAdornment>
+      )
+    }}
+  />         
+  <TextField
+    helperText={verifyPasswordHelperText} error={verifyPasswordError} 
+    style={{marginBottom:"10px",width:"248px"}}
+    value={passwordAgain}
+    label='Verify'
+    variant="outlined"
+    type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
+    onChange={handlePasswordAgain} 
+    InputProps={{ // <-- This is where the toggle button is added.
+      endAdornment: (
+        <InputAdornment position="end">
+          <IconButton
+            aria-label="toggle password visiblity"
+            onClick={handleClickShowVerifyPassword}
+            onMouseDown={handleMouseDownVerifyPassword}
+          >
+          {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
+          </IconButton>
+        </InputAdornment>
+      )
+    }}
+  /><Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleConfirmReset}>Confirm</Button>
+                  </Grid>
+              }
               </div>
               }</div>
             :

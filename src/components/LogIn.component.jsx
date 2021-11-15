@@ -94,12 +94,14 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
       setErrorText("");
       setPasswordError(false);
       setUsernameError(false);
+      setLoginFailedHandled(false);
     }
 
     if(usernameError && username.length !== 0){
       setErrorText("");
       setUsernameError(false);
       setPasswordError(false);
+      setLoginFailedHandled(false);
     }
 
     var forgotIDLink = <a onClick={handleForgotID} style={{cursor:"pointer",color:"#3d85c6"}}>ID</a>;
