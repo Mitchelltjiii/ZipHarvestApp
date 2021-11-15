@@ -64,7 +64,6 @@ function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettin
 
     const rows = [];
 
-
     rows.push(createData("Email",email));
     rows.push(createData("Change Password",""));
     rows.push(createData("Subscription",""));
