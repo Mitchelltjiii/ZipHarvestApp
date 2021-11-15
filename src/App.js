@@ -148,7 +148,6 @@ export default class App extends React.Component {
     if(text === "0" || text === "1" || text === "2"){
       console.log("Text === 0,1 or 2");
       this.cancelSub();
-      this.executeLogout();
     }else{
       console.log("ELSE");
       this.setState({logInSuccess:false,currentPage:"end-subscription-form"});
@@ -406,6 +405,8 @@ export default class App extends React.Component {
   }
 
   cancelSub = () => {
+    console.log("In Cancel SUb");
+    console.log("Logged IN: " + this.state.loggedIn);
     this.getSubIdForCancel(this.state.loggedIn);
   }
 
