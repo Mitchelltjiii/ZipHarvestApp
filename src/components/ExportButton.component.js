@@ -18,7 +18,6 @@ class ExportButton extends Component{
         let parent = this;
     }
 
-
     render() {  
         const handleClickExport = () => {
             clickExport();
