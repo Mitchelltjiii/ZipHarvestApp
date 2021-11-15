@@ -10,7 +10,20 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter}) {
 	const [selectedToDelete,setSelectedToDelete] = React.useState([]);
 	let removeList = selectedToDelete;
 
-	let dryRooms = JSON.parse(getDryRooms());
+	let dryRooms = JSON.parse(executeGetDryRooms());
+
+	function executeGetDryRooms(){
+		let exDryRooms = JSON.parse(getDryRooms());
+		let drs = [];
+		console.log("execute Get dryrooms With Search");
+
+		for(const val of exDryRooms){
+			console.log("Val: " + JSON.stringify(val));
+			drs.push(val);
+		}
+		console.log("Execute get drs done: " + JSON.stringify(drs));
+		return JSON.stringify(drs);
+	}
 
 	const toggleDeleteAllSelected = () => {		
 		if(getDeleteAllSelected()){

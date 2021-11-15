@@ -292,7 +292,7 @@ export default class App extends React.Component {
   }
 
   resetAll = (currHarvest) => {
-    this.setState({harvestBatchesLoading: true, plantsLoading: true, harvestRecordsLoading: true, currentHarvest: currHarvest, logInFailed: false, logInSuccess: false, 
+    this.setState({harvestBatchesLoading: true, plantsLoading: true, harvestRecordsLoading: true, currentHarvest: currHarvest, logInFailed: false, logInSuccess: true, 
       dryRoomsLoading: true, exportRecordsLoading: true});
     console.log("Reset all");
     this.getHarvestBatchesFromDB();
@@ -435,6 +435,7 @@ export default class App extends React.Component {
   }
 
   getDryRooms = () => {
+    console.log("Get Dryrooms: " + this.state.dryRooms);
     return this.state.dryRooms;
   }
 
