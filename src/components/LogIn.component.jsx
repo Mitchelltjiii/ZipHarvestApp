@@ -113,6 +113,13 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
       formWidth = "100%";
     }
 
+    const handleOnKeyDown = (event) => {
+      if(event.keyCode === 13){
+        console.log("Enter clicked in password");
+        logIn();
+      }
+    }
+
     return(
       <Grid
 					  container
@@ -141,6 +148,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                                    </div>    
                                    <TextField error={error} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                                    <TextField
+                                   onKeyDown={handleOnKeyDown}
   error={error}
   helperText={errorText}
   style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}
@@ -185,6 +193,7 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
                                    </div>    
                                    <TextField error={error} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                                    <TextField
+                                   onKeyDown={handleOnKeyDown}
   helperText={errorText}
   error={error}
   style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}

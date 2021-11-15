@@ -69,7 +69,7 @@ class ExportButton extends Component{
 
         const gramsInAPound = 453.592;
 
-        if(JSON.stringify(exportRecords) !== "[]"){
+        if(JSON.stringify(this.state.exportRecords) !== "[]"){
             for(let val of JSON.parse(this.props.getHarvestRecords())){
                 if(val.batchName === this.props.row.name){
                     let weight = val.weight;
