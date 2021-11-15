@@ -47,11 +47,12 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
 
     const [stepOne, setStepOne] = React.useState(true);
 
+    let errorText = "";
+    let error = false;
+
     if(stepOne && fromAccountSettings){
       console.log("loginfailed: " + logInFailed);
 
-      let errorText = "";
-      let error = false;
       if(logInFailed && password === ""){
         error = true;
         errorText = "Password is incorrect."
