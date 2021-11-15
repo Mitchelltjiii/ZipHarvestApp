@@ -821,6 +821,11 @@ app.put('/user/updateLinkCode/:linkCode/:linkCodeTime/:username', (req, res) =>{
       linkCodeTime = "";
     }
 
+    console.log("Update link code");
+
+    console.log("Link code: " + linkCode);
+    console.log("Link code Time: " + linkCodeTime);
+
   connection.query(`UPDATE users SET
   linkCode = ?, linkCodeTime = ? WHERE (username = ?)`, 
   [
