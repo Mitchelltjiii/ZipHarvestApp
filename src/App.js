@@ -448,7 +448,14 @@ export default class App extends React.Component {
     console.log("TimeOne: " + timeOne);
     console.log("TimeTwo: " + timeTwo);
     let x = 0;
-    for(const val of this.state.exportRecords){
+    try{
+      console.log("this.state.exportrecords:" + this.state.exportRecords);
+      console.log("this.state.exportrecordsPARSE:" + JSON.parse(this.state.exportRecords));
+      console.log("this.state.exportrecordsSTRING:" + JSON.stringify(this.state.exportRecords));
+    }catch(err){
+
+    }
+    for(const val of JSON.parse(this.state.exportRecords)){
       console.log("UID count Val: " + JSON.stringify(val));
       if(Number(val.time)>((Number(timeOne))*1000) && Number(val.time)<((Number(timeTwo))*1000)){
         console.log("x++");
