@@ -19,7 +19,8 @@ class ExportButton extends Component{
             choosingUnit: false,
             exportRecords: [],
             subscription: [],
-            choosingDryRoom: false
+            choosingDryRoom: false,
+            selectedDR: ""
         };
     }
 
@@ -37,10 +38,8 @@ class ExportButton extends Component{
       
         console.log("DROPTIONSLIST: " + drOptionsList);
 
-        const [selectedDR, setSelectedDR] = React.useState("");
-
         const handleSelectDR = (e) => {
-          setSelectedDR(e.target.value);
+          setState({selectedDR:e.target.value});
         };
 
         const handleClickExport = () => {
@@ -57,7 +56,7 @@ class ExportButton extends Component{
         }
 
       function clickNext(){
-        if(selectedDR !== ""){
+        if(parent.state.selectedDR !== ""){
           parent.setState({choosingUnit:true});
           parent.forceUpdate();
         }
@@ -204,8 +203,8 @@ class ExportButton extends Component{
                 }else{
                     gramsWeight = Math.round((weight*gramsInAPound)*100)/100;
                 }
-                gramsData += String(val.tag) + "," + gramsWeight + "," + "g" + "," + selectedDR + "," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
-                poundsData += String(val.tag) + "," + poundsWeight + "," + "lbs" + "," + selectedDR + "," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
+                gramsData += String(val.tag) + "," + gramsWeight + "," + "g" + "," + parent.state.selectedDR + "," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
+                poundsData += String(val.tag) + "," + poundsWeight + "," + "lbs" + "," + parent.state.selectedDR + "," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
                 exportRecordsData.push(val.tag);
             }
         } 
@@ -254,7 +253,7 @@ class ExportButton extends Component{
               wrap="nowrap"
               >
                   <FormLabel>Choose Dry Room</FormLabel>
-				          <Select id="choose-dryroom-select" value={selectedDR} onChange={handleSelectDR} style={{minWidth:"120px"}}>
+				          <Select id="choose-dryroom-select" value={parent.state.selectedDR} onChange={handleSelectDR} style={{minWidth:"120px"}}>
                 	  {drOptionsList.map((name, index) => (
             			  <MenuItem key={index} value={name}>
              	 		  {name}
