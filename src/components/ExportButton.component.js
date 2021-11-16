@@ -34,7 +34,7 @@ class ExportButton extends Component{
           if(!drOptionsList.includes(val.name)){
             drOptionsList.push(val.name);
           }
-          }
+        }
       
         console.log("DROPTIONSLIST: " + drOptionsList);
 
