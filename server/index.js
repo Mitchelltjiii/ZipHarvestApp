@@ -1179,7 +1179,7 @@ app.put('/user/set-session-id/:userID/:sessionID', (req, res) =>{
   console.log("UserID: " + userID);
 
   connection.query(`UPDATE users SET
-  sessionid = ? WHERE (userID = ?)`, 
+  sessionid = ? WHERE (username = ?)`, 
   [
     sessionID, userID
   ], (err, result) => {
