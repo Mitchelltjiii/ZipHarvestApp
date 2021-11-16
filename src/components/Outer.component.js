@@ -34,7 +34,8 @@ class Outer extends Component {
       reloadHarvestRecords={this.props.reloadHarvestRecords} setCurrentPage={this.props.setCurrentPage} verCode={this.props.verCode} 
       userFromUrl={this.props.userFromUrl} linkCode={this.props.linkCode} executeLogout={this.props.executeLogout} setFromAccountSettings={this.props.setFromAccountSettings}
       attemptLogInFromEndSubForm={this.props.attemptLogInFromEndSubForm} logInSuccess={this.props.logInSuccess} getDryRooms={this.props.getDryRooms}
-      getExportRecords={this.props.getExportRecords} reloadDryRooms={this.props.reloadDryRooms}/>
+      getExportRecords={this.props.getExportRecords} reloadDryRooms={this.props.reloadDryRooms} reloadExportRecords={this.props.reloadExportRecords}
+      getUniqueIDCount={this.props.getUniqueIDCount}/>
 		</div>
     );
   }

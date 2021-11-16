@@ -11,7 +11,7 @@ import ExportButton from './ExportButton.component';
 import {isMobile} from 'react-device-detect';
 
 
-function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID}) {
+function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExportRecords,getUniqueIDCount}) {
     console.log("ENTER HBTABLE, HBLIST: " + getHarvestBatches());
     let tableWidth = 600;
     
@@ -124,7 +124,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID}) {
               <TableCell align="left">{row.plants}</TableCell>
               <TableCell align="left">{row.date}</TableCell>
               <TableCell align="center">
-                    <ExportButton row={row} getHarvestRecords={getHarvestRecords} getHarvestBatches={getHarvestBatches} userID={userID}></ExportButton>
+                    <ExportButton row={row} getHarvestRecords={getHarvestRecords} getHarvestBatches={getHarvestBatches} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount}></ExportButton>
                   </TableCell>
             </TableRow>
             ))}

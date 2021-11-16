@@ -443,6 +443,22 @@ export default class App extends React.Component {
     return this.state.exportRecords;
   }
 
+  getUniqueIDCount = (timeOne,timeTwo) => {
+    console.log("Get Unique ID count");
+    console.log("TimeOne: " + timeOne);
+    console.log("TimeTwo: " + timeTwo);
+    let x = 0;
+    for(const val of this.state.exportRecords){
+      console.log("UID count Val: " + val);
+      if(Number(val.time)>Number(timeOne) && Number(val.time)<Number(timeTwo)){
+        x++;
+      }
+    }
+    return x;
+  }
+
+
+
   setHarvestBatches = (harvestBatchesFromChild) => {
     this.setState({harvestBatches:harvestBatchesFromChild});
   }
@@ -661,7 +677,7 @@ export default class App extends React.Component {
       setHarvestBatches={this.setHarvestBatches} setHarvestRecords={this.setHarvestRecords} setPlants={this.setPlants} reloadPlants={this.reloadPlants} 
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}
       verCode={verCode} userFromUrl={userFromUrl} linkCode={linkCode} executeLogout={this.executeLogout} setFromAccountSettings={this.setFromAccountSettings} attemptLogInFromEndSubForm={this.attemptLogInFromEndSubForm}
-      getDryRooms={this.getDryRooms} getExportRecords={this.getExportRecords} logInSuccess={this.state.logInSuccess} reloadDryRooms={this.reloadDryRooms}/>
+      getDryRooms={this.getDryRooms} getExportRecords={this.getExportRecords} logInSuccess={this.state.logInSuccess} reloadDryRooms={this.reloadDryRooms} reloadExportRecords={this.reloadExportRecords}/>
     </div>;
     }else{
       let loginForm = false;

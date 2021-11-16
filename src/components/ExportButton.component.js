@@ -14,7 +14,8 @@ class ExportButton extends Component{
                     "Red": "#E9573F",
                     "Yellow": "#F6BB42"},
             choosingUnit: false,
-            exportRecords: []
+            exportRecords: [],
+            subscription: []
         };
     }
 
@@ -27,9 +28,52 @@ class ExportButton extends Component{
         }
 
         function clickExport(){
-            parent.setState({choosingUnit:true});
-            parent.forceUpdate();
+            console.log("Unique ID's: ");
+            getSubId();
         }
+
+        async function getSubId(){
+            console.log("Try to get subid");
+            const response = await fetch(`/get-subid/${userID}`);
+            const json = await response.json();
+            try{
+              console.log("subid json: " + json);
+            }catch(err){
+            }
+            if(json !== undefined){
+                getSubscription(json);
+              }
+          }
+      
+          async function getSubscription(subId){
+            console.log("Try to get subscription");
+            const response = await fetch(`/get-subscription/${subId}`);
+            const json = await response.json();
+            try{
+              console.log("sub json: " + json);
+            }catch(err){
+          
+            }
+            try{
+              console.log("sub json(STRING): " + JSON.stringify(json));
+            }catch(err){
+              
+            }
+        
+            getUIDCount(json);
+           
+          }
+
+          async function getUIDCount(sub){
+            console.log("Get uid count");
+            console.log("Start time: " + sub.current_period_start);
+            console.log("End time: " + sub.current_period_end);
+
+            let uidCount = parent.props.getUniqueIDCount(sub.current_period_start,sub.current_period_end)
+            console.log("Got UID count: " + uidCount);
+            parent.setState({choosingUnit:true,subscription:sub});
+            parent.forceUpdate();
+          }
     
         const handleExport = () => {
             exp();
@@ -94,6 +138,7 @@ class ExportButton extends Component{
             }
             console.log("busyCreatingrecords after: " + JSON.stringify(this.state.busyCreatingExportRecords));       
             console.log("Exit create export record")
+            reloadExportRecords("");
           }
 
         function getHBDate(batchName){

@@ -39,11 +39,11 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
       renewalDate = (newDate.toLocaleDateString(undefined, options));
       console.log("Renewal Date: " + renewalDate);
       try{
-        console.log("Subscription.price: " + JSON.stringify(subscription.items.price));
+        console.log("Subscription.price: " + JSON.stringify(subscription.items.data[0].price));
       }catch(err){
 
       }
-      subscriptionType = subscription.items.price.lookup_key;
+      subscriptionType = subscription.items.data[0].price.lookup_key;
     }
 
     let possiblePlantCount = 2000;
