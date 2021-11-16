@@ -18,7 +18,6 @@ import LastHarvested from './LastHarvested.component';
 import edit from '../edit.png';
 import SaveHarvestDateButton from './SaveHarvestDateButton.component';
 
-
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches,
 	currentHarvest, setNewHBID, getCurrentHarvestID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
 	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords}) { 
