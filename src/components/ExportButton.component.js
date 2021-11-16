@@ -34,7 +34,7 @@ class ExportButton extends Component{
 
         async function getSubId(){
             console.log("Try to get subid");
-            const response = await fetch(`/get-subid/${userID}`);
+            const response = await fetch(`/get-subid/${parent.props.userID}`);
             const json = await response.json();
             try{
               console.log("subid json: " + json);
@@ -136,9 +136,9 @@ class ExportButton extends Component{
                 busyCreatingExportRecords.splice(i, 1); 
               }
             }
-            console.log("busyCreatingrecords after: " + JSON.stringify(this.state.busyCreatingExportRecords));       
+            console.log("busyCreatingrecords after: " + JSON.stringify(busyCreatingExportRecords));       
             console.log("Exit create export record")
-            reloadExportRecords("");
+            parent.props.reloadExportRecords("");
           }
 
         function getHBDate(batchName){
