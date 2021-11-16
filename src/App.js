@@ -465,7 +465,7 @@ export default class App extends React.Component {
             foundUid = true;
           }
         }
-        if(foundUid){
+        if(!foundUid){
           x++;
           console.log("Push: " + val.tag);
           uids.push(val.tag);

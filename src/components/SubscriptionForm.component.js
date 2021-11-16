@@ -9,6 +9,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import {isMobile} from 'react-device-detect';
+
 
 function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCount}) {
 
@@ -49,13 +51,18 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
     }
 
     let possiblePlantCount = "";
+    let subType = "";
     if(subscriptionType === "basic"){
       possiblePlantCount = "2000";
+      subType = "Basic";
     }else if(subscriptionType === "standard"){
       possiblePlantCount = "5000";
+      subType = "Standard";
     }else if(subscriptionType === "premium"){
       possiblePlantCount = "10000";
+      subType = "Premium";
     }
+
 
     const Tab = ({title,subtitle}) => {
         return(
@@ -66,10 +73,10 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
   				justifyContent="center"
 				alignItems="flex-start">
                     <div>
-                        <div style={{fontSize: "22px", cursor: "pointer"}}>
+                        <div style={{fontSize: "18px", cursor: "pointer"}}>
                             <b>{title}</b>
 		                </div>
-                        <div style={{fontSize: "21px"}}>
+                        <div style={{fontSize: "17px"}}>
                             {subtitle}
 		                </div>
                     </div>
@@ -80,7 +87,7 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
     };
 	const useStyles = makeStyles({
         table: {
-          minWidth: 650,
+          minWidth: "300px",
         },
       });
 
@@ -94,7 +101,7 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
 
     const rows = [];
 
-    rows.push(createData("Subscription Type",subscriptionType));
+    rows.push(createData("Subscription Type",subType));
     rows.push(createData("Unique Plant Tags Exported This Month",plantCount));
     rows.push(createData("Unique Plant Tags Per Month",possiblePlantCount));
     rows.push(createData("Renewal Date",renewalDate));
@@ -155,8 +162,18 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
       getSubId();
     }
 
+    let formWidth = "500px";
+    let formHeight = "500px";
+
+    if(isMobile){
+      formWidth = "100%";
+    }
+
     return(
-      <TableContainer component={Paper}>
+      <div id="subsctiption-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
+      {isMobile ?
+        <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+            <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -176,6 +193,32 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
             </TableBody>
       </Table>
       </TableContainer>
+                </div>
+                :
+                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+<TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+          <TableCell align="left">
+              <div style={{fontSize: "25px"}}>Subscription</div>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+            {rows.map((row) => (
+            <TableRow key={row.tag}>
+                <TableCell onClick={() => handleClick(row.title)}>
+                  <Tab title={row.title} subtitle={row.subtitle}></Tab>
+                </TableCell>
+            </TableRow>
+            ))}
+            </TableBody>
+      </Table>
+      </TableContainer>
+        </div>
+       }
+		</div>
     );
 }
 
