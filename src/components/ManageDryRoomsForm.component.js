@@ -113,13 +113,29 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms}) {
 	  }
 
 	const handleAddDryRoom = () => {
+		getDryRoomItem();
 		console.log("Handle Add Dry Room")
-		addDryRoom();
 		setAdding(false);
         refreshOuter();
 	  }
 
-	const addDryRoom = async() => {
+	  const getDryRoomItem = () => {
+		console.log("Enter getDryRoomItem")
+		let dryRoom = {
+			name: '',
+			userID: ''
+		  };
+
+		console.log("Current Harvested Plant(STRING): " + JSON.stringify(currentHarvestRecord));
+
+		dryRoom.name = newDryRoomName;
+		dryRoom.userID = userID;
+
+		console.log("Stringified before passed: " + JSON.stringify(dryRoom));
+		console.log("Exit getHarvestRecorditem")
+		addDryRoom(dryRoom);
+	}
+	const addDryRoom = async(dryRoomItem) => {
         console.log("Engage add Dry Room");
         
         let parent = this;
@@ -129,7 +145,7 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms}) {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(plantItem),
+          body: JSON.stringify(dryRoomItem),
         }).then(function(response) {
           return response.json();
         }).then(function(data) {
