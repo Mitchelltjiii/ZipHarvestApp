@@ -36,7 +36,6 @@ function ChangeSubscriptionForm({setCurrentPage,userID}) {
             goToProduct("premium");
         }      
     }
-
     const goToProduct = (subtype) => {
         console.log("Sub type: " + subtype);
         console.log("My Subscription: " + subscription.items.data[0].price.lookup_key);
