@@ -178,6 +178,9 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
         if(x===timeLimit){
                   console.log("TIMEOUT OPERATION FAILED");
                 }
+		reloadDryRooms();
+		refreshOuter();
+		
 	}
 
 	const deleteDryRoom = async(dryRoomID) => {
