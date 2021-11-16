@@ -474,6 +474,8 @@ export default class App extends React.Component {
     }
     return x;
   }
+
+  
   executeGetExportRecords = () => {
 		let exExportRecords = JSON.parse(this.getExportRecords());
 		let ers = [];
