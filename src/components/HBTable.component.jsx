@@ -13,6 +13,7 @@ import {isMobile} from 'react-device-detect';
 
 function HBTable({getHarvestBatches,getHarvestRecords,getPlants}) {
 
+  
     console.log("ENTER HBTABLE, HBLIST: " + getHarvestBatches());
     let tableWidth = 600;
     
