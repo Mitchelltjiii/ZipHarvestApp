@@ -59,7 +59,6 @@ class ExportButton extends Component{
           parent.forceUpdate();
         }
       }
-
         async function getSubId(){
             console.log("Try to get subid");
             const response = await fetch(`/get-subid/${parent.props.userID}`);
