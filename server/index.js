@@ -705,6 +705,34 @@ app.post('/posttest', (req, res) =>{
     res.json(message);
 });
 
+app.post('/dr', (req, res) =>{
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    var postData  = req.body;
+
+  let name = postData.name;
+  let userID = postData.userID;
+
+  console.log("POST DATA: dr STRINGIFIED: " + JSON.stringify(postData));
+  console.log("POST DATA: dr: " + postData);
+  console.log("POST DATA: NAME: " + name);
+
+  connection.query(`INSERT INTO dr 
+    (name, userID) 
+    VALUES 
+    (?, ?)`, 
+    [
+      name, userID
+    ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The post hb result is: ', result);
+    res.json(result);
+    });
+  });
+});
+
 app.post('/hb', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
@@ -1220,6 +1248,23 @@ app.delete(`/hr/:id`, (req, res) =>{
     connection.release(); // return the connection to pool
     if(err) throw err;
     console.log('The update active pl result is: ', result);
+    res.json(result);
+    });
+  });
+});
+
+app.delete(`/dr/:id`, (req, res) =>{
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+    console.log("Delete dryroom: " + req.params.id);
+  let dryRoomID = req.params.id;
+  var sql = `DELETE FROM dr WHERE id = '${dryRoomID}'`;
+
+  connection.query(sql, (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The update active dr result is: ', result);
     res.json(result);
     });
   });

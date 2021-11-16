@@ -9,6 +9,7 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
     const [adding,setAdding] = React.useState(false);
 	const [selectedToDelete,setSelectedToDelete] = React.useState([]);
 	const [newDryRoomName,setNewDryRoomName] = React.useState("");
+	const [busyDeletingDryRooms,setBusyDeletingDryRooms] = React.useState([])
 	let removeList = selectedToDelete;
 
 	let dryRooms = JSON.parse(executeGetDryRooms());
@@ -115,8 +116,6 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 	const handleAddDryRoom = () => {
 		getDryRoomItem();
 		console.log("Handle Add Dry Room")
-		setAdding(false);
-        refreshOuter();
 	  }
 
 	  const getDryRoomItem = () => {
@@ -148,8 +147,9 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
           return response.json();
         }).then(function(data) {
           console.log("Dry Room Added");
+		  setAdding(false);
 		  reloadDryRooms();    
-		  refreshOuter();
+          refreshOuter();
         });
         
         console.log("Exit update plant")
@@ -162,13 +162,41 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 	const handleDeleteDryRooms = () => {
 		console.log("HandleDeleteDryRooms");
 		for(const val of removeList){
-			console.log("Removelist Val: " + val);
+			let dryRoomsBusy = busyDeletingDryRooms;
+			dryRoomsBusy.push(val.id);
+			setBusyDeletingDryRooms(dryRoomsBusy);
+			deleteDryRoom(val.id);
 		}
 	}
 
-	const deleteDryRoom = async(id) => {
-		console.log("DeleteDryRoom id: " + id );
-	}
+	const deleteDryRoom = async(dryRoomID) => {
+		console.log("REMOVE Dry Room: " + dryRoomID);
+		const response = fetch(`/dr/${dryRoomID}`, {
+		method: 'DELETE',
+		headers: {
+		  'Accept': 'application/json',
+		  'Content-Type': 'application/json'
+		}
+		});
+  
+		try{
+		  console.log("AWAITING RESPONSE DELETEHarvestRecord")
+		  await response.text();
+		  console.log("RESPONSE RECIEVED DELETEHarvestRecord")
+		}catch(err){
+		  console.log("NO RESPONSE RECIEVED DELETEHarvestRecord")
+		} 
+  
+		console.log("Before removing busy removing record");
+		console.log("BUSYREMOVINGHR before: " + JSON.stringify(busyDeletingDryRooms)); 
+		for( var i = 0; i < busyDeletingDryRooms.length; i++){ 
+		  if (busyDeletingHarvestRecords[i] === dryRoomID) { 
+			  busyDeletingHarvestRecords.splice(i, 1); 
+		  }
+		}
+		console.log("BUSYREMOVINGHB after: " + JSON.stringify(this.state.busyDeletingHarvestRecords));       
+		console.log("Exit remove harvest record")
+	  }
 
 
 
