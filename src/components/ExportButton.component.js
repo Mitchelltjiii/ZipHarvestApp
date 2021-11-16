@@ -20,6 +20,7 @@ class ExportButton extends Component{
 
     render() {  
         let parent = this;
+        let busyCreatingExportRecords = [];
 
         const handleClickExport = () => {
             clickExport();
@@ -42,11 +43,59 @@ class ExportButton extends Component{
 
         function commitExportRecords(){
             console.log("Commit Export Records: " + parent.state.exportRecords);
-            console.log("Commit Export Records(STRING): " + JSON.stringify(parent.state.exportRecords));
             for(const val of parent.state.exportRecords){
-                console.log("ER val: " + JSON.stringify(val));
+                console.log("ER val: " + val);
+                busyCreatingExportRecords.push(val);
             }
+
+            for(const val of parent.state.exportRecords){
+                console.log("ER val: " + val);
+                createExportRecord(val);
+            }
+
+            let timeLimit = 3000;
+		    let x = 0;
+
+            while(JSON.stringify(busyCreatingExportRecords) !== "[]" && x<timeLimit){
+                  console.log("Set timeout");
+                  setTimeout(null,200);
+                  x++;
+                }
+
+                if(x===timeLimit){
+                  console.log("TIMEOUT OPERATION FAILED");
+                }
         }
+
+        const createExportRecord = async(tag) => {
+            console.log("Create ER: " + tag);
+            let time = JSON.stringify((new Date()).getTime());
+            const response = fetch(`/er/${tag}/${time}/${userID}`, {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+            });
+      
+            try{
+              console.log("AWAITING RESPONSE UpdateExportRecord");
+              await response.text();
+              console.log("RESPONSE RECIEVED UpdateExportRecord")
+            }catch(err){
+              console.log("NO RESPONSE RECIEVED UpdateExportRecord")
+            } 
+      
+            console.log("Before removing busy updating record");
+            console.log("busycreating before: " + JSON.stringify(busyCreatingExportRecords)); 
+            for( var i = 0; i < busyCreatingExportRecords.length; i++){ 
+              if (busyCreatingExportRecords[i] === tag) { 
+                busyCreatingExportRecords.splice(i, 1); 
+              }
+            }
+            console.log("busyCreatingrecords after: " + JSON.stringify(this.state.busyCreatingExportRecords));       
+            console.log("Exit create export record")
+          }
 
         function getHBDate(batchName){
             console.log("Get Date");

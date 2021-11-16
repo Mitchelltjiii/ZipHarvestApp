@@ -39,6 +39,11 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
       console.log("New Date: " + newDate);
       renewalDate = (newDate.toLocaleDateString(undefined, options));
       console.log("Renewal Date: " + renewalDate);
+      try{
+        console.log("Subscription.price: " + JSON.stringify(subscription.price));
+      }catch(err){
+
+      }
       subscriptionType = subscription.price.lookup_key;
     }
 

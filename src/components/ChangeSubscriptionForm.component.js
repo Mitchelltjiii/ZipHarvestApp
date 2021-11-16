@@ -40,6 +40,34 @@ function ChangeSubscriptionForm({setCurrentPage,userID}) {
     const goToProduct = (subtype) => {
         console.log("Sub type: " + subtype);
         console.log("My Subscription: " + subscription.price.lookup_key);
+        let newPriceID = "price_1JwFPlGBqcLC10HcdJ30adu9"; //basic
+        if(subtype === "standard"){
+          newPriceID = "price_1JwFPlGBqcLC10Hc071vnzue";
+        }else if(subtype === "premium"){
+          newPriceID = "price_1JwFPlGBqcLC10HcrLJD4Vwx";
+        }
+        updateSubscription(newPriceID);
+    }
+
+    const updateSubscription = (newPriceID) => {
+        console.log("Try to update subscription");
+        console.log("Sub.id: " + subscription.id);
+        console.log("New Price ID: " + newPriceID);
+        const response = await fetch(`/update-subscription/${subscription.id}/${newPriceID}`);
+        const json = await response.json();
+        try{
+          console.log("sub update json: " + json);
+        }catch(err){
+      
+        }
+        try{
+          console.log("sub update json(STRING): " + JSON.stringify(json));
+        }catch(err){
+          
+        }
+        if(json !== undefined){
+          setSubscription(json);
+        }
     }
 
       if(JSON.stringify(subscription) === "[]"){

@@ -353,6 +353,24 @@ app.get('/get-user-seshId/:seshId', async (req,res) =>{
   })
 })
 
+app.get('/update-subscription/:subid/:priceid', async (req,res) =>{
+  const subscription = await stripe.subscriptions.retrieve(req.params.subid);
+  console.log("Update Sub");
+  console.log("Sub ID: " + req.params.subid);
+  console.log("Price ID: " + req.params.priceid);
+
+  stripe.subscriptions.update(req.params.subid, {
+  cancel_at_period_end: false,
+  proration_behavior: 'create_prorations',
+  items: [{
+    id: subscription.items.data[0].id,
+    price: req.params.priceid,
+  }]
+});
+  console.log("Before response from update subscription")
+  res.json(subscription);
+})
+
 app.get('/get-products', async (req,res) =>{
   const products = await stripe.products.list({limit: 10,});
   console.log("Before response from getProducts")
@@ -703,6 +721,30 @@ app.post('/posttest', (req, res) =>{
     }
   
     res.json(message);
+});
+
+app.post('/er/:tag/:time/:userID', (req, res) =>{
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    console.log('connected as id ' + connection.threadId);
+
+  console.log("POST DATA: tag: " + req.params.tag);
+  console.log("POST DATA: time: " + req.params.time);
+  console.log("POST DATA: userID: " + req.params.userID);
+
+  connection.query(`INSERT INTO er 
+    (userID, tag, time) 
+    VALUES 
+    (?, ?, ?)`, 
+    [
+      req.params.userID, req.params.tag, req.params.time
+    ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    console.log('The post hb result is: ', result);
+    res.json(result);
+    });
+  });
 });
 
 app.post('/dr', (req, res) =>{
