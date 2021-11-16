@@ -27,10 +27,9 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
 	  }
 
     const [subscription,setSubscription] = React.useState([]);
-    const [product,setProduct] = React.useState([]);
-
+    const [plantCount,setPlantCount] = React.useState("");
+    
     let subscriptionType = "";
-    let plantCount = "";
 
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     let renewalDate = "Renewal Date"
@@ -47,7 +46,6 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
 
       }
       subscriptionType = subscription.items.data[0].price.lookup_key;
-      plantCount = JSON.stringify(getUniqueIDCount());
     }
 
     let possiblePlantCount = "";
@@ -136,27 +134,10 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
         
       }
   
-      getProduct(json);
+      setSubscription(json);
+      console.log("Set uniqueIDcount");
+      setPlantCount(getUniqueIDCount())
     }
-
-    async function getProduct(sub){
-      console.log("Try to get product");
-      console.log("subscription.plan.product: " + sub.plan.product)
-      const response = await fetch(`/get-product/${sub.plan.product}`);
-      const json = await response.json();
-      try{
-        console.log("product json: " + json);
-      }catch(err){
-
-      }
-      try{
-        console.log("Product json(STRING): " + JSON.stringify(json));
-      }catch(err){
-    
-      }
-      setSubscription(sub);
-      setProduct(json);
-  }
 
     if(JSON.stringify(subscription) === "[]"){
       getSubId();
