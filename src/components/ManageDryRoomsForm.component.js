@@ -5,9 +5,10 @@ import RemoveUploadQueueItemButton from './RemoveUploadQueueItemButton';
 import TextField from '@material-ui/core/TextField';
 import DryRoomTable from './DryRoomTable.component';
 
-function ManageDryRoomsForm({getDryRooms, refreshOuter}) {
+function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms}) {
     const [adding,setAdding] = React.useState(false);
 	const [selectedToDelete,setSelectedToDelete] = React.useState([]);
+	const [newDryRoomName,setNewDryRoomName] = React.useState("");
 	let removeList = selectedToDelete;
 
 	let dryRooms = JSON.parse(executeGetDryRooms());
@@ -113,9 +114,36 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter}) {
 
 	const handleAddDryRoom = () => {
 		console.log("Handle Add Dry Room")
+		addDryRoom();
 		setAdding(false);
         refreshOuter();
 	  }
+
+	const addDryRoom = async() => {
+        console.log("Engage add Dry Room");
+        
+        let parent = this;
+        fetch('/dr', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(plantItem),
+        }).then(function(response) {
+          return response.json();
+        }).then(function(data) {
+          console.log("Dry Room Added");
+		  reloadDryRooms();    
+		  refreshOuter();
+        });
+        
+        console.log("Exit update plant")
+      }  
+
+	const handleNewDryRoomName = (event) => {
+        setNewDryRoomName(event.target.value);
+    };
 
     const ImportTab = () => {
         return(
@@ -124,6 +152,13 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter}) {
                 ? <div>
 					<Grid
 					container
+					direction="column"
+  					justify="center"
+					alignItems="center"
+					>
+						<TextField id="NewDryRoomName" value={newDryRoomName} onChange={handleNewDryRoomName} label="Dry Room Name" variant="outlined"></TextField>
+						<Grid
+					container
 					direction="row"
   					justify="center"
 					alignItems="center"
@@ -131,6 +166,8 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter}) {
 						<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddDryRoom}>Add Dry Room</Button>
 						<Button style={{marginLeft:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancel}>Cancel</Button>
 					</Grid>
+					</Grid>
+
 					</div>
                 : <div>
 					<Grid

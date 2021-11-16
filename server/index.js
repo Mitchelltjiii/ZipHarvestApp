@@ -1171,15 +1171,15 @@ app.put('/user/set-session-id/:userID/:sessionID', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
     console.log('connected as id ' + connection.threadId);
-    var postData  = req.body;
 
   let sessionID = req.params.sessionID;
   let userID = req.params.userID;
 
-  console.log("PUT DATA ACTIVE: PLANT STRINGIFIED: " + JSON.stringify(postData));
+  console.log("SessionID: " + sessionID);
+  console.log("UserID: " + userID);
 
   connection.query(`UPDATE users SET
-  sessionID = ? WHERE (userID = ?)`, 
+  sessionid = ? WHERE (userID = ?)`, 
   [
     sessionID, userID
   ], (err, result) => {

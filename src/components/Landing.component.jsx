@@ -13,7 +13,7 @@ function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarve
 	setHarvestBatches, resetHarvestBatches, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
 setNewHarvestRecordID, setNewPlantID, userID,reloadPlants,reloadPlantsAndHarvestRecords, reloadHarvestBatches,
 reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout,setFromAccountSettings,attemptLogInFromEndSubForm,
-logInSuccess,getDryRooms,getExportRecords}){
+logInSuccess,getDryRooms,getExportRecords,reloadDryRooms}){
 
 	console.log("ENTER LANDING, GET PLANTS(STRINGIFIED): " + JSON.stringify(getPlants()));
 
@@ -33,7 +33,7 @@ logInSuccess,getDryRooms,getExportRecords}){
 			) : currentPage === 'harvest-batches-form' ? (
 				<HarvestBatchesForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID}/>
 			) : currentPage === 'manage-dry-rooms-form' ? (
-				<ManageDryRoomsForm getDryRooms={getDryRooms} refreshOuter={refreshOuter}/>
+				<ManageDryRoomsForm getDryRooms={getDryRooms} refreshOuter={refreshOuter} reloadDryRooms={reloadDryRooms}/>
 			) : currentPage === 'manage-plants-form' ? (
 				<ManagePlantsForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} refreshOuter={refreshOuter} userID={userID} setPlants={setPlants} setNewPlantID={setNewPlantID} reloadPlants={reloadPlants}/>
 			) : currentPage === 'account-form' ? (
