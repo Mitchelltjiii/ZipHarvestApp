@@ -145,6 +145,19 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms}) {
         setNewDryRoomName(event.target.value);
     };
 
+	const handleDeleteDryRooms = () => {
+		console.log("HandleDeleteDryRooms");
+		for(const val of removeList){
+			console.log("Removelist Val: " + val);
+		}
+	}
+
+	const deleteDryRoom = async(id) => {
+		console.log("DeleteDryRoom id: " + id );
+	}
+
+
+
     const ImportTab = () => {
         return(
             <div>
@@ -177,6 +190,8 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms}) {
 					alignItems="center"
 					>
 						<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}>Add Dry Room</Button>
+						<Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleDeleteDryRooms}>Delete</Button>
+
 					</Grid>
 					</div>
 			    }
