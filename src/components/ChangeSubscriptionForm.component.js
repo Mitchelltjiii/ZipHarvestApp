@@ -49,7 +49,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID}) {
         updateSubscription(newPriceID);
     }
 
-    const updateSubscription = (newPriceID) => {
+    const updateSubscription = async(newPriceID) => {
         console.log("Try to update subscription");
         console.log("Sub.id: " + subscription.id);
         console.log("New Price ID: " + newPriceID);
