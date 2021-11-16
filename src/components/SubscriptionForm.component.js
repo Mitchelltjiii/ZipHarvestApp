@@ -10,7 +10,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
+function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCount}) {
 
     const handleClick = (title) => {
       if(title==="Change Password"){
@@ -28,6 +28,7 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
     const [product,setProduct] = React.useState([]);
 
     let subscriptionType = "";
+    let plantCount = "";
 
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     let renewalDate = "Renewal Date"
@@ -44,6 +45,7 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
 
       }
       subscriptionType = subscription.items.data[0].price.lookup_key;
+      plantCount = JSON.stringify(getUniqueIDCount());
     }
 
     let possiblePlantCount = "";
@@ -93,7 +95,7 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
     const rows = [];
 
     rows.push(createData("Subscription Type",subscriptionType));
-    rows.push(createData("Unique Plant Tags Exported This Month",""));
+    rows.push(createData("Unique Plant Tags Exported This Month",plantCount));
     rows.push(createData("Unique Plant Tags Per Month",possiblePlantCount));
     rows.push(createData("Renewal Date",renewalDate));
     rows.push(createData("Change Subscription",""));

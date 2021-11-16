@@ -449,12 +449,27 @@ export default class App extends React.Component {
     console.log("TimeTwo: " + timeTwo);
     let exportRecords = JSON.parse(this.executeGetExportRecords());
 
+    let uids = [];
     let x = 0;
     for(const val of exportRecords){
       console.log("UID count Val: " + JSON.stringify(val));
       if(Number(val.time)>((Number(timeOne))*1000) && Number(val.time)<((Number(timeTwo))*1000)){
         console.log("x++");
-        x++;
+        let foundUid = false;
+        console.log("Search for uid");
+
+        for(const uid of uids){
+          console.log("uid val : + " + uid);
+          if(uid === val.tag){
+            console.log("Found uid");
+            foundUid = true;
+          }
+        }
+        if(foundUid){
+          x++;
+          console.log("Push: " + val.tag);
+          uids.push(val.tag);
+        }
       }
     }
     return x;

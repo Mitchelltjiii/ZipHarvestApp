@@ -39,7 +39,7 @@ logInSuccess,getDryRooms,getExportRecords,reloadDryRooms,reloadExportRecords,get
 			) : currentPage === 'account-form' ? (
 				<AccountForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} setFromAccountSettings={setFromAccountSettings}/>
 			) : currentPage === 'subscription-form' ? (
-				<SubscriptionForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage}/>
+				<SubscriptionForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} getUniqueIDCount={getUniqueIDCount}/>
 			) : currentPage === 'end-subscription-form' ? (
 				<EndSubscriptionForm setCurrentPage={setCurrentPage} logInFailed={false} executeLogout={executeLogout} attemptLogInFromEndSubForm={attemptLogInFromEndSubForm} logInSuccess={logInSuccess}></EndSubscriptionForm>
 			) : currentPage === 'reset-password-form' ? (
