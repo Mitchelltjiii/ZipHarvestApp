@@ -95,8 +95,18 @@ function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettin
 
     
 
+    let formWidth = "500px";
+    let formHeight = "500px";
+
+    if(isMobile){
+      formWidth = "100%";
+    }
+
     return(
-      <TableContainer component={Paper}>
+      <div id="subsctiption-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
+      {isMobile ?
+        <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+            <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -116,6 +126,32 @@ function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettin
             </TableBody>
       </Table>
       </TableContainer>
+                </div>
+                :
+                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+<TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+          <TableCell align="left">
+              <div style={{fontSize: "25px"}}>Account</div>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+            {rows.map((row) => (
+            <TableRow key={row.tag}>
+                <TableCell onClick={() => handleClick(row.title)}>
+                  <Tab title={row.title} subtitle={row.subtitle}></Tab>
+                </TableCell>
+            </TableRow>
+            ))}
+            </TableBody>
+      </Table>
+      </TableContainer>
+        </div>
+       }
+		</div>
     );
 }
 
