@@ -180,7 +180,6 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
                 }
 		reloadDryRooms();
 		refreshOuter();
-		
 	}
 
 	const deleteDryRoom = async(dryRoomID) => {
