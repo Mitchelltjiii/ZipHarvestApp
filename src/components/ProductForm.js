@@ -78,7 +78,6 @@ function ProductForm() {
         }
         
     }
-      
       console.log("Before getproducts");
     getProducts();
     console.log("After getproducts");
