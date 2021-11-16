@@ -66,7 +66,6 @@ class ExportButton extends Component{
                   console.log("TIMEOUT OPERATION FAILED");
                 }
         }
-
         const createExportRecord = async(tag) => {
             console.log("Create ER: " + tag);
             let time = JSON.stringify((new Date()).getTime());
