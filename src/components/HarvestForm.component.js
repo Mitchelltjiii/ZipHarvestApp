@@ -962,7 +962,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function getRemovePlantIDDelete(uid){
 		console.log("Get Remove Plant ID Delete: UID: " + uid)
-
 		for(let val of JSON.parse(getHarvestRecords())){
 			if(val.uid === uid){
 				console.log("Found UID: " + uid);
