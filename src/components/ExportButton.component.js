@@ -15,13 +15,30 @@ class ExportButton extends Component{
                     "Yellow": "#F6BB42"},
             choosingUnit: false,
             exportRecords: [],
-            subscription: []
+            subscription: [],
+            choosingDryRoom: false
         };
     }
 
     render() {  
         let parent = this;
         let busyCreatingExportRecords = [];
+        let drOptionsList = [];
+
+        for(let val of JSON.parse(this.props.getDryRooms())) {
+          console.log("XX-VAL[name]: " + val.name);
+          if(!drOptionsList.includes(val.name)){
+            drOptionsList.push(val.name);
+          }
+          }
+      
+        console.log("DROPTIONSLIST: " + drOptionsList);
+
+        const [selectedDR, setSelectedDR] = React.useState("");
+
+        const handleSelectDR = (e) => {
+          setSelectedDR(e.target.value);
+        };
 
         const handleClickExport = () => {
             clickExport();
@@ -31,6 +48,17 @@ class ExportButton extends Component{
             console.log("Unique ID's: ");
             getSubId();
         }
+
+        const handleNext = () => {
+          clickNext();
+        }
+
+      function clickNext(){
+        if(selectedDR !== ""){
+          parent.setState({choosingUnit:true});
+          parent.forceUpdate();
+        }
+      }
 
         async function getSubId(){
             console.log("Try to get subid");
@@ -70,7 +98,7 @@ class ExportButton extends Component{
             console.log("End time: " + sub.current_period_end);
             let uidCount = parent.props.getUniqueIDCount(sub.current_period_start,sub.current_period_end);
             console.log("Got UID count: " + uidCount);
-            parent.setState({choosingUnit:true,subscription:sub});
+            parent.setState({choosingDryRoom:true,subscription:sub});
             parent.forceUpdate();
           }
     
@@ -173,8 +201,8 @@ class ExportButton extends Component{
                 }else{
                     gramsWeight = Math.round((weight*gramsInAPound)*100)/100;
                 }
-                gramsData += String(val.tag) + "," + gramsWeight + "," + "g" + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
-                poundsData += String(val.tag) + "," + poundsWeight + "," + "lbs" + ",Dry Room #1," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
+                gramsData += String(val.tag) + "," + gramsWeight + "," + "g" + "," + selectedDR + "," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
+                poundsData += String(val.tag) + "," + poundsWeight + "," + "lbs" + "," + selectedDR + "," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
                 exportRecordsData.push(val.tag);
             }
         } 
@@ -192,23 +220,49 @@ class ExportButton extends Component{
         console.log("ChoosingUnit: " + this.state.choosingUnit);
 
         return <div>
-            {this.state.choosingUnit ?
-            <Grid
-            container
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-            wrap="nowrap"
-            >
-                <CSVLink data={gramsData} style={{textDecoration:"none"}} filename={fileName} uFEFF={false}>
-                <Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14,marginRight:"3px"}} onClick={handleExport}>g</Button>            
-                </CSVLink>
-                <CSVLink data={poundsData} style={{textDecoration:"none"}} filename={fileName} uFEFF={false}>
-                <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleExport}>lbs</Button>            
-                </CSVLink>
-            </Grid> :
-                <Button aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleClickExport}>Export</Button>            
-            }
+            {this.state.choosingUnit ? (
+              <Grid
+              container
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+              wrap="nowrap"
+              >
+                  <CSVLink data={gramsData} style={{textDecoration:"none"}} filename={fileName} uFEFF={false}>
+                  <Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14,marginRight:"3px"}} onClick={handleExport}>g</Button>            
+                  </CSVLink>
+                  <CSVLink data={poundsData} style={{textDecoration:"none"}} filename={fileName} uFEFF={false}>
+                  <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleExport}>lbs</Button>            
+                  </CSVLink>
+              </Grid>
+              ) : this.state.choosingDryRoom ? (
+                <Grid
+              container
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+              wrap="nowrap"
+              >
+                <Grid
+              container
+              direction="row"
+              justifyContent="center"
+              alignItems="center"
+              wrap="nowrap"
+              >
+                  <FormLabel>Choose Dry Room</FormLabel>
+				          <Select id="choose-dryroom-select" value={selectedDR} onChange={handleSelectDR} style={{minWidth:"120px"}}>
+                	  {drOptionsList.map((name, index) => (
+            			  <MenuItem key={index} value={name}>
+             	 		  {name}
+            			</MenuItem>
+          			))}
+             	</Select>
+              </Grid>
+              <Button aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleNext}>Next</Button>            
+              </Grid>
+			) : <Button aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleClickExport}>Export</Button>            
+    }
         </div>;
       }
 }

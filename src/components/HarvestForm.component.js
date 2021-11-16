@@ -784,7 +784,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				alignItems="center"
 			>
 			<FormLabel>Choose Harvest Batch</FormLabel>
-				<Select id="change-strain-select" value={selectedHB} onChange={handleSelectHB} style={{minWidth:"120px"}}>
+				<Select id="change-HB-select" value={selectedHB} onChange={handleSelectHB} style={{minWidth:"120px"}}>
                 	{hbOptionsList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}

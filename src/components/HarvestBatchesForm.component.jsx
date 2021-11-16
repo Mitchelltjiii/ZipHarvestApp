@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import HBTable from './HBTable.component';
 
-function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, userID, reloadExportRecords, getUniqueIDCount}) {
+function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, userID, reloadExportRecords, getUniqueIDCount,getDryRooms}) {
 
 	return (
 		<div id="harvest-batches-form" style={{margin:"auto"}}>
@@ -20,7 +20,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 					alignItems="center"
 				>
 					<div style={{margin:"auto"}}>
-					<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount}></HBTable>
+					<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}></HBTable>
 					</div>
 					</Grid>
 				</div>
