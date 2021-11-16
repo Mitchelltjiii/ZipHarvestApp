@@ -163,7 +163,9 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 		console.log("HandleDeleteDryRooms");
 		for(const val of removeList){
 			busyDeletingDryRooms.push(val.id);
-			deleteDryRoom(val.id);
+		}
+		for(const val of removeList){
+			deleteDryRoom(val);
 		}
 
 		let timeLimit = 3000;
