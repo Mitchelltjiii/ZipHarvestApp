@@ -447,15 +447,9 @@ export default class App extends React.Component {
     console.log("Get Unique ID count");
     console.log("TimeOne: " + timeOne);
     console.log("TimeTwo: " + timeTwo);
-    let x = 0;
-    try{
-      console.log("this.state.exportrecords:" + this.state.exportRecords);
-      console.log("this.state.exportrecordsPARSE:" + JSON.parse(this.state.exportRecords));
-      console.log("this.state.exportrecordsSTRING:" + JSON.stringify(this.state.exportRecords));
-    }catch(err){
+    let exportRecords = JSON.parse(executeGetExportRecords());
 
-    }
-    for(const val of JSON.parse(this.state.exportRecords)){
+    for(const val of exportRecords){
       console.log("UID count Val: " + JSON.stringify(val));
       if(Number(val.time)>((Number(timeOne))*1000) && Number(val.time)<((Number(timeTwo))*1000)){
         console.log("x++");
@@ -465,7 +459,18 @@ export default class App extends React.Component {
     return x;
   }
 
+  executeGetExportRecords = () => {
+		let exExportRecords = JSON.parse(getExportRecords());
+		let ers = [];
+		console.log("execute Get ers");
 
+		for(const val of exExportRecords){
+			console.log("Val: " + JSON.stringify(val));
+			ers.push(val);
+		}
+		console.log("Execute get ers done: " + JSON.stringify(ers));
+		return JSON.stringify(ers);
+	}
 
   setHarvestBatches = (harvestBatchesFromChild) => {
     this.setState({harvestBatches:harvestBatchesFromChild});
