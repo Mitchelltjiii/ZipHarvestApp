@@ -39,7 +39,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID}) {
 
     const goToProduct = (subtype) => {
         console.log("Sub type: " + subtype);
-        console.log("My Subscription: " + subscription.price.lookup_key);
+        console.log("My Subscription: " + subscription.items.data[0].price.lookup_key);
         let newPriceID = "price_1JwFPlGBqcLC10HcdJ30adu9"; //basic
         if(subtype === "standard"){
           newPriceID = "price_1JwFPlGBqcLC10Hc071vnzue";

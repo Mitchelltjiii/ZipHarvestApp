@@ -46,11 +46,13 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
       subscriptionType = subscription.items.data[0].price.lookup_key;
     }
 
-    let possiblePlantCount = 2000;
-    if(subscriptionType === "standard"){
-      possiblePlantCount = 5000;
+    let possiblePlantCount = "";
+    if(subscriptionType === "basic"){
+      possiblePlantCount = "2000";
+    }else if(subscriptionType === "standard"){
+      possiblePlantCount = "5000";
     }else if(subscriptionType === "premium"){
-      possiblePlantCount = 10000;
+      possiblePlantCount = "10000";
     }
 
     const Tab = ({title,subtitle}) => {
