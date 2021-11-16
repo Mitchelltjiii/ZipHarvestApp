@@ -20,7 +20,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 					alignItems="center"
 				>
 					<div style={{margin:"auto"}}>
-					<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants}></HBTable>
+					<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID}></HBTable>
 					</div>
 					</Grid>
 				</div>

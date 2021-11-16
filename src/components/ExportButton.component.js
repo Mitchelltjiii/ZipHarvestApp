@@ -69,7 +69,7 @@ class ExportButton extends Component{
         const createExportRecord = async(tag) => {
             console.log("Create ER: " + tag);
             let time = JSON.stringify((new Date()).getTime());
-            const response = fetch(`/er/${tag}/${time}/${userID}`, {
+            const response = fetch(`/er/${tag}/${time}/${parent.props.userID}`, {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
