@@ -39,13 +39,15 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
       console.log("New Date: " + newDate);
       renewalDate = (newDate.toLocaleDateString(undefined, options));
       console.log("Renewal Date: " + renewalDate);
+      subscriptionType = subscription.price.lookup_key;
     }
 
-    if(JSON.stringify(product) !== "[]"){
-      console.log("Product: " + JSON.stringify(product));
-      subscriptionType = product.name;
-      console.log("SubscriptionType: " + subscriptionType);
-    }    
+    let possiblePlantCount = 2000;
+    if(subscriptionType === "standard"){
+      possiblePlantCount = 5000;
+    }else if(subscriptionType === "premium"){
+      possiblePlantCount = 10000;
+    }
 
     const Tab = ({title,subtitle}) => {
         return(
@@ -86,7 +88,7 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
 
     rows.push(createData("Subscription Type",subscriptionType));
     rows.push(createData("Unique Plant Tags Exported This Month",""));
-    rows.push(createData("Unique Plant Tags Per Month",""));
+    rows.push(createData("Unique Plant Tags Per Month",possiblePlantCount));
     rows.push(createData("Renewal Date",renewalDate));
     rows.push(createData("Change Subscription",""));
     rows.push(createData("Cancel Subscription",""));

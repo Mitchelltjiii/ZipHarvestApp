@@ -39,6 +39,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID}) {
 
     const goToProduct = (subtype) => {
         console.log("Sub type: " + subtype);
+        console.log("My Subscription: " + subscription.price.lookup_key);
     }
 
       if(JSON.stringify(subscription) === "[]"){

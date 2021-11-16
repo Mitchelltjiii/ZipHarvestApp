@@ -213,11 +213,22 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 		console.log("Exit remove harvest record")
 	  }
 
-
-
-    const ImportTab = () => {
-        return(
-            <div>
+	return (
+		<div id="manage-dry-rooms-form">
+			<Grid
+				container
+				direction="row"
+  				justify="center"
+				alignItems="center"
+			>
+                <div className="full tr">
+			    <Grid
+					container
+					direction="column"
+  					justify="center"
+					alignItems="center"
+				>
+				<div>
                 {adding
                 ? <div>
 					<Grid
@@ -248,30 +259,10 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 					>
 						<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}>Add Dry Room</Button>
 						<Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleDeleteDryRooms}>Delete</Button>
-
 					</Grid>
 					</div>
 			    }
 				</div>
-        )
-    }
-
-	return (
-		<div id="manage-dry-rooms-form">
-			<Grid
-				container
-				direction="row"
-  				justify="center"
-				alignItems="center"
-			>
-                <div className="full tr">
-			    <Grid
-					container
-					direction="column"
-  					justify="center"
-					alignItems="center"
-				>
-				<ImportTab></ImportTab>
 
                 <div>
 				<DryRoomTable dryRooms={dryRooms} toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected} 
