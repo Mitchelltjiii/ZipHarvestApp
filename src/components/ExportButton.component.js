@@ -39,7 +39,7 @@ class ExportButton extends Component{
         console.log("DROPTIONSLIST: " + drOptionsList);
 
         const handleSelectDR = (e) => {
-          setState({selectedDR:e.target.value});
+          parent.setState({selectedDR:e.target.value});
         };
 
         const handleClickExport = () => {
