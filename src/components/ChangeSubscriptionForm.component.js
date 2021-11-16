@@ -6,6 +6,8 @@ import {isMobile} from 'react-device-detect';
 
 function ChangeSubscriptionForm({setCurrentPage,userID}) {
 
+    const [subscription,setSubscription] = React.useState([]);
+    
     const handleGoToHome = () => {
       window.location.replace("https://www.zipharvest.app/");
     }  
@@ -18,58 +20,65 @@ function ChangeSubscriptionForm({setCurrentPage,userID}) {
     }
 
     const handleGoToBasic = () => {
-        goToProduct("basic");
-      }
+        if(JSON.stringify(subscription) !== "[]"){
+            goToProduct("basic");
+        }
+    }
       
       const handleGoToStandard = () => {
-        goToProduct("standard");
+        if(JSON.stringify(subscription) !== "[]"){
+            goToProduct("standard");
+        }
       }
       
       const handleGoToPremium = () => {
-        goToProduct("premium");
+        if(JSON.stringify(subscription) !== "[]"){
+            goToProduct("premium");
+        }      
+    }
+
+    const goToProduct = (subtype) => {
+        console.log("Sub type: " + subtype);
+    }
+
+      if(JSON.stringify(subscription) === "[]"){
+        getSubId();
+      }
+      
+
+
+    async function getSubId(){
+        console.log("Try to get subid");
+        const response = await fetch(`/get-subid/${userID}`);
+        const json = await response.json();
+        try{
+          console.log("subid json: " + json);
+        }catch(err){
+        }
+        if(json !== undefined){
+            getSubscription(json);
+          }
+      }
+  
+      async function getSubscription(subId){
+        console.log("Try to get subscription");
+        const response = await fetch(`/get-subscription/${subId}`);
+        const json = await response.json();
+        try{
+          console.log("sub json: " + json);
+        }catch(err){
+      
+        }
+        try{
+          console.log("sub json(STRING): " + JSON.stringify(json));
+        }catch(err){
+          
+        }
+        if(json !== undefined){
+            setSubscription(json);
+          }
       }
 
-
-async function goToProduct(lookup_key){
-    console.log("Engage go to product.");
-    const response = await fetch(`/create-checkout-session/${lookup_key}`, {
-          method: 'POST',
-          mode: 'no-cors'
-    });
-    const json = await response.json();
-    try{
-        console.log("new session json: " + json);
-    }catch(err){
-    
-    }
-    try{
-        console.log("new session json(STRING): " + JSON.stringify(json));
-    }catch(err){
-        
-    }
-  
-    updateUserSessionID(json.id);
-  
-    window.location.replace(json.url);
-    console.log("fetched create checkout sess");
-  }
-
-  async function updateUserSessionID(sessionid){
-    const response = fetch(`/user/set-session-id/${userID}/${sessionid}`, {
-        method: 'PUT',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-  }).then(function(response) {
-    let resp = JSON.stringify(response);
-    console.log("Response from updateusersessionid: " + resp);
-    if(resp !== "" && resp !== null && resp !== undefined){
-      console.log("Updateuser responded");
-    }
-  }).then(function(data) {
-  });
-  }
 
 	return (
 <div id="product-display" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
