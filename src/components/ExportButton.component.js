@@ -59,6 +59,7 @@ class ExportButton extends Component{
           parent.forceUpdate();
         }
       }
+
         async function getSubId(){
             console.log("Try to get subid");
             const response = await fetch(`/get-subid/${parent.props.userID}`);
@@ -262,8 +263,8 @@ class ExportButton extends Component{
               </Grid>
 			) : <Button aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleClickExport}>Export</Button>            
     }
-        </div>;
-      }
+    </div>
+  }
 }
  
 
