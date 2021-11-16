@@ -9,7 +9,7 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
     const [adding,setAdding] = React.useState(false);
 	const [selectedToDelete,setSelectedToDelete] = React.useState([]);
 	const [newDryRoomName,setNewDryRoomName] = React.useState("");
-	const [busyDeletingDryRooms,setBusyDeletingDryRooms] = React.useState([])
+	let busyDeletingDryRooms = [];
 	let removeList = selectedToDelete;
 
 	let dryRooms = JSON.parse(executeGetDryRooms());
@@ -162,11 +162,22 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 	const handleDeleteDryRooms = () => {
 		console.log("HandleDeleteDryRooms");
 		for(const val of removeList){
-			let dryRoomsBusy = busyDeletingDryRooms;
-			dryRoomsBusy.push(val.id);
-			setBusyDeletingDryRooms(dryRoomsBusy);
+			busyDeletingDryRooms.push(val.id);
 			deleteDryRoom(val.id);
 		}
+
+		let timeLimit = 3000;
+		let x = 0;
+
+        while(JSON.stringify(busyDeletingDryRooms) !== "[]" && x<timeLimit){
+                  console.log("Set timeout");
+                  setTimeout(null,200);
+                  x++;
+                }
+
+        if(x===timeLimit){
+                  console.log("TIMEOUT OPERATION FAILED");
+                }
 	}
 
 	const deleteDryRoom = async(dryRoomID) => {
@@ -190,8 +201,8 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 		console.log("Before removing busy removing record");
 		console.log("BUSYREMOVINGHR before: " + JSON.stringify(busyDeletingDryRooms)); 
 		for( var i = 0; i < busyDeletingDryRooms.length; i++){ 
-		  if (busyDeletingHarvestRecords[i] === dryRoomID) { 
-			  busyDeletingHarvestRecords.splice(i, 1); 
+		  if (busyDeletingDryRooms[i] === dryRoomID) { 
+			busyDeletingDryRooms.splice(i, 1); 
 		  }
 		}
 		console.log("BUSYREMOVINGHB after: " + JSON.stringify(this.state.busyDeletingHarvestRecords));       
