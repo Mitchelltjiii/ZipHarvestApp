@@ -43,7 +43,7 @@ async function goToProduct(lookup_key){
     
     }
     try{
-            console.log("new session json(STRING): " + JSON.stringify(json));
+        console.log("new session json(STRING): " + JSON.stringify(json));
     }catch(err){
         
     }
