@@ -447,8 +447,9 @@ export default class App extends React.Component {
     console.log("Get Unique ID count");
     console.log("TimeOne: " + timeOne);
     console.log("TimeTwo: " + timeTwo);
-    let exportRecords = JSON.parse(executeGetExportRecords());
+    let exportRecords = JSON.parse(this.executeGetExportRecords());
 
+    let x = 0;
     for(const val of exportRecords){
       console.log("UID count Val: " + JSON.stringify(val));
       if(Number(val.time)>((Number(timeOne))*1000) && Number(val.time)<((Number(timeTwo))*1000)){
@@ -460,7 +461,7 @@ export default class App extends React.Component {
   }
 
   executeGetExportRecords = () => {
-		let exExportRecords = JSON.parse(getExportRecords());
+		let exExportRecords = JSON.parse(this.getExportRecords());
 		let ers = [];
 		console.log("execute Get ers");
 
