@@ -30,7 +30,6 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage}) {
     let subscriptionType = "";
 
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-
     let renewalDate = "Renewal Date"
     if(JSON.stringify(subscription) !== "[]"){
       console.log("Current period end: " + subscription.current_period_end)
