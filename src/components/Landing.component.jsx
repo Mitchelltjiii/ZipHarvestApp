@@ -33,7 +33,7 @@ logInSuccess,getDryRooms,getExportRecords,reloadDryRooms}){
 			) : currentPage === 'harvest-batches-form' ? (
 				<HarvestBatchesForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID}/>
 			) : currentPage === 'manage-dry-rooms-form' ? (
-				<ManageDryRoomsForm getDryRooms={getDryRooms} refreshOuter={refreshOuter} reloadDryRooms={reloadDryRooms}/>
+				<ManageDryRoomsForm getDryRooms={getDryRooms} refreshOuter={refreshOuter} reloadDryRooms={reloadDryRooms} userID={userID}/>
 			) : currentPage === 'manage-plants-form' ? (
 				<ManagePlantsForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} refreshOuter={refreshOuter} userID={userID} setPlants={setPlants} setNewPlantID={setNewPlantID} reloadPlants={reloadPlants}/>
 			) : currentPage === 'account-form' ? (

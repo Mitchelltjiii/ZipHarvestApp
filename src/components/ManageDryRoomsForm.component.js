@@ -5,7 +5,7 @@ import RemoveUploadQueueItemButton from './RemoveUploadQueueItemButton';
 import TextField from '@material-ui/core/TextField';
 import DryRoomTable from './DryRoomTable.component';
 
-function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms}) {
+function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) {
     const [adding,setAdding] = React.useState(false);
 	const [selectedToDelete,setSelectedToDelete] = React.useState([]);
 	const [newDryRoomName,setNewDryRoomName] = React.useState("");
@@ -125,8 +125,6 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms}) {
 			name: '',
 			userID: ''
 		  };
-
-		console.log("Current Harvested Plant(STRING): " + JSON.stringify(currentHarvestRecord));
 
 		dryRoom.name = newDryRoomName;
 		dryRoom.userID = userID;
