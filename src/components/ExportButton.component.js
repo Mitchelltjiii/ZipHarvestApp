@@ -91,7 +91,7 @@ class ExportButton extends Component{
             }catch(err){
             }
             console.log("sub in getUID: " +JSON.stringify(sub));
- 
+
             console.log("Get uid count");
             console.log("Start time: " + JSON.stringify(sub.current_period_start));
             console.log("End time: " + JSON.stringify(sub.current_period_end));
