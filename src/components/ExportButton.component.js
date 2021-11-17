@@ -100,7 +100,6 @@ class ExportButton extends Component{
             parent.setState({choosingDryRoom:true,subscription:json});
             parent.forceUpdate();
           }
-    
         const handleExport = () => {
             exp();
         }
