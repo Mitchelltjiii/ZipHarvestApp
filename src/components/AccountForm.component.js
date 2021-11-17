@@ -135,7 +135,7 @@ function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettin
         <TableHead>
           <TableRow>
           <TableCell align="left">
-              <div style={{fontSize: "25px"}}>Account</div>
+              <div style={{fontSize:"25px"}}>Account</div>
             </TableCell>
           </TableRow>
         </TableHead>
