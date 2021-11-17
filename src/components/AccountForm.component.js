@@ -11,7 +11,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {isMobile} from 'react-device-detect';
 
-
 function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettings}) {
 
     const handleClick = (title) => {
