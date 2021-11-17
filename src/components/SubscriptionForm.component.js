@@ -136,7 +136,7 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
   
       setSubscription(json);
       console.log("Set uniqueIDcount");
-      setPlantCount(getUniqueIDCount())
+      setPlantCount(getUniqueIDCount(json.current_period_start,json.current_period_end));
     }
 
     if(JSON.stringify(subscription) === "[]"){
