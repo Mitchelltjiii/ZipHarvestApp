@@ -132,6 +132,7 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
         console.log("sub json(STRING): " + JSON.stringify(json));
       }catch(err){
         
+        
       }
       setSubscription(json);
       console.log("Set uniqueIDcount");
