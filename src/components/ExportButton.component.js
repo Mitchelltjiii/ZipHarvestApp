@@ -74,7 +74,6 @@ class ExportButton extends Component{
                 getSubscription(json);
               }
           }
-      
           async function getSubscription(subId){
             console.log("Try to get subscription");
             const response = await fetch(`/get-subscription/${subId}`);
