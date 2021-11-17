@@ -84,16 +84,18 @@ class ExportButton extends Component{
             }catch(err){
           
             }
+            let sub = [];
             try{
               console.log("sub json(STRING): " + JSON.stringify(json));
+              sub = JSON.parse(JSON.stringify(json))
             }catch(err){
             }
-            console.log("sub in getUID: " +JSON.stringify(json));
+            console.log("sub in getUID: " +JSON.stringify(sub));
  
             console.log("Get uid count");
-            console.log("Start time: " + json.current_period_start);
-            console.log("End time: " + json.current_period_end);
-            let uidCount = parent.props.getUniqueIDCount(json.current_period_start,json.current_period_end);
+            console.log("Start time: " + JSON.stringify(sub.current_period_start));
+            console.log("End time: " + JSON.stringify(sub.current_period_end));
+            let uidCount = parent.props.getUniqueIDCount(sub.current_period_start,sub.current_period_end);
             console.log("Got UID count: " + uidCount);
             parent.setState({choosingDryRoom:true,subscription:json});
             parent.forceUpdate();
