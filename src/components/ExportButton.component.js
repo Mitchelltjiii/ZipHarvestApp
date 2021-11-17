@@ -87,7 +87,6 @@ class ExportButton extends Component{
             try{
               console.log("sub json(STRING): " + JSON.stringify(json));
             }catch(err){
-              
             }
             console.log("sub in getUID: " +JSON.stringify(json));
  
