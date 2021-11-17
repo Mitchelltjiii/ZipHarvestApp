@@ -91,10 +91,11 @@ class ExportButton extends Component{
             }
         
             getUIDCount(json);
-           
           }
 
-          async function getUIDCount(sub){
+          function getUIDCount(sub){
+            console.log("sub in getUID: " +JSON.stringify(sub));
+ 
             console.log("Get uid count");
             console.log("Start time: " + sub.current_period_start);
             console.log("End time: " + sub.current_period_end);
