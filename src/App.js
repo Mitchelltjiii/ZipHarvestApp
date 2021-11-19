@@ -141,7 +141,7 @@ export default class App extends React.Component {
   }
 
   reloadSubscription = async() => {
-    this.getSubId(this.state.userID,staySignedIn,false);
+    this.getSubId(this.state.userID,false,false);
   }
 
   tryLogInFromEndSubForm = async (password) => {
