@@ -34,7 +34,8 @@ export default class App extends React.Component {
     logInFailed: false,
     fromAccountSettings: false,
     logInSuccess: true,
-    resetPasswordLogInFailed: false
+    resetPasswordLogInFailed: false,
+    subscription: []
   };
 
   componentDidMount() {
@@ -48,7 +49,7 @@ export default class App extends React.Component {
     }
   }
 
-  getSubscription = async (subId,username,staySignedIn) => {
+  getSubscription = async (subId,username,staySignedIn,signIn) => {
     console.log("Try to get subscription");
     const response = await fetch(`/get-subscription/${subId}`);
     const json = await response.json();
@@ -63,15 +64,20 @@ export default class App extends React.Component {
       
     }
 
-    if(json.canceled_at === null){
-      this.executeLogIn(username,staySignedIn);
+    if(signIn){
+      if(json.canceled_at === null){
+        this.setState({subscription:json});
+        this.executeLogIn(username,staySignedIn);
+      }else{
+        console.log("Sub cancelled.");
+        this.executeLogInFailed();
+      }
     }else{
-      console.log("Sub cancelled.");
-      this.executeLogInFailed();
+      this.setState({subscription:json});
     }
   }
 
-  getSubId = async (username,staySignedIn) => {
+  getSubId = async (username,staySignedIn,signIn) => {
     console.log("Try to get subid");
     const response = await fetch(`/get-subid/${username}`);
     const json = await response.json();
@@ -80,7 +86,7 @@ export default class App extends React.Component {
     }catch(err){
     }
     if(json !== undefined){
-        this.getSubscription(json,username,staySignedIn);
+        this.getSubscription(json,username,staySignedIn,signIn);
       }else{
         this.setState({newUsername:username,currentPage:'stripe-form'});
       }
@@ -110,7 +116,7 @@ export default class App extends React.Component {
     if(text === "0"){
       console.log("Text === 0");
       gotResponse = true;
-      this.getSubId(username,staySignedIn);
+      this.getSubId(username,staySignedIn,true);
     }else if(text === "1"){
       gotResponse = true;
       console.log("Text === 1");
@@ -132,6 +138,10 @@ export default class App extends React.Component {
       this.executeLogInFailed();
     }
     console.log("Text === over");
+  }
+
+  reloadSubscription = async() => {
+    this.getSubId(this.state.userID,staySignedIn,false);
   }
 
   tryLogInFromEndSubForm = async (password) => {
@@ -444,6 +454,7 @@ export default class App extends React.Component {
   }
 
   getUniqueIDCount = (timeOne,timeTwo) => {
+    /*
     console.log("Get Unique ID count");
     console.log("TimeOne: " + timeOne);
     console.log("TimeTwo: " + timeTwo);
@@ -454,6 +465,32 @@ export default class App extends React.Component {
     for(const val of exportRecords){
       console.log("UID count Val: " + JSON.stringify(val));
       if(Number(val.time)>((Number(timeOne))*1000) && Number(val.time)<((Number(timeTwo))*1000)){
+        console.log("x++");
+        let foundUid = false;
+        console.log("Search for uid");
+
+        for(const uid of uids){
+          console.log("uid val : + " + uid);
+          if(uid === val.tag){
+            console.log("Found uid");
+            foundUid = true;
+          }
+        }
+        if(!foundUid){
+          x++;
+          console.log("Push: " + val.tag);
+          uids.push(val.tag);
+        }
+      }
+    }
+    return x;
+    */
+    console.log("Get Unique ID count");
+    let uids = [];
+    let x = 0;
+    for(const val of this.state.exportRecords){
+      console.log("UID count Val: " + JSON.stringify(val));
+      if(Number(val.time)>((Number(this.state.subscription.current_time_start))*1000) && Number(val.time)<((Number(this.state.subscription.current_time_end))*1000)){
         console.log("x++");
         let foundUid = false;
         console.log("Search for uid");
@@ -518,7 +555,7 @@ export default class App extends React.Component {
     localStorage.clear();
     this.setState({loggedIn:'',currentPage:'harvest-form',harvestBatches:[],plants:[],harvestRecords:[],
     plantsLoading:true,harvestBatchesLoading:true,harvestRecordsLoading:true,currentHarvest:[],userID:'',
-    dryRooms:[],exportRecords:[]});
+    dryRooms:[],exportRecords:[], subscription:[]});
     this.forceUpdate();
   }
 
@@ -708,7 +745,7 @@ export default class App extends React.Component {
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}
       verCode={verCode} userFromUrl={userFromUrl} linkCode={linkCode} executeLogout={this.executeLogout} setFromAccountSettings={this.setFromAccountSettings} attemptLogInFromEndSubForm={this.attemptLogInFromEndSubForm}
       getDryRooms={this.getDryRooms} getExportRecords={this.getExportRecords} logInSuccess={this.state.logInSuccess} reloadDryRooms={this.reloadDryRooms} reloadExportRecords={this.reloadExportRecords}
-      getUniqueIDCount={this.getUniqueIDCount}/>
+      getUniqueIDCount={this.getUniqueIDCount} reloadSubscription={this.reloadSubscription}/>
     </div>;
     }else{
       let loginForm = false;

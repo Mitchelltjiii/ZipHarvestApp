@@ -13,7 +13,7 @@ function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarve
 	setHarvestBatches, resetHarvestBatches, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
 setNewHarvestRecordID, setNewPlantID, userID,reloadPlants,reloadPlantsAndHarvestRecords, reloadHarvestBatches,
 reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout,setFromAccountSettings,attemptLogInFromEndSubForm,
-logInSuccess,getDryRooms,getExportRecords,reloadDryRooms,reloadExportRecords,getUniqueIDCount}){
+logInSuccess,getDryRooms,getExportRecords,reloadDryRooms,reloadExportRecords,getUniqueIDCount,reloadSubscription}){
 
 	console.log("ENTER LANDING, GET PLANTS(STRINGIFIED): " + JSON.stringify(getPlants()));
 
@@ -45,7 +45,7 @@ logInSuccess,getDryRooms,getExportRecords,reloadDryRooms,reloadExportRecords,get
 			) : currentPage === 'reset-password-form' ? (
 				<ResetPasswordForm setCurrentPage={setCurrentPage} linkCode='' userFromUrl='' executeLogout={executeLogout} fromAccountSettings={fromAccountSettings} userID={userID}></ResetPasswordForm>
 			) : currentPage === 'change-subscription-form' ? (
-				<ChangeSubscriptionForm setCurrentPage={setCurrentPage} userID={userID}></ChangeSubscriptionForm>
+				<ChangeSubscriptionForm setCurrentPage={setCurrentPage} userID={userID} reloadSubscription={reloadSubscription}></ChangeSubscriptionForm>
 			) : null}
         </div>
     )

@@ -35,7 +35,7 @@ class Outer extends Component {
       userFromUrl={this.props.userFromUrl} linkCode={this.props.linkCode} executeLogout={this.props.executeLogout} setFromAccountSettings={this.props.setFromAccountSettings}
       attemptLogInFromEndSubForm={this.props.attemptLogInFromEndSubForm} logInSuccess={this.props.logInSuccess} getDryRooms={this.props.getDryRooms}
       getExportRecords={this.props.getExportRecords} reloadDryRooms={this.props.reloadDryRooms} reloadExportRecords={this.props.reloadExportRecords}
-      getUniqueIDCount={this.props.getUniqueIDCount}/>
+      getUniqueIDCount={this.props.getUniqueIDCount} reloadSubscription={this.props.reloadSubscription}/>
 		</div>
     );
   }

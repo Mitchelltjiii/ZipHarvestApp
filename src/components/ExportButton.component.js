@@ -99,7 +99,26 @@ class ExportButton extends Component{
             console.log("End time: " + sub.current_period_end);
             let uidCount = parent.props.getUniqueIDCount(sub.current_period_start,sub.current_period_end);
             console.log("Got UID count: " + uidCount);
-            parent.setState({choosingDryRoom:true,subscription:sub});
+
+            let subscriptionType = sub.items.data[0].price.lookup_key;
+          
+            let possiblePlantCount = 0;
+            if(subscriptionType === "basic"){
+              possiblePlantCount = 2000;
+            }else if(subscriptionType === "standard"){
+              possiblePlantCount = 5000;
+            }else if(subscriptionType === "premium"){
+              possiblePlantCount = 10000;
+            }
+          
+            console.log("Possible plant count: " + possiblePlantCount);
+            
+            possiblePlantCount = 3;
+            if(uidCount <= possiblePlantCount){
+              parent.setState({choosingDryRoom:true,subscription:sub});
+            }else{
+              console.log("UID limit reached");
+            }
             parent.forceUpdate();
           }
         const handleExport = () => {
