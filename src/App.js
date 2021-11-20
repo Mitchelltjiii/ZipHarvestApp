@@ -140,7 +140,7 @@ export default class App extends React.Component {
     console.log("Text === over");
   }
 
-  reloadSubscription = async() => {
+  reloadSubscription = async () => {
     this.getSubId(this.state.userID,false,false);
   }
 
