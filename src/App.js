@@ -144,7 +144,7 @@ export default class App extends React.Component {
     this.getSubId(this.state.userID,false,false);
   }
 
-  
+
   tryLogInFromEndSubForm = async (password) => {
     console.log("Try Login From end sub form");
     console.log("this.state.userID: " + this.state.userID)
@@ -487,9 +487,11 @@ export default class App extends React.Component {
     return x;
     */
     console.log("Get Unique ID count");
+    let exportRecords = JSON.parse(this.executeGetExportRecords());
+
     let uids = [];
     let x = 0;
-    for(const val of this.state.exportRecords){
+    for(const val of exportRecords){
       console.log("UID count Val: " + JSON.stringify(val));
       if(Number(val.time)>((Number(this.state.subscription.current_time_start))*1000) && Number(val.time)<((Number(this.state.subscription.current_time_end))*1000)){
         console.log("x++");
@@ -513,9 +515,8 @@ export default class App extends React.Component {
     return x;
   }
 
-  
   executeGetExportRecords = () => {
-		let exExportRecords = JSON.parse(this.getExportRecords());
+		let exExportRecords = JSON.parse(this.state.exportRecords);
 		let ers = [];
 		console.log("execute Get ers");
 
