@@ -51,6 +51,7 @@ export default class App extends React.Component {
 
   getSubscription = async (subId,username,staySignedIn,signIn) => {
     console.log("Try to get subscription");
+    console.log("Sign in: " + signIn);
     const response = await fetch(`/get-subscription/${subId}`);
     const json = await response.json();
     try{
@@ -414,6 +415,7 @@ export default class App extends React.Component {
     localStorage.setItem('user', user);
     localStorage.setItem('staySignedIn',staySignedIn);
     let currPage = localStorage.getItem("currentPage");
+    
     if(currPage !== null && currPage !== undefined && currPage !== ""){
       this.setState({loggedIn:user,userID:user,currentPage:currPage,logInFailed:false});
     }else{
@@ -488,6 +490,9 @@ export default class App extends React.Component {
     */
     console.log("Get Unique ID count");
     let exportRecords = JSON.parse(this.executeGetExportRecords());
+
+    console.log("Subscription: " + this.state.subscription);
+    console.log("Subscription string: " + JSON.stringify(this.state.subscription));
 
     let uids = [];
     let x = 0;
