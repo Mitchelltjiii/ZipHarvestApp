@@ -47,7 +47,6 @@ class ExportButton extends Component{
         }
 
         function clickExport(){
-            console.log("Unique ID's: ");
             getSubId();
         }
 
@@ -56,7 +55,6 @@ class ExportButton extends Component{
         }
 
       function clickNext(){
-        
         if(parent.state.selectedDR !== ""){
           parent.setState({choosingUnit:true,choosingDryRoom:false});
           parent.forceUpdate();
