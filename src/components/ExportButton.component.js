@@ -83,7 +83,7 @@ class ExportButton extends Component{
             }catch(err){
             }
             try{
-              console.log("sub json(STRING): " + JSON.stringify(json));
+              console.log("sub json(STRINGg): " + JSON.stringify(json));
             }catch(err){
               
             }
