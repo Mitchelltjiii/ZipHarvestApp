@@ -499,7 +499,6 @@ export default class App extends React.Component {
     for(const val of exportRecords){
       console.log("UID count Val: " + JSON.stringify(val));
       if(Number(val.time)>((Number(this.state.subscription.current_period_start))*1000) && Number(val.time)<((Number(this.state.subscription.current_period_end))*1000)){
-        console.log("x++");
         let foundUid = false;
         console.log("Search for uid");
 
@@ -512,6 +511,7 @@ export default class App extends React.Component {
         }
         if(!foundUid){
           x++;
+          console.log("x++");
           console.log("Push: " + val.tag);
           uids.push(val.tag);
         }

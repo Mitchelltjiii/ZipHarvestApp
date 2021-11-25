@@ -113,7 +113,6 @@ class ExportButton extends Component{
           
             console.log("Possible plant count: " + possiblePlantCount);
             
-            possiblePlantCount = 3;
             if(uidCount <= possiblePlantCount){
               parent.setState({choosingDryRoom:true,subscription:sub});
             }else{
