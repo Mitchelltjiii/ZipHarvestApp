@@ -493,12 +493,15 @@ export default class App extends React.Component {
 
     console.log("Subscription: " + this.state.subscription);
     console.log("Subscription string: " + JSON.stringify(this.state.subscription));
+    let t1 = this.state.subscription.current_time_start;
+    let t2 = this.state.subscription.current_time_end;
+    console.log("T1: " + t1 + ", T2: " + t2);
 
     let uids = [];
     let x = 0;
     for(const val of exportRecords){
       console.log("UID count Val: " + JSON.stringify(val));
-      if(Number(val.time)>((Number(this.state.subscription.current_time_start))*1000) && Number(val.time)<((Number(this.state.subscription.current_time_end))*1000)){
+      if(Number(val.time)>((Number(t1))*1000) && Number(val.time)<((Number(t2))*1000)){
         console.log("x++");
         let foundUid = false;
         console.log("Search for uid");
@@ -523,7 +526,7 @@ export default class App extends React.Component {
   executeGetExportRecords = () => {
 		let exExportRecords = JSON.parse(this.state.exportRecords);
 		let ers = [];
-		console.log("execute Get ers");
+		console.log("execute Get ecport records");
 
 		for(const val of exExportRecords){
 			console.log("Val: " + JSON.stringify(val));
