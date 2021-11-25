@@ -67,14 +67,14 @@ export default class App extends React.Component {
 
     if(signIn){
       if(json.canceled_at === null){
-        this.setState({subscription:json});
+        this.setState({subscription:JSON.parse(JSON.stringify(json))});
         this.executeLogIn(username,staySignedIn);
       }else{
         console.log("Sub cancelled.");
         this.executeLogInFailed();
       }
     }else{
-      this.setState({subscription:json});
+      this.setState({subscription:JSON.parse(JSON.stringify(json))});
     }
   }
 
