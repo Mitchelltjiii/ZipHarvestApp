@@ -57,7 +57,7 @@ class ExportButton extends Component{
 
       function clickNext(){
         if(parent.state.selectedDR !== ""){
-          parent.setState({choosingUnit:true});
+          parent.setState({choosingUnit:true,choosingDryRoom:false});
           parent.forceUpdate();
         }
       }
