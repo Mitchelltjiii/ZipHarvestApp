@@ -40,10 +40,10 @@ function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettin
   				justifyContent="center"
 				alignItems="flex-start">
                     <div>
-                        <div style={{fontSize: "22px", cursor: "pointer"}}>
+                        <div style={{fontSize: "18px", cursor: "pointer"}}>
                             <b>{title}</b>
 		                </div>
-                        <div style={{fontSize: "21px"}}>
+                        <div style={{fontSize: "17px"}}>
                             {subtitle}
 		                </div>
                     </div>

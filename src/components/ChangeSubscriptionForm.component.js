@@ -132,7 +132,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
 	return (
 <div id="product-display" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
           {isMobile ?
-          <div style={{width:formWidth,height:formHeight,paddingTop:"40px"}}>
+          <div style={{width:formWidth,height:formHeight,paddingTop:"40px",margin:"auto"}}>
               <Grid
 				    container
 				    direction="column"
@@ -165,7 +165,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
               <div style={{textAlign:"center"}}>Standard</div>
               <div style={{textAlign:"center"}}>Export up to 5000 plants per month</div>
               <div style={{textAlign:"center"}}>$475 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToStandard}>{standardText}</Button>
+                    <Button disabled={standardDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToStandard}>{standardText}</Button>
               </Grid> 
               <Grid
 				    container
@@ -176,13 +176,13 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
               <div style={{textAlign:"center"}}>Premium</div>
               <div style={{textAlign:"center"}}>Export up to 10000 plants per month</div>
               <div style={{textAlign:"center"}}>$800 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>{premiumText}</Button>
+                    <Button disabled={premiumDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>{premiumText}</Button>
               </Grid> 
               </Grid>
               <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
               </Grid>
           </div> :
-          <div style={{width:"650px",height:"400px",border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px"}}>
+          <div style={{width:"650px",height:"400px",border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px",margin:"auto"}}>
               <Grid
 				    container
 				    direction="column"
@@ -204,7 +204,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
               <div style={{textAlign:"center"}}>Basic</div>
               <div style={{textAlign:"center"}}>Export up to 2000 plants per month</div>
               <div style={{textAlign:"center"}}>$200 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>{basicText}</Button>
+                    <Button disabled={basicDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>{basicText}</Button>
               </Grid>  
               <Grid
 				    container
@@ -215,7 +215,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
               <div style={{textAlign:"center"}}>Standard</div>
               <div style={{textAlign:"center"}}>Export up to 5000 plants per month</div>
               <div style={{textAlign:"center"}}>$475 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToStandard}>{standardText}</Button>
+                    <Button disabled={standardDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToStandard}>{standardText}</Button>
               </Grid> 
               <Grid
 				    container
@@ -226,7 +226,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
               <div style={{textAlign:"center"}}>Premium</div>
               <div style={{textAlign:"center"}}>Export up to 10000 plants per month</div>
               <div style={{textAlign:"center"}}>$800 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>{premiumText}</Button>
+                    <Button disabled={premiumDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>{premiumText}</Button>
               </Grid> 
               </Grid>
               <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
