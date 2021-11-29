@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {isMobile} from 'react-device-detect';
 
 
-function Header({setCurrentPage, currentPage, executeLogout}){
+function Header({setCurrentPage, currentPage}){
     const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -15,11 +15,6 @@ function Header({setCurrentPage, currentPage, executeLogout}){
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const handleSignOut = () => {
-    handleClose();
-    executeLogout();
-  }
 
   const handleMyAccount = () => {
     handleClose()
@@ -63,12 +58,11 @@ function Header({setCurrentPage, currentPage, executeLogout}){
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={()=>{handleManagePlants() }}>Manage Plants</MenuItem>
-        <MenuItem onClick={()=>{handleManageDryRooms() }}>Manage Dry Rooms</MenuItem>
         <MenuItem onClick={()=>{handleHarvestNow() }}>Harvest Now</MenuItem>
         <MenuItem onClick={()=>{handleExistingBatches() }}>Harvest Batches</MenuItem>
+        <MenuItem onClick={()=>{handleManagePlants() }}>Manage Plants</MenuItem>
+        <MenuItem onClick={()=>{handleManageDryRooms() }}>Manage Dry Rooms</MenuItem>
         <MenuItem onClick={()=>{handleMyAccount() }}>My Account</MenuItem>
-        <MenuItem onClick={()=>{handleSignOut()}}>Logout</MenuItem>
       </Menu>
     </div>
             

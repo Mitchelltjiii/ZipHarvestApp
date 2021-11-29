@@ -18,7 +18,16 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
     }else if(subType === "premium"){
       premiumText = "Current";
     }
+
+    let basicDisabled = (basicText === "Current");
+    let standardDisabled = (standardText === "Current");
+    let premiumDisabled = (premiumText === "Current");
     
+    console.log("BasicDisabled: " + basicDisabled);
+    console.log("StandardDisabled: " + standardDisabled);
+    console.log("PremiumDisabled: " + premiumDisabled);
+
+
     const handleGoToHome = () => {
       window.location.replace("https://www.zipharvest.app/");
     }  
@@ -145,7 +154,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
               <div style={{textAlign:"center"}}>Basic</div>
               <div style={{textAlign:"center"}}>Export up to 2000 plants per month</div>
               <div style={{textAlign:"center"}}>$200 per month</div>
-                    <Button disabled={(basicText==="Current")} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>{basicText}</Button>
+                    <Button disabled={basicDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>{basicText}</Button>
               </Grid>  
               <Grid
 				    container

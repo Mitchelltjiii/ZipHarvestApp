@@ -11,7 +11,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {isMobile} from 'react-device-detect';
 
-function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettings}) {
+function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettings,executeLogout}) {
 
     const handleClick = (title) => {
       if(title==="Change Password"){
@@ -24,6 +24,8 @@ function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettin
         window.open("https://app.termly.io/document/terms-of-use-for-saas/0fc8020f-e374-48f6-b222-fdaa3d482d39", '_blank');
       }else if(title==="Privacy Policy"){
         window.open("https://app.termly.io/document/privacy-policy/a880128c-82ae-40b1-bec3-7d5b495a1d24", '_blank');
+      }else if(title==="Log Out"){
+        executeLogout();
       }
 	  }
 
@@ -72,7 +74,8 @@ function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettin
     rows.push(createData("Version","v1.1.1"));
     rows.push(createData("Terms of Service",""));
     rows.push(createData("Privacy Policy",""));
-    rows.push(createData("Support","Zipharvest-support@flora-sol.com"));
+    rows.push(createData("Support","Zipharvest-Support@flora-sol.com"));
+    rows.push(createData("Log Out",""));
 
     async function getEmail(){
       console.log("Get email")

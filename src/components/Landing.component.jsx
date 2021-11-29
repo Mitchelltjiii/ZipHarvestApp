@@ -39,7 +39,7 @@ getPossiblePlantCount,getSubscriptionType}){
 			) : currentPage === 'manage-plants-form' ? (
 				<ManagePlantsForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} refreshOuter={refreshOuter} userID={userID} setPlants={setPlants} setNewPlantID={setNewPlantID} reloadPlants={reloadPlants}/>
 			) : currentPage === 'account-form' ? (
-				<AccountForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} setFromAccountSettings={setFromAccountSettings}/>
+				<AccountForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} setFromAccountSettings={setFromAccountSettings} executeLogout={executeLogout}/>
 			) : currentPage === 'subscription-form' ? (
 				<SubscriptionForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} getUniqueIDCount={getUniqueIDCount}/>
 			) : currentPage === 'end-subscription-form' ? (
