@@ -4,9 +4,20 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import {isMobile} from 'react-device-detect';
 
-function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription}) {
+function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSubscriptionType}) {
 
     const [subscription,setSubscription] = React.useState([]);
+    let basicText = "Select";
+    let standardText = "Select";
+    let premiumText = "Select";
+    let subType = getSubscriptionType();
+    if(subType === "basic"){
+      basicText = "Current";
+    }else if(subType === "standard"){
+      standardText = "Current";
+    }else if(subType === "premium"){
+      premiumText = "Current";
+    }
     
     const handleGoToHome = () => {
       window.location.replace("https://www.zipharvest.app/");
@@ -134,7 +145,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription}) {
               <div style={{textAlign:"center"}}>Basic</div>
               <div style={{textAlign:"center"}}>Export up to 2000 plants per month</div>
               <div style={{textAlign:"center"}}>$200 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>Select</Button>
+                    <Button disabled={(basicText==="Current")} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>{basicText}</Button>
               </Grid>  
               <Grid
 				    container
@@ -145,7 +156,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription}) {
               <div style={{textAlign:"center"}}>Standard</div>
               <div style={{textAlign:"center"}}>Export up to 5000 plants per month</div>
               <div style={{textAlign:"center"}}>$475 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToStandard}>Select</Button>
+                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToStandard}>{standardText}</Button>
               </Grid> 
               <Grid
 				    container
@@ -156,7 +167,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription}) {
               <div style={{textAlign:"center"}}>Premium</div>
               <div style={{textAlign:"center"}}>Export up to 10000 plants per month</div>
               <div style={{textAlign:"center"}}>$800 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>Select</Button>
+                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>{premiumText}</Button>
               </Grid> 
               </Grid>
               <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
@@ -184,7 +195,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription}) {
               <div style={{textAlign:"center"}}>Basic</div>
               <div style={{textAlign:"center"}}>Export up to 2000 plants per month</div>
               <div style={{textAlign:"center"}}>$200 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>Select</Button>
+                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>{basicText}</Button>
               </Grid>  
               <Grid
 				    container
@@ -195,7 +206,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription}) {
               <div style={{textAlign:"center"}}>Standard</div>
               <div style={{textAlign:"center"}}>Export up to 5000 plants per month</div>
               <div style={{textAlign:"center"}}>$475 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToStandard}>Select</Button>
+                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToStandard}>{standardText}</Button>
               </Grid> 
               <Grid
 				    container
@@ -206,7 +217,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription}) {
               <div style={{textAlign:"center"}}>Premium</div>
               <div style={{textAlign:"center"}}>Export up to 10000 plants per month</div>
               <div style={{textAlign:"center"}}>$800 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>Select</Button>
+                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>{premiumText}</Button>
               </Grid> 
               </Grid>
               <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>

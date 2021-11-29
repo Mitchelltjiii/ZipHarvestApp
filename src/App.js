@@ -507,6 +507,15 @@ export default class App extends React.Component {
     return possiblePlantCount;
   }
 
+  getSubscriptionType = () => {
+    let subscriptionType = "";
+
+    if(JSON.stringify(this.state.subscription) !== "[]"){
+      subscriptionType = this.state.subscription.items.data[0].price.lookup_key;
+    }
+    return subscriptionType;
+  }
+
   executeGetExportRecords = () => {
 		let exExportRecords = JSON.parse(this.state.exportRecords);
 		let ers = [];
@@ -739,7 +748,7 @@ export default class App extends React.Component {
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}
       verCode={verCode} userFromUrl={userFromUrl} linkCode={linkCode} executeLogout={this.executeLogout} setFromAccountSettings={this.setFromAccountSettings} attemptLogInFromEndSubForm={this.attemptLogInFromEndSubForm}
       getDryRooms={this.getDryRooms} getExportRecords={this.getExportRecords} logInSuccess={this.state.logInSuccess} reloadDryRooms={this.reloadDryRooms} reloadExportRecords={this.reloadExportRecords}
-      getUniqueIDCount={this.getUniqueIDCount} reloadSubscription={this.reloadSubscription} getPossiblePlantCount={this.getPossiblePlantCount}/>
+      getUniqueIDCount={this.getUniqueIDCount} reloadSubscription={this.reloadSubscription} getPossiblePlantCount={this.getPossiblePlantCount} getSubscriptionType={this.getSubscriptionType}/>
     </div>;
     }else{
       let loginForm = false;
