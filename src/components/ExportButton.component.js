@@ -96,7 +96,7 @@ class ExportButton extends Component{
             console.log("Get uid count");
             console.log("Start time: " + sub.current_period_start);
             console.log("End time: " + sub.current_period_end);
-            let uidCount = parent.props.getUniqueIDCount(sub.current_period_start,sub.current_period_end);
+            let uidCount = parent.props.getUniqueIDCount();
             console.log("Got UID count: " + uidCount);
 
             let subscriptionType = sub.items.data[0].price.lookup_key;

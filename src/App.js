@@ -456,38 +456,7 @@ export default class App extends React.Component {
     return this.state.exportRecords;
   }
 
-  getUniqueIDCount = (timeOne,timeTwo) => {
-    /*
-    console.log("Get Unique ID count");
-    console.log("TimeOne: " + timeOne);
-    console.log("TimeTwo: " + timeTwo);
-    let exportRecords = JSON.parse(this.executeGetExportRecords());
-
-    let uids = [];
-    let x = 0;
-    for(const val of exportRecords){
-      console.log("UID count Val: " + JSON.stringify(val));
-      if(Number(val.time)>((Number(timeOne))*1000) && Number(val.time)<((Number(timeTwo))*1000)){
-        console.log("x++");
-        let foundUid = false;
-        console.log("Search for uid");
-
-        for(const uid of uids){
-          console.log("uid val : + " + uid);
-          if(uid === val.tag){
-            console.log("Found uid");
-            foundUid = true;
-          }
-        }
-        if(!foundUid){
-          x++;
-          console.log("Push: " + val.tag);
-          uids.push(val.tag);
-        }
-      }
-    }
-    return x;
-    */
+  getUniqueIDCount = () => {
     console.log("Get Unique ID count");
     let exportRecords = JSON.parse(this.executeGetExportRecords());
 
@@ -518,6 +487,24 @@ export default class App extends React.Component {
       }
     }
     return x;
+  }
+
+  getPossiblePlantCount = () => {
+    let subscriptionType = "";
+
+    if(JSON.stringify(this.state.subscription) !== "[]"){
+      subscriptionType = this.state.subscription.items.data[0].price.lookup_key;
+    }
+
+    let possiblePlantCount = 0;
+    if(subscriptionType === "basic"){
+      possiblePlantCount = 2000;
+    }else if(subscriptionType === "standard"){
+      possiblePlantCount = 5000;
+    }else if(subscriptionType === "premium"){
+      possiblePlantCount = 10000;
+    }
+    return possiblePlantCount;
   }
 
   executeGetExportRecords = () => {
@@ -752,7 +739,7 @@ export default class App extends React.Component {
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}
       verCode={verCode} userFromUrl={userFromUrl} linkCode={linkCode} executeLogout={this.executeLogout} setFromAccountSettings={this.setFromAccountSettings} attemptLogInFromEndSubForm={this.attemptLogInFromEndSubForm}
       getDryRooms={this.getDryRooms} getExportRecords={this.getExportRecords} logInSuccess={this.state.logInSuccess} reloadDryRooms={this.reloadDryRooms} reloadExportRecords={this.reloadExportRecords}
-      getUniqueIDCount={this.getUniqueIDCount} reloadSubscription={this.reloadSubscription}/>
+      getUniqueIDCount={this.getUniqueIDCount} reloadSubscription={this.reloadSubscription} getPossiblePlantCount={this.getPossiblePlantCount}/>
     </div>;
     }else{
       let loginForm = false;

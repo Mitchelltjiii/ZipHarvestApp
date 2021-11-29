@@ -13,7 +13,8 @@ function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarve
 	setHarvestBatches, resetHarvestBatches, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
 setNewHarvestRecordID, setNewPlantID, userID,reloadPlants,reloadPlantsAndHarvestRecords, reloadHarvestBatches,
 reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout,setFromAccountSettings,attemptLogInFromEndSubForm,
-logInSuccess,getDryRooms,getExportRecords,reloadDryRooms,reloadExportRecords,getUniqueIDCount,reloadSubscription}){
+logInSuccess,getDryRooms,getExportRecords,reloadDryRooms,reloadExportRecords,getUniqueIDCount,reloadSubscription,
+getPossiblePlantCount}){
 
 	console.log("ENTER LANDING, GET PLANTS(STRINGIFIED): " + JSON.stringify(getPlants()));
 
@@ -31,7 +32,8 @@ logInSuccess,getDryRooms,getExportRecords,reloadDryRooms,reloadExportRecords,get
 				setNewHarvestRecordID={setNewHarvestRecordID} setNewPlantID={setNewPlantID} userID={userID} reloadPlants={reloadPlants} reloadPlantsAndHarvestRecords={reloadPlantsAndHarvestRecords}
 				reloadHarvestBatches={reloadHarvestBatches} reloadHarvestRecords={reloadHarvestRecords}/>
 			) : currentPage === 'harvest-batches-form' ? (
-				<HarvestBatchesForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}/>
+				<HarvestBatchesForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} 
+				getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms} getPossiblePlantCount={getPossiblePlantCount}/>
 			) : currentPage === 'manage-dry-rooms-form' ? (
 				<ManageDryRoomsForm getDryRooms={getDryRooms} refreshOuter={refreshOuter} reloadDryRooms={reloadDryRooms} userID={userID}/>
 			) : currentPage === 'manage-plants-form' ? (
