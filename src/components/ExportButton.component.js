@@ -109,7 +109,6 @@ class ExportButton extends Component{
             }else if(subscriptionType === "premium"){
               possiblePlantCount = 10000;
             }
-          
             console.log("Possible plant count: " + possiblePlantCount);
             
             if(uidCount <= possiblePlantCount){
