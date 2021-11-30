@@ -144,6 +144,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
 				    alignItems="center"
             wrap="nowrap"
 			        >
+              <div style={{margin:"auto"}}>  
               <Grid
 				    container
 				    direction="column"
@@ -154,7 +155,8 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
               <div style={{textAlign:"center"}}>Export up to 2000 plants per month</div>
               <div style={{textAlign:"center"}}>$200 per month</div>
                     <Button disabled={basicDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>{basicText}</Button>
-              </Grid>  
+              </Grid> 
+              </div> 
               <Grid
 				    container
 				    direction="column"
@@ -194,6 +196,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
 				    alignItems="center"
             wrap="nowrap"
 			        >
+              <div style={{margin:"auto"}}>  
               <Grid
 				    container
 				    direction="column"
@@ -205,6 +208,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
               <div style={{textAlign:"center"}}>$200 per month</div>
                     <Button disabled={basicDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>{basicText}</Button>
               </Grid>  
+              </div>
               <Grid
 				    container
 				    direction="column"
