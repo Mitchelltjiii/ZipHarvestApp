@@ -106,7 +106,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
         }
         if(json !== undefined){
             getSubscription(json);
-          }
+        }
       }
   
       async function getSubscription(subId){
