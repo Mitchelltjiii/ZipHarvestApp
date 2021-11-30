@@ -234,7 +234,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
                     <Button disabled={premiumDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>{premiumText}</Button>
               </Grid> 
               </Grid>
-              <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
+              <Button style={{marginTop:"100px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
               </Grid>
           </div>
           }
