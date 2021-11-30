@@ -144,7 +144,6 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
 				    alignItems="center"
             wrap="nowrap"
 			        >
-              <div style={{margin:"auto"}}>  
               <Grid
 				    container
 				    direction="column"
@@ -152,11 +151,11 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
 				    alignItems="center"
 			        >
               <div style={{textAlign:"center"}}>Basic</div>
-              <div style={{textAlign:"center"}}>Export up to 2000 plants per month</div>
+              <div style={{textAlign:"center"}}>Export up to 2000</div>
+              <div style={{textAlign:"center"}}>plants per month</div>
               <div style={{textAlign:"center"}}>$200 per month</div>
                     <Button disabled={basicDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>{basicText}</Button>
-              </Grid> 
-              </div> 
+              </Grid>  
               <Grid
 				    container
 				    direction="column"
@@ -164,7 +163,8 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
 				    alignItems="center"
 			        >
               <div style={{textAlign:"center"}}>Standard</div>
-              <div style={{textAlign:"center"}}>Export up to 5000 plants per month</div>
+              <div style={{textAlign:"center"}}>Export up to 5000</div>
+              <div style={{textAlign:"center"}}>plants per month</div>
               <div style={{textAlign:"center"}}>$475 per month</div>
                     <Button disabled={standardDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToStandard}>{standardText}</Button>
               </Grid> 
@@ -175,7 +175,8 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
 				    alignItems="center"
 			        >
               <div style={{textAlign:"center"}}>Premium</div>
-              <div style={{textAlign:"center"}}>Export up to 10000 plants per month</div>
+              <div style={{textAlign:"center"}}>Export up to 10000</div>
+              <div style={{textAlign:"center"}}>plants per month</div>
               <div style={{textAlign:"center"}}>$800 per month</div>
                     <Button disabled={premiumDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>{premiumText}</Button>
               </Grid> 
@@ -183,7 +184,7 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
               <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
               </Grid>
           </div> :
-          <div style={{width:"650px",height:"400px",border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px",margin:"auto"}}>
+          <div style={{width:"650px",height:"400px",border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"100px",margin:"auto"}}>
               <Grid
 				    container
 				    direction="column"
@@ -196,7 +197,6 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
 				    alignItems="center"
             wrap="nowrap"
 			        >
-              <div style={{margin:"auto"}}>  
               <Grid
 				    container
 				    direction="column"
@@ -204,11 +204,11 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
 				    alignItems="center"
 			        >
               <div style={{textAlign:"center"}}>Basic</div>
-              <div style={{textAlign:"center"}}>Export up to 2000 plants per month</div>
+              <div style={{textAlign:"center"}}>Export up to 2000</div>
+              <div style={{textAlign:"center"}}>plants per month</div>              
               <div style={{textAlign:"center"}}>$200 per month</div>
                     <Button disabled={basicDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>{basicText}</Button>
               </Grid>  
-              </div>
               <Grid
 				    container
 				    direction="column"
@@ -216,7 +216,8 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
 				    alignItems="center"
 			        >
               <div style={{textAlign:"center"}}>Standard</div>
-              <div style={{textAlign:"center"}}>Export up to 5000 plants per month</div>
+              <div style={{textAlign:"center"}}>Export up to 5000</div>
+              <div style={{textAlign:"center"}}>plants per month</div>
               <div style={{textAlign:"center"}}>$475 per month</div>
                     <Button disabled={standardDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToStandard}>{standardText}</Button>
               </Grid> 
@@ -227,7 +228,8 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
 				    alignItems="center"
 			        >
               <div style={{textAlign:"center"}}>Premium</div>
-              <div style={{textAlign:"center"}}>Export up to 10000 plants per month</div>
+              <div style={{textAlign:"center"}}>Export up to 10000</div>
+              <div style={{textAlign:"center"}}>plants per month</div>
               <div style={{textAlign:"center"}}>$800 per month</div>
                     <Button disabled={premiumDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>{premiumText}</Button>
               </Grid> 
