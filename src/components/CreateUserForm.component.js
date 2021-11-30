@@ -297,7 +297,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
         linkCodetime: ''
         };
     
-        userItem.apiid = username;
+        userItem.apiid = makeid(8);
         userItem.username = username;
         userItem.password = password;
         userItem.facilityName = facilityName;
@@ -311,6 +311,17 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       console.log("Exit getUserItem")
       return userItem;
     }
+
+    function makeid(length) {
+      var result           = '';
+      var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      var charactersLength = characters.length;
+      for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * 
+        charactersLength));
+     }
+     return result;
+  }
     
     async function updateUser(userItem){
       console.log("Engage update user");
