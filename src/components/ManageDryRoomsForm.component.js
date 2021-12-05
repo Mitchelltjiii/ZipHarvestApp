@@ -237,7 +237,7 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
   					justify="center"
 					alignItems="center"
 					>
-						<TextField id="NewDryRoomName" value={newDryRoomName} onChange={handleNewDryRoomName} label="Dry Room Name" variant="outlined"></TextField>
+						<TextField style={{marginBottom:"5px"}} id="NewDryRoomName" value={newDryRoomName} onChange={handleNewDryRoomName} label="Dry Room Name" variant="outlined"></TextField>
 						<Grid
 					container
 					direction="row"
@@ -258,7 +258,7 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 					alignItems="center"
 					>
 						<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}>Add Dry Room</Button>
-						<Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleDeleteDryRooms}>Delete</Button>
+						<Button style={{marginLeft:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleDeleteDryRooms}>Delete</Button>
 					</Grid>
 					</div>
 			    }

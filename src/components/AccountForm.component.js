@@ -40,10 +40,10 @@ function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettin
   				justifyContent="center"
 				alignItems="flex-start">
                     <div>
-                        <div style={{fontSize: "18px", cursor: "pointer"}}>
+                        <div style={{fontSize: "17px", cursor: "pointer"}}>
                             <b>{title}</b>
 		                </div>
-                        <div style={{fontSize: "17px"}}>
+                        <div style={{fontSize: "16px"}}>
                             {subtitle}
 		                </div>
                     </div>
@@ -53,7 +53,7 @@ function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettin
     };
 	const useStyles = makeStyles({
         table: {
-          width: "450px",
+          width: "300px",
         },
       });
 
@@ -115,7 +115,7 @@ function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettin
         <TableHead>
           <TableRow>
           <TableCell align="left">
-              <div style={{fontSize: "25px"}}>Account</div>
+              <div style={{fontSize: "22px"}}>Account</div>
             </TableCell>
           </TableRow>
         </TableHead>
@@ -138,7 +138,7 @@ function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettin
         <TableHead>
           <TableRow>
           <TableCell align="left">
-              <div style={{fontSize:"25px"}}>Account</div>
+              <div style={{fontSize:"22px"}}>Account</div>
             </TableCell>
           </TableRow>
         </TableHead>

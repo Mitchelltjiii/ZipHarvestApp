@@ -71,10 +71,10 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
   				justifyContent="center"
 				alignItems="flex-start">
                     <div>
-                        <div style={{fontSize: "18px", cursor: "pointer"}}>
+                        <div style={{fontSize: "17px", cursor: "pointer"}}>
                             <b>{title}</b>
 		                </div>
-                        <div style={{fontSize: "17px"}}>
+                        <div style={{fontSize: "16px"}}>
                             {subtitle}
 		                </div>
                     </div>
@@ -158,7 +158,7 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
         <TableHead>
           <TableRow>
           <TableCell align="left">
-              <div style={{fontSize: "25px"}}>Subscription</div>
+              <div style={{fontSize: "22px"}}>Subscription</div>
             </TableCell>
           </TableRow>
         </TableHead>
@@ -181,7 +181,7 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
         <TableHead>
           <TableRow>
           <TableCell align="left">
-              <div style={{fontSize: "25px"}}>Subscription</div>
+              <div style={{fontSize: "22px"}}>Subscription</div>
             </TableCell>
           </TableRow>
         </TableHead>
