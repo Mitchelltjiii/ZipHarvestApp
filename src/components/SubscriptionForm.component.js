@@ -158,7 +158,7 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
         <TableHead>
           <TableRow>
           <TableCell align="left">
-              <div style={{fontSize: "22px"}}>Subscription</div>
+              <div style={{fontSize: "21px"}}>Subscription</div>
             </TableCell>
           </TableRow>
         </TableHead>
@@ -181,7 +181,7 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
         <TableHead>
           <TableRow>
           <TableCell align="left">
-              <div style={{fontSize: "22px"}}>Subscription</div>
+              <div style={{fontSize: "21px"}}>Subscription</div>
             </TableCell>
           </TableRow>
         </TableHead>

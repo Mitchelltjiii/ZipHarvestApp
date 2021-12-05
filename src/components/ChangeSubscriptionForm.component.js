@@ -151,9 +151,9 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
 				    alignItems="center"
 			        >
               <div style={{textAlign:"center"}}>Basic</div>
-              <div style={{textAlign:"center"}}>Export up to 2000</div>
-              <div style={{textAlign:"center"}}>plants per month</div>
-              <div style={{textAlign:"center"}}>$200 per month</div>
+              <div style={{textAlign:"center",fontSize:"14px"}}>Export up to 2000</div>
+              <div style={{textAlign:"center",fontSize:"14px"}}>plants per month</div>
+              <div style={{textAlign:"center",fontSize:"14px"}}>$200 per month</div>
                     <Button disabled={basicDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>{basicText}</Button>
               </Grid>  
               <Grid
@@ -181,7 +181,6 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
                     <Button disabled={premiumDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>{premiumText}</Button>
               </Grid> 
               </Grid>
-              <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
               </Grid>
           </div> :
           <div style={{width:"650px",height:"400px",border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"100px",margin:"auto"}}>
@@ -234,7 +233,6 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
                     <Button disabled={premiumDisabled} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>{premiumText}</Button>
               </Grid> 
               </Grid>
-              <Button style={{marginTop:"100px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
               </Grid>
           </div>
           }

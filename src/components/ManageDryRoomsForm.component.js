@@ -110,6 +110,7 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 	const handleCancel = () => {
 		console.log("Handle Cancel")
 		setAdding(false);
+		setNewDryRoomName("");
         refreshOuter();
 	  }
 
@@ -148,6 +149,7 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
         }).then(function(data) {
           console.log("Dry Room Added");
 		  setAdding(false);
+		  setNewDryRoomName("");
 		  reloadDryRooms();    
           refreshOuter();
         });

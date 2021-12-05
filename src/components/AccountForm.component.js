@@ -53,7 +53,7 @@ function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettin
     };
 	const useStyles = makeStyles({
         table: {
-          width: "300px",
+          minWidth: "300px",
         },
       });
 
@@ -115,7 +115,7 @@ function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettin
         <TableHead>
           <TableRow>
           <TableCell align="left">
-              <div style={{fontSize: "22px"}}>Account</div>
+              <div style={{fontSize: "21px"}}>Account</div>
             </TableCell>
           </TableRow>
         </TableHead>
@@ -138,7 +138,7 @@ function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettin
         <TableHead>
           <TableRow>
           <TableCell align="left">
-              <div style={{fontSize:"22px"}}>Account</div>
+              <div style={{fontSize:"21px"}}>Account</div>
             </TableCell>
           </TableRow>
         </TableHead>
