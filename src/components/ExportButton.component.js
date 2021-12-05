@@ -224,9 +224,9 @@ class ExportButton extends Component{
         } 
         console.log("before set State exportrecords: " + JSON.stringify(this.state.exportRecords));
 
-        if(JSON.stringify(this.state.exportRecords) === "[]"){
+        if(JSON.stringify(this.state.exportRecords) !== "[]"){
             console.log("set State exportrecords: " + JSON.stringify(exportRecordsData));
-            this.setState({exportRecords:exportRecordsData});            
+            parent.setState({exportRecords:exportRecordsData});            
         }    
               
         let fileName = this.props.row.name;
