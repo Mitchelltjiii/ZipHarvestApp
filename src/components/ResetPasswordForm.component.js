@@ -239,17 +239,23 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
         if(fromAccountSettings){
           userForFetch = userID;
         }
-        const response = fetch(`/user/resetPassword/${userForFetch}/${password}`, {
-              method: 'PUT',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              }
-        }).then(function(response) {
+        const bcrypt = require('bcrypt');
+
+        console.log("Before Hash Function");
+        bcrypt.hash(password, 10, function(err, hash) {
+          console.log("In Hash function");
+          console.log("NEw Hash: " + hash);
+          const response = fetch(`/user/resetPassword/${userForFetch}/${hash}`, {
+            method: 'PUT',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+          }).then(function(response) {
           let resp = JSON.stringify(response);
           console.log("Response from updateUser: " + resp);
           if(resp !== "" && resp !== null && resp !== undefined){
-            console.log("Updateuser responded");
+           console.log("Updateuser responded");
           }
         }).then(function(data) {
         });
@@ -258,7 +264,8 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
         busySettingUser = (false);
         console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
         console.log("Exit update user");
-        setSuccess(true);
+        setSuccess(true);        
+      });
     }
 
     const handleUsername = (event) => {
