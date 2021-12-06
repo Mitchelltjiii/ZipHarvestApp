@@ -146,27 +146,41 @@ app.get("/api/users/:username/:password",(req,res) => {
           let verified = false;
           let subscription = false;
 
-          const comparePassword = async (password, hash) => {
-            try {
-                // Compare password
-                return await bcrypt.compare(password, hash);
-            } catch (error) {
-                console.log(error);
-            }
-        
-            // Return false if error
-            return false;
-        };
-          
+          let foundUser = false;
           try{
             console.log("Trying iteration without parse");
             for(const val of rows){
               console.log("Row: " + val);
               console.log("Row.stringify: " + JSON.stringify(val));
               if(val.username==req.params.username){
-                console.log("User Match");                
+                console.log("User Match"); 
+                foundUser = true;
+                bcrypt.compare(req.params.password, val.password, function(err, resp) {
+                  if (resp) {
+                    console.log("Password Correct!");
+                    foundLogin = true;
+                    if(val.verified===0){
+                      console.log("Verified");
+                      verified = true;
+                    }
+                    if(val.subid !== ""){
+                      console.log("Sub found");
+                      subscription = true;
+                    }
+
+                    if(subscription){
+                      res.json(0);
+                    }else if(verified){
+                      res.json(1);
+                    }else{
+                      res.json(2);
+                    }
+                  } else {
+                    res.json(3);
+                  }
+                });
               
-                (async () => {              
+                /*(async () => {              
                   // Check if password is correct
                   const isValidPass = await comparePassword(req.params.password, val.password);
               
@@ -196,12 +210,15 @@ app.get("/api/users/:username/:password",(req,res) => {
                     res.json(3);
                   }
                   // => Password is valid!
-              })();
+              })();*/
                 
               }
             }
           }catch(error){
             console.log("Caught error 1");
+            res.json(3);
+          }
+          if(!foundUser){
             res.json(3);
           }
     });
