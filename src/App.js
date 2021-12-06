@@ -93,12 +93,24 @@ export default class App extends React.Component {
       }
   }
 
+  hashPassword = async (password) => {
+    console.log("Hash password: " + password)
+    const bcrypt = require('bcrypt');
+
+    const salt = await bcrypt.genSalt(10)
+    const hash = await bcrypt.hash(password, salt)
+    console.log("HASH: " + hash);
+  }
+
   getUsersFromDB = async (username,password,staySignedIn) => {
     console.log("Get users from DB");
     if(username === "" || password === ""){
       this.executeLogInFailed();
       return;
     }
+
+    this.hashPassword('1234');
+
     const response = await fetch(`/api/users/${username}/${password}`);
     const text = await response.text();
     /*const responseTwo = await fetch(`/create-customer`);
