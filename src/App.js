@@ -92,7 +92,7 @@ export default class App extends React.Component {
         this.setState({newUsername:username,currentPage:'stripe-form'});
       }
   }
-
+/*
   hashPassword = async (username,password,staySignedIn) => {
     console.log("Hash password: " + password)
     const bcrypt = require('bcryptjs');
@@ -102,7 +102,7 @@ export default class App extends React.Component {
     console.log("HASH: " + hash);
 
     this.getUsersFromDB(username,password,staySignedIn);
-  }
+  }*/
 
   getUsersFromDB = async (username,password,staySignedIn) => {
     console.log("Get users from DB");
@@ -621,7 +621,9 @@ export default class App extends React.Component {
   }
 
   attemptLogin = (username,password,staySignedIn) => {
-    this.hashPassword(username,password,staySignedIn);
+    //this.hashPassword(username,password,staySignedIn);
+    this.getUsersFromDB(username,password,staySignedIn);
+
   }
 
   setNewUsername = (newUser) => {
