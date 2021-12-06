@@ -161,7 +161,7 @@ app.get("/api/users/:username/:password",(req,res) => {
               console.log("Row.stringify: " + JSON.stringify(val));
               if(val.username==req.params.username){
                 console.log("User Match");
-                var secondResult = bcrypt.compareSync(val.password, hashSync);
+                var secondResult = bcrypt.compareSync(myPlaintextPassword, val.password);
                 console.log("Second Result: " + secondResult);
                 if(secondResult){
                   console.log("Password Correct!");
