@@ -898,16 +898,23 @@ app.put('/user', (req, res) =>{
   console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
 
   if(apiid !== null && username !== null && password !== null && subid !== null){
-    connection.query(`UPDATE users set
+    console.log("Before Hash Function");
+
+    bcrypt.hash(password, 10, function(err, hash) {
+      console.log("In Hash Function");
+      console.log("New Hash: " + hash);
+      connection.query(`UPDATE users set
   apiid =?, password =?, subid =?, linkCode =?, facilityName =?, firstName =?, lastName =?, email =?, verificationCode =?, verified =?, sessionid =?, verCodeTime =?, linkCodeTime =? WHERE username = ?`,
   [
-    apiid, password, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime, username
+    apiid, hash, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime, username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
     console.log('The post user result is: ', result);
     res.json(result);
     });
+    });
+    
   }else{
     console.log("Post user failed");
     res.json("");
@@ -940,18 +947,22 @@ app.post('/user', (req, res) =>{
   console.log("POST DATA: HARVESTEDPLANT STRINGIFIED: " + JSON.stringify(postData));
 
   if(apiid !== null && username !== null && password !== null && subid !== null){
+    bcrypt.hash(password, 10, function(error, hash) {
+      console.log("In Hash Function");
+      console.log("New Hash: " + hash);
     connection.query(`INSERT INTO users 
   (apiid, username, password, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime,linkCodeTime) 
   VALUES 
   (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
   [
-    apiid, username, password, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime
+    apiid, username, hash, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
     console.log('The post user result is: ', result);
     res.json(result);
     });
+  });
   }else{
     console.log("Post user failed");
     res.json("");
@@ -1015,16 +1026,20 @@ app.put('/user/resetPassword/:username/:password', (req, res) =>{
     if(err) throw err;
     console.log('connected as id ' + connection.threadId);
 
+    bcrypt.hash(password, 10, function(error, hash) {
+      console.log("In Hash Function");
+      console.log("New Hash: " + hash);
   connection.query(`UPDATE users SET
   password = ?, linkCode = ? WHERE (username = ?)`, 
   [
-    req.params.password, "", req.params.username
+    hash, "", req.params.username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
     console.log('The update active users result is: ', result);
     res.json(result);
     });
+  });
   });
 });
 
