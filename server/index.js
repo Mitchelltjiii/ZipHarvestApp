@@ -145,8 +145,9 @@ app.get("/api/users/:username/:password",(req,res) => {
           let verified = false;
           let subscription = false;
 
-          /*
+          
           const bcrypt = require('bcrypt');
+          /*
           const saltRounds = 8;
           const myPlaintextPassword = req.params.password;
           var hashAsync;
