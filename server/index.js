@@ -1026,7 +1026,7 @@ app.put('/user/resetPassword/:username/:password', (req, res) =>{
     if(err) throw err;
     console.log('connected as id ' + connection.threadId);
 
-    bcrypt.hash(password, 10, function(error, hash) {
+    bcrypt.hash(req.params.password, 10, function(error, hash) {
       console.log("In Hash Function");
       console.log("New Hash: " + hash);
   connection.query(`UPDATE users SET
