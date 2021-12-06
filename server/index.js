@@ -185,24 +185,25 @@ app.get("/api/users/:username/:password",(req,res) => {
                       subscription = true;
                     }
                   }
+
+                  if(foundLogin){
+                    if(subscription){
+                      res.json(0);
+                    }else if(verified){
+                      res.json(1);
+                    }else{
+                      res.json(2);
+                    }
+                  }else{
+                    res.json(3);
+                  }
                   // => Password is valid!
               })();
                 
               }
             }
-            console.log("Found Login: " + foundLogin);
           }catch(error){
             console.log("Caught error 1");
-          }
-          if(foundLogin){
-            if(subscription){
-              res.json(0);
-            }else if(verified){
-              res.json(1);
-            }else{
-              res.json(2);
-            }
-          }else{
             res.json(3);
           }
     });
