@@ -147,7 +147,6 @@ app.get("/api/users/:username/:password",(req,res) => {
 
           
           const bcrypt = require('bcrypt');
-          /*
           const saltRounds = 8;
           const myPlaintextPassword = req.params.password;
           var hashAsync;
@@ -166,7 +165,7 @@ app.get("/api/users/:username/:password",(req,res) => {
           console.log('bcrypt_Sync Generate Hash')
           console.log('bcrypt_Sync Compare Hash');
           bcrypt.compareSync(myPlaintextPassword, hashSync);
-          console.log('bcrypt_Sync Compare Hash');*/
+          console.log('bcrypt_Sync Compare Hash');
 
           try{
             console.log("Trying iteration without parse");
