@@ -96,12 +96,12 @@ export default class App extends React.Component {
   hashPassword = async (username,password,staySignedIn) => {
     console.log("Hash password: " + password)
     const bcrypt = require('bcryptjs');
-
-    const salt = await bcrypt.genSalt(10)
-    const hash = await bcrypt.hash(password, salt)
-    console.log("HASH: " + hash);
-
-    this.getUsersFromDB(username,password,staySignedIn);
+    bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash("B4c0/\/", salt, function(err, hash) {
+          console.log("HASH: " + hash);
+          this.getUsersFromDB(username,password,staySignedIn);
+      });
+    });
   }
 
   getUsersFromDB = async (username,password,staySignedIn) => {
