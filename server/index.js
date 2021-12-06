@@ -146,17 +146,17 @@ app.get("/api/users/:username/:password",(req,res) => {
           let verified = false;
           let subscription = false;
 
-          function compareAsync(param1, param2) {
-            return new Promise(function(resolve, reject) {
-                bcrypt.compare(param1, param2, function(err, res) {
-                    if (err) {
-                         reject(err);
-                    } else {
-                         resolve(res);
-                    }
-                });
-            });
-          }
+          const comparePassword = async (password, hash) => {
+            try {
+                // Compare password
+                return await bcrypt.compare(password, hash);
+            } catch (error) {
+                console.log(error);
+            }
+        
+            // Return false if error
+            return false;
+        };
           
           try{
             console.log("Trying iteration without parse");
@@ -166,21 +166,28 @@ app.get("/api/users/:username/:password",(req,res) => {
               if(val.username==req.params.username){
                 console.log("User Match");                
               
-              const res = await compareAsync(req.params.password,val.password);
-              console.log(res);
-                console.log("Second Result: " + secondResult);
-                if(res){
-                  console.log("Password Correct!");
-                  foundLogin = true;
-                  if(val.verified===0){
-                    console.log("Verified");
-                    verified = true;
+                (async () => {              
+                  // Check if password is correct
+                  const isValidPass = await comparePassword(req.params.password, val.password);
+              
+                  // Print validation status
+                  console.log(`Password is ${!isValidPass ? 'not' : ''} valid!`);
+
+                  if(isValidPass){
+                    console.log("Password Correct!");
+                    foundLogin = true;
+                    if(val.verified===0){
+                      console.log("Verified");
+                      verified = true;
+                    }
+                    if(val.subid !== ""){
+                      console.log("Sub found");
+                      subscription = true;
+                    }
                   }
-                  if(val.subid !== ""){
-                    console.log("Sub found");
-                    subscription = true;
-                  }
-                }
+                  // => Password is valid!
+              })();
+                
               }
             }
             console.log("Found Login: " + foundLogin);
