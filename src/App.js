@@ -95,7 +95,7 @@ export default class App extends React.Component {
 
   hashPassword = async (username,password,staySignedIn) => {
     console.log("Hash password: " + password)
-    const bcrypt = require('bcrypt');
+    const bcrypt = require('bcryptjs');
 
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(password, salt)
