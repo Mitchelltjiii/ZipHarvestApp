@@ -145,6 +145,29 @@ app.get("/api/users/:username/:password",(req,res) => {
           let verified = false;
           let subscription = false;
 
+          const bcrypt = require('bcrypt');
+          /*
+          const saltRounds = 8;
+          const myPlaintextPassword = 'Mystr0ngP@SSW0RD';
+          var hashAsync;
+          var hashSync;
+          console.time('bcrypt_Async Generate Hash');
+          bcrypt.hash(myPlaintextPassword, saltRounds).then(function (hash) {
+            hashAsync = hash;
+            console.timeEnd('bcrypt_Async Generate Hash');
+            console.time('bcrypt_Async Compare Hash');
+            bcrypt.compare(myPlaintextPassword, hashAsync).then(function (result) {
+              console.timeEnd('bcrypt_Async Compare Hash');
+            });
+          });
+          console.time('bcrypt_Sync Generate Hash');
+          hashSync = bcrypt.hashSync(myPlaintextPassword, saltRounds);
+          console.timeEnd('bcrypt_Sync Generate Hash')
+          console.time('bcrypt_Sync Compare Hash');
+          bcrypt.compareSync(myPlaintextPassword, hashSync);
+          console.timeEnd('bcrypt_Sync Compare Hash');
+          */
+
           try{
             console.log("Trying iteration without parse");
             for(const val of rows){

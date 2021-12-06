@@ -93,17 +93,6 @@ export default class App extends React.Component {
       }
   }
 
-  hashPassword = async (username,password,staySignedIn) => {
-    console.log("Hash password: " + password)
-    const bcrypt = require('bcryptjs');
-    bcrypt.genSalt(10, function(err, salt) {
-      bcrypt.hash("B4c0/\/", salt, function(err, hash) {
-          console.log("HASH: " + hash);
-          this.getUsersFromDB(username,password,staySignedIn);
-      });
-    });
-  }
-
   getUsersFromDB = async (username,password,staySignedIn) => {
     console.log("Get users from DB");
     if(username === "" || password === ""){
@@ -621,7 +610,7 @@ export default class App extends React.Component {
   }
 
   attemptLogin = (username,password,staySignedIn) => {
-    this.hashPassword(username,password,staySignedIn);
+    this.getUsersFromDB(username,password,staySignedIn);
   }
 
   setNewUsername = (newUser) => {
