@@ -154,17 +154,22 @@ app.get("/api/users/:username/:password",(req,res) => {
           console.log('bcrypt_Async Generate Hash');
           bcrypt.hash(myPlaintextPassword, saltRounds).then(function (hash) {
             hashAsync = hash;
+            console.log("Hash: " + hash);
+            console.log("HashAsync: " + hashAsync);
             console.log('bcrypt_Async Generate Hash');
             console.log('bcrypt_Async Compare Hash');
             bcrypt.compare(myPlaintextPassword, hashAsync).then(function (result) {
               console.log('bcrypt_Async Compare Hash');
+              console.log("Result: " + result);
             });
           });
           console.log('bcrypt_Sync Generate Hash');
           hashSync = bcrypt.hashSync(myPlaintextPassword, saltRounds);
           console.log('bcrypt_Sync Generate Hash')
           console.log('bcrypt_Sync Compare Hash');
-          bcrypt.compareSync(myPlaintextPassword, hashSync);
+          console.log("Hash Sync: " + hashSync);
+          var secondResult = bcrypt.compareSync(myPlaintextPassword, hashSync);
+          console.log("Second Result: " + secondResult);
           console.log('bcrypt_Sync Compare Hash');
 
           try{
