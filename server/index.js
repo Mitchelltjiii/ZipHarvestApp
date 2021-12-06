@@ -149,28 +149,10 @@ app.get("/api/users/:username/:password",(req,res) => {
           const bcrypt = require('bcrypt');
           const saltRounds = 8;
           const myPlaintextPassword = req.params.password;
-          var hashAsync;
           var hashSync;
-          console.log('bcrypt_Async Generate Hash');
-          bcrypt.hash(myPlaintextPassword, saltRounds).then(function (hash) {
-            hashAsync = hash;
-            console.log("Hash: " + hash);
-            console.log("HashAsync: " + hashAsync);
-            console.log('bcrypt_Async Generate Hash');
-            console.log('bcrypt_Async Compare Hash');
-            bcrypt.compare(myPlaintextPassword, hashAsync).then(function (result) {
-              console.log('bcrypt_Async Compare Hash');
-              console.log("Result: " + result);
-            });
-          });
-          console.log('bcrypt_Sync Generate Hash');
           hashSync = bcrypt.hashSync(myPlaintextPassword, saltRounds);
-          console.log('bcrypt_Sync Generate Hash')
-          console.log('bcrypt_Sync Compare Hash');
           console.log("Hash Sync: " + hashSync);
-          var secondResult = bcrypt.compareSync(myPlaintextPassword, hashSync);
-          console.log("Second Result: " + secondResult);
-          console.log('bcrypt_Sync Compare Hash');
+          
 
           try{
             console.log("Trying iteration without parse");
@@ -179,7 +161,9 @@ app.get("/api/users/:username/:password",(req,res) => {
               console.log("Row.stringify: " + JSON.stringify(val));
               if(val.username==req.params.username){
                 console.log("User Match");
-                if(val.password==req.params.password){
+                var secondResult = bcrypt.compareSync(val.password, hashSync);
+                console.log("Second Result: " + secondResult);
+                if(secondResult){
                   console.log("Password Correct!");
                   foundLogin = true;
                   if(val.verified===0){
