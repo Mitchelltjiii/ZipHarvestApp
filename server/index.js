@@ -5,6 +5,7 @@ const app = express(); // create express app
 const port = process.env.PORT || 3000
 const mysql = require('mysql');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_TEST);
+const bcrypt = require('bcrypt');
 
 var pool  = mysql.createPool({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
@@ -145,25 +146,30 @@ app.get("/api/users/:username/:password",(req,res) => {
           let verified = false;
           let subscription = false;
 
+          function compareAsync(param1, param2) {
+            return new Promise(function(resolve, reject) {
+                bcrypt.compare(param1, param2, function(err, res) {
+                    if (err) {
+                         reject(err);
+                    } else {
+                         resolve(res);
+                    }
+                });
+            });
+          }
           
-          const bcrypt = require('bcrypt');
-          const saltRounds = 8;
-          const myPlaintextPassword = req.params.password;
-          var hashSync;
-          hashSync = bcrypt.hashSync(myPlaintextPassword, saltRounds);
-          console.log("Hash Sync: " + hashSync);
-          
-
           try{
             console.log("Trying iteration without parse");
             for(const val of rows){
               console.log("Row: " + val);
               console.log("Row.stringify: " + JSON.stringify(val));
               if(val.username==req.params.username){
-                console.log("User Match");
-                var secondResult = bcrypt.compareSync(myPlaintextPassword, val.password);
+                console.log("User Match");                
+              
+              const res = await compareAsync(req.params.password,val.password);
+              console.log(res);
                 console.log("Second Result: " + secondResult);
-                if(secondResult){
+                if(res){
                   console.log("Password Correct!");
                   foundLogin = true;
                   if(val.verified===0){
