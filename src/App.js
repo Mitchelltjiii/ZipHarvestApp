@@ -93,13 +93,15 @@ export default class App extends React.Component {
       }
   }
 
-  hashPassword = async (password) => {
+  hashPassword = async (username,password,staySignedIn) => {
     console.log("Hash password: " + password)
     const bcrypt = require('bcrypt');
 
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(password, salt)
     console.log("HASH: " + hash);
+
+    this.getUsersFromDB(username,password,staySignedIn);
   }
 
   getUsersFromDB = async (username,password,staySignedIn) => {
@@ -108,8 +110,6 @@ export default class App extends React.Component {
       this.executeLogInFailed();
       return;
     }
-
-    this.hashPassword('1234');
 
     const response = await fetch(`/api/users/${username}/${password}`);
     const text = await response.text();
@@ -621,7 +621,7 @@ export default class App extends React.Component {
   }
 
   attemptLogin = (username,password,staySignedIn) => {
-    this.getUsersFromDB(username,password,staySignedIn);
+    this.hashPassword(username,password,staySignedIn);
   }
 
   setNewUsername = (newUser) => {
