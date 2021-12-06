@@ -184,9 +184,7 @@ app.get("/api/users/:username/:password",(req,res) => {
                       console.log("Sub found");
                       subscription = true;
                     }
-                  }
 
-                  if(foundLogin){
                     if(subscription){
                       res.json(0);
                     }else if(verified){
