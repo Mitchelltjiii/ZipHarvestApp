@@ -67,11 +67,11 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
       window.open("https://app.termly.io/document/privacy-policy/a880128c-82ae-40b1-bec3-7d5b495a1d24", '_blank');
     }
 
-    var forgotIDLink = <a href="/#" onClick={handleForgotID} style={{cursor:"pointer",color:"#3d85c6"}}>ID</a>;
-    var forgotPasswordLink = <a href="/#" onClick={handleForgotPassword} style={{cursor:"pointer",color:"#3d85c6"}}>password</a>;
-    var createIDLink = <a href="/#" onClick={handleCreateID} style={{cursor:"pointer",color:"#3d85c6"}}>Create one</a>;
-    var termsOfServiceLink = <a href="/#" onClick={handleTermsOfService} style={{cursor:"pointer",color:"#3d85c6"}}>Terms of Service</a>;
-    var privacyPolicyLink = <a href="/#" onClick={handlePrivacyPolicy} style={{cursor:"pointer",color:"#3d85c6"}}>Privacy Policy.</a>;
+    var forgotIDLink = <a href="/#" onClick={handleForgotID} style={{cursor:"pointer",color:"#3d85c6",textDecoration:"none"}}>ID</a>;
+    var forgotPasswordLink = <a href="/#" onClick={handleForgotPassword} style={{cursor:"pointer",color:"#3d85c6",textDecoration:"none"}}>password</a>;
+    var createIDLink = <a href="/#" onClick={handleCreateID} style={{cursor:"pointer",color:"#3d85c6",textDecoration:"none"}}>Create one</a>;
+    var termsOfServiceLink = <a href="/#" onClick={handleTermsOfService} style={{cursor:"pointer",color:"#3d85c6",textDecoration:"none"}}>Terms of Service</a>;
+    var privacyPolicyLink = <a href="/#" onClick={handlePrivacyPolicy} style={{cursor:"pointer",color:"#3d85c6",textDecoration:"none"}}>Privacy Policy.</a>;
 
     const handleLogIn = (event) => {
 		  logIn();
