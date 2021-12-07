@@ -10,7 +10,6 @@ constructor()
     }
 
   reset = () => {
-    console.log("Reset Table Wrapper");
     this.forceUpdate();
     console.log("Reset Concluded");
   }
