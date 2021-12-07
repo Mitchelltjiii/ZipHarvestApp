@@ -14,7 +14,6 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
     const [passwordAgain, setPasswordAgain] = React.useState('');
     const [success,setSuccess] = React.useState(false);
     const [linkSent,setLinkSent] = React.useState(false);
-    let busySettingUser = false;
     let fromUrl = (userFromUrl.length!==0);
     const [passwordError, setPasswordError] = React.useState(false);
     const [passwordHelperText, setPasswordHelperText] = React.useState(false);
@@ -49,10 +48,6 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
       if(logInFailed && password === ""){
         error = true;
         errorText = "Password is incorrect."
-      }
-      let failedLogIn = false;
-      if(logInFailed){
-        failedLogIn = true;
       }
     }
 
@@ -152,8 +147,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
         let newCode = makeid(8);
         
         const response = await fetch(`/send-reset-link/${address}/${newCode}/${username}`);
-        const json = await response.json();
-        busySettingUser = true;
+        await response.json();
         updateUserLinkCode(newCode,JSON.stringify((new Date().getTime())),username);
       }
       
@@ -164,7 +158,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
         if(linkCodeTime === ""){
           linkCodeTime = "blank";
         }
-        const response = fetch(`/user/updateLinkCode/${newLinkCode}/${linkCodeTime}/${userID}`, {
+        fetch(`/user/updateLinkCode/${newLinkCode}/${linkCodeTime}/${userID}`, {
               method: 'PUT',
               headers: {
                 'Accept': 'application/json',
@@ -173,7 +167,6 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
         }).then(function(response) {
         }).then(function(data) {
         });
-        busySettingUser = (false);
         setLinkSent(true);
         setGotUser(true);
       }
@@ -183,17 +176,15 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
         if(fromAccountSettings){
           userForFetch = userID;
         }
-        const response = fetch(`/user/resetPassword/${userForFetch}/${password}`, {
+        fetch(`/user/resetPassword/${userForFetch}/${password}`, {
               method: 'PUT',
               headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
               }
         }).then(function(response) {
-          let resp = JSON.stringify(response);
         }).then(function(data) {
         });
-        busySettingUser = (false);
         setSuccess(true);
     }
 
@@ -225,8 +216,6 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
     }
     const response = await fetch(`/api/users/${userID}/${password}`);
     const text = await response.text();
-    /*const responseTwo = await fetch(`/create-customer`);
-    const json = await responseTwo.json();*/
 
     let gotResponse = false;
 

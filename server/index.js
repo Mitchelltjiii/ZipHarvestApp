@@ -481,32 +481,6 @@ app.get('/api/hr/:id', (req, res) => {
     });
 });
 
-//rest api to create a new record into mysql database
-app.post('/posttest', (req, res) =>{
-  let strain = 'strain3';
-  let tag = 'tag3';
-  let createdAt = '2021-05-03 22:06:12';
-  let updatedAt = '2021-05-03 22:06:12';
-
-  const result = connection.query(
-    `INSERT INTO plants 
-    (strain, tag, createdAt, updatedAt) 
-    VALUES 
-    (?, ?, ?, ?)`, 
-    [
-      strain, tag, createdAt, updatedAt
-    ]
-  );  
-
-    let message = 'Error in creating programming language';
-  
-    if (result.affectedRows) {
-      message = 'Programming language created successfully';
-    }
-  
-    res.json(message);
-});
-
 app.post('/er/:tag/:time/:userID', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
@@ -800,14 +774,6 @@ app.put('/hr', (req, res) =>{
     res.json(result);
     });
   }); 
-});
-
-app.delete(`/plant/:id`, (req, res) =>{
-  pool.getConnection((err, connection) => {
-    if(err) throw err;
-    let plantID = req.params.id;
-    connection.query(`DELETE FROM plants WHERE id = '${plantID}'`);
-  });
 });
 
 app.post('/pl', (req, res) =>{
