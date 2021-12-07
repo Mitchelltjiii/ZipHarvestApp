@@ -580,7 +580,7 @@ export default class App extends React.Component {
 
     if (this.state.loggedIn !== '') {
 	  	showForm = <div style={{margin:"auto"}}>
-	    <Header setCurrentPage={this.setCurrentPage} currentPage={this.state.currentPage} executeLogout={this.executeLogout}/>
+	    <Header setCurrentPage={this.setCurrentPage}/>
       <Outer currentPage={this.state.currentPage} setCurrentPage={this.setCurrentPage} getPlants={this.getPlants} getHarvestRecords={this.getHarvestRecords} getHarvestBatches={this.getHarvestBatches}
       resetHarvestBatches={this.resetHarvestBatches} currentHarvest={this.state.currentHarvest} setNewHBID={this.setNewHBID} getCurrentHarvestID={this.getCurrentHarvestID}
       setNewHarvestRecordID={this.setNewHarvestRecordID} setNewPlantID={this.setNewPlantID} userID={this.state.userID}
@@ -603,8 +603,7 @@ export default class App extends React.Component {
       }else if(this.state.currentPage === 'find-user-form'){
 				showForm = <FindUserForm></FindUserForm>
       }else{
-        showForm = <LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin}
-        setCurrentPage={this.setCurrentPage} logInFailed={this.state.logInFailed}></LogIn>;
+        showForm = <LogIn attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage} logInFailed={this.state.logInFailed}></LogIn>;
         loginForm = true;
       }
       if(!loginForm){
@@ -614,7 +613,7 @@ export default class App extends React.Component {
   				justifyContent="center"
 				  alignItems="center"
 		  	  >
-          <LoginHeader setCurrentPage={this.setCurrentPage} currentPage={this.state.currentPage} executeLogout={this.executeLogout}/>
+          <LoginHeader/>
           {showForm}
           </Grid>)
       } 

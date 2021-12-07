@@ -8,7 +8,7 @@ import ImportPlantsButton from './ImportPlantsButton.component';
 import RemoveFromAvailablePlants from './RemoveFromAvailablePlantsButton.component';
 import TextField from '@material-ui/core/TextField';
 
-function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refreshOuter, userID, setPlants, setNewPlantID,reloadPlants}) {
+function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPlantID,reloadPlants}) {
 
     const [uploadList,setUploadList] = React.useState([]);
     const [importing,setImporting] = React.useState(false);

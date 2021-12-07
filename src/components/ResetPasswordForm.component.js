@@ -7,7 +7,7 @@ import {InputAdornment,IconButton} from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
-function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fromAccountSettings,userID}) {
+function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSettings,userID}) {
     const [logInFailed,setLogInFailed] = React.useState(false);
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -15,6 +15,9 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
     const [success,setSuccess] = React.useState(false);
     const [linkSent,setLinkSent] = React.useState(false);
     let fromUrl = (userFromUrl.length!==0);
+    console.log("From url: " + fromUrl);
+    console.log("Link Code: " + linkCode);
+    console.log("UserFromURL: " + userFromUrl)
     const [passwordError, setPasswordError] = React.useState(false);
     const [passwordHelperText, setPasswordHelperText] = React.useState(false);
     const [verifyPasswordError, setVerifyPasswordError] = React.useState(false);

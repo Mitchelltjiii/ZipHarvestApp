@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import logo from './logo.png';
 
 
-function LoginHeader({setCurrentPage, currentPage, executeLogout}){
+function LoginHeader(){
 
     const handleGoToHome = () => {
         window.location.replace("https://www.zipharvest.app/");

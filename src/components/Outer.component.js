@@ -6,7 +6,6 @@ class Outer extends Component {
   constructor(props) {
     super(props);
     this.state = {isLoading: true};
-    //this.remove = this.remove.bind(this);
   }
 
   componentDidMount() {

@@ -30,7 +30,7 @@ getPossiblePlantCount,getSubscriptionType}){
 			) : currentPage === 'manage-dry-rooms-form' ? (
 				<ManageDryRoomsForm getDryRooms={getDryRooms} refreshOuter={refreshOuter} reloadDryRooms={reloadDryRooms} userID={userID}/>
 			) : currentPage === 'manage-plants-form' ? (
-				<ManagePlantsForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} refreshOuter={refreshOuter} userID={userID} setPlants={setPlants} setNewPlantID={setNewPlantID} reloadPlants={reloadPlants}/>
+				<ManagePlantsForm getPlants={getPlants} refreshOuter={refreshOuter} userID={userID} setPlants={setPlants} setNewPlantID={setNewPlantID} reloadPlants={reloadPlants}/>
 			) : currentPage === 'account-form' ? (
 				<AccountForm userID={userID} setCurrentPage={setCurrentPage} setFromAccountSettings={setFromAccountSettings} executeLogout={executeLogout}/>
 			) : currentPage === 'subscription-form' ? (
@@ -38,7 +38,7 @@ getPossiblePlantCount,getSubscriptionType}){
 			) : currentPage === 'end-subscription-form' ? (
 				<EndSubscriptionForm setCurrentPage={setCurrentPage} attemptLogInFromEndSubForm={attemptLogInFromEndSubForm} logInSuccess={logInSuccess}></EndSubscriptionForm>
 			) : currentPage === 'reset-password-form' ? (
-				<ResetPasswordForm setCurrentPage={setCurrentPage} linkCode='' userFromUrl='' executeLogout={executeLogout} fromAccountSettings={fromAccountSettings} userID={userID}></ResetPasswordForm>
+				<ResetPasswordForm setCurrentPage={setCurrentPage} linkCode='' userFromUrl='' fromAccountSettings={fromAccountSettings} userID={userID}></ResetPasswordForm>
 			) : currentPage === 'change-subscription-form' ? (
 				<ChangeSubscriptionForm userID={userID} reloadSubscription={reloadSubscription} getSubscriptionType={getSubscriptionType}></ChangeSubscriptionForm>
 			) : null}

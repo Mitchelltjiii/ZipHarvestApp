@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {isMobile} from 'react-device-detect';
 
 
-function Header({setCurrentPage, currentPage}){
+function Header({setCurrentPage}){
     const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {

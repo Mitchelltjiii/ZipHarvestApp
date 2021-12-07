@@ -10,7 +10,7 @@ import {InputAdornment,IconButton} from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
-function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,attemptLogin,setCurrentPage,logInFailed}){
+function LogIn({attemptLogin,setCurrentPage,logInFailed}){
 
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
