@@ -23,8 +23,6 @@ function EndSubscriptionForm({setCurrentPage,logInFailed,executeLogout,attemptLo
     if(!logInSuccess){
       failedLogIn = true;
     }
-    console.log("failedlogin: " + failedLogIn);
-    console.log("errorTxt: " + errorText);
 
     const [showPassword,setShowPassword] = React.useState(false);
 

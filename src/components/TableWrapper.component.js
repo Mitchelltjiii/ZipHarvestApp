@@ -11,7 +11,6 @@ constructor()
 
   reset = () => {
     this.forceUpdate();
-    console.log("Reset Concluded");
   }
 
   render() {

@@ -30,14 +30,11 @@ class ExportButton extends Component{
         let drOptionsList = [];
 
         for(let val of JSON.parse(this.props.getDryRooms())) {
-          console.log("XX-VAL[name]: " + val.name);
           if(!drOptionsList.includes(val.name)){
             drOptionsList.push(val.name);
           }
         }
       
-        console.log("DROPTIONSLIST: " + drOptionsList);
-
         const handleSelectDR = (e) => {
           parent.setState({selectedDR:e.target.value});
         };
@@ -62,42 +59,21 @@ class ExportButton extends Component{
       }
 
         async function getSubId(){
-            console.log("Try to get subid");
             const response = await fetch(`/get-subid/${parent.props.userID}`);
             const json = await response.json();
-            try{
-              console.log("subid json: " + json);
-            }catch(err){
-            }
             if(json !== undefined){
                 getSubscription(json);
               }
           }
           
           async function getSubscription(subId){
-            console.log("Try to get subscription");
             const response = await fetch(`/get-subscription/${subId}`);
             const json = await response.json();
-            try{
-              console.log("sub json: " + json);
-            }catch(err){
-            }
-            try{
-              console.log("sub json(STRINGg): " + JSON.stringify(json));
-            }catch(err){
-              
-            }
             getUIDCount(json);
           }
 
           async function getUIDCount(sub){
-            console.log("sub in getUID: " +JSON.stringify(sub));
- 
-            console.log("Get uid count");
-            console.log("Start time: " + sub.current_period_start);
-            console.log("End time: " + sub.current_period_end);
             let uidCount = parent.props.getUniqueIDCount();
-            console.log("Got UID count: " + uidCount);
 
             let subscriptionType = sub.items.data[0].price.lookup_key;
           
@@ -109,12 +85,10 @@ class ExportButton extends Component{
             }else if(subscriptionType === "premium"){
               possiblePlantCount = 10000;
             }
-            console.log("Possible plant count: " + possiblePlantCount);
             
             if(uidCount <= possiblePlantCount){
               parent.setState({choosingDryRoom:true,subscription:sub});
             }else{
-              console.log("UID limit reached");
             }
             parent.forceUpdate();
           }
@@ -129,14 +103,11 @@ class ExportButton extends Component{
         }
 
         function commitExportRecords(){
-            console.log("Commit Export Records: " + parent.state.exportRecords);
             for(const val of parent.state.exportRecords){
-                console.log("ER val: " + val);
                 busyCreatingExportRecords.push(val);
             }
 
             for(const val of parent.state.exportRecords){
-                console.log("ER val: " + val);
                 createExportRecord(val);
             }
 
@@ -144,17 +115,11 @@ class ExportButton extends Component{
 		    let x = 0;
 
             while(JSON.stringify(busyCreatingExportRecords) !== "[]" && x<timeLimit){
-                  console.log("Set timeout");
                   setTimeout(null,200);
                   x++;
                 }
-
-                if(x===timeLimit){
-                  console.log("TIMEOUT OPERATION FAILED");
-                }
         }
         const createExportRecord = async(tag) => {
-            console.log("Create ER: " + tag);
             let time = JSON.stringify((new Date()).getTime());
             const response = fetch(`/er/${tag}/${time}/${parent.props.userID}`, {
             method: 'POST',
@@ -165,29 +130,20 @@ class ExportButton extends Component{
             });
       
             try{
-              console.log("AWAITING RESPONSE UpdateExportRecord");
               await response.text();
-              console.log("RESPONSE RECIEVED UpdateExportRecord")
             }catch(err){
-              console.log("NO RESPONSE RECIEVED UpdateExportRecord")
             } 
       
-            console.log("Before removing busy updating record");
-            console.log("busycreating before: " + JSON.stringify(busyCreatingExportRecords)); 
             for( var i = 0; i < busyCreatingExportRecords.length; i++){ 
               if (busyCreatingExportRecords[i] === tag) { 
                 busyCreatingExportRecords.splice(i, 1); 
               }
             }
-            console.log("busyCreatingrecords after: " + JSON.stringify(busyCreatingExportRecords));       
-            console.log("Exit create export record")
             parent.props.reloadExportRecords("");
           }
 
         function getHBDate(batchName){
-            console.log("Get Date");
             for(let val of JSON.parse(parent.props.getHarvestBatches())){
-                console.log("Val: " + JSON.stringify(val));
                 if(val.name === batchName){
                     let parsedDate = new Date(val.date);
                     var dd = String(parsedDate.getDate()).padStart(2, '0');
@@ -195,7 +151,6 @@ class ExportButton extends Component{
                     var yyyy = parsedDate.getFullYear();
                 
                     let today = yyyy + '-' + mm + '-' + dd;
-                    console.log("Today Str: " + today.toString());
                     return today.toString();
                 }
             }
@@ -222,18 +177,14 @@ class ExportButton extends Component{
                 exportRecordsData.push(val.tag);
             }
         } 
-        console.log("before set State exportrecords: " + JSON.stringify(this.state.exportRecords));
 
         if(JSON.stringify(this.state.exportRecords) !== "[]"){
-            console.log("set State exportrecords: " + JSON.stringify(exportRecordsData));
             parent.setState({exportRecords:exportRecordsData});            
         }    
               
         let fileName = this.props.row.name;
         fileName = fileName.replace(" ","_");
         fileName = "ZipHarvest_" + fileName.replace("/",".") + ".csv";
-
-        console.log("ChoosingUnit: " + this.state.choosingUnit);
 
         return <div>
             {this.state.choosingUnit ? (
