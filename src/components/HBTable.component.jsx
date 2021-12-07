@@ -12,7 +12,6 @@ import {isMobile} from 'react-device-detect';
 
 
 function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExportRecords,getUniqueIDCount,getDryRooms}) {
-    console.log("ENTER HBTABLE, HBLIST: " + getHarvestBatches());
     let tableWidth = 600;
     
     if(isMobile){
@@ -35,16 +34,13 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
     }
 
     function checkPlantList(batchName) {
-      console.log("Check Plant List");
       plantCount = 0;
       strain = "";
       let plants = getPlants();
-      console.log("Plants: " + plants);
       let parsedPlants = [];
       try{
         parsedPlants = JSON.parse(plants);
       }catch(mm){
-        console.log("Could not parse plants");
       }
 
       for(let val of JSON.parse(getHarvestRecords())){
@@ -63,7 +59,6 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
           }
         }
       }
-      console.log("Strain of " + batchName + ": " + strain);
     }
 
     const rows = [];
@@ -86,9 +81,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
       x = 0;
       foundX = -1;
       latestDate = new Date(0);
-      console.log("Rows: " + JSON.stringify(rows));
       for(let val of rows){
-        console.log("Val: " + JSON.stringify(val));
         if(new Date(val.date)>latestDate){
           foundX = x;
           latestDate = new Date(val.date);
@@ -97,7 +90,6 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
       }
       let newRow = JSON.stringify(rows.splice(foundX,1));
       newRows.push(newRow.substring(1,newRow.length-1));
-      console.log("New Rows: " + newRows);
       parsedRows = JSON.parse("[" + newRows + "]");
     }
     

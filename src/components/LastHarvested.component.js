@@ -8,7 +8,6 @@ class LastHarvested extends Component{
     handleClick(event) {
         event.preventDefault();
         this.setState({undoClicked: !this.state.undoClicked});
-        console.log("Undo Clicked - Now: " + this.state.undoClicked);
         this.forceUpdate();
     }
 
@@ -29,11 +28,9 @@ class LastHarvested extends Component{
 
     render() {  
 
-        console.log("Last Harvested Plant**: " + JSON.stringify(this.props.lastHarvestedPlant));
         let tag = "";    
         try{
             tag = this.props.lastHarvestedPlant.tag.substring(this.props.lastHarvestedPlant.tag.length-5);
-            console.log("Success 1");
         }catch(err){
 
         }

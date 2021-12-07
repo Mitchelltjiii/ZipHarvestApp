@@ -15,13 +15,6 @@ setNewHarvestRecordID, setNewPlantID, userID,reloadPlants,reloadPlantsAndHarvest
 reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout,setFromAccountSettings,attemptLogInFromEndSubForm,
 logInSuccess,getDryRooms,getExportRecords,reloadDryRooms,reloadExportRecords,getUniqueIDCount,reloadSubscription,
 getPossiblePlantCount,getSubscriptionType}){
-
-	console.log("ENTER LANDING, GET PLANTS(STRINGIFIED): " + JSON.stringify(getPlants()));
-
-	console.log("ENTER LANDING, GET harvestRecordsMap(STRINGIFIED): " + JSON.stringify(getHarvestRecords()));
-
-	console.log("ENTER LANDING, GET harvestbatches(STRINGIFIED): " + JSON.stringify(getHarvestBatches()));
-
 	let fromAccountSettings = true;
 	
     return(

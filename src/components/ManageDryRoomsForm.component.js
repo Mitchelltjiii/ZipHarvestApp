@@ -17,49 +17,34 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 	function executeGetDryRooms(){
 		let exDryRooms = JSON.parse(getDryRooms());
 		let drs = [];
-		console.log("execute Get dryrooms With Search");
 
 		for(const val of exDryRooms){
-			console.log("Val: " + JSON.stringify(val));
 			drs.push(val);
 		}
-		console.log("Execute get drs done: " + JSON.stringify(drs));
 		return JSON.stringify(drs);
 	}
 
 	const toggleDeleteAllSelected = () => {		
 		if(getDeleteAllSelected()){
-			console.log("selectedToDelete.length == currPlants.length");
 			setSelectedToDelete([]);
 		}else{
-			console.log("selectedToDelete.length != currPlants.length");
 			let newSelectedToDelete = [];
 			for (const val of dryRooms) {
 				newSelectedToDelete.push(val.id);
 			}
-			console.log("SelectedToDelete: " + newSelectedToDelete);
-		    console.log("SelectedToDelete(STRING): " + JSON.stringify(newSelectedToDelete));
 			setSelectedToDelete(newSelectedToDelete);
 		}
-
-		console.log("SelectedToDelete: " + selectedToDelete);
-		console.log("SelectedToDelete(STRING): " + JSON.stringify(selectedToDelete));
 	}
 
 	const toggleDeleteDryRoomSelected = (id) => {
-		console.log("Toggle Delete Dry Room Selected id: " + id);
 		let foundIndex = -1;
 		let i = 0;
 		for(const val of removeList){
-			console.log("Removelist Val: " + val);
 			if(id === val){
-				console.log("Tag === Val");
 				foundIndex = i;
 			}
 			i++;
 		}
-
-		console.log("Found Index: " + JSON.stringify(foundIndex));
 
 		if(foundIndex !== -1){
 			removeList.splice(foundIndex,1);
@@ -67,21 +52,16 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 			removeList.push(id);
 		}
 
-		console.log("RemoveList After ToggleDeletePlantSelected: " + JSON.stringify(removeList));
 		setSelectedToDelete(removeList);
 		refreshOuter();
 	}
 
 	const getDeleteDryRoomSelected = (id) => {
-		console.log("Get Delete Dry Room Selected id: " + id);
 		for(const val of removeList){
-			console.log("Removelist Val: " + val);
 			if(id === val){
-				console.log("id === Val");
 				return true;
 			}
 		}
-		console.log("No id Match");
 
 		return false;
 	}
@@ -90,9 +70,6 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 		if(removeList.length===0){
 			return false;
 		}
-		console.log("Remove List Length: " + removeList.length);
-		console.log("CurrDryRooms Length: " + JSON.parse(getDryRooms()).length);
-		console.log("GetDeleteAllSelected: " + JSON.stringify(removeList.length === JSON.parse(getDryRooms()).length));
 		
 		let x = 0;
 		for(const val of JSON.parse(getDryRooms())){
@@ -102,13 +79,11 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 	}
 
     const handleGetReady = () => {
-		console.log("Handle Get Ready")
 		setAdding(true);
        	 refreshOuter();
 	  	}
 
 	const handleCancel = () => {
-		console.log("Handle Cancel")
 		setAdding(false);
 		setNewDryRoomName("");
         refreshOuter();
@@ -116,11 +91,9 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 
 	const handleAddDryRoom = () => {
 		getDryRoomItem();
-		console.log("Handle Add Dry Room")
 	  }
 
 	  const getDryRoomItem = () => {
-		console.log("Enter getDryRoomItem")
 		let dryRoom = {
 			name: '',
 			userID: ''
@@ -129,13 +102,9 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 		dryRoom.name = newDryRoomName;
 		dryRoom.userID = userID;
 
-		console.log("Stringified before passed: " + JSON.stringify(dryRoom));
-		console.log("Exit getHarvestRecorditem")
 		addDryRoom(dryRoom);
 	}
-	const addDryRoom = async(dryRoomItem) => {
-        console.log("Engage add Dry Room");
-        
+	const addDryRoom = async(dryRoomItem) => {        
         let parent = this;
         fetch('/dr', {
           method: 'POST',
@@ -147,22 +116,18 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
         }).then(function(response) {
           return response.json();
         }).then(function(data) {
-          console.log("Dry Room Added");
 		  setAdding(false);
 		  setNewDryRoomName("");
 		  reloadDryRooms();    
           refreshOuter();
         });
-        
-        console.log("Exit update plant")
-      }  
+	}  
 
 	const handleNewDryRoomName = (event) => {
         setNewDryRoomName(event.target.value);
     };
 
 	const handleDeleteDryRooms = () => {
-		console.log("HandleDeleteDryRooms");
 		for(const val of removeList){
 			busyDeletingDryRooms.push(val.id);
 		}
@@ -174,20 +139,15 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 		let x = 0;
 
         while(JSON.stringify(busyDeletingDryRooms) !== "[]" && x<timeLimit){
-                  console.log("Set timeout");
                   setTimeout(null,200);
                   x++;
                 }
 
-        if(x===timeLimit){
-                  console.log("TIMEOUT OPERATION FAILED");
-                }
 		reloadDryRooms();
 		refreshOuter();
 	}
 
 	const deleteDryRoom = async(dryRoomID) => {
-		console.log("REMOVE Dry Room: " + dryRoomID);
 		const response = fetch(`/dr/${dryRoomID}`, {
 		method: 'DELETE',
 		headers: {
@@ -197,22 +157,15 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 		});
   
 		try{
-		  console.log("AWAITING RESPONSE DELETEHarvestRecord")
 		  await response.text();
-		  console.log("RESPONSE RECIEVED DELETEHarvestRecord")
 		}catch(err){
-		  console.log("NO RESPONSE RECIEVED DELETEHarvestRecord")
 		} 
   
-		console.log("Before removing busy removing record");
-		console.log("BUSYREMOVINGHR before: " + JSON.stringify(busyDeletingDryRooms)); 
 		for( var i = 0; i < busyDeletingDryRooms.length; i++){ 
 		  if (busyDeletingDryRooms[i] === dryRoomID) { 
 			busyDeletingDryRooms.splice(i, 1); 
 		  }
 		}
-		console.log("BUSYREMOVINGHB after: " + JSON.stringify(this.state.busyDeletingHarvestRecords));       
-		console.log("Exit remove harvest record")
 	  }
 
 	return (

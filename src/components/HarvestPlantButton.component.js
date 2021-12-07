@@ -20,7 +20,6 @@ class HarvestPlantButton extends Component{
     async handleSubmit(event) {
 
       event.preventDefault();
-      console.log("Handle Submit Harvest Plant Button");
 
       this.executeHarvestPlant(event);
     }
@@ -28,12 +27,9 @@ class HarvestPlantButton extends Component{
     async executeHarvestPlant(event){
       event.preventDefault();
       let parent = this;
-      console.log("Execute Harvest Plant");
       if(this.props.nextPlant()){
-          console.log("Engage Harvested Plant Item");
           const strain = this.props.getStrainForPlantItem(null);
           const harvestRecordItem = this.props.getHarvestRecordItem();
-          console.log("Harvseted Plant Item should be done");
 
           fetch('/hr', {
             method: (harvestRecordItem.id) ? 'PUT' : 'POST',
@@ -45,12 +41,7 @@ class HarvestPlantButton extends Component{
           }).then(function(response) {
             return response.json();
           }).then(function(data) {
-            console.log("EXECUTE HARVSET PLANT EXCT DATA: " + data); // this will be a string
             parent.props.setNewHarvestRecordID(data,harvestRecordItem);
-            console.log("Harvest Type Check");
-            console.log("Harvest Type: " + parent.props.harvestType);
-            console.log("Harvest Type(STRING): " + JSON.stringify(parent.props.harvestType));
-
             if(parent.props.harvestType === "harvest"){
               parent.updatePlant(event,harvestRecordItem.tag,strain);
             }
@@ -59,13 +50,10 @@ class HarvestPlantButton extends Component{
     }
 
     async updatePlant(event,plantTag,strain) {
-      console.log("Enter updatePlant");
       event.preventDefault();
       const parent = this;
 
       const plantItem = this.props.getPlantItem(1,plantTag,strain);
-
-      console.log("getRemovedPlantID should be done");
 
       fetch('/pl', {
         method: (plantItem.tag) ? 'PUT' : 'POST',
@@ -79,28 +67,12 @@ class HarvestPlantButton extends Component{
       }).then(function(data) {
         parent.props.resetHarvestForm(false);
       });
-
-      /*
-      console.log("Engage getRemovedPlantID");
-      const removePlantID = this.props.getRemovedPlantID();
-      console.log("getRemovedPlantID should be done");
-      console.log("REMOVE PLANT ID: " + removePlantID);
-      await fetch(`/api/plant/${removePlantID}`, {
-      method: 'DELETE',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-      });
-      console.log("Exit removePlant");*/
     }
 
     async updateHB(event,addID) {
       event.preventDefault();
-      console.log("Execute Update HB");
       this.props.updateHBList(addID)
       const harvestBatchItem = this.props.getHarvestBatchItem(false);
-      console.log("Harvest Batch Item should be done");
 
       fetch('/hb', {
           method: (harvestBatchItem.id) ? 'PUT' : 'POST',
@@ -113,17 +85,6 @@ class HarvestPlantButton extends Component{
             return response.json();
           }).then(function(data) {
           });
-
-
-      /*    
-      await fetch('/api/harvestbatch', {
-        method: (harvestBatchItem.id) ? 'PUT' : 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(harvestBatchItem),
-      });*/
     }
     
     constructor(props) {

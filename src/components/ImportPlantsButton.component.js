@@ -10,9 +10,7 @@ class ImportPlantsButton extends Component{
       }; 
 
     
-    async addPlant(plantItem,tagExists){
-        console.log("Engage add Plant");
-        
+    async addPlant(plantItem,tagExists){        
         let parent = this;
         fetch('/pl', {
           method: (tagExists) ? 'PUT' : 'POST',
@@ -23,21 +21,14 @@ class ImportPlantsButton extends Component{
           body: JSON.stringify(plantItem),
         }).then(function(response) {
           return response.json();
-        }).then(function(data) {
-          console.log("EXECUTE PLANT EXCT DATA: " + data); // this will be a string
-          //parent.props.setNewPlantID(data,plantItem);
-          console.log("Before removing busy adding record");
-          console.log("BUSYADDINGPL before: " + JSON.stringify(parent.state.busyAddingPlants)); 
+        }).then(function(data) { 
           for( var i = 0; i < parent.state.busyAddingPlants.length; i++){ 
             if ( parent.state.busyAddingPlants[i] === plantItem.tag) { 
                 parent.state.busyAddingPlants.splice(i, 1); 
             }
           }
-          console.log("BUSYADDINGPL after: " + JSON.stringify(parent.state.busyAddingPlants));          
         });
-        
-        console.log("Exit update plant")
-      }
+    }
 
     async handleSubmit(event) {
 
@@ -49,10 +40,6 @@ class ImportPlantsButton extends Component{
         }
 
         function getPlantItem(plant){
-            console.log("Enter getPlantItem")
-            console.log("Plant: " + plant);
-            console.log("Plant(STRING): " + JSON.stringify(plant));
-    
             let plantItem = {
               tag: '',
               strain: '',
@@ -68,64 +55,31 @@ class ImportPlantsButton extends Component{
               if(plant.itemID!==""){
                   plantItem.id = plant.itemID;
               }
-    
-              console.log("Stringified before passed: " + JSON.stringify(plantItem));
-              console.log("Exit getPlantItem")
               return plantItem;
           }
         
         event.preventDefault();
-        console.log("Handle Submit Plant Button");
-
-	    //let tempPlants = JSON.parse(this.props.getPlants());
-		//console.log("Before Import Plants - Plants: " + JSON.stringify(tempPlants));
-/*
-		for(const val of this.props.uploadList){
-			console.log('**UploadList[m]: ' + val);
-			let splitList = val.split(",");
-
-			for(let i = 1; i < splitList.length; i++){
-				console.log("Add Plant: " + JSON.stringify(splitList[i]));
-				let plant = new Plant(splitList[i],splitList[i+1],this.props.userID,0);
-				//tempPlants.push(plant);
-                let pl = getPlantItem(plant);
-                console.log("Execute Add Plant from loop");
-                this.executeAddPlant(event,pl);
-				i++;
-			}
-		}*/
 
     let timeLimit = 3000;
             let addPlant = new Plant("","","","");
             let plantList = JSON.parse(this.props.getPlants());
             for(const val of this.props.uploadList){
-                console.log('**UploadList[m]: ' + val);
 			    let splitList = val.split(",");
 
 			    for(let i = 1; i < splitList.length; i++){
                     addPlant = new Plant(splitList[i],splitList[i+1],this.props.userID,0);
 
                     const plantItem = getPlantItem(addPlant);
-  
-                    console.log("Plant Item to update with: " + JSON.stringify(plantItem));
-  
-                    console.log("BUSYADDINGPL"); 
-                    console.log("BUSYADDINGPL before push: " + JSON.stringify(this.state.busyAddingPlants)); 
-                 this.state.busyAddingPlants.push(addPlant.tag);
-                console.log("BUSYSETTINGHR after push: " + JSON.stringify(this.state.busyAddingPlants)); 
-                console.log("Before updateHarvestRecord");
+                    this.state.busyAddingPlants.push(addPlant.tag);
   
                 let tagExists = false;
-                console.log("Tag Exists??? " + plantItem.tag);
 
                 for(const val2 of plantList){
-                console.log("Tag Exists? " + val2.tag);
                   if(val2.tag === plantItem.tag){
                     tagExists = true;
                   }
                 }
                 this.addPlant(plantItem,tagExists);
-                console.log("After addPlant");
                 
                 i++;
             }
@@ -134,30 +88,14 @@ class ImportPlantsButton extends Component{
         let x = 0;
 
         while(this.state.busyAddingPlants !== [] && x<timeLimit){
-                  console.log("Set timeout");
                   setTimeout(null,200);
                   x++;
                 }
 
-        if(x===timeLimit){
-                  console.log("TIMEOUT OPERATION FAILED");
-                }
-
-		//this.props.setPlants(JSON.stringify(tempPlants));
-        console.log("*A*");
         this.props.reloadPlants([]);
-        console.log("Plants Reloaded");
 		    this.props.setUploadList([]);
-        console.log("*B*");
-
-		    //console.log("After Add Plants - Plants: " + this.props.getPlants());
 		    this.props.setImporting(false);
-        console.log("*C*");
-        
-
         this.props.refreshOuter();
-        console.log("*D*");
-
     }
 
     async executeAddPlant(event,plantItem){
@@ -172,7 +110,6 @@ class ImportPlantsButton extends Component{
           }).then(function(response) {
             return response.json();
           }).then(function(data) {
-            console.log("EXECUTE PLANT EXCT DATA: " + data); // this will be a string
           });
     }
     

@@ -21,8 +21,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
-    console.log("loginfailed: " + logInFailed);
-
     let errorText = "";
     let error = false;
     if(logInFailed && username === "" && password === ""){
@@ -33,8 +31,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     if(logInFailed){
       failedLogIn = true;
     }
-    console.log("failedlogin: " + failedLogIn);
-    console.log("errorText: " + errorText);
 
     const handleForgotID = () => {
       clickForgotID();
@@ -49,7 +45,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     };
 
     function clickForgotPassword(){
-      console.log("Click forgot Password");
       setCurrentPage('reset-password-form');
     }
 
@@ -88,7 +83,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 	  };
 
     const handleStaySignedInChanged = (event) => {
-      console.log("Set stay signed in: " + event.target.checked)
 		  setStaySignedIn(event.target.checked);
 	  };
     
@@ -115,7 +109,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
 
     const handleOnKeyDown = (event) => {
       if(event.keyCode === 13){
-        console.log("Enter clicked in password");
         logIn();
       }
     }

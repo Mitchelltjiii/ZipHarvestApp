@@ -36,7 +36,6 @@ function Header({setCurrentPage, currentPage}){
   }
 
   const handleExistingBatches = () => {
-    console.log("Handle Existing Batches");
     handleClose()
     setCurrentPage('harvest-batches-form')
   }
