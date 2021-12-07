@@ -19,13 +19,9 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 
 	let plantsWithSearch = getPlantsWithSearch();
 
-    console.log("Upload List after refresh: " + JSON.stringify(uploadList));
-
 	let uploadNamesList = [];
 	for(const val of uploadList){
-		console.log('UploadList[m]: ' + val);
 		let splitList = val.split(",");
-		console.log("SplitList[0]: " + splitList[0]);
 		uploadNamesList.push(splitList[0]);
 	}
 
@@ -33,41 +29,28 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 		let currPlants = JSON.parse(getPlantsWithSearch());
 		
 		if(getDeleteAllSelected()){
-			console.log("selectedToDelete.length == currPlants.length");
 			setSelectedToDelete([]);
 		}else{
-			console.log("selectedToDelete.length != currPlants.length");
 			let newSelectedToDelete = [];
 			for (const val of currPlants) {
 				if(val.active === 0){
-					console.log("Val.tag: " + val.tag);
 					newSelectedToDelete.push(val.tag);
 				}
 			}
-			console.log("SelectedToDelete: " + newSelectedToDelete);
-		    console.log("SelectedToDelete(STRING): " + JSON.stringify(newSelectedToDelete));
 			setSelectedToDelete(newSelectedToDelete);
 		}
-
-		console.log("SelectedToDelete: " + selectedToDelete);
-		console.log("SelectedToDelete(STRING): " + JSON.stringify(selectedToDelete));
 		setAutoFoc(false);
 	}
 
 	const toggleDeletePlantSelected = (tag) => {
-		console.log("Toggle Delete Plant Selected Tag: " + tag);
 		let foundIndex = -1;
 		let i = 0;
 		for(const val of removeList){
-			console.log("Removelist Val: " + val);
 			if(tag === val){
-				console.log("Tag === Val");
 				foundIndex = i;
 			}
 			i++;
 		}
-
-		console.log("Found Index: " + JSON.stringify(foundIndex));
 
 		if(foundIndex !== -1){
 			removeList.splice(foundIndex,1);
@@ -75,22 +58,17 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 			removeList.push(tag);
 		}
 
-		console.log("RemoveList After ToggleDeletePlantSelected: " + JSON.stringify(removeList));
 		setSelectedToDelete(removeList);
 		refreshOuter();
 		setAutoFoc(false);
 	}
 
 	const getDeletePlantSelected = (tag) => {
-		console.log("Get Delete Plant Selected Tag: " + tag);
 		for(const val of removeList){
-			console.log("Removelist Val: " + val);
 			if(tag === val){
-				console.log("Tag === Val");
 				return true;
 			}
 		}
-		console.log("No Tag Match");
 
 		return false;
 	}
@@ -99,10 +77,6 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 		if(removeList.length===0){
 			return false;
 		}
-		console.log("Remove List Length: " + removeList.length);
-		console.log("CurrPlants Length: " + JSON.parse(getPlantsWithSearch()).length);
-		console.log("GetDeleteAllSelected: " + JSON.stringify(removeList.length === JSON.parse(getPlantsWithSearch()).length));
-		
 		let x = 0;
 		for(const val of JSON.parse(getPlantsWithSearch())){
 			if(val.active === 0){
@@ -120,16 +94,12 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
 	function getPlantsWithSearch(){
 		let plants = JSON.parse(getPlants());
 		let plantsWSearch = [];
-		console.log("Get Plants With Search");
-		console.log("Search Text: " + searchText);
 
 		for(const val of plants){
-			console.log("Val: " + JSON.stringify(val));
 			if(val.tag.toLowerCase().includes(searchText.toLowerCase()) || val.strain.toLowerCase().includes(searchText.toLowerCase())){
 				plantsWSearch.push(val);
 			}
 		}
-		console.log("Plants With Search: " + JSON.stringify(plantsWSearch));
 		return JSON.stringify(plantsWSearch);
 	}
 
@@ -148,30 +118,24 @@ function ManagePlantsForm({getHarvestBatches, getHarvestRecords, getPlants, refr
     const setPlantList = (fn,pl) => {
 		let uList = uploadList;
 		uList.push(fn + "," + pl);
-		console.log("Upload List: " + JSON.stringify(uList));
 		setUploadList(uList);
 		refreshOuter();
 	  }
 
     function removeUploadQueueButton(name){
-		console.log("removeUploadQueueButton--");
 		let index = 0;
 		let foundIndex = -1;
 		for(let val of uploadList){
 			let splitList = val.split(",");
-			console.log("SplitList[0]: " + splitList[0]);
 			if(splitList[0]===name){
 				foundIndex = index;
-				console.log("Found Index: " + foundIndex);
 			}
 			index++;
 		}
 
 		if(foundIndex !== -1){
-			console.log("Found Index != -1");
 			let uList = uploadList;
 			uList.splice(foundIndex,1);
-			console.log("Upload List: " + JSON.stringify(uList));
 			setUploadList(uList);
 			refreshOuter();	
 		}
