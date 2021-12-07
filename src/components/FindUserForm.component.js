@@ -22,10 +22,11 @@ function FindUserForm() {
     async function sendFindUserLink(){
         const response = await fetch(`/send-find-user/${email}`);
         const text = await response.text();
+        console.log("Text: " + text);
         if(text === "0"){
-          setEmailSent(true);
           setErrorText("");
           setError(false);
+          setEmailSent(true);
         }else{
           setErrorText("Email doesn't match an account.");
           setError(true);
