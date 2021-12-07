@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import {isMobile} from 'react-device-detect';
 
-function VerificationForm({setCurrentPage,newUsername}) {
+function VerificationForm({newUsername}) {
 
     const [email,setEmail] = React.useState('');
     const [resent,setResent] = React.useState(false);

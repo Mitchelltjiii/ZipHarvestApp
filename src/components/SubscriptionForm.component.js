@@ -11,7 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import {isMobile} from 'react-device-detect';
 
 
-function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCount}) {
+function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount}) {
 
     const handleClick = (title) => {
       if(title==="Cancel Subscription"){
