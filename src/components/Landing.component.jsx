@@ -10,10 +10,10 @@ import ManageDryRoomsForm from './ManageDryRoomsForm.component';
 import ChangeSubscriptionForm from './ChangeSubscriptionForm.component';
 
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
-	setHarvestBatches, resetHarvestBatches, currentHarvest,setNewHBID, getCurrentHarvestID, refreshOuter,
+	setHarvestBatches, resetHarvestBatches, currentHarvest,setNewHBID, refreshOuter,
 setNewHarvestRecordID, setNewPlantID, userID,reloadPlants,reloadPlantsAndHarvestRecords, reloadHarvestBatches,
-reloadHarvestRecords,setCurrentPage,verCode,userFromUrl,linkCode,executeLogout,setFromAccountSettings,attemptLogInFromEndSubForm,
-logInSuccess,getDryRooms,getExportRecords,reloadDryRooms,reloadExportRecords,getUniqueIDCount,reloadSubscription,
+reloadHarvestRecords,setCurrentPage,executeLogout,setFromAccountSettings,attemptLogInFromEndSubForm,
+logInSuccess,getDryRooms,reloadDryRooms,reloadExportRecords,getUniqueIDCount,reloadSubscription,
 getPossiblePlantCount,getSubscriptionType}){
 	let fromAccountSettings = true;
 	
@@ -21,7 +21,7 @@ getPossiblePlantCount,getSubscriptionType}){
         <div>
 			{currentPage === 'harvest-form' ? (
 				<HarvestForm getHarvestBatches={getHarvestBatches} setHarvestBatches={setHarvestBatches} getPlants={getPlants} setPlants={setPlants} getHarvestRecords={getHarvestRecords} setHarvestRecords={setHarvestRecords} 
-				resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} getCurrentHarvestID={getCurrentHarvestID} refreshOuter={refreshOuter} 
+				resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} refreshOuter={refreshOuter} 
 				setNewHarvestRecordID={setNewHarvestRecordID} setNewPlantID={setNewPlantID} userID={userID} reloadPlants={reloadPlants} reloadPlantsAndHarvestRecords={reloadPlantsAndHarvestRecords}
 				reloadHarvestBatches={reloadHarvestBatches} reloadHarvestRecords={reloadHarvestRecords}/>
 			) : currentPage === 'harvest-batches-form' ? (
@@ -32,15 +32,15 @@ getPossiblePlantCount,getSubscriptionType}){
 			) : currentPage === 'manage-plants-form' ? (
 				<ManagePlantsForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} refreshOuter={refreshOuter} userID={userID} setPlants={setPlants} setNewPlantID={setNewPlantID} reloadPlants={reloadPlants}/>
 			) : currentPage === 'account-form' ? (
-				<AccountForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} setFromAccountSettings={setFromAccountSettings} executeLogout={executeLogout}/>
+				<AccountForm userID={userID} setCurrentPage={setCurrentPage} setFromAccountSettings={setFromAccountSettings} executeLogout={executeLogout}/>
 			) : currentPage === 'subscription-form' ? (
 				<SubscriptionForm refreshOuter={refreshOuter} userID={userID} setCurrentPage={setCurrentPage} getUniqueIDCount={getUniqueIDCount}/>
 			) : currentPage === 'end-subscription-form' ? (
-				<EndSubscriptionForm setCurrentPage={setCurrentPage} logInFailed={false} executeLogout={executeLogout} attemptLogInFromEndSubForm={attemptLogInFromEndSubForm} logInSuccess={logInSuccess}></EndSubscriptionForm>
+				<EndSubscriptionForm setCurrentPage={setCurrentPage} attemptLogInFromEndSubForm={attemptLogInFromEndSubForm} logInSuccess={logInSuccess}></EndSubscriptionForm>
 			) : currentPage === 'reset-password-form' ? (
 				<ResetPasswordForm setCurrentPage={setCurrentPage} linkCode='' userFromUrl='' executeLogout={executeLogout} fromAccountSettings={fromAccountSettings} userID={userID}></ResetPasswordForm>
 			) : currentPage === 'change-subscription-form' ? (
-				<ChangeSubscriptionForm setCurrentPage={setCurrentPage} userID={userID} reloadSubscription={reloadSubscription} getSubscriptionType={getSubscriptionType}></ChangeSubscriptionForm>
+				<ChangeSubscriptionForm userID={userID} reloadSubscription={reloadSubscription} getSubscriptionType={getSubscriptionType}></ChangeSubscriptionForm>
 			) : null}
         </div>
     )

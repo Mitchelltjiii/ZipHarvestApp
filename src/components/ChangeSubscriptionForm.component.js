@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import {isMobile} from 'react-device-detect';
 
-function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSubscriptionType}) {
+function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType}) {
 
     const [subscription,setSubscription] = React.useState([]);
     let basicText = "Select";

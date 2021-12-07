@@ -317,16 +317,6 @@ export default class App extends React.Component {
     this.setState({fromAccountSettings: from});
 }
 
-  getCurrentHarvestID = (hbName) => {
-    let parsedHB = JSON.parse(this.state.harvestBatches);
-
-    for(const val of parsedHB){
-      if(val.name === hbName){
-        return val.id;
-      }
-    }
-  }
-
   setNewHarvestRecordID = (newID,hr) => {
       hr.id = newID;
 
@@ -386,10 +376,6 @@ export default class App extends React.Component {
 
   getDryRooms = () => {
     return this.state.dryRooms;
-  }
-
-  getExportRecords = () => {
-    return this.state.exportRecords;
   }
 
   getUniqueIDCount = () => {
@@ -603,8 +589,8 @@ export default class App extends React.Component {
       setNewHarvestRecordID={this.setNewHarvestRecordID} setNewPlantID={this.setNewPlantID} userID={this.state.userID}
       setHarvestBatches={this.setHarvestBatches} setHarvestRecords={this.setHarvestRecords} setPlants={this.setPlants} reloadPlants={this.reloadPlants} 
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}
-      verCode={verCode} userFromUrl={userFromUrl} linkCode={linkCode} executeLogout={this.executeLogout} setFromAccountSettings={this.setFromAccountSettings} attemptLogInFromEndSubForm={this.attemptLogInFromEndSubForm}
-      getDryRooms={this.getDryRooms} getExportRecords={this.getExportRecords} logInSuccess={this.state.logInSuccess} reloadDryRooms={this.reloadDryRooms} reloadExportRecords={this.reloadExportRecords}
+      executeLogout={this.executeLogout} setFromAccountSettings={this.setFromAccountSettings} attemptLogInFromEndSubForm={this.attemptLogInFromEndSubForm}
+      getDryRooms={this.getDryRooms} logInSuccess={this.state.logInSuccess} reloadDryRooms={this.reloadDryRooms} reloadExportRecords={this.reloadExportRecords}
       getUniqueIDCount={this.getUniqueIDCount} reloadSubscription={this.reloadSubscription} getPossiblePlantCount={this.getPossiblePlantCount} getSubscriptionType={this.getSubscriptionType}/>
     </div>;
     }else{
@@ -618,7 +604,7 @@ export default class App extends React.Component {
       }else if(this.state.currentPage === 'reset-password-form'){
 				showForm = <ResetPasswordForm setCurrentPage={this.setCurrentPage} linkCode={linkCode} userFromUrl={userFromUrl} executeLogout={this.executeLogout} fromAccountSettings={this.state.fromAccountSettings} userID=""></ResetPasswordForm>
       }else if(this.state.currentPage === 'find-user-form'){
-				showForm = <FindUserForm setCurrentPage={this.setCurrentPage}></FindUserForm>
+				showForm = <FindUserForm></FindUserForm>
       }else{
         showForm = <LogIn getUsers={this.getUsers} executeLogIn={this.executeLogIn} reloadUsers={this.reloadUsers} getUsersLoading={this.getUsersLoading} setUsers={this.setUsers} attemptLogin={this.attemptLogin}
         setCurrentPage={this.setCurrentPage} logInFailed={this.state.logInFailed}></LogIn>;

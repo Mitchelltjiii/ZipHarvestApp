@@ -7,7 +7,7 @@ import {InputAdornment,IconButton} from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
-function EndSubscriptionForm({setCurrentPage,logInFailed,executeLogout,attemptLogInFromEndSubForm,logInSuccess}) {
+function EndSubscriptionForm({setCurrentPage,attemptLogInFromEndSubForm,logInSuccess}) {
 
     const [stepOne,setStepOne] = React.useState(true);
     const [password, setPassword] = React.useState('');

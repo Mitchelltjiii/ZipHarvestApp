@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import {isMobile} from 'react-device-detect';
 
-function FindUserForm({setCurrentPage}) {
+function FindUserForm() {
 
     const [email,setEmail] = React.useState('');
     const [emailSent,setEmailSent] = React.useState(false);
