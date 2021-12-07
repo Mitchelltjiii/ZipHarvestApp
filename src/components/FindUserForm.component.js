@@ -35,6 +35,7 @@ function FindUserForm() {
     const handleEmail = (event) => {
         setEmail(event.target.value);
     };
+    
 
     let formWidth = "450px";
     let formHeight = "250px";
