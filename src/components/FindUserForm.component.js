@@ -9,7 +9,7 @@ function FindUserForm() {
     const [email,setEmail] = React.useState('');
     const [emailSent,setEmailSent] = React.useState(false);
     const [error,setError] = React.useState(false);
-    const [helperText,setHelperText] = React.useState("");
+    const [errorText,setErrorText] = React.useState("");
 
     const handleSendFindUserLink = () => {
 		  sendFindUserLink();
@@ -24,10 +24,10 @@ function FindUserForm() {
         const text = await response.text();
         if(text === "0"){
           setEmailSent(true);
-          setHelperText("");
+          setErrorText("");
           setError(false);
         }else{
-          setHelperText("Email doesn't match an account.");
+          setErrorText("Email doesn't match an account.");
           setError(true);
         }
       }
