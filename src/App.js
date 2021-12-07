@@ -42,8 +42,8 @@ export default class App extends React.Component {
   }
   
   engageReload = () => {
-    if((!this.state.usersLoading) || (!this.state.plantsLoading && !this.state.harvestRecordsLoading && !this.state.harvestBatchesLoading || !this.state.dryRoomsLoading
-      || !this.state.exportRecordsLoading)){
+    if((!this.state.usersLoading) || (!this.state.plantsLoading && !this.state.harvestRecordsLoading && !this.state.harvestBatchesLoading && !this.state.dryRoomsLoading
+      && !this.state.exportRecordsLoading)){
       this.forceUpdate();
     }
   }
@@ -116,7 +116,6 @@ export default class App extends React.Component {
     }
     const response = await fetch(`/api/users/${this.state.userID}/${password}`);
     const text = await response.text();
-    let gotResponse = false;
 
     if(text === "0" || text === "1" || text === "2"){
       this.cancelSub();
@@ -496,7 +495,7 @@ export default class App extends React.Component {
 
   cancelSubscription = async (subId) => {
     const response = await fetch(`/cancel-subscription/${subId}`);
-    const json = await response.json();
+    await response.json();
     this.executeLogout();
   }
 

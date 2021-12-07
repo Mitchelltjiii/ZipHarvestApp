@@ -1,12 +1,10 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import {isMobile} from 'react-device-detect';
 
 function VerificationForm({setCurrentPage,newUsername}) {
 
-    let busySettingUser = false;
     const [email,setEmail] = React.useState('');
     const [resent,setResent] = React.useState(false);
 
@@ -78,7 +76,7 @@ function VerificationForm({setCurrentPage,newUsername}) {
       }
       
       async function updateUser(userItem){
-        const response = fetch('/user', {
+        fetch('/user', {
               method: 'PUT',
               headers: {
                 'Accept': 'application/json',
@@ -86,10 +84,8 @@ function VerificationForm({setCurrentPage,newUsername}) {
               },
               body: JSON.stringify(userItem)
         }).then(function(response) {
-          let resp = JSON.stringify(response);
         }).then(function(data) {
         });
-        busySettingUser = (false);
         setResent(true);
       }
 
@@ -108,9 +104,8 @@ function VerificationForm({setCurrentPage,newUsername}) {
         let address = "Mitchelltjiii@gmail.com";
         let newCode = makeid(8);
         const response = await fetch(`/send-verification-email/${address}/${newCode}/${newUsername}`);
-        const json = await response.json();
+        await response.json();
         
-        busySettingUser = true;
         updateUser(getUserItem(user,newCode));
       }
 

@@ -14,13 +14,6 @@ import DeleteButton from './DeleteButton.component';
 import {isMobile} from 'react-device-detect';
 
 function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWeightChanges,wrapper,getRemovePlantIDDelete,currHidePlants,setHidePlants,getPlants,reset}) {
-
-  function HarvestBatch(name,type,date){
-		this.name = name;
-    this.type = type;
-    this.date = date;
-	}
-
     function weightChange(tag,newWeight,newUnit){
       this.tag = tag;
       this.newWeight = newWeight;

@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import RemoveUploadQueueItemButton from './RemoveUploadQueueItemButton';
 import TextField from '@material-ui/core/TextField';
 import DryRoomTable from './DryRoomTable.component';
 
@@ -75,6 +74,10 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 		for(const val of JSON.parse(getDryRooms())){
 			x++;
 		}
+		let c = JSON.parse(getDryRooms()).length;
+
+		console.log("X: " + x);
+		console.log("C: " + c);
 		return (removeList.length === x);
 	}
 
@@ -105,7 +108,6 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 		addDryRoom(dryRoom);
 	}
 	const addDryRoom = async(dryRoomItem) => {        
-        let parent = this;
         fetch('/dr', {
           method: 'POST',
           headers: {
