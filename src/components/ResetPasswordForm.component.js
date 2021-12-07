@@ -66,7 +66,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
       setCurrentPage('find-user-form');
     }
 
-    var forgotIDLink = <a href="/#" onClick={handleForgotID} style={{cursor:"pointer",color:"#3d85c6"}}>ID?</a>;
+    var forgotIDLink = <a href="/#" onClick={handleForgotID} style={{cursor:"pointer",color:"#3d85c6",textDecoration:"none"}}>ID?</a>;
     
     async function getEmail(){
       const response = await fetch(`/get-email/${username}`);
