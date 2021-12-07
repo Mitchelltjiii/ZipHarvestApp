@@ -18,7 +18,6 @@ function FindUserForm({setCurrentPage}) {
     }  
 
     async function sendFindUserLink(){
-        console.log("Try to send find user Link");
         const response = await fetch(`/send-find-user/${email}`);
         const json = await response.json();
         try{
