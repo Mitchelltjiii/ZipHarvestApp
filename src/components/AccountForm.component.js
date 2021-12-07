@@ -15,7 +15,6 @@ function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettin
 
     const handleClick = (title) => {
       if(title==="Change Password"){
-        console.log("Change Password Clicked")
         setFromAccountSettings(true);
         setCurrentPage('reset-password-form');
       }else if(title==="Subscription"){
@@ -78,17 +77,10 @@ function AccountForm({refreshOuter, userID, setCurrentPage, setFromAccountSettin
     rows.push(createData("Log Out",""));
 
     async function getEmail(){
-      console.log("Get email")
       const response = await fetch(`/get-email/${userID}`);
       const text = await response.text();
-      try{
-        console.log("Get Email JSON: " + text);
-      }catch(err){
-      }
       let str = text;
-      console.log("GEt email str: " + str);
       let textWithoutQuotes = str.substring(1,str.length-1);
-      console.log("Text without quotes str: " + textWithoutQuotes);
 
       setEmail(textWithoutQuotes);
     }

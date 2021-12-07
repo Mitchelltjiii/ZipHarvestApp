@@ -12,11 +12,6 @@ import SelectDeleteDryRoomButton from './SelectDeleteDryRoomButton.component';
 import {isMobile} from 'react-device-detect';
 
 function DryRoomTable({dryRooms,toggleDeleteAllSelected,getDeleteAllSelected,toggleDeleteDryRoomSelected,getDeleteDryRoomSelected}) {
-
-    console.log("ENTER Dryroomtable, dryrooms: " + dryRooms);
-    console.log("ENTER Dryroomtable, JSON.stringifiydryrooms: " + JSON.stringify(dryRooms));
-
-
     let tableWidth = 600;
     
     if(isMobile){
@@ -40,12 +35,8 @@ function DryRoomTable({dryRooms,toggleDeleteAllSelected,getDeleteAllSelected,tog
     const rows = [];
 
     for(const val of dryRooms) {
-      console.log("Val of dryrooms:  " + val);
-      console.log("String Val of dryrooms:  " + JSON.stringify(val));
-        rows.push(createData(val.id,val.name));
+      rows.push(createData(val.id,val.name));
     }
-    console.log("Rows: " + rows);
-    console.log("Rows(STRING): " + JSON.stringify(rows));
 
     return(
       <TableContainer component={Paper}>

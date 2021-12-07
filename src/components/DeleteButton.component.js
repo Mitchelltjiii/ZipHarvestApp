@@ -4,26 +4,18 @@ import Grid from '@material-ui/core/Grid';
 
 class DeleteButton extends Component{
     deletePlant() {
-      console.log("Enter deletePlant");
-
       this.props.hideHarvestRecord(this.props.row.tag);
     }
 
     async handleGetReady(event) {
         event.preventDefault();
-        
         this.state.readyToDelete = !this.state.readyToDelete;
-        console.log("Ready To Delete: " + this.state.readyToDelete);
-
         this.setState(this.state);
     }
 
     async handleCancel(event) {
         event.preventDefault();
-        
         this.state.readyToDelete = false;
-        console.log("Ready To Delete: " + this.state.readyToDelete);
-
         this.setState(this.state);
     }
     

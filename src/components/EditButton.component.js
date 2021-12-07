@@ -206,8 +206,6 @@ class EditButton extends Component{
 
       
     async deleteHarvestRecord(removePlantID){
-      console.log("getRemovedPlantID should be done");
-      console.log("REMOVE PLANT ID: " + removePlantID);
       const response = fetch(`/hr/${removePlantID}`, {
       method: 'DELETE',
       headers: {

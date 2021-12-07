@@ -18,7 +18,6 @@ export default class CSVReader1 extends Component {
     let csvSplit = csv.split(/\r?\n/);
     let plantList = [];
     for (var i = 2; i < csvSplit.length; i++) {
-        console.log(csvSplit[i]);
         let newText = csvSplit[i].substring(1);
         newText = newText.substring(0,newText.indexOf('"'));
         let newTextSplit = newText.split(",");
@@ -36,15 +35,9 @@ export default class CSVReader1 extends Component {
   };
 
   handleOnError = (err, file, inputElem, reason) => {
-    console.log('---------------------------');
-    console.log(err);
-    console.log('---------------------------');
   };
 
   handleOnRemoveFile = (data) => {
-    console.log('---------------------------');
-    console.log(data);
-    console.log('---------------------------');
   };
 
   handleRemoveFile = (e) => {

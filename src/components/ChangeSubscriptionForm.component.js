@@ -22,11 +22,6 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
     let basicDisabled = (basicText === "Current");
     let standardDisabled = (standardText === "Current");
     let premiumDisabled = (premiumText === "Current");
-    
-    console.log("BasicDisabled: " + basicDisabled);
-    console.log("StandardDisabled: " + standardDisabled);
-    console.log("PremiumDisabled: " + premiumDisabled);
-
 
     let formWidth = "450px";
     let formHeight = "250px";
@@ -53,8 +48,6 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
         }      
     }
     const goToProduct = (subtype) => {
-        console.log("Sub type: " + subtype);
-        console.log("My Subscription: " + subscription.items.data[0].price.lookup_key);
         let newPriceID = "price_1JwFPlGBqcLC10HcdJ30adu9"; //basic
         if(subtype === "standard"){
           newPriceID = "price_1JwFPlGBqcLC10Hc071vnzue";
@@ -65,21 +58,8 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
     }
 
     const updateSubscription = async(newPriceID) => {
-        console.log("Try to update subscription");
-        console.log("Sub.id: " + subscription.id);
-        console.log("New Price ID: " + newPriceID);
         const response = await fetch(`/update-subscription/${subscription.id}/${newPriceID}`);
         const json = await response.json();
-        try{
-          console.log("sub update json: " + json);
-        }catch(err){
-      
-        }
-        try{
-          console.log("sub update json(STRING): " + JSON.stringify(json));
-        }catch(err){
-          
-        }
         if(json !== undefined){
           setSubscription(json);
           reloadSubscription();
@@ -93,32 +73,16 @@ function ChangeSubscriptionForm({setCurrentPage,userID,reloadSubscription,getSub
 
 
     async function getSubId(){
-        console.log("Try to get subid");
         const response = await fetch(`/get-subid/${userID}`);
         const json = await response.json();
-        try{
-          console.log("subid json: " + json);
-        }catch(err){
-        }
         if(json !== undefined){
             getSubscription(json);
         }
       }
   
       async function getSubscription(subId){
-        console.log("Try to get subscription");
         const response = await fetch(`/get-subscription/${subId}`);
         const json = await response.json();
-        try{
-          console.log("sub json: " + json);
-        }catch(err){
-      
-        }
-        try{
-          console.log("sub json(STRING): " + JSON.stringify(json));
-        }catch(err){
-          
-        }
         if(json !== undefined){
             setSubscription(json);
           }

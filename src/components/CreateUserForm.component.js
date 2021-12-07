@@ -54,16 +54,12 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       var minNumberofChars = 8;
       var maxNumberofChars = 16;
       var regularExpression = /^[a-zA-Z0-9]{8,16}$/;
-      console.log("Is Username Valid")
       if(username.length < minNumberofChars || username.length > maxNumberofChars){
-        console.log("Wrong length")
         return false;
       }
       if(!regularExpression.test(username)) {
-        console.log("Nope, somethings wrong")
         return false;
       }
-      console.log("Successful password")
       return true;
     }
 
@@ -71,16 +67,12 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       var minNumberofChars = 8;
       var maxNumberofChars = 16;
       var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
-      console.log("Is Password Valid")
       if(str.length < minNumberofChars || str.length > maxNumberofChars){
-        console.log("Wrong length")
         return false;
       }
       if(!regularExpression.test(str)) {
-        console.log("Nope, somethings wrong")
         return false;
       }
-      console.log("Successful password")
       return true;
     }
 
@@ -88,16 +80,12 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       var minNumberofChars = 1;
       var maxNumberofChars = 24;
       var regularExpression = /^[a-zA-Z0-9!@#$%^&*]{1,24}$/;
-      console.log("Is String Valid: " + str)
       if(str.length < minNumberofChars || str.length > maxNumberofChars){
-        console.log("Wrong length")
         return false;
       }
       if(!regularExpression.test(str)) {
-        console.log("Nope, somethings wrong")
         return false;
       }
-      console.log("Successful password")
       return true;
     }
 
@@ -105,16 +93,12 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       var minNumberofChars = 1;
       var maxNumberofChars = 24;
       var regularExpression = /^[a-zA-Z0-9!@#$%^&*.]{1,24}$/;
-      console.log("Is String Valid: " + str)
       if(str.length < minNumberofChars || str.length > maxNumberofChars){
-        console.log("Wrong length")
         return false;
       }
       if(!regularExpression.test(str)) {
-        console.log("Nope, somethings wrong")
         return false;
       }
-      console.log("Successful password")
       return true;
     }
 
@@ -155,29 +139,22 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     
 
     function doContinue(){
-      console.log("Do Continue in Create User Form")
         if(!stepTwo){
             if(email.includes("@") && isValidString(facilityName) && isValidString(firstName) && isValidString(lastName) && (email.includes("@")) && isValidStringEmail(email)){
-              console.log("Pass set step two")
               getEmailExists();
 
               //setStepTwo(true);
             }else{
-              console.log("Something's not right");
               if(!isValidString(facilityName)){
-                console.log("FacilityName not correct");
                 setFacilityNameError(true);
               }
               if(!isValidString(firstName)){
-                console.log("FirstName not correct");
                 setFirstNameError(true);
               }
               if(!isValidString(lastName)){
-                console.log("LastName not correct");
                 setLastNameError(true);
               }
               if(!(email.includes("@")) || !isValidStringEmail(email)){
-                console.log("Email not correct");
                 setFailedEmail(email);
                 if(!(email.includes("@"))){
                   setEmailHelperText("Must include @");
@@ -187,24 +164,19 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
             }
         }else{
             if(isUsernameValid() && isPasswordValid(password) && isPasswordValid(passwordAgain) && (password === passwordAgain)){
-              console.log("Get user Exists")
               getUserExists();
             }else{
-              console.log("Something's not right");
               if(!isUsernameValid()){
-                console.log("Username not correct");
                 setFailedUsername(username);
                 setUsernameHelperText("(8-16 letters & numbers)")
                 setUsernameError(true);
               }
               if(!isPasswordValid(password)){
-                console.log("Password not correct");
                 setFailedPassword(password);
                 setPasswordHelperText("(8-16 letters,numbers,!@#$%^&*)")
                 setPasswordError(true);
               }
               if(!isPasswordValid(passwordAgain) || (password !== passwordAgain)){
-                console.log("PasswordAgain not correct");
                 if(password !== passwordAgain){
                   setFailedVerifyPassword(passwordAgain);
                   setVerifyPasswordHelperText("Passwords do not match");
@@ -216,19 +188,8 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     }
 
     async function getUserExists(){
-      console.log("Get user exist")
       const response = await fetch(`/api/user-exists/${username}`);
       const text = await response.text();
-      try{
-        console.log("User exists JSON: " + text);
-      }catch(err){
-  
-      }
-      try{
-        console.log("User exists JSON(STRING): " + JSON.stringify(text));
-      }catch(err){
-        
-      }
       let newUsername = username;
   
       if(text === "1"){
@@ -243,19 +204,8 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     }
 
     async function getEmailExists(){
-      console.log("Get email exist")
       const response = await fetch(`/api/email-exists/${email}`);
       const text = await response.text();
-      try{
-        console.log("Email exists JSON: " + text);
-      }catch(err){
-  
-      }
-      try{
-        console.log("Email exists JSON(STRING): " + JSON.stringify(text));
-      }catch(err){
-        
-      }
   
       if(text === "1"){
         setStepTwo(true);    
@@ -266,9 +216,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       }
     }
 
-    function getUserItem(newCode){
-      console.log("Enter getUserItem")
-    
+    function getUserItem(newCode){    
       let userItem = {
         apiid: '',
         username: '',
@@ -295,9 +243,6 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
         userItem.email = email;
         userItem.verificationCode = newCode;
         userItem.verCodeTime = JSON.stringify((new Date()).getTime());
-    
-      console.log("Stringified before passed: " + JSON.stringify(userItem));
-      console.log("Exit getUserItem")
       return userItem;
     }
 
@@ -313,7 +258,6 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
   }
     
     async function updateUser(userItem){
-      console.log("Engage update user");
       const response = fetch('/user', {
             method: (userItem.id) ? 'PUT' : 'POST',
             headers: {
@@ -325,29 +269,13 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
         let resp = JSON.stringify(response);
       }).then(function(data) {
       });
-      console.log("Before removing busy setting user");
-      console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
       busySettingUser = (false);
-      console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
-      console.log("Exit update user");
     }
 
     async function sendVerificationEmail(){
-        console.log("Try to send veri email");
         let newCode = makeid(8);
-        console.log("New Code: " + newCode);
         const response = await fetch(`/send-verification-email/${email}/${newCode}/${username}`);
         const json = await response.json();
-        try{
-          console.log("Send Verification json: " + json);
-        }catch(err){
-      
-        }
-        try{
-          console.log("Send Verification json(STRING): " + JSON.stringify(json));
-        }catch(err){
-          
-        }
         busySettingUser = true;
         updateUser(getUserItem(newCode));
       }
