@@ -8,6 +8,8 @@ function FindUserForm() {
 
     const [email,setEmail] = React.useState('');
     const [emailSent,setEmailSent] = React.useState(false);
+    const [error,setError] = React.useState(false);
+    const [errorText,setErrorText] = React.useState("");
 
     const handleSendFindUserLink = () => {
 		  sendFindUserLink();
@@ -22,14 +24,17 @@ function FindUserForm() {
         const text = await response.text();
         if(text === "0"){
           setEmailSent(true);
+          setErrorText("");
+          setError(false);
         }else{
+          setErrorText("Email doesn't match an account.");
+          setError(true);
         }
       }
       
     const handleEmail = (event) => {
         setEmail(event.target.value);
     };
-
 
     let formWidth = "450px";
     let formHeight = "250px";
@@ -54,12 +59,12 @@ function FindUserForm() {
                                 </Grid>
                                 :
                 <Grid
-              container
-              direction="column"
+            container
+            direction="column"
               justifyContent="center"
-              alignItems="center"
+            alignItems="center"
           >
-                <TextField id="Email" value={email} onChange={handleEmail} label="Email" variant="outlined"></TextField>
+                <TextField error={error} helperText={errorText} id="Email" value={email} onChange={handleEmail} label="Email" variant="outlined"></TextField>
                 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSendFindUserLink}>Send Email</Button>
                 </Grid>
                 }
@@ -81,7 +86,7 @@ function FindUserForm() {
   				        justifyContent="center"
 				        alignItems="center"
 			        >
-                    <TextField id="Email" value={email} onChange={handleEmail} label="Email" variant="outlined"></TextField>
+                    <TextField error={error} helperText={errorText} id="Email" value={email} onChange={handleEmail} label="Email" variant="outlined"></TextField>
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSendFindUserLink}>Send Email</Button>
                     </Grid>
                     }
