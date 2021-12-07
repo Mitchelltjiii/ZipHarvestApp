@@ -20,16 +20,6 @@ function FindUserForm({setCurrentPage}) {
     async function sendFindUserLink(){
         const response = await fetch(`/send-find-user/${email}`);
         const json = await response.json();
-        try{
-          console.log("Send find user email json: " + json);
-        }catch(err){
-      
-        }
-        try{
-          console.log("Send find user email json(STRING): " + JSON.stringify(json));
-        }catch(err){
-          
-        }
         setEmailSent(true);
       }
       

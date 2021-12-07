@@ -125,7 +125,6 @@ class EditButton extends Component{
               }
           }
           this.props.setChanges();
-          this.props.printData();
           this.props.reloadFromEditButton(); 
         }
       this.props.setEditMode(!this.props.editNow);
