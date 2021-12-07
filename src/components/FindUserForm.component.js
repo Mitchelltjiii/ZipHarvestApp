@@ -59,10 +59,10 @@ function FindUserForm() {
                                 </Grid>
                                 :
                 <Grid
-            container
-            direction="column"
+              container
+              direction="column"
               justifyContent="center"
-            alignItems="center"
+              alignItems="center"
           >
                 <TextField error={error} helperText={errorText} id="Email" value={email} onChange={handleEmail} label="Email" variant="outlined"></TextField>
                 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSendFindUserLink}>Send Email</Button>
