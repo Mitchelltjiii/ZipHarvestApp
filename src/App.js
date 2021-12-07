@@ -44,33 +44,19 @@ export default class App extends React.Component {
   engageReload = () => {
     if((!this.state.usersLoading) || (!this.state.plantsLoading && !this.state.harvestRecordsLoading && !this.state.harvestBatchesLoading || !this.state.dryRoomsLoading
       || !this.state.exportRecordsLoading)){
-      console.log("Force Updated In App.js");
       this.forceUpdate();
     }
   }
 
   getSubscription = async (subId,username,staySignedIn,signIn) => {
-    console.log("Try to get subscription");
-    console.log("Sign in: " + signIn);
     const response = await fetch(`/get-subscription/${subId}`);
     const json = await response.json();
-    try{
-      console.log("sub json: " + json);
-    }catch(err){
-  
-    }
-    try{
-      console.log("sub json(STRING): " + JSON.stringify(json));
-    }catch(err){
-      
-    }
-
+    
     if(signIn){
       if(json.canceled_at === null){
         this.setState({subscription:json});
         this.executeLogIn(username,staySignedIn);
       }else{
-        console.log("Sub cancelled.");
         this.executeLogInFailed();
       }
     }else{
@@ -79,13 +65,8 @@ export default class App extends React.Component {
   }
 
   getSubId = async (username,staySignedIn,signIn) => {
-    console.log("Try to get subid");
     const response = await fetch(`/get-subid/${username}`);
     const json = await response.json();
-    try{
-      console.log("subid json: " + json);
-    }catch(err){
-    }
     if(json !== undefined){
         this.getSubscription(json,username,staySignedIn,signIn);
       }else{
@@ -94,7 +75,6 @@ export default class App extends React.Component {
   }
 
   getUsersFromDB = async (username,password,staySignedIn) => {
-    console.log("Get users from DB");
     if(username === "" || password === ""){
       this.executeLogInFailed();
       return;
@@ -102,44 +82,25 @@ export default class App extends React.Component {
 
     const response = await fetch(`/api/users/${username}/${password}`);
     const text = await response.text();
-    /*const responseTwo = await fetch(`/create-customer`);
-    const json = await responseTwo.json();*/
-
-    console.log("Fetched password attempt");
 
     this.state.users = text;
     this.state.usersLoading = false;
-    console.log("Try Login Response: " + text);
     let gotResponse = false;
-    console.log("Got Response A: " + gotResponse);
-    let fuck = text;
-    console.log("Fuck: " + fuck);
 
     if(text === "0"){
-      console.log("Text === 0");
       gotResponse = true;
       this.getSubId(username,staySignedIn,true);
     }else if(text === "1"){
       gotResponse = true;
-      console.log("Text === 1");
       this.setState({newUsername:username,currentPage:'stripe-form'});
     }else if(text === "2"){
-      //go to ver 
       gotResponse = true;
-      console.log("Text === 2");
       this.setState({newUsername:username,currentPage:'verification-form'});
-    }else{
-      console.log("ELSE");
     }
-    console.log("After tree");
-
-    console.log("Got Response: " + gotResponse);
     
     if(!gotResponse){
-      console.log("Not Got Response");
       this.executeLogInFailed();
     }
-    console.log("Text === over");
   }
 
   reloadSubscription = async () => {
@@ -148,8 +109,6 @@ export default class App extends React.Component {
 
 
   tryLogInFromEndSubForm = async (password) => {
-    console.log("Try Login From end sub form");
-    console.log("this.state.userID: " + this.state.userID)
 
     if(this.state.userID === "" || password === ""){
       this.setState({logInSuccess:false,currentPage:"end-subscription-form"});
@@ -157,27 +116,13 @@ export default class App extends React.Component {
     }
     const response = await fetch(`/api/users/${this.state.userID}/${password}`);
     const text = await response.text();
-    /*const responseTwo = await fetch(`/create-customer`);
-    const json = await responseTwo.json();*/
-
-    console.log("Fetched password attempt");
-
-    console.log("Try Login Response: " + text);
     let gotResponse = false;
-    console.log("Got Response A: " + gotResponse);
 
     if(text === "0" || text === "1" || text === "2"){
-      console.log("Text === 0,1 or 2");
       this.cancelSub();
     }else{
-      console.log("ELSE");
       this.setState({logInSuccess:false,currentPage:"end-subscription-form"});
     }
-    console.log("After tree");
-
-    console.log("Got Response: " + gotResponse);
-    
-    console.log("Text === over");
   }
 
   getPlantsFromDB = async (reload) => {
@@ -249,7 +194,6 @@ export default class App extends React.Component {
   }
 
   getHarvestBatchesFromDB = async () => {
-    console.log("This.state.userID: " + this.state.userID);
     if(this.state.userID === "" && localStorage.getItem("user")===""){
       return;
     }
@@ -293,10 +237,7 @@ export default class App extends React.Component {
     let parsedHarvestBatches = JSON.parse(this.state.harvestBatches);
 
     for(let val of parsedHarvestBatches){
-			console.log("Val: " + JSON.stringify(val));
-      console.log("Val.name: " + val.name);
 			if(val.name === currHarvest.name){
-				console.log("Found HarvestBatch: " + val.name);
         currHarvestID = val.id;
 			}
 		}
@@ -307,7 +248,6 @@ export default class App extends React.Component {
   resetAll = (currHarvest) => {
     this.setState({harvestBatchesLoading: true, plantsLoading: true, harvestRecordsLoading: true, currentHarvest: currHarvest, logInFailed: false, logInSuccess: true, 
       dryRoomsLoading: true, exportRecordsLoading: true});
-    console.log("Reset all");
     this.getHarvestBatchesFromDB();
     this.getPlantsFromDB(true);
     this.getHarvestRecordsFromDB(true);
@@ -411,8 +351,6 @@ export default class App extends React.Component {
 	}
 
   executeLogIn = (user,staySignedIn) =>{
-    console.log("set user in localstorage: " + user);
-    console.log("set staysignedin in localstorage: " + staySignedIn);
     localStorage.setItem('user', user);
     localStorage.setItem('staySignedIn',staySignedIn);
     let currPage = localStorage.getItem("currentPage");
@@ -427,7 +365,6 @@ export default class App extends React.Component {
   }
 
   executeLogInFailed = () => {
-    console.log("Execute log in failed");
     this.setState({logInFailed:true});
     this.forceUpdate();
   }
@@ -449,7 +386,6 @@ export default class App extends React.Component {
   }
 
   getDryRooms = () => {
-    console.log("Get Dryrooms: " + this.state.dryRooms);
     return this.state.dryRooms;
   }
 
@@ -458,31 +394,21 @@ export default class App extends React.Component {
   }
 
   getUniqueIDCount = () => {
-    console.log("Get Unique ID count");
     let exportRecords = JSON.parse(this.executeGetExportRecords());
-
-    console.log("Subscription: " + this.state.subscription);
-    console.log("Subscription string: " + JSON.stringify(this.state.subscription));
 
     let uids = [];
     let x = 0;
     for(const val of exportRecords){
-      console.log("UID count Val: " + JSON.stringify(val));
       if(Number(val.time)>((Number(this.state.subscription.current_period_start))*1000) && Number(val.time)<((Number(this.state.subscription.current_period_end))*1000)){
         let foundUid = false;
-        console.log("Search for uid");
 
         for(const uid of uids){
-          console.log("uid val : + " + uid);
           if(uid === val.tag){
-            console.log("Found uid");
             foundUid = true;
           }
         }
         if(!foundUid){
           x++;
-          console.log("x++");
-          console.log("Push: " + val.tag);
           uids.push(val.tag);
         }
       }
@@ -520,13 +446,10 @@ export default class App extends React.Component {
   executeGetExportRecords = () => {
 		let exExportRecords = JSON.parse(this.state.exportRecords);
 		let ers = [];
-		console.log("execute Get ecport records");
 
 		for(const val of exExportRecords){
-			console.log("Val: " + JSON.stringify(val));
 			ers.push(val);
 		}
-		console.log("Execute get ers done: " + JSON.stringify(ers));
 		return JSON.stringify(ers);
 	}
 
@@ -564,8 +487,6 @@ export default class App extends React.Component {
   }
 
   cancelSub = () => {
-    console.log("In Cancel SUb");
-    console.log("Logged IN: " + this.state.loggedIn);
     this.getSubIdForCancel();
   }
 
@@ -574,35 +495,14 @@ export default class App extends React.Component {
   } 
 
   cancelSubscription = async (subId) => {
-    console.log("Try to get subscription");
     const response = await fetch(`/cancel-subscription/${subId}`);
     const json = await response.json();
-    try{
-      console.log("sub json: " + json);
-    }catch(err){
-  
-    }
-    try{
-      console.log("sub json(STRING): " + JSON.stringify(json));
-    }catch(err){
-      
-    }
-
-    console.log("Sub cancelled yeahh");
     this.executeLogout();
   }
 
   getSubIdForCancel = async () => {
-    console.log("Try to get subid");
-    console.log("Logged IN: " + this.state.loggedIn);
-    console.log("UserID: " + this.state.userID);
     const response = await fetch(`/get-subid/${this.state.userID}`);
     const json = await response.json();
-    try{
-      console.log("subid json: " + json);
-    }catch(err){
-  
-    }
     if(json !== undefined){
         this.cancelSubscription(json);
       }else{
@@ -625,13 +525,8 @@ export default class App extends React.Component {
       }
   render() {
     localStorage.setItem("currentPage","harvest-form");
-    console.log("Page accessed by reload?");
     let reloaded = this.pageAccessedByReload();
-    console.log("Reloaded: " + reloaded);
-    console.log("render app.js")
     const loggedInUser = localStorage.getItem("user");
-    console.log("Loggin in user: " + loggedInUser);
-    console.log("this.state.loggedin: " + this.state.loggedIn);
 
     let staySignedInLocal = false;
     if(localStorage.getItem("staySignedIn")!==null && localStorage.getItem("staySignedIn")!==undefined && localStorage.getItem("staySignedIn")!==""){
@@ -641,26 +536,10 @@ export default class App extends React.Component {
     if(staySignedInLocal === "true"){
       staySignedIn = true;
     }
-    console.log("Deciding staysignedin: " + staySignedIn);
-    console.log("Deciding reloaded: " + reloaded);
 
     if (loggedInUser !== null && loggedInUser !== undefined && loggedInUser !== "" && this.state.loggedIn === "") {
-      if(reloaded){
-        console.log("**RELOADED");
-      }else{
-        console.log("**NOT RELOADED");
-      }
-      if(staySignedIn){
-        console.log("**STAY SIGNED IN LOCAL");
-      }else{
-        console.log("**NOT STAY SIGNED IN LOCAL");
-      }
-
       if(reloaded || staySignedIn){
-        console.log("***Found User: " + loggedInUser);
-
         this.setState({loggedIn:loggedInUser,userID:loggedInUser,usersLoading:false});
-        console.log("Stay signed in**: " + staySignedIn);
         this.executeLogIn(loggedInUser,staySignedIn);
       }
     }
@@ -669,22 +548,7 @@ export default class App extends React.Component {
       this.state.harvestBatchesLoading || this.state.dryRoomsLoading || this.state.exportRecordsLoading))){
       return(<div>Loading...</div>);
     }
-
-    console.log("Rendering - App.js");
-
-    console.log("Harvest Batches In State: " + this.state.harvestBatches);
-    console.log("Plants In State: " + this.state.plants);
-    console.log("HarvestRecords In State: " + this.state.harvestRecords);
-    console.log("ResponseFromPlant In State: " + this.state.responseFromPlants);
-    console.log("CurrentHarvest(STRING): " + JSON.stringify(this.state.currentHarvest));
-    console.log("DryRooms In State: " + this.state.dryRooms);
-    console.log("ExportRecords In State: " + this.state.exportRecords);
-
-	  console.log("Logged In: " + this.state.loggedIn);
-    console.log("Log in Failed: " + this.state.logInFailed);
 	  let showForm;
-    console.log("CurrentPage: " + this.state.currentPage);
-    console.log("-*-*-*");
     let currUrl = "";
     try{
       currUrl = window.location.href.toString();
@@ -692,12 +556,9 @@ export default class App extends React.Component {
 
     }
 
-    console.log("Curr URL: " + currUrl);
-
     let successEqualsStr = "success=";
     if(currUrl.includes("success")){
       let successStr = currUrl.substring(currUrl.indexOf(successEqualsStr)+successEqualsStr.length,currUrl.indexOf(successEqualsStr)+successEqualsStr.length+5);
-      console.log("Success Str: " + successStr);
       if(successStr.includes("true")){
         if(this.state.currentPage !== 'stripe-form'){
           this.setCurrentPage('stripe-form');
@@ -712,7 +573,6 @@ export default class App extends React.Component {
     let userEqualsStr = "username=";
     if(currUrl.includes("username")){
       let userString = currUrl.substring(currUrl.indexOf(userEqualsStr)+userEqualsStr.length);
-      console.log("User Str: " + userString);
       userFromUrl = userString;
     }
 
@@ -720,7 +580,6 @@ export default class App extends React.Component {
     let verificationEqualsStr = "verCode=";
     if(currUrl.includes("verCode")){
       let verCodeString = currUrl.substring(currUrl.indexOf(verificationEqualsStr)+verificationEqualsStr.length,currUrl.indexOf(verificationEqualsStr)+verificationEqualsStr.length+8);
-      console.log("VerCode Str: " + verCodeString);
       verCode = verCodeString;
       if(this.state.currentPage !== 'stripe-form'){
         this.setCurrentPage('stripe-form');
@@ -731,13 +590,11 @@ export default class App extends React.Component {
     let linkEqualsStr = "linkCode=";
     if(currUrl.includes("linkCode")){
       let linkCodeString = currUrl.substring(currUrl.indexOf(linkEqualsStr)+linkEqualsStr.length,currUrl.indexOf(linkEqualsStr)+linkEqualsStr.length+8);
-      console.log("LinkCode Str: " + linkCodeString);
       linkCode = linkCodeString;
       if(this.state.currentPage !== 'reset-password-form'){
         this.setCurrentPage('reset-password-form');
       }
     }
-    console.log("Link Code In App.js: " + linkCode);
 
     if (this.state.loggedIn !== '') {
 	  	showForm = <div style={{margin:"auto"}}>
