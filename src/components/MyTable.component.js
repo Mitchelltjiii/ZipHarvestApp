@@ -41,13 +41,10 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
 
     const classes = useStyles();
     let harvestBatch = new HarvestBatch('','','');
-    console.log('CurrHarvest in Table: ' + JSON.stringify(currHarvest));
 
     if(currHarvest!==undefined){
       harvestBatch = new HarvestBatch(currHarvest.name,currHarvest.type,currHarvest.date);
     }
-
-    console.log('HarvestBatch in Table: ' + JSON.stringify(harvestBatch));
 
     function createData(tag, strain, weight, unit) {
       return {tag, strain, weight, unit};
@@ -67,8 +64,6 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
           if(val.batchName === currHarvest.name){
             let hidden = false;
             for(let val2 of currHidePlants){
-              console.log("VAL 2 : " + val2);
-              console.log("Val.tag: " + val.tag);
               if(val2 === val.tag){
                 hidden = true;
               }
@@ -82,8 +77,6 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
   
       }
 
-    console.log("ROWS CREATED: " + rows);
-    console.log("ROWS CREATED(STRING): " + JSON.stringify(rows));
 
 
     function getCurrentWeightTag(weight){
@@ -91,13 +84,10 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
     }
 
     function onDDChange(tag,text){
-      console.log("ON DD CHANGE -- tag: " + tag + ", Text: " + text);
-
       let i = 0;
       let foundIndex = -1;
       let foundRow = createData("","","","");
       for(let row of rows){
-        console.log("row: " + JSON.stringify(row));
         if(row.tag === tag){
           foundIndex = i;
           foundRow = createData(row.tag,row.strain,row.weight,text);
@@ -108,14 +98,10 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
         rows.splice(foundIndex,1,foundRow);
       }
 
-      console.log("Rows after splice on DDChange: " + JSON.stringify(rows));
-
       i = 0;
       foundIndex = -1;
       for(let val of currWeightChanges) {
-        console.log("VAL: " + val);
         if(val.tag === tag){
-          console.log("GRABBED tag: " + tag);
           foundIndex = i;
         }
         i++;
@@ -127,57 +113,37 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
         currWeightChanges.push(new weightChange(tag,'',text));
       }
 
-      console.log("Curr Weight Changes after edit: " + JSON.stringify(currWeightChanges));
-
       setWeightChanges(currWeightChanges);
-
-      console.log("Curr ROWS after edit: " + JSON.stringify(rows));
 
       wrapper.setState({ state: wrapper.state });
     }
 
     function hideHarvestRecord(tag){
-        console.log("Hide Harvested Plant clicked in MyTable");
-
         currHidePlants.push(tag);
-
-        console.log("Curr Hide Plants after edit: " + JSON.stringify(currHidePlants));
 
         setHidePlants(currHidePlants);
 
         let i = 0;
         let foundIndex = -1;
         for(let val of rows) {
-         console.log("VAL: " + val);
-         console.log("Val.tag: " + val.tag);
           if(val.tag === tag){
-            console.log("GRABBED tag: " + tag);
             foundIndex = i;
           }  
          i++;
         }
 
-        console.log("Curr ROWS before edit: " + JSON.stringify(rows));
-
-
         if(foundIndex !== -1){
           rows.splice(foundIndex,1);
         }
-
-        console.log("Curr ROWS after edit: " + JSON.stringify(rows));
 
         reset();
     }
 
     function onTFChange(tag,text){
-      console.log("ON TF CHANGE -- tag: " + tag + ", Text: " + text);
       let i = 0;
       let foundIndex = -1;
       for(let val of currWeightChanges) {
-        console.log("VAL: " + val);
-        console.log("Val.tag: " + val.tag);
         if(val.tag === tag){
-          console.log("GRABBED TAG: " + tag);
           foundIndex = i;
         }
         i++;
@@ -189,7 +155,6 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
         currWeightChanges.push(new weightChange(tag,text,''));
       }
 
-      console.log("Curr Weight Changes after edit: " + JSON.stringify(currWeightChanges));
       setWeightChanges(currWeightChanges);
     }
 

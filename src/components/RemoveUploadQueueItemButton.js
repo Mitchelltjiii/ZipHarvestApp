@@ -3,8 +3,6 @@ import Button from '@material-ui/core/Button';
 
 class RemoveUploadQueueItemButton extends Component{
     removePlant() {
-      console.log("Enter removePlant");
-
       this.props.removeUploadQueueButton(this.props.name);
     }
 

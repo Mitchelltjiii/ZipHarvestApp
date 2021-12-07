@@ -8,9 +8,6 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fromAccountSettings,userID}) {
-  console.log("Reset Password Form");
-  console.log("From Account Settings: " + fromAccountSettings);
-
     const [logInFailed,setLogInFailed] = React.useState(false);
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -19,8 +16,6 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
     const [linkSent,setLinkSent] = React.useState(false);
     let busySettingUser = false;
     let fromUrl = (userFromUrl.length!==0);
-    console.log("From Url Reset Password Form: " + fromUrl);
-    console.log("Link Code: " + linkCode);
     const [passwordError, setPasswordError] = React.useState(false);
     const [passwordHelperText, setPasswordHelperText] = React.useState(false);
     const [verifyPasswordError, setVerifyPasswordError] = React.useState(false);
@@ -51,8 +46,6 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
     let error = false;
 
     if(stepOne && fromAccountSettings){
-      console.log("loginfailed: " + logInFailed);
-
       if(logInFailed && password === ""){
         error = true;
         errorText = "Password is incorrect."
@@ -61,9 +54,6 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
       if(logInFailed){
         failedLogIn = true;
       }
-      console.log("failedlogin: " + failedLogIn);
-      console.log("errorText: " + errorText);  
-      console.log("Error: " + error);
     }
 
     const handleSendResetLink = () => {
@@ -81,17 +71,10 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
     var forgotIDLink = <a onClick={handleForgotID} style={{cursor:"pointer",color:"#3d85c6"}}>ID?</a>;
     
     async function getEmail(){
-      console.log("Get email")
       const response = await fetch(`/get-email/${username}`);
       const text = await response.text();
-      try{
-        console.log("Get Email JSON: " + text);
-      }catch(err){
-      }
       let str = text;
-      console.log("GEt email str: " + str);
       let textWithoutQuotes = str.substring(1,str.length-1);
-      console.log("Text without quotes str: " + textWithoutQuotes);
 
       if(textWithoutQuotes !== null && textWithoutQuotes !== undefined && textWithoutQuotes !== ""){
         sendResetLink(textWithoutQuotes);
@@ -106,16 +89,12 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
       var minNumberofChars = 8;
       var maxNumberofChars = 16;
       var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
-      console.log("Is Password Valid")
       if(str.length < minNumberofChars || str.length > maxNumberofChars){
-        console.log("Wrong length")
         return false;
       }
       if(!regularExpression.test(str)) {
-        console.log("Nope, something wrong")
         return false;
       }
-      console.log("Successful password")
       return true;
     }
 
@@ -141,18 +120,14 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
 
     const handleConfirmReset = () => {
       if(isPasswordValid(password) && isPasswordValid(passwordAgain) && (password === passwordAgain)){
-        console.log("Get user Exists")
         updateUserPassword();
       }else{
-        console.log("Something's not right");
         if(!isPasswordValid(password)){
-          console.log("Password not correct");
           setFailedPassword(password);
           setPasswordHelperText("(8-16 letters,numbers,!@#$%^&*)")
           setPasswordError(true);
         }
         if(!isPasswordValid(passwordAgain) || (password !== passwordAgain)){
-          console.log("PasswordAgain not correct");
           if(password !== passwordAgain){
             setFailedVerifyPassword(passwordAgain);
             setVerifyPasswordHelperText("Passwords do not match");
@@ -174,36 +149,15 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
     }
 
     async function sendResetLink(address){
-        console.log("Try to send reset Link");
-        console.log("Username: " + username)
-        console.log("Email: " + address);
         let newCode = makeid(8);
-        console.log("New Code: " + newCode);
         
         const response = await fetch(`/send-reset-link/${address}/${newCode}/${username}`);
         const json = await response.json();
-        console.log("Waiting for sendresetlinkfetch")
-        try{
-          console.log("Send Reset link json: " + json);
-        }catch(err){
-      
-        }
-        try{
-          console.log("Send Reset Link json(STRING): " + JSON.stringify(json));
-        }catch(err){
-          
-        }
-        console.log("Done Waiting for sendresetlinkfetch")
         busySettingUser = true;
-        console.log("Go to updateuser")
-        console.log("JSON.stringify currentdatetime: " + JSON.stringify((new Date().getTime())));
         updateUserLinkCode(newCode,JSON.stringify((new Date().getTime())),username);
       }
       
     async function updateUserLinkCode(newLinkCode,linkCodeTime,userID){
-        console.log("Engage update user with link code");
-        console.log("LinkCode: " + newLinkCode);
-        console.log("LinkCodeTime: " + linkCodeTime)
         if(newLinkCode === ""){
           newLinkCode = "blank";
         }
@@ -217,24 +171,14 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
                 'Content-Type': 'application/json'
               }
         }).then(function(response) {
-          let resp = JSON.stringify(response);
-          console.log("Response from updateUser: " + resp);
-          if(resp !== "" && resp !== null && resp !== undefined){
-            console.log("Updateuser responded");
-          }
         }).then(function(data) {
         });
-        console.log("Before removing busy setting user");
-        console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
         busySettingUser = (false);
-        console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
-        console.log("Exit update user");
         setLinkSent(true);
         setGotUser(true);
       }
 
       async function updateUserPassword(){
-        console.log("Engage update user password");
         let userForFetch = userFromUrl;
         if(fromAccountSettings){
           userForFetch = userID;
@@ -247,17 +191,9 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
               }
         }).then(function(response) {
           let resp = JSON.stringify(response);
-          console.log("Response from updateUser: " + resp);
-          if(resp !== "" && resp !== null && resp !== undefined){
-            console.log("Updateuser responded");
-          }
         }).then(function(data) {
         });
-        console.log("Before removing busy setting user");
-        console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
         busySettingUser = (false);
-        console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
-        console.log("Exit update user");
         setSuccess(true);
     }
 
@@ -274,20 +210,15 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
     };
 
     const handleTryPassword = () => {
-      console.log("Try Password");
       attemptLogin();
   };
 
   async function executeLogInFailed(){
-    console.log("ExecuteLoginFailed");
     setPassword("")
     setLogInFailed(true);
   }
 
   async function attemptLogin(){
-    console.log("Get users from DB");
-    console.log("User ID: " + userID);
-    console.log("Password: " + password)
     if(userID === "" || password === ""){
         executeLogInFailed();      
         return;
@@ -297,30 +228,18 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
     /*const responseTwo = await fetch(`/create-customer`);
     const json = await responseTwo.json();*/
 
-    console.log("Fetched password attempt");
-
-    console.log("Try Login Response: " + text);
     let gotResponse = false;
-    console.log("Got Response A: " + gotResponse);
 
     if(text === "0" || text === "1" || text === "2"){
-      console.log("Text === 0,1 or 2");
       gotResponse = true;
       setPassword("")
       setLogInFailed(false);
       setStepOne(false);
-    }else{
-      console.log("ELSE");
     }
-    console.log("After tree");
-
-    console.log("Got Response: " + gotResponse);
     
     if(!gotResponse){
-      console.log("Not Got Response");
       executeLogInFailed();
     }
-    console.log("Text === over");
   }
     
 
@@ -336,45 +255,21 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,executeLogout,fr
     }
 
     async function getUser(){
-      console.log("User from url: " + userFromUrl);
-        console.log("Try to get user");
         const response = await fetch(`/get-user/${userFromUrl}`);
         const json = await response.json();
-        try{
-          console.log("sub json: " + json);
-        }catch(err){
-    
-        }
-        try{
-          console.log("sub json(STRING): " + JSON.stringify(json));
-        }catch(err){
-        
-        }
         let userString = JSON.stringify(json);
         userString = userString.substring(1,userString.length-1);
-        console.log("User string: " + userString);
         let newUser = JSON.parse(userString);
-        console.log("New user: " + JSON.stringify(newUser));
-        console.log("Link code duh: " + linkCode)
   
         if(newUser.linkCode === linkCode){
-          console.log("Match");
-          console.log("Curr date Value: " + (new Date()).getTime());
-          console.log("New User linkcodetime date Value: " + newUser.linkCodeTime);
-          console.log("Difference: " + ((new Date()).getTime()-newUser.linkCodeTime));
           if(((new Date()).getTime()-newUser.linkCodeTime) > 900000){
-            console.log("Code Expired");
             setExpired(true);
             return;
           }
-          
-          console.log("Code Working still");
-    
+              
           if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
             updateUserLinkCode('','',newUser.username);
           }
-        }else{
-          console.log("No Match")
         }
     }
 

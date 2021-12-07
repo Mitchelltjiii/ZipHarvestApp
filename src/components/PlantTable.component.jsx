@@ -13,8 +13,6 @@ import {isMobile} from 'react-device-detect';
 
 function PlantTable({plantsWithSearch,toggleDeleteAllSelected,getDeleteAllSelected,toggleDeletePlantSelected,getDeletePlantSelected}) {
 
-    console.log("ENTER PlantTable, Plants with search: " + plantsWithSearch);
-
     let tableWidth = 600;
     
     if(isMobile){
