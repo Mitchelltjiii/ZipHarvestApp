@@ -551,9 +551,6 @@ export default class App extends React.Component {
       }
     }
 
-    
-    
-
     let userFromUrl = "";
     let userEqualsStr = "username=";
     if(currUrl.includes("username")){
