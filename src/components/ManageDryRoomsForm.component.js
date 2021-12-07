@@ -70,14 +70,7 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 			return false;
 		}
 		
-		let x = 0;
-		for(const val of JSON.parse(getDryRooms())){
-			x++;
-		}
-		let c = JSON.parse(getDryRooms()).length;
-
-		console.log("X: " + x);
-		console.log("C: " + c);
+		let x = JSON.parse(getDryRooms()).length;
 		return (removeList.length === x);
 	}
 

@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import {isMobile} from 'react-device-detect';
-import Stripe from '@stripe/stripe-js'
 import logo from './logo.png'
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -26,10 +25,6 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
     if(logInFailed && username === "" && password === ""){
       error = true;
       errorText = "Username or password is incorrect."
-    }
-    let failedLogIn = false;
-    if(logInFailed){
-      failedLogIn = true;
     }
 
     const handleForgotID = () => {
@@ -120,8 +115,8 @@ function LogIn({getUsers, executeLogIn, reloadUsers,getUsersLoading,setUsers,att
   				  justifyContent="center"
 					  alignItems="center"
 					  >
-            <div style={{display:"flex",justifyContent:"center",alignContent:"center",height:"100vh",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-              <div style={{width:formWidth,height:formHeight,display:"flex",justifyContent:"center",alignContent:"center",height:"100vh",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+            <div style={{display:"flex",justifyContent:"center",alignContent:"center",height:"100vh",alignItems: 'center'}}>
+              <div style={{width:formWidth,height:formHeight,display:"flex",justifyContent:"center",alignContent:"center"}}>
                   <Grid
                   container
                   direction="column"

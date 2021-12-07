@@ -17,12 +17,6 @@ class Outer extends Component {
   }
 
   render() {
-    console.log("Rendering: Outer");
-    console.log("***********************");
-    console.log("this.props.plants: " + this.props.getPlants());
-    console.log("this.props.harvestRecords: " + this.props.getHarvestRecords());
-    console.log("this.props.harvestBatches: " + this.props.getHarvestBatches());
-    console.log("***********************");
       return (
         <div>
 			<Landing currentPage={this.props.currentPage} getPlants={this.props.getPlants} setPlants={this.props.setPlants} getHarvestRecords={this.props.getHarvestRecords} 
