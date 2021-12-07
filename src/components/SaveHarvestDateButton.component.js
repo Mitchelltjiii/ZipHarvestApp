@@ -11,11 +11,8 @@ class SaveHarvestDateButton extends Component{
 
     async updateHB(event) {
       event.preventDefault();
-      console.log("Execute Update HB");
       this.props.setCurrentHarvestDate();
       const harvestBatchItem = this.props.getHarvestBatchItem(false);
-      console.log("Harvest Batch Item should be done");
-
 
       let parent = this;
       fetch('/hb', {
@@ -32,10 +29,7 @@ class SaveHarvestDateButton extends Component{
           });
     }
     async handleSubmit(event) {
-
       event.preventDefault();
-      console.log("Handle Submit Save Harvest Date Button");
-
       this.updateHB(event);
     }
 

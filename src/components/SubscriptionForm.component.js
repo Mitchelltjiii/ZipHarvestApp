@@ -15,11 +15,7 @@ import {isMobile} from 'react-device-detect';
 function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCount}) {
 
     const handleClick = (title) => {
-      if(title==="Change Password"){
-        console.log("Change Password Clicked")
-      }else if(title==="Logout"){
-        console.log("Logout Clicked")
-      }else if(title==="Cancel Subscription"){
+      if(title==="Cancel Subscription"){
         setCurrentPage('end-subscription-form');
       }else if(title==="Change Subscription"){
         setCurrentPage('change-subscription-form');
@@ -34,17 +30,9 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     let renewalDate = "Renewal Date"
     if(JSON.stringify(subscription) !== "[]"){
-      console.log("Current period end: " + subscription.current_period_end)
       let newDate = new Date();
       newDate.setTime(Number(subscription.current_period_end)*1000);
-      console.log("New Date: " + newDate);
       renewalDate = (newDate.toLocaleDateString(undefined, options));
-      console.log("Renewal Date: " + renewalDate);
-      try{
-        console.log("Subscription.price: " + JSON.stringify(subscription.items.data[0].price));
-      }catch(err){
-
-      }
       subscriptionType = subscription.items.data[0].price.lookup_key;
     }
 
@@ -107,34 +95,18 @@ function SubscriptionForm({refreshOuter, userID, setCurrentPage, getUniqueIDCoun
     rows.push(createData("Cancel Subscription",""));
 
     async function getSubId(){
-      console.log("Try to get subid");
       const response = await fetch(`/get-subid/${userID}`);
       const json = await response.json();
-      try{
-        console.log("subid json: " + json);
-      }catch(err){
-      }
+      
       if(json !== undefined){
           getSubscription(json);
         }
     }
 
     async function getSubscription(subId){
-      console.log("Try to get subscription");
       const response = await fetch(`/get-subscription/${subId}`);
       const json = await response.json();
-      try{
-        console.log("sub json: " + json);
-      }catch(err){
-    
-      }
-      try{
-        console.log("sub json(STRING): " + JSON.stringify(json));
-      }catch(err){
-
-      }
       setSubscription(json);
-      console.log("Set uniqueIDcount");
       setPlantCount(getUniqueIDCount());
     }
 

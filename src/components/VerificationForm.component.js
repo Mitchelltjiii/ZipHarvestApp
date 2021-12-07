@@ -10,9 +10,6 @@ function VerificationForm({setCurrentPage,newUsername}) {
     const [email,setEmail] = React.useState('');
     const [resent,setResent] = React.useState(false);
 
-    console.log("welcome to verification form");
-    console.log("NEw Username: " + newUsername);
-    console.log("Email: " + email); 
     if(email === '' && newUsername !== ""){
       getEmail();
     }
@@ -22,7 +19,6 @@ function VerificationForm({setCurrentPage,newUsername}) {
 	}
 
     function resend(){
-        console.log("Click resend");
         getUser();
     }
 
@@ -31,52 +27,27 @@ function VerificationForm({setCurrentPage,newUsername}) {
     }  
 
     async function getUser(){
-          console.log("Try to get user");
           const response = await fetch(`/get-user/${newUsername}`);
           const json = await response.json();
-          try{
-            console.log("sub json: " + json);
-          }catch(err){
-      
-          }
-          try{
-            console.log("sub json(STRING): " + JSON.stringify(json));
-          }catch(err){
           
-          }
           let userString = JSON.stringify(json);
           userString = userString.substring(1,userString.length-1);
-          console.log("userString: " + userString);
           let newUser = JSON.parse(userString);
     
-          console.log("Update user verified");
           if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
             sendVerificationEmail(newUser);
           }
       }
 
       async function getEmail(){
-        console.log("Try to get email");
         const response = await fetch(`/get-email/${newUsername}`);
         const json = await response.json();
-        try{
-          console.log("get email json: " + json);
-        }catch(err){
-    
-        }
-        try{
-          console.log("get email json(STRING): " + JSON.stringify(json));
-        }catch(err){
-        
-        }
         if(json !== null && json !== undefined && json !== ""){
           setEmail(json);
         }
     }
 
       function getUserItem(newUser,newCode){
-        console.log("Enter getUserItem")
-      
         let userItem = {
           apiid: '',
           username: '',
@@ -103,14 +74,10 @@ function VerificationForm({setCurrentPage,newUsername}) {
           userItem.username = newUsername;
           userItem.password = newUser.password;
           userItem.verificationCode = newCode;
-      
-        console.log("Stringified before passed: " + JSON.stringify(userItem));
-        console.log("Exit getUserItem")
         return userItem;
       }
       
       async function updateUser(userItem){
-        console.log("Engage update user");
         const response = fetch('/user', {
               method: 'PUT',
               headers: {
@@ -122,11 +89,7 @@ function VerificationForm({setCurrentPage,newUsername}) {
           let resp = JSON.stringify(response);
         }).then(function(data) {
         });
-        console.log("Before removing busy setting user");
-        console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
         busySettingUser = (false);
-        console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
-        console.log("Exit update user");
         setResent(true);
       }
 
@@ -142,22 +105,11 @@ function VerificationForm({setCurrentPage,newUsername}) {
     }
 
     async function sendVerificationEmail(user){
-        console.log("Try to send ver email");
         let address = "Mitchelltjiii@gmail.com";
         let newCode = makeid(8);
-        console.log("New Code: " + newCode);
         const response = await fetch(`/send-verification-email/${address}/${newCode}/${newUsername}`);
         const json = await response.json();
-        try{
-          console.log("Send Verification json: " + json);
-        }catch(err){
-      
-        }
-        try{
-          console.log("Send Verification json(STRING): " + JSON.stringify(json));
-        }catch(err){
-          
-        }
+        
         busySettingUser = true;
         updateUser(getUserItem(user,newCode));
       }

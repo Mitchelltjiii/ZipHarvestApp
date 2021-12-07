@@ -141,33 +141,19 @@ const handleGetStarted = () => {
 
 
 async function goToProduct(lookup_key){
-  console.log("Engage go to product.");
   const response = await fetch(`/create-checkout-session/${lookup_key}`, {
         method: 'POST',
         mode: 'no-cors'
   });
   const json = await response.json();
-  try{
-      console.log("new session json: " + json);
-  }catch(err){
-  
-  }
-  try{
-          console.log("new session json(STRING): " + JSON.stringify(json));
-  }catch(err){
-      
-  }
 
   busySettingUser = true;
   updateUser(getUserItem(user,json.id));
 
   window.location.replace(json.url);
-  console.log("fetched create checkout sess");
 }
 
 function getUserItem(newUser,sessionid){
-  console.log("Enter getUserItem")
-
   let userItem = {
     apiid: '',
     username: '',
@@ -193,13 +179,10 @@ function getUserItem(newUser,sessionid){
     userItem.lastName = newUser.lastName;
     userItem.email = newUser.email;
     userItem.sessionid = sessionid;
-  console.log("Stringified before passed: " + JSON.stringify(userItem));
-  console.log("Exit getUserItem")
   return userItem;
 }
 
 async function updateUser(userItem){
-  console.log("Engage update user");
   const response = fetch('/user', {
         method: 'PUT',
         headers: {
@@ -208,20 +191,14 @@ async function updateUser(userItem){
         },
         body: JSON.stringify(userItem)
   }).then(function(response) {
-    let resp = JSON.stringify(response);
   }).then(function(data) {
   });
-  console.log("Before removing busy setting user");
-  console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
+
   busySettingUser = (false);
-  console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
-  console.log("Exit update user");
 }
 
 
 async function updateUserSubId(username,subid){
-  console.log("Engage update user subid");
-  console.log("**Username: " + username + "**subid: " + subid);
   const response = fetch(`/user/subid/${subid}/${username}`, {
         method: 'PUT',
         headers: {
@@ -233,22 +210,14 @@ async function updateUserSubId(username,subid){
   }).then(function(data) {
     setUserUpdated(true);
   });
-  console.log("Before removing busy setting user");
-  console.log("BUSYSETTINGUSER before: " + JSON.stringify(busySettingUser)); 
   busySettingUser = (false);
-  console.log("BUSYSETTINGHR after: " + JSON.stringify(busySettingUser));       
-  console.log("Exit update user");
 }
 
 //value lk_1
 const SuccessDisplay = ({ seshId }) => {
-  console.log("Checking session now");
-
   if(session === null || session === [] || session === undefined || JSON.stringify(session) === "[]"){
-    console.log("Get session now");
     getSession(sessionId);
   }else{
-    console.log("About to update user.");
     if(user.username !== undefined && subscription.id !== undefined && !userUpdated){
       updateUserSubId(user.username,subscription.id);
     }  
@@ -287,24 +256,8 @@ const SuccessDisplay = ({ seshId }) => {
 }
 
 async function getSession(seshId){
-  console.log("Try to get session");
   const response = await fetch(`/get-session/${seshId}`);
   const json = await response.json();
-  try{
-    console.log("session json: " + json);
-  }catch(err){
-
-  }
-  try{
-    console.log("Session json(STRING): " + JSON.stringify(json));
-  }catch(err){
-    
-  }
-  try{
-    console.log("Sub ID: " + json.subscription);
-  }catch(err){
-
-  }
   getUser(false,json.subscription,seshId);
   setSession(json);
 }
@@ -320,69 +273,32 @@ async function getSession(seshId){
   let [userUpdated,setUserUpdated] = useState(false);
   let [continued,setContinued] = useState(false);
 
-  console.log("From User**");
-
   async function getSubscription(subId){
-    console.log("Try to get subscription");
     const response = await fetch(`/get-subscription/${subId}`);
     const json = await response.json();
-    try{
-      console.log("sub json: " + json);
-    }catch(err){
-  
-    }
-    try{
-      console.log("sub json(STRING): " + JSON.stringify(json));
-    }catch(err){
-      
-    }
     setSubscription(json);
   }
 
   async function getUser(fromUrl,subId,seshId){
-    console.log("User from url: " + userFromUrl);
     if(fromUrl){
       let userForFetch = userFromUrl;
       if(userFromUrl === undefined || userFromUrl === ""){
         userForFetch = userFromLogin;
       }
-      console.log("Try to get user");
       const response = await fetch(`/get-user/${userForFetch}`);
       const json = await response.json();
-      try{
-        console.log("sub json: " + json);
-      }catch(err){
-  
-      }
-      try{
-        console.log("sub json(STRING): " + JSON.stringify(json));
-      }catch(err){
-      
-      }
       let userString = JSON.stringify(json);
       userString = userString.substring(1,userString.length-1);
-      console.log("User string: " + userString);
       let newUser = JSON.parse(userString);
-      console.log("New user: " + JSON.stringify(newUser));
 
       if(newUser.verified===1){
-        console.log("Checking VerCode");
         if(verCode !== newUser.verificationCode){
-          console.log("No Match");
           return;
-        }else{
-          console.log("Match!");
         }
 
-        console.log("Curr Date Value: " + (new Date()).getTime());
-        console.log("New User Date Value: " + newUser.verCodeTime);
-        console.log("Difference: " + ((new Date()).getTime()-newUser.verCodeTime));
         if(((new Date()).getTime()-newUser.verCodeTime) > 900000){
-          console.log("Code Expired");
           setExpired(true);
           return;
-        }else{
-          console.log("Code Working still!");
         }
 
   
@@ -397,19 +313,8 @@ async function getSession(seshId){
         }
       }
     }else{
-      console.log("Try to get user");
       const response = await fetch(`/get-user-seshId/${seshId}`);
       const json = await response.json();
-      try{
-       console.log("user json: " + json);
-     }catch(err){
-      
-      }
-      try{
-        console.log("user json(STRING): " + JSON.stringify(json));
-      }catch(err){
-        
-      }
       getSubscription(subId);
       setContinued(true);
       setUser(json)
@@ -433,14 +338,8 @@ async function getSession(seshId){
     }
   }, [sessionId]);
 
-  console.log("Session**: " + JSON.stringify(session));
-  console.log("Subscription**: " + JSON.stringify(subscription));
-  console.log("User**: " + JSON.stringify(user));
-  
-
   if(!success){
     if(user === null || user === [] || user === undefined || JSON.stringify(user) === "[]"){
-      console.log("Get user now*");
       getUser(true,"","");
     }
   }
@@ -484,38 +383,22 @@ async function getSession(seshId){
 	}
 
     function resend(){
-        console.log("Click resend");
         getUserForResend();
     }
 
     async function getUserForResend(){
-      console.log("Try to get user");
       const response = await fetch(`/get-user/${userFromUrl}`);
       const json = await response.json();
-      try{
-        console.log("sub json: " + json);
-      }catch(err){
-  
-      }
-      try{
-        console.log("sub json(STRING): " + JSON.stringify(json));
-      }catch(err){
-      
-      }
       let userString = JSON.stringify(json);
       userString = userString.substring(1,userString.length-1);
-      console.log("userString: " + userString);
       let newUser = JSON.parse(userString);
 
-      console.log("Update user verified");
       if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
         sendVerificationEmail(newUser);
       }
   }
 
   function getUserItemForResend(userForResend,newCode){
-    console.log("Enter getUserItem")
-  
     let userItem = {
       apiid: '',
       username: '',
@@ -542,9 +425,6 @@ async function getSession(seshId){
       userItem.username = userForResend.username;
       userItem.password = userForResend.password;
       userItem.verCodeTime = JSON.stringify((new Date().getTime()));
-  
-    console.log("Stringified before passed: " + JSON.stringify(userItem));
-    console.log("Exit getUserItem")
     return userItem;
   }
 
@@ -560,20 +440,9 @@ async function getSession(seshId){
     }
 
     async function sendVerificationEmail(newUser){
-        console.log("Try to send ver email");
         let newCode = makeid(8);
-        console.log("New Code: " + newCode);
         const response = await fetch(`/send-verification-email/${newUser.email}/${newCode}/${newUser.username}`);
         const json = await response.json();
-        try{
-          console.log("Send Verification json: " + json);
-        }catch(err){
-      
-        }
-        try{
-          console.log("Send Verification json(STRING): " + JSON.stringify(json));
-        }catch(err){
-        }
         busySettingUser = true;
         updateUser(getUserItemForResend(newUser,newCode));
       }

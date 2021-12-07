@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 
 class SelectDeleteAllButton extends Component{
     handleClick() {
-      console.log("SelectDeleteAllButton handle click");
       this.props.toggleDeleteAllSelected();
     }
     

@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 
 class SelectDeleteDryRoomButton extends Component{
     handleClick() {
-      console.log("SelectDeleteDryRoomButton handle click");
       this.props.toggleDeleteDryRoomSelected(this.props.dryRoomId);
     }
     
