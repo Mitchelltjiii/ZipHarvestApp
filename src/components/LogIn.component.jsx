@@ -72,7 +72,6 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
     var createIDLink = <a href="/#" onClick={handleCreateID} style={{cursor:"pointer",color:"#3d85c6",textDecoration:"none"}}>Create one</a>;
     var termsOfServiceLink = <a href="/#" onClick={handleTermsOfService} style={{cursor:"pointer",color:"#3d85c6",textDecoration:"none"}}>Terms of Service</a>;
     var privacyPolicyLink = <a href="/#" onClick={handlePrivacyPolicy} style={{cursor:"pointer",color:"#3d85c6",textDecoration:"none"}}>Privacy Policy.</a>;
-
     const handleLogIn = (event) => {
 		  logIn();
 	  };
