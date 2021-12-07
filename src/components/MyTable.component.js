@@ -40,11 +40,6 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
       });
 
     const classes = useStyles();
-    let harvestBatch = new HarvestBatch('','','');
-
-    if(currHarvest!==undefined){
-      harvestBatch = new HarvestBatch(currHarvest.name,currHarvest.type,currHarvest.date);
-    }
 
     function createData(tag, strain, weight, unit) {
       return {tag, strain, weight, unit};
