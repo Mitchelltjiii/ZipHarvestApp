@@ -26,7 +26,6 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
     setContinued(true);
   }
 
-let busySettingUser = false;
 const [expired,setExpired] = React.useState(false);
 
 
@@ -147,7 +146,6 @@ async function goToProduct(lookup_key){
   });
   const json = await response.json();
 
-  busySettingUser = true;
   updateUser(getUserItem(user,json.id));
 
   window.location.replace(json.url);
@@ -183,7 +181,7 @@ function getUserItem(newUser,sessionid){
 }
 
 async function updateUser(userItem){
-  const response = fetch('/user', {
+  ('/user', {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
@@ -193,27 +191,22 @@ async function updateUser(userItem){
   }).then(function(response) {
   }).then(function(data) {
   });
-
-  busySettingUser = (false);
 }
 
 
 async function updateUserSubId(username,subid){
-  const response = fetch(`/user/subid/${subid}/${username}`, {
+  fetch(`/user/subid/${subid}/${username}`, {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         }
   }).then(function(response) {
-    let resp = JSON.stringify(response);
   }).then(function(data) {
     setUserUpdated(true);
   });
-  busySettingUser = (false);
 }
 
-//value lk_1
 const SuccessDisplay = ({ seshId }) => {
   if(session === null || session === [] || session === undefined || JSON.stringify(session) === "[]"){
     getSession(sessionId);
@@ -442,8 +435,7 @@ async function getSession(seshId){
     async function sendVerificationEmail(newUser){
         let newCode = makeid(8);
         const response = await fetch(`/send-verification-email/${newUser.email}/${newCode}/${newUser.username}`);
-        const json = await response.json();
-        busySettingUser = true;
+        await response.json();
         updateUser(getUserItemForResend(newUser,newCode));
       }
 

@@ -17,7 +17,6 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     const [lastName, setLastName] = React.useState('');
     const [facilityName, setFacilityName] = React.useState('');
     const [stepTwo,setStepTwo] = React.useState(false);
-    let busySettingUser = false;
 
     const [facilityNameError, setFacilityNameError] = React.useState(false);
     const [firstNameError, setFirstNameError] = React.useState(false);
@@ -258,7 +257,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
   }
     
     async function updateUser(userItem){
-      const response = fetch('/user', {
+      fetch('/user', {
             method: (userItem.id) ? 'PUT' : 'POST',
             headers: {
               'Accept': 'application/json',
@@ -266,17 +265,14 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
             },
             body: JSON.stringify(userItem)
       }).then(function(response) {
-        let resp = JSON.stringify(response);
       }).then(function(data) {
       });
-      busySettingUser = (false);
     }
 
     async function sendVerificationEmail(){
         let newCode = makeid(8);
         const response = await fetch(`/send-verification-email/${email}/${newCode}/${username}`);
-        const json = await response.json();
-        busySettingUser = true;
+        await response.json();
         updateUser(getUserItem(newCode));
       }
 
@@ -325,8 +321,8 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     }
 
 
-    var termsOfServiceLink = <a onClick={handleTermsOfService} style={{cursor:"pointer",color:"#3d85c6"}}>Terms of Service</a>;
-    var privacyPolicyLink = <a onClick={handlePrivacyPolicy} style={{cursor:"pointer",color:"#3d85c6"}}>Privacy Policy.</a>;  
+    var termsOfServiceLink = <a href="/#" onClick={handleTermsOfService} style={{cursor:"pointer",color:"#3d85c6"}}>Terms of Service</a>;
+    var privacyPolicyLink = <a href="/#" onClick={handlePrivacyPolicy} style={{cursor:"pointer",color:"#3d85c6"}}>Privacy Policy.</a>;  
 
     let formWidth = "450px";
     let formHeight = "300px";

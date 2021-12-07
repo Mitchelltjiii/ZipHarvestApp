@@ -19,10 +19,6 @@ function EndSubscriptionForm({setCurrentPage,logInFailed,executeLogout,attemptLo
       error = true;
       errorText = "Password is incorrect."
     }
-    let failedLogIn = false;
-    if(!logInSuccess){
-      failedLogIn = true;
-    }
 
     const [showPassword,setShowPassword] = React.useState(false);
 

@@ -19,7 +19,7 @@ function FindUserForm({setCurrentPage}) {
 
     async function sendFindUserLink(){
         const response = await fetch(`/send-find-user/${email}`);
-        const json = await response.json();
+        await response.json();
         setEmailSent(true);
       }
       
