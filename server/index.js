@@ -86,7 +86,6 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
                     console.log("Message sent!")
                     sentMessage = true;
                     res.json(0);
-                    return;
                   }).catch((error) => {
                     console.log("Message not sent!")
                     res.json(1);
