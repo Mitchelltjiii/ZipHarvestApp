@@ -70,10 +70,12 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
       connection.query(usersQueryString, (err, rows) => {
           connection.release(); // return the connection to pool
           if(err) throw err;
-          let sentMessage = false;
+          let foundUser = false;
           try{
             for(const val of rows){
               if((val.email).toLowerCase()===(req.params.email).toLowerCase()){
+                foundUser = true;
+
                 const msg = {
                   to: req.params.email, // Change to your recipient
                   from: 'support@zipharvest.app', // Change to your verified sender
@@ -81,10 +83,8 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
                   text: 'Here',
                   html: 'Your username is ' + val.username +'.\nhttps://www.zipharvest.app/',
                 }
-                
                 sgMail.send(msg).then((response) => {
                     console.log("Message sent!")
-                    sentMessage = true;
                     res.json(0);
                   }).catch((error) => {
                     console.log("Message not sent!")
@@ -94,8 +94,8 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
             }
           }catch(error){
           }
-          console.log("Message sent: " + sentMessage)
-          if(!sentMessage){
+          console.log("Found user: " + foundUser)
+          if(!foundUser){
             res.json(1);
           }
     });
