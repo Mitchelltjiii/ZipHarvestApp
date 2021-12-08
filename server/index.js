@@ -94,7 +94,7 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
             }
           }catch(error){
           }
-          console.log("Found user: " + foundUser)
+          console.log("Founduser: " + foundUser)
           if(!foundUser){
             res.json(1);
           }
