@@ -8,6 +8,11 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 
 	let possiblePlantCount = getPossiblePlantCount();
 
+	let color = "#59981A";
+
+	console.log("Uid/possibleplantcount: " + uniqueIDCount/possiblePlantCount)
+	console.log("2500/Possibleplantcount: " + 2500/possiblePlantCount);
+
 	return (
 		<div id="harvest-batches-form" style={{margin:"auto"}}>
 			<Grid
@@ -29,8 +34,8 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
   					justifyContent="center"
 					alignItems="center"
 					>
-						<div style={{fontSize:"16px",backgroundColor:"#59981A"}}>{uniqueIDCount}/{possiblePlantCount}</div>
-						<div style={{fontSize:"10px"}}>Unique tags exported this month</div>
+						<div style={{border:"medium solid #0000FF",fontSize:"20px",backgroundColor:"#59981A",widht:"100px",height:"50px",borderTopLeftRadius:"5px",borderTopLeftRadius:"5px"}}>{uniqueIDCount}/{possiblePlantCount}</div>
+						<div style={{border:"medium solid #0000FF",fontSize:"12px",widht:"100px",height:"50px",borderBottomLeftRadius:"5px",borderBottomRightRadius:"5px"}}>Unique tags exported this month</div>
 					</Grid>
 					<div style={{margin:"auto"}}>
 					<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}></HBTable>
