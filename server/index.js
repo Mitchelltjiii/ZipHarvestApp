@@ -84,17 +84,14 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
                   html: 'Your username is ' + val.username +'.\nhttps://www.zipharvest.app/',
                 }
                 sgMail.send(msg).then((response) => {
-                    console.log("Message sent!")
                     res.json(0);
                   }).catch((error) => {
-                    console.log("Message not sent!")
                     res.json(1);
                   })
               }
             }
           }catch(error){
           }
-          console.log("Founduser: " + foundUser)
           if(!foundUser){
             res.json(1);
           }
