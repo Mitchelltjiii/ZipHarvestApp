@@ -34,8 +34,12 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
   					justifyContent="center"
 					alignItems="center"
 					>
-						<div style={{margin:"auto",border:"medium solid #000000",fontSize:"20px",backgroundColor:"#59981A",width:"100px",height:"50px",borderTopLeftRadius:"5px",borderTopRightRadius:"5px"}}>{uniqueIDCount}/{possiblePlantCount}</div>
-						<div style={{margin:"auto",border:"medium solid #000000",fontSize:"12px",width:"100px",height:"50px",borderBottomLeftRadius:"5px",borderBottomRightRadius:"5px"}}>Unique tags exported this month</div>
+						<div style={{margin:"auto",border:"thin solid #000000",backgroundColor:"#59981A",width:"150px",height:"40px",borderTopLeftRadius:"5px",borderTopRightRadius:"5px"}}>
+							<div style={{fontSize:"20px",backgroundColor:"#59981A"}}>{uniqueIDCount}/{possiblePlantCount}</div>
+						</div>
+						<div style={{margin:"auto",border:"thin solid #000000",width:"150px",height:"40px",borderBottomLeftRadius:"5px",borderBottomRightRadius:"5px"}}>
+							<div style={{fontSize:"12px"}}>Unique tags exported this month</div>
+						</div>
 					</Grid>
 					<div style={{margin:"auto"}}>
 					<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}></HBTable>
