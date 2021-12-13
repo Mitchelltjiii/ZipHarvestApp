@@ -8,10 +8,21 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 
 	let possiblePlantCount = getPossiblePlantCount();
 
-	let color = "#59981A";
+	uniqueIDCount = 2500;
+
+	let color = "#00FF00";
+
+	let percent = uniqueIDCount/possiblePlantCount;
+
+	if(percent >.5 && percent <.75){
+		color = "#ECF87F";
+	}else if(percent >=75. && percent <.9){
+		color = "#DBA40E";
+	}else if(percent >=.9){
+		color = "#CB6300";
+	}
 
 	console.log("Uid/possibleplantcount: " + uniqueIDCount/possiblePlantCount)
-	console.log("2500/Possibleplantcount: " + 2500/possiblePlantCount);
 
 	return (
 		<div id="harvest-batches-form" style={{margin:"auto"}}>
@@ -34,10 +45,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
   					justifyContent="center"
 					alignItems="center"
 					>
-						<div title="Unique tags exported this month" style={{margin:"auto",border:"thin solid #000000",backgroundColor:"#59981A",width:"150px",height:"40px",borderRadius:"5px"}}>
-							<div style={{fontSize:"20px",backgroundColor:"#59981A"}}>{uniqueIDCount}/{possiblePlantCount}</div>
-						</div>
-						
+						<div title="Unique tags exported this month" style={{fontSize:"20px",margin:"auto",textAlign:"center",backgroundColor:"#59981A",width:"100px",height:"40px",borderRadius:"5px"}}>{uniqueIDCount}/{possiblePlantCount}</div>
 					</Grid>
 					<div style={{margin:"auto"}}>
 					<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}></HBTable>
