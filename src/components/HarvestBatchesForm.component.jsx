@@ -45,7 +45,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
   					justifyContent="center"
 					alignItems="center"
 					>
-						<div title="Unique tags exported this month" style={{fontSize:"20px",margin:"auto",textAlign:"center",backgroundColor:"#59981A",width:"100px",height:"30px",paddingTop:"2px",borderRadius:"5px"}}>{uniqueIDCount}/{possiblePlantCount}</div>
+						<div title="Unique tags exported this month" style={{fontSize:"20px",margin:"auto",textAlign:"center",backgroundColor:color,width:"100px",height:"30px",paddingTop:"2px",borderRadius:"5px"}}>{uniqueIDCount}/{possiblePlantCount}</div>
 					</Grid>
 					<div style={{margin:"auto"}}>
 					<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}></HBTable>
