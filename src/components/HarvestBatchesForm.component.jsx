@@ -10,7 +10,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 
 	uniqueIDCount = 2501;
 
-	var color = "#00FF00";
+	let color = "#00FF00";
 
 	let percent = uniqueIDCount/possiblePlantCount;
 
