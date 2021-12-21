@@ -1001,7 +1001,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 
-				<Select id="search-param-select" value={searchParam} onChange={handleSearchParamSelect} style={{minWidth:"120px"}}>
+				<Select id="search-param-select" value={searchParam} onChange={handleSearchParamSelect} style={{minWidth:"120px",marginTop:"15px"}}>
                 	{searchOptionsList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
@@ -1020,7 +1020,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 			
-				<Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{minWidth: 80}}>
+				<Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{minWidth: 80,marginTop:"15px"}}>
                 	{    
                     tagList.map((name, index) => (
             			<MenuItem key={index} value={name}>
@@ -1039,7 +1039,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				<TextField id="Weight" value={weight} onChange={handleWeight} style={{width: "100px"}}/>
 
-				<Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{minWidth: 80}}>
+				<Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{minWidth: 80,marginTop:"15px"}}>
                 	{unitList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
