@@ -16,7 +16,7 @@ Welcome to ZipHarvest!
 
 ZipHarvest lets you create your Metrc harvest data quickly and easily using voice control. ZipHarvest is intended to work on mobile devices with only one hand needed, allowing you to manipulate plants with the other. 
 
-This tutorial is a comprehensive guide to using ZipHarvest effectively. There are three simple steps: import your data, harvest, and export your data for upload to Metrc. We have provided step-by-step instructions that go into more detail.
+There are three simple steps: import your data, harvest, and export your data for upload to Metrc. We have provided step-by-step instructions that go into more detail.
 
     */
 
@@ -28,8 +28,10 @@ This tutorial is a comprehensive guide to using ZipHarvest effectively. There ar
               justify="center"
             alignItems="center"
         >
-            <div><b>Welcome to ZipHarvest!</b></div>
-            <div>ZipHarvest lets you create your Metrc harvest data quickly and easily using voice control. ZipHarvest is \nintended to work on mobile devices with only one hand needed, allowing you to manipulate plants with the other.</div>
+            <div style={{textAlign:"center",fontSize:"20px"}}><b>Welcome to ZipHarvest!</b></div>
+            <div style={{textAlign:"center",marginTop:"5px"}}>ZipHarvest lets you create your Metrc harvest data quickly and easily using voice control. ZipHarvest is intended to work on mobile devices with only one hand needed, allowing you to manipulate plants with the other.</div>
+            <div style={{textAlign:"center",marginTop:"5px"}}>There are three simple steps: import your data, harvest, and export your data for upload to Metrc. We have provided step-by-step instructions that go into more detail.</div>
+
             </Grid>
 		);
 	  };
