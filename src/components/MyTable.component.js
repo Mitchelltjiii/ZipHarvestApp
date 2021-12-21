@@ -96,7 +96,7 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
       }
 
       if(foundIndex !== -1){
-        currWeightChanges.splice(foundIndex,1,new weightChange(tag,currWeightChanges[foundIndex].newWeight,text,row.wasteWeight,row.wasteUnit));
+        currWeightChanges.splice(foundIndex,1,new weightChange(tag,currWeightChanges[foundIndex].newWeight,text));
       }else{
         currWeightChanges.push(new weightChange(tag,'',text));
       }
