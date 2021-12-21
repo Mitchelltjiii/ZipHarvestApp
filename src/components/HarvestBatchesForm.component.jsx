@@ -22,7 +22,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 		color = "#CB6300";
 	}
 
-	console.log("Uid/possibleplantcount: " + uniqueIDCount/possiblePlantCount)
+	console.log("Uid/possible plantcount: " + uniqueIDCount/possiblePlantCount)
 
 	return (
 		<div id="harvest-batches-form" style={{margin:"auto"}}>
