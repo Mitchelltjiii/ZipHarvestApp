@@ -1029,7 +1029,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 
-				<Select id="search-param-select" value={searchParam} onChange={handleSearchParamSelect} style={{minWidth:"120px"}}>
+				<Select id="search-param-select" value={searchParam} onChange={handleSearchParamSelect} style={{width:"120px",marginTop:"5px"}}>
                 	{searchOptionsList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
@@ -1048,7 +1048,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 			
-				<Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{minWidth: 80}}>
+				<Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{width: "200px"}}>
                 	{    
                     tagList.map((name, index) => (
             			<MenuItem key={index} value={name}>
@@ -1065,9 +1065,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 
-				<TextField label="Harvest Weight" id="Weight" value={weight} onChange={handleWeight} style={{width: "100px"}}/>
+				<TextField label="Harvest Weight" id="Weight" value={weight} onChange={handleWeight} style={{width: "120px"}}/>
 
-				<Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{minWidth: 80}}>
+				<Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{width: "80px",marginTop:"5px"}}>
                 	{unitList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
@@ -1084,9 +1084,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 
-				<TextField label="Waste Weight" id="WasteWeight" value={wasteWeight} onChange={handleWasteWeight} style={{width: "100px"}}/>
+				<TextField label="Waste Weight" id="WasteWeight" value={wasteWeight} onChange={handleWasteWeight} style={{width: "120px"}}/>
 
-				<Select id="waste-unit-select" value={wasteUnit} onChange={handleWasteUnitSelect} style={{minWidth: 80}}>
+				<Select id="waste-unit-select" value={wasteUnit} onChange={handleWasteUnitSelect} style={{width: "80px",marginTop:"10px"}}>
                 	{unitList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
