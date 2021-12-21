@@ -8,7 +8,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 
 	let possiblePlantCount = getPossiblePlantCount();
 
-	uniqueIDCount = 3750;
+	uniqueIDCount = 4900;
 
 	let color = "#00FF00";
 
