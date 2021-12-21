@@ -72,8 +72,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const [selectedTag, setSelectedTag] = React.useState('');
 
 	const [weight, setWeight] = React.useState('');
+	
+	const [wasteWeight, setWasteWeight] = React.useState('');
 
 	const [unit, setUnit] = React.useState('lbs');
+
+	const [wasteUnit, setWasteUnit] = React.useState('lbs');
 
 	const [branchValue, setBranchValue] = React.useState('');
 
@@ -138,6 +142,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	
 	const handleSelectHB = (e) => {
 		setWeight("");
+		setWasteWeight("");
 		setBranchValue("");
 		setSearchTag("");
 		setSelectedTag("");	
@@ -253,8 +258,16 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setWeight(event.target.value);
 	  };
 
+	const handleWasteWeight = (event) => {
+		setWasteWeight(event.target.value);
+	  };
+
 	const handleUnitSelect = (event) => {
 		setUnit(event.target.value);
+	  };
+
+	const handleWasteUnitSelect = (event) => {
+		setWasteUnit(event.target.value);
 	  };
 
 	const handleSearchParamSelect = (event) => {
@@ -392,6 +405,15 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			setUnit('lbs');
 		}else if(unit === 1){
 			setUnit('g');
+		}
+	}
+
+	function enterWasteWeightFromSpeech(wasteWeight,unit){
+		setWasteWeight(wasteWeight);
+		if(unit === 0){
+			setWasteUnit('lbs');
+		}else if(unit === 1){
+			setWasteUnit('g');
 		}
 	}
 
@@ -613,6 +635,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function resetHarvestForm(resetLastHarvested){
 		setWeight("");
+		setWasteWeight("");
+		setUnit('lbs');
+		setWasteUnit('lbs');
 		setBranchValue("");
 		setSearchTag("");
 		setSelectedTag("");	
@@ -631,6 +656,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function setChanges(){
 		setWeight("");
+		setWasteWeight("");
+		setUnit('lbs');
+		setWasteUnit('lbs');
 		setBranchValue("");
 		setSearchTag("");
 		setSelectedTag('');
@@ -1037,9 +1065,28 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 
-				<TextField id="Weight" value={weight} onChange={handleWeight} style={{width: "100px"}}/>
+				<TextField label="Harvest Weight" id="Weight" value={weight} onChange={handleWeight} style={{width: "100px"}}/>
 
 				<Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{minWidth: 80}}>
+                	{unitList.map((name, index) => (
+            			<MenuItem key={index} value={name}>
+             	 		{name}
+            			</MenuItem>
+          			))}
+             	</Select>
+
+				</Grid>
+
+				<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
+
+				<TextField label="Waste Weight" id="WasteWeight" value={wasteWeight} onChange={handleWasteWeight} style={{width: "100px"}}/>
+
+				<Select id="waste-unit-select" value={wasteUnit} onChange={handleWasteUnitSelect} style={{minWidth: 80}}>
                 	{unitList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
