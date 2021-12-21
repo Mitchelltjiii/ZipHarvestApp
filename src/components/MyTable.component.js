@@ -34,8 +34,8 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
 
     const classes = useStyles();
 
-    function createData(tag, strain, weight, unit) {
-      return {tag, strain, weight, unit};
+    function createData(tag, strain, weight, unit, wasteWeight, wasteUnit) {
+      return {tag, strain, weight, unit, wasteWeight, wasteUnit};
     }
 
     function getStrainFromTag(tag){
@@ -57,7 +57,7 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
               }
             }
             if(!hidden){
-              rows.push(createData(val.tag,getStrainFromTag(val.tag),val.weight,val.unit));
+              rows.push(createData(val.tag,getStrainFromTag(val.tag),val.weight,val.unit,val.wasteWeight,val.wasteUnit));
             }
           }
         }
@@ -78,7 +78,7 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
       for(let row of rows){
         if(row.tag === tag){
           foundIndex = i;
-          foundRow = createData(row.tag,row.strain,row.weight,text);
+          foundRow = createData(row.tag,row.strain,row.weight,text,row.wasteWeight,row.wasteUnit);
         }
         i++;
       }
@@ -96,7 +96,7 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
       }
 
       if(foundIndex !== -1){
-        currWeightChanges.splice(foundIndex,1,new weightChange(tag,currWeightChanges[foundIndex].newWeight,text));
+        currWeightChanges.splice(foundIndex,1,new weightChange(tag,currWeightChanges[foundIndex].newWeight,text,row.wasteWeight,row.wasteUnit));
       }else{
         currWeightChanges.push(new weightChange(tag,'',text));
       }
@@ -220,6 +220,8 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
             					<TableCell align="right">Strain</TableCell>
             					<TableCell align="right">Weight</TableCell>
             					<TableCell align="right">Unit</TableCell>
+                      <TableCell align="right">WasteWeight</TableCell>
+            					<TableCell align="right">WasteUnit</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -241,6 +243,8 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
               <NonEditableTF editNow={editNow} row={row}></NonEditableTF>
               <EditableDD editNow={editNow} row={row}></EditableDD>
               <NonEditableDD editNow={editNow} row={row}></NonEditableDD>
+              <TableCell align="right">{row.wasteWeight}</TableCell>
+              <TableCell align="right">{row.wasteUnit}</TableCell>
             </TableRow>
             ))}
             </TableBody>

@@ -36,17 +36,19 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		this.active = active;
 	}
 
-	function HarvestRecord(itemID,tag,weight,unit,batchName,userID){
+	function HarvestRecord(itemID,tag,weight,unit,batchName,userID,wasteWeight,wasteUnit){
 		this.itemID = itemID;
 		this.tag = tag;
 		this.weight = weight;
 		this.unit = unit;
 		this.batchName = batchName;
 		this.userID = userID;
+		this.wasteWeight = wasteWeight;
+		this.wasteUnit = wasteUnit;
 	}
 
 	let hbOptionsList = ["Add New Harvest Batch"];
-	let currentHarvestRecord = new HarvestRecord('','','','','','');
+	let currentHarvestRecord = new HarvestRecord('','','','','','','','');
 
 	let addedHB = new HarvestBatch("","","",userID);
 
@@ -570,19 +572,23 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				if(addPlant===null||addPlant===undefined){
 					return false;
 				}
-				currentHarvestRecord = new HarvestRecord('',plantTag,0,'',currentHarvest.name,userID);
+				currentHarvestRecord = new HarvestRecord('',plantTag,0,'',currentHarvest.name,userID,0,'');
 				if(weight===""||weight===undefined){
 					currentHarvestRecord.weight=getBranchWeight();
 				}else{
 					currentHarvestRecord.weight=parseFloat(weight)+getBranchWeight();
-
+				}
+				if(wasteWeight!==""&&wasteWeight!==undefined){
+					currentHarvestRecord.wasteWeight=wasteWeight;
+				}else{
+					currentHarvestRecord.wasteWeight=0;
 				}
 				if(currentHarvestRecord.weight===0){
 					return false;
 				}
 				currentHarvestRecord.unit=unit;
-				setLastHarvestedPlant(currentHarvestRecord);
-								
+				currentHarvestRecord.wasteUnit=wasteUnit;
+				setLastHarvestedPlant(currentHarvestRecord);				
 				removePlant(plantTag)
 
 				let plantTags = [];
@@ -1029,7 +1035,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 
-				<Select id="search-param-select" value={searchParam} onChange={handleSearchParamSelect} style={{width:"120px",marginTop:"5px"}}>
+				<Select id="search-param-select" value={searchParam} onChange={handleSearchParamSelect} style={{width:"120px",marginTop:"15px"}}>
                 	{searchOptionsList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
@@ -1067,7 +1073,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				<TextField label="Harvest Weight" id="Weight" value={weight} onChange={handleWeight} style={{width: "120px"}}/>
 
-				<Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{width: "80px",marginTop:"5px"}}>
+				<Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{width: "80px",marginTop:"15px"}}>
                 	{unitList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
@@ -1086,7 +1092,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				<TextField label="Waste Weight" id="WasteWeight" value={wasteWeight} onChange={handleWasteWeight} style={{width: "120px"}}/>
 
-				<Select id="waste-unit-select" value={wasteUnit} onChange={handleWasteUnitSelect} style={{width: "80px",marginTop:"10px"}}>
+				<Select id="waste-unit-select" value={wasteUnit} onChange={handleWasteUnitSelect} style={{width: "80px",marginTop:"15px"}}>
                 	{unitList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}

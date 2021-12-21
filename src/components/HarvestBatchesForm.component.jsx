@@ -15,9 +15,9 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 	let percent = uniqueIDCount/possiblePlantCount;
 
 	if(percent >.5 && percent <.75){
-		color = "#ECF87F";
-	}else if(percent >=75. && percent <.9){
 		color = "#DBA40E";
+	}else if(percent >=75. && percent <.9){
+		color = "#ECF87F";
 	}else if(percent >=.9){
 		color = "#CB6300";
 	}
