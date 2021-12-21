@@ -1039,7 +1039,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				<TextField id="Weight" value={weight} onChange={handleWeight} style={{width: "100px"}}/>
 
-				<Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{minWidth: 80,marginTop:"5px"}}>
+				<Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{minWidth: 80}}>
                 	{unitList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
