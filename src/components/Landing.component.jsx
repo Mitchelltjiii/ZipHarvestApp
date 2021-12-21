@@ -8,6 +8,7 @@ import EndSubscriptionForm from './EndSubscriptionForm.component';
 import ResetPasswordForm from './ResetPasswordForm.component';
 import ManageDryRoomsForm from './ManageDryRoomsForm.component';
 import ChangeSubscriptionForm from './ChangeSubscriptionForm.component';
+import TutorialForm from './TutorialForm.component';
 
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
 	setHarvestBatches, resetHarvestBatches, currentHarvest,setNewHBID, refreshOuter,
@@ -41,6 +42,8 @@ getPossiblePlantCount,getSubscriptionType}){
 				<ResetPasswordForm setCurrentPage={setCurrentPage} linkCode='' userFromUrl='' fromAccountSettings={fromAccountSettings} userID={userID}></ResetPasswordForm>
 			) : currentPage === 'change-subscription-form' ? (
 				<ChangeSubscriptionForm userID={userID} reloadSubscription={reloadSubscription} getSubscriptionType={getSubscriptionType}></ChangeSubscriptionForm>
+			) : currentPage === 'tutorial-form' ? (
+				<TutorialForm></TutorialForm>
 			) : null}
         </div>
     )

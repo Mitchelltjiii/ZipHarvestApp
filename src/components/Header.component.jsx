@@ -40,6 +40,11 @@ function Header({setCurrentPage}){
     setCurrentPage('harvest-batches-form')
   }
 
+  const handleTutorial = () => {
+    handleClose()
+    setCurrentPage('tutorial-form')
+  }
+
   let headerWidth = "650px";
   if(isMobile){
     headerWidth = "340px";
@@ -62,6 +67,7 @@ function Header({setCurrentPage}){
         <MenuItem onClick={()=>{handleManagePlants() }}>Manage Plants</MenuItem>
         <MenuItem onClick={()=>{handleManageDryRooms() }}>Manage Dry Rooms</MenuItem>
         <MenuItem onClick={()=>{handleMyAccount() }}>My Account</MenuItem>
+        <MenuItem onClick={()=>{handleTutorial() }}>Tutorial</MenuItem>
       </Menu>
     </div>
             
