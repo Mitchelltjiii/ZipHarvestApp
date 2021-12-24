@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 function TutorialForm() {
 
     let formWidth = "800px";
-    let formHeight = "2800px";
+    let formHeight = "3600px";
 
     if(isMobile){
       formWidth = "100%";
