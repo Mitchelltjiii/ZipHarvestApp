@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 function TutorialForm() {
 
     let formWidth = "800px";
-    let formHeight = "2401px";
+    let formHeight = "2800px";
 
     if(isMobile){
       formWidth = "100%";
@@ -92,8 +92,8 @@ Once you have your exported file(s), you may upload them to Metrc via the Import
 
     */
 
-   let margR = "10px";
-   let margL = "10px";
+   let margR = "80px";
+   let margL = "80px";
 
     const TutorialText = () => {	  
 		return (
@@ -102,7 +102,7 @@ Once you have your exported file(s), you may upload them to Metrc via the Import
             direction="row"
               justify="center"
             alignItems="center"
-            style={{marginRight:margR,marginLeft:margL}}
+            style={{marginRight:margR,marginLeft:margL,marginTop:"40px"}}
         >
             <div style={{textAlign:"center",fontSize:"20px"}}><b>Welcome to ZipHarvest!</b></div>
             <div style={{textAlign:"center",marginTop:"5px"}}>ZipHarvest lets you create your Metrc harvest data quickly and easily using voice control. ZipHarvest is intended to work on mobile devices with only one hand needed, allowing you to manipulate plants with the other.</div>
