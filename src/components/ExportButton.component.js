@@ -97,12 +97,14 @@ class ExportButton extends Component{
         }
 
         function exp(){
+          console.log("EXPORT");
             commitExportRecords();
             parent.setState({choosingUnit:false});
             parent.forceUpdate();
         }
 
         function commitExportRecords(){
+          console.log("Commit Export Records");
             for(const val of parent.state.exportRecords){
                 busyCreatingExportRecords.push(val);
             }
@@ -120,7 +122,12 @@ class ExportButton extends Component{
                 }
         }
         const createExportRecord = async(tag) => {
+            console.log("Create Export Record");
+            console.log("Tag: " + tag);
             let time = JSON.stringify((new Date()).getTime());
+            console.log("Time: " + time);
+            console.log("UserID: " + parent.props.userID);
+
             const response = fetch(`/er/${tag}/${time}/${parent.props.userID}`, {
             method: 'POST',
             headers: {

@@ -40,6 +40,17 @@ export default class App extends React.Component {
 
   componentDidMount() {
     console.log("App component did mount");
+    let currPage = localStorage.getItem("currentPage");
+    console.log("CurrPage: " + currPage);
+    
+    if(currPage !== null && currPage !== undefined && currPage !== ""){
+      this.setState({loggedIn:user,userID:user,currentPage:currPage,logInFailed:false});
+    }else{
+      this.setState({loggedIn:user,userID:user,logInFailed:false});
+    }
+    this.resetAll([]);
+    this.engageReload();
+
   }
   
   engageReload = () => {
@@ -343,6 +354,7 @@ export default class App extends React.Component {
     console.log("Execute login");
     localStorage.setItem('user', user);
     localStorage.setItem('staySignedIn',staySignedIn);
+    localStorage.setItem('currentPage','harvest-form');
     let currPage = localStorage.getItem("currentPage");
     console.log("CurrPage: " + currPage);
     
@@ -516,7 +528,6 @@ export default class App extends React.Component {
       }
   render() {
     console.log("Render app");
-    localStorage.setItem("currentPage","harvest-form");
     let reloaded = this.pageAccessedByReload();
     const loggedInUser = localStorage.getItem("user");
 
