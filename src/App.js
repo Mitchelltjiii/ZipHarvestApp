@@ -13,7 +13,7 @@ import Grid from '@material-ui/core/Grid';
 
 export default class App extends React.Component {
   state = {
-    currentPage: 'harvest-form',
+    currentPage: '',
     loggedIn: '',
     harvestBatches: [],
     plants: [],
@@ -43,14 +43,14 @@ export default class App extends React.Component {
     let currPage = localStorage.getItem("currentPage");
     console.log("CurrPage: " + currPage);
     
-    if(currPage !== null && currPage !== undefined && currPage !== ""){
-      this.setState({loggedIn:user,userID:user,currentPage:currPage,logInFailed:false});
-    }else{
-      this.setState({loggedIn:user,userID:user,logInFailed:false});
-    }
-    this.resetAll([]);
-    this.engageReload();
+    if(this.state.currentPage === null || this.state.currentPage === undefined || this.state.currentPage === ""){
+      if(currPage !== null && currPage !== undefined && currPage !== ""){
+        this.setState({currentPage:currPage});
 
+        this.resetAll([]);
+        this.engageReload();
+      }    
+    }
   }
   
   engageReload = () => {
