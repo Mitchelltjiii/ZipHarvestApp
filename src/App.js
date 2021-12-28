@@ -46,8 +46,6 @@ export default class App extends React.Component {
     if(this.state.currentPage === null || this.state.currentPage === undefined || this.state.currentPage === ""){
       if(currPage !== null && currPage !== undefined && currPage !== ""){
         this.setState({currentPage:currPage});
-
-        this.resetAll([]);
         this.engageReload();
       }    
     }
