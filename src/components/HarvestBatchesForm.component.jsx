@@ -4,6 +4,7 @@ import HBTable from './HBTable.component';
 
 function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, userID, reloadExportRecords, getUniqueIDCount,getDryRooms,getPossiblePlantCount}) {
 	
+	console.log("Enter HarvestBatchesForm");
 	let uniqueIDCount = getUniqueIDCount();
 
 	let possiblePlantCount = getPossiblePlantCount();

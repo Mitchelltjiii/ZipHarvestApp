@@ -130,7 +130,7 @@ Date of harvest,
 Dry Room, and
 Harvest type ("M" for manicure, "H" for "regular" harvest).
 For example, a manicure harvest and January 1, 2018 and put into dry room 1 would be named "2018-01-01-Dry Room 1-M."
-Rooms cannot be changed in Metrc after harvest; as long as weight is accurate and all other requirements are met (security, etc.) product may be moved to another room after harvest even if it differs from the harvest batch room.” “
+Rooms cannot be changed in Metrc after harvest; as long as weight is accurate and all other requirements are met (security, etc.) product may be moved to another room after harvest even if it differs from the harvest batch room.”
 </div>
             <div style={{textAlign:"center",marginTop:"5px"}}>ZipHarvest makes creating and switching between harvest batches easy. Create your first harvest batch by selecting New Harvest Batch in the first drop down menu. Enter your harvest batch name in the first field. Once you select a harvest batch name, it cannot be edited. Then choose if you are harvesting today or yesterday. The date can be changed to any date after the harvest batch is created. Finally, select if this harvest batch is manicure or final harvest. You should keep all manicured plants in separate harvest batches from harvested plants, even if they are from the same strain or room.</div>
             <div style={{textAlign:"center",marginTop:"5px"}}><b>Harvest Procedure</b></div>

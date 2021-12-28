@@ -39,6 +39,7 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
+    console.log("App component did mount");
   }
   
   engageReload = () => {
@@ -340,9 +341,11 @@ export default class App extends React.Component {
 	}
 
   executeLogIn = (user,staySignedIn) =>{
+    console.log("Execute login");
     localStorage.setItem('user', user);
     localStorage.setItem('staySignedIn',staySignedIn);
     let currPage = localStorage.getItem("currentPage");
+    console.log("CurrPage: " + currPage);
     
     if(currPage !== null && currPage !== undefined && currPage !== ""){
       this.setState({loggedIn:user,userID:user,currentPage:currPage,logInFailed:false});
@@ -379,6 +382,7 @@ export default class App extends React.Component {
   }
 
   getUniqueIDCount = () => {
+    console.log("Enter Get Unique ID Count");
     let exportRecords = JSON.parse(this.executeGetExportRecords());
 
     let uids = [];
@@ -398,10 +402,12 @@ export default class App extends React.Component {
         }
       }
     }
+    console.log("Return x Get Unique ID Count: " + x);
     return x;
   }
 
   getPossiblePlantCount = () => {
+    console.log("Enter get Possible Plant Count")
     let subscriptionType = "";
 
     if(JSON.stringify(this.state.subscription) !== "[]"){
@@ -416,6 +422,7 @@ export default class App extends React.Component {
     }else if(subscriptionType === "premium"){
       possiblePlantCount = 10000;
     }
+    console.log("Exit get Possible Plant Count: " + possiblePlantCount);
     return possiblePlantCount;
   }
 
@@ -509,6 +516,7 @@ export default class App extends React.Component {
         .includes('reload'));
       }
   render() {
+    console.log("Render app");
     localStorage.setItem("currentPage","harvest-form");
     let reloaded = this.pageAccessedByReload();
     const loggedInUser = localStorage.getItem("user");

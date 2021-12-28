@@ -1077,18 +1077,16 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
                 {(errorMessageText.length!==0) ? <ErrorMessageLabel></ErrorMessageLabel> : null}
 
-				{(lastHarvestedPlant.tag === undefined) ? 
-				<div></div> :
+				<Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
+					nextPlantFromSpeech={nextPlantFromSpeech} voiceCommand={voiceCommand}></Dictaphone>	
+				</Grid>
+				</div>
+					{(lastHarvestedPlant.tag === undefined) ? 
+					<div></div> :
 					<LastHarvested lastHarvestedPlant={lastHarvestedPlant} getStrainForPlantItem={getStrainForPlantItem} getLastHarvestRecordItem={getLastHarvestRecordItem} 
 					getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} 
 					setChanges={setChanges} resetHarvestForm={resetHarvestForm}
-					getPlantItem={getPlantItem} harvestType={harvestType}></LastHarvested>}		
-
-
-				</Grid>
-				</div>
-					<Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
-					nextPlantFromSpeech={nextPlantFromSpeech} voiceCommand={voiceCommand}></Dictaphone>
+					getPlantItem={getPlantItem} harvestType={harvestType}></LastHarvested>}	
 					<Grid
 					container
 					direction="row"
