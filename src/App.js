@@ -43,6 +43,7 @@ export default class App extends React.Component {
     let currPage = localStorage.getItem("currentPage");
     console.log("CurrPage: " + currPage);
     
+    
     if(this.state.currentPage === null || this.state.currentPage === undefined || this.state.currentPage === ""){
       if(currPage !== null && currPage !== undefined && currPage !== ""){
         this.setState({currentPage:currPage});
