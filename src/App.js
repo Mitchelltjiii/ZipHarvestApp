@@ -335,6 +335,7 @@ export default class App extends React.Component {
       plant.id = newID;
       let tempPlants = this.state.plants;
 			tempPlants = tempPlants.substring(0,tempPlants.length-1) + "," + JSON.stringify(plant) + "]";
+      
       this.setState({plants: tempPlants});
 	}
 
