@@ -104,6 +104,7 @@ class ExportButton extends Component{
 
         function commitExportRecords(){
           console.log("Commit Export Records");
+          console.log("Exports Record Data: " + JSON.stringify(exportRecordsData))
             for(const val of exportRecordsData){
                 busyCreatingExportRecords.push(val);
             }
@@ -183,6 +184,8 @@ class ExportButton extends Component{
                 exportRecordsData.push(val.tag);
             }
         } 
+        console.log("Export Record Data After Creation: " + JSON.stringify(exportRecordsData))
+
 /*
         console.log("Parent set export records?");
         if(JSON.stringify(parent.state.exportRecords) === "[]"){
