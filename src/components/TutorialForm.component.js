@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 function TutorialForm() {
 
     let formWidth = "800px";
-    let formHeight = "3600px";
+    let formHeight = "3000px";
 
     if(isMobile){
       formWidth = "100%";
@@ -161,11 +161,11 @@ Click “Next Plant”.</div>
     return(
       <div id="tutorial-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
       {isMobile ?
-        <div style={{width:formWidth,height:formHeight,display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+        <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
                 <TutorialText></TutorialText>
                 </div>
                 :
-                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
             <TutorialText></TutorialText>
         </div>
        }
