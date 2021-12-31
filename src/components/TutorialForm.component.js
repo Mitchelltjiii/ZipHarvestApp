@@ -100,7 +100,7 @@ Once you have your exported file(s), you may upload them to Metrc via the Import
             <Grid
             container
             direction="row"
-              justify="center"
+            justify="center"
             alignItems="flex-start"
             style={{marginRight:margR,marginLeft:margL,marginTop:"40px"}}
         >
