@@ -101,7 +101,7 @@ Once you have your exported file(s), you may upload them to Metrc via the Import
             container
             direction="row"
               justify="center"
-            alignItems="start"
+            alignItems="flex-start"
             style={{marginRight:margR,marginLeft:margL,marginTop:"40px"}}
         >
             <div style={{textAlign:"center",fontSize:"20px"}}><b>Welcome to ZipHarvest!</b></div>
