@@ -104,6 +104,7 @@ class ExportButton extends Component{
 
         function commitExportRecords(){
           console.log("Commit Export Records");
+          
           console.log("Exports Record Data: " + JSON.stringify(exportRecordsData))
             for(const val of exportRecordsData){
                 busyCreatingExportRecords.push(val);
