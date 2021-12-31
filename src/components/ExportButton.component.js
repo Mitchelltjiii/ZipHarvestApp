@@ -109,13 +109,11 @@ class ExportButton extends Component{
             for(const val of exportRecordsData){
                 busyCreatingExportRecords.push(val);
                 console.log("Busy Creating added: " + JSON.stringify(val))
-
             }
 
             for(const val of exportRecordsData){
                 createExportRecord(val);
                 console.log("Create export Record: " + JSON.stringify(val))
-
             }
 
             let timeLimit = 3000;
