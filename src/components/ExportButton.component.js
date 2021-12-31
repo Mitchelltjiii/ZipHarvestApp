@@ -17,7 +17,6 @@ class ExportButton extends Component{
                     "Red": "#E9573F",
                     "Yellow": "#F6BB42"},
             choosingUnit: false,
-            exportRecords: [],
             subscription: [],
             choosingDryRoom: false,
             selectedDR: ""
@@ -105,11 +104,11 @@ class ExportButton extends Component{
 
         function commitExportRecords(){
           console.log("Commit Export Records");
-            for(const val of parent.state.exportRecords){
+            for(const val of exportRecordsData){
                 busyCreatingExportRecords.push(val);
             }
 
-            for(const val of parent.state.exportRecords){
+            for(const val of exportRecordsData){
                 createExportRecord(val);
             }
 
@@ -184,12 +183,12 @@ class ExportButton extends Component{
                 exportRecordsData.push(val.tag);
             }
         } 
-
+/*
         console.log("Parent set export records?");
         if(JSON.stringify(parent.state.exportRecords) === "[]"){
             console.log("Parent setting export records");
             parent.setState({exportRecords:exportRecordsData});            
-        }    
+        }  */  
               
         let fileName = this.props.row.name;
         fileName = fileName.replace(" ","_");
