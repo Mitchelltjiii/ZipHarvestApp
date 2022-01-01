@@ -10,7 +10,6 @@ function TutorialForm() {
     if(isMobile){
       formWidth = "100%";
     }
-
     /*
     Introduction:
 Welcome to ZipHarvest!
