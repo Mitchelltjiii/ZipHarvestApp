@@ -6,9 +6,11 @@ function TutorialForm() {
 
     let formWidth = "800px";
     let formHeight = "3000px";
+    
     if(isMobile){
       formWidth = "100%";
     }
+
     /*
     Introduction:
 Welcome to ZipHarvest!
