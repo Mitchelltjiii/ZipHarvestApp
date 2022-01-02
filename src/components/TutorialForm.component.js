@@ -10,6 +10,7 @@ function TutorialForm() {
     let margL = "80px";
     let fontSize = "20px";
     let smallFontSize = "12px";
+    
     if(isMobile){
      margR = "10px";
      margL = "10px";
