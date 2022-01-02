@@ -17,7 +17,7 @@ function TutorialForm() {
      fontSize = "12px";
      smallFontSize = "8px"
      formWidth = "100%";
-     formHeight = "2600px";
+     formHeight = "2300px";
     }
 
     const TutorialText = () => {	  
