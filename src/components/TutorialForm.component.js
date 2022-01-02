@@ -9,13 +9,13 @@ function TutorialForm() {
     let margR = "80px";
     let margL = "80px";
     let fontSize = "20px";
-    let smallFontSize = "12px";
+    let smallFontSize = "16px";
 
     if(isMobile){
      margR = "10px";
      margL = "10px";
      fontSize = "12px";
-     smallFontSize = "8px"
+     smallFontSize = "10px"
      formWidth = "100%";
      formHeight = "2500px";
     }
