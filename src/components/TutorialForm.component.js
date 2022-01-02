@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 function TutorialForm() {
 
     let formWidth = "800px";
-    let formHeight = "3000px";
+    let formHeight = "3200px";
     let margR = "80px";
     let margL = "80px";
     let fontSize = "20px";
@@ -17,7 +17,7 @@ function TutorialForm() {
      fontSize = "12px";
      smallFontSize = "8px"
      formWidth = "100%";
-     formHeight = "2300px";
+     formHeight = "2500px";
     }
 
     const TutorialText = () => {	  
