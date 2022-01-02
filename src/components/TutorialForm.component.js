@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 function TutorialForm() {
 
     let formWidth = "800px";
-    let formHeight = "3200px";
+    let formHeight = "3000px";
     let margR = "80px";
     let margL = "80px";
     let fontSize = "20px";
@@ -27,7 +27,7 @@ function TutorialForm() {
             direction="row"
             justify="center"
             alignItems="flex-start"
-            style={{marginRight:margR,marginLeft:margL,marginTop:"40px",marginBottom:"40px"}}
+            style={{marginRight:margR,marginLeft:margL,marginTop:"40px"}}
         >
             <div style={{textAlign:"left",fontSize:fontSize}}><b>Welcome to ZipHarvest!</b></div>
             <div style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>ZipHarvest lets you create your Metrc harvest data quickly and easily using voice control. ZipHarvest is intended to work on mobile devices with only one hand needed, allowing you to manipulate plants with the other.</div>
@@ -90,7 +90,7 @@ Click “Next Plant”.</div>
                 <TutorialText></TutorialText>
                 </div>
                 :
-                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center',marginBottom:"40px"}}>
             <TutorialText></TutorialText>
         </div>
        }
