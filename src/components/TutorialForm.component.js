@@ -32,6 +32,8 @@ function TutorialForm() {
             <div style={{textAlign:"left",fontSize:fontSize}}><b>Welcome to ZipHarvest!</b></div>
             <div style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>ZipHarvest lets you record your Metrc harvest data using voice control. ZipHarvest is intended to work on mobile devices with only one hand needed, allowing you to manipulate plants with the other.</div>
             <div style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>There are three simple steps: import your data, harvest, and export your data for upload to Metrc.</div>
+            <div style={{textAlign:"left",marginTop:"20px",fontSize:fontSize}}><b>Best Practice</b></div>
+            <div style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>ZipHarvest works most effectively if it's prepared before harvest. Then, if plants of the same strain and harvest batch are harvested and prepared so they can be weighed quickly one after another. This is to avoid switching between harvest batches and opening and closing your phone.</div>
             <div style={{textAlign:"left",marginTop:"20px",fontSize:fontSize}}><b>Download Data from Metrc</b></div>
             <div style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>Flowering plants from Metrc must be imported into ZipHarvest in order to harvest. Download a CSV file of the plants you’d like to select from by going to the flowering plants section of your Metrc account. If you open the file, the headers of the CSV file should be “Tag, Strain, Location, Hold, Group, Group Type, Group Date, Phase Date, Harvested.”</div>
             <div style={{textAlign:"left",marginTop:"20px",fontSize:fontSize}}><b>Import Data into ZipHarvest</b></div>
@@ -90,7 +92,7 @@ Click “Next Plant”.</div>
                 <TutorialText></TutorialText>
                 </div>
                 :
-                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center',marginBottom:"40px"}}>
+                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
             <TutorialText></TutorialText>
         </div>
        }
