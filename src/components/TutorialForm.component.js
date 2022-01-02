@@ -5,12 +5,12 @@ import Grid from '@material-ui/core/Grid';
 function TutorialForm() {
 
     let formWidth = "800px";
-    let formHeight = "3200px";
+    let formHeight = "3800px";
     let margR = "80px";
     let margL = "80px";
     let fontSize = "20px";
     let smallFontSize = "12px";
-    
+
     if(isMobile){
      margR = "10px";
      margL = "10px";
@@ -29,11 +29,11 @@ function TutorialForm() {
             alignItems="flex-start"
             style={{marginRight:margR,marginLeft:margL,marginTop:"40px"}}
         >
-            <p style={{textAlign:"left",fontSize:fontSize,fontWeight:"bold"}}>Welcome to ZipHarvest!</p>
-            <p style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>ZipHarvest lets you record and report your Metrc harvest data using voice control. ZipHarvest is intended to work on mobile devices with only one hand needed, allowing you to manipulate plants with the other.</p>
-            <p style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>There are three simple steps: import your data, harvest, and export your data for upload to Metrc.</p>
-            <p style={{textAlign:"left",marginTop:"20px",fontSize:fontSize,fontWeight:"bold"}}>Best Practice</p>
-            <p style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>ZipHarvest works most effectively if it's prepared before harvest. Then, if plants of the same strain and harvest batch are harvested and prepared so they can be weighed quickly one after another. This is to avoid switching between harvest batches and opening and closing your phone.</p>
+            <div style={{textAlign:"left",fontSize:fontSize,fontWeight:"bold"}}>Welcome to ZipHarvest!</div>
+            <div style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>ZipHarvest lets you record and report your Metrc harvest data using voice control. ZipHarvest is intended to work on mobile devices with only one hand needed, allowing you to manipulate plants with the other.</div>
+            <div style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>There are three simple steps: import your data, harvest, and export your data for upload to Metrc.</div>
+            <div style={{textAlign:"left",marginTop:"20px",fontSize:fontSize,fontWeight:"bold"}}>Best Practice</div>
+            <div style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>ZipHarvest works most effectively if it's prepared before harvest. Then, if plants of the same strain and harvest batch are harvested and prepared so they can be weighed quickly one after another. This is to avoid switching between harvest batches and opening and closing your phone.</div>
             <div style={{textAlign:"left",marginTop:"20px",fontSize:fontSize,fontWeight:"bold"}}>Download Data from Metrc</div>
             <div style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>Flowering plants from Metrc must be imported into ZipHarvest in order to harvest. Download a CSV file of the plants you’d like to select from by going to the flowering plants section of your Metrc account. If you open the file, the headers of the CSV file should be “Tag, Strain, Location, Hold, Group, Group Type, Group Date, Phase Date, Harvested.”</div>
             <div style={{textAlign:"left",marginTop:"20px",fontSize:fontSize,fontWeight:"bold"}}>Import Data into ZipHarvest</div>
@@ -44,9 +44,9 @@ function TutorialForm() {
             <div style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>Select Harvest Now from the main menu. Then create your first harvest batch.</div>
             <div style={{textAlign:"left",marginTop:"20px",fontSize:fontSize,fontWeight:"bold"}}>Harvest Batches</div>
             <div style={{textAlign:"left",marginTop:"20px",fontSize:fontSize}}></div>
-            <p style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>Harvest Batches are defined by Metrc as:</p>
-            <p style={{textAlign:"left",marginTop:"20px",fontSize:fontSize}}></p>
-            <p style={{textAlign:"left",marginTop:"5px",fontSize:smallFontSize}}>“Each harvest in Metrc is assigned to a "harvest batch," which is a single day's harvest activity. Licensees may choose whether or not to delineate harvest batches by strain or other criteria. However, harvested plants can only be grouped under the same harvest batch if they share an identical:
+            <div style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>Harvest Batches are defined by Metrc as:</div>
+            <div style={{textAlign:"left",marginTop:"20px",fontSize:fontSize}}></div>
+            <div style={{textAlign:"left",marginTop:"5px",fontSize:smallFontSize}}>“Each harvest in Metrc is assigned to a "harvest batch," which is a single day's harvest activity. Licensees may choose whether or not to delineate harvest batches by strain or other criteria. However, harvested plants can only be grouped under the same harvest batch if they share an identical:
 Name of harvest batch,
 Date of harvest,
 Type of harvest (manicure or "regular"),
@@ -58,7 +58,7 @@ Dry Room, and
 Harvest type ("M" for manicure, "H" for "regular" harvest).
 For example, a manicure harvest and January 1, 2018 and put into dry room 1 would be named "2018-01-01-Dry Room 1-M."
 Rooms cannot be changed in Metrc after harvest; as long as weight is accurate and all other requirements are met (security, etc.) product may be moved to another room after harvest even if it differs from the harvest batch room.”
-</p>
+</div>
             <div style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>ZipHarvest makes creating and switching between harvest batches easy. Create your first harvest batch by selecting New Harvest Batch in the first drop down menu. Enter your harvest batch name in the first field. Once you select a harvest batch name, it cannot be edited. Then choose if you are harvesting today or yesterday. The date can be changed to any date after the harvest batch is created. Finally, select if this harvest batch is manicure or final harvest. You should keep all manicured plants in separate harvest batches from harvested plants, even if they are from the same strain or room.</div>
             <div style={{textAlign:"left",marginTop:"20px",fontSize:fontSize,fontWeight:"bold"}}>Harvest Procedure</div>
             <div style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>To record your harvest weights, first select what strains you will be searching from. In the dropdown menu that says “All Strains”, you may select a strain to filter your search results or leave it be to search through all strains. Then, from the dropdown menu that has “contains” selected, select if you’d like to search for any plant tag that contains your search query or ends with it. For each plant that you harvest, you will do the following actions:
