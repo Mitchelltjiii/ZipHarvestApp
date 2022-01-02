@@ -532,6 +532,8 @@ export default class App extends React.Component {
 
     if (loggedInUser !== null && loggedInUser !== undefined && loggedInUser !== "" && this.state.loggedIn === "") {
       if(reloaded || staySignedIn){
+        this.reloadExportRecords([]);
+        this.reloadSubscription([]);
         this.setState({loggedIn:loggedInUser,userID:loggedInUser,usersLoading:false});
         this.executeLogIn(loggedInUser,staySignedIn);
       }

@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import HBTable from './HBTable.component';
 
 function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, userID, reloadExportRecords, getUniqueIDCount,getDryRooms,getPossiblePlantCount}) {
-	
+
 	console.log("Enter HarvestBatchesForm");
 	let uniqueIDCount = getUniqueIDCount();
 
