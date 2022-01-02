@@ -66,13 +66,13 @@ function AccountForm({userID, setCurrentPage, setFromAccountSettings,executeLogo
     const rows = [];
     rows.push(createData("Email",email));
     rows.push(createData("Change Password",""));
-    rows.push(createData("Subscription",""));
+    //rows.push(createData("Subscription",""));
     //rows.push(createData("Permissions",""));
     //rows.push(createData("About",""));
     rows.push(createData("Version","v0.0.0"));
     rows.push(createData("Terms of Service",""));
     rows.push(createData("Privacy Policy",""));
-    rows.push(createData("Support","Zipharvest-Support@flora-sol.com"));
+    //rows.push(createData("Support","Zipharvest-Support@flora-sol.com"));
     rows.push(createData("Log Out",""));
 
     async function getEmail(){
