@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 function TutorialForm() {
 
     let formWidth = "800px";
-    let formHeight = "3800px";
+    let formHeight = "3200px";
     let margR = "80px";
     let margL = "80px";
     let fontSize = "20px";
@@ -27,7 +27,8 @@ function TutorialForm() {
             direction="row"
             justify="center"
             alignItems="flex-start"
-            style={{marginRight:margR,marginLeft:margL,marginTop:"40px"}}
+            style={{marginRight:margR,marginLeft:margL,marginTop:"10px"}}
+            display="flex"
         >
             <div style={{textAlign:"left",fontSize:fontSize,fontWeight:"bold"}}>Welcome to ZipHarvest!</div>
             <div style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>ZipHarvest lets you record and report your Metrc harvest data using voice control. ZipHarvest is intended to work on mobile devices with only one hand needed, allowing you to manipulate plants with the other.</div>
@@ -43,9 +44,7 @@ function TutorialForm() {
             <div style={{textAlign:"left",marginTop:"20px",fontSize:fontSize,fontWeight:"bold"}}>Harvesting</div>
             <div style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>Select Harvest Now from the main menu. Then create your first harvest batch.</div>
             <div style={{textAlign:"left",marginTop:"20px",fontSize:fontSize,fontWeight:"bold"}}>Harvest Batches</div>
-            <div style={{textAlign:"left",marginTop:"20px",fontSize:fontSize}}></div>
             <div style={{textAlign:"left",marginTop:"5px",fontSize:fontSize}}>Harvest Batches are defined by Metrc as:</div>
-            <div style={{textAlign:"left",marginTop:"20px",fontSize:fontSize}}></div>
             <div style={{textAlign:"left",marginTop:"5px",fontSize:smallFontSize}}>“Each harvest in Metrc is assigned to a "harvest batch," which is a single day's harvest activity. Licensees may choose whether or not to delineate harvest batches by strain or other criteria. However, harvested plants can only be grouped under the same harvest batch if they share an identical:
 Name of harvest batch,
 Date of harvest,
