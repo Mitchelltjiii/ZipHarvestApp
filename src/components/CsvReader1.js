@@ -27,7 +27,6 @@ export default class CSVReader1 extends Component {
     }
 
     let parent = this;
-
     parent.props.setPlantList(file.name,plantList);
     if (buttonRef.current) {
         buttonRef.current.removeFile(e);
