@@ -16,8 +16,11 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	const [searchText,setSearchText] = React.useState('');
 	let removeList = selectedToDelete;
 	const [autoFoc,setAutoFoc] = React.useState(false);
-	const [fName, setFName] = useState("");
-	const [selectedFile, setSelectedFile] = useState(null);
+	const [fName, setFName] = React.useState("");
+	const [selectedFile, setSelectedFile] = React.useState(null);
+
+	console.log("FNAME: " + fName);
+	console.log("FILE: " + JSON.stringify(selectedFile) );
 
 	let plantsWithSearch = getPlantsWithSearch();
 
