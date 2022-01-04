@@ -7,6 +7,8 @@ import PlantTable from './PlantTable.component';
 import ImportPlantsButton from './ImportPlantsButton.component';
 import RemoveFromAvailablePlants from './RemoveFromAvailablePlantsButton.component';
 import TextField from '@material-ui/core/TextField';
+import * as XLSX from 'xlsx';
+
 
 function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPlantID,reloadPlants}) {
 

@@ -39,7 +39,7 @@
     "sequelize-cli": "^6.2.0",
     "stripe": "^8.184.0",
     "styled-components": "^5.3.1",
-    "xlsx": "^0.17.1"
+    "xlsx": "^0.17.4"
   },
   "scripts": {
     "start-client": "react-scripts start",
