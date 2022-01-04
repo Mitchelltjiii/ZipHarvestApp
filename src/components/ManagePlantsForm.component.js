@@ -30,15 +30,15 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 		/* Update state */
 		console.log("Data>>>"+data);
 		let fileSplit = data.split(/\r?\n/);
-		let x = 0;
+		let rowCount = 0;
 		let plantList = [];
 		for(const val of fileSplit){
 		  let rowSplit = val.split(",");
-		  if(x > 0 && x < (fileSplit.length-2)){
+		  if(rowCount > 0 && rowCount < (fileSplit.length-2)){
 			console.log(val);
 			plantList.push(rowSplit[0] + "," + rowSplit[1]);
 		  }
-		  x++;
+		  rowCount++;
 		}
 			console.log("Plantlist: " + JSON.stringify(plantList));
 			setPlantList(selectedFile.name,plantList);
