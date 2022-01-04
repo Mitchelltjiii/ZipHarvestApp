@@ -44,7 +44,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 		}
 	
 		console.log("Plantlist: " + JSON.stringify(plantList));
-		setPlantList("",plantList);
+		setPlantList(selectedFile.name,plantList);
 		};
 		reader.readAsBinaryString(selectedFile);
 	}
