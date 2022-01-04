@@ -18,37 +18,6 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	const [searchText,setSearchText] = React.useState('');
 	let removeList = selectedToDelete;
 	const [autoFoc,setAutoFoc] = React.useState(false);
-	const [selectedFile, setSelectedFile] = React.useState("");
-
-	if(JSON.stringify(selectedFile) !== '""'){
-		const reader = new FileReader();
-		reader.onload = (evt) => { // evt = on_file_select event
-		/* Parse data */
-		const bstr = evt.target.result;
-		const wb = XLSX.read(bstr, {type:'binary'});
-		/* Get first worksheet */
-		const wsname = wb.SheetNames[0];
-		const ws = wb.Sheets[wsname];
-		/* Convert array of arrays */
-		const data = XLSX.utils.sheet_to_csv(ws, {header:1});
-		/* Update state */
-		console.log("Data>>>"+data);
-		let fileSplit = data.split(/\r?\n/);
-		let x = 0;
-		let plantList = [];
-		for(const val of fileSplit){
-		  let rowSplit = val.split(",");
-		  if(x > 0 && x < (fileSplit.length-2)){
-			console.log(val);
-			plantList.push(rowSplit[0] + "," + rowSplit[1]);
-		  }
-		  x++;
-		}
-			console.log("Plantlist: " + JSON.stringify(plantList));
-			setPlantList(selectedFile.name,plantList);
-		};
-		reader.readAsBinaryString(selectedFile);
-	}
 
 	let plantsWithSearch = getPlantsWithSearch();
 
@@ -203,10 +172,6 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
   					justify="center"
 					alignItems="center"
 					>
-						<input
-        			  		type="file"
-          					onChange={(e) => setSelectedFile(e.target.files[0])}
-        				/>
 						<div style={{minWidth:"10px",maxWidth:"10px"}}></div>
 						<ImportPlantsButton getPlants={getPlants} uploadList={uploadList} setPlants={setPlants} setUploadList={setUploadList}
 							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></ImportPlantsButton>
