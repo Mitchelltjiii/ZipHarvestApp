@@ -19,6 +19,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	const [autoFoc,setAutoFoc] = React.useState(false);
 	const [selectedFile, setSelectedFile] = React.useState("");
 
+	
 	if(JSON.stringify(selectedFile) !== '""'){
 		const reader = new FileReader();
 		reader.onload = (evt) => { // evt = on_file_select event
