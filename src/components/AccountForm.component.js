@@ -26,9 +26,8 @@ function AccountForm({userID, setCurrentPage, setFromAccountSettings,executeLogo
         executeLogout();
       }
 	  }
-
+    
     const [email,setEmail] = React.useState('');
-
     const Tab = ({title,subtitle}) => {
         return(
             <div>
