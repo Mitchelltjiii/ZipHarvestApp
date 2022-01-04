@@ -8,7 +8,6 @@ import RemoveFromAvailablePlants from './RemoveFromAvailablePlantsButton.compone
 import TextField from '@material-ui/core/TextField';
 import * as XLSX from 'xlsx';
 
-
 function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPlantID,reloadPlants}) {
 
     const [uploadList,setUploadList] = React.useState([]);
@@ -19,7 +18,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	const [autoFoc,setAutoFoc] = React.useState(false);
 	const [selectedFile, setSelectedFile] = React.useState("");
 
-	
+
 	if(JSON.stringify(selectedFile) !== '""'){
 		const reader = new FileReader();
 		reader.onload = (evt) => { // evt = on_file_select event
