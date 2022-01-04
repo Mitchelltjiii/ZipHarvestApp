@@ -16,12 +16,8 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	const [searchText,setSearchText] = React.useState('');
 	let removeList = selectedToDelete;
 	const [autoFoc,setAutoFoc] = React.useState(false);
-	const inputFile = useRef(null);
-
-	const onButtonClick = () => {
-		console.log("On Button Click")
-	   inputFile.current.click();
-	  };
+	const [fName, setFName] = useState("");
+	const [selectedFile, setSelectedFile] = useState(null);
 
 	let plantsWithSearch = getPlantsWithSearch();
 
@@ -176,8 +172,17 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
   					justify="center"
 					alignItems="center"
 					>
-						<input type='file' id='file' ref={inputFile} style={{display: 'none'}}/>
-						<button onClick={onButtonClick}>Open file upload window</button>
+						<input
+          					type="text"
+          					value={fName}
+          					onChange={(e) => setFName(e.target.value)}
+        				/>
+
+        				<input
+        			  		type="file"
+          					value={selectedFile}
+          					onChange={(e) => setSelectedFile(e.target.files[0])}
+        				/>
 						<div style={{minWidth:"10px",maxWidth:"10px"}}></div>
 						<ImportPlantsButton getPlants={getPlants} uploadList={uploadList} setPlants={setPlants} setUploadList={setUploadList}
 							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></ImportPlantsButton>
@@ -235,7 +240,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	);
 }
 
-//<CSVReader1 setPlantList={setPlantList}></CSVReader1>
+//							<CSVReader1 setPlantList={setPlantList}></CSVReader1>
 		
 
 
