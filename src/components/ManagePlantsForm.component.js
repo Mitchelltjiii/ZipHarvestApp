@@ -56,7 +56,6 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 
 	const toggleDeleteAllSelected = () => {
 		let currPlants = JSON.parse(getPlantsWithSearch());
-		
 		if(getDeleteAllSelected()){
 			setSelectedToDelete([]);
 		}else{
