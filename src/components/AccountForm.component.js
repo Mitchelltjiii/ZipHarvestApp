@@ -72,7 +72,6 @@ function AccountForm({userID, setCurrentPage, setFromAccountSettings,executeLogo
     rows.push(createData("Privacy Policy",""));
 /*rows.push(createData("Support","Zipharvest-Support@flora-sol.com"));*/
     rows.push(createData("Log Out",""));
-
     async function getEmail(){
       const response = await fetch(`/get-email/${userID}`);
       const text = await response.text();
