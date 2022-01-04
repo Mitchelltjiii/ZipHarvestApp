@@ -2,7 +2,6 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import RemoveUploadQueueItemButton from './RemoveUploadQueueItemButton';
-import CSVReader1 from './CsvReader1';
 import PlantTable from './PlantTable.component';
 import ImportPlantsButton from './ImportPlantsButton.component';
 import RemoveFromAvailablePlants from './RemoveFromAvailablePlantsButton.component';
