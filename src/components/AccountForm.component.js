@@ -61,7 +61,6 @@ function AccountForm({userID, setCurrentPage, setFromAccountSettings,executeLogo
     function createData(title, subtitle) {
       return {title, subtitle};
     }
-
     const rows = [];
     rows.push(createData("Email",email));
     rows.push(createData("Change Password",""));
