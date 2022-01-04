@@ -19,6 +19,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	const inputFile = useRef(null);
 
 	const onButtonClick = () => {
+		console.log("On Button Click")
 	   inputFile.current.click();
 	  };
 
