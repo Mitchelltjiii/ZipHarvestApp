@@ -43,7 +43,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 		  rowCount++;
 		}
 			console.log("PList: " + JSON.stringify(pList));
-			setPlantList(pl);
+			setPlantList(pList);
 		};
 		reader.readAsBinaryString(selectedFile);
 	}
