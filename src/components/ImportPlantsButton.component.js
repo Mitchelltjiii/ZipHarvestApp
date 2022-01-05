@@ -65,7 +65,7 @@ class ImportPlantsButton extends Component{
             let pList = JSON.parse(this.props.getPlants());
 			    let splitList = this.props.plantList.split(",");
 
-			    for(let i = 1; i < splitList.length; i++){
+			    for(let i = 0; i < splitList.length; i++){
                     addPlant = new Plant(splitList[i],splitList[i+1],this.props.userID,0);
 
                     const plantItem = getPlantItem(addPlant);
