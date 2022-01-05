@@ -52,7 +52,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 		let splitList = val.split(",");
 		uploadNamesList.push(splitList[0]);
 	}
-	
+
 	const toggleDeleteAllSelected = () => {
 		let currPlants = JSON.parse(getPlantsWithSearch());
 		if(getDeleteAllSelected()){
@@ -184,7 +184,6 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
           </div>
         );
     };
-
     const ImportTab = () => {
         return(
             <div>
