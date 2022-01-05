@@ -166,6 +166,12 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 		}
 	}
 
+	const hiddenFileInput = React.useRef(null);
+
+	const handleClickInput = event => {
+		hiddenFileInput.current.click();
+	  };
+
     const UploadTab = ({name}) => {
         return (
           <div className="full tr">
@@ -208,17 +214,18 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
   					justify="center"
 					alignItems="center"
 					>
+						<Button style={{marginLeft:"10px",marginRight:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClickInput}>Choose File</Button>
+						{(selectedFile !== "") ? <div>{selectedFile.name}</div> : null}
 						<input
         			  		type="file"
           					onChange={(e) => {
-								  console.log("Before set selected file");
 								  setSelectedFile(e.target.files[0]);
-								  console.log("After set selected file");
+								  setFName(e.target.files[0].name);
 								  refreshOuter();
-								  console.log("after refresh after set selected file");
 								}}
+							style={{display: 'none'}}
+							ref={hiddenFileInput}
         				/>
-						<div style={{minWidth:"10px",maxWidth:"10px"}}></div>
 						<ImportPlantsButton getPlants={getPlants} getPlantList={getPlantList} setPlants={setPlants} setPlantList={setPlantList}
 							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></ImportPlantsButton>
 						<Button style={{marginLeft:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancel}>Cancel</Button>

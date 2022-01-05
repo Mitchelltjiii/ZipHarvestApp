@@ -93,13 +93,11 @@ class ImportPlantsButton extends Component{
                   x++;
                 }
 
-                console.log("After addplant mech");
 
         this.props.reloadPlants([]);
 		    this.props.setPlantList([]);
 		    this.props.setImporting(false);
         this.props.refreshOuter();
-        console.log("After refresh outer");
     }
 
     async executeAddPlant(event,plantItem){
