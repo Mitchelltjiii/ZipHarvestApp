@@ -67,7 +67,7 @@ class ImportPlantsButton extends Component{
             for(const val of plantList){
 			    let splitList = val.split(",");
 
-
+              console.log("Before addplant mech");
 			    for(let i = 0; i < splitList.length; i++){
                     addPlant = new Plant(splitList[i],splitList[i+1],this.props.userID,0);
 
@@ -93,10 +93,13 @@ class ImportPlantsButton extends Component{
                   x++;
                 }
 
+                console.log("After addplant mech");
+
         this.props.reloadPlants([]);
 		    this.props.setPlantList([]);
 		    this.props.setImporting(false);
         this.props.refreshOuter();
+        console.log("After refresh outer");
     }
 
     async executeAddPlant(event,plantItem){

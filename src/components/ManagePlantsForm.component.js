@@ -183,9 +183,23 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
           </div>
         );
     };
-    const ImportTab = () => {
-        return(
-            <div>
+
+	return (
+		<div id="manage-plants-form">
+			<Grid
+				container
+				direction="row"
+  				justify="center"
+				alignItems="center"
+			>
+                <div className="full tr">
+			    <Grid
+					container
+					direction="column"
+  					justify="center"
+					alignItems="center"
+				>
+				<div>
                 {importing
                 ? <div>
 					<Grid
@@ -196,7 +210,13 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 					>
 						<input
         			  		type="file"
-          					onChange={(e) => setSelectedFile(e.target.files[0])}
+          					onChange={(e) => {
+								  console.log("Before set selected file");
+								  setSelectedFile(e.target.files[0]);
+								  console.log("After set selected file");
+								  refreshOuter();
+								  console.log("after refresh after set selected file");
+								}}
         				/>
 						<div style={{minWidth:"10px",maxWidth:"10px"}}></div>
 						<ImportPlantsButton getPlants={getPlants} getPlantList={getPlantList} setPlants={setPlants} setPlantList={setPlantList}
@@ -219,25 +239,6 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 					</div>
 			    }
 				</div>
-        )
-    }
-
-	return (
-		<div id="manage-plants-form">
-			<Grid
-				container
-				direction="row"
-  				justify="center"
-				alignItems="center"
-			>
-                <div className="full tr">
-			    <Grid
-					container
-					direction="column"
-  					justify="center"
-					alignItems="center"
-				>
-				<ImportTab></ImportTab>
 				<div>
 					{uploadNamesList.map((name,index) => (
             			<UploadTab name={name}></UploadTab>
