@@ -219,6 +219,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 						direction="row"
   						justify="center"
 						alignItems="center"
+						style={{marginBottom:"10px"}}
 						>
 						<Button style={{marginLeft:"10px",marginRight:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClickInput}>Choose File</Button>
 						{(selectedFile !== "") ? <div>{selectedFile.name}</div> : null}
