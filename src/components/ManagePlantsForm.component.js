@@ -17,8 +17,9 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	const [autoFoc,setAutoFoc] = React.useState(false);
 	const [selectedFile, setSelectedFile] = React.useState('');
 	const [plantList, setPlantList] = React.useState([]);
+	console.log("PlantList: " + JSON.stringify(plantList));
 
-	if(JSON.stringify(selectedFile) !== '""' && plantList === []){
+	if(JSON.stringify(selectedFile) !== '""' && JSON.stringify(plantList) === "[]"){
 		const reader = new FileReader();
 		reader.onload = (evt) => { // evt = on_file_select event
 		/* Parse data */
