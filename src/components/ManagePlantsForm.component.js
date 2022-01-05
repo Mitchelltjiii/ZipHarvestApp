@@ -220,7 +220,6 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
         			  		type="file"
           					onChange={(e) => {
 								  setSelectedFile(e.target.files[0]);
-								  setFName(e.target.files[0].name);
 								  refreshOuter();
 								}}
 							style={{display: 'none'}}
