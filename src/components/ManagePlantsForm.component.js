@@ -47,7 +47,6 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	}
 
 	let plantsWithSearch = getPlantsWithSearch();
-
 	let uploadNamesList = [];
 	for(const val of uploadList){
 		let splitList = val.split(",");
