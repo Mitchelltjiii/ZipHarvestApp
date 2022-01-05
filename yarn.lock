@@ -8590,9 +8590,9 @@ mysql2@^2.2.5:
     sqlstring "^2.3.2"
 
 "mysql@npm:mysql2@^2.18.1":
-  version "2.3.3-rc.0"
-  resolved "https://registry.yarnpkg.com/mysql2/-/mysql2-2.3.3-rc.0.tgz#550e51b836cea93a134eb6138aa0120d5cb8dcb8"
-  integrity sha512-zWPDmiOR8g9fG+23KyhhN4Fe8VE3B/G9lSq6K1tavCrcucW1BhVWrYGyLDI43Tw9SV5qBq/4pyDNpXd3Gd74LA==
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/mysql2/-/mysql2-2.3.2.tgz#3efe9814dbf1c2a3d7c2a1fc4666235939943ff9"
+  integrity sha512-JUSA50rt/nSew8aq8xe3pRk5Q4y/M5QdSJn7Ey3ndOlPp2KXuialQ0sS35DNhPT5Z5PnOiIwSSQvKkl1WorqRA==
   dependencies:
     denque "^2.0.1"
     generate-function "^2.3.1"
