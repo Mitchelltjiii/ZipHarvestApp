@@ -70,7 +70,6 @@ class ImportPlantsButton extends Component{
 
                     const plantItem = getPlantItem(addPlant);
                     this.state.busyAddingPlants.push(addPlant.tag);
-  
                 let tagExists = false;
 
                 for(const val2 of pList){
