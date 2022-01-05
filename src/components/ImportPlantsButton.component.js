@@ -62,9 +62,8 @@ class ImportPlantsButton extends Component{
 
     let timeLimit = 3000;
             let addPlant = new Plant("","","","");
-            let plantList = JSON.parse(this.props.getPlants());
-            for(const val of this.props.uploadList){
-			    let splitList = val.split(",");
+            let pList = JSON.parse(this.props.getPlants());
+			    let splitList = this.props.plantList.split(",");
 
 			    for(let i = 1; i < splitList.length; i++){
                     addPlant = new Plant(splitList[i],splitList[i+1],this.props.userID,0);
@@ -74,7 +73,7 @@ class ImportPlantsButton extends Component{
   
                 let tagExists = false;
 
-                for(const val2 of plantList){
+                for(const val2 of pList){
                   if(val2.tag === plantItem.tag){
                     tagExists = true;
                   }
@@ -83,7 +82,6 @@ class ImportPlantsButton extends Component{
                 
                 i++;
             }
-        }
 
         let x = 0;
 
@@ -93,7 +91,7 @@ class ImportPlantsButton extends Component{
                 }
 
         this.props.reloadPlants([]);
-		    this.props.setUploadList([]);
+		    this.props.setPlantList([]);
 		    this.props.setImporting(false);
         this.props.refreshOuter();
     }

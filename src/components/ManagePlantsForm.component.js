@@ -16,8 +16,9 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	let removeList = selectedToDelete;
 	const [autoFoc,setAutoFoc] = React.useState(false);
 	const [selectedFile, setSelectedFile] = React.useState('');
-	
-	if(JSON.stringify(selectedFile) !== '""'){
+	const [plantList, setPlantList] = React.useState([]);
+
+	if(JSON.stringify(selectedFile) !== '""' && plantList === []){
 		const reader = new FileReader();
 		reader.onload = (evt) => { // evt = on_file_select event
 		/* Parse data */
@@ -32,17 +33,17 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 		console.log("Data>>>"+data);
 		let fileSplit = data.split(/\r?\n/);
 		let rowCount = 0;
-		let plantList = [];
+		let pList = [];
 		for(const val of fileSplit){
 		  let rowSplit = val.split(",");
 		  if(rowCount > 0 && rowCount < (fileSplit.length-2)){
 			console.log(val);
-			plantList.push(rowSplit[0] + "," + rowSplit[1]);
+			pList.push(rowSplit[0] + "," + rowSplit[1]);
 		  }
 		  rowCount++;
 		}
-			console.log("Plantlist: " + JSON.stringify(plantList));
-			setPlantList(selectedFile.name,plantList);
+			console.log("PList: " + JSON.stringify(pList));
+			setPlantList(pl);
 		};
 		reader.readAsBinaryString(selectedFile);
 	}
@@ -141,14 +142,6 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
         refreshOuter();
 	  }
 
-    
-    const setPlantList = (fn,pl) => {
-		let uList = uploadList;
-		uList.push(fn + "," + pl);
-		setUploadList(uList);
-		refreshOuter();
-	  }
-
     function removeUploadQueueButton(name){
 		let index = 0;
 		let foundIndex = -1;
@@ -201,7 +194,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
           					onChange={(e) => setSelectedFile(e.target.files[0])}
         				/>
 						<div style={{minWidth:"10px",maxWidth:"10px"}}></div>
-						<ImportPlantsButton getPlants={getPlants} uploadList={uploadList} setPlants={setPlants} setUploadList={setUploadList}
+						<ImportPlantsButton getPlants={getPlants} plantList={plantList} setPlants={setPlants} setPlantList={setPlantList}
 							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></ImportPlantsButton>
 						<Button style={{marginLeft:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancel}>Cancel</Button>
 					</Grid>
