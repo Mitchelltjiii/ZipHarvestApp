@@ -63,7 +63,10 @@ class ImportPlantsButton extends Component{
     let timeLimit = 3000;
             let addPlant = new Plant("","","","");
             let pList = JSON.parse(this.props.getPlants());
-			    let splitList = this.props.getPlantList();
+            let plantList = this.props.getPlantList();
+            for(const val of plantList){
+			    let splitList = val.split(",");
+
 
 			    for(let i = 0; i < splitList.length; i++){
                     addPlant = new Plant(splitList[i],splitList[i+1],this.props.userID,0);
@@ -81,6 +84,7 @@ class ImportPlantsButton extends Component{
                 
                 i++;
             }
+          }
 
         let x = 0;
 
