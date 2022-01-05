@@ -18,6 +18,10 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	const [selectedFile, setSelectedFile] = React.useState('');
 	const [plantList, setPlantList] = React.useState([]);
 	console.log("PlantList: " + JSON.stringify(plantList));
+
+	function getPlantList(){
+		return plantList;
+	}
 	
 	if(JSON.stringify(selectedFile) !== '""' && JSON.stringify(plantList) === "[]"){
 		const reader = new FileReader();
@@ -195,7 +199,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
           					onChange={(e) => setSelectedFile(e.target.files[0])}
         				/>
 						<div style={{minWidth:"10px",maxWidth:"10px"}}></div>
-						<ImportPlantsButton getPlants={getPlants} plantList={plantList} setPlants={setPlants} setPlantList={setPlantList}
+						<ImportPlantsButton getPlants={getPlants} getPlantList={getPlantList} setPlants={setPlants} setPlantList={setPlantList}
 							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></ImportPlantsButton>
 						<Button style={{marginLeft:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancel}>Cancel</Button>
 					</Grid>
