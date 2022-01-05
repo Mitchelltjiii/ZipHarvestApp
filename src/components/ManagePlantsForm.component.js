@@ -210,10 +210,16 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
                 ? <div>
 					<Grid
 					container
-					direction="row"
+					direction="column"
   					justify="center"
 					alignItems="center"
 					>
+						<Grid
+						container
+						direction="row"
+  						justify="center"
+						alignItems="center"
+						>
 						<Button style={{marginLeft:"10px",marginRight:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClickInput}>Choose File</Button>
 						{(selectedFile !== "") ? <div>{selectedFile.name}</div> : null}
 						<input
@@ -225,9 +231,17 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 							style={{display: 'none'}}
 							ref={hiddenFileInput}
         				/>
+						</Grid>
+						<Grid
+						container
+						direction="row"
+  						justify="center"
+						alignItems="center"
+						>
 						<ImportPlantsButton getPlants={getPlants} getPlantList={getPlantList} setPlants={setPlants} setPlantList={setPlantList}
 							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></ImportPlantsButton>
 						<Button style={{marginLeft:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancel}>Cancel</Button>
+						</Grid>
 					</Grid>
 					</div>
                 : <div>
