@@ -813,6 +813,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				</div>
 				</Grid>
 				
+				<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
 				<FormControl component="fieldset" style={{marginTop:"10px",marginBottom:"5px"}}>
   					<FormLabel component="legend">Harvest Date</FormLabel>
   					<RadioGroup aria-label="Harvest Date" name="harvest-date" value={day} onClick={handleDayChange} row>
@@ -820,7 +826,17 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
     					<FormControlLabel value="yesterday" control={<Radio />} label="Yesterday" />
   					</RadioGroup>
 				</FormControl>
-				
+				<div class="tooltip">?
+  					<span class="tooltiptext">This can be changed later</span>
+				</div>
+				</Grid>
+
+				<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
 				<FormControl component="fieldset" style={{marginBottom:"5px"}}>
   					<FormLabel component="legend">Harvest Type</FormLabel>
   					<RadioGroup aria-label="Harvest Type" name="harvest-type" value={harvestType} onClick={handleHarvestTypeChange} row>
@@ -828,6 +844,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
     					<FormControlLabel value="manicure" control={<Radio />} label="Manicure" />
   					</RadioGroup>
 				</FormControl>
+				<div class="tooltip">?
+  					<span class="tooltiptext">This is final. Manicures and full harvests must be separated into different batches.</span>
+				</div>
+				</Grid>
 
 				</Grid>
 
@@ -1065,7 +1085,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
              	</Select>
 
 				<TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width: "100px"}}/>
-
+				<div class="tooltip">?
+  					<span class="tooltiptext">Choose "contains" or "ends with" and search for three or more digits for best experience.</span>
+				</div>
 				</Grid>
 
 				<Grid
@@ -1083,6 +1105,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
             			</MenuItem>
           			))}
              	</Select>
+				 <div class="tooltip">?
+  					<span class="tooltiptext">Search above and the most relevant option will appear here. Click to see all tags that match the search.</span>
+				</div>
 				</Grid>
 
 				<Grid
@@ -1102,6 +1127,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
           			))}
              	</Select>
 
+				<div class="tooltip">?
+  					<span class="tooltiptext">Enter weight and choose unit.</span>
+				</div>
 				</Grid>
 
 				<Grid
@@ -1132,8 +1160,18 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
                 {(errorMessageText.length!==0) ? <ErrorMessageLabel></ErrorMessageLabel> : null}
 
+				<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
 				<Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
 					nextPlantFromSpeech={nextPlantFromSpeech} voiceCommand={voiceCommand}></Dictaphone>	
+					<div class="tooltip">?
+  					<span class="tooltiptext">Command 1: "Search [tag]", eg. "Search 026". Command 2: "[Weight] [unit]", eg. "1.2 pounds". Command 3: "Next Plant".</span>
+				</div>
+				</Grid>
 				</Grid>
 				</div>
 					{(lastHarvestedPlant.tag === undefined) ? 
