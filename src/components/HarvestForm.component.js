@@ -1016,6 +1016,27 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				alignItems="center"
 			>
 				<Grid
+				container
+				direction="column"
+  				justify="center"
+				alignItems="center"
+				style={{width:"500px"}}
+			>
+				
+				<div>Before harvesting, go to the main menu and visit the Manage Plants and Manage Dry Rooms pages.</div>
+				<Grid
+				container
+				direction="row"
+				justify="flex-end"
+				alignItems="flex-end"
+				style={{width:"100%"}}
+			>
+				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true">Don't show again</Button>
+				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true">Close</Button>
+				</Grid>
+				</Grid>
+
+				<Grid
 					container
 					direction="row"
   					justify="center"
@@ -1085,8 +1106,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
              	</Select>
 
 				<TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width: "100px"}}/>
+				<div style={{marginTop:"15px"}}>
 				<div class="tooltip">?
-  					<span class="tooltiptext">Choose "contains" or "ends with" and search for three or more digits for best experience.</span>
+  					<span class="tooltiptext">Choose "Contains" or "Ends with". Search for three or more digits for best experience.</span>
+				</div>
 				</div>
 				</Grid>
 
