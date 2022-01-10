@@ -681,6 +681,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				alignItems="center"
 			>
 			<FormLabel>Choose Harvest Batch</FormLabel>
+			<Grid
+				container
+				direction="row"
+			  	justifyContent="center"
+				alignItems="center"
+			>
 				<Select id="change-HB-select" value={selectedHB} onChange={handleSelectHB} style={{minWidth:"120px"}}>
                 	{hbOptionsList.map((name, index) => (
             			<MenuItem key={index} value={name}>
@@ -688,6 +694,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
             			</MenuItem>
           			))}
              	</Select>
+				 <div class="tooltip">?
+  					<span class="tooltiptext">Create and select harvest batch</span>
+				</div> 
+				</Grid>
 			</Grid>
 		);
 	  };
@@ -1018,6 +1028,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 				<FormLabel style={{marginTop:"8px"}} component="legend">Search For Strain</FormLabel>
+				<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
 				<Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{minWidth:"120px"}}>
                 	{searchForList.map((name, index) => (
             			<MenuItem key={index} value={name}>
@@ -1025,6 +1041,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
             			</MenuItem>
           			))}
              	</Select>
+				 <div class="tooltip">?
+  					<span class="tooltiptext">Filter by strain</span>
+				</div>
+				</Grid>
+
 
 				</Grid>
 				
