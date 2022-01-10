@@ -791,7 +791,17 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				<FormLabel component="legend" style={{marginTop:"5px"}}><b>New Harvest Batch</b></FormLabel>
 
-				<TextField id="changeHBField" label="Batch Name"/>
+				<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
+				<TextField id="changeHBField" label="Batch Name"/> 
+				<div class="tooltip">?
+  					<span class="tooltiptext">Harvest Batch Name</span>
+				</div>
+				</Grid>
 				
 				<FormControl component="fieldset" style={{marginTop:"10px",marginBottom:"5px"}}>
   					<FormLabel component="legend">Harvest Date</FormLabel>
