@@ -61,18 +61,26 @@ body {
   .tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+    border: 1px dotted rgb(190, 190, 190);
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 2px;
   }
   
   /* Tooltip text */
   .tooltip .tooltiptext {
     visibility: hidden;
     width: 180px;
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     text-align: center;
     padding: 3px 100;
     border-radius: 6px;
+    border-color: rgb(214, 214, 214);
+    border-width: 1px;
+    border-style: dashed;
    
     /* Position the tooltip text - see examples below! */
     position: absolute;
