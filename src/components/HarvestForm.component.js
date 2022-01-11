@@ -381,7 +381,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
   let entryTutorialWidth = "500px";
   let entryTutorialFontSize = "17px";
-  const[entryTutorialVisibility,setEntryTutorialVisibility] = React.useState("visible");
+  const[entryTutorialVisibile,setEntryTutorialVisibile] = React.useState(true);
 
   if(isMobile){
 	entryTutorialWidth = "340px";
@@ -516,7 +516,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	function closeEntryTutorial(){
-		setEntryTutorialVisibility("hidden");
+		setEntryTutorialVisibile(false);
 	}
 
 	function addBranch(){
@@ -1030,12 +1030,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   				justify="center"
 				alignItems="center"
 			>
-				<Grid
+				{entryTutorialVisible ? <Grid
 				container
 				direction="column"
   				justify="center"
 				alignItems="center"
-				style={{width:entryTutorialWidth,borderColor:"#90ee90",marginLeft:"10px",marginRight:"10px",marginTop:"10px",marginBottom:"10px",borderRadius:"5px",border: "1px solid #90ee90",paddingRight:"5px",paddingBottom:"5px",visibility:entryTutorialVisibility}}
+				style={{width:entryTutorialWidth,borderColor:"#90ee90",marginLeft:"10px",marginRight:"10px",marginTop:"10px",marginBottom:"10px",borderRadius:"5px",border: "1px solid #90ee90",paddingRight:"5px",paddingBottom:"5px"}}
 			>
 				
 				<div style={{margin:"5px",textAlign:"center",fontSize:entryTutorialFontSize}}>Before harvesting, go to the main menu and visit the Manage Plants and Manage Dry Rooms pages.</div>
@@ -1049,7 +1049,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true">Don't show again</Button>
 				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={closeEntryTutorial}>Close</Button>
 				</Grid>
-				</Grid>
+				</Grid> : null}
+				
 
 				<Grid
 					container
