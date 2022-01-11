@@ -1020,10 +1020,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				direction="column"
   				justify="center"
 				alignItems="center"
-				style={{width:"500px",borderColor:"#90ee90",marginTop:"10px",marginBottom:"10px",borderRadius:"5px"}}
+				style={{width:"400px",borderColor:"#90ee90",marginTop:"10px",marginBottom:"10px",borderRadius:"5px",border: "1px solid #90ee90"}}
 			>
 				
-				<div style={{margin:"5px",alignContent:"center",fontSize:"13px"}}>Before harvesting, go to the main menu and visit the Manage Plants and Manage Dry Rooms pages.</div>
+				<div style={{margin:"5px",textAlign:"center",fontSize:"15px"}}>Before harvesting, go to the main menu and visit the Manage Plants and Manage Dry Rooms pages.</div>
 				<Grid
 				container
 				direction="row"
