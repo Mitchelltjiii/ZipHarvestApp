@@ -74,7 +74,7 @@ body {
   /* Tooltip text */
   .tooltip .tooltiptext {
     visibility: hidden;
-    width: 180px;
+    width: 200px;
     background-color: rgb(26, 26, 26);
     color: rgb(255, 255, 255);
     text-align: center;
@@ -83,6 +83,7 @@ body {
     bottom: 100%;
     left: 50%;
     margin-left: -90px; 
+    font-size: 15px;
    
     /* Position the tooltip text - see examples below! */
     position: absolute;

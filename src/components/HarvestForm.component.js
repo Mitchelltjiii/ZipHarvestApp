@@ -1038,7 +1038,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				style={{width:entryTutorialWidth,borderColor:"#90ee90",marginLeft:"10px",marginRight:"10px",marginTop:"10px",marginBottom:"10px",borderRadius:"5px",border: "1px solid #90ee90",paddingRight:"5px",paddingBottom:"5px"}}
 			>
 				
-				<div style={{margin:"5px",textAlign:"center",fontSize:entryTutorialFontSize}}>Before harvesting, go to the main menu and visit the Manage Plants and Manage Dry Rooms pages.</div>
+				<div style={{margin:"5px",textAlign:"center",fontSize:entryTutorialFontSize}}>Before harvesting, open the menu and visit the Manage Plants and Manage Dry Rooms pages.</div>
 				<Grid
 				container
 				direction="row"
