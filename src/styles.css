@@ -61,32 +61,35 @@ body {
   .tooltip {
     position: relative;
     display: inline-block;
-    border: 1px dotted rgb(190, 190, 190);
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  border-radius: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 2px;
+    background-color: rgb(224, 224, 224);
+    color: rgb(158, 158, 158);
+    font-weight: bold;
   }
   
   /* Tooltip text */
   .tooltip .tooltiptext {
     visibility: hidden;
     width: 180px;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
+    background-color: rgb(26, 26, 26);
+    color: rgb(255, 255, 255);
     text-align: center;
-    font-size: 10px;
-    padding: 5px 100;
-    border-radius: 6px;
-    border-color: rgb(214, 214, 214);
-    border-width: 1px;
-    border-style: dashed;
+    padding: 4px 100;
+    border-radius: 6px;  
+    bottom: 100%;
+    left: 50%;
+    margin-left: -90px; 
    
     /* Position the tooltip text - see examples below! */
     position: absolute;
     z-index: 1;
   }
+  
+  
   
   /* Show the tooltip text when you mouse over the tooltip container */
   .tooltip:hover .tooltiptext {
