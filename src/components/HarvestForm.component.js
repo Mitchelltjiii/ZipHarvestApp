@@ -381,7 +381,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
   let entryTutorialWidth = "500px";
   let entryTutorialFontSize = "17px";
-  const[entryTutorialVisibile,setEntryTutorialVisibile] = React.useState(true);
+  const[entryTutorialVisible,setEntryTutorialVisible] = React.useState(true);
 
   if(isMobile){
 	entryTutorialWidth = "340px";
@@ -516,7 +516,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	function closeEntryTutorial(){
-		setEntryTutorialVisibile(false);
+		setEntryTutorialVisible(false);
 	}
 
 	function addBranch(){
