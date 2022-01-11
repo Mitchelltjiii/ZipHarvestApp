@@ -1020,10 +1020,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				direction="column"
   				justify="center"
 				alignItems="center"
-				style={{width:"500px"}}
+				style={{width:"500px",backgroundColor:"#90ee90",marginTop:"10px",marginBottom:"10px"}}
 			>
 				
-				<div>Before harvesting, go to the main menu and visit the Manage Plants and Manage Dry Rooms pages.</div>
+				<div style={{margin:"10px",alignContent:"center",fontSize:"10px"}}>Before harvesting, go to the main menu and visit the Manage Plants and Manage Dry Rooms pages.</div>
 				<Grid
 				container
 				direction="row"
@@ -1031,8 +1031,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				alignItems="flex-end"
 				style={{width:"100%"}}
 			>
-				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true">Don't show again</Button>
-				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true">Close</Button>
+				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true">Don't show again</Button>
+				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true">Close</Button>
 				</Grid>
 				</Grid>
 
