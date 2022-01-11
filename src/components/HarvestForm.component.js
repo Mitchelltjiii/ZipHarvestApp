@@ -380,7 +380,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   yearList.push("2030");
 
   let entryTutorialWidth = "500px";
-  let entryTutorialFontSize = "20px";
+  let entryTutorialFontSize = "17px";
   const[entryTutorialVisible,setEntryTutorialVisible] = React.useState(true);
 
   if(isMobile){
