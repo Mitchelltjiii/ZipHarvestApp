@@ -17,6 +17,7 @@ import Dictaphone from './Dictaphone.component';
 import LastHarvested from './LastHarvested.component';
 import edit from '../edit.png';
 import SaveHarvestDateButton from './SaveHarvestDateButton.component';
+import {isMobile} from 'react-device-detect';
 
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches,
 	currentHarvest, setNewHBID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
@@ -377,6 +378,14 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   yearList.push("2028");
   yearList.push("2029");
   yearList.push("2030");
+
+  let entryTutorialWidth = "500px";
+  let entryTutorialFontSize = "17px";
+
+  if(isMobile){
+	entryTutorialWidth = "360px";
+	entryTutorialFontSize = "15px";
+  }
 
 	function searchTagFromSpeech(searchText){
 		let fixedSearch = searchText;
@@ -1020,15 +1029,15 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				direction="column"
   				justify="center"
 				alignItems="center"
-				style={{width:"400px",borderColor:"#90ee90",marginTop:"10px",marginBottom:"10px",borderRadius:"5px",border: "1px solid #90ee90"}}
+				style={{width:entryTutorialWidth,borderColor:"#90ee90",marginLeft:"10px",marginRight:"10px",marginTop:"10px",marginBottom:"10px",borderRadius:"5px",border: "1px solid #90ee90",paddingRight:"5px",paddingBottom:"5px"}}
 			>
 				
-				<div style={{margin:"5px",textAlign:"center",fontSize:"15px"}}>Before harvesting, go to the main menu and visit the Manage Plants and Manage Dry Rooms pages.</div>
+				<div style={{margin:"5px",textAlign:"center",fontSize:entryTutorialFontSize}}>Before harvesting, go to the main menu and visit the Manage Plants and Manage Dry Rooms pages.</div>
 				<Grid
 				container
 				direction="row"
-				justify="flex-end"
-				alignItems="flex-end"
+				justify="center"
+				alignItems="center"
 				style={{width:"100%"}}
 			>
 				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true">Don't show again</Button>
