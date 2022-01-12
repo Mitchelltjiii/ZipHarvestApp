@@ -1023,10 +1023,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	async function updateTutorials(){
-		let tuts = this.state.tutorials;
-		tuts = "0" + tuts.substring(1);
-		console.log("Update tutorials tuts: " + tuts)
-        fetch(`/user/resetPassword/${userID}/${tuts}`, {
+		tutorials = "0" + tutorials.substring(1);
+		console.log("Update tutorials: " + tutorials)
+        fetch(`/user/resetPassword/${userID}/${tutorials}`, {
               method: 'PUT',
               headers: {
                 'Accept': 'application/json',
