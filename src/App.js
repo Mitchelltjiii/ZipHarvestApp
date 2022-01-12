@@ -35,7 +35,8 @@ export default class App extends React.Component {
     fromAccountSettings: false,
     logInSuccess: true,
     resetPasswordLogInFailed: false,
-    subscription: []
+    subscription: [],
+    tutorials: ""
   };
 
   componentDidMount() {
@@ -342,16 +343,16 @@ export default class App extends React.Component {
 
   getUser = async (user,staySignedIn) => {
     const response = await fetch(`/api/tutorials/${user}`);
-    const json = await response.json();
+    const text = await response.text();
 
-    console.log("GET USER JSON: " + json);
-    console.log("Get User json string: " + JSON.stringify(json));
+    console.log("GET TUTORIALS TEXT: " + text);
+    console.log("Get TUTORIALS json string: " + JSON.stringify(text));
     
-    this.executeLogIn(user,staySignedIn);
+    this.executeLogIn(user,staySignedIn,text);
   }
   
 
-  executeLogIn = (user,staySignedIn) =>{
+  executeLogIn = (user,staySignedIn,tuts) =>{
     console.log("Execute login");
     localStorage.setItem('user', user);
     localStorage.setItem('staySignedIn',staySignedIn);
@@ -359,9 +360,9 @@ export default class App extends React.Component {
     console.log("CurrPage: " + currPage);
     
     if(currPage !== null && currPage !== undefined && currPage !== ""){
-      this.setState({loggedIn:user,userID:user,currentPage:currPage,logInFailed:false});
+      this.setState({loggedIn:user,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts});
     }else{
-      this.setState({loggedIn:user,userID:user,logInFailed:false});
+      this.setState({loggedIn:user,userID:user,logInFailed:false,tutorials:tuts});
     }
     this.resetAll([]);
     this.engageReload();
@@ -485,7 +486,7 @@ export default class App extends React.Component {
     localStorage.clear();
     this.setState({loggedIn:'',currentPage:'harvest-form',harvestBatches:[],plants:[],harvestRecords:[],
     plantsLoading:true,harvestBatchesLoading:true,harvestRecordsLoading:true,currentHarvest:[],userID:'',
-    dryRooms:[],exportRecords:[], subscription:[]});
+    dryRooms:[],exportRecords:[], subscription:[], tutorials:""});
     this.forceUpdate();
   }
 

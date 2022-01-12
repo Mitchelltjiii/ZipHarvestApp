@@ -580,9 +580,7 @@ app.get("/api/tutorials/:username",(req,res) => {
       connection.query(usersQueryStringFromUsername + sql + "'", (err, rows) => {
         connection.release(); // return the connection to pool
         if(err) throw err;
-        console.log("rows: " + rows);
-        console.log("JSON.stringify rows: " + JSON.stringify(rows));
-        res.json(rows);
+        res.json(rows.tutorials);
     });
   });
 });
