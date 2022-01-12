@@ -341,7 +341,7 @@ export default class App extends React.Component {
 	}
 
   getUser = async (user,staySignedIn) => {
-    const response = await fetch(`/api/users/tutorials/${user}`);
+    const response = await fetch(`/api/tutorials/${user}`);
     const json = await response.json();
 
     console.log("GET USER JSON: " + json);

@@ -571,7 +571,7 @@ app.put('/hb', (req, res) =>{
   });
 });
 
-app.get("/api/users/tutorials/:username",(req,res) => {
+app.get("/api/tutorials/:username",(req,res) => {
   pool.getConnection((err, connection) => {
       console.log("Api users get tutorials");
       if(err) throw err;
