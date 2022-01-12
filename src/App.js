@@ -347,7 +347,7 @@ export default class App extends React.Component {
     console.log("GET USER JSON: " + json);
     console.log("Get User json string: " + JSON.stringify(json));
     
-    executeLogin(user,staySignedIn);
+    this.executeLogin(user,staySignedIn);
   }
   
 
