@@ -753,7 +753,7 @@ app.put('/user/tutorials/:username/:tutorials', (req, res) =>{
   let username = req.params.username;
   let tutorials = req.params.tutorials;
 
-  connection.query(`UPDATE pl SET
+  connection.query(`UPDATE users SET
   tutorials = ? WHERE (username = ?)`, 
   [
     tutorials, username
