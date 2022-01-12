@@ -347,8 +347,9 @@ export default class App extends React.Component {
 
     console.log("GET TUTORIALS TEXT: " + text);
     console.log("Get TUTORIALS json string: " + JSON.stringify(text));
+    let txt = text.substring(1,text.length-1);
     
-    this.executeLogIn(user,staySignedIn,text);
+    this.executeLogIn(user,staySignedIn,txt);
   }
   
 
