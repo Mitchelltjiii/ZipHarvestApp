@@ -1025,7 +1025,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	async function updateTutorials(){
 		tutorials = "0" + tutorials.substring(1);
 		console.log("Update tutorials: " + tutorials)
-        fetch(`/user/resetPassword/${userID}/${tutorials}`, {
+        fetch(`/user/tutorials/${userID}/${tutorials}`, {
               method: 'PUT',
               headers: {
                 'Accept': 'application/json',
