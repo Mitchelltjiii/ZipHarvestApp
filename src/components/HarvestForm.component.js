@@ -21,7 +21,9 @@ import {isMobile} from 'react-device-detect';
 
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches,
 	currentHarvest, setNewHBID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
-	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords}) { 
+	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords,tutorials}) { 
+
+	console.log("tutorials: " + tutorials);
 
 	function HarvestBatch(name,type,date,userID){
 		this.name = name;
@@ -1030,7 +1032,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   				justify="center"
 				alignItems="center"
 			>
-				{entryTutorialVisible ? <Grid
+				{(entryTutorialVisible && tutorials.substring(0,1)==="1") ? <Grid
 				container
 				direction="column"
   				justify="center"
