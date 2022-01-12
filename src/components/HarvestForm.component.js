@@ -521,6 +521,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setEntryTutorialVisible(false);
 	}
 
+	function dontShowAgain(){
+		updateTutorials();
+		closeEntryTutorial();
+	}
+
 	function addBranch(){
 		if(isNumeric(weight)){
 			if(branchValue===undefined || branchValue.length===0){
@@ -1017,6 +1022,21 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		return hb;
 	}
 
+	async function updateTutorials(){
+		let tuts = this.state.tutorials;
+		tuts = "0" + tuts.substring(1);
+		console.log("Update tutorials tuts: " + tuts)
+        fetch(`/user/resetPassword/${userID}/${tuts}`, {
+              method: 'PUT',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              }
+        }).then(function(response) {
+        }).then(function(data) {
+        });
+    }
+
 	return (
 		<div id="harvest-form" style={{margin:"auto"}}>
 				<Grid
@@ -1048,7 +1068,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				alignItems="center"
 				style={{width:"100%"}}
 			>
-				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true">Don't show again</Button>
+				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={dontShowAgain}>Don't show again</Button>
 				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={closeEntryTutorial}>Close</Button>
 				</Grid>
 				</Grid> : null}

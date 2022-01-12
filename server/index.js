@@ -746,6 +746,25 @@ app.put('/pl/active', (req, res) =>{
   });
 });
 
+app.put('/user/tutorials/:username/:tutorials', (req, res) =>{
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+
+  let username = req.params.username;
+  let tutorials = req.params.tutorials;
+
+  connection.query(`UPDATE pl SET
+  tutorials = ? WHERE (username = ?)`, 
+  [
+    tutorials, username
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    res.json(result);
+    });
+  });
+});
+
 app.post('/hr', (req, res) =>{
 
   pool.getConnection((err, connection) => {
@@ -834,26 +853,6 @@ app.put('/pl', (req, res) =>{
   strain = ?, userID = ?, active = ? WHERE (tag = ?)`, 
   [
     strain, userID, active, tag
-  ], (err, result) => {
-    connection.release(); // return the connection to pool
-    if(err) throw err;
-    res.json(result);
-    });
-  });
-});
-
-app.put('/pl/active', (req, res) =>{
-  pool.getConnection((err, connection) => {
-    if(err) throw err;
-    var postData  = req.body;
-
-  let tag = postData.tag;
-  let active = postData.active;
-
-  connection.query(`UPDATE pl SET
-  active = ? WHERE (tag = ?)`, 
-  [
-    active, tag
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;

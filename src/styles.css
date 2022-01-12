@@ -76,16 +76,17 @@ body {
   .tooltip .tooltiptext {
     visibility: hidden;
     width: 200px;
-    background-color: rgb(117, 117, 117);
-    color: rgb(236, 236, 236);
+    background-color: rgb(63, 63, 63);
+    color: rgb(243, 243, 243);
     text-align: center;
     padding-left: 10px;
     padding-top: 10px;
+    padding-bottom: 10px;
     border-radius: 6px;  
     bottom: 100%;
     left: 50%;
     margin-left: -100px; 
-    font-size: 15px;
+    font-size: 17px;
     font-weight: lighter;
    
     /* Position the tooltip text - see examples below! */
