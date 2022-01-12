@@ -571,6 +571,22 @@ app.put('/hb', (req, res) =>{
   });
 });
 
+app.get("/api/users/tutorials/:username",(req,res) => {
+  pool.getConnection((err, connection) => {
+      if(err) throw err;
+      let username = req.params.username;
+      var sql = `${username}`;
+      connection.query(usersQueryStringFromUsername + sql + "'", (err, rows) => {
+        connection.release(); // return the connection to pool
+        if(err) throw err;
+        console.log("Api users get tutorials");
+        console.log("rows: " + rows);
+        console.log("JSON.stringify rows: " + JSON.stringify(rows));
+        res.json(rows);
+    });
+  });
+});
+
 app.put('/user', (req, res) =>{
 
   pool.getConnection((err, connection) => {
@@ -591,13 +607,14 @@ app.put('/user', (req, res) =>{
   let sessionid = postData.sessionid;
   let verCodeTime = postData.verCodeTime;
   let linkCodeTime = postData.linkCodeTime;
+  let tutorials = postData.tutorials;
 
   if(apiid !== null && username !== null && password !== null && subid !== null){
     bcrypt.hash(password, 10, function(err, hash) {
       connection.query(`UPDATE users set
-  apiid =?, password =?, subid =?, linkCode =?, facilityName =?, firstName =?, lastName =?, email =?, verificationCode =?, verified =?, sessionid =?, verCodeTime =?, linkCodeTime =? WHERE username = ?`,
+  apiid =?, password =?, subid =?, linkCode =?, facilityName =?, firstName =?, lastName =?, email =?, verificationCode =?, verified =?, sessionid =?, verCodeTime =?, linkCodeTime =?, tutorials =? WHERE username = ?`,
   [
-    apiid, hash, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime, username
+    apiid, hash, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime, tutorials, username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
@@ -631,15 +648,16 @@ app.post('/user', (req, res) =>{
   let sessionid = postData.sessionid;
   let verCodeTime = postData.verCodeTime;
   let linkCodeTime = postData.linkCodeTime;
+  let tutorials = postData.tutorials;
 
   if(apiid !== null && username !== null && password !== null && subid !== null){
     bcrypt.hash(password, 10, function(error, hash) {
     connection.query(`INSERT INTO users 
-  (apiid, username, password, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime,linkCodeTime) 
+  (apiid, username, password, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime,linkCodeTime,tutorials) 
   VALUES 
-  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)`,
   [
-    apiid, username, hash, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime
+    apiid, username, hash, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime, tutorials
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;

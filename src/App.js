@@ -57,7 +57,7 @@ export default class App extends React.Component {
     if(signIn){
       if(json.canceled_at === null){
         this.setState({subscription:json});
-        this.executeLogIn(username,staySignedIn);
+        this.getUser(username,staySignedIn);
       }else{
         this.executeLogInFailed();
       }
@@ -340,6 +340,17 @@ export default class App extends React.Component {
       this.setState({plants: tempPlants});
 	}
 
+  getUser = async (user,staySignedIn) =>{
+    const response = await fetch(`/api/users/tutorials/${user}`);
+    const json = await response.json();
+
+    console.log("GET USER JSON: " + json);
+    console.log("Get User json string: " + JSON.stringify(json));
+    
+    executeLogin(user,staySignedIn);
+  }
+  
+
   executeLogIn = (user,staySignedIn) =>{
     console.log("Execute login");
     localStorage.setItem('user', user);
@@ -535,7 +546,7 @@ export default class App extends React.Component {
         this.reloadExportRecords([]);
         this.reloadSubscription([]);
         this.setState({loggedIn:loggedInUser,userID:loggedInUser,usersLoading:false});
-        this.executeLogIn(loggedInUser,staySignedIn);
+        this.getUser(loggedInUser,staySignedIn);
       }
     }
 

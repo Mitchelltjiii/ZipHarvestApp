@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import RemoveUploadQueueItemButton from './RemoveUploadQueueItemButton';
 import PlantTable from './PlantTable.component';
 import ImportPlantsButton from './ImportPlantsButton.component';
-import RemoveFromAvailablePlants from './RemoveFromAvailablePlantsButton.component';
+import RemoveFromAvailablePlantsButton from './RemoveFromAvailablePlantsButton.component';
 import TextField from '@material-ui/core/TextField';
 import * as XLSX from 'xlsx';
 
@@ -254,8 +254,11 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 					>
 						<TextField autoFocus={autoFoc} onChange={handleSearchFieldChange} value={searchText} label="Search" style={{width:"130px"}}></TextField>
 					<Button style={{marginRight:"10px",marginLeft:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}>Import Files</Button>
-					<RemoveFromAvailablePlants getPlants={getPlants} removeList={removeList} setPlants={setPlants} setRemoveList={setSelectedToDelete}
-							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></RemoveFromAvailablePlants>
+					<RemoveFromAvailablePlantsButton getPlants={getPlants} removeList={removeList} setPlants={setPlants} setRemoveList={setSelectedToDelete}
+							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></RemoveFromAvailablePlantsButton>
+					<div class="tooltip">?
+  					          <span class="tooltiptext">Import XLSX file before harvesting. Select rows to delete them from your list of available plants.</span>
+				            </div> 
 					</Grid>
 					</div>
 			    }

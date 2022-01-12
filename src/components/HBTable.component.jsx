@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import ExportButton from './ExportButton.component';
 import {isMobile} from 'react-device-detect';
+import Grid from '@material-ui/core/Grid';
 
 
 function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExportRecords,getUniqueIDCount,getDryRooms}) {
@@ -116,7 +117,17 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
               <TableCell align="left">{row.plants}</TableCell>
               <TableCell align="left">{row.date}</TableCell>
               <TableCell align="center">
+                <Grid
+				          container
+			          	direction="row"
+			          	justifyContent="center"
+				          alignItems="center"
+			          >
                     <ExportButton row={row} getHarvestRecords={getHarvestRecords} getHarvestBatches={getHarvestBatches} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}></ExportButton>
+                    <div class="tooltip">?
+  					          <span class="tooltiptext">Export CSV for upload. Create dry rooms first in the Manage Dry Rooms section.</span>
+				            </div> 
+                  </Grid>
                   </TableCell>
             </TableRow>
             ))}
