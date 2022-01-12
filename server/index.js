@@ -573,13 +573,13 @@ app.put('/hb', (req, res) =>{
 
 app.get("/api/users/tutorials/:username",(req,res) => {
   pool.getConnection((err, connection) => {
+      console.log("Api users get tutorials");
       if(err) throw err;
       let username = req.params.username;
       var sql = `${username}`;
       connection.query(usersQueryStringFromUsername + sql + "'", (err, rows) => {
         connection.release(); // return the connection to pool
         if(err) throw err;
-        console.log("Api users get tutorials");
         console.log("rows: " + rows);
         console.log("JSON.stringify rows: " + JSON.stringify(rows));
         res.json(rows);

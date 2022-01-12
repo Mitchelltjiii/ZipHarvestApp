@@ -340,14 +340,14 @@ export default class App extends React.Component {
       this.setState({plants: tempPlants});
 	}
 
-  getUser = async (user,staySignedIn) =>{
+  getUser = async (user,staySignedIn) => {
     const response = await fetch(`/api/users/tutorials/${user}`);
     const json = await response.json();
 
     console.log("GET USER JSON: " + json);
     console.log("Get User json string: " + JSON.stringify(json));
     
-    this.executeLogin(user,staySignedIn);
+    this.executeLogIn(user,staySignedIn);
   }
   
 
