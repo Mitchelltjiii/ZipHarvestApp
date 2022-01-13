@@ -97,6 +97,7 @@ class ImportPlantsButton extends Component{
         this.props.reloadPlants([]);
 		    this.props.setPlantList([]);
 		    this.props.setImporting(false);
+        this.props.setSelectedFile("");
         this.props.refreshOuter();
     }
 

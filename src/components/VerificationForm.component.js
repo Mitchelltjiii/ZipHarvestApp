@@ -60,7 +60,8 @@ function VerificationForm({newUsername}) {
           verified: 1,
           sessionid: '',
           verCodeTime: '',
-          linkCodeTime: ''
+          linkCodeTime: '',
+          tutorials: '1'
           };
       
           userItem.apiid = newUsername;

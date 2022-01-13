@@ -230,7 +230,8 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
         verified: 1,
         sessionid: '',
         verCodeTime: '',
-        linkCodetime: ''
+        linkCodetime: '',
+        tutorials: '1'
         };
     
         userItem.apiid = makeid(8);

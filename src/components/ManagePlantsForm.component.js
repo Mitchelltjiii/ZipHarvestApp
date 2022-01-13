@@ -240,7 +240,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 						alignItems="center"
 						>
 						<ImportPlantsButton getPlants={getPlants} getPlantList={getPlantList} setPlants={setPlants} setPlantList={setPlantList}
-							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></ImportPlantsButton>
+							setImporting={setImporting} setSelectedFile={setSelectedFile} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></ImportPlantsButton>
 						<Button style={{marginLeft:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancel}>Cancel</Button>
 						</Grid>
 					</Grid>

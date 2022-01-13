@@ -152,6 +152,7 @@ async function goToProduct(lookup_key){
 }
 
 function getUserItem(newUser,sessionid){
+  console.log("Stripe Form get user item");
   let userItem = {
     apiid: '',
     username: '',
@@ -166,7 +167,8 @@ function getUserItem(newUser,sessionid){
     verified: 0,
     sessionid: '',
     verCodeTime: '',
-    linkCodeTime: ''
+    linkCodeTime: '',
+    tutorials: '1'
     };
 
     userItem.apiid = newUser.username;
@@ -181,6 +183,7 @@ function getUserItem(newUser,sessionid){
 }
 
 async function updateUser(userItem){
+  console.log("Stripe Form update user");
   ('/user', {
         method: 'PUT',
         headers: {
