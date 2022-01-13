@@ -717,7 +717,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
           			))}
              	</Select>
 				 <div class="tooltip">?
-  					<span class="tooltiptext">Create and select harvest batch</span>
+  					<span class="tooltiptext">Create and select harvest batch.</span>
 				</div> 
 				</Grid>
 			</Grid>
@@ -849,7 +849,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					</RadioGroup>
 				</FormControl>
 				<div class="tooltip">?
-  					<span class="tooltiptext">This can be changed later</span>
+  					<span class="tooltiptext">Harvest date can be changed to any date after the batch is created.</span>
 				</div>
 				</Grid>
 
@@ -1120,7 +1120,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
           			))}
              	</Select>
 				 <div class="tooltip">?
-  					<span class="tooltiptext">Filter by strain</span>
+  					<span class="tooltiptext">Filter your search by strain.</span>
 				</div>
 				</Grid>
 
