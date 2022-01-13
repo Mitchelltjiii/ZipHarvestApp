@@ -225,6 +225,21 @@ async function updateUserVerified(username){
   });
 }
 
+async function updateUserVerificationCode(username,newCode){
+  console.log("Update user Verification code username: " + username + ", code: " + newCode);
+  let verCodeTime = JSON.stringify((new Date()).getTime());
+
+  fetch(`/user/updateVerificationCode/${username}/${newCode}/${verCodeTime}`, {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+  }).then(function(response) {
+  }).then(function(data) {
+  });
+}
+
 const SuccessDisplay = ({ seshId }) => {
   if(session === null || session === [] || session === undefined || JSON.stringify(session) === "[]"){
     getSession(sessionId);
@@ -407,37 +422,7 @@ async function getSession(seshId){
       if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
         sendVerificationEmail(newUser);
       }
-  }
-
-  function getUserItemForResend(userForResend,newCode){
-    let userItem = {
-      apiid: '',
-      username: '',
-      password: '',
-      subid: '',
-      linkCode: '',
-      facilityName: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      verificationCode: '',
-      verified: 1,
-      sessionid: '',
-      verCodeTime: '',
-      linkCodeTime: ''
-      };
-  
-      userItem.apiid = userForResend.username;
-      userItem.facilityName = userForResend.facilityName;
-      userItem.firstName = userForResend.firstName;
-      userItem.lastName = userForResend.lastName;
-      userItem.email = userForResend.email;
-      userItem.verificationCode = newCode;
-      userItem.username = userForResend.username;
-      userItem.password = userForResend.password;
-      userItem.verCodeTime = JSON.stringify((new Date().getTime()));
-    return userItem;
-  }
+    }
 
     function makeid(length) {
         var result           = '';
@@ -454,7 +439,7 @@ async function getSession(seshId){
         let newCode = makeid(8);
         const response = await fetch(`/send-verification-email/${newUser.email}/${newCode}/${newUser.username}`);
         await response.json();
-        updateUser(getUserItemForResend(newUser,newCode));
+        updateUserVerificationCode(newUser,newCode);
       }
 
   const ExpiredForm = ({msg}) => {

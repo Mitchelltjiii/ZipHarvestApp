@@ -230,7 +230,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
         verified: 1,
         sessionid: '',
         verCodeTime: '',
-        linkCodetime: '',
+        linkCodeTime: '',
         tutorials: '1'
         };
     
