@@ -84,9 +84,8 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 6px;  
-    bottom: 100%;
     left: 50%;
-    margin-left: -100px; 
+    margin-left: -205px; 
     font-size: 17px;
     font-weight: lighter;
    
@@ -95,28 +94,6 @@ body {
     z-index: 1;
   }
 
-   /* Tooltip text */
-   .tooltip .tooltiptextbottomleft {
-    visibility: hidden;
-    width: 200px;
-    background-color: rgb(63, 63, 63);
-    color: rgb(243, 243, 243);
-    text-align: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 6px;  
-    top: 100%;
-    left: 50%;
-    margin-left: -200px; 
-    font-size: 17px;
-    font-weight: lighter;
-   
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
-  }
   
   
   

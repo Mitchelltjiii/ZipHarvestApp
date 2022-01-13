@@ -113,7 +113,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
 			          >
                 <div>Export</div>
                 <div class="tooltip">?
-  					          <span class="tooltiptextbottomleft">Export CSV for upload. Create dry rooms first in the Manage Dry Rooms section.</span>
+  					          <span class="tooltiptext">Export CSV for upload. Create dry rooms first in the Manage Dry Rooms section.</span>
 				            </div>
                 </Grid>
             </TableCell>
