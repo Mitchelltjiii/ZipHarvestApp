@@ -44,6 +44,16 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
   					justifyContent="center"
 					alignItems="center"
 				>
+					<Grid
+					container
+					direction="row"
+  					justifyContent="flex-end"
+					alignItems="flex-end"
+				>
+					<div class="tooltip">?
+  					          <span class="tooltiptext">Export CSV for upload. Create dry rooms first in the Manage Dry Rooms section.</span>
+				            </div>
+					</Grid>
 					<div style={{margin:"auto",width:width}}>
 					<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}></HBTable>
 					</div>
