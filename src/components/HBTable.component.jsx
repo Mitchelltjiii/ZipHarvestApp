@@ -104,7 +104,20 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
             <TableCell align="left">Strain</TableCell>
             <TableCell align="left"># Plants</TableCell>
             <TableCell align="left">Date</TableCell>
-            <TableCell align="center" style={{marginRight:"2px"}}>Export</TableCell>
+            
+            <TableCell align="center" style={{marginRight:"2px"}}><Grid
+				          container
+			          	direction="row"
+			          	justifyContent="center"
+				          alignItems="center"
+			          >
+                <div>Export</div>
+                <div class="tooltip">?
+  					          <span class="tooltiptextbottomleft">Export CSV for upload. Create dry rooms first in the Manage Dry Rooms section.</span>
+				            </div>
+                </Grid>
+            </TableCell>
+            
           </TableRow>
         </TableHead>
         <TableBody>
@@ -117,17 +130,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
               <TableCell align="left">{row.plants}</TableCell>
               <TableCell align="left">{row.date}</TableCell>
               <TableCell align="center">
-                <Grid
-				          container
-			          	direction="row"
-			          	justifyContent="center"
-				          alignItems="center"
-			          >
-                    <ExportButton row={row} getHarvestRecords={getHarvestRecords} getHarvestBatches={getHarvestBatches} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}></ExportButton>
-                    <div class="tooltip">?
-  					          <span class="tooltiptext">Export CSV for upload. Create dry rooms first in the Manage Dry Rooms section.</span>
-				            </div> 
-                  </Grid>
+                <ExportButton row={row} getHarvestRecords={getHarvestRecords} getHarvestBatches={getHarvestBatches} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}></ExportButton> 
                   </TableCell>
             </TableRow>
             ))}

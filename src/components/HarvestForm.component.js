@@ -1145,7 +1145,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				<TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width: "100px"}}/>
 				<div style={{marginTop:"15px"}}>
 				<div class="tooltip">?
-  					<span class="tooltiptext">Choose "Contains" or "Ends with". Search for three or more digits for best experience.</span>
+  					<span class="tooltiptext">Choose "Contains" or "Ends with". Searching for three or more digits is recommended.</span>
 				</div>
 				</div>
 				</Grid>
