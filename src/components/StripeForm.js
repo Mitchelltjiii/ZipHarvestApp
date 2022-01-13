@@ -179,12 +179,14 @@ function getUserItem(newUser,sessionid){
     userItem.lastName = newUser.lastName;
     userItem.email = newUser.email;
     userItem.sessionid = sessionid;
+
+    console.log("string useritem in stripeform: " + JSON.stringify(userItem));
   return userItem;
 }
 
 async function updateUser(userItem){
   console.log("Stripe Form update user");
-  ('/user', {
+  fetch('/user', {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
