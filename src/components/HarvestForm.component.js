@@ -831,7 +831,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				>
 				<TextField id="changeHBField" label="Batch Name"/> 
 				<div class="tooltip">?
-  					<span class="tooltiptext">Harvest Batch Name</span>
+  					<span class="tooltiptext">Harvest Batch Name. Harvest batches should only be one strain and for only one day.</span>
 				</div>
 				</Grid>
 				
@@ -1145,7 +1145,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				<TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width: "100px"}}/>
 				<div style={{marginTop:"15px"}}>
 				<div class="tooltip">?
-  					<span class="tooltiptext">Choose "Contains" or "Ends with". Searching for three or more digits is recommended.</span>
+  					<span class="tooltiptext">Search for plants here. Choose "Contains" or "Ends with". Searching for three or more digits is recommended.</span>
 				</div>
 				</div>
 				</Grid>
@@ -1229,7 +1229,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				<Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
 					nextPlantFromSpeech={nextPlantFromSpeech} voiceCommand={voiceCommand}></Dictaphone>	
 					<div class="tooltip">?
-  					<span class="tooltiptext">Command 1: "Search [tag]", eg. "Search 026". Command 2: "[Weight] [unit]", eg. "1.2 pounds". Command 3: "Next Plant".</span>
+  					<span class="tooltiptext">For voice control, say these commands. Command 1: "Search [tag]", eg. "Search 026". Command 2: "[Weight] [unit]", eg. "1.2 pounds". Command 3: "Next Plant".</span>
 				</div>
 				</Grid>
 				</Grid>

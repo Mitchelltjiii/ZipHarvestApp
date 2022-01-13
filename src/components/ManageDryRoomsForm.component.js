@@ -210,7 +210,7 @@ function ManageDryRoomsForm({getDryRooms, refreshOuter, reloadDryRooms,userID}) 
 						<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}>Add Dry Room</Button>
 						<Button style={{marginLeft:"10px",marginRight:"5px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleDeleteDryRooms}>Delete</Button>
 						<div class="tooltip">?
-  					          <span class="tooltiptext">Add dry rooms here. Spelling must match perfectly. Select rows to delete them from your list of available dry rooms.</span>
+  					          <span class="tooltiptext">Add and remove dry rooms here. Spelling must match perfectly.</span>
 				            </div> 
 					</Grid>
 					</div>

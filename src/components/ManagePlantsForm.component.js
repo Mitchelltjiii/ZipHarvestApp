@@ -257,7 +257,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 					<RemoveFromAvailablePlantsButton getPlants={getPlants} removeList={removeList} setPlants={setPlants} setRemoveList={setSelectedToDelete}
 							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></RemoveFromAvailablePlantsButton>
 					<div class="tooltip">?
-  					          <span class="tooltiptext">Import XLSX file before harvesting. Select rows to delete them from your list of available plants.</span>
+  					          <span class="tooltiptext">Before harvesting, download your flowering plants from your compliance software as an XLSX file. Then import the file here. To remove plants, select the boxes and click delete.</span>
 				            </div> 
 					</Grid>
 					</div>

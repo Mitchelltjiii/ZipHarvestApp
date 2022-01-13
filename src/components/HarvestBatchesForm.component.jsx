@@ -51,7 +51,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 					alignItems="flex-end"
 				>
 					<div class="tooltip">?
-  					          <span class="tooltiptext">Export CSV for upload. Create dry rooms first in the Manage Dry Rooms section.</span>
+  					          <span class="tooltiptext">Export CSV for upload to your compliance software. Create dry rooms first in the Manage Dry Rooms section.</span>
 				            </div>
 					</Grid>
 					<div style={{margin:"auto",width:width}}>
