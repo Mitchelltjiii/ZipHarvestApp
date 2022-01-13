@@ -21,7 +21,8 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
     const useStyles = makeStyles({
         table: {
           minWidth: tableWidth,
-          maxWidth: tableWidth
+          maxWidth: tableWidth,
+          minHeight:"300px"
         },
       });
     
@@ -111,7 +112,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
 			          	justifyContent="center"
 				          alignItems="center"
 			          >
-                <div>Export</div>
+                <div style={{marginRight:"5px"}}>Export</div>
                 <div class="tooltip">?
   					          <span class="tooltiptext">Export CSV for upload. Create dry rooms first in the Manage Dry Rooms section.</span>
 				            </div>

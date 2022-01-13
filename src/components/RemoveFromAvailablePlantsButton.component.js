@@ -96,7 +96,7 @@ class RemoveFromAvailablePlants extends Component{
     }
 
     render() {    
-        return (<Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}>Delete</Button>);
+        return (<Button style={{marginRight:"5px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}>Delete</Button>);
       }
 }
 

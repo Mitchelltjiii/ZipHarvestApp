@@ -242,7 +242,7 @@ class ExportButton extends Component{
               </Grid>
               <Button aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleNext}>Next</Button>            
               </Grid>
-			) : <Button aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleClickExport}>Export</Button>            
+			) : <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleClickExport}>Export</Button>            
     }
     </div>
   }
