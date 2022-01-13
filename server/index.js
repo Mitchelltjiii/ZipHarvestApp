@@ -708,6 +708,22 @@ app.put('/user/subid/:subid/:username', (req, res) =>{
   });
 });
 
+app.put('/user/verified/:username', (req, res) =>{
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+
+  connection.query(`UPDATE users SET
+  verified = ?, verificationCode = ?, verCodeTime = ? WHERE (username = ?)`, 
+  [
+    0,"","", req.params.username
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    res.json(result);
+    });
+  });
+});
+
 app.put('/user/resetPassword/:username/:password', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;

@@ -212,6 +212,19 @@ async function updateUserSubId(username,subid){
   });
 }
 
+async function updateUserVerified(username){
+  console.log("Update user verified: " + username);
+  fetch(`/user/verified/${username}`, {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+  }).then(function(response) {
+  }).then(function(data) {
+  });
+}
+
 const SuccessDisplay = ({ seshId }) => {
   if(session === null || session === [] || session === undefined || JSON.stringify(session) === "[]"){
     getSession(sessionId);
@@ -301,7 +314,7 @@ async function getSession(seshId){
 
   
         if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
-          updateUser(getUserItem(newUser,""));
+          updateUserVerified(newUser);
           setUser(newUser);
         }
       }else{
