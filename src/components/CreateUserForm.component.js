@@ -234,7 +234,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
         tutorials: '1'
         };
     
-        userItem.apiid = makeid(8);
+        userItem.apiid = username;
         userItem.username = username;
         userItem.password = password;
         userItem.facilityName = facilityName;
