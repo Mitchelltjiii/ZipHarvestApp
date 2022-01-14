@@ -16,7 +16,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
     let tableWidth = 600;
     
     if(isMobile){
-      tableWidth = 385;
+      tableWidth = 340;
     }
     const useStyles = makeStyles({
         table: {
@@ -100,11 +100,8 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="left">Strain</TableCell>
-            <TableCell align="left"># Plants</TableCell>
-            <TableCell align="left">Date</TableCell>
-            
+            <TableCell>Harvest Batch</TableCell>
+            <TableCell align="center"></TableCell>            
             <TableCell align="center" style={{marginRight:"2px"}}><Grid
 				          container
 			          	direction="row"
@@ -121,11 +118,26 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
             {parsedRows.map((row) => (
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">
-                {row.name}
+              <Grid
+				          container
+			          	direction="column"
+			          	justifyContent="center"
+				          alignItems="center"
+			          >
+                <div>{row.name}</div>
+                <div>{row.strain}</div>
+                </Grid>
+                
               </TableCell>
-              <TableCell align="left">{row.strain}</TableCell>
-              <TableCell align="left">{row.plants}</TableCell>
-              <TableCell align="left">{row.date}</TableCell>
+              <TableCell align="center"><Grid
+				          container
+			          	direction="column"
+			          	justifyContent="center"
+				          alignItems="center"
+			          >
+                <div>{row.plants}</div>
+                <div>{row.date}</div>
+                </Grid></TableCell>
               <TableCell align="center">
                 <ExportButton row={row} getHarvestRecords={getHarvestRecords} getHarvestBatches={getHarvestBatches} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}></ExportButton> 
                   </TableCell>
