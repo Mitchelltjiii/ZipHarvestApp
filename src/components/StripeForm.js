@@ -146,58 +146,23 @@ async function goToProduct(lookup_key){
   });
   const json = await response.json();
 
-  updateUser(getUserItem(user,json.id));
+  updateUserSessionID(user.username,json.id);
 
   window.location.replace(json.url);
 }
 
-function getUserItem(newUser,sessionid){
-  console.log("Stripe Form get user item");
-  let userItem = {
-    apiid: '',
-    username: '',
-    password: '',
-    subid: '',
-    linkCode: '',
-    facilityName: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    verificationCode: '',
-    verified: 0,
-    sessionid: '',
-    verCodeTime: '',
-    linkCodeTime: '',
-    tutorials: '1'
-    };
-
-    userItem.apiid = newUser.username;
-    userItem.username = newUser.username;
-    userItem.password = newUser.password;
-    userItem.facilityName = newUser.facilityName;
-    userItem.firstName = newUser.firstName;
-    userItem.lastName = newUser.lastName;
-    userItem.email = newUser.email;
-    userItem.sessionid = sessionid;
-
-    console.log("string useritem in stripeform: " + JSON.stringify(userItem));
-  return userItem;
-}
-
-async function updateUser(userItem){
-  console.log("Stripe Form update user");
-  fetch('/user', {
+async function updateUserSessionID(username,id){
+  console.log("Update user sessionid: " + username + ", id: " + id);
+  fetch(`/user/updateUserSessionID/${username}/${id}`, {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userItem)
+        }
   }).then(function(response) {
   }).then(function(data) {
   });
 }
-
 
 async function updateUserSubId(username,subid){
   fetch(`/user/subid/${subid}/${username}`, {

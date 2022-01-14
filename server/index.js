@@ -724,6 +724,22 @@ app.put('/user/verified/:username', (req, res) =>{
   });
 });
 
+app.put('/user/updateUserSessionID/:username/:sessionID', (req, res) =>{
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+
+  connection.query(`UPDATE users SET
+  sessionid = ? WHERE (username = ?)`, 
+  [
+    req.params.sessionID,req.params.username
+  ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    res.json(result);
+    });
+  });
+});
+
 app.put('/user/updateVerificationCode/:username/:code/:verCodeTime', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
