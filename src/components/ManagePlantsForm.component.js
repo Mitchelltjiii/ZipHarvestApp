@@ -72,7 +72,8 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 			}
 			setSelectedToDelete(newSelectedToDelete);
 		}
-	}
+	} 
+	
 	const toggleDeletePlantSelected = (tag) => {
 		let foundIndex = -1;
 		let i = 0;
