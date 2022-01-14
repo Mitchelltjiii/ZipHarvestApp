@@ -893,6 +893,7 @@ app.post('/pl', (req, res) =>{
 
 app.put('/pl', (req, res) =>{
   pool.getConnection((err, connection) => {
+    try{
     if(err) throw err;
     var postData  = req.body;
 
@@ -910,6 +911,9 @@ app.put('/pl', (req, res) =>{
     if(err) throw err;
     res.json(result);
     });
+  }catch(errorE){
+    
+  }
   });
 });
 
