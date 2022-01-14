@@ -90,6 +90,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [errorMessage, setErrorMessage] = React.useState('');
 
+	const [hbName, setHbName] = React.useState('');
+
+
 	let errorMessageText = errorMessage;
 
 	let isEdittingHarvestDate = edittingHarvestDate;
@@ -324,11 +327,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	let harvestTypeLabelText = "Harvest";
-	console.log("Current harvest: " + JSON.stringify(currentHarvest));
 	if(!(currentHarvest === undefined || currentHarvest.name === '')){
-		console.log("Current harvest A");
-		if(currentHarvest.type===1){
-			console.log("Current harvest B");
+		if(currentHarvest.type==="1"){
 			harvestTypeLabelText = "Manicure";
 		}
 	}
@@ -479,7 +479,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	function addNewHB(){
-		let hbName = document.getElementById("changeHBField").value;
 		if(hbName !== ""){
 			let hbDate = getTodayStr();
 		if(day==='yesterday'){
@@ -539,6 +538,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			setWeight("");
 		}
 
+	}
+
+	const handleHbNameChange = (event) => {
+		setHbName(event.target.value);
 	}
 
 	let editNow = editMode;
@@ -832,7 +835,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
-				<TextField id="changeHBField" label="Batch Name"/> 
+				<TextField id="changeHBField" value={hbName} onChange={handleHbNameChange} label="Batch Name"/> 
 				<div class="tooltip">?
   					<span class="tooltiptext">Harvest Batch Name. Harvest batches should only be one strain and for only one day.</span>
 				</div>
@@ -884,7 +887,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 					<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancelNewHB}>Cancel</Button>
-					<AddHarvestBatchButton getHarvestBatchItem={getHarvestBatchItem} addNewHB={addNewHB} resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} reloadHarvestBatchesFromAddHB={reloadHarvestBatchesFromAddHB}></AddHarvestBatchButton>
+					<AddHarvestBatchButton getHarvestBatchItem={getHarvestBatchItem} addNewHB={addNewHB} resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} reloadHarvestBatchesFromAddHB={reloadHarvestBatchesFromAddHB} setHbName={setHbName}></AddHarvestBatchButton>
 				</Grid>
 				</div>
 		  </div>
