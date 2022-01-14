@@ -15,9 +15,6 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
     const [success,setSuccess] = React.useState(false);
     const [linkSent,setLinkSent] = React.useState(false);
     let fromUrl = (userFromUrl.length!==0);
-    console.log("From url: " + fromUrl);
-    console.log("Link Code: " + linkCode);
-    console.log("UserFromURL: " + userFromUrl)
     const [passwordError, setPasswordError] = React.useState(false);
     const [passwordHelperText, setPasswordHelperText] = React.useState(false);
     const [verifyPasswordError, setVerifyPasswordError] = React.useState(false);

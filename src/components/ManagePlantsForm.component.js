@@ -252,7 +252,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
   					justify="center"
 					alignItems="center"
 					>
-						<TextField autoFocus={autoFoc} onChange={handleSearchFieldChange} value={searchText} label="Search" style={{width:"130px"}}></TextField>
+						<TextField onChange={handleSearchFieldChange} value={searchText} label="Search" style={{width:"130px"}}></TextField>
 					<Button style={{marginRight:"10px",marginLeft:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}>Import Files</Button>
 					<RemoveFromAvailablePlantsButton getPlants={getPlants} removeList={removeList} setPlants={setPlants} setRemoveList={setSelectedToDelete}
 							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></RemoveFromAvailablePlantsButton>
