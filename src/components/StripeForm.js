@@ -329,7 +329,7 @@ async function getSession(seshId){
 
   
         if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
-          updateUserVerified(newUser);
+          updateUserVerified(newUser.username);
           setUser(newUser);
         }
       }else{
@@ -439,7 +439,7 @@ async function getSession(seshId){
         let newCode = makeid(8);
         const response = await fetch(`/send-verification-email/${newUser.email}/${newCode}/${newUser.username}`);
         await response.json();
-        updateUserVerificationCode(newUser,newCode);
+        updateUserVerificationCode(newUser.username,newCode);
       }
 
   const ExpiredForm = ({msg}) => {

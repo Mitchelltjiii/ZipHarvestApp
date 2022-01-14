@@ -64,7 +64,7 @@ function VerificationForm({newUsername}) {
           tutorials: '1'
           };
       
-          userItem.apiid = newUsername;
+          userItem.apiid = newUser.apiid;
           userItem.facilityName = newUser.facilityName;
           userItem.firstName = newUser.firstName;
           userItem.lastName = newUser.lastName;

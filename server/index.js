@@ -715,7 +715,7 @@ app.put('/user/verified/:username', (req, res) =>{
   connection.query(`UPDATE users SET
   verified = ?, verificationCode = ?, verCodeTime = ? WHERE (username = ?)`, 
   [
-    0,"","", req.params.username
+    0,"","",req.params.username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
