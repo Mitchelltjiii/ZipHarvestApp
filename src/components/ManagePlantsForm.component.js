@@ -14,7 +14,6 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	const [selectedToDelete,setSelectedToDelete] = React.useState([]);
 	const [searchText,setSearchText] = React.useState('');
 	let removeList = selectedToDelete;
-	const [autoFoc,setAutoFoc] = React.useState(false);
 	const [selectedFile, setSelectedFile] = React.useState('');
 	const [plantList, setPlantList] = React.useState([]);
 	console.log("PlantList: " + JSON.stringify(plantList));
@@ -73,7 +72,6 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 			}
 			setSelectedToDelete(newSelectedToDelete);
 		}
-		setAutoFoc(false);
 	}
 	const toggleDeletePlantSelected = (tag) => {
 		let foundIndex = -1;
@@ -93,7 +91,6 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 
 		setSelectedToDelete(removeList);
 		refreshOuter();
-		setAutoFoc(false);
 	}
 
 	const getDeletePlantSelected = (tag) => {
@@ -139,7 +136,6 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	const handleSearchFieldChange = (event) => {
 		setSearchText(event.target.value);
 		setSelectedToDelete([]);
-		setAutoFoc(true);
 	}
 
 	const handleCancel = () => {
