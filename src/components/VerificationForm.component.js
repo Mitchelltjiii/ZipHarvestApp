@@ -45,51 +45,6 @@ function VerificationForm({newUsername}) {
         }
     }
 
-      function getUserItem(newUser,newCode){
-        let userItem = {
-          apiid: '',
-          username: '',
-          password: '',
-          subid: '',
-          linkCode: '',
-          facilityName: '',
-          firstName: '',
-          lastName: '',
-          email: '',
-          verificationCode: '',
-          verified: 1,
-          sessionid: '',
-          verCodeTime: '',
-          linkCodeTime: '',
-          tutorials: '1'
-          };
-      
-          userItem.apiid = newUser.apiid;
-          userItem.facilityName = newUser.facilityName;
-          userItem.firstName = newUser.firstName;
-          userItem.lastName = newUser.lastName;
-          userItem.email = newUser.email;
-          userItem.verCodeTime = JSON.stringify((new Date()).getTime());
-          userItem.username = newUsername;
-          userItem.password = newUser.password;
-          userItem.verificationCode = newCode;
-        return userItem;
-      }
-      
-      async function updateUser(userItem){
-        fetch('/user', {
-              method: 'PUT',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(userItem)
-        }).then(function(response) {
-        }).then(function(data) {
-        });
-        setResent(true);
-      }
-
     function makeid(length) {
         var result           = '';
         var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -107,7 +62,22 @@ function VerificationForm({newUsername}) {
         const response = await fetch(`/send-verification-email/${address}/${newCode}/${newUsername}`);
         await response.json();
         
-        updateUser(getUserItem(user,newCode));
+        updateUserVerificationCode(user.username,newCode);
+      }
+
+      async function updateUserVerificationCode(username,newCode){
+        console.log("Update user Verification code username: " + username + ", code: " + newCode);
+        let verCodeTime = JSON.stringify((new Date()).getTime());
+      
+        fetch(`/user/updateVerificationCode/${username}/${newCode}/${verCodeTime}`, {
+              method: 'PUT',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              }
+        }).then(function(response) {
+        }).then(function(data) {
+        });
       }
 
     let newLink = "";
