@@ -16,27 +16,15 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
     const [password, setPassword] = React.useState('');
     const [staySignedIn, setStaySignedIn] = React.useState(false);
     const [showPassword,setShowPassword] = React.useState(false);
-    const [logInFail,setLogInFail] = React.useState(false);
-    const [failHandled,setFailHandled] = React.useState(true);
 
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
-    if(logInFailed && !logInFail && !failHandled){
-      setUsername("");
-      setPassword("");
-      setLogInFail(true);
-    }
-
     let errorText = "";
     let error = false;
-    if(logInFail){
+    if(logInFailed){
       error = true;
       errorText = "Username or password is incorrect."
-      if(username !== "" || password !== ""){
-        setLogInFail(false);
-        setFailHandled(true);
-      }
     }
 
     const handleForgotID = () => {
@@ -94,7 +82,8 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
     
     function logIn(){
       attemptLogin(username,password,staySignedIn);
-      setFailHandled(false);
+      setUsername("");
+      setPassword("");
 	  }
 
     const handleUsername = (event) => {
