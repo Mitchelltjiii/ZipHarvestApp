@@ -697,9 +697,9 @@ app.put('/user/subid/:subid/:username', (req, res) =>{
     if(err) throw err;
 
   connection.query(`UPDATE users SET
-  subid = ? WHERE (username = ?)`, 
+  subid = ?, sessionID = ? WHERE (username = ?)`, 
   [
-    req.params.subid, req.params.username
+    req.params.subid,"", req.params.username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
