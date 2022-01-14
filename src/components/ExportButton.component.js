@@ -231,8 +231,7 @@ class ExportButton extends Component{
               alignItems="center"
               wrap="nowrap"
               >
-                  <FormLabel>Choose Dry Room</FormLabel>
-				          <Select id="choose-dryroom-select" value={parent.state.selectedDR} onChange={handleSelectDR} style={{minWidth:"120px"}}>
+				          <Select id="choose-dryroom-select" value={parent.state.selectedDR} onChange={handleSelectDR} style={{minWidth:"100px"}}>
                 	  {drOptionsList.map((name, index) => (
             			  <MenuItem key={index} value={name}>
              	 		  {name}
