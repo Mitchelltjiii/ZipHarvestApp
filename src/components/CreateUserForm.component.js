@@ -29,7 +29,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     const [verifyPasswordError, setVerifyPasswordError] = React.useState(false);
     const [verifyPasswordHelperText, setVerifyPasswordHelperText] = React.useState(false);
     const [failedUsername,setFailedUsername] = React.useState('');
-    const [emailHelperText, setEmailHelperText] = React.useState(false);    
+    const [emailHelperText, setEmailHelperText] = React.useState('');    
     const [failedEmail,setFailedEmail] = React.useState('');
     const [failedPassword,setFailedPassword] = React.useState('');
     const [failedVerifyPassword,setFailedVerifyPassword] = React.useState('');

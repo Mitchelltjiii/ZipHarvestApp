@@ -92,6 +92,14 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [hbName, setHbName] = React.useState('');
 
+	const [hbNameError,setHbNameError] = React.useState(false);
+	const [hbNameHelperText,setHbNameHelperText] = React.useState('');
+	
+	if(hbNameError && hbName.length !== 0){
+		setHbNameError(false);
+		setHbNameHelperText('');
+	  }
+
 
 	let errorMessageText = errorMessage;
 
@@ -478,8 +486,25 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		reloadHarvestBatches(currentHarvest)
 	}
 
+	function isValidHBName(str){
+		var minNumberofChars = 1;
+		var maxNumberofChars = 24;
+		var regularExpression = /^[a-zA-Z0-9!_- ]{1,24}$/;
+		if(str.length < minNumberofChars || str.length > maxNumberofChars){
+			setHbNameError(true);
+			setHbNameHelperText("Must include only letters,numbers,[-!_], or spaces.");
+		  return false;
+		}
+		if(!regularExpression.test(str)) {
+			setHbNameError(true);
+			setHbNameHelperText("Must include only letters,numbers,[-!_], or spaces.");
+		  return false;
+		}
+		return true;
+	  }
+
 	function addNewHB(){
-		if(hbName !== ""){
+		if(isValidHBName(hbName)){
 			let hbDate = getTodayStr();
 		if(day==='yesterday'){
 			hbDate=getYesterdayStr();
@@ -495,6 +520,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setSelectedHB(hbName);
 		setChangeHBHidden(false);
 		setErrorMessage("");
+		setHbNameError(false);
+		setHbNameHelperText('');
 		return true;
 		}
 		return false;
@@ -1026,7 +1053,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 						justify="center"
 					  alignItems="center"
 				  >
-				  <TextField id="changeHBField" value={hbName} onChange={handleHbNameChange} label="Batch Name"/> 
+				  <TextField id="changeHBField" helperText={hbNameHelperText} error={hbNameError} value={hbName} onChange={handleHbNameChange} label="Batch Name"/> 
 				  <div class="tooltip">?
 						<span class="tooltiptext">Harvest Batch Name. Harvest batches should only be one strain and for only one day.</span>
 				  </div>
