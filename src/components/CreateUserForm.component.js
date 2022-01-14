@@ -78,7 +78,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     function isValidString(str){
       var minNumberofChars = 1;
       var maxNumberofChars = 24;
-      var regularExpression = /^[a-zA-Z0-9!@#$%^&* ]{1,24}$/;
+      var regularExpression = /^[a-zA-Z0-9!@#$%^&*' ]{1,24}$/;
       if(str.length < minNumberofChars || str.length > maxNumberofChars){
         return false;
       }

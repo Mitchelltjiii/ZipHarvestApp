@@ -882,7 +882,6 @@ app.post('/pl', (req, res) =>{
     tag, strain, userID, active
   ], (err, result) => {
     connection.release(); // return the connection to pool
-    if(err) throw err;
     res.json(result);
   });
     }catch(errorE){
@@ -908,11 +907,10 @@ app.put('/pl', (req, res) =>{
     strain, userID, active, tag
   ], (err, result) => {
     connection.release(); // return the connection to pool
-    if(err) throw err;
     res.json(result);
     });
   }catch(errorE){
-    
+
   }
   });
 });
