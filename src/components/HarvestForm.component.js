@@ -95,7 +95,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const [hbNameError,setHbNameError] = React.useState(false);
 	const [hbNameHelperText,setHbNameHelperText] = React.useState('');
 	
-	if(hbNameError && hbName.length !== 0){
+	if(hbNameError && hbName.length === 0){
 		setHbNameError(false);
 		setHbNameHelperText('');
 	  }
@@ -497,7 +497,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}
 		if(!regularExpression.test(str)) {
 			setHbNameError(true);
-			setHbNameHelperText("Must include only letters,numbers,[-!_], or spaces.");
+			setHbNameHelperText("Must include only letters, numbers, [-!_], or spaces.");
 		  return false;
 		}
 		return true;
