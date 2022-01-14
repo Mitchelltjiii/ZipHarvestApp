@@ -324,8 +324,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	let harvestTypeLabelText = "Harvest";
+	console.log("Current harvest: " + JSON.stringify(currentHarvest));
 	if(!(currentHarvest === undefined || currentHarvest.name === '')){
+		console.log("Current harvest A");
 		if(currentHarvest.type===1){
+			console.log("Current harvest B");
 			harvestTypeLabelText = "Manicure";
 		}
 	}
