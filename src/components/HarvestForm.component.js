@@ -816,84 +816,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		);
 	  };
 
-	const AddNewHBForm = () => {	  
-		return (
-		  <div className="full tr" style={{border:"1px solid #d7d7d7",borderRadius:5}}>
-			  <div style={{margin:"10px"}}>
-			<Grid
-					container
-					direction="column"
-  					justify="center"
-					alignItems="center"
-				>
-
-				<FormLabel component="legend" style={{marginTop:"5px"}}><b>New Harvest Batch</b></FormLabel>
-
-				<Grid
-					container
-					direction="row"
-  					justify="center"
-					alignItems="center"
-				>
-				<TextField id="changeHBField" value={hbName} onChange={handleHbNameChange} label="Batch Name"/> 
-				<div class="tooltip">?
-  					<span class="tooltiptext">Harvest Batch Name. Harvest batches should only be one strain and for only one day.</span>
-				</div>
-				</Grid>
-				
-				<Grid
-					container
-					direction="row"
-  					justify="center"
-					alignItems="center"
-				>
-				<FormControl component="fieldset" style={{marginTop:"10px",marginBottom:"5px"}}>
-  					<FormLabel component="legend">Harvest Date</FormLabel>
-  					<RadioGroup aria-label="Harvest Date" name="harvest-date" value={day} onClick={handleDayChange} row>
-						<FormControlLabel value="today" control={<Radio />} label="Today" />
-    					<FormControlLabel value="yesterday" control={<Radio />} label="Yesterday" />
-  					</RadioGroup>
-				</FormControl>
-				<div class="tooltip">?
-  					<span class="tooltiptext">Harvest date can be changed to any date after the batch is created.</span>
-				</div>
-				</Grid>
-
-				<Grid
-					container
-					direction="row"
-  					justify="center"
-					alignItems="center"
-				>
-				<FormControl component="fieldset" style={{marginBottom:"5px"}}>
-  					<FormLabel component="legend">Harvest Type</FormLabel>
-  					<RadioGroup aria-label="Harvest Type" name="harvest-type" value={harvestType} onClick={handleHarvestTypeChange} row>
-						<FormControlLabel value="harvest" control={<Radio />} label="Harvest" />
-    					<FormControlLabel value="manicure" control={<Radio />} label="Manicure" />
-  					</RadioGroup>
-				</FormControl>
-				<div class="tooltip">?
-  					<span class="tooltiptext">This is final. Manicures and full harvests must be separated into different batches.</span>
-				</div>
-				</Grid>
-
-				</Grid>
-
-
-				<Grid
-					container
-					direction="row"
-  					justify="center"
-					alignItems="center"
-				>
-					<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancelNewHB}>Cancel</Button>
-					<AddHarvestBatchButton getHarvestBatchItem={getHarvestBatchItem} addNewHB={addNewHB} resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} reloadHarvestBatchesFromAddHB={reloadHarvestBatchesFromAddHB} setHbName={setHbName}></AddHarvestBatchButton>
-				</Grid>
-				</div>
-		  </div>
-		);
-	  };
-
 	function getTodayStr(){
 		var today = new Date();
 		var dd = String(today.getDate()).padStart(2, '0');
@@ -1087,7 +1009,79 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				>
 
 				{changeHBHiddenNow ?
-				<AddNewHBForm></AddNewHBForm> :
+				<div className="full tr" style={{border:"1px solid #d7d7d7",borderRadius:5}}>
+				<div style={{margin:"10px"}}>
+			  <Grid
+					  container
+					  direction="column"
+						justify="center"
+					  alignItems="center"
+				  >
+  
+				  <FormLabel component="legend" style={{marginTop:"5px"}}><b>New Harvest Batch</b></FormLabel>
+  
+				  <Grid
+					  container
+					  direction="row"
+						justify="center"
+					  alignItems="center"
+				  >
+				  <TextField id="changeHBField" value={hbName} onChange={handleHbNameChange} label="Batch Name"/> 
+				  <div class="tooltip">?
+						<span class="tooltiptext">Harvest Batch Name. Harvest batches should only be one strain and for only one day.</span>
+				  </div>
+				  </Grid>
+				  
+				  <Grid
+					  container
+					  direction="row"
+						justify="center"
+					  alignItems="center"
+				  >
+				  <FormControl component="fieldset" style={{marginTop:"10px",marginBottom:"5px"}}>
+						<FormLabel component="legend">Harvest Date</FormLabel>
+						<RadioGroup aria-label="Harvest Date" name="harvest-date" value={day} onClick={handleDayChange} row>
+						  <FormControlLabel value="today" control={<Radio />} label="Today" />
+						  <FormControlLabel value="yesterday" control={<Radio />} label="Yesterday" />
+						</RadioGroup>
+				  </FormControl>
+				  <div class="tooltip">?
+						<span class="tooltiptext">Harvest date can be changed to any date after the batch is created.</span>
+				  </div>
+				  </Grid>
+  
+				  <Grid
+					  container
+					  direction="row"
+						justify="center"
+					  alignItems="center"
+				  >
+				  <FormControl component="fieldset" style={{marginBottom:"5px"}}>
+						<FormLabel component="legend">Harvest Type</FormLabel>
+						<RadioGroup aria-label="Harvest Type" name="harvest-type" value={harvestType} onClick={handleHarvestTypeChange} row>
+						  <FormControlLabel value="harvest" control={<Radio />} label="Harvest" />
+						  <FormControlLabel value="manicure" control={<Radio />} label="Manicure" />
+						</RadioGroup>
+				  </FormControl>
+				  <div class="tooltip">?
+						<span class="tooltiptext">This is final. Manicures and full harvests must be separated into different batches.</span>
+				  </div>
+				  </Grid>
+  
+				  </Grid>
+  
+  
+				  <Grid
+					  container
+					  direction="row"
+						justify="center"
+					  alignItems="center"
+				  >
+					  <Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancelNewHB}>Cancel</Button>
+					  <AddHarvestBatchButton getHarvestBatchItem={getHarvestBatchItem} addNewHB={addNewHB} resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} reloadHarvestBatchesFromAddHB={reloadHarvestBatchesFromAddHB} setHbName={setHbName}></AddHarvestBatchButton>
+				  </Grid>
+				  </div>
+			</div> :
 				<ChangeHBForm></ChangeHBForm>
 				}
 				
