@@ -20,7 +20,7 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
-    if(logInFailed){
+    if(logInFailed && (username !== "" || password !== "")){
       setUsername("");
       setPassword("");
     }
