@@ -47,13 +47,14 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 					<Grid
 					container
 					direction="row"
-  					justifyContent="flex-end"
-					alignItems="flex-end"
-				>
-					<div class="tooltip">?
-  					          <span class="tooltiptext">Export CSV for upload to your compliance software. Create dry rooms first in the Manage Dry Rooms section.</span>
+  					justifyContent="center"
+					alignItems="center"
+					>
+						<div title="Unique tags exported this month" style={{fontSize:"20px",margin:"auto",textAlign:"center",backgroundColor:color,width:"100px",height:"30px",paddingTop:"2px",borderRadius:"5px", marginRight: "5px"}}>{uniqueIDCount}/{possiblePlantCount}</div>
+						<div class="tooltip">?
+  					          <span class="tooltiptext">Export your harvest batches as CSV files for upload to your compliance software. You may export up to {possiblePlantCount} unique tags per month with your current subscription. Before you export, you must create dry rooms in the Manage Dry Rooms section.</span>
 				            </div>
-					</Grid>
+					</Grid> 
 					<div style={{margin:"auto",width:width}}>
 					<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}></HBTable>
 					</div>
@@ -65,12 +66,3 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 }
 
 export default HarvestBatchesForm;
-
-/*<Grid
-					container
-					direction="column"
-  					justifyContent="center"
-					alignItems="center"
-					>
-						<div title="Unique tags exported this month" style={{fontSize:"20px",margin:"auto",textAlign:"center",backgroundColor:color,width:"100px",height:"30px",paddingTop:"2px",borderRadius:"5px"}}>{uniqueIDCount}/{possiblePlantCount}</div>
-					</Grid> */
