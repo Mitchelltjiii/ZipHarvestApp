@@ -24,7 +24,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 
 	let width = "100%";
 	if(isMobile){
-		width = "500px";
+		width = "600px";
 	}
 
 	console.log("Uid/possible plantcount: " + uniqueIDCount/possiblePlantCount)
