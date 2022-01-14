@@ -219,18 +219,12 @@ class ExportButton extends Component{
               ) : this.state.choosingDryRoom ? (
                 <Grid
               container
-              direction="row"
+              direction="column"
               justifyContent="center"
               alignItems="center"
               wrap="nowrap"
               >
-                <Grid
-              container
-              direction="row"
-              justifyContent="center"
-              alignItems="center"
-              wrap="nowrap"
-              >
+                
 				          <Select id="choose-dryroom-select" value={parent.state.selectedDR} onChange={handleSelectDR} style={{minWidth:"100px"}}>
                 	  {drOptionsList.map((name, index) => (
             			  <MenuItem key={index} value={name}>
@@ -238,7 +232,6 @@ class ExportButton extends Component{
             			</MenuItem>
           			))}
              	</Select>
-              </Grid>
               <Button aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleNext}>Next</Button>            
               </Grid>
 			) : <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true"  style={{fontSize:14}} onClick={handleClickExport}>Export</Button>            

@@ -16,7 +16,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
     let tableWidth = 600;
     
     if(isMobile){
-      tableWidth = 420;
+      tableWidth = 385;
     }
     const useStyles = makeStyles({
         table: {
