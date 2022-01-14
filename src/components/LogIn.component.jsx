@@ -20,6 +20,11 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
+    if(logInFailed){
+      setUsername("");
+      setPassword("");
+    }
+
     let errorText = "";
     let error = false;
     if(logInFailed && username === "" && password === ""){
@@ -82,8 +87,6 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
     
     function logIn(){
       attemptLogin(username,password,staySignedIn);
-      setUsername("");
-      setPassword("");
 	  }
 
     const handleUsername = (event) => {
