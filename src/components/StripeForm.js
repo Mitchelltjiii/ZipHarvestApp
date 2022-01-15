@@ -30,7 +30,7 @@ const [expired,setExpired] = React.useState(false);
 
 
 const ProductDisplay = () => (
-  <div id="product-display" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+  <div id="product-display" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:"#f3f6f4"}}>
           {isMobile ?
           <div style={{width:formWidth,height:formHeight,paddingTop:"40px"}}>
               <Grid
@@ -74,7 +74,6 @@ const ProductDisplay = () => (
               </Grid> 
               </Grid>
           </div> :
-          <div style={{width:"650px",height:"400px",border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px"}}>
               <Grid
 				    container
 				    direction="row"
@@ -114,7 +113,7 @@ const ProductDisplay = () => (
               <div style={{textAlign:"center",fontWeight:"bold"}}>Premium</div>
               <div style={{height:"200px",width:"100px"}}></div>
               <div style={{textAlign:"center",fontWeight:"bold",fontSize:"28px"}}>$800/mo</div>
-              <div style={{textAlign:"center",fontWeight:"bold",color:"#f3f6f4"}}>Billed monthly</div>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
               <Grid
 				    container
 				    direction="column"
@@ -131,10 +130,9 @@ const ProductDisplay = () => (
               </Grid>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"100%",marginRight:"5px",marginLeft:"5px",marginTop:"5px",marginBottom:"5px",backgroundColor:"#047AF6"}} onClick={handleGoToPremium}>Start a free trial</Button>
-              <div style={{textAlign:"center",fontWeight:"bold",color:"#f3f6f4"}}>or see more features</div>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>or see more features</div>
               </Grid> 
               </Grid>
-          </div>
           }
           
 </div>
