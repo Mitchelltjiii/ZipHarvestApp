@@ -602,7 +602,7 @@ export default class App extends React.Component {
     }
 
     if (this.state.loggedIn !== '') {
-	  	showForm = <div style={{margin:"auto"}}>
+	  	showForm = <div style={{margin:"auto",backgroundColor:"#f3f6f4"}}>
 	    <Header setCurrentPage={this.setCurrentPage}/>
       <Outer currentPage={this.state.currentPage} setCurrentPage={this.setCurrentPage} getPlants={this.getPlants} getHarvestRecords={this.getHarvestRecords} getHarvestBatches={this.getHarvestBatches}
       resetHarvestBatches={this.resetHarvestBatches} currentHarvest={this.state.currentHarvest} setNewHBID={this.setNewHBID} getCurrentHarvestID={this.getCurrentHarvestID}
