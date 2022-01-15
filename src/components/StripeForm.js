@@ -8,8 +8,8 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
 
   let formWidth = "450px";
   let formHeight = "250px";
-  let pricingImageHeight = "40px";
-  let pricingImageWidth = "120px";
+  let pricingImageHeight = "50px";
+  let pricingImageWidth = "150px";
 
   if(isMobile){
     formWidth = "100%";
@@ -33,7 +33,7 @@ const [expired,setExpired] = React.useState(false);
 
 
 const ProductDisplay = () => (
-  <div id="product-display" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:"#f3f6f4"}}>
+  <div id="product-display" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:"#bcbcbc"}}>
           {isMobile ?
           <div style={{width:formWidth,height:formHeight,paddingTop:"40px"}}>
               <Grid
@@ -77,7 +77,7 @@ const ProductDisplay = () => (
               </Grid> 
               </Grid>
           </div> :
-          <div style={{width:"900px",height:"450px",border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px", backgroundColor:"#f3f6f4"}}>
+          <div style={{width:"900px",height:"450px",border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px", backgroundColor:"#bcbcbc"}}>
               <Grid
 				    container
 				    direction="row"
@@ -90,7 +90,7 @@ const ProductDisplay = () => (
 				    direction="column"
             justifyContent="center"
 				    alignItems="center"
-            style={{marginLeft:"10px",marginRight:"50px"}}
+            style={{marginLeft:"50px",marginRight:"10px"}}
 			        >
               <div style={{textAlign:"center",fontWeight:"bold"}}>Basic</div>
               <div style={{height:"120px",width:"100px"}}></div>
@@ -128,7 +128,7 @@ const ProductDisplay = () => (
 				    direction="column"
             justifyContent="center"
 				    alignItems="center"
-            style={{marginLeft:"10px",marginRight:"50px"}}
+            style={{marginLeft:"10px",marginRight:"10px"}}
 			        >
               <div style={{textAlign:"center",fontWeight:"bold"}}>Standard</div>
               <div style={{height:"120px",width:"100px"}}></div>
