@@ -35,7 +35,7 @@ const [expired,setExpired] = React.useState(false);
 const ProductDisplay = () => (
   <div id="product-display" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:"#eeeeee"}}>
           {isMobile ?
-          <div style={{width:formWidth,height:formHeight,paddingTop:"40px"}}>
+          <div style={{width:formWidth,height:formHeight}}>
               <Grid
 				    container
 				    direction="row"
@@ -72,7 +72,7 @@ const ProductDisplay = () => (
 			        >
               <div style={{textAlign:"center"}}>Premium</div>
               <div style={{textAlign:"center"}}>Export up to 10000 plants per month</div>
-              <div style={{textAlign:"center"}}>$800 per month</div>
+              <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
                     <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>Select</Button>
               </Grid> 
               </Grid>
@@ -92,7 +92,7 @@ const ProductDisplay = () => (
 				    alignItems="center"
             style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff"}}
 			        >
-              <div style={{textAlign:"center",fontWeight:"bold"}}>Basic</div>
+              <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Basic</div>
               <div style={{height:"120px",width:"100px"}}></div>
               <div style={{textAlign:"center",fontWeight:"bold",fontSize:"42px"}}>$200/mo</div>
               <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
@@ -128,11 +128,11 @@ const ProductDisplay = () => (
 				    direction="column"
             justifyContent="center"
 				    alignItems="center"
-            style={{marginLeft:"10px",marginRight:"10px"}}
+            style={{marginLeft:"10px",marginRight:"10px",backgroundColor:"#ffffff"}}
 			        >
-              <div style={{textAlign:"center",fontWeight:"bold"}}>Standard</div>
+              <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Standard</div>
               <div style={{height:"120px",width:"100px"}}></div>
-              <div style={{textAlign:"center",fontWeight:"bold",fontSize:"42px"}}>$475/mo</div>
+              <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
               <Grid
 				    container
@@ -166,9 +166,9 @@ const ProductDisplay = () => (
 				    direction="column"
             justifyContent="center"
 				    alignItems="center"
-            style={{marginLeft:"10px",marginRight:"50px"}}
+            style={{marginLeft:"10px",marginRight:"50px",backgroundColor:"#ffffff"}}
 			        >
-              <div style={{textAlign:"center",fontWeight:"bold"}}>Premium</div>
+              <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Premium</div>
               <div style={{height:"120px",width:"100px"}}></div>
               <div>
                 <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
