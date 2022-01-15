@@ -72,7 +72,7 @@ const ProductDisplay = () => (
 			        >
               <div style={{textAlign:"center"}}>Premium</div>
               <div style={{textAlign:"center"}}>Export up to 10000 plants per month</div>
-              <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+              <div style={{textAlign:"center"}}>$800 per month</div>
                     <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>Select</Button>
               </Grid> 
               </Grid>
@@ -94,7 +94,7 @@ const ProductDisplay = () => (
 			        >
               <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Basic</div>
               <div style={{height:"120px",width:"100px"}}></div>
-              <div style={{textAlign:"center",fontWeight:"bold",fontSize:"42px"}}>$200/mo</div>
+              <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
               <Grid
 				    container
@@ -121,7 +121,7 @@ const ProductDisplay = () => (
               </Grid>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToPremium}>Start a free trial</Button>
-              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>or see more features</div>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"20px"}}>or see more features</div>
               </Grid>
               <Grid
 				    container
@@ -159,7 +159,7 @@ const ProductDisplay = () => (
               </Grid>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToPremium}>Start a free trial</Button>
-              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>or see more features</div>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"20px"}}>or see more features</div>
               </Grid>
               <Grid
 				    container
@@ -199,7 +199,7 @@ const ProductDisplay = () => (
               </Grid>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToPremium}>Start a free trial</Button>
-              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>or see more features</div>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"20px"}}>or see more features</div>
               </Grid> 
               </Grid>
           </div>
