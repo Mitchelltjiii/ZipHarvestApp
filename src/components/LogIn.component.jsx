@@ -133,7 +133,7 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                                    <div style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"10px"}}>
                                        <img alt="logo" src={logo} style={{minHeight:"62px",maxHeight: "62px"}}/>
                                    </div>    
-                                   <TextField error={error} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
+                                   <TextField error={error} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined" style={{width:"248px"}}></TextField>
                                    <TextField
                                    onKeyDown={handleOnKeyDown}
   error={error}
