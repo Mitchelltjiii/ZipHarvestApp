@@ -33,7 +33,7 @@ const [expired,setExpired] = React.useState(false);
 
 
 const ProductDisplay = () => (
-  <div id="product-display" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:"#bcbcbc"}}>
+  <div id="product-display" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:"#eeeeee"}}>
           {isMobile ?
           <div style={{width:formWidth,height:formHeight,paddingTop:"40px"}}>
               <Grid
@@ -77,7 +77,7 @@ const ProductDisplay = () => (
               </Grid> 
               </Grid>
           </div> :
-          <div style={{width:"900px",height:"450px",border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px", backgroundColor:"#bcbcbc"}}>
+          <div style={{width:"900px",height:"450px",borderRadius:5,paddingTop:"40px", backgroundColor:"#eeeeee"}}>
               <Grid
 				    container
 				    direction="row"
@@ -90,7 +90,7 @@ const ProductDisplay = () => (
 				    direction="column"
             justifyContent="center"
 				    alignItems="center"
-            style={{marginLeft:"50px",marginRight:"10px"}}
+            style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff"}}
 			        >
               <div style={{textAlign:"center",fontWeight:"bold"}}>Basic</div>
               <div style={{height:"120px",width:"100px"}}></div>
