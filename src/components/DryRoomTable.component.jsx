@@ -12,7 +12,7 @@ import SelectDeleteDryRoomButton from './SelectDeleteDryRoomButton.component';
 import {isMobile} from 'react-device-detect';
 
 function DryRoomTable({dryRooms,toggleDeleteAllSelected,getDeleteAllSelected,toggleDeleteDryRoomSelected,getDeleteDryRoomSelected}) {
-    let tableWidth = 600;
+    let tableWidth = 450;
     
     if(isMobile){
       tableWidth = 340;
