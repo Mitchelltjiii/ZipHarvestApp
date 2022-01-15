@@ -74,7 +74,7 @@ const ProductDisplay = () => (
               </Grid> 
               </Grid>
           </div> :
-          <div style={{width:"700px",height:"550px",border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"100px", backgroundColor:"#f3f6f4"}}>
+          <div style={{width:"800px",height:"400px",border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px", backgroundColor:"#f3f6f4"}}>
               <Grid
 				    container
 				    direction="row"
