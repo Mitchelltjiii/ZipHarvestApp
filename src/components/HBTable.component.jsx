@@ -16,7 +16,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
     let tableWidth = 600;
     
     if(isMobile){
-      tableWidth = 340;
+      tableWidth = 345;
     }
     const useStyles = makeStyles({
         table: {
@@ -124,8 +124,8 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
 			          	justifyContent="center"
 				          alignItems="center"
 			          >
-                <div>{row.name}</div>
-                <div>{row.strain}</div>
+                <div style={{fontWeight:"bold"}}>{row.name}</div>
+                <div>Strain: {row.strain}</div>
                 </Grid>
                 
               </TableCell>
@@ -135,7 +135,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
 			          	justifyContent="center"
 				          alignItems="center"
 			          >
-                <div>{row.plants}</div>
+                <div>{row.plants} Plants</div>
                 <div>{row.date}</div>
                 </Grid></TableCell>
               <TableCell align="center">

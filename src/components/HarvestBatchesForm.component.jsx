@@ -24,7 +24,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 
 	let width = "100%";
 	if(isMobile){
-		width = "420px";
+		width = "345px";
 	}
 
 	console.log("Uid/possible plantcount: " + uniqueIDCount/possiblePlantCount)
@@ -44,6 +44,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
   					justifyContent="center"
 					alignItems="center"
 				>
+					<div style={{margin:"auto",width:width}}>
 					<Grid
 					container
 					direction="row"
@@ -55,6 +56,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
   					          <span class="tooltiptext">Export your harvest batches as CSV files for upload to your compliance software. You may export up to {possiblePlantCount} unique tags per month with your current subscription. Before you export, you must create dry rooms in the Manage Dry Rooms section.</span>
 				            </div>
 					</Grid> 
+					</div>
 					<div style={{margin:"auto",width:width}}>
 					<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}></HBTable>
 					</div>
