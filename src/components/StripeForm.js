@@ -74,7 +74,7 @@ const ProductDisplay = () => (
               </Grid> 
               </Grid>
           </div> :
-          <div style={{width:"900px",height:"550px",border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"100px", backgroundColor:"#f3f6f4"}}>
+          <div style={{width:"700px",height:"550px",border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"100px", backgroundColor:"#f3f6f4"}}>
               <Grid
 				    container
 				    direction="row"
@@ -87,23 +87,77 @@ const ProductDisplay = () => (
 				    direction="column"
             justifyContent="center"
 				    alignItems="center"
+            style={{marginLeft:"10px",marginRight:"50px"}}
 			        >
-              <div style={{textAlign:"center"}}>Basic</div>
-              <div style={{textAlign:"center"}}>Export up to 2000 plants per month</div>
-              <div style={{textAlign:"center"}}>$200 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>Select</Button>
-              </Grid>  
+              <div style={{textAlign:"center",fontWeight:"bold"}}>Basic</div>
+              <div style={{height:"120px",width:"100px"}}></div>
+              <div style={{textAlign:"center",fontWeight:"bold",fontSize:"42px"}}>$200/mo</div>
+              <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
               <Grid
 				    container
 				    direction="column"
             justifyContent="center"
 				    alignItems="center"
 			        >
-              <div style={{textAlign:"center"}}>Standard</div>
-              <div style={{textAlign:"center"}}>Export up to 5000 plants per month</div>
-              <div style={{textAlign:"center"}}>$475 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToStandard}>Select</Button>
-              </Grid> 
+              <Grid
+				    container
+				    direction="row"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+
+            <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <div style={{marginTop:"35px",textAlign:"center"}}>Export up to 2000</div>
+              <div style={{marginTop:"2px",textAlign:"center"}}>plants per month</div>
+              </Grid>
+              </Grid>
+              </Grid>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"80%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToPremium}>Start a free trial</Button>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>or see more features</div>
+              </Grid>
+              <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+            style={{marginLeft:"10px",marginRight:"50px"}}
+			        >
+              <div style={{textAlign:"center",fontWeight:"bold"}}>Standard</div>
+              <div style={{height:"120px",width:"100px"}}></div>
+              <div style={{textAlign:"center",fontWeight:"bold",fontSize:"42px"}}>$475/mo</div>
+              <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
+              <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <Grid
+				    container
+				    direction="row"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+
+            <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <div style={{marginTop:"35px",textAlign:"center"}}>Export up to 5000</div>
+              <div style={{marginTop:"2px",textAlign:"center"}}>plants per month</div>
+              </Grid>
+              </Grid>
+              </Grid>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"80%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToPremium}>Start a free trial</Button>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>or see more features</div>
+              </Grid>
               <Grid
 				    container
 				    direction="column"
@@ -134,12 +188,12 @@ const ProductDisplay = () => (
             justifyContent="center"
 				    alignItems="center"
 			        >
-              <div style={{marginTop:"20px",textAlign:"center"}}>Export up to 10000</div>
+              <div style={{marginTop:"35px",textAlign:"center"}}>Export up to 10000</div>
               <div style={{marginTop:"2px",textAlign:"center"}}>plants per month</div>
               </Grid>
               </Grid>
               </Grid>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"80%",marginRight:"5px",marginLeft:"5px",marginTop:"15px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToPremium}>Start a free trial</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"80%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToPremium}>Start a free trial</Button>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>or see more features</div>
               </Grid> 
               </Grid>
