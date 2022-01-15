@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import {isMobile} from 'react-device-detect';
+import pricingImage from '../pricing.png';
 
 export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
 
   let formWidth = "450px";
   let formHeight = "250px";
+  let pricingImageHeight = "40px";
+  let pricingImageWidth = "120px";
 
   if(isMobile){
     formWidth = "100%";
@@ -74,7 +77,7 @@ const ProductDisplay = () => (
               </Grid> 
               </Grid>
           </div> :
-          <div style={{width:"800px",height:"400px",border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px", backgroundColor:"#f3f6f4"}}>
+          <div style={{width:"900px",height:"450px",border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px", backgroundColor:"#f3f6f4"}}>
               <Grid
 				    container
 				    direction="row"
@@ -117,7 +120,7 @@ const ProductDisplay = () => (
               </Grid>
               </Grid>
               </Grid>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"80%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToPremium}>Start a free trial</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToPremium}>Start a free trial</Button>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>or see more features</div>
               </Grid>
               <Grid
@@ -155,7 +158,7 @@ const ProductDisplay = () => (
               </Grid>
               </Grid>
               </Grid>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"80%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToPremium}>Start a free trial</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToPremium}>Start a free trial</Button>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>or see more features</div>
               </Grid>
               <Grid
@@ -167,7 +170,9 @@ const ProductDisplay = () => (
 			        >
               <div style={{textAlign:"center",fontWeight:"bold"}}>Premium</div>
               <div style={{height:"120px",width:"100px"}}></div>
-              <div style={{textAlign:"center",fontWeight:"bold",fontSize:"42px"}}>$800/mo</div>
+              <div>
+                <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+              </div>
               <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
               <Grid
 				    container
@@ -193,7 +198,7 @@ const ProductDisplay = () => (
               </Grid>
               </Grid>
               </Grid>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"80%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToPremium}>Start a free trial</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToPremium}>Start a free trial</Button>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>or see more features</div>
               </Grid> 
               </Grid>
