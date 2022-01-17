@@ -29,9 +29,12 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
     const classes = useStyles();
     let plantCount = 0;
     let strain = "";
+    let tWeight = 0;
+    const gramsInAPound = 453.592;
 
-    function createData(name, plants, strain, date) {
-      return { name, plants, strain, date};
+
+    function createData(name, plants, strain, date, totalWeight) {
+      return { name, plants, strain, date, totalWeight};
     }
 
     function checkPlantList(batchName) {
@@ -47,6 +50,12 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
       for(let val of JSON.parse(getHarvestRecords())){
         if(val.batchName === batchName){
           plantCount++;
+          if(val.unit === "g"){
+            tWeight += val.weight;
+          }else{
+            let gramsWeight = Math.round((val.weight*gramsInAPound)*100)/100;
+            tWeight += gramsWeight;
+          }
           let str = "";
           for(let val2 of parsedPlants){
             if(val2.tag === val.tag){
@@ -70,7 +79,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
         strain = "N/A";
       }
 
-      rows.push(createData(val.name,plantCount,strain,val.date));
+      rows.push(createData(val.name,plantCount,strain,val.date,tWeight));
     }
 
     let newRows = [];
@@ -137,6 +146,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
 			          >
                 <div>{row.plants} Plants</div>
                 <div>{row.date}</div>
+                <div>Total: {row.totalWeight} g</div>
                 </Grid></TableCell>
               <TableCell align="center">
                 <ExportButton row={row} getHarvestRecords={getHarvestRecords} getHarvestBatches={getHarvestBatches} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}></ExportButton> 
