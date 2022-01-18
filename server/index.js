@@ -37,16 +37,7 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
       to: req.params.address, // Change to your recipient
       from: 'support@zipharvest.app', // Change to your verified sender
       subject: 'Verification Code',
-      text: 'Here is your verification code: ',
-      "filters": {
-        "templates": {
-          "settings": {
-            "enable": 1,
-            "template_id": "4e838cf3-9892-4a6d-94d6-170e474d21e5"
-          }
-        }
-      },
-      "sub": {
+      sub: {
         ":username": [
           "Username"
         ],
@@ -59,7 +50,16 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
         ":verificationlink": [
           "zipharvest.app"
         ]
+      },
+      filters: {
+        "templates": {
+          "settings": {
+            "enable": 1,
+            "template_id": "4e838cf3-9892-4a6d-94d6-170e474d21e5"
+          }
+        }
       }
+      
     }
     
     sgMail.send(msg).then((response) => {
