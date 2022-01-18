@@ -173,7 +173,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
                 setVerifyPasswordError(true);
               }
             }
-    }
+          }
 
     async function getUserExists(){
       const response = await fetch(`/api/user-exists/${username}`);
