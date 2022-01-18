@@ -16,6 +16,8 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     const [firstName, setFirstName] = React.useState('');
     const [lastName, setLastName] = React.useState('');
     const [facilityName, setFacilityName] = React.useState('');
+    const [stepTwo,setStepTwo] = React.useState(false);
+
     const [facilityNameError, setFacilityNameError] = React.useState(false);
     const [firstNameError, setFirstNameError] = React.useState(false);
     const [lastNameError, setLastNameError] = React.useState(false);
@@ -136,8 +138,11 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     
 
     function doContinue(){
-            if(email.includes("@") && isValidString(facilityName) && isValidString(firstName) && isValidString(lastName) && (email.includes("@")) && isValidStringEmail(email) && isUsernameValid() && isPasswordValid(password) && isPasswordValid(passwordAgain) && (password === passwordAgain)){
+        if(!stepTwo){
+            if(email.includes("@") && isValidString(facilityName) && isValidString(firstName) && isValidString(lastName) && (email.includes("@")) && isValidStringEmail(email)){
               getEmailExists();
+
+              //setStepTwo(true);
             }else{
               if(!isValidString(facilityName)){
                 setFacilityNameError(true);
@@ -155,6 +160,11 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
                 }
                 setEmailError(true);
               }
+            }
+        }else{
+            if(isUsernameValid() && isPasswordValid(password) && isPasswordValid(passwordAgain) && (password === passwordAgain)){
+              getUserExists();
+            }else{
               if(!isUsernameValid()){
                 setFailedUsername(username);
                 setUsernameHelperText("(8-16 letters & numbers)")
@@ -173,7 +183,8 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
                 setVerifyPasswordError(true);
               }
             }
-          }
+        }
+    }
 
     async function getUserExists(){
       const response = await fetch(`/api/user-exists/${username}`);
@@ -194,8 +205,9 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     async function getEmailExists(){
       const response = await fetch(`/api/email-exists/${email}`);
       const text = await response.text();
+  
       if(text === "1"){
-        getUserExists();
+        setStepTwo(true);    
       }else{
         setEmailHelperText("Email is already registered");
         setFailedEmail(email);
@@ -328,19 +340,16 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
   				justifyContent="center"
 				alignItems="center"
 			>
-                <div style={{fontSize:"28px",marginTop:"10px",marginBottom:"10px",fontWeight:"bold"}}>Welcome to ZipHarvest!</div>
+                <div style={{fontSize:"22px",marginTop:"10px",marginBottom:"10px"}}><b>Welcome to ZipHarvest!</b></div>
                 {isMobile ?
                 <div style={{width:formWidth,height:formHeight,paddingTop:"40px"}}>
-                <Grid
+                {stepTwo ?
+                    <Grid
       container
       direction="column"
       justifyContent="center"
       alignItems="center"
       >
-                <TextField id="FacilityName" error={facilityNameError} value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-                <TextField id="First Name" error={firstNameError} value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-                <TextField id="Last Name" error={lastNameError} value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-                <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
                 <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
                 <TextField
   helperText={passwordHelperText} error={passwordError} 
@@ -387,20 +396,29 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
   }}
 /> 
 <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>                
-
+                </Grid>
+            :
+            <Grid
+      container
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+      >
+                <TextField id="FacilityName" error={facilityNameError} value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+                <TextField id="First Name" error={firstNameError} value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+                <TextField id="Last Name" error={lastNameError} value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+                <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
             </Grid>
+                }
       </div> :
       <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px"}}>
-  <Grid
+      {stepTwo ?
+          <Grid
 container
 direction="column"
 justifyContent="center"
 alignItems="center"
 >
-      <TextField id="FacilityName" error={facilityNameError} value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-      <TextField id="First Name" error={firstNameError} value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-      <TextField id="Last Name" error={lastNameError} value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-      <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
       <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
       <TextField
   helperText={passwordHelperText} error={passwordError} 
@@ -447,8 +465,20 @@ alignItems="center"
   }}
 /> 
 <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
-
+</Grid>
+  :
+  <Grid
+container
+direction="column"
+justifyContent="center"
+alignItems="center"
+>
+      <TextField id="FacilityName" error={facilityNameError} value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+      <TextField id="First Name" error={firstNameError} value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+      <TextField id="Last Name" error={lastNameError} value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+      <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
   </Grid>
+      }
 </div>
                 }
                 

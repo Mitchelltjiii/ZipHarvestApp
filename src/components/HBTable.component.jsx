@@ -79,7 +79,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
         strain = "N/A";
       }
 
-      rows.push(createData(val.name,plantCount,strain,val.date,Math.round(tWeight)));
+      rows.push(createData(val.name,plantCount,strain,val.date,tWeight));
     }
 
     let newRows = [];
