@@ -38,7 +38,6 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
       from: 'support@zipharvest.app', // Change to your verified sender
       subject: 'Verification Code',
       text: 'Here is your verification code: ',
-      html: 'Here is your verification link: <strong>' + "https://www.zipharvest.app/verCode=" + req.params.verificationCode + '/username=' + req.params.username + '</strong>',
       "filters": {
         "templates": {
           "settings": {
