@@ -71,6 +71,16 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
       }
     }
 
+    function fixDate(date){
+      if(date.substring(3,4) === "0"){
+        date = date.substring(0,3) + date.substring(4);
+      }
+      if(date.substring(0,1) === "0"){
+        date = date.substring(1);
+      }
+      return date;
+    }
+
     const rows = [];
 
     for(let val of JSON.parse(getHarvestBatches())) {
@@ -79,7 +89,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
         strain = "N/A";
       }
 
-      rows.push(createData(val.name,plantCount,strain,val.date,Math.round(tWeight)));
+      rows.push(createData(val.name,plantCount,strain,fixDate(val.date),Math.round(tWeight)));
     }
 
     let newRows = [];
@@ -144,7 +154,8 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
 			          	justifyContent="center"
 				          alignItems="center"
 			          >
-                <div>{row.plants} Plants</div>
+                {row.plants === 1 ? <div style={{fontWeight:"bold"}}>{row.plants} Plant</div>
+                : <div style={{fontWeight:"bold"}}>{row.plants} Plants</div>}
                 <div>{row.date}</div>
                 <div>Total: {row.totalWeight} g</div>
                 </Grid></TableCell>
