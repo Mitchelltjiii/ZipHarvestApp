@@ -487,5 +487,4 @@ alignItems="center"
 		</div>
 	);
 }
-
 export default CreateUserForm;
