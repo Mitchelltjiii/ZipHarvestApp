@@ -39,6 +39,28 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
       subject: 'Verification Code',
       text: 'Here is your verification code: ',
       html: 'Here is your verification link: <strong>' + "https://www.zipharvest.app/verCode=" + req.params.verificationCode + '/username=' + req.params.username + '</strong>',
+      "filters": {
+        "templates": {
+          "settings": {
+            "enable": 1,
+            "template_id": "4e838cf3-9892-4a6d-94d6-170e474d21e5"
+          }
+        }
+      },
+      "sub": {
+        ":username": [
+          "Username"
+        ],
+        ":florasollink": [
+          "flora-sol.com"
+        ],
+        ":zipharvestlink": [
+          "zipharvest.app"
+        ],
+        ":verificationlink": [
+          "zipharvest.app"
+        ]
+      }
     }
     
     sgMail.send(msg).then((response) => {
