@@ -32,6 +32,7 @@ const usersQueryStringFromUsername = "select * from users where username = '";
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
+
 app.get('/send-verification-email/:address/:verificationCode/:username', async (req,res) =>{
     const msg = {
       to: req.params.address, // Change to your recipient
