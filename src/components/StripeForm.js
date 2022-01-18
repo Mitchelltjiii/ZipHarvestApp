@@ -26,7 +26,8 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
 	}
 
   function doContinue(){
-    setContinued(true);
+    window.location.replace("https://www.zipharvest.app/");
+    //setContinued(true);
   }
 
 const [expired,setExpired] = React.useState(false);
@@ -433,7 +434,6 @@ async function getSession(seshId){
 				            alignItems="center"
 			              >
                     <div style={{textAlign:"center"}}>You have verified your account!</div>
-                    <div style={{textAlign:"center"}}>Please continue to choose your subscription plan.</div>
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
                   </Grid>    
           </div> :
@@ -445,7 +445,6 @@ async function getSession(seshId){
 				            alignItems="center"
 			              >
                     <div style={{textAlign:"center"}}>You have verified your account!</div>
-                    <div style={{textAlign:"center"}}>Please continue to choose your subscription plan.</div>
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
                   </Grid>
           </div>
@@ -529,7 +528,7 @@ async function getSession(seshId){
   }
   if(continued){
     if (!success && message === '') {
-      return <ProductDisplay />;
+      //return <ProductDisplay />;
     } else if (success && sessionId !== '') {
       return <SuccessDisplay seshId={sessionId} />;
     } else {

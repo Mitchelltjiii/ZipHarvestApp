@@ -314,7 +314,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     var privacyPolicyLink = <a href="/#" onClick={handlePrivacyPolicy} style={{cursor:"pointer",color:"#3d85c6",textDecoration:"none"}}>Privacy Policy.</a>;  
 
     let formWidth = "550px";
-    let formHeight = "800px";
+    let formHeight = "600px";
 
     if(isMobile){
       formWidth = "100%";
