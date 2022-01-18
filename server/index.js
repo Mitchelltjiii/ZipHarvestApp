@@ -124,10 +124,16 @@ app.get("/api/users/:username/:password",(req,res) => {
                       subscription = true;
                     }
 
+                    /*
                     if(subscription){
                       res.json(0);
                     }else if(verified){
                       res.json(1);
+                    }else{
+                      res.json(2);
+                    }*/
+                    if(verified){
+                      res.json(0);
                     }else{
                       res.json(2);
                     }

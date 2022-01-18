@@ -92,7 +92,8 @@ export default class App extends React.Component {
 
     if(text === "0"){
       gotResponse = true;
-      this.getSubId(username,staySignedIn,true);
+      this.getUser(username,staySignedIn);
+      //this.getSubId(username,staySignedIn,true);
     }else if(text === "1"){
       gotResponse = true;
       this.setState({newUsername:username,currentPage:'stripe-form'});
