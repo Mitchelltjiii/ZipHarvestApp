@@ -194,7 +194,6 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     async function getEmailExists(){
       const response = await fetch(`/api/email-exists/${email}`);
       const text = await response.text();
-  
       if(text === "1"){
         getUserExists();
       }else{
