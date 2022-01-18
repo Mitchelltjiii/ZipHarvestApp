@@ -98,7 +98,7 @@ class HarvestPlantButton extends Component{
 
     render() {    
         return <div>
-            <Button style={{marginTop:"5px"}} variant="contained" ref={this.props.plantRef} aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}>Next Plant</Button>
+            <Button style={{marginTop:"10px",marginBottom:"10px"}} variant="contained" ref={this.props.plantRef} aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleSubmit}>Next Plant</Button>
         </div>
       }
 }
