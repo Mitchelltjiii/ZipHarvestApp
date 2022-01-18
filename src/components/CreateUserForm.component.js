@@ -313,8 +313,8 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     var termsOfServiceLink = <a href="/#" onClick={handleTermsOfService} style={{cursor:"pointer",color:"#3d85c6",textDecoration:"none"}}>Terms of Service</a>;
     var privacyPolicyLink = <a href="/#" onClick={handlePrivacyPolicy} style={{cursor:"pointer",color:"#3d85c6",textDecoration:"none"}}>Privacy Policy.</a>;  
 
-    let formWidth = "450px";
-    let formHeight = "300px";
+    let formWidth = "550px";
+    let formHeight = "800px";
 
     if(isMobile){
       formWidth = "100%";
@@ -341,7 +341,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
                 <TextField id="First Name" error={firstNameError} value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
                 <TextField id="Last Name" error={lastNameError} value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
                 <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-                <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+                <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginBottom:"10px"}}></TextField>
                 <TextField
   helperText={passwordHelperText} error={passwordError} 
   style={{marginBottom:"10px",width:"248px"}}
@@ -401,7 +401,7 @@ alignItems="center"
       <TextField id="First Name" error={firstNameError} value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
       <TextField id="Last Name" error={lastNameError} value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
       <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-      <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+      <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginBottom:"10px"}}></TextField>
       <TextField
   helperText={passwordHelperText} error={passwordError} 
   style={{marginBottom:"10px",width:"248px"}}
