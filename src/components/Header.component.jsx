@@ -67,13 +67,13 @@ function Header({setCurrentPage}){
         <MenuItem onClick={()=>{handleManagePlants() }}>Manage Plants</MenuItem>
         <MenuItem onClick={()=>{handleManageDryRooms() }}>Manage Dry Rooms</MenuItem>
         <MenuItem onClick={()=>{handleMyAccount() }}>My Account</MenuItem>
-        <MenuItem onClick={()=>{handleTutorial() }}>Tutorial</MenuItem>
       </Menu>
     </div>
             
 
     )
-
 }
 
-export default Header
+export default Header;
+
+//<MenuItem onClick={()=>{handleTutorial() }}>Tutorial</MenuItem>

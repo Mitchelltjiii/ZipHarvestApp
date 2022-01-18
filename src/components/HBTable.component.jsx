@@ -40,6 +40,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
     function checkPlantList(batchName) {
       plantCount = 0;
       strain = "";
+      tWeight = 0;
       let plants = getPlants();
       let parsedPlants = [];
       try{

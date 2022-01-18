@@ -88,7 +88,7 @@ function AccountForm({userID, setCurrentPage, setFromAccountSettings,executeLogo
     
 
     let formWidth = "500px";
-    let formHeight = "500px";
+    let formHeight = "450px";
 
     if(isMobile){
       formWidth = "100%";

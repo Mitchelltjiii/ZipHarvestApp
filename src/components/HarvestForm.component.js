@@ -68,7 +68,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [searchTag, setSearchTag] = React.useState('');
 
-	const [searchParam, setSearchParam] = React.useState('Contains');
+	//const [searchParam, setSearchParam] = React.useState('Contains');
 
 	const [changeHBHidden, setChangeHBHidden] = React.useState(false);
 
@@ -271,10 +271,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setUnit(event.target.value);
 	  };
 
+	  /*
 	const handleSearchParamSelect = (event) => {
 		setSearchParam(event.target.value);
 	  };
-
+*/
 	const handleChangeSearchForStrainSelect = (event) => {
 		setSearchStrain(event.target.value);
 	  };  
@@ -459,7 +460,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			}
 		}
 
-		if(searchParam==="Contains"){
+		/*if(searchParam==="Contains"){
 			for(const tag of plantTags){
 				let p = getPlant(tag);
 				if((p!==undefined)&&(p.tag.includes(searchTag))&&(!p.harvested)){
@@ -468,7 +469,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					}
 				}
 			}
-		}else if(searchParam==="Ends With"){
+		}else if(searchParam==="Ends With"){*/
 			for(const tag of plantTags){
 				let p = getPlant(tag);
 				if((p!==undefined)&&(p.tag.substring(p.tag.length-searchTag.length)===(searchTag))&&(!p.harvested)){
@@ -477,7 +478,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					}
 				}
 			}
-		}
+		//}
 
 		return newTagList; 
 	}
@@ -1161,15 +1162,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 
-				<Select id="search-param-select" value={searchParam} onChange={handleSearchParamSelect} style={{minWidth:"120px",marginTop:"15px"}}>
-                	{searchOptionsList.map((name, index) => (
-            			<MenuItem key={index} value={name}>
-             	 		{name}
-            			</MenuItem>
-          			))}
-             	</Select>
-
-				<TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width: "100px"}}/>
+				<TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width: "120px"}}/>
 				<div style={{marginTop:"15px"}}>
 				<div class="tooltip">?
   					<span class="tooltiptext">Search for plants here. Choose "Contains" or "Ends with". Searching for three or more digits is recommended.</span>
@@ -1297,3 +1290,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 export default HarvestForm;
 
 //				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddBranch}>Add Branch</Button>
+/*<Select id="search-param-select" value={searchParam} onChange={handleSearchParamSelect} style={{minWidth:"120px",marginTop:"15px"}}>
+                	{searchOptionsList.map((name, index) => (
+            			<MenuItem key={index} value={name}>
+             	 		{name}
+            			</MenuItem>
+          			))}
+             	</Select> */
