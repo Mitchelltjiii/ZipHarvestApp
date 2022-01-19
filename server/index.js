@@ -38,12 +38,12 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
     const msg = {
       to: req.params.address, // Change to your recipient
       from: 'support@zipharvest.app', // Change to your verified sender
-      templateId: "d-cace39ce69f8403aa39868b534764106",
+      templateId: 'd-cace39ce69f8403aa39868b534764106',
       dynamic_template_data: {
-        username:"Username",
-        florasollink:"flora-sol.com",
-        zipharvestlink: "zipharvest.app",
-        verificationlink: "zipharvest.app"
+        username:'Username',
+        florasollink:'flora-sol.com',
+        zipharvestlink: 'zipharvest.app',
+        verificationlink: 'zipharvest.app'
      }      
     }
     
