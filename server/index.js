@@ -64,8 +64,10 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
     }
     
     sgMail.send(msg).then((response) => {
+      console.log("Success sgmail");
         res.json(0);
       }).catch((error) => {
+        console.log("Fail sgmail");
         res.json(1);
       })
   })
