@@ -39,24 +39,24 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
       from: 'support@zipharvest.app', // Change to your verified sender
       subject: 'Verification Code',
       sub: {
-        ":username": [
+        username: [
           "Username"
         ],
-        ":florasollink": [
+        florasollink: [
           "flora-sol.com"
         ],
-        ":zipharvestlink": [
+        zipharvestlink: [
           "zipharvest.app"
         ],
-        ":verificationlink": [
+        verificationlink: [
           "zipharvest.app"
         ]
       },
       filters: {
-        "templates": {
-          "settings": {
-            "enable": 1,
-            "template_id": "4e838cf3-9892-4a6d-94d6-170e474d21e5"
+        templates: {
+          settings: {
+            enable: 1,
+            template_id: "4e838cf3-9892-4a6d-94d6-170e474d21e5"
           }
         }
       }
