@@ -29,7 +29,7 @@ class Outer extends Component {
       attemptLogInFromEndSubForm={this.props.attemptLogInFromEndSubForm} logInSuccess={this.props.logInSuccess} getDryRooms={this.props.getDryRooms}
       reloadDryRooms={this.props.reloadDryRooms} reloadExportRecords={this.props.reloadExportRecords}
       getUniqueIDCount={this.props.getUniqueIDCount} reloadSubscription={this.props.reloadSubscription} getPossiblePlantCount={this.props.getPossiblePlantCount}
-      getSubscriptionType={this.props.getSubscriptionType} tutorials={this.props.tutorials}/>
+      getSubscriptionType={this.props.getSubscriptionType} tutorials={this.props.tutorials} showHints={this.props.showHints}/>
 		</div>
     );
   }

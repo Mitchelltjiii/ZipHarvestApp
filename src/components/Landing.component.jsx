@@ -15,7 +15,7 @@ function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarve
 setNewHarvestRecordID, setNewPlantID, userID,reloadPlants,reloadPlantsAndHarvestRecords, reloadHarvestBatches,
 reloadHarvestRecords,setCurrentPage,executeLogout,setFromAccountSettings,attemptLogInFromEndSubForm,
 logInSuccess,getDryRooms,reloadDryRooms,reloadExportRecords,getUniqueIDCount,reloadSubscription,
-getPossiblePlantCount,getSubscriptionType,tutorials}){
+getPossiblePlantCount,getSubscriptionType,tutorials,showHints}){
 	let fromAccountSettings = true;
 	
     return(
@@ -24,14 +24,14 @@ getPossiblePlantCount,getSubscriptionType,tutorials}){
 				<HarvestForm getHarvestBatches={getHarvestBatches} setHarvestBatches={setHarvestBatches} getPlants={getPlants} setPlants={setPlants} getHarvestRecords={getHarvestRecords} setHarvestRecords={setHarvestRecords} 
 				resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} refreshOuter={refreshOuter} 
 				setNewHarvestRecordID={setNewHarvestRecordID} setNewPlantID={setNewPlantID} userID={userID} reloadPlants={reloadPlants} reloadPlantsAndHarvestRecords={reloadPlantsAndHarvestRecords}
-				reloadHarvestBatches={reloadHarvestBatches} reloadHarvestRecords={reloadHarvestRecords} tutorials={tutorials}/>
+				reloadHarvestBatches={reloadHarvestBatches} reloadHarvestRecords={reloadHarvestRecords} tutorials={tutorials} showHints={showHints}/>
 			) : currentPage === 'harvest-batches-form' ? (
 				<HarvestBatchesForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} 
 				getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms} getPossiblePlantCount={getPossiblePlantCount}/>
 			) : currentPage === 'manage-dry-rooms-form' ? (
-				<ManageDryRoomsForm getDryRooms={getDryRooms} refreshOuter={refreshOuter} reloadDryRooms={reloadDryRooms} userID={userID}/>
+				<ManageDryRoomsForm getDryRooms={getDryRooms} refreshOuter={refreshOuter} reloadDryRooms={reloadDryRooms} userID={userID} showHints={showHints}/>
 			) : currentPage === 'manage-plants-form' ? (
-				<ManagePlantsForm getPlants={getPlants} refreshOuter={refreshOuter} userID={userID} setPlants={setPlants} setNewPlantID={setNewPlantID} reloadPlants={reloadPlants}/>
+				<ManagePlantsForm getPlants={getPlants} refreshOuter={refreshOuter} userID={userID} setPlants={setPlants} setNewPlantID={setNewPlantID} reloadPlants={reloadPlants} showHints={showHints}/>
 			) : currentPage === 'account-form' ? (
 				<AccountForm userID={userID} setCurrentPage={setCurrentPage} setFromAccountSettings={setFromAccountSettings} executeLogout={executeLogout}/>
 			) : currentPage === 'subscription-form' ? (

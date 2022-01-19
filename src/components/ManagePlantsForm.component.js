@@ -8,7 +8,7 @@ import RemoveFromAvailablePlantsButton from './RemoveFromAvailablePlantsButton.c
 import TextField from '@material-ui/core/TextField';
 import * as XLSX from 'xlsx';
 
-function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPlantID,reloadPlants}) {
+function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPlantID,reloadPlants,showHints}) {
     const [uploadList,setUploadList] = React.useState([]);
     const [importing,setImporting] = React.useState(false);
 	const [selectedToDelete,setSelectedToDelete] = React.useState([]);
@@ -253,9 +253,9 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 					<Button style={{marginRight:"10px",marginLeft:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}>Import Files</Button>
 					<RemoveFromAvailablePlantsButton getPlants={getPlants} removeList={removeList} setPlants={setPlants} setRemoveList={setSelectedToDelete}
 							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></RemoveFromAvailablePlantsButton>
-					<div class="tooltip">?
+					{showHints ? <div class="tooltip">?
   					          <span class="tooltiptext">Before harvesting, download your flowering plants from your compliance software as an XLSX file. Then import the file here. To remove plants, select the boxes and click delete.</span>
-				            </div> 
+				            </div>  : null}
 					</Grid>
 					</div>
 			    }

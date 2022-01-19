@@ -39,18 +39,10 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
       from: 'support@zipharvest.app', // Change to your verified sender
       subject: 'Verification Code',
       sub: {
-        username: [
-          "Username"
-        ],
-        florasollink: [
-          "flora-sol.com"
-        ],
-        zipharvestlink: [
-          "zipharvest.app"
-        ],
-        verificationlink: [
-          "zipharvest.app"
-        ]
+        username:"Username",
+        florasollink:"flora-sol.com",
+        zipharvestlink: "zipharvest.app",
+        verificationlink: "zipharvest.app"
       },
       filters: {
         templates: {

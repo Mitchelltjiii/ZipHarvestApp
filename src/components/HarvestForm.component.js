@@ -21,7 +21,7 @@ import {isMobile} from 'react-device-detect';
 
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches,
 	currentHarvest, setNewHBID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
-	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords,tutorials}) { 
+	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords,tutorials,showHints}) { 
 
 	console.log("tutorials: " + tutorials);
 
@@ -750,9 +750,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
             			</MenuItem>
           			))}
              	</Select>
-				 <div class="tooltip">?
+				 {showHints ? <div class="tooltip">?
   					<span class="tooltiptext">Create and select harvest batch.</span>
-				</div> 
+				</div>  : null}
+				 
 				</Grid>
 			</Grid>
 		);
@@ -1055,9 +1056,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					  alignItems="center"
 				  >
 				  <TextField id="changeHBField" helperText={hbNameHelperText} error={hbNameError} value={hbName} onChange={handleHbNameChange} label="Batch Name"/> 
-				  <div class="tooltip">?
+				  {showHints ? <div class="tooltip">?
 						<span class="tooltiptext">Harvest Batch Name. Harvest batches should only be one strain and for only one day.</span>
-				  </div>
+				  </div>  : null}
+				  
 				  </Grid>
 				  
 				  <Grid
@@ -1073,9 +1075,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 						  <FormControlLabel value="yesterday" control={<Radio />} label="Yesterday" />
 						</RadioGroup>
 				  </FormControl>
-				  <div class="tooltip">?
+				  {showHints ? <div class="tooltip">?
 						<span class="tooltiptext">Harvest date can be changed to any date after the batch is created.</span>
-				  </div>
+				  </div>  : null}
+				  
 				  </Grid>
   
 				  <Grid
@@ -1091,9 +1094,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 						  <FormControlLabel value="manicure" control={<Radio />} label="Manicure" />
 						</RadioGroup>
 				  </FormControl>
-				  <div class="tooltip">?
+				  {showHints ? <div class="tooltip">?
 						<span class="tooltiptext">This is final. Manicures and full harvests must be separated into different batches.</span>
-				  </div>
+				  </div>  : null}
+				  
 				  </Grid>
   
 				  </Grid>
@@ -1147,9 +1151,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
             			</MenuItem>
           			))}
              	</Select>
-				 <div class="tooltip">?
+				 {showHints ? <div class="tooltip">?
   					<span class="tooltiptext">Filter your search by strain.</span>
-				</div>
+				</div>  : null}
+				 
 				</Grid>
 
 
@@ -1163,11 +1168,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				>
 
 				<TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width: "120px"}}/>
-				<div style={{marginTop:"15px"}}>
+				{showHints ? <div style={{marginTop:"15px"}}>
 				<div class="tooltip">?
   					<span class="tooltiptext">Search for plants here. Choose "Contains" or "Ends with". Searching for three or more digits is recommended.</span>
 				</div>
-				</div>
+				</div> : null}
 				</Grid>
 
 				<Grid
@@ -1185,9 +1190,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
             			</MenuItem>
           			))}
              	</Select>
-				 <div class="tooltip">?
+				 {showHints ? <div class="tooltip">?
   					<span class="tooltiptext">Search above and the most relevant option will appear here. Click to see all tags that match the search.</span>
-				</div>
+				</div>  : null}
+				 
 				</Grid>
 
 				<Grid
@@ -1207,9 +1213,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
           			))}
              	</Select>
 
-				<div class="tooltip">?
+				 {showHints ? <div class="tooltip">?
   					<span class="tooltiptext">Enter weight and choose unit.</span>
-				</div>
+				</div>  : null}
+				
 				</Grid>
 
 				<Grid
@@ -1247,9 +1254,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				>
 				<Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
 					nextPlantFromSpeech={nextPlantFromSpeech} voiceCommand={voiceCommand}></Dictaphone>	
-					<div class="tooltip">?
+					{showHints ? <div class="tooltip">?
   					<span class="tooltiptext">For voice control, say these commands. Command 1: "Search [tag]", eg. "Search 026". Command 2: "[Weight] [unit]", eg. "1.2 pounds". Command 3: "Next Plant".</span>
-				</div>
+				</div>  : null}
+					
 				</Grid>
 				</Grid>
 				</div>
