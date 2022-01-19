@@ -43,7 +43,7 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
         username:req.params.username,
         florasollink:'https://flora-sol.com/',
         zipharvestlink: 'https://www.zipharvest.app/',
-        verificationlink: 'https://www.zipharvest.app/verCode=' + req.params.verificationCode,
+        verificationlink: 'https://www.zipharvest.app/verCode=' + req.params.verificationCode + "/username=" + req.params.username,
      }      
     }
     
