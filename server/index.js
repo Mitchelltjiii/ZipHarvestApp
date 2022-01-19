@@ -34,6 +34,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 
 app.get('/send-verification-email/:address/:verificationCode/:username', async (req,res) =>{
+  console.log("Address: " + req.params.address);
     const msg = {
       to: req.params.address, // Change to your recipient
       from: 'support@zipharvest.app', // Change to your verified sender
