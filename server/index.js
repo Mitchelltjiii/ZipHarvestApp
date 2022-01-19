@@ -40,10 +40,10 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
       from: 'support@zipharvest.app', // Change to your verified sender
       templateId: 'd-cace39ce69f8403aa39868b534764106',
       dynamic_template_data: {
-        username:'Username',
-        florasollink:'flora-sol.com',
-        zipharvestlink: 'zipharvest.app',
-        verificationlink: 'zipharvest.app'
+        username:req.params.username,
+        florasollink:'https://flora-sol.com/',
+        zipharvestlink: 'https://www.zipharvest.app/',
+        verificationlink: 'https://www.zipharvest.app/verCode=' + req.params.verificationCode,
      }      
     }
     
