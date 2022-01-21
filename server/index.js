@@ -93,7 +93,6 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
                     username:val.username,
                     florasollink:'https://flora-sol.com/',
                     zipharvestlink: 'https://www.zipharvest.app/',
-                    returntologinlink: 'https://www.zipharvest.app/',
                     address:req.params.address
                   }      
                 }
