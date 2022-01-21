@@ -57,7 +57,7 @@ function VerificationForm({newUsername}) {
     }
 
     async function sendVerificationEmail(user){
-        let address = "Mitchelltjiii@gmail.com";
+        let address = user.email;
         let newCode = makeid(8);
         const response = await fetch(`/send-verification-email/${address}/${newCode}/${newUsername}`);
         await response.json();
