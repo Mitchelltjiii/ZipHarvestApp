@@ -34,24 +34,21 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 
 app.get('/send-verification-email/:address/:verificationCode/:username', async (req,res) =>{
-  console.log("Address: " + req.params.address);
     const msg = {
       to: req.params.address, // Change to your recipient
-      from: 'support@zipharvest.app', // Change to your verified sender
+      from: 'welcome@zipharvest.app', // Change to your verified sender
       templateId: 'd-cace39ce69f8403aa39868b534764106',
       dynamic_template_data: {
         username:req.params.username,
         florasollink:'https://flora-sol.com/',
         zipharvestlink: 'https://www.zipharvest.app/',
         verificationlink: 'https://www.zipharvest.app/verCode=' + req.params.verificationCode + "/username=" + req.params.username,
-     }      
+      }      
     }
     
     sgMail.send(msg).then((response) => {
-      console.log("Success sgmail");
         res.json(0);
       }).catch((error) => {
-        console.log("Fail sgmail");
         res.json(1);
       })
   })
@@ -59,10 +56,14 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
   app.get('/send-reset-link/:address/:linkCode/:username', async (req,res) =>{
     const msg = {
       to: req.params.address, // Change to your recipient
-      from: 'support@zipharvest.app', // Change to your verified sender
-      subject: 'Reset Password Link',
-      text: 'Here',
-      html: 'Here is the link to reset your password: <strong>' + "https://www.zipharvest.app/linkCode=" + req.params.linkCode + '/username=' + req.params.username + '</strong>',
+      from: 'resetpassword@zipharvest.app', // Change to your verified sender
+      templateId: 'd-6b9ada81a7da408085800ffd81feadf5',
+      dynamic_template_data: {
+        username:req.params.username,
+        florasollink:'https://flora-sol.com/',
+        zipharvestlink: 'https://www.zipharvest.app/',
+        resetpasswordlink: 'https://www.zipharvest.app/linkCode=' + req.params.linkCode + '/username=' + req.params.username,
+      }      
     }
 
     sgMail.send(msg).then((response) => {
@@ -72,7 +73,7 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
       })
   }) 
   
-  app.get('/send-find-user/:email', async (req,res) =>{
+  app.get('/send-find-user/:address', async (req,res) =>{
     pool.getConnection((err, connection) => {
       if(err) throw err;
       connection.query(usersQueryString, (err, rows) => {
@@ -81,15 +82,19 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
           let foundUser = false;
           try{
             for(const val of rows){
-              if((val.email).toLowerCase()===(req.params.email).toLowerCase()){
+              if((val.email).toLowerCase()===(req.params.address).toLowerCase()){
                 foundUser = true;
 
                 const msg = {
-                  to: req.params.email, // Change to your recipient
-                  from: 'support@zipharvest.app', // Change to your verified sender
-                  subject: 'Username Recovery',
-                  text: 'Here',
-                  html: 'Your username is ' + val.username +'.\nhttps://www.zipharvest.app/',
+                  to: req.params.address, // Change to your recipient
+                  from: 'resetpassword@zipharvest.app', // Change to your verified sender
+                  templateId: 'd-415d0f036020453ba0828ab8e712ad2a',
+                  dynamic_template_data: {
+                    username:req.params.username,
+                    florasollink:'https://flora-sol.com/',
+                    zipharvestlink: 'https://www.zipharvest.app/',
+                    address:req.params.address
+                  }      
                 }
                 sgMail.send(msg).then((response) => {
                     res.json(0);
