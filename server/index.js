@@ -90,9 +90,10 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
                   from: 'resetpassword@zipharvest.app', // Change to your verified sender
                   templateId: 'd-415d0f036020453ba0828ab8e712ad2a',
                   dynamic_template_data: {
-                    username:req.params.username,
+                    username:val.username,
                     florasollink:'https://flora-sol.com/',
                     zipharvestlink: 'https://www.zipharvest.app/',
+                    returntologinlink: 'https://www.zipharvest.app/',
                     address:req.params.address
                   }      
                 }
