@@ -140,8 +140,15 @@ function VerificationForm({newUsername}) {
                         <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontWeight:"bold"}}>We sent you a {newLink}link to verify your account.</div>
                         <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center"}}>It will expire 15 minutes after creation.</div>
                         </Grid>
+                        <Grid
+            container
+            direction="row"
+              justifyContent="center"
+            alignItems="center"
+              >
                         <Button style={{marginTop:"10px",marginRight:"5px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
                         <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
+                        </Grid>
                         </Grid>
         </div>
        }

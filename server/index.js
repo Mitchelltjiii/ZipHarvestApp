@@ -682,14 +682,20 @@ app.put('/user', (req, res) =>{
   let linkCodeTime = postData.linkCodeTime;
   let tutorials = postData.tutorials;
 
+  console.log("Ok now");
+
   if(apiid !== null && username !== null && password !== null && subid !== null){
+    console.log("Creating User Before");
     bcrypt.hash(password, 10, function(err, hash) {
       console.log("Creating User");
       connection.query(`UPDATE users set
   apiid =?, password =?, subid =?, linkCode =?, facilityName =?, firstName =?, lastName =?, email =?, verificationCode =?, verified =?, sessionid =?, verCodeTime =?, linkCodeTime =?, tutorials =? WHERE username = ?`,
   [
     apiid, hash, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime, tutorials, username
-  ], (err, result) => {
+  ], (err2, result) => {
+      connection.release(); // return the connection to pool
+      if(err2) throw err;
+    });
     console.log("Creating password record");
     connection.query(`INSERT INTO pr 
       (userID, password) 
@@ -697,15 +703,13 @@ app.put('/user', (req, res) =>{
       (?, ?)`, 
       [
         username, hash
-      ], (err2, result2) => {
+      ], (err3, result2) => {
         console.log("Releasing");
       connection.release(); // return the connection to pool
-      if(err) throw err;
+      if(err3) throw err;
       res.json(result2);
     });
     });
-    });
-    
   }else{
     res.json("");
   }
