@@ -23,6 +23,8 @@ const dryRoomsQueryString = "select * from dr where userID = '";
 
 const exportRecordsQueryString = "select * from er where userID = '";
 
+const passwordRecordsQueryString = "select * from pr where userID = '";
+
 const harvestRecordsQueryString = "select * from hr where userID = '";
 
 const usersQueryString = "select * from users";
@@ -478,6 +480,42 @@ app.get('/api/er/:id', (req, res) => {
   });
 });
 
+app.get('/api/pr/:id/:password', (req, res) => {
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    let userID = req.params.id;
+    var sql = `${userID}`;
+    connection.query(passwordRecordsQueryString + sql + "'", (err, rows) => {
+        connection.release(); // return the connection to pool
+        if(err) throw err;
+        let foundLogin = false;
+          let foundUser = false;
+          try{
+            for(const val of rows){
+              if(val.username==userID){
+                foundUser = true;
+                bcrypt.compare(req.params.password, val.password, function(err, resp) {
+                  if (resp) {
+                    foundLogin = true;
+                    res.json(0)
+                  } else {
+                    res.json(1);
+                  }
+                });
+              }
+            }
+          }catch(error){
+            res.json(1);
+          }
+          if(!foundUser){
+            res.json(1);
+          }
+    });
+  });
+});
+
+
+
 app.get('/api/pl/:id', (req, res) => {
     pool.getConnection((err, connection) => {
       if(err) throw err;
@@ -514,6 +552,24 @@ app.post('/er/:tag/:time/:userID', (req, res) =>{
     (?, ?, ?)`, 
     [
       req.params.userID, req.params.tag, req.params.time
+    ], (err, result) => {
+    connection.release(); // return the connection to pool
+    if(err) throw err;
+    res.json(result);
+    });
+  });
+});
+
+app.post('/pr/:password/:userID', (req, res) =>{
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+
+  connection.query(`INSERT INTO pr 
+    (userID, password) 
+    VALUES 
+    (?, ?)`, 
+    [
+      req.params.userID, req.params.password
     ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;

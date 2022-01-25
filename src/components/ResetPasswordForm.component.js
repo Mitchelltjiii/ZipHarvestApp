@@ -176,16 +176,22 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
         if(fromAccountSettings){
           userForFetch = userID;
         }
-        fetch(`/user/resetPassword/${userForFetch}/${password}`, {
-              method: 'PUT',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              }
+        const response = await fetch(`/api/pr/${userForFetch}/${password}`);
+        const text = await response.text();  
+
+        console.log("A: " + text);
+        if(text === "1"){
+          fetch(`/user/resetPassword/${userForFetch}/${password}`, {
+            method: 'PUT',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
         }).then(function(response) {
         }).then(function(data) {
         });
-        setSuccess(true);
+        createPasswordRecord();
+        }
     }
 
     const handleUsername = (event) => {
@@ -229,6 +235,25 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
     if(!gotResponse){
       executeLogInFailed();
     }
+  }
+
+  const createPasswordRecord = async() => {
+    console.log("Create Password Record");
+    console.log("UserID: " + userID);
+
+    const response = fetch(`/pr/${password}/${userID}`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+    });
+
+    try{
+      await response.text();
+    }catch(err){
+    }
+    setSuccess(true);
   }
     
 
