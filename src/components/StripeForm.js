@@ -340,7 +340,10 @@ async function getSession(seshId){
   setSession(json);
 }
 
-  
+
+const handleGoToHome = () => {
+  window.location.replace("https://www.zipharvest.app/");
+}  
 
   let [message, setMessage] = useState('');
   let [success, setSuccess] = useState(false);
@@ -504,7 +507,8 @@ async function getSession(seshId){
               alignItems="center"
           >
                 <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center"}}>{msg}</div>
-                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
+                <Button style={{marginTop:"10px",marginRight:"5px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
+                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                 </Grid>
                 </div>
                 :
@@ -516,7 +520,8 @@ async function getSession(seshId){
             alignItems="center"
           >
                 <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center"}}>{msg}</div>
-                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
+                <Button style={{marginTop:"10px",marginRight:"5px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
+                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                 </Grid>
         </div>
        }

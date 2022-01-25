@@ -94,57 +94,59 @@ function AccountForm({userID, setCurrentPage, setFromAccountSettings,executeLogo
       formWidth = "100%";
     }
 
-    return(
-      <div id="subsctiption-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
-      {isMobile ?
-        <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-            <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-          <TableCell align="left">
-              <div style={{fontSize: "21px"}}>Account</div>
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-            {rows.map((row) => (
-            <TableRow key={row.tag}>
-                <TableCell onClick={() => handleClick(row.title)}>
-                  <Tab title={row.title} subtitle={row.subtitle}></Tab>
-                </TableCell>
+    if(isMobile){
+      return(
+          <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+              <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+            <TableCell align="left">
+                <div style={{fontSize: "21px"}}>Account</div>
+              </TableCell>
             </TableRow>
-            ))}
-            </TableBody>
-      </Table>
-      </TableContainer>
-                </div>
-                :
-                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-<TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-          <TableCell align="left">
-              <div style={{fontSize:"21px"}}>Account</div>
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-            {rows.map((row) => (
-            <TableRow key={row.tag}>
-                <TableCell onClick={() => handleClick(row.title)}>
-                  <Tab title={row.title} subtitle={row.subtitle}></Tab>
-                </TableCell>
-            </TableRow>
-            ))}
-            </TableBody>
-      </Table>
-      </TableContainer>
+          </TableHead>
+          <TableBody>
+              {rows.map((row) => (
+              <TableRow key={row.tag}>
+                  <TableCell onClick={() => handleClick(row.title)}>
+                    <Tab title={row.title} subtitle={row.subtitle}></Tab>
+                  </TableCell>
+              </TableRow>
+              ))}
+              </TableBody>
+        </Table>
+        </TableContainer>
         </div>
-       }
-		</div>
-    );
+      );
+    }else{
+      return(
+        <div id="subsctiption-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
+        <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+  <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+            <TableCell align="left">
+                <div style={{fontSize:"21px"}}>Account</div>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+              {rows.map((row) => (
+              <TableRow key={row.tag}>
+                  <TableCell onClick={() => handleClick(row.title)}>
+                    <Tab title={row.title} subtitle={row.subtitle}></Tab>
+                  </TableCell>
+              </TableRow>
+              ))}
+              </TableBody>
+        </Table>
+        </TableContainer>
+          </div>
+      </div>
+      );
+    }
 }
 
 /*
