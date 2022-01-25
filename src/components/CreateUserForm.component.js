@@ -314,11 +314,11 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     var privacyPolicyLink = <a href="/#" onClick={handlePrivacyPolicy} style={{cursor:"pointer",color:"#3d85c6",textDecoration:"none"}}>Privacy Policy.</a>;  
 
     let formWidth = "550px";
-    let formHeight = "550px";
+    let formHeight = "580px";
 
     if(isMobile){
       formWidth = "100%";
-      formHeight = "500px";
+      formHeight = "550px";
     }
 
   if(isMobile){
@@ -330,7 +330,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
             justifyContent="center"
           alignItems="center"
         >
-                  <TextField id="FacilityName" error={facilityNameError} value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+                  <TextField id="FacilityName" error={facilityNameError} value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"20px",marginBottom:"10px"}}></TextField>
                   <TextField id="First Name" error={firstNameError} value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
                   <TextField id="Last Name" error={lastNameError} value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
                   <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
@@ -380,7 +380,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
     }}
   /> 
   <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>                
-  <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
+  <Button style={{marginTop:"10px",marginBottom:"20px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
   </Grid>
   </div>);
   }else{
