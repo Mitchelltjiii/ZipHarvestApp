@@ -318,7 +318,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 
     if(isMobile){
       formWidth = "100%";
-      formHeight = "750px";
+      formHeight = "650px";
     }
 
 	return (
@@ -329,9 +329,9 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
   				justifyContent="center"
 				alignItems="center"
 			>
-                <div style={{fontSize:"28px",marginTop:"10px",marginBottom:"10px",fontWeight:"bold"}}>Welcome to ZipHarvest!</div>
+                {isMobile ? null : <div style={{fontSize:"28px",marginTop:"10px",marginBottom:"10px",fontWeight:"bold"}}>Welcome to ZipHarvest!</div>}       
                 {isMobile ?
-                <div style={{width:formWidth,height:formHeight,paddingTop:"20px"}}>
+                <div style={{width:formWidth,height:formHeight,paddingTop:"50px"}}>
                 <Grid
       container
       direction="column"

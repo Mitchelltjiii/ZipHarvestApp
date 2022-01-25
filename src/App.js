@@ -638,7 +638,6 @@ export default class App extends React.Component {
 			  	direction="column"
   				justifyContent="center"
 				  alignItems="center"
-          style={{height:"100%"}}
 		  	  >
           <LoginHeader/>
           {showForm}
