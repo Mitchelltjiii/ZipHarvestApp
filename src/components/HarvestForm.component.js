@@ -743,7 +743,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			  	justifyContent="center"
 				alignItems="center"
 			>
-				<Select id="change-HB-select" value={selectedHB} onChange={handleSelectHB} style={{minWidth:"120px"}}>
+				<Select id="change-HB-select" value={selectedHB} onChange={handleSelectHB} style={{width:"180px"}}>
                 	{hbOptionsList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
@@ -1144,7 +1144,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
-				<Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{minWidth:"120px"}}>
+				<Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"180px"}}>
                 	{searchForList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
@@ -1167,7 +1167,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 
-				<TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width: "120px"}}/>
+				<TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width:"180px"}}/>
 				{showHints ? <div style={{marginTop:"15px"}}>
 				<div class="tooltip">?
   					<span class="tooltiptext">Search for plants here. Choose "Contains" or "Ends with". Searching for three or more digits is recommended.</span>
@@ -1182,7 +1182,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 			
-				<Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{minWidth: 80,marginTop:"15px"}}>
+				<Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{width:"180px",marginTop:"15px"}}>
                 	{    
                     tagList.map((name, index) => (
             			<MenuItem key={index} value={name}>
@@ -1205,7 +1205,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				<TextField id="Weight" value={weight} onChange={handleWeight} style={{width: "100px"}}/>
 
-				<Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{minWidth: 80}}>
+				<Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{width:"80px"}}>
                 	{unitList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
