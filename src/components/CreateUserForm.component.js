@@ -180,14 +180,30 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       const text = await response.text();
       let newUsername = username;
   
-      if(text === "1"){
-        sendVerificationEmail();
-        setNewUsername(newUsername);
-        setCurrentPage('verification-form');      
+      if(text === "1"){   
+        sendVerificationEmail(newUsername);
       }else{
         setUsernameHelperText("Username already exists");
         setFailedUsername(username);
         setUsernameError(true);
+      }
+    }
+
+    const createPasswordRecord = async(newUsername) => {
+      console.log("Create Password Record");
+      console.log("UserID: " + newUsername);
+  
+      const response = fetch(`/pr/${password}/${newUsername}`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+      });
+  
+      try{
+        await response.text();
+      }catch(err){
       }
     }
 
@@ -203,7 +219,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       }
     }
 
-    function getUserItem(newCode){    
+    function getUserItem(newCode,newUsername){    
       let userItem = {
         apiid: '',
         username: '',
@@ -222,8 +238,8 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
         tutorials: '1'
         };
     
-        userItem.apiid = username;
-        userItem.username = username;
+        userItem.apiid = newUsername;
+        userItem.username = newUsername;
         userItem.password = password;
         userItem.facilityName = facilityName;
         userItem.firstName = firstName;
@@ -256,13 +272,16 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       }).then(function(response) {
       }).then(function(data) {
       });
+      createPasswordRecord(userItem.username);
+      setNewUsername(userItem.username);
+      setCurrentPage('verification-form'); 
     }
 
-    async function sendVerificationEmail(){
+    async function sendVerificationEmail(newUsername){
         let newCode = makeid(8);
-        const response = await fetch(`/send-verification-email/${email}/${newCode}/${username}`);
+        const response = await fetch(`/send-verification-email/${email}/${newCode}/${newUsername}`);
         await response.json();
-        updateUser(getUserItem(newCode));
+        updateUser(getUserItem(newCode,newUsername));
       }
 
     const handleFacilityName = (event) => {

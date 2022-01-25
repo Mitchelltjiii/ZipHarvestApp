@@ -41,6 +41,8 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
 
     const [stepOne, setStepOne] = React.useState(true);
 
+    const [passwordExisted,setPasswordExisted] = React.useState(false);
+
     let errorText = "";
     let error = false;
 
@@ -49,6 +51,11 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
         error = true;
         errorText = "Password is incorrect."
       }
+    }
+
+    if(passwordExisted){
+      error = true;
+      errorText = "Cannot reuse previous password.";
     }
 
     const handleSendResetLink = () => {
@@ -191,6 +198,8 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
         }).then(function(data) {
         });
         createPasswordRecord();
+        }else{
+          setPasswordExisted(true);
         }
     }
 
