@@ -318,7 +318,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 
     if(isMobile){
       formWidth = "100%";
-      formHeight = "450px";
+      formHeight = "500px";
     }
 
 	return (
@@ -388,7 +388,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
   }}
 /> 
 <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>                
-
+<Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
             </Grid>
       </div> :
       <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"20px"}}>
@@ -453,7 +453,9 @@ alignItems="center"
 </div>
                 }
                 
-      <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
+      {isMobile ? null : 
+            <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
+      }
 			</Grid>
 		</div>
 	);
