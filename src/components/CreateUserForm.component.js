@@ -321,144 +321,145 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       formHeight = "500px";
     }
 
-	return (
-		<div id="create-user-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-			<Grid
-				container
-				direction="column"
-  				justifyContent="center"
-				alignItems="center"
-			>
-                {isMobile ? null : <div style={{fontSize:"28px",marginTop:"10px",marginBottom:"10px",fontWeight:"bold"}}>Welcome to ZipHarvest!</div>}       
-                {isMobile ?
-                <div style={{width:formWidth,height:formHeight,paddingTop:"50px",paddingBottom:"100px"}}>
-                <Grid
-      container
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-      >
-                <TextField id="FacilityName" error={facilityNameError} value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-                <TextField id="First Name" error={firstNameError} value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-                <TextField id="Last Name" error={lastNameError} value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-                <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-                <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-                <TextField
-  helperText={passwordHelperText} error={passwordError} 
-  style={{marginBottom:"10px",width:"248px"}}
-  value={password}
-  label='Password'
-  variant="outlined"
-  type={showPassword ? "text" : "password"} // <-- This is where the magic happens
-  onChange={handlePassword} 
-  InputProps={{ // <-- This is where the toggle button is added.
-    endAdornment: (
-      <InputAdornment position="end">
-        <IconButton
-          aria-label="toggle password visiblity"
-          onClick={handleClickShowPassword}
-          onMouseDown={handleMouseDownPassword}
+  if(isMobile){
+    return (
+      <div id="create-user-form">
+        <Grid
+          container
+          direction="column"
+            justifyContent="center"
+          alignItems="center"
         >
-          {showPassword ? <Visibility /> : <VisibilityOff />}
-        </IconButton>
-      </InputAdornment>
-    )
-  }}
-/>         
-<TextField
-  helperText={verifyPasswordHelperText} error={verifyPasswordError} 
-  style={{marginBottom:"10px",width:"248px"}}
-  value={passwordAgain}
-  label='Verify'
-  variant="outlined"
-  type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
-  onChange={handlePasswordAgain} 
-  InputProps={{ // <-- This is where the toggle button is added.
-    endAdornment: (
-      <InputAdornment position="end">
-        <IconButton
-          aria-label="toggle password visiblity"
-          onClick={handleClickShowVerifyPassword}
-          onMouseDown={handleMouseDownVerifyPassword}
-        >
-          {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
-        </IconButton>
-      </InputAdornment>
-    )
-  }}
-/> 
-<div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>                
-<Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
-            </Grid>
-      </div> :
-      <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"20px"}}>
-  <Grid
-container
-direction="column"
-justifyContent="center"
-alignItems="center"
->
-      <TextField id="FacilityName" error={facilityNameError} value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
-      <TextField id="First Name" error={firstNameError} value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-      <TextField id="Last Name" error={lastNameError} value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-      <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-      <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginBottom:"10px"}}></TextField>
-      <TextField
-  helperText={passwordHelperText} error={passwordError} 
-  style={{marginBottom:"10px",width:"248px"}}
-  value={password}
-  label='Password'
-  variant="outlined"
-  type={showPassword ? "text" : "password"} // <-- This is where the magic happens
-  onChange={handlePassword} 
-  InputProps={{ // <-- This is where the toggle button is added.
-    endAdornment: (
-      <InputAdornment position="end">
-        <IconButton
-          aria-label="toggle password visiblity"
-          onClick={handleClickShowPassword}
-          onMouseDown={handleMouseDownPassword}
-        >
-          {showPassword ? <Visibility /> : <VisibilityOff />}
-        </IconButton>
-      </InputAdornment>
-    )
-  }}
-/>         
-<TextField
-  helperText={verifyPasswordHelperText} error={verifyPasswordError} 
-  style={{marginBottom:"10px",width:"248px"}}
-  value={passwordAgain}
-  label='Verify'
-  variant="outlined"
-  type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
-  onChange={handlePasswordAgain} 
-  InputProps={{ // <-- This is where the toggle button is added.
-    endAdornment: (
-      <InputAdornment position="end">
-        <IconButton
-          aria-label="toggle password visiblity"
-          onClick={handleClickShowVerifyPassword}
-          onMouseDown={handleMouseDownVerifyPassword}
-        >
-        {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
-        </IconButton>
-      </InputAdornment>
-    )
-  }}
-/> 
-<div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
-
+                  <TextField id="FacilityName" error={facilityNameError} value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+                  <TextField id="First Name" error={firstNameError} value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+                  <TextField id="Last Name" error={lastNameError} value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+                  <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+                  <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+                  <TextField
+    helperText={passwordHelperText} error={passwordError} 
+    style={{marginBottom:"10px",width:"248px"}}
+    value={password}
+    label='Password'
+    variant="outlined"
+    type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+    onChange={handlePassword} 
+    InputProps={{ // <-- This is where the toggle button is added.
+      endAdornment: (
+        <InputAdornment position="end">
+          <IconButton
+            aria-label="toggle password visiblity"
+            onClick={handleClickShowPassword}
+            onMouseDown={handleMouseDownPassword}
+          >
+            {showPassword ? <Visibility /> : <VisibilityOff />}
+          </IconButton>
+        </InputAdornment>
+      )
+    }}
+  />         
+  <TextField
+    helperText={verifyPasswordHelperText} error={verifyPasswordError} 
+    style={{marginBottom:"10px",width:"248px"}}
+    value={passwordAgain}
+    label='Verify'
+    variant="outlined"
+    type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
+    onChange={handlePasswordAgain} 
+    InputProps={{ // <-- This is where the toggle button is added.
+      endAdornment: (
+        <InputAdornment position="end">
+          <IconButton
+            aria-label="toggle password visiblity"
+            onClick={handleClickShowVerifyPassword}
+            onMouseDown={handleMouseDownVerifyPassword}
+          >
+            {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
+          </IconButton>
+        </InputAdornment>
+      )
+    }}
+  /> 
+  <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>                
+  <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
   </Grid>
+  </div>);
+  }else{
+    return (
+      <div id="create-user-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+        <Grid
+          container
+          direction="column"
+            justifyContent="center"
+          alignItems="center"
+        >
+                  <div style={{fontSize:"28px",marginTop:"10px",marginBottom:"10px",fontWeight:"bold"}}>Welcome to ZipHarvest!</div>       
+                  
+        <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"20px"}}>
+    <Grid
+  container
+  direction="column"
+  justifyContent="center"
+  alignItems="center"
+  >
+        <TextField id="FacilityName" error={facilityNameError} value={facilityName} onChange={handleFacilityName} label="Facility Name" variant="outlined" style={{marginTop:"10px",marginBottom:"10px"}}></TextField>
+        <TextField id="First Name" error={firstNameError} value={firstName} onChange={handleFirstName} label="First Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+        <TextField id="Last Name" error={lastNameError} value={lastName} onChange={handleLastName} label="Last Name" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+        <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+        <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginBottom:"10px"}}></TextField>
+        <TextField
+    helperText={passwordHelperText} error={passwordError} 
+    style={{marginBottom:"10px",width:"248px"}}
+    value={password}
+    label='Password'
+    variant="outlined"
+    type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+    onChange={handlePassword} 
+    InputProps={{ // <-- This is where the toggle button is added.
+      endAdornment: (
+        <InputAdornment position="end">
+          <IconButton
+            aria-label="toggle password visiblity"
+            onClick={handleClickShowPassword}
+            onMouseDown={handleMouseDownPassword}
+          >
+            {showPassword ? <Visibility /> : <VisibilityOff />}
+          </IconButton>
+        </InputAdornment>
+      )
+    }}
+  />         
+  <TextField
+    helperText={verifyPasswordHelperText} error={verifyPasswordError} 
+    style={{marginBottom:"10px",width:"248px"}}
+    value={passwordAgain}
+    label='Verify'
+    variant="outlined"
+    type={showVerifyPassword ? "text" : "password"} // <-- This is where the magic happens
+    onChange={handlePasswordAgain} 
+    InputProps={{ // <-- This is where the toggle button is added.
+      endAdornment: (
+        <InputAdornment position="end">
+          <IconButton
+            aria-label="toggle password visiblity"
+            onClick={handleClickShowVerifyPassword}
+            onMouseDown={handleMouseDownVerifyPassword}
+          >
+          {showVerifyPassword ? <Visibility /> : <VisibilityOff />}
+          </IconButton>
+        </InputAdornment>
+      )
+    }}
+  /> 
+  <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
+  
+    </Grid>
+  </div>
+                  
+  <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
+</Grid>
 </div>
-                }
-                
-      {isMobile ? null : 
-            <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
-      }
-			</Grid>
-		</div>
-	);
+    );
+  }
 }
 
 export default CreateUserForm;

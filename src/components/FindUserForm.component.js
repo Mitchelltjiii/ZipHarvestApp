@@ -55,7 +55,7 @@ function FindUserForm() {
                         justifyContent="center"
                         alignItems="center"
                         >
-                                <div>We sent you an email with your username.</div>
+                                <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center"}}>We sent you an email with your username.</div>
                                 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                                 </Grid>
                                 :
