@@ -503,7 +503,7 @@ async function getSession(seshId){
               justifyContent="center"
               alignItems="center"
           >
-                <div style={{textAlign:"center"}}>{msg}</div>
+                <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center"}}>{msg}</div>
                 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
                 </Grid>
                 </div>
@@ -515,7 +515,7 @@ async function getSession(seshId){
               justifyContent="center"
             alignItems="center"
           >
-                <div style={{textAlign:"center"}}>{msg}</div>
+                <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center"}}>{msg}</div>
                 <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
                 </Grid>
         </div>

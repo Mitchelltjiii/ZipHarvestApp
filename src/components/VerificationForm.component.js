@@ -109,8 +109,8 @@ function VerificationForm({newUsername}) {
               justifyContent="center"
             alignItems="center"
               >
-                            <div style={{textAlign:"center"}}>We sent you a {newLink}link to verify your account. If you haven't recieved it, try checking your spam folder.</div>
-                            <div style={{textAlign:"center"}}>If you are still having trouble, you can send a new code below. Code will expire 15 minutes after creation.</div>
+                            <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontWeight:"bold"}}>We sent you a {newLink}link to verify your account.</div>
+                            <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center"}}>It will expire 15 minutes after creation.</div>
                             </Grid>
                             <Grid
                             container
@@ -137,8 +137,8 @@ function VerificationForm({newUsername}) {
               justifyContent="center"
             alignItems="center"
               >
-                        <div style={{textAlign:"center"}}>We sent you a {newLink}link to verify your account. If you haven't recieved it, try checking your spam folder.</div>
-                        <div style={{textAlign:"center"}}>If you are still having trouble, you can send a new code below. Code will expire 15 minutes after creation.</div>
+                        <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontWeight:"bold"}}>We sent you a {newLink}link to verify your account.</div>
+                        <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center"}}>It will expire 15 minutes after creation.</div>
                         </Grid>
                         <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleResend}>Resend Code</Button>
                         </Grid>

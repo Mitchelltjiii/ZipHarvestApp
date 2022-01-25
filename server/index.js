@@ -759,7 +759,7 @@ app.put('/user/updateUserSessionID/:username/:sessionID', (req, res) =>{
   });
 });
 
-app.put('/user/updateVerificationCode/:username/:code/:verCodeTime', (req, res) =>{
+app.put('/user/updateVerificationCode/:username/:verificationCode/:verCodeTime', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
 
