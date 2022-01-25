@@ -318,6 +318,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 
     if(isMobile){
       formWidth = "100%";
+      formHeight = "750px";
     }
 
 	return (

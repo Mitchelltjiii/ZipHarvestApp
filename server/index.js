@@ -87,7 +87,7 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
 
                 const msg = {
                   to: req.params.address, // Change to your recipient
-                  from: 'resetpassword@zipharvest.app', // Change to your verified sender
+                  from: 'recoverusername@zipharvest.app', // Change to your verified sender
                   templateId: 'd-415d0f036020453ba0828ab8e712ad2a',
                   dynamic_template_data: {
                     username:val.username,
