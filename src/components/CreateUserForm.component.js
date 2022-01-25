@@ -331,7 +331,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 			>
                 {isMobile ? null : <div style={{fontSize:"28px",marginTop:"10px",marginBottom:"10px",fontWeight:"bold"}}>Welcome to ZipHarvest!</div>}       
                 {isMobile ?
-                <div style={{width:formWidth,height:formHeight,paddingTop:"50px",paddingBottom:"10px"}}>
+                <div style={{width:formWidth,height:formHeight,paddingTop:"50px",paddingBottom:"100px"}}>
                 <Grid
       container
       direction="column"
