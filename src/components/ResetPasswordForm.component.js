@@ -188,16 +188,17 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
 
         console.log("A: " + text);
         if(text === "1"){
-          fetch(`/user/resetPassword/${userForFetch}/${password}`, {
+          const response2 = await fetch(`/user/resetPassword/${userForFetch}/${password}`, {
             method: 'PUT',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             }
-        }).then(function(response) {
-        }).then(function(data) {
-        });
-        createPasswordRecord();
+          });
+          const text2 = await response2.text(); 
+          let fixedText = text2.substring(1,text2.length-1);
+          console.log("Fixed Text: " + fixedText);
+          createPasswordRecord(fixedText);
         }else{
           setPasswordExisted(true);
         }
@@ -246,11 +247,11 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
     }
   }
 
-  const createPasswordRecord = async() => {
+  const createPasswordRecord = async(hash) => {
     console.log("Create Password Record");
     console.log("UserID: " + userID);
 
-    const response = fetch(`/pr/${password}/${userID}`, {
+    const response = fetch(`/pr/${hash}/${userID}`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

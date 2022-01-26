@@ -256,8 +256,9 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       });
       const text = await response.text();
       console.log("Update user text: " + text);
-      console.log(".string: " + JSON.stringify(text));
-      createPasswordRecord(userItem.username,response.text());
+      let fixedText = text.substring(1,text.length-1);
+      console.log("Fixed Text: " + fixedText);
+      createPasswordRecord(userItem.username,fixedText);
     }
 
     async function createPasswordRecord(username,hash){
