@@ -254,12 +254,9 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
             },
             body: JSON.stringify(userItem)
       });
-      try{
-        await response.text();
-      }catch(err){
-      }
-      console.log("Update user Response.text: " + response.text());
-      console.log(".string: " + JSON.stringify(response.text()));
+      const text = await response.text();
+      console.log("Update user text: " + text);
+      console.log(".string: " + JSON.stringify(text));
       createPasswordRecord(userItem.username,response.text());
     }
 
