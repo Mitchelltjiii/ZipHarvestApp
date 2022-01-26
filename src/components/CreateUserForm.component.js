@@ -254,8 +254,28 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
             },
             body: JSON.stringify(userItem)
       }).then(function(response) {
+        console.log("Update User Response: " + response);
+        console.log("Update User Response.string: " + JSON.stringify(response));
+        createPasswordRecord(userItem.username,response);
       }).then(function(data) {
       });
+    }
+
+    async function createPasswordRecord(username,hash){
+      console.log("Create Password Record");
+  
+      const response = fetch(`/pr/${hash}/${username}`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+      });
+  
+      try{
+        await response.text();
+      }catch(err){
+      }
     }
 
     async function sendVerificationEmail(){

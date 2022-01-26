@@ -708,7 +708,6 @@ app.put('/user', (req, res) =>{
 app.post('/user', (req, res) =>{
 
   pool.getConnection((err, connection) => {
-    console.log("Post User");
     if(err) throw err;
     var postData  = req.body;
 
@@ -730,8 +729,6 @@ app.post('/user', (req, res) =>{
 
   if(apiid !== null && username !== null && password !== null && subid !== null){
     bcrypt.hash(password, 10, function(error, hash) {
-      console.log("Post User A");
-
     connection.query(`INSERT INTO users 
   (apiid, username, password, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime,linkCodeTime,tutorials) 
   VALUES 
@@ -739,24 +736,10 @@ app.post('/user', (req, res) =>{
   [
     apiid, username, hash, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime, tutorials
   ], (err, result) => {
-    console.log("Post User C");
-
-    connection.query(`INSERT INTO pr 
-      (userID, password) 
-      VALUES 
-      (?, ?)`, 
-      [
-        username, hash
-      ], (err3, result2) => {
-        console.log("Releasing");
-      connection.release(); // return the connection to pool
-      if(err3) throw err;
-      console.log("Post User D");
-      res.json(result2);
-    });
+    connection.release(); // return the connection to pool
     if(err) throw err;
+    res.json(hash);
     });
-    console.log("Post User B");
   });
   }else{
     res.json("");
