@@ -246,19 +246,21 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
   }
     
     async function updateUser(userItem){
-      fetch('/user', {
+      const response = fetch('/user', {
             method: (userItem.id) ? 'PUT' : 'POST',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(userItem)
-      }).then(function(response) {
-        console.log("Update User Response: " + response);
-        console.log("Update User Response.string: " + JSON.stringify(response));
-        createPasswordRecord(userItem.username,response);
-      }).then(function(data) {
       });
+      try{
+        await response.text();
+      }catch(err){
+      }
+      console.log("Update user Response.text: " + response.text());
+      console.log(".string: " + JSON.stringify(response.text()));
+      createPasswordRecord(userItem.username,response.text());
     }
 
     async function createPasswordRecord(username,hash){
