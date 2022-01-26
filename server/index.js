@@ -847,7 +847,7 @@ app.put('/user/resetPassword/:username/:password', (req, res) =>{
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
-    res.json(result);
+    res.json(hash);
     });
   });
   });
