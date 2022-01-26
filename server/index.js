@@ -739,11 +739,6 @@ app.post('/user', (req, res) =>{
   [
     apiid, username, hash, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime, tutorials
   ], (err, result) => {
-    console.log("Post User B");
-
-    connection.release(); // return the connection to pool
-    if(err) throw err;
-    });
     console.log("Post User C");
 
     connection.query(`INSERT INTO pr 
@@ -759,6 +754,9 @@ app.post('/user', (req, res) =>{
       console.log("Post User D");
       res.json(result2);
     });
+    if(err) throw err;
+    });
+    console.log("Post User B");
   });
   }else{
     res.json("");
