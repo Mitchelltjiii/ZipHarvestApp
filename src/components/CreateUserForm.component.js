@@ -246,7 +246,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
   }
     
     async function updateUser(userItem){
-      const response = fetch('/user', {
+      const response = await fetch('/user', {
             method: (userItem.id) ? 'PUT' : 'POST',
             headers: {
               'Accept': 'application/json',
