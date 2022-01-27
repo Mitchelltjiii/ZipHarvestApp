@@ -256,7 +256,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       });
       const text = await response.text();
       let fixedHash = text;
-      while(fixedHash.contains("/")){
+      while(fixedHash.includes("/")){
         fixedHash = fixedHash.substring(0,fixedHash.indexOf("/")) + ".$." + fixedHash.substring(fixedHash.indexOf("/")+1);
       }
       console.log("Now Fixed Hash A: " + fixedHash);

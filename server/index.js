@@ -568,7 +568,7 @@ app.post('/pr/create/:hash/:userID', (req, res) =>{
     let fixedHash = req.params.hash;
     fixedHash = fixedHash.substring(1,fixedHash.length-1);
     console.log("Fixed Hash: " + fixedHash);
-    while(fixedHash.contains(".$.")){
+    while(fixedHash.includes(".$.")){
       fixedHash = fixedHash.substring(0,fixedHash.indexOf(".$.")) + "/" + fixedHash.substring(fixedHash.indexOf(".$.")+3);
     }
     console.log("Now Fixed Hash: " + fixedHash);
