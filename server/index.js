@@ -481,34 +481,52 @@ app.get('/api/er/:id', (req, res) => {
   });
 });
 
-app.get('/api/pr/:id/:password', (req, res) => {
+app.get('/api/pr/check/:id/:password', (req, res) => {
   pool.getConnection((err, connection) => {
     if(err) throw err;
     let userID = req.params.id;
     var sql = `${userID}`;
     connection.query(passwordRecordsQueryString + sql + "'", (err, rows) => {
         connection.release(); // return the connection to pool
+        console.log("Checking");
         if(err) throw err;
         let foundLogin = false;
           let foundUser = false;
           try{
             for(const val of rows){
+              console.log("Checking A");
+
               if(val.username==userID){
+                console.log("Checking B");
+
                 foundUser = true;
                 bcrypt.compare(req.params.password, val.password, function(err, resp) {
+                  console.log("Checking C");
+
                   if (resp) {
+                    console.log("Checking D");
+
                     foundLogin = true;
                     res.json(0)
                   } else {
+                    console.log("Checking E");
+
                     res.json(1);
                   }
                 });
               }
             }
           }catch(error){
+            console.log("Checking F");
+
             res.json(1);
           }
           if(!foundUser){
+            console.log("Checking G");
+
+            res.json(1);
+          }else{
+            console.log("Checking H");
             res.json(1);
           }
     });
