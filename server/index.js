@@ -560,7 +560,7 @@ app.post('/er/:tag/:time/:userID', (req, res) =>{
   });
 });
 
-app.post('/pr/:password/:userID', (req, res) =>{
+app.post('/pr/create/:userID', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
 
@@ -569,7 +569,7 @@ app.post('/pr/:password/:userID', (req, res) =>{
     VALUES 
     (?, ?)`, 
     [
-      req.params.userID, req.params.password
+      req.params.userID, req.body.hashCode
     ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;

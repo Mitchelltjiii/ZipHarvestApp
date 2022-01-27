@@ -263,12 +263,16 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 
     async function createPasswordRecord(username,hash){
       console.log("Create Password Record");
+      console.log("Hash: " + hash)
   
-      const response = fetch(`/pr/${hash}/${username}`, {
+      const response = fetch(`/pr/create/${username}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
+      },
+      body: {
+        hashCode:hash
       }
       });
   
