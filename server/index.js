@@ -560,16 +560,20 @@ app.post('/er/:tag/:time/:userID', (req, res) =>{
   });
 });
 
-app.post('/pr/create/:userID', (req, res) =>{
+app.post('/pr/create/:hash/:userID', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
+
+    let fixedHash = req.params.hash;
+    fixedHash = fixedHash.substring(1,fixedHash.length-1);
+    console.log("Fixed Hash: " + fixedHash);
 
   connection.query(`INSERT INTO pr 
     (userID, password) 
     VALUES 
     (?, ?)`, 
     [
-      req.params.userID, req.body.hashCode
+      req.params.userID, fixedHash
     ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;

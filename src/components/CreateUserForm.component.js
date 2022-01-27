@@ -256,7 +256,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       });
       const text = await response.text();
       console.log("Update user text: " + text);
-      let fixedText = text.substring(1,text.length-1);
+      let fixedText = text;
       console.log("Fixed Text: " + fixedText);
       createPasswordRecord(userItem.username,fixedText);
     }
@@ -265,14 +265,11 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       console.log("Create Password Record");
       console.log("Hash: " + hash)
   
-      const response = fetch(`/pr/create/${username}`, {
+      const response = fetch(`/pr/create/${hash}/${username}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
-      },
-      body: {
-        hashCode:hash
       }
       });
   
