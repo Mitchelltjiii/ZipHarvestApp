@@ -256,6 +256,10 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       });
       const text = await response.text();
       let fixedText = text;
+      while(fixedHash.contains("/")){
+        fixedHash = fixedHash.substring(0,fixedHash.indexOf("/")) + ".$." + fixedHash.substring(fixedHash.indexOf("/")+1);
+      }
+      console.log("Now Fixed Hash A: " + fixedHash);
       createPasswordRecord(userItem.username,fixedText);
     }
 

@@ -32,6 +32,7 @@ const usersQueryString = "select * from users";
 const usersQueryStringFromUsername = "select * from users where username = '";
 
 const sgMail = require('@sendgrid/mail');
+const { withMobileDialog } = require("@material-ui/core");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 
@@ -567,6 +568,10 @@ app.post('/pr/create/:hash/:userID', (req, res) =>{
     let fixedHash = req.params.hash;
     fixedHash = fixedHash.substring(1,fixedHash.length-1);
     console.log("Fixed Hash: " + fixedHash);
+    while(fixedHash.contains(".$.")){
+      fixedHash = fixedHash.substring(0,fixedHash.indexOf(".$.")) + "/" + fixedHash.substring(fixedHash.indexOf(".$.")+3);
+    }
+    console.log("Now Fixed Hash: " + fixedHash);
 
   connection.query(`INSERT INTO pr 
     (userID, password) 
