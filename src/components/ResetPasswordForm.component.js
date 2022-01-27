@@ -196,8 +196,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
             }
           });
           const text2 = await response2.text(); 
-          let fixedText = text2.substring(1,text2.length-1);
-          console.log("Fixed Text: " + fixedText);
+          let fixedText = text2;
           createPasswordRecord(fixedText);
         }else{
           setPasswordExisted(true);
@@ -247,11 +246,8 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
     }
   }
 
-  const createPasswordRecord = async(hash) => {
-    console.log("Create Password Record");
-    console.log("UserID: " + userID);
-
-    const response = fetch(`/pr/${hash}/${userID}`, {
+  async function createPasswordRecord(hash){
+    const response = fetch(`/pr/create/${hash}/${userID}`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -264,8 +260,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
     }catch(err){
     }
     setSuccess(true);
-  }
-    
+  } 
 
     let formWidth = "450px";
     let formHeight = "250px";

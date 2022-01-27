@@ -255,16 +255,11 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
             body: JSON.stringify(userItem)
       });
       const text = await response.text();
-      console.log("Update user text: " + text);
       let fixedText = text;
-      console.log("Fixed Text: " + fixedText);
       createPasswordRecord(userItem.username,fixedText);
     }
 
     async function createPasswordRecord(username,hash){
-      console.log("Create Password Record");
-      console.log("Hash: " + hash)
-  
       const response = fetch(`/pr/create/${hash}/${username}`, {
       method: 'POST',
       headers: {
