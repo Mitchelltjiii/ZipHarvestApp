@@ -580,7 +580,11 @@ export default class App extends React.Component {
     let userEqualsStr = "username=";
     if(currUrl.includes("username")){
       let userString = currUrl.substring(currUrl.indexOf(userEqualsStr)+userEqualsStr.length);
+      if(userString.includes("?")){
+        userString = userString.substring(0,userString.length-1);
+      }
       userFromUrl = userString;
+      console.log("Userstring: " + userFromUrl);
     }
 
     let verCode = "";
