@@ -481,7 +481,8 @@ app.get('/api/er/:id', (req, res) => {
   });
 });
 
-app.get('/api/pr/check/:id/:password', (req, res) => {
+app.get('/pr/check/:id/:password', (req, res) => {
+  console.log("-1");
   pool.getConnection((err, connection) => {
     if(err) throw err;
     let userID = req.params.id;

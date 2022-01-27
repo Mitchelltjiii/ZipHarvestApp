@@ -183,7 +183,9 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
         if(fromAccountSettings){
           userForFetch = userID;
         }
-        const response = await fetch(`/api/pr/check/${userForFetch}/${password}`);
+        console.log("User for fetch: " + userForFetch);
+        console.log("Pass for fetch: " + password);
+        const response = await fetch(`/pr/check/${userForFetch}/${password}`);
         const text = await response.text();  
 
         console.log("A: " + text);
