@@ -482,7 +482,6 @@ app.get('/api/er/:id', (req, res) => {
 });
 
 app.get('/pr/check/:id/:password', (req, res) => {
-  console.log("-1");
   pool.getConnection((err, connection) => {
     if(err) throw err;
     let userID = req.params.id;
@@ -490,13 +489,15 @@ app.get('/pr/check/:id/:password', (req, res) => {
     connection.query(passwordRecordsQueryString + sql + "'", (err, rows) => {
         connection.release(); // return the connection to pool
         console.log("Checking");
+        console.log("Rows: " + JSON.stringify(rows));
         if(err) throw err;
         let foundLogin = false;
           let foundUser = false;
           try{
             for(const val of rows){
               console.log("Checking A");
-
+              console.log("Val: " + JSON.stringify(val));
+              console.log("UserID: " + userID);
               if(val.username==userID){
                 console.log("Checking B");
 
