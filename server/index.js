@@ -498,7 +498,7 @@ app.get('/pr/check/:id/:password', (req, res) => {
               console.log("Checking A");
               console.log("Val: " + JSON.stringify(val));
               console.log("UserID: " + userID);
-              if(val.username==userID){
+              if(val.userID==userID){
                 console.log("Checking B");
 
                 foundUser = true;
