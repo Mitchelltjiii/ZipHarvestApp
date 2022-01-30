@@ -197,8 +197,8 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
           createPasswordRecord(fixedText);
         }else{
           console.log("Set Password Existed");
-          setPasswordError(true);
           setPasswordHelperText("Cannot reuse previous password.");
+          setPasswordError(true);
         }
     }
 
