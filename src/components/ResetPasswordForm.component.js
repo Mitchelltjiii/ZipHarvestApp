@@ -53,11 +53,6 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
       }
     }
 
-    if(passwordExisted){
-      error = true;
-      errorText = "Cannot reuse previous password.";
-    }
-
     const handleSendResetLink = () => {
       getEmail();
 	  }
@@ -202,7 +197,8 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
           createPasswordRecord(fixedText);
         }else{
           console.log("Set Password Existed");
-          setPasswordExisted(true);
+          setPasswordError(true);
+          setPasswordHelperText("Cannot reuse previous password.");
         }
     }
 
