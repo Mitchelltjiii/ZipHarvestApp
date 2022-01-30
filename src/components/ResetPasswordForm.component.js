@@ -96,6 +96,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
     }
 
     if(passwordError && password.length !== 0 && password !== failedPassword){
+      setFailedPassword("");
       setPasswordHelperText("");
       setPasswordError(false);
     }
@@ -197,6 +198,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
           createPasswordRecord(fixedText);
         }else{
           console.log("Set Password Existed");
+          setFailedPassword(password)
           setPasswordHelperText("Cannot reuse previous password.");
           setPasswordError(true);
         }
