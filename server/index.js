@@ -527,9 +527,6 @@ app.get('/pr/check/:id/:password', (req, res) => {
             console.log("Checking G");
 
             res.json(1);
-          }else{
-            console.log("Checking H");
-            res.json(1);
           }
     });
   });

@@ -201,6 +201,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
           let fixedText = text2;
           createPasswordRecord(fixedText);
         }else{
+          console.log("Set Password Existed");
           setPasswordExisted(true);
         }
     }
