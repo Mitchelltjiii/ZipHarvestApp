@@ -248,6 +248,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 					direction="row"
   					justify="center"
 					alignItems="center"
+					wrap="nowrap"
 					>
 						<TextField onChange={handleSearchFieldChange} value={searchText} label="Search" style={{width:"130px"}}></TextField>
 					<Button style={{marginRight:"10px",marginLeft:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}>Import Files</Button>
