@@ -50,7 +50,7 @@ function PlantTable({plantsWithSearch,toggleDeleteAllSelected,getDeleteAllSelect
             <SelectDeleteAllButton toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected}></SelectDeleteAllButton>
             </TableCell>
             <TableCell>Tag</TableCell>
-            <TableCell style={{width:"100px"}} align="right">Strain</TableCell>
+            <TableCell style={{width:"150px"}} align="right">Strain</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -62,7 +62,7 @@ function PlantTable({plantsWithSearch,toggleDeleteAllSelected,getDeleteAllSelect
               <TableCell component="th" scope="row">
                 {row.tag}
               </TableCell>
-              <TableCell style={{width:"100px"}} align="right">{row.strain}</TableCell>
+              <TableCell style={{width:"150px"}} align="right">{row.strain}</TableCell>
             </TableRow>
             ))}
             </TableBody>
