@@ -128,7 +128,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	for (const val of JSON.parse(getPlants())) {
 		if(getPlant(val.tag) !== undefined){
-			strain = getPlant(val.tag).strain;
+			let pl = getPlant(val.tag);
+			if(pl.active===0){
+				strain = pl.strain;
+			}
 		}
 		if(!searchForList.includes(strain)){
 			searchForList.push(strain);
