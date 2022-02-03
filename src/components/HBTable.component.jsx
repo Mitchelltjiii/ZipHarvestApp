@@ -158,7 +158,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
                 {row.plants === 1 ? <div style={{fontWeight:"bold"}}>{row.plants} Plant</div>
                 : <div style={{fontWeight:"bold"}}>{row.plants} Plants</div>}
                 <div>{row.date}</div>
-                <div>Total: {row.totalWeight} g</div>
+                <div style={{flexWrap:"nowrap"}}>{row.totalWeight} g</div>
                 </Grid></TableCell>
               <TableCell align="center">
                 <ExportButton row={row} getHarvestRecords={getHarvestRecords} getHarvestBatches={getHarvestBatches} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}></ExportButton> 
