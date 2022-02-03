@@ -1183,7 +1183,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					alignItems="center"
 				>
 			
-				<Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{width:"180px",marginTop:"15px"}}>
+				<Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{width:"180px",marginTop:"15px",direction:"rtl"}}>
                 	{    
                     tagList.map((name, index) => (
             			<MenuItem key={index} value={name}>
