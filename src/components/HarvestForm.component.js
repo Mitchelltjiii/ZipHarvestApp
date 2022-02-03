@@ -261,7 +261,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	  };
 
 	const handleSelectedTag = (event) => {
-		setSelectedTag(fixStrain(event.target.value));
+		setSelectedTag(event.target.value);
 	  };
 
 	const handleWeight = (event) => {
@@ -451,16 +451,13 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	function voiceCommand(text){
 	}
 
-	function fixStrain(text){
-		let strain = text.substring(text.indexOf(" | ") + 3);
+	function fixStrain(strain){
 		console.log("Strain before fix: " + strain);
 		if(strain.length>8){
 			strain = strain.substring(0,8);
 			console.log("Strain after fix: " + strain);
-			text = text.substring(0,text.indexOf(" | ")+3) + strain;
-			console.log("Fixex Text: " + text); 
 		}
-		return text;
+		return strain;
 	}
 
 	function commitSearch(){
@@ -487,7 +484,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				let p = getPlant(tag);
 				if((p!==undefined)&&(p.tag.substring(p.tag.length-searchTag.length)===(searchTag))&&(!p.harvested)){
 					if((searchStrain === 'All Strains' )|| (searchStrain === p.strain)){
-						newTagList.push(p.tag + " | " + p.strain);
+						newTagList.push(p.tag + " | " + fixStrain(p.strain));
 					}
 				}
 			}
