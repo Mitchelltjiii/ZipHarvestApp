@@ -43,7 +43,9 @@ class ExportButton extends Component{
         }
 
         function clickExport(){
-            getSubId();
+            //getSubId();
+            parent.setState({choosingDryRoom:true});
+            parent.forceUpdate();
         }
 
         const handleNext = () => {
@@ -97,7 +99,7 @@ class ExportButton extends Component{
 
         function exp(){
           console.log("EXPORT");
-            commitExportRecords();
+            //commitExportRecords();
             parent.setState({choosingUnit:false});
             parent.forceUpdate();
         }
