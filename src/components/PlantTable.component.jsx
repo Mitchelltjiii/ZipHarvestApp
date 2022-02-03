@@ -30,6 +30,9 @@ function PlantTable({plantsWithSearch,toggleDeleteAllSelected,getDeleteAllSelect
     const classes = useStyles();
 
     function createData(tag, strain) {
+      if(tag.length>5){
+        tag = tag.substring(tag.length-5);
+      }
       return { tag, strain};
     }
 
@@ -49,7 +52,7 @@ function PlantTable({plantsWithSearch,toggleDeleteAllSelected,getDeleteAllSelect
           <TableCell>
             <SelectDeleteAllButton toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected}></SelectDeleteAllButton>
             </TableCell>
-            <TableCell>Tag</TableCell>
+            <TableCell>Tag (Last 5)</TableCell>
             <TableCell style={{width:"150px"}} align="right">Strain</TableCell>
           </TableRow>
         </TableHead>
