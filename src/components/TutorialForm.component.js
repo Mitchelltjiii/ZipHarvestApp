@@ -1,6 +1,8 @@
 import React from 'react';
 import {isMobile} from 'react-device-detect';
 import Grid from '@material-ui/core/Grid';
+import "node_modules/video-react/dist/video-react.css";
+import { Player } from 'video-react';
 
 function TutorialForm() {
 
@@ -87,15 +89,11 @@ Click “Next Plant”.</div>
 
     return(
       <div id="tutorial-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
-      {isMobile ?
-        <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-                <TutorialText></TutorialText>
-                </div>
-                :
-                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-            <TutorialText></TutorialText>
-        </div>
-       }
+      <Player
+      playsInline
+      poster="/assets/poster.png"
+      src="https://drive.google.com/file/d/1V5ZqguHCPkLPOcJDC8bfIlGsF7LdLZ1_/view?usp=sharing"
+    />
 		</div>
     );
 }	
@@ -103,3 +101,12 @@ Click “Next Plant”.</div>
 
 export default TutorialForm;
 
+/*{isMobile ?
+        <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+                <TutorialText></TutorialText>
+                </div>
+                :
+                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+            <TutorialText></TutorialText>
+        </div>
+       } */
