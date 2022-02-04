@@ -1,7 +1,6 @@
 import React from 'react';
 import {isMobile} from 'react-device-detect';
 import Grid from '@material-ui/core/Grid';
-import "node_modules/video-react/dist/video-react.css";
 import { Player } from 'video-react';
 
 function TutorialForm() {
