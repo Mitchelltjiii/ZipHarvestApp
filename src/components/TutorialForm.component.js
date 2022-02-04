@@ -1,7 +1,7 @@
 import React from 'react';
 import {isMobile} from 'react-device-detect';
 import Grid from '@material-ui/core/Grid';
-import { Player } from 'video-react';
+import ReactPlayer from "react-player"
 
 function TutorialForm() {
 
@@ -88,11 +88,9 @@ Click “Next Plant”.</div>
 
     return(
       <div id="tutorial-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
-      <Player
-      playsInline
-      poster="/assets/poster.png"
-      src="https://drive.google.com/file/d/1V5ZqguHCPkLPOcJDC8bfIlGsF7LdLZ1_/view?usp=sharing"
-    />
+      <ReactPlayer
+        url="https://vimeo.com/673427120"
+      />
 		</div>
     );
 }	
