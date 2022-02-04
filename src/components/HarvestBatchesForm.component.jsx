@@ -5,7 +5,6 @@ import {isMobile} from 'react-device-detect';
 
 function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, userID, reloadExportRecords, getUniqueIDCount,getDryRooms,getPossiblePlantCount}) {
 
-	console.log("Enter HarvestBatchesForm");
 	let uniqueIDCount = getUniqueIDCount();
 
 	let possiblePlantCount = getPossiblePlantCount();

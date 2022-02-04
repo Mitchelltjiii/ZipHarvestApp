@@ -16,7 +16,6 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	let removeList = selectedToDelete;
 	const [selectedFile, setSelectedFile] = React.useState('');
 	const [plantList, setPlantList] = React.useState([]);
-	console.log("PlantList: " + JSON.stringify(plantList));
 
 	function getPlantList(){
 		return plantList;
@@ -34,19 +33,16 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 		/* Convert array of arrays */
 		const data = XLSX.utils.sheet_to_csv(ws, {header:1});
 		/* Update state */
-		console.log("Data>>>"+data);
 		let fileSplit = data.split(/\r?\n/);
 		let rowCount = 0;
 		let pList = [];
 		for(const val of fileSplit){
 		  let rowSplit = val.split(",");
 		  if(rowCount > 0 && rowCount < (fileSplit.length-2)){
-			console.log(val);
 			pList.push(rowSplit[0] + "," + rowSplit[1]);
 		  }
 		  rowCount++;
 		}
-			console.log("PList: " + JSON.stringify(pList));
 			setPlantList(pList);
 		};
 		reader.readAsBinaryString(selectedFile);

@@ -98,24 +98,18 @@ class ExportButton extends Component{
         }
 
         function exp(){
-          console.log("EXPORT");
             //commitExportRecords();
             parent.setState({choosingUnit:false});
             parent.forceUpdate();
         }
 
         function commitExportRecords(){
-          console.log("Commit Export Records");
-
-          console.log("Exports Record Data: " + JSON.stringify(exportRecordsData))
             for(const val of exportRecordsData){
                 busyCreatingExportRecords.push(val);
-                console.log("Busy Creating added: " + JSON.stringify(val))
             }
 
             for(const val of exportRecordsData){
                 createExportRecord(val);
-                console.log("Create export Record: " + JSON.stringify(val))
             }
 
             let timeLimit = 3000;
@@ -127,11 +121,7 @@ class ExportButton extends Component{
                 }
         }
         const createExportRecord = async(tag) => {
-            console.log("Create Export Record");
-            console.log("Tag: " + tag);
             let time = JSON.stringify((new Date()).getTime());
-            console.log("Time: " + time);
-            console.log("UserID: " + parent.props.userID);
 
             const response = fetch(`/er/${tag}/${time}/${parent.props.userID}`, {
             method: 'POST',
@@ -189,7 +179,6 @@ class ExportButton extends Component{
                 exportRecordsData.push(val.tag);
             }
         } 
-        console.log("Export Record Data After Creation: " + JSON.stringify(exportRecordsData))
 
 /*
         console.log("Parent set export records?");

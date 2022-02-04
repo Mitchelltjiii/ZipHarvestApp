@@ -66,7 +66,6 @@ function VerificationForm({newUsername}) {
       }
 
       async function updateUserVerificationCode(username,newCode){
-        console.log("Update user Verification code username: " + username + ", code: " + newCode);
         let verCodeTime = JSON.stringify((new Date()).getTime());
       
         fetch(`/user/updateVerificationCode/${username}/${newCode}/${verCodeTime}`, {

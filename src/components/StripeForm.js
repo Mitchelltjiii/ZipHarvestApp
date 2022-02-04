@@ -239,7 +239,6 @@ async function goToProduct(lookup_key){
 }
 
 async function updateUserSessionID(username,id){
-  console.log("Update user sessionid: " + username + ", id: " + id);
   fetch(`/user/updateUserSessionID/${username}/${id}`, {
         method: 'PUT',
         headers: {
@@ -265,7 +264,6 @@ async function updateUserSubId(username,subid){
 }
 
 async function updateUserVerified(username){
-  console.log("Update user verified: " + username);
   fetch(`/user/verified/${username}`, {
         method: 'PUT',
         headers: {
@@ -278,7 +276,6 @@ async function updateUserVerified(username){
 }
 
 async function updateUserVerificationCode(username,newCode){
-  console.log("Update user Verification code username: " + username + ", code: " + newCode);
   let verCodeTime = JSON.stringify((new Date()).getTime());
 
   fetch(`/user/updateVerificationCode/${username}/${newCode}/${verCodeTime}`, {

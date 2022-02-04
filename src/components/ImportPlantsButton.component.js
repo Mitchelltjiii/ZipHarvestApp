@@ -67,7 +67,6 @@ class ImportPlantsButton extends Component{
             for(const val of plantList){
 			    let splitList = val.split(",");
 
-              console.log("Before addplant mech");
 			    for(let i = 0; i < splitList.length; i++){
                     addPlant = new Plant(splitList[i],splitList[i+1],this.props.userID,0);
 

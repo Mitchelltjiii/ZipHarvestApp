@@ -259,7 +259,6 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       while(fixedHash.includes("/")){
         fixedHash = fixedHash.substring(0,fixedHash.indexOf("/")) + ".$." + fixedHash.substring(fixedHash.indexOf("/")+1);
       }
-      console.log("Now Fixed Hash A: " + fixedHash);
       createPasswordRecord(userItem.username,fixedHash);
     }
 

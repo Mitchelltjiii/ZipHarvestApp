@@ -179,12 +179,9 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
         if(fromAccountSettings){
           userForFetch = userID;
         }
-        console.log("User for fetch: " + userForFetch);
-        console.log("Pass for fetch: " + password);
         const response = await fetch(`/pr/check/${userForFetch}/${password}`);
         const text = await response.text();  
 
-        console.log("A: " + text);
         if(text === "1"){
           const response2 = await fetch(`/user/resetPassword/${userForFetch}/${password}`, {
             method: 'PUT',
@@ -197,7 +194,6 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
           let fixedText = text2;
           createPasswordRecord(fixedText);
         }else{
-          console.log("Set Password Existed");
           setFailedPassword(password)
           setPasswordHelperText("Cannot reuse previous password.");
           setPasswordError(true);

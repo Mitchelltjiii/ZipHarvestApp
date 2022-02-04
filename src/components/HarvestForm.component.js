@@ -23,8 +23,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	currentHarvest, setNewHBID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
 	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords,tutorials,showHints}) { 
 
-	console.log("tutorials: " + tutorials);
-
 	function HarvestBatch(name,type,date,userID){
 		this.name = name;
 		this.type = type;
@@ -452,10 +450,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	function fixStrain(strain){
-		console.log("Strain before fix: " + strain);
 		if(strain.length>8){
 			strain = strain.substring(0,8);
-			console.log("Strain after fix: " + strain);
 		}
 		return strain;
 	}
@@ -991,7 +987,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	async function updateTutorials(){
 		tutorials = "0" + tutorials.substring(1);
-		console.log("Update tutorials: " + tutorials)
         fetch(`/user/tutorials/${userID}/${tutorials}`, {
               method: 'PUT',
               headers: {
