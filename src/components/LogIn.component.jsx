@@ -108,7 +108,7 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
       }
     }
 
-    const handleGoToHome = () => {
+    const handleGoToFloraSol = () => {
       window.location.replace("https://www.flora-sol.com/");
   }  
 
