@@ -3,7 +3,8 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import {isMobile} from 'react-device-detect';
-import logo from './logo.png'
+import logo from './logo.png';
+import zhlogo from './zhlogo.png';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import {InputAdornment,IconButton} from "@material-ui/core";
@@ -107,6 +108,10 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
       }
     }
 
+    const handleGoToHome = () => {
+      window.location.replace("https://www.flora-sol.com/");
+  }  
+
     return(
       <Grid
 					  container
@@ -131,7 +136,7 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                            alignItems="center"
                            >
                                    <div style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"10px"}}>
-                                       <img alt="logo" src={logo} style={{minHeight:"62px",maxHeight: "62px"}}/>
+                                       <img alt="zhlogo" src={zhlogo} style={{minHeight:"62px",maxHeight: "62px"}}/>
                                    </div>    
                                    <TextField error={error} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined" style={{width:"248px"}}></TextField>
                                    <TextField
@@ -165,7 +170,10 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
                                    <div style={{marginTop:"5px",marginBottom:"5px"}}>Don't have an ID? {createIDLink}</div>
                                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
-                                   <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By signing in, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
+                                   <div style={{marginTop:"5px",marginBottom:"10px",fontSize:"12px",textAlign:"center",width:"248px"}}>By signing in, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
+                                   <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToFloraSol} style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"5px"}}>
+                                      <img alt="logo" src={logo} style={{minHeight:"25px",maxHeight: "25px"}}/>
+                                    </Button> 
                                </Grid>
                    </div> :
                    <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px"}}>
@@ -176,7 +184,7 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                            alignItems="center"
                            >
                                    <div style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"10px"}}>
-                                       <img alt="logo" src={logo} style={{minHeight:"62px",maxHeight: "62px"}}/>
+                                       <img alt="zhlogo" src={zhlogo} style={{minHeight:"62px",maxHeight: "62px"}}/>
                                    </div>    
                                    <TextField error={error} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
                                    <TextField
@@ -210,7 +218,10 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
                                    <div style={{marginTop:"5px",marginBottom:"5px"}}>Don't have an ID? {createIDLink}</div>
                                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
-                                   <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By signing in, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
+                                   <div style={{marginTop:"5px",marginBottom:"10px",fontSize:"12px",textAlign:"center",width:"248px"}}>By signing in, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
+                                   <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToFloraSol} style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"5px"}}>
+                                      <img alt="logo" src={logo} style={{minHeight:"25px",maxHeight: "25px"}}/>
+                                    </Button>
                                </Grid>
                    </div>
                   }  
