@@ -128,7 +128,7 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                   alignItems="center"
                   >
                   {isMobile ?
-                   <div style={{width:formWidth,height:formHeight,paddingTop:"40px"}}>
+                   <div style={{width:formWidth,height:formHeight,paddingTop:"20px",backgroundColor:"#444444"}}>
                    <Grid
                            container
                            direction="column"
@@ -176,7 +176,7 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                                     </Button> 
                                </Grid>
                    </div> :
-                   <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px"}}>
+                   <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"40px",backgroundColor:"#444444"}}>
                    <Grid
                            container
                            direction="column"
