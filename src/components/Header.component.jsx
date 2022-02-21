@@ -66,8 +66,8 @@ function Header({setCurrentPage}){
         <MenuItem onClick={()=>{handleExistingBatches() }}>Harvest Batches</MenuItem>
         <MenuItem onClick={()=>{handleManagePlants() }}>Manage Plants</MenuItem>
         <MenuItem onClick={()=>{handleManageDryRooms() }}>Manage Dry Rooms</MenuItem>
-        <MenuItem onClick={()=>{handleMyAccount() }}>My Account</MenuItem>
         <MenuItem onClick={()=>{handleTutorial() }}>Tutorial</MenuItem>
+        <MenuItem onClick={()=>{handleMyAccount() }}>My Account</MenuItem>
       </Menu>
     </div>
             

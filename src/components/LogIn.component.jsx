@@ -128,7 +128,7 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                   alignItems="center"
                   >
                   {isMobile ?
-                   <div style={{width:formWidth,height:formHeight,paddingTop:"20px"}}>
+                   <div style={{width:formWidth,height:formHeight,paddingTop:"40px"}}>
                    <Grid
                            container
                            direction="column"
@@ -171,8 +171,8 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                                    <div style={{marginTop:"5px",marginBottom:"5px"}}>Don't have an ID? {createIDLink}</div>
                                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
                                    <div style={{marginTop:"5px",marginBottom:"10px",fontSize:"12px",textAlign:"center",width:"248px"}}>By signing in, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
-                                   <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToFloraSol} style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"5px",minHeight:"25px",maxHeight: "25px"}}>
-                                      <img alt="logo" src={logo}/>
+                                   <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToFloraSol} style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"5px"}}>
+                                      <img alt="logo" src={logo} style={{minHeight:"25px",maxHeight: "25px"}}/>
                                     </Button> 
                                </Grid>
                    </div> :
@@ -219,8 +219,8 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                                    <div style={{marginTop:"5px",marginBottom:"5px"}}>Don't have an ID? {createIDLink}</div>
                                    <div style={{backgroundColor:"#999999",minHeight:"1px",maxHeight:"1px",width:"90%"}}></div>
                                    <div style={{marginTop:"5px",marginBottom:"10px",fontSize:"12px",textAlign:"center",width:"248px"}}>By signing in, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
-                                   <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToFloraSol} style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"5px",minHeight:"25px",maxHeight: "25px"}}>
-                                      <img alt="logo" src={logo}/>
+                                   <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToFloraSol} style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"5px"}}>
+                                      <img alt="logo" src={logo} style={{minHeight:"25px",maxHeight: "25px"}}/>
                                     </Button>
                                </Grid>
                    </div>
