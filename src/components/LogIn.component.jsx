@@ -128,7 +128,7 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                   alignItems="center"
                   >
                   {isMobile ?
-                   <div style={{width:formWidth,height:formHeight,paddingTop:"40px"}}>
+                   <div style={{width:formWidth,height:formHeight,paddingTop:"20px"}}>
                    <Grid
                            container
                            direction="column"
