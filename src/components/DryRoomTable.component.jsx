@@ -39,8 +39,10 @@ function DryRoomTable({dryRooms,toggleDeleteAllSelected,getDeleteAllSelected,tog
     }
 
     let rowsNotEmpty = (rows.length > 0);
+    console.log("Rows Not Empty: " + rowsNotEmpty);
 
     return(
+      <div>
       {rowsNotEmpty} ?
       <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -66,6 +68,7 @@ function DryRoomTable({dryRooms,toggleDeleteAllSelected,getDeleteAllSelected,tog
             </TableBody>
       </Table>
       </TableContainer>:<div>No results</div>
+      </div>
     );
   }
 
