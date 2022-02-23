@@ -67,7 +67,7 @@ function DryRoomTable({dryRooms,toggleDeleteAllSelected,getDeleteAllSelected,tog
       );
     }else{
       return(
-        <div>Click Add Dry Room</div>
+        <div style={{margin:"auto"}}>Click Add Dry Room</div>
       );
     }
   }
