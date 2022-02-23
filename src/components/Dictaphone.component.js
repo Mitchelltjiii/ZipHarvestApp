@@ -13,6 +13,14 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
             },
           },
           {
+            command: "* is *",
+            callback: (searchText,searchText2) => {
+              console.log("Seachtext: " + searchText);
+              console.log("SearchText2: " + searchText2);
+              searchTagFromSpeech(searchText + "|" + searchText2);
+            },
+          },
+          {
             command: "Certs *",
             callback: (searchText) => {
               searchTagFromSpeech(searchText);
