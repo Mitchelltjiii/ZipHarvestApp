@@ -115,61 +115,67 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
     }
     
        
-    return(
-      <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Harvest Batch</TableCell>
-            <TableCell align="center"></TableCell>            
-            <TableCell align="center" style={{marginRight:"2px"}}><Grid
-				          container
-			          	direction="row"
-			          	justifyContent="center"
-				          alignItems="center"
-			          >
-                <div>Export</div>
-                </Grid>
-            </TableCell>
-            
-          </TableRow>
-        </TableHead>
-        <TableBody>
-            {parsedRows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-              <Grid
-				          container
-			          	direction="column"
-			          	justifyContent="center"
-				          alignItems="center"
-			          >
-                <div style={{fontWeight:"bold"}}>{row.name}</div>
-                <div>Strain: {row.strain}</div>
-                </Grid>
-                
+    if(rows.length > 0){    
+      return(
+        <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Harvest Batch</TableCell>
+              <TableCell align="center"></TableCell>            
+              <TableCell align="center" style={{marginRight:"2px"}}><Grid
+                    container
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                  <div>Export</div>
+                  </Grid>
               </TableCell>
-              <TableCell align="center"><Grid
-				          container
-			          	direction="column"
-			          	justifyContent="center"
-				          alignItems="center"
-			          >
-                {row.plants === 1 ? <div style={{fontWeight:"bold"}}>{row.plants} Plant</div>
-                : <div style={{fontWeight:"bold"}}>{row.plants} Plants</div>}
-                <div>{row.date}</div>
-                <div style={{flexWrap:"nowrap"}}>{row.totalWeight} g</div>
-                </Grid></TableCell>
-              <TableCell align="center">
-                <ExportButton row={row} getHarvestRecords={getHarvestRecords} getHarvestBatches={getHarvestBatches} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}></ExportButton> 
-                  </TableCell>
+              
             </TableRow>
-            ))}
-            </TableBody>
-        
-      </Table>
-      </TableContainer>
-    );
+          </TableHead>
+          <TableBody>
+              {parsedRows.map((row) => (
+              <TableRow key={row.name}>
+                <TableCell component="th" scope="row">
+                <Grid
+                    container
+                    direction="column"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                  <div style={{fontWeight:"bold"}}>{row.name}</div>
+                  <div>Strain: {row.strain}</div>
+                  </Grid>
+                  
+                </TableCell>
+                <TableCell align="center"><Grid
+                    container
+                    direction="column"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                  {row.plants === 1 ? <div style={{fontWeight:"bold"}}>{row.plants} Plant</div>
+                  : <div style={{fontWeight:"bold"}}>{row.plants} Plants</div>}
+                  <div>{row.date}</div>
+                  <div style={{flexWrap:"nowrap"}}>{row.totalWeight} g</div>
+                  </Grid></TableCell>
+                <TableCell align="center">
+                  <ExportButton row={row} getHarvestRecords={getHarvestRecords} getHarvestBatches={getHarvestBatches} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}></ExportButton> 
+                    </TableCell>
+              </TableRow>
+              ))}
+              </TableBody>
+          
+        </Table>
+        </TableContainer>
+      );
+    }else{
+      return(
+        <div style={{margin:"auto",marginTop:"20px",fontSize:"13px",backgroundColor:"#E6E6E6"}}>Harvest Batches will appear here. See tutorial.</div>
+      );
+    }
   }
 
 export default HBTable;

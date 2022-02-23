@@ -44,35 +44,41 @@ function PlantTable({plantsWithSearch,toggleDeleteAllSelected,getDeleteAllSelect
       }
     }
        
-    return(
-      <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-          <TableCell>
-            <SelectDeleteAllButton toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected}></SelectDeleteAllButton>
-            </TableCell>
-            <TableCell style={{flexWrap:"nowrap"}}>Tag (Last 5)</TableCell>
-            <TableCell align="right">Strain</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-            {rows.map((row) => (
-            <TableRow key={row.tag}>
-              <TableCell>
-                  <SelectDeletePlantButton toggleDeletePlantSelected={toggleDeletePlantSelected} getDeletePlantSelected={getDeletePlantSelected} tag={row.tag}></SelectDeletePlantButton>
+    if(rows.length > 0){    
+      return(
+        <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+            <TableCell>
+              <SelectDeleteAllButton toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected}></SelectDeleteAllButton>
               </TableCell>
-              <TableCell component="th" scope="row">
-                {row.tag}
-              </TableCell>
-              <TableCell align="right">{row.strain}</TableCell>
+              <TableCell style={{flexWrap:"nowrap"}}>Tag (Last 5)</TableCell>
+              <TableCell align="right">Strain</TableCell>
             </TableRow>
-            ))}
-            </TableBody>
-        
-      </Table>
-      </TableContainer>
-    );
+          </TableHead>
+          <TableBody>
+              {rows.map((row) => (
+              <TableRow key={row.tag}>
+                <TableCell>
+                    <SelectDeletePlantButton toggleDeletePlantSelected={toggleDeletePlantSelected} getDeletePlantSelected={getDeletePlantSelected} tag={row.tag}></SelectDeletePlantButton>
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  {row.tag}
+                </TableCell>
+                <TableCell align="right">{row.strain}</TableCell>
+              </TableRow>
+              ))}
+              </TableBody>
+          
+        </Table>
+        </TableContainer>
+      );
+    }else{
+      return(
+        <div style={{margin:"auto",marginTop:"20px",fontSize:"13px",backgroundColor:"#E6E6E6"}}>Click Import File to get started. See tutorial.</div>
+      );
+    }
   }
 
 export default PlantTable;

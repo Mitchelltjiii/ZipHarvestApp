@@ -247,7 +247,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 					wrap="nowrap"
 					>
 						<TextField onChange={handleSearchFieldChange} value={searchText} label="Search" style={{width:"100px"}}></TextField>
-					<Button style={{marginRight:"10px",marginLeft:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}>Import Files</Button>
+					<Button style={{marginRight:"10px",marginLeft:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}>Import File</Button>
 					<RemoveFromAvailablePlantsButton getPlants={getPlants} removeList={removeList} setPlants={setPlants} setRemoveList={setSelectedToDelete}
 							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></RemoveFromAvailablePlantsButton>
 					{showHints ? <div class="tooltip">?
