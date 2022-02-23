@@ -401,7 +401,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	entryTutorialFontSize = "15px";
   }
 
-	function searchTagFromSpeech(searchText){
+	function searchTagFromSpeech(searchText,searchText2){
 		let fixedSearch = searchText;
 		    while(fixedSearch.includes(" to ")){
 			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf(" to ")) + 2 + fixedSearch.substring(fixedSearch.indexOf(" to ")+4);
@@ -430,15 +430,22 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			while(fixedSearch.includes("-")){
 			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf("-")) + fixedSearch.substring(fixedSearch.indexOf("-")+1);
 			}
+			if(searchText2.includes("lb") || searchText2.includes("lbs") || searchText2.includes("pounds")){
+				enterWeightFromSpeech(searchText2.substring(0,searchText2.indexOf(" ")),0);
+			}else{
+				enterWeightFromSpeech(searchText2.substring(0,searchText2.indexOf(" ")),1);
+			}
 		setSearchTag(fixedSearch);
 	}
 
 	function enterWeightFromSpeech(weight,unit){
-		setWeight(weight);
-		if(unit === 0){
-			setUnit('lbs');
-		}else if(unit === 1){
-			setUnit('g');
+		if(!isNaN(weight)){
+			setWeight(weight);
+			if(unit === 0){
+				setUnit('lbs');
+			}else{
+				setUnit('g');
+			}
 		}
 	}
 

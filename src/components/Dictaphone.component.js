@@ -9,7 +9,7 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
         {
             command: "search *",
             callback: (searchText) => {
-              searchTagFromSpeech(searchText);
+              searchTagFromSpeech(searchText,"");
             },
           },
           {
@@ -17,19 +17,19 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
             callback: (searchText,searchText2) => {
               console.log("Seachtext: " + searchText);
               console.log("SearchText2: " + searchText2);
-              searchTagFromSpeech(searchText + "|" + searchText2);
+              searchTagFromSpeech(searchText,searchText2);
             },
           },
           {
             command: "Certs *",
             callback: (searchText) => {
-              searchTagFromSpeech(searchText);
+              searchTagFromSpeech(searchText,"");
             },
           },
           {
             command: "Easter *",
             callback: (searchText) => {
-              searchTagFromSpeech(searchText);
+              searchTagFromSpeech(searchText,"");
             },
           },
           {
