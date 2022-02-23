@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import SelectDeleteAllButton from './SelectDeleteAllButton.component';
 import SelectDeleteDryRoomButton from './SelectDeleteDryRoomButton.component';
 import {isMobile} from 'react-device-detect';
+import Grid from '@material-ui/core/Grid';
 
 function DryRoomTable({dryRooms,toggleDeleteAllSelected,getDeleteAllSelected,toggleDeleteDryRoomSelected,getDeleteDryRoomSelected}) {
     let tableWidth = 450;

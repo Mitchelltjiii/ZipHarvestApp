@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import SelectDeleteAllButton from './SelectDeleteAllButton.component';
 import SelectDeletePlantButton from './SelectDeletePlantButton.component';
 import {isMobile} from 'react-device-detect';
+import Grid from '@material-ui/core/Grid';
 
 function PlantTable({plantsWithSearch,toggleDeleteAllSelected,getDeleteAllSelected,toggleDeletePlantSelected,getDeletePlantSelected}) {
 
