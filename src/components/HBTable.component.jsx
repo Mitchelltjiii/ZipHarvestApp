@@ -188,7 +188,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
 				alignItems="center"
 				style={{width:emptyMessageWidth,borderColor:"#90ee90",marginLeft:"10px",marginRight:"10px",marginTop:"10px",marginBottom:"10px",borderRadius:"5px",border: "1px solid #90ee90",paddingRight:"5px",paddingBottom:"5px"}}
 			>
-				<div style={{margin:"5px",textAlign:"center",fontSize:emptyMessageFontSize}}>Harvest Batches will appear here. See tutorial.</div>
+				<div style={{margin:"5px",textAlign:"center",fontSize:emptyMessageFontSize}}>Harvest Batches will appear here after you create them in the Harvest Now section. See tutorial for more info.</div>
 				</Grid>
       );
     }

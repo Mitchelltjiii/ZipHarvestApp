@@ -24,7 +24,13 @@ function DryRoomTable({dryRooms,toggleDeleteAllSelected,getDeleteAllSelected,tog
         },
       });
 
+      let emptyMessageWidth = "500px";
+      let emptyMessageFontSize = "17px";
     
+      if(isMobile){
+        emptyMessageWidth = "340px";
+        emptyMessageFontSize = "15px";
+      }
 
     const classes = useStyles();
 
@@ -67,7 +73,15 @@ function DryRoomTable({dryRooms,toggleDeleteAllSelected,getDeleteAllSelected,tog
       );
     }else{
       return(
-        <div style={{margin:"auto",marginTop:"20px",fontSize:"13px",backgroundColor:"#E6E6E6"}}>Click Add Dry Room to get started.</div>
+        <Grid
+				container
+				direction="column"
+  				justify="center"
+				alignItems="center"
+				style={{width:emptyMessageWidth,borderColor:"#90ee90",marginLeft:"10px",marginRight:"10px",marginTop:"10px",marginBottom:"10px",borderRadius:"5px",border: "1px solid #90ee90",paddingRight:"5px",paddingBottom:"5px"}}
+			>
+				<div style={{margin:"5px",textAlign:"center",fontSize:emptyMessageFontSize}}>Click Add Dry Room to get started. See tutorial for more info.</div>
+				</Grid>
       );
     }
   }
