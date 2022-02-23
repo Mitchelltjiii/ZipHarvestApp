@@ -21,13 +21,8 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 		color = "#CB6300";
 	}
 
-	let width = "100%";
-	if(isMobile){
-		width = "345px";
-	}
-
 	return (
-		<div id="harvest-batches-form" style={{margin:"auto",width:width}}>
+		<div id="harvest-batches-form" style={{margin:"auto"}}>
 			<Grid
 				container
 				direction="row"
@@ -41,7 +36,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
   					justifyContent="center"
 					alignItems="center"
 				>
-					<div style={{margin:"auto",width:width}}>
+					<div style={{margin:"auto"}}>
 					<HBTable getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms}></HBTable>
 					</div>
 					</Grid>
