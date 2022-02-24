@@ -20,10 +20,7 @@ class SelectDeletePlantButton extends Component{
     }
 
     render() {  
-      console.log("Tag: " + this.props.tag);
-      console.log("Get Delete Plant Selected");
         let checked = this.props.getDeletePlantSelected(this.props.tag);
-        console.log("Result: " + checked);
         return <div>
             {checked ? <Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}  style={{height: "20px", width: "20px", minWidth: "20px", backgroundColor: "#A9A9A9"}} ></Button>
             :<Button variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick} style={{height: "20px", width: "20px", minWidth: "20px"}}></Button>
