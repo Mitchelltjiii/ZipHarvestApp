@@ -56,16 +56,21 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	}
 
 	const toggleDeleteAllSelected = () => {
+		console.log("Toggle delete all selected");
 		let currPlants = JSON.parse(getPlantsWithSearch());
 		if(getDeleteAllSelected()){
+			console.log("Set all deselected");
 			setSelectedToDelete([]);
 		}else{
+			console.log("Set all selected");
 			let newSelectedToDelete = [];
 			for (const val of currPlants) {
+				console.log("Val: " + JSON.stringify(val));
 				if(val.active === 0){
 					newSelectedToDelete.push(val.tag);
 				}
 			}
+			console.log("New Selected to delete: " + JSON.stringify(newSelectedToDelete));
 			setSelectedToDelete(newSelectedToDelete);
 		}
 	} 
