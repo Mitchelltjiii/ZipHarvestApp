@@ -43,7 +43,9 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 		  console.log("RowCount: " + rowCount);
 		  if(rowCount > 0 && rowCount < (fileSplit.length-2)){
 			  console.log("Push");
-			pList.push(rowSplit[0] + "," + rowSplit[1]);
+			  if(rowSplit[0] !== "" && rowSplit[1] !== ""){
+				pList.push(rowSplit[0] + "," + rowSplit[1]);
+			  }
 		  }
 		  rowCount++;
 		}
