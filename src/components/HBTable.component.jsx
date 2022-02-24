@@ -123,7 +123,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
     }
     
        
-    if(rows.length > 0){    
+    if(parsedRows.length > 0){    
       return(
         <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
