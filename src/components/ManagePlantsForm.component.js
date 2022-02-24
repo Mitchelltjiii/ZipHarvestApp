@@ -17,8 +17,6 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	const [selectedFile, setSelectedFile] = React.useState('');
 	const [plantList, setPlantList] = React.useState([]);
 
-	console.log("RemoveList: " + JSON.stringify(removeList));
-
 	function getPlantList(){
 		return plantList;
 	}
@@ -58,21 +56,16 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	}
 
 	const toggleDeleteAllSelected = () => {
-		console.log("Toggle delete all selected");
 		let currPlants = JSON.parse(getPlantsWithSearch());
 		if(getDeleteAllSelected()){
-			console.log("Set all deselected");
 			setSelectedToDelete([]);
 		}else{
-			console.log("Set all selected");
 			let newSelectedToDelete = [];
 			for (const val of currPlants) {
-				console.log("Val: " + JSON.stringify(val));
 				if(val.active === 0){
 					newSelectedToDelete.push(val.tag);
 				}
 			}
-			console.log("New Selected to delete: " + JSON.stringify(newSelectedToDelete));
 			setSelectedToDelete(newSelectedToDelete);
 		}
 	} 
@@ -98,14 +91,8 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	}
 
 	const getDeletePlantSelected = (tag) => {
-		console.log("Get delete plant selected function");
-		console.log("Removelist: " + JSON.stringify(removeList));
-		console.log("Tag: " + tag);
-
 		for(const val of removeList){
-			console.log("Val: " + val);
-			console.log("Val(STRING): " + JSON.stringify(val));
-			if(tag === val){
+			if(tag === val.substring(val.length-5)){
 				return true;
 			}
 		}
