@@ -17,6 +17,8 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	const [selectedFile, setSelectedFile] = React.useState('');
 	const [plantList, setPlantList] = React.useState([]);
 
+	console.log("RemoveList: " + JSON.stringify(removeList));
+
 	function getPlantList(){
 		return plantList;
 	}
@@ -96,7 +98,13 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	}
 
 	const getDeletePlantSelected = (tag) => {
+		console.log("Get delete plant selected function");
+		console.log("Removelist: " + JSON.stringify(removeList));
+		console.log("Tag: " + tag);
+
 		for(const val of removeList){
+			console.log("Val: " + val);
+			console.log("Val(STRING): " + JSON.stringify(val));
 			if(tag === val){
 				return true;
 			}
