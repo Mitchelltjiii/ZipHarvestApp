@@ -560,10 +560,10 @@ app.get('/api/hr/:id', (req, res) => {
     });
 });
 
-app.get('/api/print', (req, res) => {
+app.get('/api/print/:tb', (req, res) => {
   pool.getConnection((err, connection) => {
     if(err) throw err;
-    connection.query("select *", (err, rows) => {
+    connection.query("select * from " + req.params.tb, (err, rows) => {
         connection.release(); // return the connection to pool
         if(err) throw err;
         res.json(rows);

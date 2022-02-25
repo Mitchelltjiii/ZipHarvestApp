@@ -486,11 +486,24 @@ export default class App extends React.Component {
   getPrint = () => {
     this.attemptPrint();
   }
+
   attemptPrint = async () => {
-    const response = await fetch(`/api/print`);
+    console.log("Attempt Print");
+    const response = await fetch(`/api/print/users`);
     const text = await response.text();
     let txt = JSON.stringify(text);
     console.log("GET PRINT: " + txt);
+
+    try{
+
+    response = await fetch(`/api/print/dr`);
+    text = await response.text();
+    txt = txt + JSON.stringify(text);
+    console.log("GET PRINT 2: " + txt);
+
+    }catch(err){
+      
+    }
     this.setState({print:txt});
     this.engageReload();
   }
