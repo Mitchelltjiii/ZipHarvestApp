@@ -16,7 +16,7 @@ function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarve
 setNewHarvestRecordID, setNewPlantID, userID,reloadPlants,reloadPlantsAndHarvestRecords, reloadHarvestBatches,
 reloadHarvestRecords,setCurrentPage,executeLogout,setFromAccountSettings,attemptLogInFromEndSubForm,
 logInSuccess,getDryRooms,reloadDryRooms,reloadExportRecords,getUniqueIDCount,reloadSubscription,
-getPossiblePlantCount,getSubscriptionType,tutorials,showHints,getPrint}){
+getPossiblePlantCount,getSubscriptionType,tutorials,showHints,getPrint,print}){
 	let fromAccountSettings = true;
 	
     return(
@@ -34,7 +34,7 @@ getPossiblePlantCount,getSubscriptionType,tutorials,showHints,getPrint}){
 			) : currentPage === 'manage-plants-form' ? (
 				<ManagePlantsForm getPlants={getPlants} refreshOuter={refreshOuter} userID={userID} setPlants={setPlants} setNewPlantID={setNewPlantID} reloadPlants={reloadPlants} showHints={showHints}/>
 			) : currentPage === 'account-form' ? (
-				<AccountForm userID={userID} setCurrentPage={setCurrentPage} setFromAccountSettings={setFromAccountSettings} executeLogout={executeLogout}/>
+				<AccountForm userID={userID} setCurrentPage={setCurrentPage} setFromAccountSettings={setFromAccountSettings} executeLogout={executeLogout} getPrint={getPrint}/>
 			) : currentPage === 'subscription-form' ? (
 				<SubscriptionForm userID={userID} setCurrentPage={setCurrentPage} getUniqueIDCount={getUniqueIDCount}/>
 			) : currentPage === 'end-subscription-form' ? (
@@ -46,7 +46,7 @@ getPossiblePlantCount,getSubscriptionType,tutorials,showHints,getPrint}){
 			) : currentPage === 'tutorial-form' ? (
 				<TutorialForm></TutorialForm>
 			) : currentPage === 'print-page' ? (
-				<PrintPage getPrint={getPrint}></PrintPage>
+				<PrintPage print={print}></PrintPage>
 			) : null}
         </div>
     )

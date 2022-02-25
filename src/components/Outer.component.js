@@ -30,7 +30,7 @@ class Outer extends Component {
       reloadDryRooms={this.props.reloadDryRooms} reloadExportRecords={this.props.reloadExportRecords}
       getUniqueIDCount={this.props.getUniqueIDCount} reloadSubscription={this.props.reloadSubscription} getPossiblePlantCount={this.props.getPossiblePlantCount}
       getSubscriptionType={this.props.getSubscriptionType} tutorials={this.props.tutorials} showHints={this.props.showHints}
-      getPrint={this.props.getPrint}/>
+      getPrint={this.props.getPrint} print={this.props.print}/>
 		</div>
     );
   }

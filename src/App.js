@@ -37,7 +37,8 @@ export default class App extends React.Component {
     resetPasswordLogInFailed: false,
     subscription: [],
     tutorials: "",
-    showHints: false
+    showHints: false,
+    print: ""
   };
 
   componentDidMount() {    
@@ -482,12 +483,16 @@ export default class App extends React.Component {
     this.forceUpdate();
   }
 
-  getPrint = async () => {
+  getPrint = () => {
+    this.attemptPrint();
+  }
+  attemptPrint = async () => {
     const response = await fetch(`/api/print`);
     const text = await response.text();
     let txt = JSON.stringify(text);
     console.log("GET PRINT: " + txt);
-    return txt;
+    this.setState({print:txt});
+    this.engageReload();
   }
 
   cancelSub = () => {
@@ -613,7 +618,7 @@ export default class App extends React.Component {
       executeLogout={this.executeLogout} setFromAccountSettings={this.setFromAccountSettings} attemptLogInFromEndSubForm={this.attemptLogInFromEndSubForm}
       getDryRooms={this.getDryRooms} logInSuccess={this.state.logInSuccess} reloadDryRooms={this.reloadDryRooms} reloadExportRecords={this.reloadExportRecords}
       getUniqueIDCount={this.getUniqueIDCount} reloadSubscription={this.reloadSubscription} getPossiblePlantCount={this.getPossiblePlantCount} getSubscriptionType={this.getSubscriptionType} tutorials={this.state.tutorials}
-      showHints={this.state.showHints} getPrint={this.getPrint}/>
+      showHints={this.state.showHints} getPrint={this.getPrint} print={this.state.print}/>
     </div>;
     }else{
       let loginForm = false;

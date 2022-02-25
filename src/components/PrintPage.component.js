@@ -2,7 +2,7 @@ import React from 'react';
 import {isMobile} from 'react-device-detect';
 import Grid from '@material-ui/core/Grid';
 
-function PrintPage(getPrint) {
+function PrintPage(print) {
 
     let formWidth = "800px";
     let formHeight = "3200px";
@@ -20,11 +20,11 @@ function PrintPage(getPrint) {
      formHeight = "2500px";
     }
 
-    let text = getPrint();
+    console.log("Print: " + print);
 
     return(
       <div id="print-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
-      {text}
+      {print}
 		</div>
     );
 }	

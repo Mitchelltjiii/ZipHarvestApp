@@ -10,7 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {isMobile} from 'react-device-detect';
 
-function AccountForm({userID, setCurrentPage, setFromAccountSettings,executeLogout,executePrint}) {
+function AccountForm({userID, setCurrentPage, setFromAccountSettings,executeLogout,getPrint}) {
 
     const handleClick = (title) => {
       if(title==="Change Password"){
@@ -25,6 +25,7 @@ function AccountForm({userID, setCurrentPage, setFromAccountSettings,executeLogo
       }else if(title==="Log Out"){
         executeLogout();
       }else if(title==="Print"){
+        getPrint();
         setCurrentPage('print-page');
       }
 	  }
