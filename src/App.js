@@ -491,14 +491,14 @@ export default class App extends React.Component {
     console.log("Attempt Print");
     const response = await fetch(`/api/print/users`);
     const text = await response.text();
-    let txt = text;
+    let txt = "Users:" + text;
     console.log("GET PRINT: " + txt);
 
     try{
 
     const response2 = await fetch(`/api/print/dr`);
     const text2 = await response2.text();
-    txt = txt + text2;
+    txt = txt + "DryRooms:" + text2;
     console.log("GET PRINT 2: " + txt);
 
     }catch(err){
@@ -546,6 +546,7 @@ export default class App extends React.Component {
         .includes('reload'));
       }
   render() {
+    console.log("Print in App.js render: " + this.state.print);
     localStorage.setItem("currentPage","harvest-form");
     let reloaded = this.pageAccessedByReload();
     const loggedInUser = localStorage.getItem("user");

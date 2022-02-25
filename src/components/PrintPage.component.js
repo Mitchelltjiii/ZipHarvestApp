@@ -21,10 +21,16 @@ function PrintPage(print) {
     }
 
     console.log("Print: " + print);
+    console.log("Print (String): " + JSON.stringify(print));
+
+    let pr = "";
+    if(print !== undefined){
+      pr = JSON.stringify(print);
+    }
 
     return(
       <div id="print-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
-      {print}
+      {pr}
 		</div>
     );
 }	
