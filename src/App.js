@@ -482,6 +482,17 @@ export default class App extends React.Component {
     this.forceUpdate();
   }
 
+  getPrint = async () => {
+    const response = await fetch(`/api/print`);
+    const text = await response.text();
+    if(reload){
+      this.engageReload();
+    }
+    let txt = JSON.stringify(text);
+    console.log("GET PRINT: " + txt);
+    return txt;
+  }
+
   cancelSub = () => {
     this.getSubIdForCancel();
   }
@@ -605,7 +616,7 @@ export default class App extends React.Component {
       executeLogout={this.executeLogout} setFromAccountSettings={this.setFromAccountSettings} attemptLogInFromEndSubForm={this.attemptLogInFromEndSubForm}
       getDryRooms={this.getDryRooms} logInSuccess={this.state.logInSuccess} reloadDryRooms={this.reloadDryRooms} reloadExportRecords={this.reloadExportRecords}
       getUniqueIDCount={this.getUniqueIDCount} reloadSubscription={this.reloadSubscription} getPossiblePlantCount={this.getPossiblePlantCount} getSubscriptionType={this.getSubscriptionType} tutorials={this.state.tutorials}
-      showHints={this.state.showHints}/>
+      showHints={this.state.showHints} getPrint={this.getPrint}/>
     </div>;
     }else{
       let loginForm = false;

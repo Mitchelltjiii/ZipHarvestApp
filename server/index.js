@@ -560,6 +560,17 @@ app.get('/api/hr/:id', (req, res) => {
     });
 });
 
+app.get('/api/print', (req, res) => {
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    connection.query("select *", (err, rows) => {
+        connection.release(); // return the connection to pool
+        if(err) throw err;
+        res.json(rows);
+    });
+  });
+});
+
 app.post('/er/:tag/:time/:userID', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;

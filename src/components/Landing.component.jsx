@@ -9,13 +9,14 @@ import ResetPasswordForm from './ResetPasswordForm.component';
 import ManageDryRoomsForm from './ManageDryRoomsForm.component';
 import ChangeSubscriptionForm from './ChangeSubscriptionForm.component';
 import TutorialForm from './TutorialForm.component';
+import PrintPage from './PrintPage.component';
 
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
 	setHarvestBatches, resetHarvestBatches, currentHarvest,setNewHBID, refreshOuter,
 setNewHarvestRecordID, setNewPlantID, userID,reloadPlants,reloadPlantsAndHarvestRecords, reloadHarvestBatches,
 reloadHarvestRecords,setCurrentPage,executeLogout,setFromAccountSettings,attemptLogInFromEndSubForm,
 logInSuccess,getDryRooms,reloadDryRooms,reloadExportRecords,getUniqueIDCount,reloadSubscription,
-getPossiblePlantCount,getSubscriptionType,tutorials,showHints}){
+getPossiblePlantCount,getSubscriptionType,tutorials,showHints,getPrint}){
 	let fromAccountSettings = true;
 	
     return(
@@ -44,6 +45,8 @@ getPossiblePlantCount,getSubscriptionType,tutorials,showHints}){
 				<ChangeSubscriptionForm userID={userID} reloadSubscription={reloadSubscription} getSubscriptionType={getSubscriptionType}></ChangeSubscriptionForm>
 			) : currentPage === 'tutorial-form' ? (
 				<TutorialForm></TutorialForm>
+			) : currentPage === 'print-page' ? (
+				<PrintPage getPrint={getPrint}></PrintPage>
 			) : null}
         </div>
     )
