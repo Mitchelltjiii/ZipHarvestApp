@@ -485,9 +485,6 @@ export default class App extends React.Component {
   getPrint = async () => {
     const response = await fetch(`/api/print`);
     const text = await response.text();
-    if(reload){
-      this.engageReload();
-    }
     let txt = JSON.stringify(text);
     console.log("GET PRINT: " + txt);
     return txt;
