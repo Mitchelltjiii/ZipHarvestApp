@@ -25,12 +25,12 @@ function PrintPage(print) {
 
     let pr = "";
     if(print !== undefined){
-      pr = JSON.stringify(print);
+      pr = print;
     }
 
     return(
       <div id="print-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
-      {pr}
+        <span>{pr}</span>
 		</div>
     );
 }	
