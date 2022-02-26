@@ -29,8 +29,8 @@ function PrintPage(print) {
     }
 
     return(
-      <div id="print-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
-        <span style={{width:formWidth,height:formHeight,marginRight:margR,marginLeft:margL,fontSize:fontSize}}>{pr}</span>
+      <div id="print-form" style={{width:formWidth,height:formHeight,marginRight:margR,marginLeft:margL,fontSize:fontSize,alignItems: 'center',justifyContent: 'center'}}>     
+        {pr}
 		</div>
     );
 }	
