@@ -25,7 +25,7 @@ function PrintPage(print) {
 
     let pr = "";
     if(print !== undefined){
-      pr = print;
+      pr = JSON.stringify(print);
     }
 
     return(
