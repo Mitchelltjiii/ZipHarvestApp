@@ -19,6 +19,12 @@ logInSuccess,getDryRooms,reloadDryRooms,reloadExportRecords,getUniqueIDCount,rel
 getPossiblePlantCount,getSubscriptionType,tutorials,showHints,getPrint,print}){
 	let fromAccountSettings = true;
 	
+	try{
+		console.log("Print in Landing: " + print);
+	}catch(err){
+
+	}
+
     return(
         <div>
 			{currentPage === 'harvest-form' ? (

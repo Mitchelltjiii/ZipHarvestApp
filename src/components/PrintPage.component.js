@@ -2,7 +2,7 @@ import React from 'react';
 import {isMobile} from 'react-device-detect';
 import Grid from '@material-ui/core/Grid';
 
-function PrintPage(print) {
+function PrintPage({print}) {
 
     let formWidth = "800px";
     let formHeight = "3200px";
@@ -16,7 +16,7 @@ function PrintPage(print) {
      margL = "10px";
      fontSize = "12px";
      smallFontSize = "10px"
-     formWidth = "100%";
+     formWidth = "340px";
      formHeight = "25000px";
     }
 
@@ -25,7 +25,7 @@ function PrintPage(print) {
 
     let pr = "";
     if(print !== undefined){
-      pr = JSON.stringify(print);
+      pr = print;
     }
 
     return(

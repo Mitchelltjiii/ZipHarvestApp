@@ -492,18 +492,29 @@ export default class App extends React.Component {
     const response = await fetch(`/api/print/users`);
     const text = await response.text();
     let txt = "Users:" + text;
-    console.log("GET PRINT: " + txt);
-
-    try{
 
     const response2 = await fetch(`/api/print/dr`);
     const text2 = await response2.text();
     txt = txt + "DryRooms:" + text2;
-    console.log("GET PRINT 2: " + txt);
 
-    }catch(err){
+    const response3 = await fetch(`/api/print/er`);
+    const text3 = await response3.text();
+    txt = txt + "ExportRecords:" + text3;
 
-    }
+    const response4 = await fetch(`/api/print/hb`);
+    const text4 = await response4.text();
+    txt = txt + "HarvestBatches:" + text4;
+
+    const response5 = await fetch(`/api/print/hr`);
+    const text5 = await response5.text();
+    txt = txt + "HarvestRecords:" + text5;
+
+    const response6 = await fetch(`/api/print/pl`);
+    const text6 = await response6.text();
+    txt = txt + "Plants:" + text6;
+
+    console.log("TXT: " + txt);
+
     this.setState({print:txt});
     this.engageReload();
   }
