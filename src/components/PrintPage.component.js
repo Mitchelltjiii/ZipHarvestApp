@@ -17,7 +17,7 @@ function PrintPage(print) {
      fontSize = "12px";
      smallFontSize = "10px"
      formWidth = "100%";
-     formHeight = "2500px";
+     formHeight = "25000px";
     }
 
     console.log("Print: " + print);
@@ -30,7 +30,7 @@ function PrintPage(print) {
 
     return(
       <div id="print-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
-        <span>{pr}</span>
+        <span style={{width:formWidth,height:formHeight,marginRight:margR,marginLeft:margL,fontSize:fontSize}}>{pr}</span>
 		</div>
     );
 }	
