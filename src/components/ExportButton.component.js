@@ -179,13 +179,6 @@ class ExportButton extends Component{
                 exportRecordsData.push(val.tag);
             }
         } 
-
-/*
-        console.log("Parent set export records?");
-        if(JSON.stringify(parent.state.exportRecords) === "[]"){
-            console.log("Parent setting export records");
-            parent.setState({exportRecords:exportRecordsData});            
-        }  */  
               
         let fileName = this.props.row.name;
         fileName = fileName.replace(" ","_");

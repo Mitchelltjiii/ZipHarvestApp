@@ -202,8 +202,8 @@ app.get("/api/email-exists/:email",(req,res) => {
           try{
             for(const val of rows){
               if(val.email==req.params.email){
-                /*emailExists=true;
-                res.json(0);*/
+                emailExists=true;
+                res.json(0);
               }
             }
           }catch(error){

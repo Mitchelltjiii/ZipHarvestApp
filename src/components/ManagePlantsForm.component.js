@@ -36,13 +36,9 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 		let fileSplit = data.split(/\r?\n/);
 		let rowCount = 0;
 		let pList = [];
-		console.log("FileSplit: " + JSON.stringify(fileSplit));
 		for(const val of fileSplit){
-			console.log("val:" + JSON.stringify(val));
 		  let rowSplit = val.split(",");
-		  console.log("RowCount: " + rowCount);
 		  if(rowCount > 0 && rowCount < (fileSplit.length-2)){
-			  console.log("Push");
 			  if(rowSplit[0] !== "" && rowSplit[1] !== ""){
 				pList.push(rowSplit[0] + "," + rowSplit[1]);
 			  }

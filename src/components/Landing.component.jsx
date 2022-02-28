@@ -18,12 +18,6 @@ reloadHarvestRecords,setCurrentPage,executeLogout,setFromAccountSettings,attempt
 logInSuccess,getDryRooms,reloadDryRooms,reloadExportRecords,getUniqueIDCount,reloadSubscription,
 getPossiblePlantCount,getSubscriptionType,tutorials,showHints,getPrint,print}){
 	let fromAccountSettings = true;
-	
-	try{
-		console.log("Print in Landing: " + print);
-	}catch(err){
-
-	}
 
     return(
         <div>

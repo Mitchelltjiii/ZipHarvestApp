@@ -70,7 +70,7 @@ function AccountForm({userID, setCurrentPage, setFromAccountSettings,executeLogo
     //rows.push(createData("Subscription",""));
     //rows.push(createData("Permissions",""));
     //rows.push(createData("About",""));
-    rows.push(createData("Version","v0.0.0"));
+    rows.push(createData("Version","v1.0.0"));
     rows.push(createData("Terms of Service",""));
     rows.push(createData("Privacy Policy",""));
 /*rows.push(createData("Support","Zipharvest-Support@flora-sol.com"));*/

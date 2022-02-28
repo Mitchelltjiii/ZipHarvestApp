@@ -20,9 +20,6 @@ function PrintPage({print}) {
      formHeight = "25000px";
     }
 
-    console.log("Print: " + print);
-    console.log("Print (String): " + JSON.stringify(print));
-
     let pr = "";
     if(print !== undefined){
       pr = print;

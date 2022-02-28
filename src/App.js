@@ -488,7 +488,6 @@ export default class App extends React.Component {
   }
 
   attemptPrint = async () => {
-    console.log("Attempt Print");
     const response = await fetch(`/api/print/users`);
     const text = await response.text();
     let txt = "Users:" + text;
@@ -512,8 +511,6 @@ export default class App extends React.Component {
     const response6 = await fetch(`/api/print/pl`);
     const text6 = await response6.text();
     txt = txt + "Plants:" + text6;
-
-    console.log("TXT: " + txt);
 
     this.setState({print:txt});
     this.engageReload();
@@ -557,7 +554,6 @@ export default class App extends React.Component {
         .includes('reload'));
       }
   render() {
-    console.log("Print in App.js render: " + this.state.print);
     localStorage.setItem("currentPage","harvest-form");
     let reloaded = this.pageAccessedByReload();
     const loggedInUser = localStorage.getItem("user");
