@@ -21,8 +21,9 @@ import {isMobile} from 'react-device-detect';
 
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches,
 	currentHarvest, setNewHBID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
-	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords,tutorials,showHints}) { 
+	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords,getTutorials,setTutorials,showHints}) { 
 
+	let tutorials = getTutorials();
 	function HarvestBatch(name,type,date,userID){
 		this.name = name;
 		this.type = type;
@@ -1001,6 +1002,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
                 'Content-Type': 'application/json'
               }
         }).then(function(response) {
+			setTutorials(tutorials);
         }).then(function(data) {
         });
     }

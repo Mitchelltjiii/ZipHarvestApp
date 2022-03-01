@@ -283,6 +283,14 @@ export default class App extends React.Component {
     this.getHarvestRecordsFromDB(true);
   }
 
+  getTutorials = () => {
+    return this.state.tutorials;
+  }
+
+  setTutorials = (tuts) => {
+    this.setState({tutorials:tuts});
+  }
+
   reloadHarvestBatches = (currHarvest) => {
     this.setState({currentHarvest: currHarvest});
 
@@ -638,7 +646,8 @@ export default class App extends React.Component {
       reloadPlantsAndHarvestRecords={this.reloadPlantsAndHarvestRecords} reloadHarvestBatches={this.reloadHarvestBatches} reloadHarvestRecords={this.reloadHarvestRecords}
       executeLogout={this.executeLogout} setFromAccountSettings={this.setFromAccountSettings} attemptLogInFromEndSubForm={this.attemptLogInFromEndSubForm}
       getDryRooms={this.getDryRooms} logInSuccess={this.state.logInSuccess} reloadDryRooms={this.reloadDryRooms} reloadExportRecords={this.reloadExportRecords}
-      getUniqueIDCount={this.getUniqueIDCount} reloadSubscription={this.reloadSubscription} getPossiblePlantCount={this.getPossiblePlantCount} getSubscriptionType={this.getSubscriptionType} tutorials={this.state.tutorials}
+      getUniqueIDCount={this.getUniqueIDCount} reloadSubscription={this.reloadSubscription} getPossiblePlantCount={this.getPossiblePlantCount} getSubscriptionType={this.getSubscriptionType} 
+      getTutorials={this.getTutorials} setTutorials={this.setTutorials}
       showHints={this.state.showHints} getPrint={this.getPrint} print={this.state.print}/>
     </div>;
     }else{
