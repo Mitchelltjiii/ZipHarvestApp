@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import logo from './logo.png';
+import zhlogo from './zhlogo.png';
 
 
 function LoginHeader(){
@@ -25,7 +25,7 @@ function LoginHeader(){
 			  	justifyContent="center"
 				alignItems="center">
                         <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome} style={{width: "100%"}}>
-                            <img alt="logo" src={logo} style={{maxHeight: "40px"}}/>
+                            <img alt="zhlogo" src={zhlogo} style={{maxHeight: "40px"}}/>
                         </Button>
                     </Grid>
                 </Grid>
