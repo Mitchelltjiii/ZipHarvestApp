@@ -199,21 +199,16 @@ app.get("/api/email-exists/:email",(req,res) => {
           connection.release(); // return the connection to pool
           let emailExists = false;
           if(err) throw err;
-          console.log("Email Exists?")
           try{
             for(const val of rows){
-              console.log("Val.email: " + val.email);
-              console.log("req.params.email: " + req.params.email);
               if(val.email.toLowerCase()===req.params.email.toLowerCase()){
                 emailExists=true;
-                console.log("Email exists");
                 res.json(0);
               }
             }
           }catch(error){
           }
           if(!emailExists){
-            console.log("Email DNE");
             res.json(1);
           }
     });

@@ -88,8 +88,8 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 
     function isValidStringEmail(str){
       var minNumberofChars = 1;
-      var maxNumberofChars = 24;
-      var regularExpression = /^[a-zA-Z0-9!@#$%^&*.]{1,24}$/;
+      var maxNumberofChars = 60;
+      var regularExpression = /^[a-zA-Z0-9!@#$%^&*.]{1,60}$/;
       if(str.length < minNumberofChars || str.length > maxNumberofChars){
         return false;
       }
