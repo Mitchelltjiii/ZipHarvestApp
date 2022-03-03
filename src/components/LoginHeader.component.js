@@ -13,7 +13,7 @@ function LoginHeader(){
     let headerWidth = "100%";
   
       return(
-          <div style={{margin:"auto",width:headerWidth,backgroundColor:"#444444",height:"100px"}}>
+          <div style={{margin:"auto",width:headerWidth,backgroundColor:"#444444"}}>
                 <Grid
 				container
 				direction="column"
@@ -24,8 +24,8 @@ function LoginHeader(){
 				direction="row"
 			  	justifyContent="center"
 				alignItems="center">
-                        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome} style={{width: "100%"}}>
-                            <img alt="zhlogo" src={zhlogo} style={{maxHeight: "90px"}}/>
+                        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome} style={{width:"100%"}}>
+                            <img alt="zhlogo" src={zhlogo} style={{width: "248px"}}/>
                         </Button>
                     </Grid>
                 </Grid>
