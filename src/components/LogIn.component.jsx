@@ -135,8 +135,8 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                            justifyContent="center"
                            alignItems="center"
                            >
-                                   <div style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"10px"}}>
-                                       <img alt="zhlogo" src={zhlogo} style={{minHeight:"62px",maxHeight: "62px"}}/>
+                                   <div style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"10px",height:"62px"}}>
+                                       <img alt="zhlogo" src={zhlogo} style={{height:"62px"}}/>
                                    </div>    
                                    <TextField error={error} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined" style={{width:"248px"}}></TextField>
                                    <TextField
@@ -183,10 +183,10 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                            justifyContent="center"
                            alignItems="center"
                            >
-                                   <div style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"10px"}}>
-                                       <img alt="zhlogo" src={zhlogo} style={{minHeight:"62px",maxHeight: "62px"}}/>
+                                   <div style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"10px",height:"62px"}}>
+                                       <img alt="zhlogo" src={zhlogo} style={{height:"62px"}}/>
                                    </div>    
-                                   <TextField error={error} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined"></TextField>
+                                   <TextField error={error} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined" style={{width:"248px"}}></TextField>
                                    <TextField
                                    onKeyDown={handleOnKeyDown}
   helperText={errorText}
