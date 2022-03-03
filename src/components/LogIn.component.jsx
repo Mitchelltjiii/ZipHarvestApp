@@ -135,7 +135,7 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                            justifyContent="center"
                            alignItems="center"
                            >
-                                   <div style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"10px",height:"62px"}}>
+                                   <div style={{marginBottom:"10px",height:"62px"}}>
                                        <img alt="zhlogo" src={zhlogo} style={{height:"62px"}}/>
                                    </div>    
                                    <TextField error={error} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined" style={{width:"248px"}}></TextField>
@@ -183,7 +183,7 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                            justifyContent="center"
                            alignItems="center"
                            >
-                                   <div style={{backgroundColor:"#444444",borderRadius:5,marginBottom:"10px",height:"62px"}}>
+                                   <div style={{marginBottom:"10px",height:"62px"}}>
                                        <img alt="zhlogo" src={zhlogo} style={{height:"62px"}}/>
                                    </div>    
                                    <TextField error={error} id="Username" value={username} onChange={handleUsername} label="Username" variant="outlined" style={{width:"248px"}}></TextField>
