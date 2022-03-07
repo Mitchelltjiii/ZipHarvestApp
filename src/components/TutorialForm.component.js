@@ -89,7 +89,7 @@ Click “Next Plant”.</div>
     return(
       <div id="tutorial-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>     
       <ReactPlayer
-        url="https://vimeo.com/681638851"
+        url="https://vimeo.com/685299729"
       />
 		</div>
     );
