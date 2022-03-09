@@ -181,7 +181,7 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
       let newUsername = username;
   
       if(text === "1"){  
-        sendVerificationEmail();
+        sendSignupNotificationEmail();
         setNewUsername(newUsername);
         setCurrentPage('verification-form');      
       }else{
@@ -275,6 +275,16 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
         await response.text();
       }catch(err){
       }
+    }
+
+    async function sendSignupNotificationEmail(){
+      try{
+        let name = firstName + " " + lastName;
+        const response = await fetch(`/send-signup-notification-email/${email}/${name}/${username}/${facilityName}`);
+        await response.json();
+      }catch(err){
+      }
+      sendVerificationEmail();
     }
 
     async function sendVerificationEmail(){
