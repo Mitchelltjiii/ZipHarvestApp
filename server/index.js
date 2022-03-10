@@ -604,17 +604,19 @@ app.post('/er/:tag/:time/:userID', (req, res) =>{
   });
 });
 
+app.get('/log-visit/:via', async (req,res) =>{
+  console.log(req.params.via);
+})
+
 app.post('/pr/create/:hash/:userID', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
 
     let fixedHash = req.params.hash;
     fixedHash = fixedHash.substring(1,fixedHash.length-1);
-    console.log("Fixed Hash: " + fixedHash);
     while(fixedHash.includes(".$.")){
       fixedHash = fixedHash.substring(0,fixedHash.indexOf(".$.")) + "/" + fixedHash.substring(fixedHash.indexOf(".$.")+3);
     }
-    console.log("Now Fixed Hash: " + fixedHash);
 
   connection.query(`INSERT INTO pr 
     (userID, password) 

@@ -561,6 +561,15 @@ export default class App extends React.Component {
         .map((nav) => nav.type)
         .includes('reload'));
       }
+
+  logVisit = (via) => {
+    try{
+      const response = await fetch(`/log-visit/${via}`);
+      await response.json();
+    }catch(err){
+    }
+  }    
+   
   render() {
     localStorage.setItem("currentPage","harvest-form");
     let reloaded = this.pageAccessedByReload();
@@ -606,15 +615,7 @@ export default class App extends React.Component {
       }
     }
 
-    let userFromUrl = "";
-    let userEqualsStr = "username=";
-    if(currUrl.includes("username")){
-      let userString = currUrl.substring(currUrl.indexOf(userEqualsStr)+userEqualsStr.length);
-      if(userString.includes("?")){
-        userString = userString.substring(0,userString.length-1);
-      }
-      userFromUrl = userString;
-    }
+    
 
     let verCode = "";
     let verificationEqualsStr = "verCode=";
@@ -634,6 +635,23 @@ export default class App extends React.Component {
       if(this.state.currentPage !== 'reset-password-form'){
         this.setCurrentPage('reset-password-form');
       }
+    }
+
+    let userFromUrl = "";
+    let userEqualsStr = "username=";
+    if(currUrl.includes("username")){
+      let userString = currUrl.substring(currUrl.indexOf(userEqualsStr)+userEqualsStr.length);
+      if(userString.includes("?")){
+        userString = userString.substring(0,userString.length-1);
+      }
+      userFromUrl = userString;
+    }else{
+      if(currUrl.includes("#")){
+        if(currUrl.includes("#a")){
+          this.logVisit("Email Main Link");
+        }
+      }
+      this.logVisit("Home");
     }
 
     if (this.state.loggedIn !== '') {
