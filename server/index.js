@@ -606,6 +606,20 @@ app.post('/er/:tag/:time/:userID', (req, res) =>{
 
 app.get('/log-visit/:via', async (req,res) =>{
   console.log(req.params.via);
+  if(req.params.via === "Email Main Link" || req.params.via === "ig"){
+    const msg = {
+      to: 'florasolutions99@gmail.com', // Change to your recipient
+      from: 'welcome@zipharvest.app', // Change to your verified sender
+      subject: 'Someone went to ZipHarvest via ' + req.params.via,
+      text: 'Someone went to ZipHarvest via ' + req.params.via,
+    }
+    
+    sgMail.send(msg).then((response) => {
+        res.json(0);
+      }).catch((error) => {
+        res.json(1);
+      })
+  }
 })
 
 app.post('/pr/create/:hash/:userID', (req, res) =>{
