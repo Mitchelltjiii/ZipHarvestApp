@@ -571,6 +571,7 @@ export default class App extends React.Component {
   }    
    
   render() {
+    console.log("a");
     localStorage.setItem("currentPage","harvest-form");
     let reloaded = this.pageAccessedByReload();
     const loggedInUser = localStorage.getItem("user");
@@ -640,18 +641,29 @@ export default class App extends React.Component {
     let userFromUrl = "";
     let userEqualsStr = "username=";
     if(currUrl.includes("username")){
+      console.log("b");
+
       let userString = currUrl.substring(currUrl.indexOf(userEqualsStr)+userEqualsStr.length);
       if(userString.includes("?")){
         userString = userString.substring(0,userString.length-1);
       }
       userFromUrl = userString;
     }else{
+      console.log("c");
+
       if(currUrl.includes("#")){
+        console.log("d");
+
         if(currUrl.includes("#a")){
+          console.log("e");
+
           this.logVisit("Email Main Link");
         }
+      }else{
+        console.log("f");
+
+        this.logVisit("Home");
       }
-      this.logVisit("Home");
     }
 
     if (this.state.loggedIn !== '') {
