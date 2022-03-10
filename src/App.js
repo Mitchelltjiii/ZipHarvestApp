@@ -562,7 +562,7 @@ export default class App extends React.Component {
         .includes('reload'));
       }
 
-  logVisit = (via) => {
+  logVisit = async (via) => {
     try{
       const response = await fetch(`/log-visit/${via}`);
       await response.json();
