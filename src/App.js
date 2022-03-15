@@ -676,7 +676,7 @@ export default class App extends React.Component {
     }else{
       let loginForm = false;
       if(this.state.currentPage === 'create-user-form'){
-				showForm = <CreateUserForm setCurrentPage={this.setCurrentPage} setNewUsername={this.setNewUsername}></CreateUserForm>
+				showForm = <CreateUserForm setCurrentPage={this.setCurrentPage} setNewUsername={this.setNewUsername} logVisit={this.logVisit}></CreateUserForm>
       }else if(this.state.currentPage === 'stripe-form'){
 				showForm = <StripeForm verCode={verCode} userFromUrl={userFromUrl} userFromLogin={this.state.newUsername}></StripeForm>
       }else if(this.state.currentPage === 'verification-form'){

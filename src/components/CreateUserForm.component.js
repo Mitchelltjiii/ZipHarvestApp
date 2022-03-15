@@ -7,7 +7,9 @@ import {InputAdornment,IconButton} from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
-function CreateUserForm({setCurrentPage,setNewUsername}) {
+function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
+
+    logVisit("Create User Form");
 
     const [email, setEmail] = React.useState('');
     const [username, setUsername] = React.useState('');
@@ -34,7 +36,6 @@ function CreateUserForm({setCurrentPage,setNewUsername}) {
 
     const [showPassword,setShowPassword] = React.useState(false);
     const [showVerifyPassword,setShowVerifyPassword] = React.useState(false);
-
 
     const handleClickShowPassword = () => setShowPassword(!showPassword);
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
