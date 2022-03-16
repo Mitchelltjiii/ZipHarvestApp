@@ -651,17 +651,17 @@ export default class App extends React.Component {
           this.logVisit("Email Main Link");
         }
       }else{
-        this.logVisit("Home");
+        if(currUrl.includes("/go/")){
+          this.logVisit("website");
+        }else if(currUrl.includes("tryit")){
+          this.logVisit("ig");
+        }else{
+          this.logVisit("Home");
+        }
       }
     }
 
-    if(currUrl.includes("/go/")){
-      this.logVisit("website");
-    }
-
-    if(currUrl.includes("tryit")){
-      this.logVisit("ig");
-    }
+    
 
     if (this.state.loggedIn !== '') {
 	  	showForm = <div style={{margin:"auto"}}>
