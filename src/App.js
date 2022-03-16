@@ -655,6 +655,10 @@ export default class App extends React.Component {
       }
     }
 
+    if(currUrl.includes("/go/")){
+      this.logVisit("website");
+    }
+
     if(currUrl.includes("tryit")){
       this.logVisit("ig");
     }
