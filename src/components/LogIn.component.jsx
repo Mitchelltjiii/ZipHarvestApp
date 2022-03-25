@@ -126,6 +126,7 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                   direction="column"
                   justifyContent="center"
                   alignItems="center"
+                  wrap="nowrap"
                   >
                   {isMobile ?
                    <div style={{width:formWidth,height:formHeight,paddingTop:"20px"}}>
