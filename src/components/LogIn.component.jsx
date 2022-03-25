@@ -112,6 +112,10 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
       window.location.replace("https://www.flora-sol.com/");
   }  
 
+  const handleGoToFloraSolNewTab = () => {
+    window.open("https://www.flora-sol.com/");
+  }
+
     return(
       <Grid
 					  container
@@ -226,7 +230,7 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                                </Grid>
                    </div>
                   } 
-                  <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToFloraSol} style={{backgroundColor:"#444444",borderRadius:5,marginTop:"10px",color:"#FFFFFF"}}>Learn More</Button>
+                  <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToFloraSolNewTab} style={{backgroundColor:"#444444",borderRadius:5,marginTop:"10px",color:"#FFFFFF"}}>Learn More</Button>
                   </Grid>
                 </div> 
             </div></Grid>
