@@ -76,7 +76,6 @@ export default class App extends React.Component {
         this.setState({newUsername:username,currentPage:'stripe-form'});
       }
   }
-
   getUsersFromDB = async (username,password,staySignedIn) => {
     if(username === "" || password === ""){
       this.executeLogInFailed();
