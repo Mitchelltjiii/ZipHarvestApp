@@ -9,7 +9,6 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
 
-    logVisit("Create User Form");
 
     const [email, setEmail] = React.useState('');
     const [username, setUsername] = React.useState('');
@@ -33,6 +32,9 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
     const [failedEmail,setFailedEmail] = React.useState('');
     const [failedPassword,setFailedPassword] = React.useState('');
     const [failedVerifyPassword,setFailedVerifyPassword] = React.useState('');
+
+    logVisit("Create User Form - Fac: " + facilityName + ", Name: " + firstName + " " + lastName + ", Email: " + email);
+
 
     const [showPassword,setShowPassword] = React.useState(false);
     const [showVerifyPassword,setShowVerifyPassword] = React.useState(false);
