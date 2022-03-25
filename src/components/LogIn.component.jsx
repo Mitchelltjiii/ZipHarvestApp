@@ -224,7 +224,8 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                                     </Button>
                                </Grid>
                    </div>
-                  }  
+                  } 
+                  <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToFloraSol} style={{backgroundColor:"#444444",borderRadius:5,marginTop:"10px",color:"#FFFFFF"}}>Learn More</Button>
                   </Grid>
                 </div> 
             </div></Grid>
