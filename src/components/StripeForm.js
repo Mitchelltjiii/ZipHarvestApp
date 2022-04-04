@@ -43,49 +43,6 @@ const [expired,setExpired] = React.useState(false);
 
 const ProductDisplay = () => (
   <div id="product-display" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:"#eeeeee"}}>
-          {isMobile ?
-          <div style={{width:formWidth,height:formHeight}}>
-              <Grid
-				    container
-				    direction="row"
-            justifyContent="center"
-				    alignItems="center"
-			        >
-              <Grid
-				    container
-				    direction="column"
-            justifyContent="center"
-				    alignItems="center"
-			        >
-              <div style={{textAlign:"center"}}>Basic</div>
-              <div style={{textAlign:"center"}}>Export up to 2000 plants per month</div>
-              <div style={{textAlign:"center"}}>$120 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>Select</Button>
-              </Grid>  
-              <Grid
-				    container
-				    direction="column"
-            justifyContent="center"
-				    alignItems="center"
-			        >
-              <div style={{textAlign:"center"}}>Standard</div>
-              <div style={{textAlign:"center"}}>Export up to 5000 plants per month</div>
-              <div style={{textAlign:"center"}}>$200 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToStandard}>Select</Button>
-              </Grid> 
-              <Grid
-				    container
-				    direction="column"
-            justifyContent="center"
-				    alignItems="center"
-			        >
-              <div style={{textAlign:"center"}}>Premium</div>
-              <div style={{textAlign:"center"}}>Export up to 10000 plants per month</div>
-              <div style={{textAlign:"center"}}>$350 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>Select</Button>
-              </Grid> 
-              </Grid>
-          </div> :
           <div style={{width:"900px",height:"450px",borderRadius:5,paddingTop:"40px",backgroundColor:"#eeeeee"}}>
               <Grid
 				    container
@@ -211,10 +168,55 @@ const ProductDisplay = () => (
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"20px"}}>or see more features</div>
               </Grid> 
               </Grid>
-          </div>
-          }
-          
+          </div>    
 </div>
+);
+
+const ProductDisplayMobile = () => (
+  <div id="product-display-mobile">
+       <div style={{width:formWidth,height:formHeight}}>
+              <Grid
+				    container
+				    direction="row"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <div style={{textAlign:"center"}}>Basic</div>
+              <div style={{textAlign:"center"}}>Export up to 2000 plants per month</div>
+              <div style={{textAlign:"center"}}>$120 per month</div>
+                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>Select</Button>
+              </Grid>  
+              <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <div style={{textAlign:"center"}}>Standard</div>
+              <div style={{textAlign:"center"}}>Export up to 5000 plants per month</div>
+              <div style={{textAlign:"center"}}>$200 per month</div>
+                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToStandard}>Select</Button>
+              </Grid> 
+              <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <div style={{textAlign:"center"}}>Premium</div>
+              <div style={{textAlign:"center"}}>Export up to 10000 plants per month</div>
+              <div style={{textAlign:"center"}}>$350 per month</div>
+                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>Select</Button>
+              </Grid> 
+              </Grid>
+          </div>     
+  </div>
 );
 
 const handleGoToBasic = () => {
@@ -542,7 +544,11 @@ const handleGoToHome = () => {
       try{
         console.log("USER RETURN PRODUCT DISPLAY: " + JSON.stringify(user));
         if(user.facilityName === "Mitchell"){
-          return <ProductDisplay />;
+          if(isMobile){
+            return <ProductDisplayMobile />;
+          }else{
+            return <ProductDisplay />;
+          }
         }
       }catch(err){
       }
