@@ -43,6 +43,12 @@ const [expired,setExpired] = React.useState(false);
 
 const ProductDisplay = () => (
   <div id="product-display" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:"#eeeeee"}}>
+          <Grid
+          container
+          direction="column"
+            justifyContent="center"
+          alignItems="center"
+        >
           <div style={{width:"900px",height:"450px",borderRadius:5,backgroundColor:"#eeeeee"}}>
               <Grid
 				    container
@@ -169,6 +175,7 @@ const ProductDisplay = () => (
               </Grid> 
               </Grid>
           </div>    
+          </Grid>
 </div>
 );
 
