@@ -89,11 +89,15 @@ export default class App extends React.Component {
     this.state.usersLoading = false;
     let gotResponse = false;
 
+    console.log("txt: " + text);
+
     if(text === "0"){
       gotResponse = true;
       if(username.includes("Mitchell")){
+        console.log("includes");
         this.getSubId(username,staySignedIn,true);
       }else{
+        console.log("dni");
         this.getUser(username,staySignedIn);
       }
     }else if(text === "1"){

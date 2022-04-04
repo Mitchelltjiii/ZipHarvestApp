@@ -156,14 +156,19 @@ app.get("/api/users/:username/:password",(req,res) => {
                     }
 
                     if(req.params.username.includes("Mitchell")){
+                      console.log("includes");
                       if(subscription){
+                        console.log("return 0");
                         res.json(0);
                       }else if(verified){
+                        console.log("return 1");
                         res.json(1);
                       }else{
+                        console.log("return 2");
                         res.json(2);
                       }
                     }else{
+                      console.log("dni");
                       if(verified){
                         res.json(0);
                       }else{
@@ -171,15 +176,18 @@ app.get("/api/users/:username/:password",(req,res) => {
                       }
                     }
                   } else {
+                    console.log("return 3 default");
                     res.json(3);
                   }
                 });
               }
             }
           }catch(error){
+            console.log("return 3 err");
             res.json(3);
           }
           if(!foundUser){
+            console.log("return 3 user not found");
             res.json(3);
           }
     });
