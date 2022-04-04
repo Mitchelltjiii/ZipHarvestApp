@@ -25,7 +25,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 		<div id="harvest-batches-form" style={{margin:"auto"}}>
 			<Grid
 				container
-				direction="row"
+				direction="column"
   				justifyContent="center"
 				alignItems="center"
 			>
