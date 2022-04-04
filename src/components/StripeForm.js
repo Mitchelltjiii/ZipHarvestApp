@@ -26,8 +26,16 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
 	}
 
   function doContinue(){
-    window.location.replace("https://www.zipharvest.app/");
-    //setContinued(true);
+    try{
+      console.log("USER DO CONT: " + JSON.stringify(user));
+      if(user.facilityName === "Mitchell"){
+        setContinued(true);
+      }else{
+        window.location.replace("https://www.zipharvest.app/");
+      }
+    }catch(err){
+      window.location.replace("https://www.zipharvest.app/");
+    }
   }
 
 const [expired,setExpired] = React.useState(false);
@@ -51,7 +59,7 @@ const ProductDisplay = () => (
 			        >
               <div style={{textAlign:"center"}}>Basic</div>
               <div style={{textAlign:"center"}}>Export up to 2000 plants per month</div>
-              <div style={{textAlign:"center"}}>$200 per month</div>
+              <div style={{textAlign:"center"}}>$120 per month</div>
                     <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>Select</Button>
               </Grid>  
               <Grid
@@ -62,7 +70,7 @@ const ProductDisplay = () => (
 			        >
               <div style={{textAlign:"center"}}>Standard</div>
               <div style={{textAlign:"center"}}>Export up to 5000 plants per month</div>
-              <div style={{textAlign:"center"}}>$475 per month</div>
+              <div style={{textAlign:"center"}}>$200 per month</div>
                     <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToStandard}>Select</Button>
               </Grid> 
               <Grid
@@ -73,12 +81,12 @@ const ProductDisplay = () => (
 			        >
               <div style={{textAlign:"center"}}>Premium</div>
               <div style={{textAlign:"center"}}>Export up to 10000 plants per month</div>
-              <div style={{textAlign:"center"}}>$800 per month</div>
+              <div style={{textAlign:"center"}}>$350 per month</div>
                     <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>Select</Button>
               </Grid> 
               </Grid>
           </div> :
-          <div style={{width:"900px",height:"450px",borderRadius:5,paddingTop:"40px", backgroundColor:"#eeeeee"}}>
+          <div style={{width:"900px",height:"450px",borderRadius:5,paddingTop:"40px",backgroundColor:"#eeeeee"}}>
               <Grid
 				    container
 				    direction="row"
@@ -530,7 +538,13 @@ const handleGoToHome = () => {
   }
   if(continued){
     if (!success && message === '') {
-      //return <ProductDisplay />;
+      try{
+        console.log("USER RETURN PRODUCT DISPLAY: " + JSON.stringify(user));
+        if(user.facilityName === "Mitchell"){
+          return <ProductDisplay />;
+        }
+      }catch(err){
+      }
     } else if (success && sessionId !== '') {
       return <SuccessDisplay seshId={sessionId} />;
     } else {
