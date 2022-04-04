@@ -549,14 +549,11 @@ const handleGoToHome = () => {
   if(continued){
     if (!success && message === '') {
       try{
-        console.log("USER RETURN PRODUCT DISPLAY: " + JSON.stringify(user));
-        if(user.facilityName === "Mitchell"){
           if(isMobile){
             return <ProductDisplayMobile />;
           }else{
             return <ProductDisplay />;
           }
-        }
       }catch(err){
       }
     } else if (success && sessionId !== '') {
