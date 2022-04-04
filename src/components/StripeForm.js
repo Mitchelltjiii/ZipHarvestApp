@@ -49,7 +49,7 @@ const ProductDisplay = () => (
             justifyContent="center"
           alignItems="center"
         >
-          <div style={{width:"900px",height:"450px",borderRadius:5,backgroundColor:"#eeeeee"}}>
+          <div style={{width:"900px",height:"400px",borderRadius:5,backgroundColor:"#eeeeee"}}>
               <Grid
 				    container
 				    direction="row"
