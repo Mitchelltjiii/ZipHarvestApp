@@ -218,7 +218,6 @@ const ProductDisplayMobile = () => (
           </div>     
   </div>
 );
-
 const handleGoToBasic = () => {
   goToProduct("basic");
 }
