@@ -49,7 +49,12 @@ const ProductDisplay = () => (
             justifyContent="center"
           alignItems="center"
         >
-          <div style={{width:"900px",height:"400px",borderRadius:5,backgroundColor:"#eeeeee"}}>
+          <div>WHoa</div>  
+          </Grid>
+</div>
+);
+/*
+<div style={{width:"900px",height:"450px",borderRadius:5,backgroundColor:"#eeeeee"}}>
               <Grid
 				    container
 				    direction="row"
@@ -174,10 +179,8 @@ const ProductDisplay = () => (
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"20px"}}>or see more features</div>
               </Grid> 
               </Grid>
-          </div>    
-          </Grid>
-</div>
-);
+          </div>  
+*/
 
 const ProductDisplayMobile = () => (
   <div id="product-display-mobile">
