@@ -536,6 +536,7 @@ const handleGoToHome = () => {
   if(expired){
     return <ExpiredForm msg={"Your verification code expired. Please resend email."}></ExpiredForm>
   }
+  
   if(continued){
     if (!success && message === '') {
       try{
