@@ -194,12 +194,39 @@ const ProductDisplayMobile = () => (
 				    direction="column"
             justifyContent="center"
 				    alignItems="center"
+            style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff"}}
 			        >
-              <div style={{textAlign:"center"}}>Basic</div>
-              <div style={{textAlign:"center"}}>Export up to 2000 plants per month</div>
-              <div style={{textAlign:"center"}}>$120 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToBasic}>Select</Button>
-              </Grid>  
+              <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Basic</div>
+              <div style={{height:"120px",width:"100px"}}></div>
+              <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+              <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
+              <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <Grid
+				    container
+				    direction="row"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+
+            <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <div style={{marginTop:"35px",textAlign:"center"}}>Export up to 2000</div>
+              <div style={{marginTop:"2px",textAlign:"center"}}>plants per month</div>
+              </Grid>
+              </Grid>
+              </Grid>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToBasic}>Start a free trial</Button>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"20px"}}>or see more features</div>
+              </Grid> 
               <Grid
 				    container
 				    direction="column"
