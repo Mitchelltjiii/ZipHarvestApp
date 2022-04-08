@@ -3,8 +3,26 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import {isMobile} from 'react-device-detect';
 import pricingImage from '../pricing.svg';
+import SwipeableViews from 'react-swipeable-views';
 
 export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
+
+  const styles = {
+    slide: {
+      padding: 15,
+      minHeight: 100,
+      color: '#fff',
+    },
+    slide1: {
+      background: '#FEA900',
+    },
+    slide2: {
+      background: '#B3DC4A',
+    },
+    slide3: {
+      background: '#6AC0FF',
+    },
+  };
 
   let formWidth = "450px";
   let formHeight = "250px";
@@ -183,13 +201,9 @@ const ProductDisplay = () => (
 const ProductDisplayMobile = () => (
   <div id="product-display-mobile">
        <div style={{width:formWidth,height:formHeight}}>
-              <Grid
-				    container
-				    direction="row"
-            justifyContent="center"
-				    alignItems="center"
-			        >
-              <Grid
+       <SwipeableViews>
+          <div style={Object.assign({}, styles.slide, styles.slide1)}>
+          <Grid
 				    container
 				    direction="column"
             justifyContent="center"
@@ -226,30 +240,16 @@ const ProductDisplayMobile = () => (
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToBasic}>Start a free trial</Button>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"20px"}}>or see more features</div>
-              </Grid> 
-              <Grid
-				    container
-				    direction="column"
-            justifyContent="center"
-				    alignItems="center"
-			        >
-              <div style={{textAlign:"center"}}>Standard</div>
-              <div style={{textAlign:"center"}}>Export up to 5000 plants per month</div>
-              <div style={{textAlign:"center"}}>$200 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToStandard}>Select</Button>
-              </Grid> 
-              <Grid
-				    container
-				    direction="column"
-            justifyContent="center"
-				    alignItems="center"
-			        >
-              <div style={{textAlign:"center"}}>Premium</div>
-              <div style={{textAlign:"center"}}>Export up to 10000 plants per month</div>
-              <div style={{textAlign:"center"}}>$350 per month</div>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>Select</Button>
-              </Grid> 
               </Grid>
+          </div>
+          <div style={Object.assign({}, styles.slide, styles.slide2)}>
+            slide n°2
+          </div>
+          <div style={Object.assign({}, styles.slide, styles.slide3)}>
+            slide n°3
+          </div>
+        </SwipeableViews>
+              
           </div>     
   </div>
 );
@@ -622,4 +622,73 @@ const handleGoToHome = () => {
           Manage your billing information
         </button>
       </form>
-    </section> */
+    </section> 
+    
+    
+    <Grid
+				    container
+				    direction="row"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+            style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff"}}
+			        >
+              <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Basic</div>
+              <div style={{height:"120px",width:"100px"}}></div>
+              <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+              <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
+              <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <Grid
+				    container
+				    direction="row"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+
+            <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <div style={{marginTop:"35px",textAlign:"center"}}>Export up to 2000</div>
+              <div style={{marginTop:"2px",textAlign:"center"}}>plants per month</div>
+              </Grid>
+              </Grid>
+              </Grid>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToBasic}>Start a free trial</Button>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"20px"}}>or see more features</div>
+              </Grid> 
+              <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <div style={{textAlign:"center"}}>Standard</div>
+              <div style={{textAlign:"center"}}>Export up to 5000 plants per month</div>
+              <div style={{textAlign:"center"}}>$200 per month</div>
+                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToStandard}>Select</Button>
+              </Grid> 
+              <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <div style={{textAlign:"center"}}>Premium</div>
+              <div style={{textAlign:"center"}}>Export up to 10000 plants per month</div>
+              <div style={{textAlign:"center"}}>$350 per month</div>
+                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToPremium}>Select</Button>
+              </Grid> 
+              </Grid>*/
