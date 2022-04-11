@@ -219,8 +219,8 @@ const ProductDisplayMobile = () => (
               style={{width:formWidth}}
               wrap="nowrap"
 			        >
-              <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Basic</div>
-              <div style={{height:"120px",width:"100px"}}></div>
+              <div style={{marginTop:"10px",textAlign:"center",fontWeight:"bold"}}>Basic</div>
+              <div style={{height:"60px",width:"100px"}}></div>
               <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
               <Grid
