@@ -14,16 +14,6 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
       color: '#fff',
     },
     slide1: {
-      background: '#C5C5C5',
-    },
-    slide2: {
-      background: '#C5C5C5',
-    },
-    slide3: {
-      background: '#C5C5C5',
-    },
-  };
-  /*slide1: {
       background: '#FEA900',
     },
     slide2: {
@@ -31,7 +21,8 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
     },
     slide3: {
       background: '#6AC0FF',
-    }, */
+    },
+  };
 
   let formWidth = "450px";
   let formHeight = "250px";
@@ -217,7 +208,6 @@ const ProductDisplayMobile = () => (
 				    direction="column"
             justifyContent="center"
 				    alignItems="center"
-            style={{marginLeft:"50px",marginRight:"10px"}}
 			        >
               <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Basic</div>
               <div style={{height:"120px",width:"100px"}}></div>
@@ -252,90 +242,16 @@ const ProductDisplayMobile = () => (
               </Grid> 
           </div>
           <div style={Object.assign({}, styles.slide, styles.slide2)}>
-          <Grid
-				    container
-				    direction="column"
-            justifyContent="center"
-				    alignItems="center"
-			        >
-              <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Standard</div>
-              <div style={{height:"120px",width:"100px"}}></div>
-              <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
-              <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
-              <Grid
-				    container
-				    direction="column"
-            justifyContent="center"
-				    alignItems="center"
-			        >
-              <Grid
-				    container
-				    direction="row"
-            justifyContent="center"
-				    alignItems="center"
-			        >
-
-            <Grid
-				    container
-				    direction="column"
-            justifyContent="center"
-				    alignItems="center"
-			        >
-              <div style={{marginTop:"35px",textAlign:"center"}}>Export up to 5000</div>
-              <div style={{marginTop:"2px",textAlign:"center"}}>plants per month</div>
-              </Grid>
-              </Grid>
-              </Grid>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToStandard}>Start a free trial</Button>
-              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"20px"}}>or see more features</div>
-              </Grid>
+            slide n°2
           </div>
           <div style={Object.assign({}, styles.slide, styles.slide3)}>
-          <Grid
-				    container
-				    direction="column"
-            justifyContent="center"
-				    alignItems="center"
-			        >
-              <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Premium</div>
-              <div style={{height:"120px",width:"100px"}}></div>
-              <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
-              <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
-              <Grid
-				    container
-				    direction="column"
-            justifyContent="center"
-				    alignItems="center"
-			        >
-              <Grid
-				    container
-				    direction="row"
-            justifyContent="center"
-				    alignItems="center"
-			        >
-
-            <Grid
-				    container
-				    direction="column"
-            justifyContent="center"
-				    alignItems="center"
-			        >
-              <div style={{marginTop:"35px",textAlign:"center"}}>Export up to 10,000</div>
-              <div style={{marginTop:"2px",textAlign:"center"}}>plants per month</div>
-              </Grid>
-              </Grid>
-              </Grid>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToPremium}>Start a free trial</Button>
-              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"20px"}}>or see more features</div>
-              </Grid>
+            slide n°3
           </div>
         </SwipeableViews>
               
           </div>     
   </div>
 );
-
-// grid marginLeft:"50px",marginRight:"10px",
 const handleGoToBasic = () => {
   goToProduct("basic");
 }
