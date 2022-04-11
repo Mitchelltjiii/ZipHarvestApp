@@ -9,7 +9,7 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
 
   const styles = {
     slide: {
-      height: "100%",
+      height: '100%',
       color: '#fff',
     },
     slide1: {
