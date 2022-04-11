@@ -200,7 +200,7 @@ const ProductDisplay = () => (
 
 const ProductDisplayMobile = () => (
   <div id="product-display-mobile">
-       <div style={{width:formWidth,height:formHeight}}>
+       <div style={{width:"90%",height:formHeight}}>
        <SwipeableViews>
           <div style={Object.assign({}, styles.slide, styles.slide1)}>
           <Grid
