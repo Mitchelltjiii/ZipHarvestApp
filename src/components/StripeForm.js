@@ -242,7 +242,7 @@ const ProductDisplayMobile = () => (
             justifyContent="center"
 				    alignItems="center"
 			        >
-              <div style={{marginTop:"35px",textAlign:"center"}}>Export up to 2000</div>
+              <div style={{marginTop:"10px",textAlign:"center"}}>Export up to 2000</div>
               <div style={{marginTop:"2px",textAlign:"center"}}>plants per month</div>
               </Grid>
               </Grid>
