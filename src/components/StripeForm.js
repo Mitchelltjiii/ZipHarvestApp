@@ -242,7 +242,43 @@ const ProductDisplayMobile = () => (
               </Grid> 
           </div>
           <div style={Object.assign({}, styles.slide, styles.slide2)}>
-            slide n°2
+          <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Standard</div>
+              <div style={{height:"120px",width:"100px"}}></div>
+              <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+              <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
+              <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <Grid
+				    container
+				    direction="row"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+
+            <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <div style={{marginTop:"35px",textAlign:"center"}}>Export up to 5000</div>
+              <div style={{marginTop:"2px",textAlign:"center"}}>plants per month</div>
+              </Grid>
+              </Grid>
+              </Grid>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToStandard}>Start a free trial</Button>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"20px"}}>or see more features</div>
+              </Grid>
           </div>
           <div style={Object.assign({}, styles.slide, styles.slide3)}>
             slide n°3
