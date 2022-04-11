@@ -217,6 +217,7 @@ const ProductDisplayMobile = () => (
 				    direction="column"
             justifyContent="center"
 				    alignItems="center"
+            style={{marginLeft:"50px",marginRight:"10px"}}
 			        >
               <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Basic</div>
               <div style={{height:"120px",width:"100px"}}></div>
@@ -333,6 +334,8 @@ const ProductDisplayMobile = () => (
           </div>     
   </div>
 );
+
+// grid marginLeft:"50px",marginRight:"10px",
 const handleGoToBasic = () => {
   goToProduct("basic");
 }
