@@ -208,7 +208,8 @@ const ProductDisplayMobile = () => (
 				    direction="column"
             justifyContent="center"
 				    alignItems="center"
-              style={{width:formWidth,height:formHeight}}
+              style={{width:formWidth}}
+              wrap="nowrap"
 			        >
               <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Basic</div>
               <div style={{height:"120px",width:"100px"}}></div>
@@ -248,7 +249,8 @@ const ProductDisplayMobile = () => (
 				    direction="column"
             justifyContent="center"
 				    alignItems="center"
-            style={{width:formWidth,height:formHeight}}
+            style={{width:formWidth}}
+            wrap="nowrap"
 			        >
               <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Standard</div>
               <div style={{height:"120px",width:"100px"}}></div>
