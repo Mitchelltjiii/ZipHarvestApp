@@ -13,6 +13,17 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
       color: '#fff',
     },
     slide1: {
+      background: '#FFFFFF',
+    },
+    slide2: {
+      background: '#FFFFFF',
+    },
+    slide3: {
+      background: '#FFFFFF',
+    },
+  };
+
+  /*slide1: {
       background: '#FEA900',
     },
     slide2: {
@@ -20,8 +31,7 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
     },
     slide3: {
       background: '#6AC0FF',
-    },
-  };
+    }, */
 
   let formWidth = "450px";
   let formHeight = "250px";
