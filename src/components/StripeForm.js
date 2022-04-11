@@ -199,8 +199,7 @@ const ProductDisplay = () => (
 
 
 const ProductDisplayMobile = () => (
-  <div id="product-display-mobile">
-       <div style={{width:"90%",height:formHeight}}>
+  <div id="product-display-mobile" style={{width:"100%",height:formHeight}}>
        <SwipeableViews>
           <div style={Object.assign({}, styles.slide, styles.slide1)}>
           <Grid
@@ -288,8 +287,6 @@ const ProductDisplayMobile = () => (
             slide n°3
           </div>
         </SwipeableViews>
-              
-          </div>     
   </div>
 );
 const handleGoToBasic = () => {
