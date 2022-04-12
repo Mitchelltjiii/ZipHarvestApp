@@ -210,14 +210,6 @@ const ProductDisplay = () => (
 
 const ProductDisplayMobile = () => (
   <div id="product-display-mobile" style={{width:"100%",height:"100%"}}>
-    <Grid
-				    container
-				    direction="column"
-            justifyContent="center"
-				    alignItems="center"
-              wrap="nowrap"
-              style={{width:"100%",height:"100%"}}
-			        >
        <SwipeableViews>
           <div style={Object.assign({}, styles.slide, styles.slide1)}>
           <Grid
@@ -228,7 +220,7 @@ const ProductDisplayMobile = () => (
               style={{width:formWidth}}
               wrap="nowrap"
 			        >
-              <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold",color:"#000000"}}>Basic</div>
+              <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#000000"}}>Basic</div>
               <div style={{height:"120px",width:"100px"}}></div>
               <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
@@ -257,7 +249,19 @@ const ProductDisplayMobile = () => (
               </Grid>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToBasic}>Start a free trial</Button>
-              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"20px"}}>or see more features</div>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"5px"}}>or see more features</div>
+              <Grid
+				    container
+				    direction="row"
+            justifyContent="center"
+				    alignItems="center"
+              wrap="nowrap"
+              style={{height:"50px",marginBottom:"5px"}}
+			        >
+                <div style={{fontSize:"12px",height:"50px",justifySelf:"left"}}>L</div>
+                <div style={{fontSize:"12px",height:"50px"}}>Swipe for more options!</div>
+                <div style={{fontSize:"12px",height:"50px",justifySelf:"right"}}>R</div>
+                </Grid>
               </Grid> 
           </div>
           <div style={Object.assign({}, styles.slide, styles.slide2)}>
@@ -269,7 +273,7 @@ const ProductDisplayMobile = () => (
             style={{width:formWidth}}
             wrap="nowrap"
 			        >
-              <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold",color:"#000000"}}>Standard</div>
+              <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#000000"}}>Standard</div>
               <div style={{height:"120px",width:"100px"}}></div>
               <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
@@ -298,7 +302,19 @@ const ProductDisplayMobile = () => (
               </Grid>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToStandard}>Start a free trial</Button>
-              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"20px"}}>or see more features</div>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"5px"}}>or see more features</div>
+              <Grid
+				    container
+				    direction="row"
+            justifyContent="center"
+				    alignItems="center"
+              wrap="nowrap"
+              style={{height:"50px",marginBottom:"5px"}}
+			        >
+                <div style={{fontSize:"12px",height:"50px",justifySelf:"left"}}>L</div>
+                <div style={{fontSize:"12px",height:"50px"}}>Swipe for more options!</div>
+                <div style={{fontSize:"12px",height:"50px",justifySelf:"right"}}>R</div>
+                </Grid>
               </Grid>
           </div>
           <div style={Object.assign({}, styles.slide, styles.slide3)}>
@@ -310,7 +326,7 @@ const ProductDisplayMobile = () => (
             style={{width:formWidth}}
             wrap="nowrap"
 			        >
-              <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold",color:"#000000"}}>Premium</div>
+              <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#000000"}}>Premium</div>
               <div style={{height:"120px",width:"100px"}}></div>
               <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
@@ -339,22 +355,22 @@ const ProductDisplayMobile = () => (
               </Grid>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToPremium}>Start a free trial</Button>
-              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"20px"}}>or see more features</div>
-              </Grid>
-          </div>
-        </SwipeableViews>
-        <Grid
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"5px"}}>or see more features</div>
+              <Grid
 				    container
 				    direction="row"
             justifyContent="center"
 				    alignItems="center"
               wrap="nowrap"
+              style={{height:"50px",marginBottom:"5px"}}
 			        >
-                <Button style={{width:"50px",height:"50px",justifySelf:"left"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleLeft}>L</Button>
+                <div style={{fontSize:"12px",height:"50px",justifySelf:"left"}}>L</div>
                 <div style={{fontSize:"12px",height:"50px"}}>Swipe for more options!</div>
-                <Button style={{width:"50px",height:"50px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleRight}>R</Button>
+                <div style={{fontSize:"12px",height:"50px",justifySelf:"right"}}>R</div>
                 </Grid>
-      </Grid>
+              </Grid>
+          </div>
+        </SwipeableViews>
   </div>
 );
 
