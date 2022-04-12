@@ -249,7 +249,7 @@ const ProductDisplayMobile = () => (
               </Grid>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToBasic}>Start a free trial</Button>
-              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"5px"}}>or see more features</div>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"15px"}}>or see more features</div>
               <Grid
 				    container
 				    direction="row"
@@ -258,9 +258,7 @@ const ProductDisplayMobile = () => (
               wrap="nowrap"
               style={{height:"50px",marginBottom:"5px"}}
 			        >
-                <div style={{fontSize:"12px",height:"50px",justifySelf:"left",color:"#000000"}}>L</div>
-                <div style={{fontSize:"12px",height:"50px",color:"#000000"}}>Swipe for more options!</div>
-                <div style={{fontSize:"12px",height:"50px",justifySelf:"right",color:"#000000"}}>R</div>
+                <div style={{fontSize:"18px",fontWeight:"bold",height:"50px",color:"#000000"}}>SWIPE FOR MORE OPTIONS</div>
                 </Grid>
               </Grid> 
           </div>
