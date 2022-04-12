@@ -209,6 +209,13 @@ const ProductDisplay = () => (
 
 const ProductDisplayMobile = () => (
   <div id="product-display-mobile" style={{width:"100%",height:"100%"}}>
+    <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+              wrap="nowrap"
+			        >
        <SwipeableViews>
           <div style={Object.assign({}, styles.slide, styles.slide1)}>
           <Grid
@@ -334,8 +341,28 @@ const ProductDisplayMobile = () => (
               </Grid>
           </div>
         </SwipeableViews>
+        <Grid
+				    container
+				    direction="row"
+            justifyContent="center"
+				    alignItems="center"
+              wrap="nowrap"
+              style={{height:"60px"}}
+			        >
+                <Button style={{width:"50px",height:"50px",justifySelf:"left"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleLeft}>L</Button>
+                <div>Swipe for more options!</div>
+                <Button style={{width:"50px",height:"50px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleRight}>R</Button>
+                </Grid>
+      </Grid>
   </div>
 );
+
+const handleLeft = () => {
+}
+
+const handleRight = () => {
+}
+
 const handleGoToBasic = () => {
   goToProduct("basic");
 }
