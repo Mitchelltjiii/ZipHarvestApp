@@ -258,9 +258,9 @@ const ProductDisplayMobile = () => (
               wrap="nowrap"
               style={{height:"50px",marginBottom:"5px"}}
 			        >
-                <div style={{fontSize:"12px",height:"50px",justifySelf:"left"}}>L</div>
-                <div style={{fontSize:"12px",height:"50px"}}>Swipe for more options!</div>
-                <div style={{fontSize:"12px",height:"50px",justifySelf:"right"}}>R</div>
+                <div style={{fontSize:"12px",height:"50px",justifySelf:"left",color:"#000000"}}>L</div>
+                <div style={{fontSize:"12px",height:"50px",color:"#000000"}}>Swipe for more options!</div>
+                <div style={{fontSize:"12px",height:"50px",justifySelf:"right",color:"#000000"}}>R</div>
                 </Grid>
               </Grid> 
           </div>
@@ -311,9 +311,9 @@ const ProductDisplayMobile = () => (
               wrap="nowrap"
               style={{height:"50px",marginBottom:"5px"}}
 			        >
-                <div style={{fontSize:"12px",height:"50px",justifySelf:"left"}}>L</div>
-                <div style={{fontSize:"12px",height:"50px"}}>Swipe for more options!</div>
-                <div style={{fontSize:"12px",height:"50px",justifySelf:"right"}}>R</div>
+                <div style={{fontSize:"12px",height:"50px",justifySelf:"left",color:"#000000"}}>L</div>
+                <div style={{fontSize:"12px",height:"50px",color:"#000000"}}>Swipe for more options!</div>
+                <div style={{fontSize:"12px",height:"50px",justifySelf:"right",color:"#000000"}}>R</div>
                 </Grid>
               </Grid>
           </div>
