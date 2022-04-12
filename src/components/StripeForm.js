@@ -10,6 +10,7 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
   const styles = {
     slide: {
       height: '100%',
+      width: '100%',
       color: '#fff',
     },
     slide1: {
@@ -215,6 +216,7 @@ const ProductDisplayMobile = () => (
             justifyContent="center"
 				    alignItems="center"
               wrap="nowrap"
+              style={{width:"100%",height:"100%"}}
 			        >
        <SwipeableViews>
           <div style={Object.assign({}, styles.slide, styles.slide1)}>
@@ -347,10 +349,9 @@ const ProductDisplayMobile = () => (
             justifyContent="center"
 				    alignItems="center"
               wrap="nowrap"
-              style={{height:"60px"}}
 			        >
                 <Button style={{width:"50px",height:"50px",justifySelf:"left"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleLeft}>L</Button>
-                <div>Swipe for more options!</div>
+                <div style={{fontSize:"12px",height:"50px"}}>Swipe for more options!</div>
                 <Button style={{width:"50px",height:"50px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleRight}>R</Button>
                 </Grid>
       </Grid>
