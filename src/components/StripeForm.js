@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import {isMobile} from 'react-device-detect';
 import pricingImage from '../pricing.svg';
 import SwipeableViews from 'react-swipeable-views';
+import leafImage1 from '../leafImage1.png';
 
 export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
 
@@ -38,6 +39,7 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
   let formHeight = "250px";
   let pricingImageHeight = "50px";
   let pricingImageWidth = "150px";
+  let leafImageHeight = "100px";
 
   if(isMobile){
     formWidth = "100%";
@@ -93,7 +95,7 @@ const ProductDisplay = () => (
             style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff"}}
 			        >
               <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Basic</div>
-              <div style={{height:"120px",width:"100px"}}></div>
+              <img alt="leafImage1" src={leafImage1} style={{height:leafImageHeight}}/>
               <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
               <Grid
@@ -221,7 +223,7 @@ const ProductDisplayMobile = () => (
               wrap="nowrap"
 			        >
               <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#000000"}}>Basic</div>
-              <div style={{height:"120px",width:"100px"}}></div>
+              <img alt="leafImage1" src={leafImage1} style={{height:leafImageHeight}}/>
               <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
               <Grid
