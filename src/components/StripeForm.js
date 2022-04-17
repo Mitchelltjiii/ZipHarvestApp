@@ -230,7 +230,7 @@ const ProductDisplayMobile = () => (
             justifyContent="center"
 				    alignItems="center"
 			        >
-              <div style={{marginRight:"10px"}}>&#8594;</div>
+              <div style={{marginRight:"10px",fontWeight:"bold",color:"#000000"}}>&#8592;</div>
             <Grid
 				    container
 				    direction="column"
@@ -240,7 +240,7 @@ const ProductDisplayMobile = () => (
               <div style={{marginTop:"35px",textAlign:"center",color:"#000000"}}>Export up to 2000</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000"}}>plants per month</div>
               </Grid>
-              <div style={{marginLeft:"10px"}}>&#8592;</div>
+              <div style={{marginLeft:"10px",fontWeight:"bold",color:"#000000"}}>&#8594;</div>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToBasic}>Start a free trial</Button>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"15px"}}>or see more features</div>
