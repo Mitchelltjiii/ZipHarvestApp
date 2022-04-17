@@ -226,17 +226,11 @@ const ProductDisplayMobile = () => (
               <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
               <Grid
 				    container
-				    direction="column"
-            justifyContent="center"
-				    alignItems="center"
-			        >
-              <Grid
-				    container
 				    direction="row"
             justifyContent="center"
 				    alignItems="center"
 			        >
-
+              <div style={{marginRight:"10px"}}>&#8594;</div>
             <Grid
 				    container
 				    direction="column"
@@ -246,20 +240,10 @@ const ProductDisplayMobile = () => (
               <div style={{marginTop:"35px",textAlign:"center",color:"#000000"}}>Export up to 2000</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000"}}>plants per month</div>
               </Grid>
-              </Grid>
+              <div style={{marginLeft:"10px"}}>&#8592;</div>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToBasic}>Start a free trial</Button>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"15px"}}>or see more features</div>
-              <Grid
-				    container
-				    direction="row"
-            justifyContent="center"
-				    alignItems="center"
-              wrap="nowrap"
-              style={{height:"50px",marginBottom:"5px"}}
-			        >
-                <div style={{fontSize:"18px",fontWeight:"bold",height:"50px",color:"#000000"}}>SWIPE FOR MORE OPTIONS</div>
-                </Grid>
               </Grid> 
           </div>
           <div style={Object.assign({}, styles.slide, styles.slide2)}>
@@ -371,6 +355,17 @@ const ProductDisplayMobile = () => (
         </SwipeableViews>
   </div>
 );
+
+/*<Grid
+				    container
+				    direction="row"
+            justifyContent="center"
+				    alignItems="center"
+              wrap="nowrap"
+              style={{height:"50px",marginBottom:"5px"}}
+			        >
+                <div style={{fontSize:"18px",fontWeight:"bold",height:"50px",color:"#000000"}}>SWIPE FOR MORE OPTIONS</div>
+                </Grid> */
 
 const handleLeft = () => {
 }
