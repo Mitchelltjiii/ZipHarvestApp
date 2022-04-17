@@ -95,9 +95,9 @@ const ProductDisplay = () => (
             style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff"}}
 			        >
               <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Basic</div>
-              <img alt="leafImage1" src={leafImage1} style={{height:leafImageHeight,marginTop:"10px",marginBottom:"10px"}}/>
+              <img alt="leafImage1" src={leafImage1} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
               <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
-              <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
+              <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
               <Grid
 				    container
 				    direction="column"
@@ -117,12 +117,12 @@ const ProductDisplay = () => (
             justifyContent="center"
 				    alignItems="center"
 			        >
-              <div style={{marginTop:"35px",textAlign:"center"}}>Export up to 2000</div>
+              <div style={{marginTop:"25px",textAlign:"center"}}>Export up to 2000</div>
               <div style={{marginTop:"2px",textAlign:"center"}}>plants per month</div>
               </Grid>
               </Grid>
               </Grid>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToBasic}>Start a free trial</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToBasic}>Start a free trial</Button>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"20px"}}>or see more features</div>
               </Grid>
               <Grid
@@ -223,7 +223,7 @@ const ProductDisplayMobile = () => (
               wrap="nowrap"
 			        >
               <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#000000"}}>Basic</div>
-              <img alt="leafImage1" src={leafImage1} style={{height:leafImageHeight,marginTop:"5px",marginBottom:"5px"}}/>
+              <img alt="leafImage1" src={leafImage1} style={{height:leafImageHeight,marginTop:"10px",marginBottom:"10px"}}/>
               <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <Grid
 				    container
@@ -231,10 +231,11 @@ const ProductDisplayMobile = () => (
             justifyContent="center"
 				    alignItems="center"
             wrap="nowrap"
+            style={{marginTop:"10px"}}
 			        >
-              <div style={{marginRight:"10px",fontWeight:"bold",color:"#000000",fontSize:"26px"}}>&#8592;</div>
-              <div style={{marginTop:"15px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
-              <div style={{marginLeft:"10px",fontWeight:"bold",color:"#000000",fontSize:"26px"}}>&#8594;</div>
+              <div style={{marginRight:"30px",fontWeight:"bold",color:"#000000",fontSize:"26px"}}>&#8592;</div>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
+              <div style={{marginLeft:"30px",fontWeight:"bold",color:"#000000",fontSize:"26px"}}>&#8594;</div>
               </Grid>
             <Grid
 				    container
@@ -242,10 +243,10 @@ const ProductDisplayMobile = () => (
             justifyContent="center"
 				    alignItems="center"
 			        >
-              <div style={{marginTop:"35px",textAlign:"center",color:"#000000"}}>Export up to 2000</div>
+              <div style={{marginTop:"25px",textAlign:"center",color:"#000000"}}>Export up to 2000</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000"}}>plants per month</div>
               </Grid>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"35px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToBasic}>Start a free trial</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#047AF6"}} onClick={handleGoToBasic}>Start a free trial</Button>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"15px"}}>or see more features</div>
               </Grid> 
           </div>
