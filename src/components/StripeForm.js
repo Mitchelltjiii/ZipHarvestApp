@@ -5,8 +5,8 @@ import {isMobile} from 'react-device-detect';
 import pricingImage from '../pricing.svg';
 import SwipeableViews from 'react-swipeable-views';
 import leafImage1 from '../leafImage1.png';
-import leafImage2 from '../leafImage1.png';
-import leafImage3 from '../leafImage1.png';
+import leafImage2 from '../leafImage2.png';
+import leafImage3 from '../leafImage3.png';
 
 
 export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
@@ -236,9 +236,9 @@ const ProductDisplayMobile = () => (
             wrap="nowrap"
             style={{marginTop:"10px"}}
 			        >
-              <div style={{marginRight:"30px",fontWeight:"bold",color:"#000000",fontSize:"26px"}}>&#8592;</div>
+              <div style={{marginRight:"30px",fontWeight:"bold",color:"#000000",fontSize:"50px"}}>     </div>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
-              <div style={{marginLeft:"30px",fontWeight:"bold",color:"#000000",fontSize:"26px"}}>&#8594;</div>
+              <div style={{marginLeft:"30px",fontWeight:"bold",color:"#000000",fontSize:"50px"}}>&#8594;</div>
               </Grid>
             <Grid
 				    container
@@ -273,9 +273,9 @@ const ProductDisplayMobile = () => (
             wrap="nowrap"
             style={{marginTop:"10px"}}
 			        >
-              <div style={{marginRight:"30px",fontWeight:"bold",color:"#000000",fontSize:"26px"}}>&#8592;</div>
+              <div style={{marginRight:"30px",fontWeight:"bold",color:"#000000",fontSize:"50px"}}>&#8592;</div>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
-              <div style={{marginLeft:"30px",fontWeight:"bold",color:"#000000",fontSize:"26px"}}>&#8594;</div>
+              <div style={{marginLeft:"30px",fontWeight:"bold",color:"#000000",fontSize:"50px"}}>&#8594;</div>
               </Grid>
             <Grid
 				    container
@@ -311,9 +311,9 @@ const ProductDisplayMobile = () => (
             wrap="nowrap"
             style={{marginTop:"10px"}}
 			        >
-              <div style={{marginRight:"30px",fontWeight:"bold",color:"#000000",fontSize:"26px"}}>&#8592;</div>
+              <div style={{marginRight:"30px",fontWeight:"bold",color:"#000000",fontSize:"50px"}}>&#8592;</div>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
-              <div style={{marginLeft:"30px",fontWeight:"bold",color:"#000000",fontSize:"26px"}}>&#8594;</div>
+              <div style={{marginLeft:"30px",fontWeight:"bold",color:"#000000",fontSize:"50px"}}>       </div>
               </Grid>
             <Grid
 				    container
