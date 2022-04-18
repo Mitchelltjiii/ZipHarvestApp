@@ -236,7 +236,7 @@ const ProductDisplayMobile = () => (
             wrap="nowrap"
             style={{marginTop:"10px"}}
 			        >
-              <div style={{marginRight:"30px",fontWeight:"bold",color:"#000000",fontSize:"50px"}}>     </div>
+              <div style={{marginRight:"30px",fontWeight:"bold",fontSize:"50px"}}>&#8592;</div>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
               <div style={{marginLeft:"30px",fontWeight:"bold",color:"#000000",fontSize:"50px"}}>&#8594;</div>
               </Grid>
@@ -313,7 +313,7 @@ const ProductDisplayMobile = () => (
 			        >
               <div style={{marginRight:"30px",fontWeight:"bold",color:"#000000",fontSize:"50px"}}>&#8592;</div>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
-              <div style={{marginLeft:"30px",fontWeight:"bold",color:"#000000",fontSize:"50px"}}>       </div>
+              <div style={{marginLeft:"30px",fontWeight:"bold",fontSize:"50px"}}>&#8594;</div>
               </Grid>
             <Grid
 				    container
