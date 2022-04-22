@@ -69,13 +69,13 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
 
     const handleGoToBasic = () => {
         if(JSON.stringify(subscription) !== "[]"){
-            goToProduct("basic");
+            goToProduct("test");
         }
     }
       
       const handleGoToStandard = () => {
         if(JSON.stringify(subscription) !== "[]"){
-            goToProduct("standard");
+            goToProduct("test2");
         }
       }
       

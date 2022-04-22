@@ -353,11 +353,11 @@ const handleRight = () => {
 }
 
 const handleGoToBasic = () => {
-  goToProduct("basic");
+  goToProduct("test");
 }
 
 const handleGoToStandard = () => {
-  goToProduct("standard");
+  goToProduct("test2");
 }
 
 const handleGoToPremium = () => {
