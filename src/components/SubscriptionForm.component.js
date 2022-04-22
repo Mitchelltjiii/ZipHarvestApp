@@ -16,7 +16,7 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount}) {
     const handleClick = (title) => {
       if(title==="Cancel Subscription"){
         setCurrentPage('end-subscription-form');
-      }else if(title==="Change Subscription"){
+      }else if(title==="Upgrade Subscription"){
         setCurrentPage('change-subscription-form');
       }
 	  }
@@ -90,7 +90,7 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount}) {
     rows.push(createData("Unique Plant Tags Exported This Month",plantCount));
     rows.push(createData("Unique Plant Tags Per Month",possiblePlantCount));
     rows.push(createData("Renewal Date",renewalDate));
-    rows.push(createData("Change Subscription",""));
+    rows.push(createData("Upgrade Subscription",""));
     rows.push(createData("Cancel Subscription",""));
 
     async function getSubId(){
