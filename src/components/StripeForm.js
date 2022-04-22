@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import {isMobile} from 'react-device-detect';
-import pricingImage from '../pricing.svg';
+import pricingImage1 from '../pricing1.svg';
+import pricingImage2 from '../pricing2.svg';
+import pricingImage3 from '../pricing3.svg';
 import SwipeableViews from 'react-swipeable-views';
 import leafImage1 from '../leafImage1.png';
 import leafImage2 from '../leafImage2.png';
@@ -99,7 +101,7 @@ const ProductDisplay = () => (
 			        >
               <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Basic</div>
               <img alt="leafImage1" src={leafImage1} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
-              <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+              <img alt="pricingImage" src={pricingImage1} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
               <Grid
 				    container
@@ -137,7 +139,7 @@ const ProductDisplay = () => (
 			        >
               <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Standard</div>
               <img alt="leafImage2" src={leafImage2} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
-              <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+              <img alt="pricingImage" src={pricingImage2} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
               <Grid
 				    container
@@ -176,7 +178,7 @@ const ProductDisplay = () => (
 			        >
               <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Premium</div>
               <img alt="leafImage3" src={leafImage3} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
-              <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+              <img alt="pricingImage" src={pricingImage3} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
               <Grid
 				    container
@@ -227,7 +229,7 @@ const ProductDisplayMobile = () => (
 			        >
               <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#000000"}}>Basic</div>
               <img alt="leafImage1" src={leafImage1} style={{height:leafImageHeight,marginTop:"10px",marginBottom:"10px"}}/>
-              <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+              <img alt="pricingImage" src={pricingImage1} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <Grid
 				    container
 				    direction="row"
@@ -264,7 +266,7 @@ const ProductDisplayMobile = () => (
 			        >
               <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#000000"}}>Standard</div>
               <img alt="leafImage2" src={leafImage2} style={{height:leafImageHeight,marginTop:"10px",marginBottom:"10px"}}/>
-              <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+              <img alt="pricingImage" src={pricingImage2} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <Grid
 				    container
 				    direction="row"
@@ -302,7 +304,7 @@ const ProductDisplayMobile = () => (
 			        >
               <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#000000"}}>Premium</div>
               <img alt="leafImage3" src={leafImage3} style={{height:leafImageHeight,marginTop:"10px",marginBottom:"10px"}}/>
-              <img alt="pricingImage" src={pricingImage} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+              <img alt="pricingImage" src={pricingImage3} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <Grid
 				    container
 				    direction="row"
