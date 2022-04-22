@@ -56,9 +56,9 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
               'Content-Type': 'application/json'
             }
       }).then(function(response) {
-        let newPriceID = "price_1KnQdFGBqcLC10HccckrH60k"; //basic
+        let newPriceID = "price_1KnQdpGBqcLC10HcMhAEuBbM"; //basic
         if(lookup_key === "standard"){
-          newPriceID = "price_1KnQdFGBqcLC10HcWLPXi2Ls";
+          newPriceID = "price_1KrDrOGBqcLC10Hcic8ZAGNk";
         }else if(lookup_key === "premium"){
           newPriceID = "price_1KnQdFGBqcLC10HcgFmdFEH4";
         }
