@@ -57,34 +57,13 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
     }
 
     async function goToProduct(lookup_key){
-      const response = await fetch(`/create-checkout-session/${lookup_key}`, {
-            method: 'POST',
-            mode: 'no-cors'
-      });
-      const json = await response.json();
-    
-      updateUserSessionID(json.id,lookup_key);
-    
-      window.location.replace(json.url);
-    }
-    
-    async function updateUserSessionID(id,lookup_key){
-      fetch(`/user/updateUserSessionID/${userID}/${id}`, {
-            method: 'PUT',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            }
-      }).then(function(response) {
-        let newPriceID = "price_1KnQdpGBqcLC10HcMhAEuBbM"; //basic
+      let newPriceID = "price_1KnQdpGBqcLC10HcMhAEuBbM"; //basic
         if(lookup_key === "standard"){
           newPriceID = "price_1KrDrOGBqcLC10Hcic8ZAGNk";
         }else if(lookup_key === "premium"){
           newPriceID = "price_1KnQdFGBqcLC10HcgFmdFEH4";
         }
         updateSubscription(newPriceID);
-      }).then(function(data) {
-      });
     }
 
     const handleGoToBasic = () => {

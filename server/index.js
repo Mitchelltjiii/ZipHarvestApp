@@ -329,13 +329,14 @@ app.get('/get-user-seshId/:seshId', async (req,res) =>{
 
 app.get('/update-subscription/:subid/:priceid', async (req,res) =>{
   const subscription = await stripe.subscriptions.retrieve(req.params.subid);
+  const price = await stripe.prices.retrieve(req.params.priceid);
 
   stripe.subscriptions.update(req.params.subid, {
   cancel_at_period_end: false,
   proration_behavior: 'create_prorations',
   items: [{
     id: subscription.items.data[0].id,
-    price: req.params.priceid,
+    price: price,
   }]
 });
   res.json(subscription);
