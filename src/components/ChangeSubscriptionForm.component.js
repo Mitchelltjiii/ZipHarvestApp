@@ -30,6 +30,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
   };
   
 
+  const [success,setSuccess] = React.useState("");
     const [subscription,setSubscription] = React.useState([]);
     let basicText = "Select";
     let standardText = "Select";
@@ -102,6 +103,9 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
         if(json !== undefined){
           setSubscription(json);
           reloadSubscription();
+          setSuccess("Yes");
+        }else{
+          setSuccess("No");
         }
     }
 
@@ -128,8 +132,13 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
       }
 
       const ProductDisplay = () => (
-        <div id="product-display" style={{position:"absolute",top:"75px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:"#eeeeee"}}>
-                <Grid
+        <div id="product-display" style={{position:"absolute",top:"0px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:"#eeeeee"}}>
+          {(success==="Yes") ?
+          <div>Success</div>
+          : (success === "No") ? (
+          <div>Fail</div>
+          ) : 
+          <Grid
                 container
                 direction="column"
                   justifyContent="center"
@@ -226,13 +235,20 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
                     </Grid>
                 </div> 
                 </Grid>
+        }
       </div>
       );
       
       
       const ProductDisplayMobile = () => (
         <div id="product-display-mobile" style={{width:"100%",height:"100%"}}>
-          {(subType === "basic") ? 
+          {(success==="Yes") ?
+          <div>Success</div>
+          : (success === "No") ? (
+          <div>Fail</div>
+          ) : 
+          <div>
+            {(subType === "basic") ? 
           <SwipeableViews>
           <div style={Object.assign({}, styles.slide, styles.slide1)}>
           <Grid
@@ -254,7 +270,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
             wrap="nowrap"
             style={{marginTop:"10px"}}
               >
-              <div style={{marginRight:"30px",fontWeight:"bold",color:"#000000",fontSize:"50px"}}>&#8592;</div>
+              <div style={{marginRight:"30px",fontWeight:"bold",fontSize:"50px"}}>&#8592;</div>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b"}}>Billed monthly</div>
               <div style={{marginLeft:"30px",fontWeight:"bold",color:"#000000",fontSize:"50px"}}>&#8594;</div>
               </Grid>
@@ -349,7 +365,8 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",marginBottom:"15px"}}>or see more features</div>
               </Grid>
                }
-             
+          </div>
+        }   
         </div>
       );
 
