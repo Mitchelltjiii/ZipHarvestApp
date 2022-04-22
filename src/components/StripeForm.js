@@ -353,7 +353,7 @@ const handleRight = () => {
 }
 
 const handleGoToBasic = () => {
-  goToProduct("test");
+  goToProduct("basic");
 }
 
 const handleGoToStandard = () => {
