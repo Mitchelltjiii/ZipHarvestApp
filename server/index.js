@@ -337,7 +337,7 @@ app.get('/update-subscription/:subid/:priceid', async (req,res) =>{
   proration_behavior: 'create_prorations',
   items: [{
     id: subscription.items.data[0].id,
-    price: JSON.stringify(price),
+    price: price,
   }]
 });
 console.log("New Sub: " + JSON.stringify(newSub));
