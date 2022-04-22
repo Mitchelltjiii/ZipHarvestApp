@@ -332,12 +332,27 @@ app.get('/update-subscription/:subid/:priceid', async (req,res) =>{
   const price = await stripe.prices.retrieve(req.params.priceid);
   console.log("Price: " + JSON.stringify(price));
 
+  let unitAmount = 12000;
+  let unitAmountDecimal = "12000";
+  if(price.lookup_key==="standard"){
+    unitAmount = 20000;
+    unitAmountDecimal = "20000";
+  }else if(price.lookup_key==="premium"){
+    unitAmount = 35000;
+    unitAmountDecimal = "35000";
+  }
+
   let newSub = stripe.subscriptions.update(req.params.subid, {
   cancel_at_period_end: false,
   proration_behavior: 'create_prorations',
   items: [{
     id: subscription.items.data[0].id,
-    price: price,
+    price: [{
+        id: req.params.priceid,
+        lookup_key: price.lookup_key,
+        unit_amount: unitAmount,
+        unit_amount_decimal: unitAmountDecimal
+    }],
   }]
 });
 console.log("New Sub: " + JSON.stringify(newSub));
