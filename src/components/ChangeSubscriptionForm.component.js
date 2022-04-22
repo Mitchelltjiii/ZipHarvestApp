@@ -11,6 +11,23 @@ import leafImage2 from '../leafImage2.png';
 import leafImage3 from '../leafImage3.png';
 
 function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType}) {
+  const styles = {
+    slide: {
+      height: '100%',
+      width: '100%',
+      color: '#fff',
+    },
+    slide1: {
+      background: '#FFFFFF',
+    },
+    slide2: {
+      background: '#FFFFFF',
+    },
+    slide3: {
+      background: '#FFFFFF',
+    },
+  };
+  
 
     const [subscription,setSubscription] = React.useState([]);
     let basicText = "Select";
@@ -31,6 +48,9 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
 
     let formWidth = "450px";
     let formHeight = "250px";
+    let pricingImageHeight = "50px";
+    let pricingImageWidth = "150px";
+    let leafImageHeight = "100px";
 
     if(isMobile){
       formWidth = "100%";
@@ -43,13 +63,13 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
       });
       const json = await response.json();
     
-      updateUserSessionID(user.username,json.id,lookup_key);
+      updateUserSessionID(json.id,lookup_key);
     
       window.location.replace(json.url);
     }
     
-    async function updateUserSessionID(username,id,lookup_key){
-      fetch(`/user/updateUserSessionID/${username}/${id}`, {
+    async function updateUserSessionID(id,lookup_key){
+      fetch(`/user/updateUserSessionID/${userID}/${id}`, {
             method: 'PUT',
             headers: {
               'Accept': 'application/json',
