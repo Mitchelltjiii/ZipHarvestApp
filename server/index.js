@@ -342,11 +342,11 @@ app.get('/update-subscription/:subid/:priceid', async (req,res) =>{
     unitAmountDecimal = "35000";
   }
 
-  let newSub = stripe.subscriptions.update(req.params.subid, {
+  let newSub = await stripe.subscriptions.update(req.params.subid, {
   cancel_at_period_end: false,
   proration_behavior: 'create_prorations',
-  items: [{
-    data: [{
+  items: {
+    data: {
       id: subscription.items.data[0].id,
       price: {
           id: req.params.priceid,
@@ -354,9 +354,13 @@ app.get('/update-subscription/:subid/:priceid', async (req,res) =>{
           unit_amount: unitAmount,
           unit_amount_decimal: unitAmountDecimal
       },
-    }]
-  }]
+    }
+  }
 });
+const subscription = await stripe.subscriptions.update(
+  'sub_1JwC4RGBqcLC10HcHCeeHtpO',
+  {metadata: {order_id: '6735'}}
+);
 console.log("New Sub: " + JSON.stringify(newSub));
   res.json(newSub);
 })
