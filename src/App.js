@@ -60,7 +60,7 @@ export default class App extends React.Component {
         this.setState({subscription:json});
         this.getUser(username,staySignedIn);
       }else{
-        this.executeLogInFailed();
+        this.setState({newUsername:username,currentPage:'stripe-form'});
       }
     }else{
       this.setState({subscription:json});
