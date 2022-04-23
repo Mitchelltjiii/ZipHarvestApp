@@ -29,6 +29,9 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
     },
   };
   
+  const handleGoToHome = () => {
+    window.location.replace("https://www.zipharvest.app/");
+  }  
 
   const [success,setSuccess] = React.useState("");
     const [subscription,setSubscription] = React.useState([]);
@@ -134,12 +137,20 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
       }
 
       const ProductDisplay = () => (
-        <div id="product-display" style={{position:"absolute",top:"0px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:"#eeeeee"}}>
+        <div id="product-display" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:"#eeeeee"}}>
           {(success==="Yes") ?
-          <div>Success</div>
-          : (success === "No") ? (
-          <div>Fail</div>
-          ) : 
+          <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+          <Grid
+      container
+      direction="column"
+        justifyContent="center"
+      alignItems="center"
+    >
+          <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center"}}>Success! Your subscription has been updated.</div>
+          <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
+          </Grid>
+        </div>
+          : 
           <Grid
                 container
                 direction="column"
@@ -200,7 +211,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
                   direction="column"
                   justifyContent="center"
                   alignItems="center"
-                  style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff",maxWidth:"250px"}}
+                  style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff",maxWidth:"350px"}}
                     >
                     <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Premium</div>
                     <img alt="leafImage3" src={leafImage3} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
@@ -245,10 +256,18 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
       const ProductDisplayMobile = () => (
         <div id="product-display-mobile" style={{width:"100%",height:"100%"}}>
           {(success==="Yes") ?
-          <div>Success</div>
-          : (success === "No") ? (
-          <div>Fail</div>
-          ) : 
+          <div style={{width:formWidth,height:formHeight,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+                <Grid
+            container
+            direction="column"
+              justifyContent="center"
+              alignItems="center"
+          >
+                <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center"}}>Success! Your subscription has been updated.</div>
+                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
+                </Grid>
+                </div>
+          : 
           <div>
             {(subType === "basic") ? 
           <SwipeableViews>
