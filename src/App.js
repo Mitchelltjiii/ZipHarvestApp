@@ -541,7 +541,22 @@ export default class App extends React.Component {
   cancelSubscription = async (subId) => {
     const response = await fetch(`/cancel-subscription/${subId}`);
     await response.json();
-    this.executeLogout();
+
+    this.updateUserSubId()
+  }
+
+  updateUserSubId = async() => {
+    let subid = "";
+    fetch(`/user/subid/${subid}/${this.state.userID}`, {
+          method: 'PUT',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+    }).then(function(response) {
+    }).then(function(data) {
+      this.executeLogout();
+    });
   }
 
   getSubIdForCancel = async () => {
