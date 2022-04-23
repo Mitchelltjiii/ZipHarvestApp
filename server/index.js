@@ -329,19 +329,6 @@ app.get('/get-user-seshId/:seshId', async (req,res) =>{
 
 app.get('/update-subscription/:subid/:priceid', async (req,res) =>{
   const subscription = await stripe.subscriptions.retrieve(req.params.subid);
-  const price = await stripe.prices.retrieve(req.params.priceid);
-  console.log("Price: " + JSON.stringify(price));
-
-  let unitAmount = 12000;
-  let unitAmountDecimal = "12000";
-  if(price.lookup_key==="standard"){
-    unitAmount = 20000;
-    unitAmountDecimal = "20000";
-  }else if(price.lookup_key==="premium"){
-    unitAmount = 35000;
-    unitAmountDecimal = "35000";
-  }
-
 
   let newSub = await stripe.subscriptions.update(req.params.subid, {
   cancel_at_period_end: false,
