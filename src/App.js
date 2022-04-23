@@ -89,8 +89,6 @@ export default class App extends React.Component {
     this.state.usersLoading = false;
     let gotResponse = false;
 
-    console.log("txt: " + text);
-
     if(text === "0"){
       gotResponse = true;
       if(username.includes("Mitchell")){

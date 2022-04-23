@@ -200,7 +200,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
                   direction="column"
                   justifyContent="center"
                   alignItems="center"
-                  style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff"}}
+                  style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff",maxWidth:"250px"}}
                     >
                     <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Premium</div>
                     <img alt="leafImage3" src={leafImage3} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
