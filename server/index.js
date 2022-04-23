@@ -851,13 +851,17 @@ app.put('/user/updateLinkCode/:linkCode/:linkCodeTime/:username', (req, res) =>{
 });
 
 app.put('/user/subid/:subid/:username', (req, res) =>{
+  let subid = "";
+  if(req.params.subid !== "none"){
+    subid = req.params.subid;
+  }
   pool.getConnection((err, connection) => {
     if(err) throw err;
 
   connection.query(`UPDATE users SET
   subid = ?, sessionID = ? WHERE (username = ?)`, 
   [
-    req.params.subid,"", req.params.username
+    subid,"", req.params.username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;

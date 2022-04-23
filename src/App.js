@@ -545,8 +545,8 @@ export default class App extends React.Component {
     this.updateUserSubId()
   }
 
-  updateUserSubId = async() => {
-    let subid = "";
+  updateUserSubId = async () => {
+    let subid = "none";
     fetch(`/user/subid/${subid}/${this.state.userID}`, {
           method: 'PUT',
           headers: {
@@ -554,8 +554,8 @@ export default class App extends React.Component {
             'Content-Type': 'application/json'
           }
     }).then(function(response) {
-    }).then(function(data) {
       this.executeLogout();
+    }).then(function(data) {
     });
   }
 
