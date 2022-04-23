@@ -136,8 +136,13 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
           }
       }
 
+      let backgroundColor = "#eeeeee";
+      if(success==="Yes"){
+        backgroundColor = "#ffffff";
+      }
+
       const ProductDisplay = () => (
-        <div id="product-display" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:"#eeeeee"}}>
+        <div id="product-display" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:backgroundColor}}>
           {(success==="Yes") ?
           <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
           <Grid
@@ -171,7 +176,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
                       direction="column"
                       justifyContent="center"
                       alignItems="center"
-                      style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff"}}
+                      style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff",maxWidth:"400px"}}
                         >
                         <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Standard</div>
                         <img alt="leafImage2" src={leafImage2} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
@@ -211,7 +216,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
                   direction="column"
                   justifyContent="center"
                   alignItems="center"
-                  style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff",maxWidth:"350px"}}
+                  style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff",maxWidth:"400px"}}
                     >
                     <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold"}}>Premium</div>
                     <img alt="leafImage3" src={leafImage3} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
