@@ -611,6 +611,10 @@ export default class App extends React.Component {
 
     }
 
+    if(currUrl.includes("createaccount")){
+      this.setCurrentPage('create-user-form');
+    }
+
     let successEqualsStr = "success=";
     if(currUrl.includes("success")){
       let successStr = currUrl.substring(currUrl.indexOf(successEqualsStr)+successEqualsStr.length,currUrl.indexOf(successEqualsStr)+successEqualsStr.length+5);
