@@ -357,10 +357,6 @@ app.get('/update-subscription/:subid/:priceid', async (req,res) =>{
     }
   }
 });
-const subscription = await stripe.subscriptions.update(
-  'sub_1JwC4RGBqcLC10HcHCeeHtpO',
-  {metadata: {order_id: '6735'}}
-);
 console.log("New Sub: " + JSON.stringify(newSub));
   res.json(newSub);
 })
