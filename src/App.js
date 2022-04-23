@@ -547,16 +547,18 @@ export default class App extends React.Component {
 
   updateUserSubId = async () => {
     let subid = "none";
-    fetch(`/user/subid/${subid}/${this.state.userID}`, {
+    const response = await fetch(`/user/subid/${subid}/${this.state.userID}`, {
           method: 'PUT',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           }
-    }).then(function(response) {
-      this.executeLogout();
-    }).then(function(data) {
     });
+    const json = await response.json();
+    if(json !== undefined){
+      this.executeLogout();
+    }else{
+    }
   }
 
   getSubIdForCancel = async () => {

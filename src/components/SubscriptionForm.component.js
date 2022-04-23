@@ -90,7 +90,7 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount}) {
     rows.push(createData("Unique Plant Tags Exported This Month",plantCount));
     rows.push(createData("Unique Plant Tags Per Month",possiblePlantCount));
     rows.push(createData("Renewal Date",renewalDate));
-    if(subType !== "premium"){
+    if(subType !== "Premium"){
       rows.push(createData("Upgrade Subscription",""));
     }
     rows.push(createData("Cancel Subscription",""));
