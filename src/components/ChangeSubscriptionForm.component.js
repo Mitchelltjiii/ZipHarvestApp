@@ -142,7 +142,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
       }
 
       const ProductDisplay = () => (
-        <div id="product-display" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:backgroundColor}}>
+        <div id="product-display" style={{position:"absolute",top:"30px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:backgroundColor}}>
           {(success==="Yes") ?
           <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
           <Grid
