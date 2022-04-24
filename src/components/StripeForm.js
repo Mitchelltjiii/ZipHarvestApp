@@ -139,8 +139,8 @@ const ProductDisplay = () => (
               </Grid>
               </Grid>
               </Grid>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#047AF6",color:"#FFFFFF"}} onClick={handleGoToBasic}>Start a free trial</Button>
-              <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"14px",fontFamily:"Arial, Helvetica, serif"}}>{seeMoreFeatures}</div>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"80px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToBasic}>Start a free trial</Button>
+              <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"11px",fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures}</div>
               </Grid>
               <Grid
 				    container
@@ -250,9 +250,9 @@ const ProductDisplayMobile = () => (
             wrap="nowrap"
             style={{marginTop:"10px"}}
 			        >
-              <div style={{marginRight:"30px",fontWeight:"bold",fontSize:"50px"}}>&#1094;</div>
+              <div style={{marginRight:"30px",fontWeight:"bold",fontSize:"50px"}}>&#10094;</div>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px",marginTop:"2px"}}>Billed monthly</div>
-              <div style={{marginLeft:"30px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#1095;</div>
+              <div style={{marginLeft:"30px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#10095;</div>
               </Grid>
             <Grid
 				    container
@@ -263,8 +263,8 @@ const ProductDisplayMobile = () => (
               <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 2,000</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#047AF6",color:"#FFFFFF"}} onClick={handleGoToBasic}>Start a free trial</Button>
-              <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif"}}>{seeMoreFeatures}</div>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"80px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToBasic}>Start a free trial</Button>
+              <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures}</div>
               </Grid> 
           </div>
           <div style={Object.assign({}, styles.slide, styles.slide2)}>
