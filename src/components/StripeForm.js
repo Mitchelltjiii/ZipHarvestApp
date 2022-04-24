@@ -48,6 +48,14 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
   let pricingImageWidth = "150px";
   let leafImageHeight = "100px";
 
+  const handleSeeMoreFeatures = () => {
+    clickSeeMoreFeatures();
+  };
+
+  function clickSeeMoreFeatures(){
+    window.open("https://www.flora-sol.com/", '_blank');
+  }
+
   if(isMobile){
     formWidth = "100%";
   }
