@@ -30,7 +30,9 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
     },
   };
 
-  var seeMoreFeatures = <a href="https://www.flora-sol.com/" style={{cursor:"pointer",color:"#000000",textDecoration:"none",letterSpacing:"1"}}>SEE MORE FEATURES</a>;
+  let green = "#729d3f";
+
+  var seeMoreFeatures = <a href="https://flora-sol.com/pricing#4234583d-852b-4753-b64e-c6e17a520e78" style={{cursor:"pointer",color:"#000000",textDecoration:"underline",letterSpacing:"1"}}>LEARN MORE</a>;
 
   /*slide1: {
       background: '#FEA900',
@@ -109,7 +111,7 @@ const ProductDisplay = () => (
 				    alignItems="center"
             style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff"}}
 			        >
-              <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold",fontSize:"27px"}}>Basic</div>
+              <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold",fontSize:"29px"}}>Basic</div>
               <img alt="leafImage1" src={leafImage1} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
               <img alt="pricingImage" src={pricingImage1} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px"}}>Billed monthly</div>
@@ -132,13 +134,13 @@ const ProductDisplay = () => (
             justifyContent="center"
 				    alignItems="center"
 			        >
-              <div style={{marginTop:"25px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>Export up to 2000</div>
+              <div style={{marginTop:"25px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>Export up to 2,000</div>
               <div style={{marginTop:"2px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
               </Grid>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#047AF6",color:"#FFFFFF"}} onClick={handleGoToBasic}>Start a free trial</Button>
-              <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"18px",fontFamily:"Arial, Helvetica, sans-serif"}}>{seeMoreFeatures}</div>
+              <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"14px",fontFamily:"Arial, Helvetica, serif"}}>{seeMoreFeatures}</div>
               </Grid>
               <Grid
 				    container
@@ -170,7 +172,7 @@ const ProductDisplay = () => (
             justifyContent="center"
 				    alignItems="center"
 			        >
-              <div style={{marginTop:"25px",textAlign:"center"}}>Export up to 5000</div>
+              <div style={{marginTop:"25px",textAlign:"center"}}>Export up to 5,000</div>
               <div style={{marginTop:"2px",textAlign:"center"}}>plants per month</div>
               </Grid>
               </Grid>
@@ -237,7 +239,7 @@ const ProductDisplayMobile = () => (
               style={{width:formWidth}}
               wrap="nowrap"
 			        >
-              <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#000000",fontSize:"27px"}}>Basic</div>
+              <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#000000",fontSize:"29px"}}>Basic</div>
               <img alt="leafImage1" src={leafImage1} style={{height:leafImageHeight,marginTop:"10px",marginBottom:"10px"}}/>
               <img alt="pricingImage" src={pricingImage1} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <Grid
@@ -248,9 +250,9 @@ const ProductDisplayMobile = () => (
             wrap="nowrap"
             style={{marginTop:"10px"}}
 			        >
-              <div style={{marginRight:"30px",fontWeight:"bold",fontSize:"50px"}}>&#8592;</div>
+              <div style={{marginRight:"30px",fontWeight:"bold",fontSize:"50px"}}>&#1094;</div>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px",marginTop:"2px"}}>Billed monthly</div>
-              <div style={{marginLeft:"30px",fontWeight:"bold",color:"#000000",fontSize:"50px"}}>&#8594;</div>
+              <div style={{marginLeft:"30px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#1095;</div>
               </Grid>
             <Grid
 				    container
@@ -258,11 +260,11 @@ const ProductDisplayMobile = () => (
             justifyContent="center"
 				    alignItems="center"
 			        >
-              <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 2000</div>
+              <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 2,000</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#047AF6",color:"#FFFFFF"}} onClick={handleGoToBasic}>Start a free trial</Button>
-              <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"18px", fontFamily:"Arial, Helvetica, sans-serif"}}>{seeMoreFeatures}</div>
+              <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif"}}>{seeMoreFeatures}</div>
               </Grid> 
           </div>
           <div style={Object.assign({}, styles.slide, styles.slide2)}>
@@ -295,7 +297,7 @@ const ProductDisplayMobile = () => (
             justifyContent="center"
 				    alignItems="center"
 			        >
-              <div style={{marginTop:"25px",textAlign:"center",color:"#000000"}}>Export up to 5000</div>
+              <div style={{marginTop:"25px",textAlign:"center",color:"#000000"}}>Export up to 5,000</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000"}}>plants per month</div>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",marginRight:"5px",marginLeft:"5px",
