@@ -73,7 +73,7 @@ export default class App extends React.Component {
     if(json !== undefined){
       console.log("get subid json: " + json);
       console.log("get subid string: " + JSON.stringify(json)); 
-      if(json.length===13 || JSON.stringify(json).length===10){
+      if(json.length===13 || JSON.stringify(json).length===13){
         console.log("Unix detected");
         if((new Date()).getTime()-JSON.parse(JSON.stringify(json))>1209600000){
           console.log("greater");
