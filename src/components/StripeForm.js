@@ -411,7 +411,7 @@ async function updateUserSubId(username,subid){
 async function updateUserVerified(username){
   let today = JSON.stringify((new Date()).getTime());
   if(!username.includes("Mitchell")){
-    today === "0";
+    today = "0";
   }
 
   fetch(`/user/verified/${username}/${today}`, {
