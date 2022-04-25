@@ -870,14 +870,21 @@ app.put('/user/subid/:subid/:username', (req, res) =>{
   });
 });
 
-app.put('/user/verified/:username', (req, res) =>{
+app.put('/user/verified/:username/:trialstart', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
 
+    let trialStart = req.params.trialstart;
+    if(trialStart==="0"){
+      trialStart = "";
+    }
+
+    console.log("req trial start: " + req.params.trialstart);
+
   connection.query(`UPDATE users SET
-  verified = ?, verificationCode = ?, verCodeTime = ? WHERE (username = ?)`, 
+  verified = ?, verificationCode = ?, verCodeTime = ?, subid = ? WHERE (username = ?)`, 
   [
-    0,"","",req.params.username
+    0,"","",req.params.trialstart,req.params.username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;

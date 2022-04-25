@@ -71,7 +71,21 @@ export default class App extends React.Component {
     const response = await fetch(`/get-subid/${username}`);
     const json = await response.json();
     if(json !== undefined){
+      console.log("get subid json: " + json);
+      console.log("get subid string: " + JSON.stringify(json)); 
+      if(json.length===13 || JSON.stringify(json).length===10){
+        console.log("Unix detected");
+        if((new Date()).getTime()-JSON.parse(JSON.stringify(json))>1209600000){
+          console.log("greater");
+          this.setState({newUsername:username,currentPage:'stripe-form'});
+        }else{
+          console.log("less than");
+          this.getUser(username,staySignedIn);
+        }
+      }else{
         this.getSubscription(json,username,staySignedIn,signIn);
+      }
+      
       }else{
         this.setState({newUsername:username,currentPage:'stripe-form'});
       }
