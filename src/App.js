@@ -463,11 +463,11 @@ export default class App extends React.Component {
     return subscriptionType;
   }
 
-  getFreeTrial = (subid) => {
+  getFreeTrial = () => {
     let freeTrial = -1;
-    console.log("this.subid: " + subid);
+    console.log("this.subid: " + this.state.subscription.subid);
 
-    if((new Date()).getTime()-parseInt(subid)<1209600000){
+    if((new Date()).getTime()-parseInt(this.state.subscription.subid)<1209600000){
       freeTrial = 1;
     }
 
