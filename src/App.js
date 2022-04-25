@@ -465,8 +465,9 @@ export default class App extends React.Component {
 
   getFreeTrial = () => {
     let freeTrial = false;
+    console.log("this.subid: " + this.state.subscription.subid);
 
-    if((new Date()).getTime()-JSON.parse(this.state.subscription.subid)<1209600000){
+    if((new Date()).getTime()-parseInt(this.state.subscription.subid)<1209600000){
       freeTrial = true;
     }
 
@@ -474,7 +475,7 @@ export default class App extends React.Component {
   }
 
   getFreeTrialEnds = () => {
-    let endTime = new Date(JSON.parse(this.state.subscription.subid)+1209600000);
+    let endTime = new Date(parseInt(this.state.subscription.subid)+1209600000);
 
     return endTime.toLocaleString();
   }
