@@ -11,7 +11,7 @@ import leafImage2 from '../leafImage2.png';
 import leafImage3 from '../leafImage3.png';
 
 function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType}) {
-  let testMode = true;
+  let testMode = false;
   const styles = {
     slide: {
       height: '100%',
@@ -52,7 +52,6 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
     }else if(subType === "premium"){
       premiumText = "Current";
     }
-
 
     let formWidth = "450px";
     let formHeight = "250px";
@@ -144,7 +143,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
       }
 
       const ProductDisplay = () => (
-        <div id="product-display" style={{position:"absolute",top:"30px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:"#eeeeee"}}>
+        <div id="product-display" style={{position:"absolute",top:"35px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center', backgroundColor:"#eeeeee"}}>
                 {(success==="Yes") ?
           <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
           <Grid
@@ -220,8 +219,8 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
                   style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff"}}
                     >
                     <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold",fontSize:"29px"}}>Premium</div>
-                    <img alt="leafImage1" src={leafImage2} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
-                    <img alt="pricingImage" src={pricingImage2} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+                    <img alt="leafImage1" src={leafImage3} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
+                    <img alt="pricingImage" src={pricingImage3} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
                     <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px"}}>Billed monthly</div>
                     <Grid
                   container

@@ -182,8 +182,8 @@ const ProductDisplay = () => (
             style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff"}}
 			        >
               <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold",fontSize:"29px"}}>Premium</div>
-              <img alt="leafImage1" src={leafImage2} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
-              <img alt="pricingImage" src={pricingImage2} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+              <img alt="leafImage1" src={leafImage3} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
+              <img alt="pricingImage" src={pricingImage3} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px"}}>Billed monthly</div>
               <Grid
 				    container
