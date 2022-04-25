@@ -727,7 +727,8 @@ export default class App extends React.Component {
       getDryRooms={this.getDryRooms} logInSuccess={this.state.logInSuccess} reloadDryRooms={this.reloadDryRooms} reloadExportRecords={this.reloadExportRecords}
       getUniqueIDCount={this.getUniqueIDCount} reloadSubscription={this.reloadSubscription} getPossiblePlantCount={this.getPossiblePlantCount} getSubscriptionType={this.getSubscriptionType} 
       getTutorials={this.getTutorials} setTutorials={this.setTutorials}
-      showHints={this.state.showHints} getPrint={this.getPrint} print={this.state.print}/>
+      showHints={this.state.showHints} getPrint={this.getPrint} print={this.state.print} getFreeTrial={this.getFreeTrial}
+      getFreeTrialEnds={this.getFreeTrialEnds}/>
     </div>;
     }else{
       let loginForm = false;
