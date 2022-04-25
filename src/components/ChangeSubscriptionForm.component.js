@@ -33,6 +33,12 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
     window.location.replace("https://www.zipharvest.app/");
   }  
 
+  let green = "#729d3f";
+
+  var seeMoreFeatures2 = <a href="https://flora-sol.com/pricing#d793dccc-e5f2-4f89-81ea-922233de0cc0" style={{cursor:"pointer",color:"#000000",textDecoration:"underline",letterSpacing:"1"}}>LEARN MORE</a>;
+  var seeMoreFeatures3 = <a href="https://flora-sol.com/pricing#d4b43337-6bf9-41e5-a9ae-3c5743e62e40" style={{cursor:"pointer",color:"#000000",textDecoration:"underline",letterSpacing:"1"}}>LEARN MORE</a>;
+
+
   const [success,setSuccess] = React.useState("");
     const [subscription,setSubscription] = React.useState([]);
     let basicText = "Select";
