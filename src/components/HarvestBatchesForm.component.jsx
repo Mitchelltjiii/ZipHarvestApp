@@ -6,30 +6,8 @@ import {isMobile} from 'react-device-detect';
 function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, userID, reloadExportRecords, getUniqueIDCount,getDryRooms,
 	getPossiblePlantCount,getFreeTrial}) {
 
-	const [freeTrial,setFreeTrial] = React.useState(0);
-	console.log("Free trial B: " + freeTrial);
 
-	async function getSubId(){
-		console.log("getsubidhbform")
-		const response = await fetch(`/get-subid/${userID}`);
-		const json = await response.json();
-		
-		if(json !== undefined){
-			getSubscription(subId);
-		  }
-	  }
-
-	async function getSubscription(subId){
-		console.log("getsubhbform")
-		const response = await fetch(`/get-subscription/${subId}`);
-		const json = await response.json();
-		setFreeTrial(getFreeTrial());
-	  }
-
-
-	if(freeTrial===0){
-		getSubId();
-	}
+	let freeTrial = getFreeTrial();
 
 	let uniqueIDCount = getUniqueIDCount();
 

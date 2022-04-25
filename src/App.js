@@ -464,18 +464,31 @@ export default class App extends React.Component {
   }
 
   getFreeTrial = () => {
-    let freeTrial = -1;
-    console.log("this.subid: " + this.state.subscription.subid);
+    let freeTrial = false;
+    let subid = "";
+    for(const val of users){
+      if(val.id === this.state.userID){
+        subid = val.subid;
+      }
+    }
+    console.log("this.user.subid: " + subid);
 
-    if((new Date()).getTime()-parseInt(this.state.subscription.subid)<1209600000){
-      freeTrial = 1;
+    if((new Date()).getTime()-parseInt(subid)<1209600000){
+      freeTrial = true;
     }
 
     return freeTrial;
   }
 
   getFreeTrialEnds = () => {
-    let endTime = new Date(parseInt(this.state.subscription.subid)+1209600000);
+    let subid = "";
+    for(const val of users){
+      if(val.id === this.state.userID){
+        subid = val.subid;
+      }
+    }
+    console.log("this.user.subid: " + subid);
+    let endTime = new Date(parseInt(subid)+1209600000);
 
     return endTime.toLocaleString();
   }
