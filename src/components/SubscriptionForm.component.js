@@ -11,7 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import {isMobile} from 'react-device-detect';
 
 
-function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount}) {
+function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial,getFreeTrialEnds}) {
 
     const handleClick = (title) => {
       if(title==="Cancel Subscription"){
@@ -24,6 +24,8 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount}) {
     const [subscription,setSubscription] = React.useState([]);
     const [plantCount,setPlantCount] = React.useState("");
     
+    let freeTrial = getFreeTrial();
+
     let subscriptionType = "";
 
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -33,6 +35,10 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount}) {
       newDate.setTime(Number(subscription.current_period_end)*1000);
       renewalDate = (newDate.toLocaleDateString(undefined, options));
       subscriptionType = subscription.items.data[0].price.lookup_key;
+    }
+
+    if(freeTrial){
+      renewalDate = "Free trial ends " + getFreeTrialEnds();
     }
 
     let possiblePlantCount = "";
@@ -87,8 +93,10 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount}) {
     const rows = [];
 
     rows.push(createData("Subscription Type",subType));
-    rows.push(createData("Unique Plant Tags Exported This Month",plantCount));
-    rows.push(createData("Unique Plant Tags Per Month",possiblePlantCount));
+    if(!freeTrial){
+      rows.push(createData("Unique Plant Tags Exported This Month",plantCount));
+      rows.push(createData("Unique Plant Tags Per Month",possiblePlantCount));
+    }
     rows.push(createData("Renewal Date",renewalDate));
     if(subType !== "Premium"){
       rows.push(createData("Upgrade Subscription",""));
@@ -148,7 +156,7 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount}) {
       </TableContainer>
                 </div>
                 :
-                <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+                <div style={{width:formWidth,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
 <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>

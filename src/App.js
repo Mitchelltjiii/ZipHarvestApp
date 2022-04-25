@@ -71,15 +71,10 @@ export default class App extends React.Component {
     const response = await fetch(`/get-subid/${username}`);
     const json = await response.json();
     if(json !== undefined){
-      console.log("get subid json: " + json);
-      console.log("get subid string: " + JSON.stringify(json)); 
       if(json.length===13 || JSON.stringify(json).length===13){
-        console.log("Unix detected");
         if((new Date()).getTime()-JSON.parse(JSON.stringify(json))>1209600000){
-          console.log("greater");
           this.setState({newUsername:username,currentPage:'stripe-form'});
         }else{
-          console.log("less than");
           this.getUser(username,staySignedIn);
         }
       }else{
@@ -90,6 +85,8 @@ export default class App extends React.Component {
         this.setState({newUsername:username,currentPage:'stripe-form'});
       }
   }
+
+
   getUsersFromDB = async (username,password,staySignedIn) => {
     if(username === "" || password === ""){
       this.executeLogInFailed();
@@ -464,6 +461,22 @@ export default class App extends React.Component {
       subscriptionType = this.state.subscription.items.data[0].price.lookup_key;
     }
     return subscriptionType;
+  }
+
+  getFreeTrial = () => {
+    let freeTrial = false;
+
+    if((new Date()).getTime()-JSON.parse(this.state.subscription.subid)<1209600000){
+      freeTrial = true;
+    }
+
+    return freeTrial;
+  }
+
+  getFreeTrialEnds = () => {
+    let endTime = new Date(JSON.parse(this.state.subscription.subid)+1209600000);
+
+    return endTime.toLocaleString();
   }
 
   executeGetExportRecords = () => {

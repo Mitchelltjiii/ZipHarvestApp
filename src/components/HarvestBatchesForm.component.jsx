@@ -3,7 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import HBTable from './HBTable.component';
 import {isMobile} from 'react-device-detect';
 
-function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, userID, reloadExportRecords, getUniqueIDCount,getDryRooms,getPossiblePlantCount}) {
+function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, userID, reloadExportRecords, getUniqueIDCount,getDryRooms,
+	getPossiblePlantCount,getFreeTrial}) {
 
 	let uniqueIDCount = getUniqueIDCount();
 
@@ -21,6 +22,8 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 		color = "#CB6300";
 	}
 
+	let freeTrial = getFreeTrial();
+
 	return (
 		<div id="harvest-batches-form" style={{margin:"auto"}}>
 			<Grid
@@ -29,7 +32,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
   				justifyContent="center"
 				alignItems="center"
 			>
-				{(userID.includes("Mitchell") && JSON.parse(getHarvestBatches()).length>0) ? <div style={{margin:"auto"}}>
+				{(userID.includes("Mitchell") && JSON.parse(getHarvestBatches()).length>0 && !freeTrial) ? <div style={{margin:"auto"}}>
 					<Grid
 					container
 					direction="row"

@@ -16,7 +16,8 @@ function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarve
 setNewHarvestRecordID, setNewPlantID, userID,reloadPlants,reloadPlantsAndHarvestRecords, reloadHarvestBatches,
 reloadHarvestRecords,setCurrentPage,executeLogout,setFromAccountSettings,attemptLogInFromEndSubForm,
 logInSuccess,getDryRooms,reloadDryRooms,reloadExportRecords,getUniqueIDCount,reloadSubscription,
-getPossiblePlantCount,getSubscriptionType,getTutorials,setTutorials,showHints,getPrint,print}){
+getPossiblePlantCount,getSubscriptionType,getTutorials,setTutorials,showHints,getPrint,print,getFreeTrial,
+getFreeTrialEnds}){
 	let fromAccountSettings = true;
 
     return(
@@ -28,7 +29,7 @@ getPossiblePlantCount,getSubscriptionType,getTutorials,setTutorials,showHints,ge
 				reloadHarvestBatches={reloadHarvestBatches} reloadHarvestRecords={reloadHarvestRecords} getTutorials={getTutorials} setTutorials={setTutorials} showHints={showHints}/>
 			) : currentPage === 'harvest-batches-form' ? (
 				<HarvestBatchesForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} 
-				getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms} getPossiblePlantCount={getPossiblePlantCount}/>
+				getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms} getPossiblePlantCount={getPossiblePlantCount} getFreeTrial={getFreeTrial}/>
 			) : currentPage === 'manage-dry-rooms-form' ? (
 				<ManageDryRoomsForm getDryRooms={getDryRooms} refreshOuter={refreshOuter} reloadDryRooms={reloadDryRooms} userID={userID} showHints={showHints}/>
 			) : currentPage === 'manage-plants-form' ? (
@@ -36,7 +37,8 @@ getPossiblePlantCount,getSubscriptionType,getTutorials,setTutorials,showHints,ge
 			) : currentPage === 'account-form' ? (
 				<AccountForm userID={userID} setCurrentPage={setCurrentPage} setFromAccountSettings={setFromAccountSettings} executeLogout={executeLogout} getPrint={getPrint}/>
 			) : currentPage === 'subscription-form' ? (
-				<SubscriptionForm userID={userID} setCurrentPage={setCurrentPage} getUniqueIDCount={getUniqueIDCount}/>
+				<SubscriptionForm userID={userID} setCurrentPage={setCurrentPage} getUniqueIDCount={getUniqueIDCount} getFreeTrial={getFreeTrial}
+				getFreeTrialEnds={getFreeTrialEnds}/>
 			) : currentPage === 'end-subscription-form' ? (
 				<EndSubscriptionForm setCurrentPage={setCurrentPage} attemptLogInFromEndSubForm={attemptLogInFromEndSubForm} logInSuccess={logInSuccess}></EndSubscriptionForm>
 			) : currentPage === 'reset-password-form' ? (
