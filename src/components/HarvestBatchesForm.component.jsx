@@ -6,6 +6,31 @@ import {isMobile} from 'react-device-detect';
 function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, userID, reloadExportRecords, getUniqueIDCount,getDryRooms,
 	getPossiblePlantCount,getFreeTrial}) {
 
+	const [freeTrial,setFreeTrial] = React.useState(0);
+	console.log("Free trial B: " + freeTrial);
+
+	async function getSubId(){
+		console.log("getsubidhbform")
+		const response = await fetch(`/get-subid/${userID}`);
+		const json = await response.json();
+		
+		if(json !== undefined){
+			getSubscription(subId);
+		  }
+	  }
+
+	async function getSubscription(subId){
+		console.log("getsubhbform")
+		const response = await fetch(`/get-subscription/${subId}`);
+		const json = await response.json();
+		setFreeTrial(getFreeTrial());
+	  }
+
+
+	if(freeTrial===0){
+		getSubId();
+	}
+
 	let uniqueIDCount = getUniqueIDCount();
 
 	let possiblePlantCount = getPossiblePlantCount();
@@ -22,8 +47,12 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
 		color = "#CB6300";
 	}
 
-	let freeTrial = getFreeTrial();
+	
 
+
+	
+
+	
 	return (
 		<div id="harvest-batches-form" style={{margin:"auto"}}>
 			<Grid
@@ -32,7 +61,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
   				justifyContent="center"
 				alignItems="center"
 			>
-				{(userID.includes("Mitchell") && JSON.parse(getHarvestBatches()).length>0 && !freeTrial) ? <div style={{margin:"auto"}}>
+				{(userID.includes("Mitchell") && JSON.parse(getHarvestBatches()).length>0 && freeTrial===-1) ? <div style={{margin:"auto"}}>
 					<Grid
 					container
 					direction="row"

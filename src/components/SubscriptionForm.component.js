@@ -21,11 +21,36 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial
       }
 	  }
 
+
+
     const [subscription,setSubscription] = React.useState([]);
     const [plantCount,setPlantCount] = React.useState("");
-    
-    let freeTrial = getFreeTrial();
+    const [freeTrial,setFreeTrial] = React.useState(0);
+    console.log("Free trial A: " + freeTrial);
 
+    async function getSubIdFreeTrial(){
+      console.log("getsubidfreetrail")
+
+      const response = await fetch(`/get-subid/${userID}`);
+      const json = await response.json();
+      
+      if(json !== undefined){
+        getSubscriptionFreeTrial(subId);
+        }
+      }
+  
+    async function getSubscription(subId){
+      console.log("getsubfreetrial")
+
+      const response = await fetch(`/get-subscription/${subId}`);
+      const json = await response.json();
+      setFreeTrial(getFreeTrial());
+      }
+
+    if(freeTrial === 0){
+      getSubIdFreeTrial();
+    }
+    
     let subscriptionType = "";
 
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -37,7 +62,7 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial
       subscriptionType = subscription.items.data[0].price.lookup_key;
     }
 
-    if(freeTrial){
+    if(freeTrial===1){
       renewalDate = "Free trial ends " + getFreeTrialEnds();
     }
 
@@ -93,7 +118,7 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial
     const rows = [];
 
     rows.push(createData("Subscription Type",subType));
-    if(!freeTrial){
+    if(freeTrial !== 1){
       rows.push(createData("Unique Plant Tags Exported This Month",plantCount));
       rows.push(createData("Unique Plant Tags Per Month",possiblePlantCount));
     }
