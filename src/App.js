@@ -466,7 +466,7 @@ export default class App extends React.Component {
   getFreeTrial = () => {
     let freeTrial = false;
     let subid = "";
-    for(const val of users){
+    for(const val of this.state.users){
       if(val.id === this.state.userID){
         subid = val.subid;
       }
@@ -482,7 +482,7 @@ export default class App extends React.Component {
 
   getFreeTrialEnds = () => {
     let subid = "";
-    for(const val of users){
+    for(const val of this.state.users){
       if(val.id === this.state.userID){
         subid = val.subid;
       }
