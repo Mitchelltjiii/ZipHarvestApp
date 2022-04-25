@@ -386,6 +386,7 @@ app.post('/create-checkout-session/:lookup_key', async (req, res) => {
         quantity: 1,
       },
     ],
+    trial_period_days: 14,
     mode: 'subscription',
     success_url: `${YOUR_DOMAIN}?success=true&session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${YOUR_DOMAIN}?canceled=true`,
