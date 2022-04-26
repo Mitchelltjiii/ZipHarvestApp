@@ -25,9 +25,9 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial
 
     const [subscription,setSubscription] = React.useState([]);
     const [plantCount,setPlantCount] = React.useState("");
-    console.log("Free trial A: " + freeTrial);
 
     let freeTrial = getFreeTrial();
+    console.log("Free trial A: " + freeTrial);
     
     let subscriptionType = "";
 
