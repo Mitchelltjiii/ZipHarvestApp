@@ -67,9 +67,9 @@ function AccountForm({userID, setCurrentPage, setFromAccountSettings,executeLogo
     const rows = [];
     rows.push(createData("Email",email));
     rows.push(createData("Change Password",""));
-    if(userID.includes("Mitchell")){
+    //if(userID.includes("Mitchell")){
       rows.push(createData("Subscription",""));
-    }
+    //}
     //rows.push(createData("Permissions",""));
     //rows.push(createData("About",""));
     rows.push(createData("Version","v1.0.0"));

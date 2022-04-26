@@ -39,7 +39,7 @@ function HarvestBatchesForm({getHarvestBatches, getHarvestRecords, getPlants, us
   				justifyContent="center"
 				alignItems="center"
 			>
-				{(userID.includes("Mitchell") && JSON.parse(getHarvestBatches()).length>0 && freeTrial===-1) ? <div style={{margin:"auto"}}>
+				{(JSON.parse(getHarvestBatches()).length>0 && freeTrial===-1) ? <div style={{margin:"auto"}}>
 					<Grid
 					container
 					direction="row"

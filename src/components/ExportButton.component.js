@@ -98,9 +98,9 @@ class ExportButton extends Component{
         }
 
         function exp(){
-          if(parent.props.userID.includes("Mitchell")){
+          //if(parent.props.userID.includes("Mitchell")){
             commitExportRecords();
-          }
+          //}
             parent.setState({choosingUnit:false});
             parent.forceUpdate();
         }

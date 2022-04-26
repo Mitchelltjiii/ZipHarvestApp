@@ -155,7 +155,7 @@ app.get("/api/users/:username/:password",(req,res) => {
                       subscription = true;
                     }
 
-                    if(req.params.username.includes("Mitchell")){
+                    //if(req.params.username.includes("Mitchell")){
                       console.log("includes");
                       if(subscription){
                         console.log("return 0");
@@ -167,6 +167,7 @@ app.get("/api/users/:username/:password",(req,res) => {
                         console.log("return 2");
                         res.json(2);
                       }
+                      /*
                     }else{
                       console.log("dni");
                       if(verified){
@@ -174,7 +175,7 @@ app.get("/api/users/:username/:password",(req,res) => {
                       }else{
                         res.json(2);
                       }
-                    }
+                    }*/
                   } else {
                     console.log("return 3 default");
                     res.json(3);

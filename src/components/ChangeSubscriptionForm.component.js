@@ -101,8 +101,6 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
     }
 
     const updateSubscription = async(newPriceID) => {
-      console.log("Sub id: " + subscription.id);
-      console.log("newPriceID: " + newPriceID);
         const response = await fetch(`/update-subscription/${subscription.id}/${newPriceID}`);
         const json = await response.json();
         if(json !== undefined){

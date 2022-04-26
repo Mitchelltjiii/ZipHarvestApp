@@ -104,13 +104,13 @@ export default class App extends React.Component {
 
     if(text === "0"){
       gotResponse = true;
-      if(username.includes("Mitchell")){
-        console.log("includes");
+      //if(username.includes("Mitchell")){
+        //console.log("includes");
         this.getSubId(username,staySignedIn,true);
-      }else{
+      /*}else{
         console.log("dni");
         this.getUser(username,staySignedIn,"");
-      }
+      }*/
     }else if(text === "1"){
       gotResponse = true;
       this.setState({newUsername:username,currentPage:'stripe-form'});
@@ -468,7 +468,6 @@ export default class App extends React.Component {
   getFreeTrial = () => {
     let freeTrial = false;
     
-    console.log("Sub id a: " + this.state.subid);
     if((new Date()).getTime()-parseInt(this.state.subid)<1209600000){
       freeTrial = true;
     }
@@ -477,7 +476,6 @@ export default class App extends React.Component {
   }
 
   getFreeTrialEnds = () => {
-    console.log("Sub id b: " + this.state.subid);
     let endTime = new Date(parseInt(this.state.subid)+1209600000);
 
     return endTime.toLocaleString();

@@ -27,7 +27,6 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial
     const [plantCount,setPlantCount] = React.useState("");
 
     let freeTrial = getFreeTrial();
-    console.log("Free trial A: " + freeTrial);
     
     let subscriptionType = "";
 
@@ -39,9 +38,7 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial
       renewalDate = (newDate.toLocaleDateString(undefined, options));
       subscriptionType = subscription.items.data[0].price.lookup_key;
     }
-    if(freeTrial){
-      subscriptionType = "Free Trial";
-    }
+    
 
     if(freeTrial){
       renewalDate = "Free trial ends " + getFreeTrialEnds();
@@ -58,6 +55,10 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial
     }else if(subscriptionType === "premium"){
       possiblePlantCount = "10000";
       subType = "Premium";
+    }
+
+    if(freeTrial){
+      subType = "Free Trial";
     }
 
 

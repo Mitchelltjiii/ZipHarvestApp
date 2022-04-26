@@ -68,12 +68,7 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin}) {
 
   function doContinue(){
     try{
-      console.log("USER DO CONT: " + JSON.stringify(user));
-      if(user.facilityName === "Mitchell"){
-        setContinued(true);
-      }else{
-        window.location.replace("https://www.zipharvest.app/");
-      }
+      setContinued(true);
     }catch(err){
       window.location.replace("https://www.zipharvest.app/");
     }
@@ -410,9 +405,9 @@ async function updateUserSubId(username,subid){
 
 async function updateUserVerified(username){
   let today = JSON.stringify((new Date()).getTime());
-  if(!username.includes("Mitchell")){
+  /*if(!username.includes("Mitchell")){
     today = "0";
-  }
+  }*/
 
   fetch(`/user/verified/${username}/${today}`, {
         method: 'PUT',
