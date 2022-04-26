@@ -15,6 +15,7 @@ export default class App extends React.Component {
   state = {
     currentPage: 'harvest-form',
     loggedIn: '',
+    subid: '',
     harvestBatches: [],
     plants: [],
     harvestRecords: [],
@@ -58,7 +59,7 @@ export default class App extends React.Component {
     if(signIn){
       if(json.canceled_at === null){
         this.setState({subscription:json});
-        this.getUser(username,staySignedIn);
+        this.getUser(username,staySignedIn,subId);
       }else{
         this.setState({newUsername:username,currentPage:'stripe-form'});
       }
@@ -75,7 +76,7 @@ export default class App extends React.Component {
         if((new Date()).getTime()-JSON.parse(JSON.stringify(json))>1209600000){
           this.setState({newUsername:username,currentPage:'stripe-form'});
         }else{
-          this.getUser(username,staySignedIn);
+          this.getUser(username,staySignedIn,json);
         }
       }else{
         this.getSubscription(json,username,staySignedIn,signIn);
@@ -99,6 +100,7 @@ export default class App extends React.Component {
     this.state.users = text;
     this.state.usersLoading = false;
     let gotResponse = false;
+    
 
     if(text === "0"){
       gotResponse = true;
@@ -107,7 +109,7 @@ export default class App extends React.Component {
         this.getSubId(username,staySignedIn,true);
       }else{
         console.log("dni");
-        this.getUser(username,staySignedIn);
+        this.getUser(username,staySignedIn,"");
       }
     }else if(text === "1"){
       gotResponse = true;
@@ -365,24 +367,24 @@ export default class App extends React.Component {
       this.setState({plants: tempPlants});
 	}
 
-  getUser = async (user,staySignedIn) => {
+  getUser = async (user,staySignedIn,subid) => {
     const response = await fetch(`/api/tutorials/${user}`);
     const text = await response.text();
     let txt = text.substring(1,text.length-1);
     
-    this.executeLogIn(user,staySignedIn,txt);
+    this.executeLogIn(user,staySignedIn,txt,subid);
   }
   
 
-  executeLogIn = (user,staySignedIn,tuts) =>{
+  executeLogIn = (user,staySignedIn,tuts,subid) =>{
     localStorage.setItem('user', user);
     localStorage.setItem('staySignedIn',staySignedIn);
     let currPage = localStorage.getItem("currentPage");
     
     if(currPage !== null && currPage !== undefined && currPage !== ""){
-      this.setState({loggedIn:user,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts});
+      this.setState({loggedIn:user,subid:subid,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts});
     }else{
-      this.setState({loggedIn:user,userID:user,logInFailed:false,tutorials:tuts});
+      this.setState({loggedIn:user,subid:subid,userID:user,logInFailed:false,tutorials:tuts});
     }
     this.resetAll([]);
     this.engageReload();
@@ -465,39 +467,18 @@ export default class App extends React.Component {
 
   getFreeTrial = () => {
     let freeTrial = false;
-    console.log("LoggedIn: " + this.state.loggedIn);
-    let logged = [];
-    if(this.state.loggedIn!==""){
-      logged = JSON.parse(this.state.loggedIn);
-    }
-    console.log("Logged: " + JSON.stringify(logged));
-    let subid = "";
-    console.log("This.state.userid: " + this.state.userID);
-    console.log("this.state.users: " + JSON.stringify(this.state.users));
-    for(const val of this.state.users){
-      console.log("Val: " + JSON.stringify(val));
-      if(val.username === this.state.userID){
-        subid = val.subid;
-      }
-    }
-    console.log("this.user.subid: " + subid);
-
-    if((new Date()).getTime()-parseInt(subid)<1209600000){
+    
+    console.log("Sub id a: " + this.state.subid);
+    if((new Date()).getTime()-parseInt(this.state.subid)<1209600000){
       freeTrial = true;
     }
 
     return freeTrial;
   }
 
-  getFreeTrialEnds = () => {
-    let subid = "";
-    for(const val of this.state.users){
-      if(val.username === this.state.userID){
-        subid = val.subid;
-      }
-    }
-    console.log("this.user.subid: " + subid);
-    let endTime = new Date(parseInt(subid)+1209600000);
+  getFreeTrialEnds = async () => {
+    console.log("Sub id b: " + this.state.subid);
+    let endTime = new Date(parseInt(this.state.subid)+1209600000);
 
     return endTime.toLocaleString();
   }
@@ -539,7 +520,7 @@ export default class App extends React.Component {
 
   executeLogout = () => {
     localStorage.clear();
-    this.setState({loggedIn:'',currentPage:'harvest-form',harvestBatches:[],plants:[],harvestRecords:[],
+    this.setState({loggedIn:'',subid:'',currentPage:'harvest-form',harvestBatches:[],plants:[],harvestRecords:[],
     plantsLoading:true,harvestBatchesLoading:true,harvestRecordsLoading:true,currentHarvest:[],userID:'',
     dryRooms:[],exportRecords:[], subscription:[], tutorials:""});
     this.forceUpdate();
@@ -645,6 +626,7 @@ export default class App extends React.Component {
     localStorage.setItem("currentPage","harvest-form");
     let reloaded = this.pageAccessedByReload();
     const loggedInUser = localStorage.getItem("user");
+    const subid = localStorage.getItem("subid");
 
     let staySignedInLocal = false;
     if(localStorage.getItem("staySignedIn")!==null && localStorage.getItem("staySignedIn")!==undefined && localStorage.getItem("staySignedIn")!==""){
@@ -659,8 +641,8 @@ export default class App extends React.Component {
       if(reloaded || staySignedIn){
         this.reloadExportRecords([]);
         this.reloadSubscription([]);
-        this.setState({loggedIn:loggedInUser,userID:loggedInUser,usersLoading:false});
-        this.getUser(loggedInUser,staySignedIn);
+        this.setState({loggedIn:loggedInUser,subid:subid,userID:loggedInUser,usersLoading:false,subid:subid});
+        this.getUser(loggedInUser,staySignedIn,subid);
       }
     }
 

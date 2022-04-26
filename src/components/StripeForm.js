@@ -6,9 +6,9 @@ import pricingImage1 from '../pricing1.svg';
 import pricingImage2 from '../pricing2.svg';
 import pricingImage3 from '../pricing3.svg';
 import SwipeableViews from 'react-swipeable-views';
-import leafImage1 from '../leafImage1.png';
-import leafImage2 from '../leafImage2.png';
-import leafImage3 from '../leafImage3.png';
+import leafImage1 from '../leafImage1.svg';
+import leafImage2 from '../leafImage2.svg';
+import leafImage3 from '../leafImage3.svg';
 
 
 export default function StripeForm({verCode,userFromUrl,userFromLogin}) {

@@ -217,6 +217,29 @@ app.get("/api/user-exists/:username",(req,res) => {
   });
 });
 
+app.get("/api/user-get-subid/:username",(req,res) => {
+  pool.getConnection((err, connection) => {
+      if(err) throw err;
+      connection.query(usersQueryString, (err, rows) => {
+          connection.release(); // return the connection to pool
+          let userExists = false;
+          if(err) throw err;
+          try{
+            for(const val of rows){
+              if(val.username==req.params.username){
+                userExists=true;
+                res.json(val.subid);
+              }
+            }
+          }catch(error){
+          }
+          if(!userExists){
+            res.json("");
+          }
+    });
+  });
+});
+
 app.get("/api/email-exists/:email",(req,res) => {
   pool.getConnection((err, connection) => {
       if(err) throw err;
