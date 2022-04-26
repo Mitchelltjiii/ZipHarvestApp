@@ -466,7 +466,10 @@ export default class App extends React.Component {
   getFreeTrial = () => {
     let freeTrial = false;
     let subid = "";
+    console.log("This.state.userid: " + this.state.userID);
+    console.log("this.state.users: " + JSON.stringify(this.state.users));
     for(const val of this.state.users){
+      console.log("Val: " + JSON.stringify(val));
       if(val.username === this.state.userID){
         subid = val.subid;
       }
