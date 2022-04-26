@@ -465,6 +465,12 @@ export default class App extends React.Component {
 
   getFreeTrial = () => {
     let freeTrial = false;
+    console.log("LoggedIn: " + this.state.loggedIn);
+    let logged = [];
+    if(this.state.loggedIn!==""){
+      logged = JSON.parse(this.state.loggedIn);
+    }
+    console.log("Logged: " + JSON.stringify(logged));
     let subid = "";
     console.log("This.state.userid: " + this.state.userID);
     console.log("this.state.users: " + JSON.stringify(this.state.users));
