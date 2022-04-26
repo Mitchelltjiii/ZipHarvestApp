@@ -73,7 +73,7 @@ export default class App extends React.Component {
     const json = await response.json();
     if(json !== undefined){
       if(json.length===13 || JSON.stringify(json).length===13){
-        if((new Date()).getTime()-JSON.parse(JSON.stringify(json))>1209600000){
+        if((new Date()).getTime()-parseInt(json)>1209600000){
           this.setState({newUsername:username,currentPage:'stripe-form'});
         }else{
           this.getUser(username,staySignedIn,json);
