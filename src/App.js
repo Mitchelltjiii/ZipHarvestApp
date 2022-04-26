@@ -476,7 +476,7 @@ export default class App extends React.Component {
     return freeTrial;
   }
 
-  getFreeTrialEnds = async () => {
+  getFreeTrialEnds = () => {
     console.log("Sub id b: " + this.state.subid);
     let endTime = new Date(parseInt(this.state.subid)+1209600000);
 
