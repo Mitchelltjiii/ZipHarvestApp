@@ -39,6 +39,9 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial
       renewalDate = (newDate.toLocaleDateString(undefined, options));
       subscriptionType = subscription.items.data[0].price.lookup_key;
     }
+    if(freeTrial){
+      subscriptionType = "Free Trial";
+    }
 
     if(freeTrial){
       renewalDate = "Free trial ends " + getFreeTrialEnds();
@@ -101,10 +104,12 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial
       rows.push(createData("Unique Plant Tags Per Month",possiblePlantCount));
     }
     rows.push(createData("Renewal Date",renewalDate));
-    if(subType !== "Premium"){
+    if(subType !== "Premium" && !freeTrial){
       rows.push(createData("Upgrade Subscription",""));
     }
-    rows.push(createData("Cancel Subscription",""));
+    if(!freeTrial){
+      rows.push(createData("Cancel Subscription",""));
+    }
 
     async function getSubId(){
       const response = await fetch(`/get-subid/${userID}`);
