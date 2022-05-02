@@ -362,7 +362,9 @@ const handleGoToPremium = () => {
 }
 
 const handleGetStarted = () => {
-  window.location.replace("https://www.zipharvest.app/");
+  console.log("GS");
+  window.location.reload();
+  //window.location.replace("https://www.zipharvest.app/");
 }
 
 
