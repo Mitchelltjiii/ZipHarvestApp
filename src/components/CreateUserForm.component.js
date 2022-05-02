@@ -139,9 +139,11 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
     
 
     function doContinue(){
-            if(email.includes("@") && isValidString(facilityName) && isValidString(firstName) && isValidString(lastName) && (email.includes("@")) && isValidStringEmail(email) && isUsernameValid() && isPasswordValid(password) && isPasswordValid(passwordAgain) && (password === passwordAgain)){
+      //&& isValidString(facilityName) && isValidString(firstName) && isValidString(lastName)  && isPasswordValid(passwordAgain) && (password === passwordAgain)
+            if(email.includes("@") && isValidStringEmail(email) && isUsernameValid() && isPasswordValid(password)){
               getEmailExists();
             }else{
+              /*
               if(!isValidString(facilityName)){
                 setFacilityNameError(true);
               }
@@ -150,7 +152,7 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
               }
               if(!isValidString(lastName)){
                 setLastNameError(true);
-              }
+              }*/
               if(!(email.includes("@")) || !isValidStringEmail(email)){
                 setFailedEmail(email);
                 if(!(email.includes("@"))){
@@ -168,13 +170,14 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
                 setPasswordHelperText("(8-16 letters,numbers,!@#$%^&*)")
                 setPasswordError(true);
               }
+              /*
               if(!isPasswordValid(passwordAgain) || (password !== passwordAgain)){
                 if(password !== passwordAgain){
                   setFailedVerifyPassword(passwordAgain);
                   setVerifyPasswordHelperText("Passwords do not match");
                 }
                 setVerifyPasswordError(true);
-              }
+              }*/
             }
           }
 
@@ -228,9 +231,9 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
         userItem.apiid = username;
         userItem.username = username;
         userItem.password = password;
-        userItem.facilityName = facilityName;
-        userItem.firstName = firstName;
-        userItem.lastName = lastName;
+        //userItem.facilityName = facilityName;
+        //userItem.firstName = firstName;
+        //userItem.lastName = lastName;
         userItem.email = email;
         userItem.verificationCode = newCode;
         userItem.verCodeTime = JSON.stringify((new Date()).getTime());
@@ -282,8 +285,7 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
 
     async function sendSignupNotificationEmail(){
       try{
-        let name = firstName + " " + lastName;
-        const response = await fetch(`/send-signup-notification-email/${email}/${name}/${username}/${facilityName}`);
+        const response = await fetch(`/send-signup-notification-email/${email}/${username}`);
         await response.json();
       }catch(err){
       }
@@ -346,14 +348,108 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
     var privacyPolicyLink = <a href="/#" onClick={handlePrivacyPolicy} style={{cursor:"pointer",color:"#3d85c6",textDecoration:"none"}}>Privacy Policy.</a>;  
 
     let formWidth = "550px";
-    let formHeight = "580px";
+    let formHeight = "300px";
 
     if(isMobile){
       formWidth = "100%";
-      formHeight = "550px";
+      formHeight = "300px";
     }
 
   if(isMobile){
+    return (
+      <div id="create-user-form">
+        <Grid
+          container
+          direction="column"
+            justifyContent="center"
+          alignItems="center"
+        >
+                  <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px",width:"248px"}}></TextField>
+                  <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginBottom:"10px",width:"248px"}}></TextField>
+                  <TextField
+    helperText={passwordHelperText} error={passwordError} 
+    style={{marginBottom:"10px",width:"248px"}}
+    value={password}
+    label='Password'
+    variant="outlined"
+    type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+    onChange={handlePassword} 
+    InputProps={{ // <-- This is where the toggle button is added.
+      endAdornment: (
+        <InputAdornment position="end">
+          <IconButton
+            aria-label="toggle password visiblity"
+            onClick={handleClickShowPassword}
+            onMouseDown={handleMouseDownPassword}
+          >
+            {showPassword ? <Visibility /> : <VisibilityOff />}
+          </IconButton>
+        </InputAdornment>
+      )
+    }}
+  />          
+  <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>                
+  <Button style={{marginTop:"10px",marginBottom:"20px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
+  </Grid>
+  </div>);
+  }else{
+    return (
+      <div id="create-user-form" style={{position:"absolute",top:"50px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+        <Grid
+          container
+          direction="column"
+            justifyContent="center"
+          alignItems="center"
+        >
+                  <div style={{fontSize:"28px",marginTop:"10px",marginBottom:"10px",fontWeight:"bold"}}>Welcome to ZipHarvest!</div>       
+                  
+        <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,paddingTop:"20px"}}>
+    <Grid
+  container
+  direction="column"
+  justifyContent="center"
+  alignItems="center"
+  >
+        <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px",width:"248px"}}></TextField>
+        <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginBottom:"10px",width:"248px"}}></TextField>
+        <TextField
+    helperText={passwordHelperText} error={passwordError} 
+    style={{marginBottom:"10px",width:"248px"}}
+    value={password}
+    label='Password'
+    variant="outlined"
+    type={showPassword ? "text" : "password"} // <-- This is where the magic happens
+    onChange={handlePassword} 
+    InputProps={{ // <-- This is where the toggle button is added.
+      endAdornment: (
+        <InputAdornment position="end">
+          <IconButton
+            aria-label="toggle password visiblity"
+            onClick={handleClickShowPassword}
+            onMouseDown={handleMouseDownPassword}
+          >
+            {showPassword ? <Visibility /> : <VisibilityOff />}
+          </IconButton>
+        </InputAdornment>
+      )
+    }}
+  />         
+  
+  <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
+  
+    </Grid>
+  </div>
+                  
+  <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
+</Grid>
+</div>
+    );
+  }
+}
+
+export default CreateUserForm;
+/*
+if(isMobile){
     return (
       <div id="create-user-form">
         <Grid
@@ -491,7 +587,4 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
 </Grid>
 </div>
     );
-  }
-}
-
-export default CreateUserForm;
+  } */

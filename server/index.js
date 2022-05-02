@@ -36,12 +36,12 @@ const { withMobileDialog } = require("@material-ui/core");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 
-app.get('/send-signup-notification-email/:address/:name/:username/:facilityName', async (req,res) =>{
+app.get('/send-signup-notification-email/:address/:username', async (req,res) =>{
   const msg = {
     to: 'florasolutions99@gmail.com', // Change to your recipient
     from: 'welcome@zipharvest.app', // Change to your verified sender
     subject: 'Someone signed up for ZipHarvest',
-    text: 'Address: ' + req.params.address + ', Name: ' + req.params.name + ', Username: ' + req.params.username + ', Facility Name: ' + req.params.facilityName,
+    text: 'Address: ' + req.params.address + ', Username: ' + req.params.username,
   }
   
   sgMail.send(msg).then((response) => {
