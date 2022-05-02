@@ -21,7 +21,8 @@ import {isMobile} from 'react-device-detect';
 
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches,
 	currentHarvest, setNewHBID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
-	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords,getTutorials,setTutorials,showHints}) { 
+	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords,getTutorials,setTutorials,showHints,
+	setCurrentPage}) { 
 
 	let tutorials = getTutorials();
 	function HarvestBatch(name,type,date,userID){
@@ -357,6 +358,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   const [monthValue, setMonthValue] = React.useState(1);
   const [dayValue, setDayValue] = React.useState(1);
   const [yearValue, setYearValue] = React.useState(2021);
+
+  const handleTutorialLink = () => {
+	setCurrentPage('tutorial-form');
+	};
+
+  var tutorialLink = <a onClick={handleTutorialLink} style={{cursor:"pointer",textDecoration:"none"}}>ID</a>;
 
   let monthList = [];
   for(let i = 1; i < 13; i++){
@@ -1030,7 +1037,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				style={{width:entryTutorialWidth,borderColor:"#90ee90",marginLeft:"10px",marginRight:"10px",marginTop:"10px",marginBottom:"10px",borderRadius:"5px",border: "1px solid #90ee90",paddingRight:"5px",paddingBottom:"5px"}}
 			>
 				
-				<div style={{margin:"5px",textAlign:"center",fontSize:entryTutorialFontSize}}>Before harvesting, open the menu and visit the Manage Plants and Manage Dry Rooms pages.</div>
+				<div style={{margin:"5px",textAlign:"center",fontSize:entryTutorialFontSize}}>Before harvesting, open the menu and visit the {tutorialLink}</div>
 				<Grid
 				container
 				direction="row"
