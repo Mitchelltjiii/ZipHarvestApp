@@ -363,7 +363,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	setCurrentPage('tutorial-form');
 	};
 
-  var tutorialLink = <a onClick={handleTutorialLink} style={{cursor:"pointer",textDecoration:"none"}}>ID</a>;
+  var tutorialLink = <a onClick={handleTutorialLink} style={{cursor:"pointer",textDecoration:"none"}}>tutorial.</a>;
 
   let monthList = [];
   for(let i = 1; i < 13; i++){
