@@ -52,6 +52,8 @@ app.get('/send-signup-notification-email/:address/:username', async (req,res) =>
 })
 
 app.get('/send-verification-email/:address/:verificationCode/:username', async (req,res) =>{
+  console.log("send ver email");
+  console.log("email: " + req.params.address + ", username: " + req.params.username + ", code: " + req.params.verificationCode);
     const msg = {
       to: req.params.address, // Change to your recipient
       from: 'welcome@zipharvest.app', // Change to your verified sender
@@ -65,8 +67,10 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
     }
     
     sgMail.send(msg).then((response) => {
+      console.log("sendver return 0");
         res.json(0);
       }).catch((error) => {
+        console.log("sendver return 1");
         res.json(1);
       })
   })
@@ -156,7 +160,6 @@ app.get("/api/users/:username/:password",(req,res) => {
                     }
 
                     //if(req.params.username.includes("Mitchell")){
-                      console.log("includes");
                       if(subscription){
                         console.log("return 0");
                         res.json(0);
