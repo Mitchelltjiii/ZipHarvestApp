@@ -67,11 +67,7 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin,setCurrent
 	}
 
   function doContinue(){
-    try{
-      setContinued(true);
-    }catch(err){
-      window.location.replace("https://www.zipharvest.app/");
-    }
+    window.location.replace("https://www.zipharvest.app/");
   }
 
 const [expired,setExpired] = React.useState(false);
@@ -362,11 +358,7 @@ const handleGoToPremium = () => {
 }
 
 const handleGetStarted = () => {
-  console.log("GS");
-  setCurrentPage('harvest-form');
-  setUser([]);
-  //window.location.reload();
-  //window.location.replace("https://www.zipharvest.app/");
+  window.location.replace("https://www.zipharvest.app/");
 }
 
 
