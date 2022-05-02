@@ -364,7 +364,7 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
             justifyContent="center"
           alignItems="center"
         >
-                  <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px",width:"248px"}}></TextField>
+                  <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginTop:"40px",marginBottom:"10px",width:"248px"}}></TextField>
                   <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginBottom:"10px",width:"248px"}}></TextField>
                   <TextField
     helperText={passwordHelperText} error={passwordError} 
@@ -388,8 +388,8 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
       )
     }}
   />          
-  <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>                
-  <Button style={{marginTop:"10px",marginBottom:"20px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
+  <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>  
+  <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{height:"60px",marginTop:"10px",marginBottom:"20px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleContinue}>Start Free Trial</Button>    
   </Grid>
   </div>);
   }else{
@@ -410,7 +410,7 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
   justifyContent="center"
   alignItems="center"
   >
-        <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginBottom:"10px",width:"248px"}}></TextField>
+        <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginTop:"30px",marginBottom:"10px",width:"248px"}}></TextField>
         <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginBottom:"10px",width:"248px"}}></TextField>
         <TextField
     helperText={passwordHelperText} error={passwordError} 
@@ -439,8 +439,7 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
   
     </Grid>
   </div>
-                  
-  <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
+  <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{height:"60px",marginTop:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleContinue}>Start Free Trial</Button>           
 </Grid>
 </div>
     );
