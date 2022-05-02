@@ -33,7 +33,7 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
     const [failedPassword,setFailedPassword] = React.useState('');
     const [failedVerifyPassword,setFailedVerifyPassword] = React.useState('');
 
-    logVisit("Create User Form - Fac: " + facilityName + ", Name: " + firstName + " " + lastName + ", Email: " + email);
+    logVisit("Create User Form - Username: " + username + ", Email: " + email);
 
 
     const [showPassword,setShowPassword] = React.useState(false);
