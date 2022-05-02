@@ -363,9 +363,7 @@ const handleGoToPremium = () => {
 
 const handleGetStarted = () => {
   console.log("GS");
-  setCurrentPage('harvest-form');
-  //window.location.reload();
-  //window.location.replace("https://www.zipharvest.app/");
+  window.location.replace("https://www.zipharvest.app/");
 }
 
 
@@ -531,6 +529,7 @@ const handleGoToHome = () => {
         if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
           updateUserVerified(newUser.username);
           setUser(newUser);
+          setCurrentPage('harvest-form');
         }
       }else{
         if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
