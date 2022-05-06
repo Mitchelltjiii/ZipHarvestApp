@@ -10,6 +10,7 @@ import ResetPasswordForm from './components/ResetPasswordForm.component';
 import FindUserForm from './components/FindUserForm.component'
 import LoginHeader from "./components/LoginHeader.component";
 import Grid from '@material-ui/core/Grid';
+import ProductLanding from './components/ProductLanding.component';
 
 export default class App extends React.Component {
   state = {
@@ -660,6 +661,10 @@ export default class App extends React.Component {
       this.setCurrentPage('create-user-form');
     }
 
+    if(currUrl.includes("42020")){
+      this.setCurrentPage('product-landing-form');
+    }
+
     let successEqualsStr = "success=";
     if(currUrl.includes("success")){
       let successStr = currUrl.substring(currUrl.indexOf(successEqualsStr)+successEqualsStr.length,currUrl.indexOf(successEqualsStr)+successEqualsStr.length+5);
@@ -745,6 +750,8 @@ export default class App extends React.Component {
 				showForm = <ResetPasswordForm setCurrentPage={this.setCurrentPage} linkCode={linkCode} userFromUrl={userFromUrl} executeLogout={this.executeLogout} fromAccountSettings={this.state.fromAccountSettings} userID=""></ResetPasswordForm>
       }else if(this.state.currentPage === 'find-user-form'){
 				showForm = <FindUserForm></FindUserForm>
+      }else if(this.state.currentPage === 'product-landing-form'){
+				showForm = <ProductLanding></ProductLanding>
       }else{
         showForm = <LogIn attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage} logInFailed={this.state.logInFailed}></LogIn>;
         loginForm = true;
