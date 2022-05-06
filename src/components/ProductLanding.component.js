@@ -9,6 +9,14 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import CreateUserMiniForm from './CreateUserMiniForm.component';
 import zhlogotransparent from '../zhlogotransparent.png';
 
+/*
+<img alt="logo" src={zhlogotransparent} style={{minHeight:"62px",maxHeight: "62px",float:"left"}}/>
+
+                <Button style={{height:"40px",marginTop:"10px",marginBottom:"10px",
+        color:"#FFFFFF",float:"right"}} aria-controls="simple-menu" aria-haspopup="true" variant="outlined">Sign In</Button>		
+  
+*/
+
 function ProductLanding({setCurrentPage,logVisit}) {
   if(isMobile){
     return (
@@ -21,7 +29,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
         direction="column"
         justifyContent="center"
         alignItems="center"
-style={{backgroundColor:"#444444",height:"100%"}}
+style={{backgroundColor:"#444444",height:"100%",width:"100%"}}
       >
           <div style={{width:"100%",height:"80px",backgroundColor:"#444444"}}>
 <Grid
@@ -30,18 +38,14 @@ style={{backgroundColor:"#444444",height:"100%"}}
         justifyContent="center"
       alignItems="center"
 style={{width:"100%"}}>
-<div style={{width:"80%",paddingTop:"10px",paddingBottom:"10px"}}>
-        <img alt="logo" src={zhlogotransparent} style={{minHeight:"62px",maxHeight: "62px",float:"left"}}/>
-
-                <Button style={{height:"40px",marginTop:"10px",marginBottom:"10px",
-        color:"#FFFFFF",float:"right"}} aria-controls="simple-menu" aria-haspopup="true" variant="outlined">Sign In</Button>		
-  </div>
+<div style={{width:"70%",paddingTop:"10px",paddingBottom:"10px"}}> HI!
+        </div>
   
 </Grid>
       
 </div>
         <div style={{backgroundColor:"#e1e1e1", position:"absolute",top:"80px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
-<div style={{width:"80%",marginBottom:"200px"}}>
+<div style={{width:"70%",marginBottom:"200px"}}>
         <div style={{float:"left",backgroundColor:"#e4e4e4",width:"60%",height:"95%"}}>
         <Grid
       container
