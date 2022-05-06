@@ -750,7 +750,7 @@ export default class App extends React.Component {
       }else if(this.state.currentPage === 'find-user-form'){
 				showForm = <FindUserForm></FindUserForm>
       }else if(this.state.currentPage === 'product-landing-form'){
-				showForm = <div>hey</div>
+				showForm = <ProductLanding setCurrentPage={this.setCurrentPage} logVisit={this.logVisit}></ProductLanding>
       }else{
         showForm = <LogIn attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage} logInFailed={this.state.logInFailed}></LogIn>;
         loginForm = true;
@@ -774,4 +774,3 @@ export default class App extends React.Component {
             </div>);
   }
 }
-//<ProductLanding setCurrentPage={this.setCurrentPage} logVisit={this.logVisit}></ProductLanding>
