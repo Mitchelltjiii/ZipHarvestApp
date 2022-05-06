@@ -657,11 +657,8 @@ export default class App extends React.Component {
 
     }
 
-    if(currUrl.includes("createaccount")){
-      this.setCurrentPage('create-user-form');
-    }
 
-    if(currUrl.includes("42020")){
+    if(this.state.currentPage !== 'product-landing-form' && currUrl.includes("42020")){
       console.log("AHHH")
       this.setCurrentPage('product-landing-form');
       console.log("AHHH2")
