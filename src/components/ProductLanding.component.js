@@ -38,7 +38,7 @@ style={{backgroundColor:"#444444",height:"100%",width:"100%"}}
         justifyContent="center"
       alignItems="center"
 style={{width:"100%"}}>
-<div style={{width:"70%",paddingTop:"10px",paddingBottom:"10px"}}> HI!
+<div style={{width:"70%",paddingTop:"10px",paddingBottom:"10px",color:"#FFFFFF",backgroundColor:"#e4e4e4"}}> HI!
         </div>
   
 </Grid>
