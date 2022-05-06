@@ -720,7 +720,7 @@ export default class App extends React.Component {
       }
     }
 
-    
+    let landingForm = false;
 
     if (this.state.loggedIn !== '') {
 	  	showForm = <div style={{margin:"auto"}}>
@@ -739,7 +739,6 @@ export default class App extends React.Component {
     </div>;
     }else{
       let loginForm = false;
-      let landingForm = false;
       if(this.state.currentPage === 'create-user-form'){
 				showForm = <CreateUserForm setCurrentPage={this.setCurrentPage} setNewUsername={this.setNewUsername} logVisit={this.logVisit}></CreateUserForm>
       }else if(this.state.currentPage === 'stripe-form'){
