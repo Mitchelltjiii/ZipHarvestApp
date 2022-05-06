@@ -520,7 +520,6 @@ app.get('/api/dr/:id', (req, res) => {
   });
 });
 
-
 app.get('/api/er/:id', (req, res) => {
   pool.getConnection((err, connection) => {
     if(err) throw err;
