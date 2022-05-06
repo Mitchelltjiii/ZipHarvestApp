@@ -7,6 +7,7 @@ import {InputAdornment,IconButton} from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import CreateUserMiniForm from './CreateUserMiniForm.component';
+import zhlogotransparent from '../zhlogotransparent.png';
 
 function ProductLanding({setCurrentPage,logVisit}) {
   if(isMobile){
