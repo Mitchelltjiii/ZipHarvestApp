@@ -34,7 +34,7 @@ style={{width:"100%"}}>
         <img alt="logo" src={zhlogotransparent} style={{minHeight:"62px",maxHeight: "62px",float:"left"}}/>
 
                 <Button style={{height:"40px",marginTop:"10px",marginBottom:"10px",
-        color:"#FFFFFF",borderColor:"#FFFFFF",float:"right"}} aria-controls="simple-menu" aria-haspopup="true" variant="outlined">Sign In</Button>		
+        color:"#FFFFFF",float:"right"}} aria-controls="simple-menu" aria-haspopup="true" variant="outlined">Sign In</Button>		
   </div>
   
 </Grid>
@@ -50,10 +50,10 @@ style={{width:"100%"}}>
       alignItems="left">
 <div style={{fontSize:"60px",fontWeight:"bold"}}>WELCOME TO ZIPHARVEST</div>
 <div style={{fontSize:"25px"}}>&#10004;Record plant harvest weights faster than ever with a single voice command</div>
-<div style={{fontSize:"25px"}}>&#43;Report harvest batches to Metrc easily with our reliable export feature</div>
-<div style={{fontSize:"25px"}}>&#43;14-day free trial for all users and price tiers available based on usage</div>
-<div style={{fontSize:"25px"}}>&#43;Get started in just a few minutes without any obligation</div>
-<div style={{fontSize:"25px"}}>&#43;No special equipment required, just your voice, phone and the scales you already own</div>
+<div style={{fontSize:"25px"}}>&#10004;Report harvest batches to Metrc easily with our reliable export feature</div>
+<div style={{fontSize:"25px"}}>&#10004;14-day free trial for all users and price tiers available based on usage</div>
+<div style={{fontSize:"25px"}}>&#10004;Get started in just a few minutes without any obligation</div>
+<div style={{fontSize:"25px"}}>&#10004;No special equipment required, just your voice, phone and the scales you already own</div>
 
 </Grid>
         </div>

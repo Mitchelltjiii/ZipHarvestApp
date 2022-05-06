@@ -739,6 +739,7 @@ export default class App extends React.Component {
     </div>;
     }else{
       let loginForm = false;
+      let landingForm = false;
       if(this.state.currentPage === 'create-user-form'){
 				showForm = <CreateUserForm setCurrentPage={this.setCurrentPage} setNewUsername={this.setNewUsername} logVisit={this.logVisit}></CreateUserForm>
       }else if(this.state.currentPage === 'stripe-form'){
@@ -751,12 +752,12 @@ export default class App extends React.Component {
 				showForm = <FindUserForm></FindUserForm>
       }else if(this.state.currentPage === 'product-landing-form'){
 				showForm = <ProductLanding setCurrentPage={this.setCurrentPage} logVisit={this.logVisit}></ProductLanding>
-        loginForm = true;
+        landingForm = true;
       }else{
         showForm = <LogIn attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage} logInFailed={this.state.logInFailed}></LogIn>;
         loginForm = true;
       }
-      if(!loginForm){
+      if(!loginForm && !landingForm){
         showForm = (<Grid
 			  	container
 			  	direction="column"
@@ -768,10 +769,17 @@ export default class App extends React.Component {
           </Grid>)
       } 
     }
-    return (<div style={{position:"absolute",top:"0px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+    if(landingForm){
+      return (<div style={{width:"100%",height:"100%"}}>
+      {showForm}
+     </div>);
+    }else{
+      return (<div style={{position:"absolute",top:"0px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
               <div style={{width:"100%",height:"100%"}}>
                {showForm}
               </div>
             </div>);
+    }
+    
   }
 }
