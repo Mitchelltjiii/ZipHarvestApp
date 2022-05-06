@@ -496,20 +496,25 @@ app.post(
 
 app.get('/api/hb/:id', (req, res) => {
   pool.getConnection((err, connection) => {
-    if(err) throw err;
-    let userID = req.params.id;
-    var sql = `${userID}`;
-    connection.query(hbQueryString + sql + "'", (err, rows) => {
-        connection.release(); // return the connection to pool
-        if(err) throw err;
-        res.json(rows);
-    });
+    try{
+      if(err) throw err;
+      let userID = req.params.id;
+      var sql = `${userID}`;
+      connection.query(hbQueryString + sql + "'", (err, rows) => {
+          connection.release(); // return the connection to pool
+          if(err) throw err;
+          res.json(rows);
+      });
+    }catch(err){
+      console.log("Get HB Error");
+    }
   });
 });
 
 app.get('/api/dr/:id', (req, res) => {
   pool.getConnection((err, connection) => {
-    if(err) throw err;
+    try{
+      if(err) throw err;
     let userID = req.params.id;
     var sql = `${userID}`;
     connection.query(dryRoomsQueryString + sql + "'", (err, rows) => {
@@ -517,12 +522,16 @@ app.get('/api/dr/:id', (req, res) => {
         if(err) throw err;
         res.json(rows);
     });
+    }catch(err){
+      console.log("Get DR Error");
+    }
   });
 });
 
 app.get('/api/er/:id', (req, res) => {
   pool.getConnection((err, connection) => {
-    if(err) throw err;
+    try{
+      if(err) throw err;
     let userID = req.params.id;
     var sql = `${userID}`;
     connection.query(exportRecordsQueryString + sql + "'", (err, rows) => {
@@ -530,6 +539,9 @@ app.get('/api/er/:id', (req, res) => {
         if(err) throw err;
         res.json(rows);
     });
+    }catch(err){
+      console.log("Get ER Error");
+    }
   });
 });
 
@@ -588,7 +600,8 @@ app.get('/pr/check/:id/:password', (req, res) => {
 
 app.get('/api/pl/:id', (req, res) => {
     pool.getConnection((err, connection) => {
-      if(err) throw err;
+      try{
+        if(err) throw err;
       let userID = req.params.id;
       var sql = `${userID}`;
       connection.query(plantsQueryString + sql + "'", (err, rows) => {
@@ -596,12 +609,16 @@ app.get('/api/pl/:id', (req, res) => {
           if(err) throw err;
           res.json(rows);
       });
+      }catch(err){
+        console.log("Get PL Error");
+      }
     });
 });
 
 app.get('/api/hr/:id', (req, res) => {
     pool.getConnection((err, connection) => {
-      if(err) throw err;
+      try{
+        if(err) throw err;
       let userID = req.params.id;
       var sql = `${userID}`;
       connection.query(harvestRecordsQueryString + sql + "'", (err, rows) => {
@@ -609,6 +626,9 @@ app.get('/api/hr/:id', (req, res) => {
           if(err) throw err;
           res.json(rows);
       });
+      }catch(err){
+        console.log("Get HR Error");
+      }
     });
 });
 
@@ -753,6 +773,7 @@ app.put('/hb', (req, res) =>{
 
 app.get("/api/tutorials/:username",(req,res) => {
   pool.getConnection((err, connection) => {
+    try{
       console.log("Api users get tutorials");
       if(err) throw err;
       let username = req.params.username;
@@ -762,6 +783,9 @@ app.get("/api/tutorials/:username",(req,res) => {
         if(err) throw err;
         res.json(rows[0].tutorials);
     });
+    }catch(error){
+      console.log("Get tutorials error");
+    }
   });
 });
 

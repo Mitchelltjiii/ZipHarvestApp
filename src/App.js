@@ -770,9 +770,7 @@ export default class App extends React.Component {
       } 
     }
     if(landingForm){
-      return (<div style={{width:"100%",height:"100%"}}>
-      {showForm}
-     </div>);
+      return showForm;
     }else{
       return (<div style={{position:"absolute",top:"0px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
               <div style={{width:"100%",height:"100%"}}>
