@@ -7,7 +7,7 @@ import {InputAdornment,IconButton} from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
-function CreateUserMiniForm({}) {
+function CreateUserMiniForm({setAccountCreated}) {
 
 
     const [email, setEmail] = React.useState('');
@@ -241,6 +241,7 @@ function CreateUserMiniForm({}) {
   
       try{
         await response.text();
+        setAccountCreated(true);
       }catch(err){
       }
     }

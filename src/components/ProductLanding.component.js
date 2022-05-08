@@ -40,6 +40,8 @@ function ProductLanding({setCurrentPage,logVisit}) {
 
   let lineSpacing = "5px";
 
+  const [accountCreated,setAccountCreated] = React.useState(false);
+
   if(isMobile){
     return (
       <div></div>
@@ -63,9 +65,9 @@ style={{width:"100%"}}>
 <div style={{width:"70%",marginTop:"10px",marginBottom:"10px",color:"#FFFFFF"}}>
       <img alt="logo" src={zhlogotransparent} style={{minHeight:"62px",maxHeight: "62px",float:"left"}}/>
 
-
+      {accountCreated ? null :       
       <Button style={{height:"40px",marginTop:"10px",marginBottom:"10px",
-      color:"#FFFFFF",float:"right"}} aria-controls="simple-menu" aria-haspopup="true" variant="outlined">Sign In</Button>		
+      color:"#FFFFFF",borderColor:"#FFFFFF",float:"right"}} aria-controls="simple-menu" aria-haspopup="true" variant="outlined">Sign In</Button>		}
 
         </div>
   
@@ -73,6 +75,34 @@ style={{width:"100%"}}>
       
 </div>
 <div style={{backgroundColor:"#444444", position:"absolute",top:"80px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+         {accountCreated ? 
+         <Grid
+         container
+         direction="column"
+           justifyContent="center"
+         alignItems="center"
+           >
+             <Grid
+         container
+         direction="column"
+           justifyContent="center"
+         alignItems="center"
+           >
+                     <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontWeight:"bold",fontSize:"36px",color:"#FFFFFF"}}>Congrats, your new account has been created!</div>
+                     <div style={{marginTop:"20px",marginBottom:"5px",paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontSize:"24px",color:"#729d3f"}}>We sent you a {newLink}link to verify your account.</div>
+                     <div style={{marginBottom:"20px",paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontSize:"24px",color:"#FFFFFF"}}>It will expire 15 minutes after creation.</div>
+                     </Grid>
+                     <Grid
+         container
+         direction="row"
+           justifyContent="center"
+         alignItems="center"
+           >
+                     <Button style={{marginTop:"10px",marginRight:"5px",color:"#FFFFFF",borderColor:"#FFFFFF"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true">Resend Code</Button>
+                     <Button style={{marginTop:"10px",backgroundColor:"#000000",color:"#FFFFFF",borderColor:"#000000"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true">Home</Button>
+                     </Grid>
+                     </Grid>
+                     :
           <div style={{width:"70%",marginBottom:"200px"}}>
                   <div style={{float:"left",backgroundColor:"#444444",width:"60%",height:"95%"}}>
                   <Grid
@@ -90,9 +120,10 @@ style={{width:"100%"}}>
         </Grid>
                   </div>
                   <div style={{float:"right",backgroundColor:"#e4e4e4",width:"30%",height:"95%",borderRadius:"5px"}}>
-                  <CreateUserMiniForm></CreateUserMiniForm>
+                  <CreateUserMiniForm setAccountCreated={setAccountCreated}></CreateUserMiniForm>
         </div>
               </div>
+  }
 					</div>
       </Grid>
     );
