@@ -39,10 +39,64 @@ import zhlogotransparent from '../zhlogotransparent.png';
 function ProductLanding({setCurrentPage,logVisit}) {
 
   let lineSpacing = "5px";
-  let newLink = "link";
-
+  
   const [accountCreated,setAccountCreated] = React.useState(false);
+  const [resent,setResent] = React.useState(false);
+  const [newUsername,setNewUsername] = React.useState("");
   console.log("Product landing - account created: " + accountCreated);
+
+  let newLink = "";
+    if(resent){
+      newLink = "new "
+    }
+
+    const handleResend = () => {
+      resend();
+    }
+  
+      function resend(){
+          getUser();
+      }
+  
+      const handleGoToHome = () => {
+        window.location.replace("https://www.zipharvest.app/");
+      }  
+  
+      async function getUser(){
+            const response = await fetch(`/get-user/${newUsername}`);
+            const json = await response.json();
+            
+            let userString = JSON.stringify(json);
+            userString = userString.substring(1,userString.length-1);
+            let newUser = JSON.parse(userString);
+      
+            if(userString !== "" && userString !== undefined && userString !== null && userString !== "[]"){
+              sendVerificationEmail(newUser);
+            }
+        }
+
+        async function sendVerificationEmail(user){
+          let address = user.email;
+          let newCode = makeid(8);
+          const response = await fetch(`/send-verification-email/${address}/${newCode}/${newUsername}`);
+          await response.json();
+          
+          updateUserVerificationCode(user.username,newCode);
+        }
+  
+        async function updateUserVerificationCode(username,newCode){
+          let verCodeTime = JSON.stringify((new Date()).getTime());
+        
+          fetch(`/user/updateVerificationCode/${username}/${newCode}/${verCodeTime}`, {
+                method: 'PUT',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                }
+          }).then(function(response) {
+          }).then(function(data) {
+          });
+        }
 
   if(isMobile){
     return (
@@ -101,8 +155,12 @@ style={{width:"100%"}}>
            justifyContent="center"
          alignItems="center"
            >
-                     <Button style={{marginTop:"10px",marginRight:"5px",color:"#FFFFFF",borderColor:"#FFFFFF"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true">Resend Code</Button>
-                     <Button style={{marginTop:"10px",backgroundColor:"#000000",color:"#FFFFFF",borderColor:"#000000"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true">Home</Button>
+                     <Button style={{marginTop:"10px",marginRight:"5px",color:"#FFFFFF",borderColor:"#FFFFFF"}} 
+                     variant="outlined" aria-controls="simple-menu" aria-haspopup="true"
+                     onClick={handleResend}>Resend Code</Button>
+                     <Button style={{marginTop:"10px",backgroundColor:"#000000",color:"#FFFFFF",
+                     borderColor:"#000000"}} variant="contained" aria-controls="simple-menu" 
+                     aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                      </Grid>
                      </Grid>
                      :
@@ -123,7 +181,7 @@ style={{width:"100%"}}>
         </Grid>
                   </div>
                   <div style={{float:"right",backgroundColor:"#e4e4e4",width:"30%",height:"95%",borderRadius:"5px"}}>
-                  <CreateUserMiniForm setAccountCreated={setAccountCreated}></CreateUserMiniForm>
+                  <CreateUserMiniForm setAccountCreated={setAccountCreated} setNewUsername={setNewUsername}></CreateUserMiniForm>
         </div>
               </div>
   }
