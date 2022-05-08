@@ -42,6 +42,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
   let newLink = "link";
 
   const [accountCreated,setAccountCreated] = React.useState(false);
+  console.log("Product landing - account created: " + accountCreated);
 
   if(isMobile){
     return (
