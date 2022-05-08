@@ -37,6 +37,9 @@ import zhlogotransparent from '../zhlogotransparent.png';
 */
 
 function ProductLanding({setCurrentPage,logVisit}) {
+
+  let lineSpacing = "5px";
+
   if(isMobile){
     return (
       <div></div>
