@@ -39,6 +39,7 @@ import zhlogotransparent from '../zhlogotransparent.png';
 function ProductLanding({setCurrentPage,logVisit}) {
 
   let lineSpacing = "5px";
+  let newLink = "link";
 
   const [accountCreated,setAccountCreated] = React.useState(false);
 
@@ -67,7 +68,8 @@ style={{width:"100%"}}>
 
       {accountCreated ? null :       
       <Button style={{height:"40px",marginTop:"10px",marginBottom:"10px",
-      color:"#FFFFFF",borderColor:"#FFFFFF",float:"right"}} aria-controls="simple-menu" aria-haspopup="true" variant="outlined">Sign In</Button>		}
+      color:"#FFFFFF",borderColor:"#FFFFFF",float:"right"}} aria-controls="simple-menu" aria-haspopup="true" variant="outlined">Sign In</Button>		
+      }
 
         </div>
   
