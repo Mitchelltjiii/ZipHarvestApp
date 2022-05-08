@@ -50,11 +50,11 @@ function ProductLanding({setCurrentPage,logVisit}) {
         <Grid
         container
         direction="column"
-        justifyContent="center"
+        justifyContent="flex-start"
         alignItems="center"
 style={{backgroundColor:"#444444",height:"100%",width:"100%"}}
       >
-          <div style={{width:"100%",height:"80px",backgroundColor:"#444444"}}>
+          <div style={{width:"100%",height:"80px",backgroundColor:"#32a852"}}>
 <Grid
       container
       direction="column"
