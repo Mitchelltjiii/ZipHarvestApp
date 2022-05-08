@@ -231,20 +231,19 @@ function CreateUserMiniForm({setAccountCreated}) {
     }
 
     async function createPasswordRecord(username,hash){
-      const response = fetch(`/pr/create/${hash}/${username}`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-      });
-  
       try{
-        await response.text();
-        console.log("Set account created");
-        setAccountCreated(true);
+        const response = fetch(`/pr/create/${hash}/${username}`, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+          });        
+          await response.json();
       }catch(err){
       }
+      console.log("Set account created");
+      setAccountCreated(true);
     }
 
     async function sendSignupNotificationEmail(){
