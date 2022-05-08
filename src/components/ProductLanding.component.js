@@ -8,6 +8,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import CreateUserMiniForm from './CreateUserMiniForm.component';
 import zhlogotransparent from '../zhlogotransparent.png';
+import leafImage1 from '../leafImage1.svg';
 
 
 /*
@@ -44,6 +45,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
   const [resent,setResent] = React.useState(false);
   const [newUsername,setNewUsername] = React.useState("");
   console.log("Product landing - account created: " + accountCreated);
+  let leafImageHeight = "80px";
 
   let newLink = "";
     if(resent){
@@ -87,15 +89,16 @@ function ProductLanding({setCurrentPage,logVisit}) {
         async function updateUserVerificationCode(username,newCode){
           let verCodeTime = JSON.stringify((new Date()).getTime());
         
-          fetch(`/user/updateVerificationCode/${username}/${newCode}/${verCodeTime}`, {
-                method: 'PUT',
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
-                }
-          }).then(function(response) {
-          }).then(function(data) {
-          });
+          const response = await fetch(`/user/updateVerificationCode/${username}/${newCode}/${verCodeTime}`, {
+            method: 'PUT',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+      });
+          await response.json();
+          
+          setResent(true);
         }
 
         function makeid(length) {
@@ -157,9 +160,11 @@ style={{width:"100%"}}>
            justifyContent="center"
          alignItems="center"
            >
-                     <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontWeight:"bold",fontSize:"36px",color:"#FFFFFF"}}>Congrats, your new account has been created!</div>
-                     <div style={{marginTop:"20px",marginBottom:"5px",paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontSize:"24px",color:"#729d3f"}}>We sent you a {newLink}link to verify your account.</div>
-                     <div style={{marginBottom:"20px",paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontSize:"24px",color:"#FFFFFF"}}>It will expire 15 minutes after creation.</div>
+                     <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontWeight:"bold",fontSize:"45px",color:"#71bf4a"}}>Congrats!</div>
+                     <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontWeight:"bold",fontSize:"45px",color:"#71bf4a"}}>Your new account has been created!</div>
+                     <img alt="leafImage1" src={leafImage1} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
+                     <div style={{marginTop:"20px",marginBottom:"5px",paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontSize:"24px",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif"}}>We sent you a {newLink}link to verify your account.</div>
+                     <div style={{marginBottom:"20px",paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontSize:"24px",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif"}}>It will expire 15 minutes after creation.</div>
                      </Grid>
                      <Grid
          container
@@ -167,7 +172,7 @@ style={{width:"100%"}}>
            justifyContent="center"
          alignItems="center"
            >
-                     <Button style={{marginTop:"10px",marginRight:"5px",color:"#FFFFFF",borderColor:"#FFFFFF"}} 
+                     <Button style={{marginTop:"10px",marginRight:"30px",color:"#FFFFFF",borderColor:"#FFFFFF"}} 
                      variant="outlined" aria-controls="simple-menu" aria-haspopup="true"
                      onClick={handleResend}>Resend Code</Button>
                      <Button style={{marginTop:"10px",backgroundColor:"#000000",color:"#FFFFFF",
