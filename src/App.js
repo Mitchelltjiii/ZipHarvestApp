@@ -11,6 +11,7 @@ import FindUserForm from './components/FindUserForm.component'
 import LoginHeader from "./components/LoginHeader.component";
 import Grid from '@material-ui/core/Grid';
 import ProductLanding from './components/ProductLanding.component';
+import {isMobile} from 'react-device-detect';
 
 export default class App extends React.Component {
   state = {
@@ -768,7 +769,7 @@ export default class App extends React.Component {
           </Grid>)
       } 
     }
-    if(landingForm){
+    if(landingForm && !isMobile){
       return showForm;
     }else{
       return (<div style={{position:"absolute",top:"0px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
