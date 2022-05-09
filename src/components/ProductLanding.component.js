@@ -164,6 +164,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
          direction="row"
            justifyContent="center"
          alignItems="center"
+         style={{marginBottom:"50px"}}
            >
                      <Button style={{marginTop:"10px",marginRight:"50px",color:"#FFFFFF",borderColor:"#FFFFFF"}} 
                      variant="outlined" aria-controls="simple-menu" aria-haspopup="true"
