@@ -659,7 +659,7 @@ export default class App extends React.Component {
     }
 
 
-    if(this.state.currentPage !== 'product-landing-form' && !currUrl.includes("signin")){
+    if(this.state.currentPage === 'harvest-form' && !currUrl.includes("signin")){
       this.setCurrentPage('product-landing-form');
     }
 
