@@ -180,7 +180,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
         alignItems="center"
         style={{width:"100%"}}
       >
-        <div>
+        <div style={{height:"400px"}}>
         <Grid
         container
         direction="column"
