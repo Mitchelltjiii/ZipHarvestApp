@@ -9,8 +9,6 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import CreateUserMiniForm from './CreateUserMiniForm.component';
 import zhlogotransparent from '../zhlogotransparent.png';
 import leafImage1 from '../leafImage1.png';
-import SwipeableViews from 'react-swipeable-views';
-
 
 /*
 
@@ -132,9 +130,40 @@ function ProductLanding({setCurrentPage,logVisit}) {
 
   if(isMobile){
     return (
-      <div id="product-display-mobile" style={{width:"100%",height:"100%"}}>
-       <SwipeableViews>
-          <div style={Object.assign({}, styles.slide, styles.slide1)}>
+      <div id="product-display-mobile" style={{width:"100%",height:"100%",backgroundColor:"#444444"}}>
+        {accountCreated ? 
+        <Grid
+         container
+         direction="column"
+           justifyContent="center"
+         alignItems="center"
+           >
+             <Grid
+         container
+         direction="column"
+           justifyContent="center"
+         alignItems="center"
+           >
+                     <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontWeight:"bold",fontSize:"45px",color:"#FFFFFF"}}>Congrats!</div>
+                     <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontWeight:"bold",fontSize:"45px",color:"#FFFFFF"}}>Your new account has been created!</div>
+                     <img alt="leafImage1" src={leafImage1} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
+                     <div style={{marginTop:"20px",marginBottom:"5px",paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontSize:"24px",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif"}}>We sent you a {newLink}link to verify your account.</div>
+                     <div style={{marginBottom:"20px",paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontSize:"24px",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif"}}>It will expire 15 minutes after creation.</div>
+                     </Grid>
+                     <Grid
+         container
+         direction="row"
+           justifyContent="center"
+         alignItems="center"
+           >
+                     <Button style={{marginTop:"10px",marginRight:"50px",color:"#FFFFFF",borderColor:"#FFFFFF"}} 
+                     variant="outlined" aria-controls="simple-menu" aria-haspopup="true"
+                     onClick={handleResend}>Resend Code</Button>
+                     <Button style={{marginTop:"10px",backgroundColor:"#000000",color:"#FFFFFF",
+                     borderColor:"#000000"}} variant="contained" aria-controls="simple-menu" 
+                     aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
+                     </Grid>
+                     </Grid> :
           <Grid
         container
         direction="column"
@@ -142,21 +171,19 @@ function ProductLanding({setCurrentPage,logVisit}) {
         alignItems="center"
 style={{backgroundColor:"#444444",height:"100%",width:"100%"}}
       >
-        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome} style={{width:"100%"}}>
+        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome} style={{width:"100%",backgroundColor:"#000000"}}>
         <img alt="logo" src={zhlogotransparent} style={{height: "50px"}}/>
       </Button>
-      <div style={{fontSize:"55px",fontWeight:"bold",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif",marginTop:lineSpacing}}>WELCOME TO ZIPHARVEST</div>
-          <div style={{fontSize:"22px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Record plant harvest weights faster than ever with a single voice command</div>
-          <div style={{fontSize:"22px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Report harvest batches to Metrc easily with our reliable export feature</div>
-          <div style={{fontSize:"22px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;14-day free trial for all users and price tiers available based on usage</div>
-          <div style={{fontSize:"22px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Get started in just a few minutes without any obligation</div>
-          <div style={{fontSize:"22px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;No special equipment required, just your voice, phone and the scales you already own</div>
-        </Grid>
-          </div>
-          <div style={Object.assign({}, styles.slide, styles.slide2)}>
+      <div style={{fontSize:"36px",fontWeight:"bold",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif",marginTop:lineSpacing,
+      textAlign:"center"}}>WELCOME TO ZIPHARVEST</div>
+          <div style={{fontSize:"18px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Record plant harvest weights faster than ever with a single voice command</div>
+          <div style={{fontSize:"18px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Report harvest batches to Metrc easily with our reliable export feature</div>
+          <div style={{fontSize:"18px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;14-day free trial for all users and price tiers available based on usage</div>
+          <div style={{fontSize:"18px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Get started in just a few minutes without any obligation</div>
+          <div style={{fontSize:"18px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif",marginBottom:"10px"}}>&#10004;No special equipment required, just your voice, phone and the scales you already own</div>
           <CreateUserMiniForm setAccountCreated={setAccountCreated} setNewUsername={setNewUsername}></CreateUserMiniForm>
-          </div>
-        </SwipeableViews>
+          </Grid>
+  }
   </div>
     );
   }else{
@@ -176,9 +203,7 @@ style={{backgroundColor:"#444444",height:"100%",width:"100%"}}
       alignItems="center"
 style={{width:"100%"}}>
 <div style={{width:"70%",marginTop:"10px",marginBottom:"10px",color:"#FFFFFF"}}>
-      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>
-        <img alt="logo" src={zhlogotransparent} style={{minHeight:"62px",maxHeight: "62px",float:"left"}}/>
-      </Button>
+      <img alt="logo" src={zhlogotransparent} style={{minHeight:"62px",maxHeight: "62px",float:"left"}}/>
 
       {accountCreated ? null :       
       <Button style={{height:"40px",marginTop:"10px",marginBottom:"10px",
