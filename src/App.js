@@ -658,7 +658,9 @@ export default class App extends React.Component {
 
     }
 
-    if(currUrl.includes("signin") && this.state.currentPage !== "signin"){
+    if(currUrl.includes("signin") && this.state.currentPage !== "signin" && this.state.currentPage !== "create-user-form"
+    && this.state.currentPage !== "stripe-form" && this.state.currentPage !== "verification-form"
+    && this.state.currentPage !== "reset-password-form" && this.state.currentPage !== "find-user-form"){
       this.setCurrentPage('signin');
     }
 
