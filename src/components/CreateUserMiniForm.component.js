@@ -302,7 +302,7 @@ function CreateUserMiniForm({setAccountCreated,setNewUsername}) {
 
     if(isMobile){
       formWidth = "100%";
-      formHeight = "300px";
+      formHeight = "350px";
     }
 
   if(isMobile){
@@ -313,8 +313,8 @@ function CreateUserMiniForm({setAccountCreated,setNewUsername}) {
             justifyContent="center"
           alignItems="center"
         >
-                  <div style={{fontSize:"17px",marginTop:"10px",marginBottom:"10px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Create your account!</div>       
-                  <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginTop:"40px",marginBottom:"10px",width:"248px"}}></TextField>
+                  <div style={{fontSize:"17px",marginTop:"10px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Create your account!</div>       
+                  <TextField id="Email" helperText={emailHelperText} error={emailError} value={email} onChange={handleEmail} label="Email" variant="outlined" style={{marginTop:"10px",marginBottom:"10px",width:"248px"}}></TextField>
                   <TextField id="Username" helperText={usernameHelperText} error={usernameError} value={username} onChange={handleUsername} label="Username" variant="outlined" style={{marginBottom:"10px",width:"248px"}}></TextField>
                   <TextField
     helperText={passwordHelperText} error={passwordError} 
