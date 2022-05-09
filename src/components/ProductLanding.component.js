@@ -179,7 +179,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
         justifyContent="center"
         alignItems="center"
         wrap="nowrap"
-style={{height:"100%",width:"100%"}}
+style={{width:"100%"}}
       >
         <Grid
         container
