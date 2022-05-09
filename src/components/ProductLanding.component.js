@@ -144,12 +144,14 @@ function ProductLanding({setCurrentPage,logVisit}) {
            justifyContent="center"
          alignItems="center"
            >
+             <div style={{backgroundColor:"#000000",width:"100%",marginBottom:"10px"}}>
                     <img alt="logo" src={zhlogotransparent} style={{height: "50px"}}/>
-                     <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontWeight:"bold",fontSize:"36px",color:"#FFFFFF"}}>Congrats!</div>
-                     <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontWeight:"bold",fontSize:"36px",color:"#FFFFFF"}}>Your new account has been created!</div>
+                     </div>
+                     <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontWeight:"bold",fontSize:"32px",color:"#FFFFFF"}}>Congrats!</div>
+                     <div style={{paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontWeight:"bold",fontSize:"32px",color:"#FFFFFF"}}>Your new account has been created!</div>
                      <img alt="leafImage1" src={leafImage1} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
-                     <div style={{marginTop:"20px",marginBottom:"5px",paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontSize:"18px",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif"}}>We sent you a {newLink}link to verify your account.</div>
-                     <div style={{marginBottom:"20px",paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontSize:"18px",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif"}}>It will expire 15 minutes after creation.</div>
+                     <div style={{marginTop:"20px",marginBottom:"5px",paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontSize:"17px",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif"}}>We sent you a {newLink}link to verify your account.</div>
+                     <div style={{marginBottom:"20px",paddingLeft:"20px",paddingRight:"20px",textAlign:"center",fontSize:"17px",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif"}}>It will expire 15 minutes after creation.</div>
                      </Grid>
                      <Grid
          container
@@ -170,16 +172,19 @@ function ProductLanding({setCurrentPage,logVisit}) {
         direction="column"
         justifyContent="flex-start"
         alignItems="center"
-style={{backgroundColor:"#444444",height:"100%",width:"100%",wrap:"nowrap"}}
+        wrap="nowrap"
+style={{backgroundColor:"#444444",height:"100%",width:"100%"}}
       >
-        <img alt="logo" src={zhlogotransparent} style={{height: "50px"}}/>
+        <div style={{backgroundColor:"#000000",width:"100%"}}>
+                    <img alt="logo" src={zhlogotransparent} style={{height: "50px"}}/>
+                     </div>
       <div style={{fontSize:"36px",fontWeight:"bold",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif",marginTop:lineSpacing,
       textAlign:"center"}}>WELCOME TO ZIPHARVEST</div>
-          <div style={{fontSize:"18px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Record plant harvest weights faster than ever with a single voice command</div>
-          <div style={{fontSize:"18px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Report harvest batches to Metrc easily with our reliable export feature</div>
-          <div style={{fontSize:"18px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;14-day free trial for all users and price tiers available based on usage</div>
-          <div style={{fontSize:"18px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Get started in just a few minutes without any obligation</div>
-          <div style={{fontSize:"18px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif",marginBottom:"10px"}}>&#10004;No special equipment required, just your voice, phone and the scales you already own</div>
+          <div style={{paddingLeft:"10px",paddingRight:"10px",fontSize:"18px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Record plant harvest weights faster than ever with a single voice command</div>
+          <div style={{paddingLeft:"10px",paddingRight:"10px",fontSize:"18px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Report harvest batches to Metrc easily with our reliable export feature</div>
+          <div style={{paddingLeft:"10px",paddingRight:"10px",fontSize:"18px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;14-day free trial for all users and price tiers available based on usage</div>
+          <div style={{paddingLeft:"10px",paddingRight:"10px",fontSize:"18px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Get started in just a few minutes without any obligation</div>
+          <div style={{paddingLeft:"10px",paddingRight:"10px",fontSize:"18px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif",marginBottom:"10px"}}>&#10004;No special equipment required, just your voice, phone and the scales you already own</div>
           <CreateUserMiniForm setAccountCreated={setAccountCreated} setNewUsername={setNewUsername}></CreateUserMiniForm>
           </Grid>
   }
