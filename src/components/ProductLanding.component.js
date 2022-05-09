@@ -180,6 +180,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
         alignItems="center"
         style={{width:"100%"}}
       >
+        <div>
         <Grid
         container
         direction="column"
@@ -204,7 +205,10 @@ function ProductLanding({setCurrentPage,logVisit}) {
           <div style={{paddingLeft:"20px",paddingRight:"20px",fontSize:"17px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Get started in just a few minutes without any obligation</div>
           <div style={{paddingLeft:"20px",paddingRight:"20px",fontSize:"17px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif",marginBottom:"10px"}}>&#10004;No special equipment required, just your voice, phone and the scales you already own</div>
           </Grid>
+          </div>
+          <div>
           <CreateUserMiniForm setAccountCreated={setAccountCreated} setNewUsername={setNewUsername}></CreateUserMiniForm>
+          </div>
           </Grid>
   }
   </div>
