@@ -130,7 +130,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
 
   if(isMobile){
     return (
-      <div id="product-display-mobile" style={{width:"100%",height:"100%",backgroundColor:"#444444"}}>
+      <div id="product-display-mobile" style={{width:"100%",backgroundColor:"#444444"}}>
         {accountCreated ? 
         <Grid
          container
