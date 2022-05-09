@@ -41,6 +41,22 @@ import SwipeableViews from 'react-swipeable-views';
 function ProductLanding({setCurrentPage,logVisit}) {
 
   let lineSpacing = "10px";
+  const styles = {
+    slide: {
+      height: '100%',
+      width: '100%',
+      color: '#fff',
+    },
+    slide1: {
+      background: '#FFFFFF',
+    },
+    slide2: {
+      background: '#FFFFFF',
+    },
+    slide3: {
+      background: '#FFFFFF',
+    },
+  };
   
   const [accountCreated,setAccountCreated] = React.useState(false);
   const [resent,setResent] = React.useState(false);
