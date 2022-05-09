@@ -764,7 +764,7 @@ app.get("/api/tutorials/:username",(req,res) => {
         try{
           res.json(rows[0].tutorials);
         }catch(error){
-
+          res.json(0);
         }
     });
   });
