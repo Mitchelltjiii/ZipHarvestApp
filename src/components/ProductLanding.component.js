@@ -173,20 +173,12 @@ function ProductLanding({setCurrentPage,logVisit}) {
                      aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                      </Grid>
                      </Grid> :
-          <Grid
-        container
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        style={{width:"100%"}}
-      >
-        <div style={{height:"400px"}}>
         <Grid
         container
         direction="column"
         justifyContent="center"
         alignItems="center"
-        style={{backgroundColor:"#444444",width:"100%"}}
+        style={{width:"100%"}}
       >
         <div style={{backgroundColor:"#000000",width:"100%"}}>
         <Grid
@@ -197,6 +189,13 @@ function ProductLanding({setCurrentPage,logVisit}) {
                     <img alt="logo" src={zhlogotransparent} style={{height: "50px"}}/>
                     </Grid>
                      </div>
+                     <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        style={{backgroundColor:"#444444",width:"100%"}}
+      >
       <div style={{fontSize:"32px",fontWeight:"bold",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif",marginTop:lineSpacing,
       textAlign:"center"}}>WELCOME TO ZIPHARVEST</div>
           <div style={{paddingLeft:"20px",paddingRight:"20px",fontSize:"17px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Record plant harvest weights faster than ever with a single voice command</div>
@@ -205,10 +204,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
           <div style={{paddingLeft:"20px",paddingRight:"20px",fontSize:"17px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Get started in just a few minutes without any obligation</div>
           <div style={{paddingLeft:"20px",paddingRight:"20px",fontSize:"17px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif",marginBottom:"10px"}}>&#10004;No special equipment required, just your voice, phone and the scales you already own</div>
           </Grid>
-          </div>
-          <div>
           <CreateUserMiniForm setAccountCreated={setAccountCreated} setNewUsername={setNewUsername}></CreateUserMiniForm>
-          </div>
           </Grid>
   }
   </div>
