@@ -658,9 +658,8 @@ export default class App extends React.Component {
 
     }
 
-
-    if(this.state.currentPage === 'harvest-form' && !currUrl.includes("signin")){
-      this.setCurrentPage('product-landing-form');
+    if(currUrl.includes("signin") && this.state.currentPage !== "signin"){
+      this.setCurrentPage('signin');
     }
 
     let successEqualsStr = "success=";
@@ -748,12 +747,12 @@ export default class App extends React.Component {
 				showForm = <ResetPasswordForm setCurrentPage={this.setCurrentPage} linkCode={linkCode} userFromUrl={userFromUrl} executeLogout={this.executeLogout} fromAccountSettings={this.state.fromAccountSettings} userID=""></ResetPasswordForm>
       }else if(this.state.currentPage === 'find-user-form'){
 				showForm = <FindUserForm></FindUserForm>
-      }else if(this.state.currentPage === 'product-landing-form'){
-				showForm = <ProductLanding setCurrentPage={this.setCurrentPage} logVisit={this.logVisit}></ProductLanding>
-        landingForm = true;
-      }else{
+      }else if(this.state.currentPage === 'signin'){
         showForm = <LogIn attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage} logInFailed={this.state.logInFailed}></LogIn>;
         loginForm = true;
+      }else{
+        showForm = <ProductLanding setCurrentPage={this.setCurrentPage} logVisit={this.logVisit}></ProductLanding>
+        landingForm = true;
       }
       if(!loginForm && !landingForm){
         showForm = (<Grid
