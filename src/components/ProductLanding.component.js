@@ -59,7 +59,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
   const [accountCreated,setAccountCreated] = React.useState(false);
   const [resent,setResent] = React.useState(false);
   const [newUsername,setNewUsername] = React.useState("");
-  console.log("Product landing - account created: " + accountCreated);
   let leafImageHeight = "80px";
 
   let newLink = "";

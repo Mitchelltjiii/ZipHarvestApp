@@ -242,7 +242,7 @@ export default class App extends React.Component {
   setCurrentPage = (currPage) => {
     localStorage.setItem("currentPage",currPage);
     this.setState({currentPage: currPage});
-    //this.forceUpdate();
+    this.forceUpdate();
   }
 
   resetHarvestBatches = (currHarvest) => {
@@ -718,6 +718,7 @@ export default class App extends React.Component {
       }
     }
 
+    console.log("currpage: " + this.state.currentPage);
     let landingForm = false;
 
     if (this.state.loggedIn !== '') {
