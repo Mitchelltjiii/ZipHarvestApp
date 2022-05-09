@@ -178,16 +178,14 @@ function ProductLanding({setCurrentPage,logVisit}) {
         direction="column"
         justifyContent="center"
         alignItems="center"
-        wrap="nowrap"
-style={{width:"100%"}}
+        style={{width:"100%"}}
       >
         <Grid
         container
         direction="column"
-        justifyContent="flex-start"
+        justifyContent="center"
         alignItems="center"
-        wrap="nowrap"
-style={{backgroundColor:"#444444",width:"100%"}}
+        style={{backgroundColor:"#444444",width:"100%"}}
       >
         <div style={{backgroundColor:"#000000",width:"100%"}}>
         <Grid
@@ -198,7 +196,7 @@ style={{backgroundColor:"#444444",width:"100%"}}
                     <img alt="logo" src={zhlogotransparent} style={{height: "50px"}}/>
                     </Grid>
                      </div>
-      <div style={{fontSize:"36px",fontWeight:"bold",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif",marginTop:lineSpacing,
+      <div style={{fontSize:"32px",fontWeight:"bold",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif",marginTop:lineSpacing,
       textAlign:"center"}}>WELCOME TO ZIPHARVEST</div>
           <div style={{paddingLeft:"10px",paddingRight:"10px",fontSize:"18px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Record plant harvest weights faster than ever with a single voice command</div>
           <div style={{paddingLeft:"10px",paddingRight:"10px",fontSize:"18px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Report harvest batches to Metrc easily with our reliable export feature</div>
