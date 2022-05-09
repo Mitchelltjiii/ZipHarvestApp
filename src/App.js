@@ -659,10 +659,8 @@ export default class App extends React.Component {
     }
 
 
-    if(this.state.currentPage !== 'product-landing-form' && currUrl.includes("42020")){
-      console.log("AHHH")
+    if(this.state.currentPage !== 'product-landing-form' && !currUrl.includes("signin")){
       this.setCurrentPage('product-landing-form');
-      console.log("AHHH2")
     }
 
     let successEqualsStr = "success=";

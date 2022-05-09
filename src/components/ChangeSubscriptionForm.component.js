@@ -29,7 +29,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
   };
   
   const handleGoToHome = () => {
-    window.location.replace("https://www.zipharvest.app/");
+    window.location.replace("https://www.zipharvest.app/signin");
   }  
 
   let green = "#729d3f";

@@ -16,7 +16,7 @@ function FindUserForm() {
 	  }
 
     const handleGoToHome = () => {
-      window.location.replace("https://www.zipharvest.app/");
+      window.location.replace("https://www.zipharvest.app/signin");
     }  
 
     async function sendFindUserLink(){

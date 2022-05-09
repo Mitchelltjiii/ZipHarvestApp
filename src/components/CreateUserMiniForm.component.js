@@ -29,8 +29,7 @@ function CreateUserMiniForm({setAccountCreated,setNewUsername}) {
     const handleMouseDownPassword = () => setShowPassword(!showPassword)
 
     const handleContinue = () => {
-      setAccountCreated(true);
-		  //doContinue();
+		  doContinue();
 	  }
 
     function isUsernameValid(){

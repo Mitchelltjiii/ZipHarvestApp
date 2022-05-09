@@ -7,7 +7,7 @@ import zhlogo from './zhlogo.png';
 function LoginHeader(){
 
     const handleGoToHome = () => {
-        window.location.replace("https://www.zipharvest.app/");
+        window.location.replace("https://www.zipharvest.app/signin");
     }  
 
     let headerWidth = "100%";
