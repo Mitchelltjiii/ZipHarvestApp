@@ -176,7 +176,7 @@ style={{backgroundColor:"#444444",height:"100%",width:"100%"}}
       alignItems="center"
 style={{width:"100%"}}>
 <div style={{width:"70%",marginTop:"10px",marginBottom:"10px",color:"#FFFFFF"}}>
-      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome} style={{width:"100%"}}>
+      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>
         <img alt="logo" src={zhlogotransparent} style={{minHeight:"62px",maxHeight: "62px",float:"left"}}/>
       </Button>
 

@@ -761,7 +761,11 @@ app.get("/api/tutorials/:username",(req,res) => {
       connection.query(usersQueryStringFromUsername + sql + "'", (err, rows) => {
         connection.release(); // return the connection to pool
         if(err) throw err;
-        res.json(rows[0].tutorials);
+        try{
+          res.json(rows[0].tutorials);
+        }catch(error){
+
+        }
     });
   });
 });
