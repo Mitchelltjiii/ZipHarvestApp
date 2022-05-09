@@ -133,7 +133,7 @@ function LogIn({attemptLogin,setCurrentPage,logInFailed}){
                   wrap="nowrap"
                   >
                   {isMobile ?
-                   <div style={{width:formWidth,height:formHeight,paddingTop:"20px"}}>
+                   <div style={{width:formWidth,height:formHeight,paddingTop:"5px"}}>
                    <Grid
                            container
                            direction="column"
