@@ -182,13 +182,12 @@ function ProductLanding({setCurrentPage,logVisit}) {
         style={{width:"100%"}}
       >
         <div style={{backgroundColor:"#000000",width:"100%"}}>
-        <Grid
-				container
-				direction="row"
-			  	justifyContent="center"
-				alignItems="center">
-                    <img alt="logo" src={zhlogotransparent} style={{height: "50px"}}/>
-                    </Grid>
+                    <img alt="logo" src={zhlogotransparent} style={{height: "50px",float:"left"}}/>
+                    {accountCreated ? null :       
+      <Button style={{height:"40px",marginTop:"5px",marginBottom:"5px",
+      color:"#FFFFFF",borderColor:"#FFFFFF",float:"right"}} aria-controls="simple-menu" 
+      aria-haspopup="true" variant="outlined" onClick={handleGoToHome}>Sign In</Button>		
+      }
                      </div>
                      <Grid
         container
