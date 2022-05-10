@@ -75,7 +75,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
       }
   
       const handleGoToHome = () => {
-        window.location.replace("https://www.zipharvest.app/signin");
+        setCurrentPage('signin');
       }  
   
       async function getUser(){
