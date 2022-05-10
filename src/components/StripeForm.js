@@ -474,11 +474,6 @@ async function getSession(seshId){
   setSession(json);
 }
 
-
-const handleGoToHome = () => {
-  window.location.replace("https://www.zipharvest.app/signin");
-}  
-
   let [message, setMessage] = useState('');
   let [success, setSuccess] = useState(false);
   let [sessionId, setSessionId] = useState('');
