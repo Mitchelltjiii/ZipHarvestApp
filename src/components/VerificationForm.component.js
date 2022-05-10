@@ -21,7 +21,7 @@ function VerificationForm({newUsername,setCurrentPage}) {
     }
 
     const handleGoToHome = () => {
-      setCurrentPage('signin');
+      window.location.replace("https://www.zipharvest.app/");
     }  
 
     async function getUser(){
