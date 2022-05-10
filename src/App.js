@@ -713,17 +713,15 @@ export default class App extends React.Component {
       if(currUrl.includes("#")){
         if(currUrl.includes("#a")){
           this.logVisit("Email Main Link");
-          this.forceUpdate();
-          //  window.location.replace("https://www.zipharvest.app/signin");
-
+          window.location.replace("https://www.zipharvest.app/");
         }
       }else{
         if(currUrl.includes("/go/")){
           this.logVisit("website");
-          this.forceUpdate();
+          window.location.replace("https://www.zipharvest.app/");
         }else if(currUrl.includes("tryit")){
           this.logVisit("ig");
-          this.forceUpdate();
+          window.location.replace("https://www.zipharvest.app/");
         }else{
           this.logVisit("Home");
         }
