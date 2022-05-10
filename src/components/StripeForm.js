@@ -63,7 +63,7 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin,setCurrent
   );
 
   const handleGoToHome = () => {
-    setCurrentPage('signin');
+    window.location.replace("https://www.zipharvest.app/");
   }  
 
 const [expired,setExpired] = React.useState(false);

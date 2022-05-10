@@ -26,7 +26,7 @@ function EndSubscriptionForm({setCurrentPage,attemptLogInFromEndSubForm,logInSuc
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
     const handleGoToHome = () => {
-      setCurrentPage('signin');
+      window.location.replace("https://www.zipharvest.app/");
     }  
 
     const handleGoToStepTwo = () => {

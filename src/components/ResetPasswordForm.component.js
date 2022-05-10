@@ -113,7 +113,7 @@ function ResetPasswordForm({setCurrentPage,linkCode,userFromUrl,fromAccountSetti
     }
     
     const handleGoToHome = () => {
-      setCurrentPage('signin');
+      window.location.replace("https://www.zipharvest.app/");
     }  
 
     const handleConfirmReset = () => {
