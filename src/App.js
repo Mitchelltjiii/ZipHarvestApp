@@ -421,18 +421,8 @@ export default class App extends React.Component {
   executeLogIn = (user,staySignedIn,tuts,subid) =>{
     localStorage.setItem('user', user);
     localStorage.setItem('staySignedIn',staySignedIn);
-    let currPage = localStorage.getItem("currentPage");
-    
-    if(currPage !== null && currPage !== undefined && currPage !== ""){
-      console.log("set state p");
-
-      this.setState({loggedIn:user,subid:subid,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts});
-    
-    }else{
-      console.log("set state q");
-
-      this.setState({loggedIn:user,subid:subid,userID:user,logInFailed:false,tutorials:tuts});
-    }
+  
+      this.setState({loggedIn:user,subid:subid,userID:user,currentPage:'harvest-form',logInFailed:false,tutorials:tuts});
     this.resetAll([]);
     this.engageReload();
   }
@@ -687,7 +677,6 @@ export default class App extends React.Component {
   render() {
     console.log("render currpage: " + this.state.currentPage);
     
-    localStorage.setItem("currentPage",'harvest-form');
     let reloaded = this.pageAccessedByReload();
     const loggedInUser = localStorage.getItem("user");
     const subid = localStorage.getItem("subid");
