@@ -50,6 +50,7 @@ export default class App extends React.Component {
   engageReload = () => {
     if((!this.state.usersLoading) || (!this.state.plantsLoading && !this.state.harvestRecordsLoading && !this.state.harvestBatchesLoading && !this.state.dryRoomsLoading
       && !this.state.exportRecordsLoading)){
+        console.log("Engage reload");
       this.forceUpdate();
     }
   }
@@ -243,7 +244,7 @@ export default class App extends React.Component {
     console.log("Set Current Page: " + currPage);
     localStorage.setItem("currentPage",currPage);
     this.setState({currentPage: currPage});
-    this.forceUpdate();
+    //this.forceUpdate();
   }
 
   resetHarvestBatches = (currHarvest) => {
@@ -277,7 +278,7 @@ export default class App extends React.Component {
     this.getDryRoomsFromDB(true);
     this.getExportRecordsFromDB(true);
 
-
+      console.log("reset all");
     this.forceUpdate();
   }
 
@@ -624,6 +625,8 @@ export default class App extends React.Component {
   }    
    
   render() {
+    console.log("render currpage: " + this.state.currentPage);
+    
     localStorage.setItem("currentPage","harvest-form");
     let reloaded = this.pageAccessedByReload();
     const loggedInUser = localStorage.getItem("user");
