@@ -75,9 +75,14 @@ export default class App extends React.Component {
     const json = await response.json();
     if(json !== undefined){
       if(json.length===13 || JSON.stringify(json).length===13){
+        console.log("Compare 1");
         if((new Date()).getTime()-parseInt(json)>1209600000){
+          console.log("Compare 1.1");
+
           this.setState({newUsername:username,currentPage:'stripe-form'});
         }else{
+          console.log("Compare 1.2");
+
           this.getUser(username,staySignedIn,json);
         }
       }else{
@@ -471,9 +476,14 @@ export default class App extends React.Component {
 
   getFreeTrial = () => {
     let freeTrial = false;
-    
+    console.log("Compare 2");
+
     if((new Date()).getTime()-parseInt(this.state.subid)<1209600000){
       freeTrial = true;
+      console.log("Compare 2.1");
+
+    }else{
+      console.log("Compare 2.2");
     }
 
     return freeTrial;
