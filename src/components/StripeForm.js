@@ -353,10 +353,6 @@ const handleGoToPremium = () => {
   goToProduct("premium");
 }
 
-const handleGetStarted = () => {
-  window.location.replace("https://www.zipharvest.app/signin");
-}
-
 
 async function goToProduct(lookup_key){
   const response = await fetch(`/create-checkout-session/${lookup_key}`, {
@@ -447,7 +443,7 @@ const SuccessDisplay = ({ seshId }) => {
             alignItems="center"
           >
                 <div style={{textAlign:"center"}}>Congrats, your Zipharvest subscription has been created!</div>
-                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetStarted}>Get Started</Button>
+                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                 </Grid>
                 </div>
                 :
@@ -459,7 +455,7 @@ const SuccessDisplay = ({ seshId }) => {
             alignItems="center"
           >
                 <div style={{textAlign:"center"}}>Congrats, your Zipharvest subscription has been created!</div>
-                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetStarted}>Get Started</Button>
+                <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                 </Grid>
         </div>
        }

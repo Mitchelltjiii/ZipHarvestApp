@@ -713,6 +713,7 @@ export default class App extends React.Component {
       if(currUrl.includes("#")){
         if(currUrl.includes("#a")){
           this.logVisit("Email Main Link");
+          this.forceUpdate();
         }
       }else{
         if(currUrl.includes("/go/")){
@@ -722,6 +723,7 @@ export default class App extends React.Component {
         }else{
           this.logVisit("Home");
         }
+        this.forceUpdate();
       }
     }
 
