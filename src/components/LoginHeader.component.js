@@ -4,11 +4,11 @@ import Grid from '@material-ui/core/Grid';
 import zhlogo from './zhlogo.png';
 
 
-function LoginHeader(){
+function LoginHeader({setCurrentPage}){
 
     const handleGoToHome = () => {
-        window.location.replace("https://www.zipharvest.app/signin");
-    }  
+        setCurrentPage('signin');
+      }  
 
     let headerWidth = "100%";
   

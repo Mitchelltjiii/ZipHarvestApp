@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import {isMobile} from 'react-device-detect';
 
-function FindUserForm() {
+function FindUserForm({setCurrentPage}) {
 
     const [email,setEmail] = React.useState('');
     const [emailSent,setEmailSent] = React.useState(false);
@@ -16,7 +16,7 @@ function FindUserForm() {
 	  }
 
     const handleGoToHome = () => {
-      window.location.replace("https://www.zipharvest.app/signin");
+      setCurrentPage('signin');
     }  
 
     async function sendFindUserLink(){

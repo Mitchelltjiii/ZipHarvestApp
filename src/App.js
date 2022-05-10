@@ -50,7 +50,6 @@ export default class App extends React.Component {
   engageReload = () => {
     if((!this.state.usersLoading) || (!this.state.plantsLoading && !this.state.harvestRecordsLoading && !this.state.harvestBatchesLoading && !this.state.dryRoomsLoading
       && !this.state.exportRecordsLoading)){
-        console.log("Engage reload");
       this.forceUpdate();
     }
   }
@@ -61,17 +60,12 @@ export default class App extends React.Component {
     
     if(signIn){
       if(json.canceled_at === null){
-        console.log("Set state bb");
         this.setState({subscription:json});
         this.getUser(username,staySignedIn,subId);
       }else{
-        console.log("set state cc");
-
         this.setState({newUsername:username,currentPage:'stripe-form'});
       }
     }else{
-      console.log("set state dd");
-
       this.setState({subscription:json});
     }
   }
@@ -82,8 +76,6 @@ export default class App extends React.Component {
     if(json !== undefined){
       if(json.length===13 || JSON.stringify(json).length===13){
         if((new Date()).getTime()-parseInt(json)>1209600000){
-          console.log("set state ee");
-
           this.setState({newUsername:username,currentPage:'stripe-form'});
         }else{
           this.getUser(username,staySignedIn,json);
@@ -91,10 +83,7 @@ export default class App extends React.Component {
       }else{
         this.getSubscription(json,username,staySignedIn,signIn);
       }
-      
       }else{
-        console.log("set state ff");
-
         this.setState({newUsername:username,currentPage:'stripe-form'});
       }
   }
@@ -117,20 +106,16 @@ export default class App extends React.Component {
     if(text === "0"){
       gotResponse = true;
       //if(username.includes("Mitchell")){
-        //console.log("includes");
         this.getSubId(username,staySignedIn,true);
       /*}else{
-        console.log("dni");
         this.getUser(username,staySignedIn,"");
       }*/
     }else if(text === "1"){
       gotResponse = true;
-      console.log("set state gg");
 
       this.setState({newUsername:username,currentPage:'stripe-form'});
     }else if(text === "2"){
       gotResponse = true;
-      console.log("set state hh");
 
       this.setState({newUsername:username,currentPage:'verification-form'});
     }
@@ -148,7 +133,6 @@ export default class App extends React.Component {
   tryLogInFromEndSubForm = async (password) => {
 
     if(this.state.userID === "" || password === ""){
-      console.log("set state ii");
 
       this.setState({logInSuccess:false,currentPage:"end-subscription-form"});
       return;
@@ -159,7 +143,6 @@ export default class App extends React.Component {
     if(text === "0" || text === "1" || text === "2"){
       this.cancelSub();
     }else{
-      console.log("set state jj");
 
       this.setState({logInSuccess:false,currentPage:"end-subscription-form"});
     }
@@ -258,9 +241,7 @@ export default class App extends React.Component {
 
 
   setCurrentPage = (currPage) => {
-    console.log("Set Current Page: " + currPage);
     localStorage.setItem("currentPage",currPage);
-    console.log("set state b");
     this.setState({currentPage: currPage});
     //this.forceUpdate();
   }
@@ -268,7 +249,6 @@ export default class App extends React.Component {
   resetHarvestBatches = (currHarvest) => {
     setTimeout(() =>  this.getHarvestBatchesForReset(currHarvest),0); 
 
-    console.log("set state c");
     this.setState({harvestBatchesLoading: true, currentHarvest: currHarvest});
   }
 
@@ -289,7 +269,6 @@ export default class App extends React.Component {
   }
 
   resetAll = (currHarvest) => {
-    console.log("set state d");
     this.setState({harvestBatchesLoading: true, plantsLoading: true, harvestRecordsLoading: true, currentHarvest: currHarvest, logInFailed: false, logInSuccess: true, 
       dryRoomsLoading: true, exportRecordsLoading: true});
     this.getHarvestBatchesFromDB();
@@ -298,28 +277,22 @@ export default class App extends React.Component {
     this.getDryRoomsFromDB(true);
     this.getExportRecordsFromDB(true);
 
-      console.log("reset all");
     this.forceUpdate();
   }
 
   reloadPlants = (currHarvest) => {
-    console.log("set state e");
     this.setState({currentHarvest: currHarvest});
 
     this.getPlantsFromDB(true);
   }
 
   reloadDryRooms = (currHarvest) => {
-    console.log("set state f");
-
     this.setState({currentHarvest: currHarvest});
 
     this.getDryRoomsFromDB(true);
   }
 
   reloadExportRecords = (currHarvest) => {
-    console.log("set state g");
-
     this.setState({currentHarvest: currHarvest});
 
     this.getExportRecordsFromDB(true);
@@ -334,13 +307,10 @@ export default class App extends React.Component {
   }
 
   setTutorials = (tuts) => {
-    console.log("set state h");
-
     this.setState({tutorials:tuts});
   }
 
   reloadHarvestBatches = (currHarvest) => {
-    console.log("set state i");
 
     this.setState({currentHarvest: currHarvest});
 
@@ -348,7 +318,6 @@ export default class App extends React.Component {
   }
 
   reloadUsers = () => {
-    console.log("set state j");
 
     this.setState({usersLoading:true});
     return "";
@@ -359,8 +328,6 @@ export default class App extends React.Component {
   }
 
   reloadPlantsAndHarvestRecords = (currHarvest) => {
-    console.log("set state k");
-
     this.setState({currentHarvest: currHarvest, plantsLoading: true, harvestRecordsLoading: true});
 
     this.getPlantsFromDB(true);
@@ -375,14 +342,10 @@ export default class App extends React.Component {
       let tempHarvestBatches = this.state.harvestBatches;
 			tempHarvestBatches = tempHarvestBatches.substring(0,tempHarvestBatches.length-1) + "," + JSON.stringify(hb) + "]";
 
-      console.log("set state l");
-
       this.setState({harvestBatches: tempHarvestBatches});
 	}
 
   setFromAccountSettings = (from) => {
-    console.log("set state m");
-
     this.setState({fromAccountSettings: from});
 }
 
@@ -395,8 +358,6 @@ export default class App extends React.Component {
       }else{
         tempHarvestRecords = tempHarvestRecords.substring(0,tempHarvestRecords.length-1) + "," + JSON.stringify(hr) + "]";
       }
-      console.log("set state n");
-
       this.setState({harvestRecords: tempHarvestRecords});
 	}
 
@@ -404,8 +365,7 @@ export default class App extends React.Component {
       plant.id = newID;
       let tempPlants = this.state.plants;
 			tempPlants = tempPlants.substring(0,tempPlants.length-1) + "," + JSON.stringify(plant) + "]";
-      console.log("set state o");
-
+      
       this.setState({plants: tempPlants});
 	}
 
@@ -421,15 +381,20 @@ export default class App extends React.Component {
   executeLogIn = (user,staySignedIn,tuts,subid) =>{
     localStorage.setItem('user', user);
     localStorage.setItem('staySignedIn',staySignedIn);
+    let currPage = localStorage.getItem("currentPage");
+    
+    if(currPage !== null && currPage !== undefined && currPage !== ""){
+      this.setState({loggedIn:user,subid:subid,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts});
+    
+    }else{
+      this.setState({loggedIn:user,subid:subid,userID:user,logInFailed:false,tutorials:tuts});
+    }
   
-      this.setState({loggedIn:user,subid:subid,userID:user,currentPage:'harvest-form',logInFailed:false,tutorials:tuts});
     this.resetAll([]);
     this.engageReload();
   }
 
   executeLogInFailed = () => {
-    console.log("set state r");
-
     this.setState({logInFailed:true});
     this.forceUpdate();
   }
@@ -531,34 +496,27 @@ export default class App extends React.Component {
 	}
 
   setHarvestBatches = (harvestBatchesFromChild) => {
-    console.log("set state s");
-
     this.setState({harvestBatches:harvestBatchesFromChild});
   }
 
   setPlants = (plantMapFromChild) => {
-    console.log("set state t");
-
     this.setState({plants:plantMapFromChild});
   }
 
   setHarvestRecords = (harvestRecordsMapFromChild) => {
-    console.log("set state u");
-
     this.setState({harvestRecords:harvestRecordsMapFromChild});
   }
 
-  setDryRooms = (dryRoomMapFromChild) => {        console.log("set state v");
-
+  setDryRooms = (dryRoomMapFromChild) => {
     this.setState({dryRooms:dryRoomMapFromChild});
   }
 
-  setExportRecords = (exportRecordsMapFromChild) => {        console.log("set state w");
+  setExportRecords = (exportRecordsMapFromChild) => {
 
     this.setState({exportRecords:exportRecordsMapFromChild});
   }
 
-  setUsers = (usersMapFromChild) => {        console.log("set state x");
+  setUsers = (usersMapFromChild) => {
 
     this.setState({users:usersMapFromChild});
   }
@@ -566,7 +524,6 @@ export default class App extends React.Component {
 
   executeLogout = () => {
     localStorage.clear();
-    console.log("set state y");
 
     this.setState({loggedIn:'',subid:'',currentPage:'harvest-form',harvestBatches:[],plants:[],harvestRecords:[],
     plantsLoading:true,harvestBatchesLoading:true,harvestRecordsLoading:true,currentHarvest:[],userID:'',
@@ -602,8 +559,6 @@ export default class App extends React.Component {
     const response6 = await fetch(`/api/print/pl`);
     const text6 = await response6.text();
     txt = txt + "Plants:" + text6;
-
-    console.log("set state z");
 
     this.setState({print:txt});
     this.engageReload();
@@ -654,8 +609,6 @@ export default class App extends React.Component {
   }
 
   setNewUsername = (newUser) => {
-    console.log("set state aa");
-
     this.setState({newUsername:newUser});
   }
 
@@ -674,9 +627,8 @@ export default class App extends React.Component {
     }
   }    
    
-  render() {
-    console.log("render currpage: " + this.state.currentPage);
-    
+  render() {    
+    localStorage.setItem("currentPage","harvest-form");
     let reloaded = this.pageAccessedByReload();
     const loggedInUser = localStorage.getItem("user");
     const subid = localStorage.getItem("subid");
@@ -694,7 +646,6 @@ export default class App extends React.Component {
       if(reloaded || staySignedIn){
         this.reloadExportRecords([]);
         this.reloadSubscription([]);
-        console.log("set state a");
         this.setState({loggedIn:loggedInUser,subid:subid,userID:loggedInUser,usersLoading:false,subid:subid});
         this.getUser(loggedInUser,staySignedIn,subid);
       }
@@ -715,7 +666,6 @@ export default class App extends React.Component {
     /*if(currUrl.includes("signin") && this.state.currentPage !== "signin" && this.state.currentPage !== "create-user-form"
     && this.state.currentPage !== "stripe-form" && this.state.currentPage !== "verification-form"
     && this.state.currentPage !== "reset-password-form" && this.state.currentPage !== "find-user-form"){
-      console.log("setcurrentpagesignina");
       this.setCurrentPage('signin');
     }*/
 
@@ -775,7 +725,6 @@ export default class App extends React.Component {
       }
     }
 
-    console.log("currpage: " + this.state.currentPage);
     let landingForm = false;
     if (this.state.loggedIn !== '') {
 	  	showForm = <div style={{margin:"auto"}}>
@@ -799,16 +748,15 @@ export default class App extends React.Component {
       }else if(this.state.currentPage === 'stripe-form'){
 				showForm = <StripeForm verCode={verCode} userFromUrl={userFromUrl} userFromLogin={this.state.newUsername} setCurrentPage={this.setCurrentPage}></StripeForm>
       }else if(this.state.currentPage === 'verification-form'){
-				showForm = <VerificationForm newUsername={this.state.newUsername}></VerificationForm>
+				showForm = <VerificationForm newUsername={this.state.newUsername} setCurrentPage={this.setCurrentPage}></VerificationForm>
       }else if(this.state.currentPage === 'reset-password-form'){
 				showForm = <ResetPasswordForm setCurrentPage={this.setCurrentPage} linkCode={linkCode} userFromUrl={userFromUrl} executeLogout={this.executeLogout} fromAccountSettings={this.state.fromAccountSettings} userID=""></ResetPasswordForm>
       }else if(this.state.currentPage === 'find-user-form'){
-				showForm = <FindUserForm></FindUserForm>
+				showForm = <FindUserForm setCurrentPage={this.setCurrentPage}></FindUserForm>
       }else if(this.state.currentPage === 'signin'){
         showForm = <LogIn attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage} logInFailed={this.state.logInFailed}></LogIn>;
         loginForm = true;
       }else{
-        console.log("Show product landing, currpage: " + this.state.currentPage);
         showForm = <ProductLanding setCurrentPage={this.setCurrentPage} logVisit={this.logVisit}></ProductLanding>
         landingForm = true;
       }
@@ -819,7 +767,7 @@ export default class App extends React.Component {
   				justifyContent="center"
 				  alignItems="center"
 		  	  >
-          <LoginHeader/>
+          <LoginHeader setCurrentPage={this.setCurrentPage}></LoginHeader>
           {showForm}
           </Grid>)
       } 

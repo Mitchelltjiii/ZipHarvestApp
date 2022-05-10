@@ -45,7 +45,7 @@ getFreeTrialEnds}){
 			) : currentPage === 'reset-password-form' ? (
 				<ResetPasswordForm setCurrentPage={setCurrentPage} linkCode='' userFromUrl='' fromAccountSettings={fromAccountSettings} userID={userID}></ResetPasswordForm>
 			) : currentPage === 'change-subscription-form' ? (
-				<ChangeSubscriptionForm userID={userID} reloadSubscription={reloadSubscription} getSubscriptionType={getSubscriptionType}></ChangeSubscriptionForm>
+				<ChangeSubscriptionForm userID={userID} reloadSubscription={reloadSubscription} getSubscriptionType={getSubscriptionType} setCurrentPage={setCurrentPage}></ChangeSubscriptionForm>
 			) : currentPage === 'tutorial-form' ? (
 				<TutorialForm></TutorialForm>
 			) : currentPage === 'print-page' ? (

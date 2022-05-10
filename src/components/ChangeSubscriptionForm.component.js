@@ -9,7 +9,7 @@ import SwipeableViews from 'react-swipeable-views';
 import leafImage2 from '../leafImage2.svg';
 import leafImage3 from '../leafImage3.svg';
 
-function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType}) {
+function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,setCurrentPage}) {
   let testMode = false;
   const styles = {
     slide: {
@@ -29,7 +29,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType})
   };
   
   const handleGoToHome = () => {
-    window.location.replace("https://www.zipharvest.app/signin");
+    setCurrentPage('signin');
   }  
 
   let green = "#729d3f";

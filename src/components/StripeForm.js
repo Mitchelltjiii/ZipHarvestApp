@@ -62,13 +62,9 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin,setCurrent
     </section>
   );
 
-  const handleContinue = () => {
-		doContinue();
-	}
-
-  function doContinue(){
-    window.location.replace("https://www.zipharvest.app/signin");
-  }
+  const handleGoToHome = () => {
+    setCurrentPage('signin');
+  }  
 
 const [expired,setExpired] = React.useState(false);
 
@@ -576,7 +572,7 @@ const handleGoToHome = () => {
 			              >
                     <div style={{textAlign:"center"}}>You have verified your account!</div>
                     <div style={{textAlign:"center"}}>Your 14-day free trial starts now!</div>
-                    <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
+                    <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                   </Grid>    
           </div> :
           <div style={{width:formWidth,height:formHeight,border:"1px solid #d7d7d7",borderRadius:5,margin:"auto",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
@@ -588,7 +584,7 @@ const handleGoToHome = () => {
 			              >
                     <div style={{textAlign:"center"}}>You have verified your account!</div>
                     <div style={{textAlign:"center"}}>Your 14-day free trial starts now!</div>
-                    <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleContinue}>Continue</Button>
+                    <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                   </Grid>
           </div>
           }

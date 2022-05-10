@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import {isMobile} from 'react-device-detect';
 
-function VerificationForm({newUsername}) {
+function VerificationForm({newUsername,setCurrentPage}) {
 
     const [email,setEmail] = React.useState('');
     const [resent,setResent] = React.useState(false);
@@ -21,7 +21,7 @@ function VerificationForm({newUsername}) {
     }
 
     const handleGoToHome = () => {
-      window.location.replace("https://www.zipharvest.app/signin");
+      setCurrentPage('signin');
     }  
 
     async function getUser(){

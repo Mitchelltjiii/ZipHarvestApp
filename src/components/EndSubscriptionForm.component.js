@@ -26,7 +26,7 @@ function EndSubscriptionForm({setCurrentPage,attemptLogInFromEndSubForm,logInSuc
     const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
     const handleGoToHome = () => {
-      setCurrentPage('harvest-form');
+      setCurrentPage('signin');
     }  
 
     const handleGoToStepTwo = () => {
