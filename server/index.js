@@ -61,7 +61,7 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
       dynamic_template_data: {
         username:req.params.username,
         florasollink:'https://flora-sol.com/',
-        zipharvestlink: 'https://www.zipharvest.app/signin',
+        zipharvestlink: 'https://www.zipharvest.app/',
         verificationlink: 'https://www.zipharvest.app/verCode=' + req.params.verificationCode + "/username=" + req.params.username,
       }      
     }
@@ -83,7 +83,7 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
       dynamic_template_data: {
         username:req.params.username,
         florasollink:'https://flora-sol.com/',
-        zipharvestlink: 'https://www.zipharvest.app/signin',
+        zipharvestlink: 'https://www.zipharvest.app/',
         resetpasswordlink: 'https://www.zipharvest.app/linkCode=' + req.params.linkCode + '/username=' + req.params.username,
       }      
     }
@@ -114,7 +114,7 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
                   dynamic_template_data: {
                     username:val.username,
                     florasollink:'https://flora-sol.com/',
-                    zipharvestlink: 'https://www.zipharvest.app/signin',
+                    zipharvestlink: 'https://www.zipharvest.app/',
                     address:req.params.address
                   }      
                 }
