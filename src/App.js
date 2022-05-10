@@ -788,7 +788,6 @@ export default class App extends React.Component {
 
     console.log("currpage: " + this.state.currentPage);
     let landingForm = false;
-
     if (this.state.loggedIn !== '') {
 	  	showForm = <div style={{margin:"auto"}}>
 	    <Header setCurrentPage={this.setCurrentPage}/>
