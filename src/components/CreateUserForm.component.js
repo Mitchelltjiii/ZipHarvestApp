@@ -307,11 +307,14 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
         console.log("uid: " + uid);
         const response2 = await fetch(`api/user-get-subid/${uid}`);
         const subid = await response2.text();
-
         console.log("Grant Free month to  " + userId);
         console.log("subid: " + subid);
         
-        const response3 = await fetch(`/get-subscription/${subid}`);
+        let sid = subid.substring(1,subid.length-1);
+        console.log("sid: " + sid);
+        
+        
+        const response3 = await fetch(`/get-subscription/${sid}`);
         const sub = await response3.json();
 
        
