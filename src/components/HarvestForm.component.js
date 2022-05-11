@@ -403,6 +403,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   let entryTutorialWidth = "500px";
   let entryTutorialFontSize = "17px";
   const[entryTutorialVisible,setEntryTutorialVisible] = React.useState(true);
+  const[referalVisible,setReferalVisible] = React.useState(true);
 
   if(isMobile){
 	entryTutorialWidth = "340px";
@@ -570,6 +571,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function closeEntryTutorial(){
 		setEntryTutorialVisible(false);
+	}
+
+	function closeReferal(){
+		setReferalVisible(false);
 	}
 
 	function dontShowAgain(){
@@ -1050,6 +1055,25 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				</Grid>
 				</Grid> : null}
 				
+				{(referalVisible && userID.includes("Mitchell")) ? <Grid
+				container
+				direction="column"
+  				justify="center"
+				alignItems="center"
+				style={{width:entryTutorialWidth,borderColor:"#90ee90",marginLeft:"10px",marginRight:"10px",marginTop:"10px",marginBottom:"10px",borderRadius:"5px",border: "1px solid #90ee90",paddingRight:"5px",paddingBottom:"5px"}}
+			>
+				
+				<div style={{margin:"5px",textAlign:"center",fontSize:entryTutorialFontSize}}>Get one month free for you and a friend! Just send them this link: </div>
+				<Grid
+				container
+				direction="row"
+				justify="center"
+				alignItems="center"
+				style={{width:"100%"}}
+			>
+				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={closeReferal}>Close</Button>
+				</Grid>
+				</Grid> : null}
 
 				<Grid
 					container
