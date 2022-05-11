@@ -22,7 +22,7 @@ import {isMobile} from 'react-device-detect';
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches,
 	currentHarvest, setNewHBID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
 	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords,getTutorials,setTutorials,showHints,
-	setCurrentPage}) { 
+	setCurrentPage,getFreeTrial}) { 
 
 	let tutorials = getTutorials();
 	function HarvestBatch(name,type,date,userID){
@@ -61,6 +61,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
                     "Yellow": "#F6BB42",
 					"Offwhite": "#f3f6f4"
 	};
+
+	let freeTrail = getFreeTrial();
 
 	const [day, setDay] = React.useState('today');
 
@@ -1055,7 +1057,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				</Grid>
 				</Grid> : null}
 				
-				{(referalVisible && userID.includes("Mitchell")) ? <Grid
+				{(referalVisible && !freeTrail && userID.includes("Mitchell")) ? <Grid
 				container
 				direction="column"
   				justify="center"

@@ -41,7 +41,8 @@ export default class App extends React.Component {
     subscription: [],
     tutorials: "",
     showHints: false,
-    print: ""
+    print: "",
+    usingReferalCode: ""
   };
 
   componentDidMount() {    
@@ -70,19 +71,20 @@ export default class App extends React.Component {
     }
   }
 
+  pauseSubscription = async () => {
+    let resumeAt = (new Date()).getTime()+2678400000;
+    const response = await fetch(`/pause-subscription/${subId}/${resumeAt}`);
+    const json = await response.json();
+  }
+
   getSubId = async (username,staySignedIn,signIn) => {
     const response = await fetch(`/get-subid/${username}`);
     const json = await response.json();
     if(json !== undefined){
       if(json.length===13 || JSON.stringify(json).length===13){
-        console.log("Compare 1");
         if((new Date()).getTime()-parseInt(json)>1209600000){
-          console.log("Compare 1.1");
-
           this.setState({newUsername:username,currentPage:'stripe-form'});
         }else{
-          console.log("Compare 1.2");
-
           this.getUser(username,staySignedIn,json);
         }
       }else{
@@ -476,14 +478,10 @@ export default class App extends React.Component {
 
   getFreeTrial = () => {
     let freeTrial = false;
-    console.log("Compare 2");
 
     if((new Date()).getTime()-parseInt(this.state.subid)<1209600000){
       freeTrial = true;
-      console.log("Compare 2.1");
 
-    }else{
-      console.log("Compare 2.2");
     }
 
     return freeTrial;
@@ -537,7 +535,7 @@ export default class App extends React.Component {
 
     this.setState({loggedIn:'',subid:'',currentPage:'harvest-form',harvestBatches:[],plants:[],harvestRecords:[],
     plantsLoading:true,harvestBatchesLoading:true,harvestRecordsLoading:true,currentHarvest:[],userID:'',
-    dryRooms:[],exportRecords:[], subscription:[], tutorials:""});
+    dryRooms:[],exportRecords:[], subscription:[], tutorials:"",usingReferalCode:""});
     this.forceUpdate();
   }
 
@@ -638,6 +636,7 @@ export default class App extends React.Component {
   }    
    
   render() {    
+    console.log("Using referal Code: " + this.state.usingReferalCode);
     localStorage.setItem("currentPage","harvest-form");
     let reloaded = this.pageAccessedByReload();
     const loggedInUser = localStorage.getItem("user");
@@ -678,6 +677,15 @@ export default class App extends React.Component {
     && this.state.currentPage !== "reset-password-form" && this.state.currentPage !== "find-user-form"){
       this.setCurrentPage('signin');
     }*/
+
+    let refCodeEqualsStr = "refcode=";
+    if(currUrl.includes("refcode")){
+      let refCodeStr = currUrl.substring(currUrl.indexOf(refCodeEqualsStr)+refCodeEqualsStr.length,currUrl.indexOf(refCodeEqualsStr)+refCodeEqualsStr.length+5);
+      if(this.state.currentPage !== 'create-user-form'){
+        localStorage.setItem("currentPage",'create-user-form');
+        this.setState({currentPage: 'create-user-form',usingReferalCode:refCodeStr});
+      }
+    }
 
     let successEqualsStr = "success=";
     if(currUrl.includes("success")){

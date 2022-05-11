@@ -296,6 +296,21 @@ app.get('/cancel-subscription/:subscriptionId', async (req,res) =>{
   res.json(deleted);
 })
 
+app.get('/pause-subscription/:subscriptionId/:resumesAt', async (req,res) =>{
+  const subscription = await stripe.subscriptions.update(
+    req.params.subscriptionId,
+    {
+      pause_collection: {
+        behavior: 'mark_uncollectible',
+        resumes_at: req.params.resumesAt,
+      },
+    }
+  );
+  res.json(subscription);
+})
+
+
+
 app.get('/get-user/:username', async (req,res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
