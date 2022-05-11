@@ -308,10 +308,10 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
 
         console.log("Grant Free month to  " + userId);
         console.log("subid: " + subid);
-        
+        /*
         const response3 = await fetch(`/get-subscription/${subid}`);
         const sub = await response3.json();
-
+*/
        
         console.log("sub: " + JSON.stringify(sub));
 

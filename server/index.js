@@ -232,6 +232,9 @@ app.get("/api/user-get-subid/:username",(req,res) => {
             console.log("Find user: " + req.params.username);
             for(const val of rows){
               console.log("valx: " + JSON.stringify(val));
+              console.log("val.username: " + val.username);
+              console.log("req.params.username: " + req.params.username);
+              console.log("equals: " + (val.username===req.params.username));
               if(val.username===req.params.username){
                 console.log("Return ddddd");
                 userExists=true;
