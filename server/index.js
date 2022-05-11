@@ -232,7 +232,7 @@ app.get("/api/user-get-subid/:username",(req,res) => {
             console.log("Find user: " + req.params.username);
             for(const val of rows){
               console.log("valx: " + JSON.stringify(val));
-              if(val.username==req.params.username){
+              if(val.username===req.params.username){
                 console.log("Return ddddd");
                 userExists=true;
                 res.json(val.subid);
