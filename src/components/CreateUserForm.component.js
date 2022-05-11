@@ -231,7 +231,8 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
         sessionid: '',
         verCodeTime: '',
         linkCodeTime: '',
-        tutorials: '1'
+        tutorials: '1',
+        refCode: ''
         };
     
         userItem.apiid = username;
@@ -243,6 +244,8 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
         userItem.email = email;
         userItem.verificationCode = newCode;
         userItem.verCodeTime = JSON.stringify((new Date()).getTime());
+        userItem.refCode = makeid(8);
+
       return userItem;
     }
 
@@ -287,6 +290,24 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
         await response.text();
       }catch(err){
       }
+      if(usingReferalCode !== ""){
+        grantFreeMonth();
+      }
+    }
+
+    async function grantFreeMonth(){
+      try{
+        const response = await fetch(`/refcode-get-userid/${usingReferalCode}`);
+        const userId = await response.text();
+
+        const response2 = await fetch(`api/user-get-subid/${userId}`);
+        const sub = await response2.json();
+
+        console.log("Grant Free month to  " + userId);
+        console.log("sub: " + JSON.stringify(sub));
+      }catch(err){
+      }
+      
     }
 
     async function sendSignupNotificationEmail(){
@@ -399,7 +420,7 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
     }}
   />   
   {usingReferalCode !== "" ?       
-  <FormControlLabel onChange={handleReferalAgreementChanged} control={<Checkbox/>} label="This is a different licensed facility than the one that you received this referal from." />
+  <FormControlLabel style={{width:'250px'}} onChange={handleReferalAgreementChanged} control={<Checkbox/>} label="This is a different licensed facility than the one that you received this referal from." />
     : null}       
   <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>  
   <Button disabled={!referalAgreement} variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{height:"60px",marginTop:"10px",marginBottom:"20px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleContinue}>Start Free Trial</Button>    
@@ -448,7 +469,7 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
     }}
   />   
   {usingReferalCode !== "" ?       
-  <FormControlLabel onChange={handleReferalAgreementChanged} control={<Checkbox/>} label="This is a different licensed facility than the one that you received this referal from." />
+  <FormControlLabel style={{width:'250px'}} onChange={handleReferalAgreementChanged} control={<Checkbox/>} label="This is a different licensed facility than the one that you received this referal from." />
     : null}
 
   <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>

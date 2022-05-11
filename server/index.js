@@ -244,6 +244,29 @@ app.get("/api/user-get-subid/:username",(req,res) => {
   });
 });
 
+app.get("/api/refcode-get-userid/:refCode",(req,res) => {
+  pool.getConnection((err, connection) => {
+      if(err) throw err;
+      connection.query(usersQueryString, (err, rows) => {
+          connection.release(); // return the connection to pool
+          let userExists = false;
+          if(err) throw err;
+          try{
+            for(const val of rows){
+              if(val.refCode==req.params.refCode){
+                userExists=true;
+                res.json(val.username);
+              }
+            }
+          }catch(error){
+          }
+          if(!userExists){
+            res.json("");
+          }
+    });
+  });
+});
+
 app.get("/api/email-exists/:email",(req,res) => {
   pool.getConnection((err, connection) => {
       if(err) throw err;
