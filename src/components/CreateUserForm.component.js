@@ -303,7 +303,6 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
       try{
         const response = await fetch(`api/refcode-get-userid/${usingReferalCode}`);
         const userId = await response.text();
-
         const response2 = await fetch(`api/user-get-subid/${userId}`);
         const subid = await response2.text();
 
