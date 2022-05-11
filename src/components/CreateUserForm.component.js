@@ -423,7 +423,11 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
   <FormControlLabel style={{width:'250px'}} onChange={handleReferalAgreementChanged} control={<Checkbox/>} label="This is a different licensed facility than the one that you received this referal from." />
     : null}       
   <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>  
-  <Button disabled={!referalAgreement} variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{height:"60px",marginTop:"10px",marginBottom:"20px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleContinue}>Start Free Trial</Button>    
+  {usingReferalCode !== "" ?
+    <Button disabled={!referalAgreement} variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{height:"60px",marginTop:"10px",marginBottom:"20px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleContinue}>Start Free Trial</Button>    
+  :
+  <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{height:"60px",marginTop:"10px",marginBottom:"20px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleContinue}>Start Free Trial</Button>    
+  }
   </Grid>
   </div>);
   }else{
@@ -476,7 +480,11 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
   
     </Grid>
   </div>
-  <Button disabled={!referalAgreement} variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{height:"60px",marginTop:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleContinue}>Start Free Trial</Button>           
+  {usingReferalCode !== "" ?
+    <Button disabled={!referalAgreement} variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{height:"60px",marginTop:"10px",marginBottom:"20px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleContinue}>Start Free Trial</Button>    
+  :
+  <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{height:"60px",marginTop:"10px",marginBottom:"20px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleContinue}>Start Free Trial</Button>    
+  }
 </Grid>
 </div>
     );
