@@ -306,11 +306,13 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
         const response2 = await fetch(`api/user-get-subid/${userId}`);
         const subid = await response2.text();
 
+        console.log("Grant Free month to  " + userId);
+        console.log("subid: " + subid);
+        
         const response3 = await fetch(`/get-subscription/${subid}`);
         const sub = await response3.json();
 
-        console.log("Grant Free month to  " + userId);
-        console.log("subid: " + subid);
+       
         console.log("sub: " + JSON.stringify(sub));
 
         window.history.pushState(null,document.title,"https://www.zipharvest.app/");
