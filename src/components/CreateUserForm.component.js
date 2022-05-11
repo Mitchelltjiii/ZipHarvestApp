@@ -6,9 +6,10 @@ import {isMobile} from 'react-device-detect';
 import {InputAdornment,IconButton} from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
-
+function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode}) {
 
     const [email, setEmail] = React.useState('');
     const [username, setUsername] = React.useState('');
@@ -32,9 +33,9 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
     const [failedEmail,setFailedEmail] = React.useState('');
     const [failedPassword,setFailedPassword] = React.useState('');
     const [failedVerifyPassword,setFailedVerifyPassword] = React.useState('');
+    const [referalAgreement, setReferalAgreement] = React.useState(false);
 
-    logVisit("Create User Form - Username: " + username + ", Email: " + email);
-
+    //logVisit("Create User Form - Username: " + username + ", Email: " + email);
 
     const [showPassword,setShowPassword] = React.useState(false);
     const [showVerifyPassword,setShowVerifyPassword] = React.useState(false);
@@ -49,6 +50,11 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
     const handleContinue = () => {
 		  doContinue();
 	  }
+
+    const handleReferalAgreementChanged = (event) => {
+		  setReferalAgreement(event.target.checked);
+	  };
+    
 
     function isUsernameValid(){
       var minNumberofChars = 8;
@@ -355,6 +361,10 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
       formHeight = "300px";
     }
 
+    if(usingReferalCode !== ""){
+      formHeight = "340px";
+    }
+
   if(isMobile){
     return (
       <div id="create-user-form">
@@ -387,9 +397,12 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
         </InputAdornment>
       )
     }}
-  />          
+  />   
+  {usingReferalCode !== "" ?       
+  <FormControlLabel onChange={handleReferalAgreementChanged} control={<Checkbox/>} label="This is a different licensed facility than the one that you received this referal from." />
+    : null}       
   <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>  
-  <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{height:"60px",marginTop:"10px",marginBottom:"20px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleContinue}>Start Free Trial</Button>    
+  <Button disabled={!referalAgreement} variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{height:"60px",marginTop:"10px",marginBottom:"20px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleContinue}>Start Free Trial</Button>    
   </Grid>
   </div>);
   }else{
@@ -433,13 +446,16 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit}) {
         </InputAdornment>
       )
     }}
-  />         
-  
+  />   
+  {usingReferalCode !== "" ?       
+  <FormControlLabel onChange={handleReferalAgreementChanged} control={<Checkbox/>} label="This is a different licensed facility than the one that you received this referal from." />
+    : null}
+
   <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
   
     </Grid>
   </div>
-  <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{height:"60px",marginTop:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleContinue}>Start Free Trial</Button>           
+  <Button disabled={!referalAgreement} variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{height:"60px",marginTop:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleContinue}>Start Free Trial</Button>           
 </Grid>
 </div>
     );
