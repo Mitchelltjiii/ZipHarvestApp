@@ -73,6 +73,8 @@ export default class App extends React.Component {
 
   pauseSubscription = async () => {
     let resumeAt = (new Date()).getTime()+2678400000;
+    let subId = this.state.subscription.id;
+    console.log("Pause sub: " + subId);
     const response = await fetch(`/pause-subscription/${subId}/${resumeAt}`);
     const json = await response.json();
   }
@@ -686,7 +688,6 @@ export default class App extends React.Component {
         localStorage.setItem("currentPage",'create-user-form');
         console.log("Setting state createuserform");
         this.setState({currentPage:'create-user-form',usingReferalCode:refCodeStr});
-        this.forceUpdate();
       }
     }
 
