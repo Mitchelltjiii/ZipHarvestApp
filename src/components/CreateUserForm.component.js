@@ -313,7 +313,6 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
         let sid = subid.substring(1,subid.length-1);
         console.log("sid: " + sid);
         
-        
         const response3 = await fetch(`/get-subscription/${sid}`);
         const sub = await response3.json();
 
