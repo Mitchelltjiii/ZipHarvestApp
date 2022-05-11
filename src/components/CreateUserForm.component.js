@@ -301,7 +301,7 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
     async function grantFreeMonth(){
       console.log("GFN");
       try{
-        const response = await fetch(`/refcode-get-userid/${usingReferalCode}`);
+        const response = await fetch(`api/refcode-get-userid/${usingReferalCode}`);
         const userId = await response.text();
 
         const response2 = await fetch(`api/user-get-subid/${userId}`);
