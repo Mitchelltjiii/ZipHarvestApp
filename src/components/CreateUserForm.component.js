@@ -303,17 +303,19 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
       try{
         const response = await fetch(`api/refcode-get-userid/${usingReferalCode}`);
         const userId = await response.text();
-        const response2 = await fetch(`api/user-get-subid/${userId}`);
+        let uid = userId.substring(1,userId.length-1);
+        console.log("uid: " + uid);
+        const response2 = await fetch(`api/user-get-subid/${uid}`);
         const subid = await response2.text();
 
         console.log("Grant Free month to  " + userId);
         console.log("subid: " + subid);
-        /*
+        
         const response3 = await fetch(`/get-subscription/${subid}`);
         const sub = await response3.json();
-*/
+
        
-       // console.log("sub: " + JSON.stringify(sub));
+        console.log("sub: " + JSON.stringify(sub));
 
         window.history.pushState(null,document.title,"https://www.zipharvest.app/");
         setCurrentPage('verification-form');      
