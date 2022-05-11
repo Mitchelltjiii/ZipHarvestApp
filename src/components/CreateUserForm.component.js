@@ -316,7 +316,6 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
         const response3 = await fetch(`/get-subscription/${sid}`);
         const sub = await response3.json();
 
-       
         console.log("sub: " + JSON.stringify(sub));
 
         window.history.pushState(null,document.title,"https://www.zipharvest.app/");
