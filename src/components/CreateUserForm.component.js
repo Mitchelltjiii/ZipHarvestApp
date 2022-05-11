@@ -195,7 +195,6 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
       if(text === "1"){  
         sendSignupNotificationEmail();
         setNewUsername(newUsername);
-        setCurrentPage('verification-form');      
       }else{
         setUsernameHelperText("Username already exists");
         setFailedUsername(username);
@@ -290,12 +289,17 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
         await response.text();
       }catch(err){
       }
+      console.log("CPR");
       if(usingReferalCode !== ""){
+        console.log("GFM");
         grantFreeMonth();
+      }else{
+        setCurrentPage('verification-form');      
       }
     }
 
     async function grantFreeMonth(){
+      console.log("GFN");
       try{
         const response = await fetch(`/refcode-get-userid/${usingReferalCode}`);
         const userId = await response.text();
@@ -305,6 +309,7 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
 
         console.log("Grant Free month to  " + userId);
         console.log("sub: " + JSON.stringify(sub));
+        setCurrentPage('verification-form');      
       }catch(err){
       }
       

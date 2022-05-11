@@ -745,7 +745,7 @@ export default class App extends React.Component {
           this.logVisit("ig");
           window.location.replace("https://www.zipharvest.app/");
         }else{
-          this.logVisit("Home");
+          //this.logVisit("Home");
         }
       }
     }
