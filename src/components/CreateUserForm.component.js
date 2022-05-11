@@ -313,7 +313,7 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
         const sub = await response3.json();
 */
        
-        console.log("sub: " + JSON.stringify(sub));
+       // console.log("sub: " + JSON.stringify(sub));
 
         window.history.pushState(null,document.title,"https://www.zipharvest.app/");
         setCurrentPage('verification-form');      
