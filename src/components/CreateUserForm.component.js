@@ -318,11 +318,25 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
 
         console.log("sub: " + JSON.stringify(sub));
 
-        window.history.pushState(null,document.title,"https://www.zipharvest.app/");
-        setCurrentPage('verification-form');      
-      }catch(err){
-      }
+
+        pauseSubscription(sub);
+
+        }catch(err){
+        }
       
+    }
+
+    async function pauseSubscription(sub){
+      let resumeAt = (new Date()).getTime()+2678400000;
+      console.log("Pause sub: " + sub.id);
+      console.log("Resume at: " + resumeAt);
+      const response = await fetch(`/pause-subscription/${sub.id}/${resumeAt}`);
+      const json = await response.json();
+
+      console.log("Pause response: " + JSON.stringify(json));
+
+      window.history.pushState(null,document.title,"https://www.zipharvest.app/");
+      setCurrentPage('verification-form');      
     }
 
     async function sendSignupNotificationEmail(){

@@ -71,11 +71,14 @@ export default class App extends React.Component {
     }
   }
 
-  pauseSubscription = async () => {
+  pauseSubscription = async (subId) => {
     let resumeAt = (new Date()).getTime()+2678400000;
-    let subId = this.state.subscription.id;
+    let subid = subId;
+    if(subid === ""){
+      subid = this.state.subscription.id;
+    }
     console.log("Pause sub: " + subId);
-    const response = await fetch(`/pause-subscription/${subId}/${resumeAt}`);
+    const response = await fetch(`/pause-subscription/${subid}/${resumeAt}`);
     const json = await response.json();
   }
 
