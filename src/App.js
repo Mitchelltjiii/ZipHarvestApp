@@ -403,9 +403,9 @@ export default class App extends React.Component {
     localStorage.setItem('user', user);
     localStorage.setItem('staySignedIn',staySignedIn);
     let currPage = localStorage.getItem("currentPage");
-    let fmf = 1;
-    if(firstMonthFree){
-      fmf = 0;
+    let fmf = false;
+    if(firstMonthFree===0){
+      fmf = true;
     }
     
     if(currPage !== null && currPage !== undefined && currPage !== ""){
