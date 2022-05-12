@@ -855,14 +855,16 @@ app.put('/user', (req, res) =>{
   let verCodeTime = postData.verCodeTime;
   let linkCodeTime = postData.linkCodeTime;
   let tutorials = postData.tutorials;
+  let refCode = postData.refCode;
+  let firstMonthFree = postData.firstMonthFree;
 
   if(apiid !== null && username !== null && password !== null && subid !== null){
     bcrypt.hash(password, 10, function(err, hash) {
       console.log("B");
       connection.query(`UPDATE users set
-  apiid =?, password =?, subid =?, linkCode =?, facilityName =?, firstName =?, lastName =?, email =?, verificationCode =?, verified =?, sessionid =?, verCodeTime =?, linkCodeTime =?, tutorials =? WHERE username = ?`,
+  apiid =?, password =?, subid =?, linkCode =?, facilityName =?, firstName =?, lastName =?, email =?, verificationCode =?, verified =?, sessionid =?, verCodeTime =?, linkCodeTime =?, tutorials =?, refCode =?, firstMonthFree =? WHERE username = ?`,
   [
-    apiid, hash, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime, tutorials, username
+    apiid, hash, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime, tutorials, refCode, firstMonthFree, username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
@@ -898,15 +900,17 @@ app.post('/user', (req, res) =>{
   let verCodeTime = postData.verCodeTime;
   let linkCodeTime = postData.linkCodeTime;
   let tutorials = postData.tutorials;
+  let refCode = postData.refCode;
+  let firstMonthFree = postData.firstMonthFree;
 
   if(apiid !== null && username !== null && password !== null && subid !== null){
     bcrypt.hash(password, 10, function(error, hash) {
     connection.query(`INSERT INTO users 
-  (apiid, username, password, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime,linkCodeTime,tutorials) 
+  (apiid, username, password, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime,linkCodeTime,tutorials,refCode,firstMonthFree) 
   VALUES 
-  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)`,
+  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
   [
-    apiid, username, hash, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime, tutorials
+    apiid, username, hash, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime, tutorials, refCode, firstMonthFree
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;

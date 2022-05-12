@@ -408,7 +408,7 @@ export default class App extends React.Component {
   }
   
 
-  executeLogIn = (user,staySignedIn,tuts,subid,firstMonthFree,myRefCode) =>{
+  executeLogIn = (user,staySignedIn,tuts,subid,firstMonthFree,myReferalCode) =>{
     localStorage.setItem('user', user);
     localStorage.setItem('staySignedIn',staySignedIn);
     let currPage = localStorage.getItem("currentPage");
@@ -418,10 +418,10 @@ export default class App extends React.Component {
     }
     
     if(currPage !== null && currPage !== undefined && currPage !== ""){
-      this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts,myRefCode:myRefCode});
+      this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts,myReferalCode:myReferalCode});
     
     }else{
-      this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,logInFailed:false,tutorials:tuts,myRefCode:myRefCode});
+      this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,logInFailed:false,tutorials:tuts,myReferalCode:myReferalCode});
     }
   
     this.resetAll([]);
