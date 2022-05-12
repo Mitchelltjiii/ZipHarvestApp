@@ -12,12 +12,14 @@ import LoginHeader from "./components/LoginHeader.component";
 import Grid from '@material-ui/core/Grid';
 import ProductLanding from './components/ProductLanding.component';
 import {isMobile} from 'react-device-detect';
+import e from "express";
 
 export default class App extends React.Component {
   state = {
     currentPage: 'harvest-form',
     loggedIn: '',
     subid: '',
+    firstMonthFree: false,
     harvestBatches: [],
     plants: [],
     harvestRecords: [],
@@ -386,20 +388,28 @@ export default class App extends React.Component {
     const text = await response.text();
     let txt = text.substring(1,text.length-1);
     
-    this.executeLogIn(user,staySignedIn,txt,subid);
+    this.getFirstMonthFree(user,staySignedIn,txt,subid);
+  }
+
+  getFirstMonthFree = async (user,staySignedIn,tuts,subid) => {
+    const response = await fetch(`/api/get-first-month-free/${user}`);
+    const text = await response.text();
+    let txt = text.substring(1,text.length-1);
+    
+    this.executeLogIn(user,staySignedIn,tuts,subid,txt);
   }
   
 
-  executeLogIn = (user,staySignedIn,tuts,subid) =>{
+  executeLogIn = (user,staySignedIn,tuts,subid,firstMonthFree) =>{
     localStorage.setItem('user', user);
     localStorage.setItem('staySignedIn',staySignedIn);
     let currPage = localStorage.getItem("currentPage");
     
     if(currPage !== null && currPage !== undefined && currPage !== ""){
-      this.setState({loggedIn:user,subid:subid,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts});
+      this.setState({loggedIn:user,subid:subid,firstMonthFree:firstMonthFree,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts});
     
     }else{
-      this.setState({loggedIn:user,subid:subid,userID:user,logInFailed:false,tutorials:tuts});
+      this.setState({loggedIn:user,subid:subid,firstMonthFree:firstMonthFree,userID:user,logInFailed:false,tutorials:tuts});
     }
   
     this.resetAll([]);
@@ -484,11 +494,18 @@ export default class App extends React.Component {
   getFreeTrial = () => {
     let freeTrial = false;
 
-    if((new Date()).getTime()-parseInt(this.state.subid)<1209600000){
-      freeTrial = true;
-
+    if(this.state.firstMonthFree){
+      console.log("Get free trial first month free");
+      if((new Date()).getTime()-parseInt(this.state.subid)<2678400000){
+        freeTrial = true;
+      }
+    }else{
+      if((new Date()).getTime()-parseInt(this.state.subid)<1209600000){
+        freeTrial = true;
+      }
     }
-
+    
+    console.log("Free trial: " + freeTrial);
     return freeTrial;
   }
 
@@ -538,7 +555,7 @@ export default class App extends React.Component {
   executeLogout = () => {
     localStorage.clear();
 
-    this.setState({loggedIn:'',subid:'',currentPage:'harvest-form',harvestBatches:[],plants:[],harvestRecords:[],
+    this.setState({loggedIn:'',subid:'',firstMonthFree:false,currentPage:'harvest-form',harvestBatches:[],plants:[],harvestRecords:[],
     plantsLoading:true,harvestBatchesLoading:true,harvestRecordsLoading:true,currentHarvest:[],userID:'',
     dryRooms:[],exportRecords:[], subscription:[], tutorials:"",usingReferalCode:""});
     this.forceUpdate();
@@ -642,6 +659,7 @@ export default class App extends React.Component {
    
   render() {    
     console.log("Using referal Code: " + this.state.usingReferalCode);
+    console.log("First months free: " + this.state.firstMonthFree);
     localStorage.setItem("currentPage","harvest-form");
     let reloaded = this.pageAccessedByReload();
     const loggedInUser = localStorage.getItem("user");
@@ -660,7 +678,7 @@ export default class App extends React.Component {
       if(reloaded || staySignedIn){
         this.reloadExportRecords([]);
         this.reloadSubscription([]);
-        this.setState({loggedIn:loggedInUser,subid:subid,userID:loggedInUser,usersLoading:false,subid:subid});
+        this.setState({loggedIn:loggedInUser,subid:subid,firstMonthFree:false,userID:loggedInUser,usersLoading:false,subid:subid});
         this.getUser(loggedInUser,staySignedIn,subid);
       }
     }

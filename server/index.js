@@ -814,6 +814,24 @@ app.get("/api/tutorials/:username",(req,res) => {
   });
 });
 
+app.get("/api/get-first-month-free/:username",(req,res) => {
+  pool.getConnection((err, connection) => {
+      console.log("Api users get tutorials");
+      if(err) throw err;
+      let username = req.params.username;
+      var sql = `${username}`;
+      connection.query(usersQueryStringFromUsername + sql + "'", (err, rows) => {
+        connection.release(); // return the connection to pool
+        if(err) throw err;
+        try{
+          res.json(rows[0].firstMonthFree);
+        }catch(error){
+          res.json(1);
+        }
+    });
+  });
+});
+
 app.put('/user', (req, res) =>{
   console.log("Put User");
 
