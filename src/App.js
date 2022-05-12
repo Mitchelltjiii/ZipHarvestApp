@@ -12,7 +12,6 @@ import LoginHeader from "./components/LoginHeader.component";
 import Grid from '@material-ui/core/Grid';
 import ProductLanding from './components/ProductLanding.component';
 import {isMobile} from 'react-device-detect';
-import e from "express";
 
 export default class App extends React.Component {
   state = {
