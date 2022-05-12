@@ -404,12 +404,16 @@ export default class App extends React.Component {
     localStorage.setItem('user', user);
     localStorage.setItem('staySignedIn',staySignedIn);
     let currPage = localStorage.getItem("currentPage");
+    let fmf = 1;
+    if(firstMonthFree){
+      fmf = 0;
+    }
     
     if(currPage !== null && currPage !== undefined && currPage !== ""){
-      this.setState({loggedIn:user,subid:subid,firstMonthFree:firstMonthFree,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts});
+      this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts});
     
     }else{
-      this.setState({loggedIn:user,subid:subid,firstMonthFree:firstMonthFree,userID:user,logInFailed:false,tutorials:tuts});
+      this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,logInFailed:false,tutorials:tuts});
     }
   
     this.resetAll([]);
