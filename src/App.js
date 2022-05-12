@@ -393,7 +393,9 @@ export default class App extends React.Component {
   getFirstMonthFree = async (user,staySignedIn,tuts,subid) => {
     const response = await fetch(`/api/get-first-month-free/${user}`);
     const text = await response.text();
+    console.log("get first month free response: " + text);
     let txt = text.substring(1,text.length-1);
+    console.log("txt: " + txt);
     
     this.executeLogIn(user,staySignedIn,tuts,subid,txt);
   }
@@ -404,7 +406,7 @@ export default class App extends React.Component {
     localStorage.setItem('staySignedIn',staySignedIn);
     let currPage = localStorage.getItem("currentPage");
     let fmf = false;
-    if(firstMonthFree===0){
+    if(firstMonthFree==="0"){
       fmf = true;
     }
     

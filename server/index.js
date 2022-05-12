@@ -816,7 +816,7 @@ app.get("/api/tutorials/:username",(req,res) => {
 
 app.get("/api/get-first-month-free/:username",(req,res) => {
   pool.getConnection((err, connection) => {
-      console.log("Api users get tutorials");
+      console.log("Api users get first month free");
       if(err) throw err;
       let username = req.params.username;
       var sql = `${username}`;
