@@ -516,6 +516,10 @@ export default class App extends React.Component {
 
   getFreeTrialEnds = () => {
     let endTime = new Date(parseInt(this.state.subid)+1209600000);
+    if(this.state.firstMonthFree){
+      console.log("Get free trial ends first month free");
+      endTime = new Date(parseInt(this.state.subid)+2678400000);
+    }
 
     return endTime.toLocaleString();
   }

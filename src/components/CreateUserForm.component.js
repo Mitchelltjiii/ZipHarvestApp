@@ -231,7 +231,8 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
         verCodeTime: '',
         linkCodeTime: '',
         tutorials: '1',
-        refCode: ''
+        refCode: '',
+        firstMonthFree: 1
         };
     
         userItem.apiid = username;
@@ -244,6 +245,9 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
         userItem.verificationCode = newCode;
         userItem.verCodeTime = JSON.stringify((new Date()).getTime());
         userItem.refCode = makeid(8);
+        if(usingReferalCode !== ""){
+          userItem.firstMonthFree = 0;
+        }
 
       return userItem;
     }
