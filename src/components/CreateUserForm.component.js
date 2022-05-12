@@ -249,6 +249,8 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
           userItem.firstMonthFree = 0;
         }
 
+        console.log("UserItem: " + JSON.stringify(userItem));
+
       return userItem;
     }
 

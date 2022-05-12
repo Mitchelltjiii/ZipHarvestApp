@@ -22,8 +22,9 @@ import {isMobile} from 'react-device-detect';
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches,
 	currentHarvest, setNewHBID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
 	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords,getTutorials,setTutorials,showHints,
-	setCurrentPage,getFreeTrial}) { 
+	setCurrentPage,getFreeTrial,getReferalLink}) { 
 
+	let referalLink = getReferalLink();
 	let tutorials = getTutorials();
 	function HarvestBatch(name,type,date,userID){
 		this.name = name;
@@ -1065,7 +1066,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				style={{width:entryTutorialWidth,borderColor:"#90ee90",marginLeft:"10px",marginRight:"10px",marginTop:"10px",marginBottom:"10px",borderRadius:"5px",border: "1px solid #90ee90",paddingRight:"5px",paddingBottom:"5px"}}
 			>
 				
-				<div style={{margin:"5px",textAlign:"center",fontSize:entryTutorialFontSize}}>Get one month free for you and a friend! Just send them this link: </div>
+				<div style={{margin:"5px",textAlign:"center",fontSize:entryTutorialFontSize}}>Get one month free for you and a friend! Just send them this link: {referalLink}</div>
 				<Grid
 				container
 				direction="row"

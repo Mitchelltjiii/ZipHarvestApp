@@ -43,7 +43,8 @@ export default class App extends React.Component {
     tutorials: "",
     showHints: false,
     print: "",
-    usingReferalCode: ""
+    usingReferalCode: "",
+    myReferalCode: ""
   };
 
   componentDidMount() {    
@@ -396,12 +397,18 @@ export default class App extends React.Component {
     console.log("get first month free response: " + text);
     let txt = text.substring(1,text.length-1);
     console.log("txt: " + txt);
+
+    const response2 = await fetch(`/api/get-my-refcode/${user}`);
+    const text2 = await response2.text();
+    console.log("get my refcode: " + text2);
+    let txt2 = text2.substring(1,text2.length-1);
+    console.log("txt2: " + txt2);
     
-    this.executeLogIn(user,staySignedIn,tuts,subid,txt);
+    this.executeLogIn(user,staySignedIn,tuts,subid,txt,txt2);
   }
   
 
-  executeLogIn = (user,staySignedIn,tuts,subid,firstMonthFree) =>{
+  executeLogIn = (user,staySignedIn,tuts,subid,firstMonthFree,myRefCode) =>{
     localStorage.setItem('user', user);
     localStorage.setItem('staySignedIn',staySignedIn);
     let currPage = localStorage.getItem("currentPage");
@@ -411,10 +418,10 @@ export default class App extends React.Component {
     }
     
     if(currPage !== null && currPage !== undefined && currPage !== ""){
-      this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts});
+      this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts,myRefCode:myRefCode});
     
     }else{
-      this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,logInFailed:false,tutorials:tuts});
+      this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,logInFailed:false,tutorials:tuts,myRefCode:myRefCode});
     }
   
     this.resetAll([]);
@@ -524,6 +531,10 @@ export default class App extends React.Component {
     return endTime.toLocaleString();
   }
 
+  getReferalLink = () => {
+    return "https://www.zipharvest.app/refcode="+this.state.myReferalCode;
+  }
+
   executeGetExportRecords = () => {
 		let exExportRecords = JSON.parse(this.state.exportRecords);
 		let ers = [];
@@ -566,7 +577,7 @@ export default class App extends React.Component {
 
     this.setState({loggedIn:'',subid:'',firstMonthFree:false,currentPage:'harvest-form',harvestBatches:[],plants:[],harvestRecords:[],
     plantsLoading:true,harvestBatchesLoading:true,harvestRecordsLoading:true,currentHarvest:[],userID:'',
-    dryRooms:[],exportRecords:[], subscription:[], tutorials:"",usingReferalCode:""});
+    dryRooms:[],exportRecords:[], subscription:[], tutorials:"",usingReferalCode:"",myReferalCode:""});
     this.forceUpdate();
   }
 
@@ -668,6 +679,7 @@ export default class App extends React.Component {
    
   render() {    
     console.log("Using referal Code: " + this.state.usingReferalCode);
+    console.log("My referal Code: " + this.state.myReferalCode);
     console.log("First months free: " + this.state.firstMonthFree);
     localStorage.setItem("currentPage","harvest-form");
     let reloaded = this.pageAccessedByReload();
@@ -794,7 +806,7 @@ export default class App extends React.Component {
       getUniqueIDCount={this.getUniqueIDCount} reloadSubscription={this.reloadSubscription} getPossiblePlantCount={this.getPossiblePlantCount} getSubscriptionType={this.getSubscriptionType} 
       getTutorials={this.getTutorials} setTutorials={this.setTutorials}
       showHints={this.state.showHints} getPrint={this.getPrint} print={this.state.print} getFreeTrial={this.getFreeTrial}
-      getFreeTrialEnds={this.getFreeTrialEnds}/>
+      getFreeTrialEnds={this.getFreeTrialEnds} getReferalLink={this.getReferalLink}/>
     </div>;
     }else{
       let loginForm = false;

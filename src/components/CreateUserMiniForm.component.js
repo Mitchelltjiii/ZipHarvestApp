@@ -187,7 +187,9 @@ function CreateUserMiniForm({setAccountCreated,setNewUsername}) {
         sessionid: '',
         verCodeTime: '',
         linkCodeTime: '',
-        tutorials: '1'
+        tutorials: '1',
+        refCode: '',
+        firstMonthFree: 1
         };
     
         userItem.apiid = username;
@@ -199,6 +201,8 @@ function CreateUserMiniForm({setAccountCreated,setNewUsername}) {
         userItem.email = email;
         userItem.verificationCode = newCode;
         userItem.verCodeTime = JSON.stringify((new Date()).getTime());
+        userItem.refCode = makeid(8);
+
       return userItem;
     }
 
