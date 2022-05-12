@@ -330,6 +330,11 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
       let resumeAt = (new Date()).getTime()+2678400000;
       console.log("Pause sub: " + sub.id);
       console.log("Resume at: " + resumeAt);
+      if(sub.pause_collection !== null){
+        console.log("Sub.pauseCollection: " + JSON.stringify(sub.pause_collection));
+        resumeAt = parseInt(sub.pause_collection.resumes_at) + 2678400000;
+        console.log("Resume at updated: " + resumeAt);
+      }
       const response = await fetch(`/pause-subscription/${sub.id}/${resumeAt}`);
       const json = await response.json();
 
