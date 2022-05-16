@@ -398,7 +398,7 @@ export default class App extends React.Component {
     let txt = text.substring(1,text.length-1);
     console.log("txt: " + txt);
 
-    const response2 = await fetch(`/api/get-my-refcode/${user}`);
+    const response2 = await fetch(`/api/user-get-refCode/${user}`);
     const text2 = await response2.text();
     console.log("get my refcode: " + text2);
     let txt2 = text2.substring(1,text2.length-1);
