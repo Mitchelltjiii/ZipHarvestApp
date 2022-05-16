@@ -502,7 +502,6 @@ export default class App extends React.Component {
     }
     return subscriptionType;
   }
-
   getFreeTrial = () => {
     let freeTrial = false;
 
