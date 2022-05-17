@@ -150,16 +150,21 @@ class ImportPlantsButton extends Component{
 
       console.log("set grant free month code blank userID: " + this.props.userID);
       console.log("/user-set-grantFreeMonthCode/" + this.props.userID)
-      const response2 = await fetch(`/user-set-grantFreeMonthCode/${this.props.userID}`);
-      const text2 = await response2.text();
+      const response2 = await fetch(`/user-set-grantFreeMonthCode/${this.props.userID}`, {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+    });
+    const text = await response2.text();
+
       
-      if(!this.props.userID.includes("Mitchell")){
         this.props.reloadPlants([]);
         this.props.setPlantList([]);
         this.props.setImporting(false);
         this.props.setSelectedFile("");
         this.props.refreshOuter();   
-      }
     }
 
     async executeAddPlant(event,plantItem){
