@@ -531,24 +531,6 @@ export default class App extends React.Component {
     return endTime.toLocaleString();
   }
 
-  getGrantFreeMonthCode = () => {
-    const response = await fetch(`/api/user-get-grantFreeMonthCode/${user}`);
-    const text = await response.text();
-
-    console.log("get user grant first month free response: " + text);
-    let txt = text.substring(1,text.length-1);
-    console.log("txt: " + txt);
-  }
-
-  setGrantFreeMonthCode = () => {
-    const response = await fetch(`/api/user-set-grantFreeMonthCode/${user}`);
-    const text = await response.text();
-
-    console.log("set user grant first month free response: " + text);
-    let txt = text.substring(1,text.length-1);
-    console.log("txt: " + txt);
-  }
-
   getReferalLink = () => {
     return "www.zipharvest.app/refcode="+this.state.myReferalCode;
   }
@@ -824,8 +806,7 @@ export default class App extends React.Component {
       getUniqueIDCount={this.getUniqueIDCount} reloadSubscription={this.reloadSubscription} getPossiblePlantCount={this.getPossiblePlantCount} getSubscriptionType={this.getSubscriptionType} 
       getTutorials={this.getTutorials} setTutorials={this.setTutorials}
       showHints={this.state.showHints} getPrint={this.getPrint} print={this.state.print} getFreeTrial={this.getFreeTrial}
-      getFreeTrialEnds={this.getFreeTrialEnds} getReferalLink={this.getReferalLink} getGrantFreeMonthCode={this.getGrantFreeMonthCode}
-      setGrantFreeMonthCode={this.setGrantFreeMonthCode}/>
+      getFreeTrialEnds={this.getFreeTrialEnds} getReferalLink={this.getReferalLink}/>
     </div>;
     }else{
       let loginForm = false;
