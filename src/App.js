@@ -396,6 +396,7 @@ export default class App extends React.Component {
     const response = await fetch(`/api/tutorials/${user}`);
     const text = await response.text();
     let txt = text.substring(1,text.length-1);
+    console.log("tuts1: " + txt);
     
     this.getFirstMonthFree(user,staySignedIn,txt,subid);
   }
@@ -404,6 +405,7 @@ export default class App extends React.Component {
     const response = await fetch(`/api/user-get-grantFreeMonthCode/${this.props.userID}`);
 		  const text = await response.text();
     let txt = text.substring(1,text.length-1);
+    console.log("tuts2: " + tuts);
     
     this.getFirstMonthFree(user,staySignedIn,tuts,subid,txt);
   }
@@ -420,6 +422,8 @@ export default class App extends React.Component {
     console.log("get my refcode: " + text2);
     let txt2 = text2.substring(1,text2.length-1);
     console.log("txt2: " + txt2);
+
+    console.log("tuts3: " + tuts);
     
     this.executeLogIn(user,staySignedIn,tuts,subid,txt,txt2,grantFreeMonthCode);
   }
@@ -434,6 +438,8 @@ export default class App extends React.Component {
       fmf = true;
     }
     
+    console.log("tuts4: " + tuts);
+ 
     if(currPage !== null && currPage !== undefined && currPage !== ""){
       this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts,myReferalCode:myReferalCode,grantFreeMonthCode:grantFreeMonthCode});
     
@@ -694,10 +700,11 @@ export default class App extends React.Component {
     }
   }    
    
-  render() {    
-    console.log("Using referal Code: " + this.state.usingReferalCode);
-    console.log("My referal Code: " + this.state.myReferalCode);
-    console.log("First months free: " + this.state.firstMonthFree);
+  render() { 
+    //console.log("Using referal Code: " + this.state.usingReferalCode);
+    //console.log("My referal Code: " + this.state.myReferalCode);
+    //console.log("First months free: " + this.state.firstMonthFree);
+    console.log("Tuts render: " + this.state.tutorials);
     localStorage.setItem("currentPage","harvest-form");
     let reloaded = this.pageAccessedByReload();
     const loggedInUser = localStorage.getItem("user");
