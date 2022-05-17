@@ -189,7 +189,8 @@ function CreateUserMiniForm({setAccountCreated,setNewUsername}) {
         linkCodeTime: '',
         tutorials: '1',
         refCode: '',
-        firstMonthFree: 1
+        firstMonthFree: 1,
+        grantFreeMonthCode: ''
         };
     
         userItem.apiid = username;

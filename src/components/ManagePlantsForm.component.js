@@ -8,7 +8,8 @@ import RemoveFromAvailablePlantsButton from './RemoveFromAvailablePlantsButton.c
 import TextField from '@material-ui/core/TextField';
 import * as XLSX from 'xlsx';
 
-function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPlantID,reloadPlants,showHints}) {
+function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPlantID,reloadPlants,showHints,usingReferalCode,
+getGrantFreeMonthCode,setGrantFreeMonthCode}) {
     const [uploadList,setUploadList] = React.useState([]);
     const [importing,setImporting] = React.useState(false);
 	const [selectedToDelete,setSelectedToDelete] = React.useState([]);
@@ -235,7 +236,9 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 						alignItems="center"
 						>
 						<ImportPlantsButton getPlants={getPlants} getPlantList={getPlantList} setPlants={setPlants} setPlantList={setPlantList}
-							setImporting={setImporting} setSelectedFile={setSelectedFile} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></ImportPlantsButton>
+							setImporting={setImporting} setSelectedFile={setSelectedFile} setNewPlantID={setNewPlantID} userID={userID} 
+							refreshOuter={refreshOuter} reloadPlants={reloadPlants} usingReferalCode={usingReferalCode}
+							getGrantFreeMonthCode={getGrantFreeMonthCode} setGrantFreeMonthCode={setGrantFreeMonthCode}></ImportPlantsButton>
 						<Button style={{marginLeft:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancel}>Cancel</Button>
 						</Grid>
 					</Grid>

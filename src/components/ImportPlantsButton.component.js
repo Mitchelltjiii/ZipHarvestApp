@@ -91,13 +91,63 @@ class ImportPlantsButton extends Component{
                   setTimeout(null,200);
                   x++;
                 }
+        if(this.props.userID.includes("Mitchell")){
+          this.grantFreeMonth();
+        }
+    }
+    
+    async grantFreeMonth(){
+      console.log("GFN");
+      try{
+        let grantFreeMonthCode = this.props.getGrantFreeMonthCode;
+        if(grantFreeMonthCode===""){
+          return;
+        }
+        const response = await fetch(`api/refcode-get-userid/${grantFreeMonthCode}`);
+        const userId = await response.text();
+        let uid = userId.substring(1,userId.length-1);
+        console.log("uid: " + uid);
+        const response2 = await fetch(`api/user-get-subid/${uid}`);
+        const subid = await response2.text();
+        console.log("Grant Free month to  " + userId);
+        console.log("subid: " + subid);
+        
+        let sid = subid.substring(1,subid.length-1);
+        console.log("sid: " + sid);
+        
+        const response3 = await fetch(`/get-subscription/${sid}`);
+        const sub = await response3.json();
+
+        console.log("sub: " + JSON.stringify(sub));
 
 
-        this.props.reloadPlants([]);
-		    this.props.setPlantList([]);
-		    this.props.setImporting(false);
-        this.props.setSelectedFile("");
-        this.props.refreshOuter();
+        pauseSubscription(sub);
+
+        }catch(err){
+        }
+      
+    }
+
+    async pauseSubscription(sub){
+      let resumeAt = (new Date()).getTime()+2678400000;
+      console.log("Pause sub: " + sub.id);
+      console.log("Resume at: " + resumeAt);
+      if(sub.pause_collection !== null){
+        console.log("Sub.pauseCollection: " + JSON.stringify(sub.pause_collection));
+        resumeAt = parseInt(sub.pause_collection.resumes_at) + 2678400000;
+        console.log("Resume at updated: " + resumeAt);
+      }
+      const response = await fetch(`/pause-subscription/${sub.id}/${resumeAt}`);
+      const json = await response.json();
+
+      console.log("Pause response: " + JSON.stringify(json));
+
+      this.props.setGrantFreeMonthCode();
+      this.props.reloadPlants([]);
+		  this.props.setPlantList([]);
+		  this.props.setImporting(false);
+      this.props.setSelectedFile("");
+      this.props.refreshOuter();   
     }
 
     async executeAddPlant(event,plantItem){

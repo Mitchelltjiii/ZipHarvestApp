@@ -31,7 +31,8 @@ class Outer extends Component {
       getUniqueIDCount={this.props.getUniqueIDCount} reloadSubscription={this.props.reloadSubscription} getPossiblePlantCount={this.props.getPossiblePlantCount}
       getSubscriptionType={this.props.getSubscriptionType} getTutorials={this.props.getTutorials} setTutorials={this.props.setTutorials} showHints={this.props.showHints}
       getPrint={this.props.getPrint} print={this.props.print} getFreeTrial={this.props.getFreeTrial} getFreeTrialEnds={this.props.getFreeTrialEnds} 
-      getReferalLink={this.props.getReferalLink}/>
+      getReferalLink={this.props.getReferalLink} getGrantFreeMonthCode={this.props.getGrantFreeMonthCode}
+      setGrantFreeMonthCode={this.props.setGrantFreeMonthCode}/>
 		</div>
     );
   }

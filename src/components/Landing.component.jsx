@@ -17,7 +17,7 @@ setNewHarvestRecordID, setNewPlantID, userID,reloadPlants,reloadPlantsAndHarvest
 reloadHarvestRecords,setCurrentPage,executeLogout,setFromAccountSettings,attemptLogInFromEndSubForm,
 logInSuccess,getDryRooms,reloadDryRooms,reloadExportRecords,getUniqueIDCount,reloadSubscription,
 getPossiblePlantCount,getSubscriptionType,getTutorials,setTutorials,showHints,getPrint,print,getFreeTrial,
-getFreeTrialEnds,getReferalLink}){
+getFreeTrialEnds,getReferalLink,getGrantFreeMonthCode,setGrantFreeMonthCode}){
 	let fromAccountSettings = true;
 
     return(
@@ -34,7 +34,9 @@ getFreeTrialEnds,getReferalLink}){
 			) : currentPage === 'manage-dry-rooms-form' ? (
 				<ManageDryRoomsForm getDryRooms={getDryRooms} refreshOuter={refreshOuter} reloadDryRooms={reloadDryRooms} userID={userID} showHints={showHints}/>
 			) : currentPage === 'manage-plants-form' ? (
-				<ManagePlantsForm getPlants={getPlants} refreshOuter={refreshOuter} userID={userID} setPlants={setPlants} setNewPlantID={setNewPlantID} reloadPlants={reloadPlants} showHints={showHints}/>
+				<ManagePlantsForm getPlants={getPlants} refreshOuter={refreshOuter} userID={userID} setPlants={setPlants} 
+				setNewPlantID={setNewPlantID} reloadPlants={reloadPlants} showHints={showHints} getGrantFreeMonthCode={getGrantFreeMonthCode}
+				setGrantFreeMonthCode={setGrantFreeMonthCode}/>
 			) : currentPage === 'account-form' ? (
 				<AccountForm userID={userID} setCurrentPage={setCurrentPage} setFromAccountSettings={setFromAccountSettings} executeLogout={executeLogout} getPrint={getPrint}/>
 			) : currentPage === 'subscription-form' ? (
