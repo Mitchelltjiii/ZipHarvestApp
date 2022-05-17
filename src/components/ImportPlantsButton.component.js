@@ -99,7 +99,7 @@ class ImportPlantsButton extends Component{
     async grantFreeMonth(){
       console.log("GFN");
       try{
-        const getGrantFreeMonthCodeResponse = await fetch(`/api/user-get-grantFreeMonthCode/${user}`);
+        const getGrantFreeMonthCodeResponse = await fetch(`/api/user-get-grantFreeMonthCode/${this.props.userID}`);
         const grantFreeMonthCodeText = await getGrantFreeMonthCodeResponse.text();
 
         console.log("get user grant first month free response: " + grantFreeMonthCodeText);
@@ -127,7 +127,7 @@ class ImportPlantsButton extends Component{
         console.log("sub: " + JSON.stringify(sub));
 
 
-        pauseSubscription(sub);
+        this.pauseSubscription(sub);
 
         }catch(err){
         }
@@ -148,7 +148,7 @@ class ImportPlantsButton extends Component{
 
       console.log("Pause response: " + JSON.stringify(json));
 
-      const response2 = await fetch(`/api/user-set-grantFreeMonthCode/${user}`);
+      const response2 = await fetch(`/api/user-set-grantFreeMonthCode/${this.props.userID}`);
       const text2 = await response2.text();
       
       this.props.reloadPlants([]);
