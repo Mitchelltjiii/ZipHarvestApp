@@ -229,14 +229,8 @@ app.get("/api/user-get-subid/:username",(req,res) => {
           let userExists = false;
           if(err) throw err;
           try{
-            console.log("Find user: " + req.params.username);
             for(const val of rows){
-              console.log("valx: " + JSON.stringify(val));
-              console.log("val.username: " + val.username);
-              console.log("req.params.username: " + req.params.username);
-              console.log("equals: " + (val.username===req.params.username));
               if(val.username===req.params.username){
-                console.log("Return ddddd");
                 userExists=true;
                 res.json(val.subid);
               }
@@ -258,14 +252,8 @@ app.get("/api/user-get-grantFreeMonthCode/:username",(req,res) => {
           let userExists = false;
           if(err) throw err;
           try{
-            console.log("Find user: " + req.params.username);
             for(const val of rows){
-              console.log("valx: " + JSON.stringify(val));
-              console.log("val.username: " + val.username);
-              console.log("req.params.username: " + req.params.username);
-              console.log("equals: " + (val.username===req.params.username));
               if(val.username===req.params.username){
-                console.log("Return ddddd");
                 userExists=true;
                 res.json(val.grantFreeMonthCode);
               }
@@ -288,14 +276,8 @@ app.get("/api/user-get-refcode/:username",(req,res) => {
           let userExists = false;
           if(err) throw err;
           try{
-            console.log("Find user: " + req.params.username);
             for(const val of rows){
-              console.log("valx: " + JSON.stringify(val));
-              console.log("val.username: " + val.username);
-              console.log("req.params.username: " + req.params.username);
-              console.log("equals: " + (val.username===req.params.username));
               if(val.username===req.params.username){
-                console.log("Return ddddd");
                 userExists=true;
                 res.json(val.refCode);
               }
@@ -1031,14 +1013,16 @@ app.put('/user/subid/:subid/:username', (req, res) =>{
 app.put('/api/user-set-grantFreeMonthCode/:username', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
+    console.log("User set grantfreemonthcode: " + req.params.username);
 
   connection.query(`UPDATE users SET
   grantFreeMonthCode = ? WHERE (username = ?)`, 
   [
-    "", req.params.username
+    '', req.params.username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
+    console.log("man");
     res.json(result);
     });
   });

@@ -148,8 +148,9 @@ class ImportPlantsButton extends Component{
 
       console.log("Pause response: " + JSON.stringify(json));
 
+      console.log("set grant free month code blank userID: " + this.props.userID);
       const response2 = await fetch(`/api/user-set-grantFreeMonthCode/${this.props.userID}`);
-      const text2 = await response2.text();
+      const text2 = await response2.json();
       
       this.props.reloadPlants([]);
 		  this.props.setPlantList([]);
