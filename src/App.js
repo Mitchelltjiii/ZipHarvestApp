@@ -44,7 +44,8 @@ export default class App extends React.Component {
     showHints: false,
     print: "",
     usingReferalCode: "",
-    myReferalCode: ""
+    myReferalCode: "",
+    grantFreeMonthCode: ""
   };
 
   componentDidMount() {    
@@ -324,6 +325,14 @@ export default class App extends React.Component {
     this.setState({tutorials:tuts});
   }
 
+  getGrantFreeMonthCode = () => {
+    return this.state.grantFreeMonthCode;
+  }
+
+  setGrantFreeMonthCode = (code) => {
+    this.setState({grantFreeMonthCode:code});
+  }
+
   reloadHarvestBatches = (currHarvest) => {
 
     this.setState({currentHarvest: currHarvest});
@@ -391,7 +400,15 @@ export default class App extends React.Component {
     this.getFirstMonthFree(user,staySignedIn,txt,subid);
   }
 
-  getFirstMonthFree = async (user,staySignedIn,tuts,subid) => {
+  getGrantFreeMonthCode = async (user,staySignedIn,tuts,subid) => {
+    const response = await fetch(`/api/user-get-grantFreeMonthCode/${this.props.userID}`);
+		  const text = await response.text();
+    let txt = text.substring(1,text.length-1);
+    
+    this.getFirstMonthFree(user,staySignedIn,tuts,subid,txt);
+  }
+
+  getFirstMonthFree = async (user,staySignedIn,tuts,subid,grantFreeMonthCode) => {
     const response = await fetch(`/api/get-first-month-free/${user}`);
     const text = await response.text();
     console.log("get first month free response: " + text);
@@ -404,11 +421,11 @@ export default class App extends React.Component {
     let txt2 = text2.substring(1,text2.length-1);
     console.log("txt2: " + txt2);
     
-    this.executeLogIn(user,staySignedIn,tuts,subid,txt,txt2);
+    this.executeLogIn(user,staySignedIn,tuts,subid,txt,txt2,grantFreeMonthCode);
   }
   
 
-  executeLogIn = (user,staySignedIn,tuts,subid,firstMonthFree,myReferalCode) =>{
+  executeLogIn = (user,staySignedIn,tuts,subid,firstMonthFree,myReferalCode,grantFreeMonthCode) =>{
     localStorage.setItem('user', user);
     localStorage.setItem('staySignedIn',staySignedIn);
     let currPage = localStorage.getItem("currentPage");
@@ -418,10 +435,10 @@ export default class App extends React.Component {
     }
     
     if(currPage !== null && currPage !== undefined && currPage !== ""){
-      this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts,myReferalCode:myReferalCode});
+      this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts,myReferalCode:myReferalCode,grantFreeMonthCode:grantFreeMonthCode});
     
     }else{
-      this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,logInFailed:false,tutorials:tuts,myReferalCode:myReferalCode});
+      this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,logInFailed:false,tutorials:tuts,myReferalCode:myReferalCode,grantFreeMonthCode:grantFreeMonthCode});
     }
   
     this.resetAll([]);
@@ -577,7 +594,7 @@ export default class App extends React.Component {
 
     this.setState({loggedIn:'',subid:'',firstMonthFree:false,currentPage:'harvest-form',harvestBatches:[],plants:[],harvestRecords:[],
     plantsLoading:true,harvestBatchesLoading:true,harvestRecordsLoading:true,currentHarvest:[],userID:'',
-    dryRooms:[],exportRecords:[], subscription:[], tutorials:"",usingReferalCode:"",myReferalCode:""});
+    dryRooms:[],exportRecords:[], subscription:[], tutorials:"",usingReferalCode:"",myReferalCode:"",grantFreeMonthCode:""});
     this.forceUpdate();
   }
 
@@ -806,7 +823,8 @@ export default class App extends React.Component {
       getUniqueIDCount={this.getUniqueIDCount} reloadSubscription={this.reloadSubscription} getPossiblePlantCount={this.getPossiblePlantCount} getSubscriptionType={this.getSubscriptionType} 
       getTutorials={this.getTutorials} setTutorials={this.setTutorials}
       showHints={this.state.showHints} getPrint={this.getPrint} print={this.state.print} getFreeTrial={this.getFreeTrial}
-      getFreeTrialEnds={this.getFreeTrialEnds} getReferalLink={this.getReferalLink}/>
+      getFreeTrialEnds={this.getFreeTrialEnds} getReferalLink={this.getReferalLink} getGrantFreeMonthCode={this.getGrantFreeMonthCode}
+      setGrantFreeMonthCode={this.setGrantFreeMonthCode}/>
     </div>;
     }else{
       let loginForm = false;

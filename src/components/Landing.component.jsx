@@ -17,7 +17,7 @@ setNewHarvestRecordID, setNewPlantID, userID,reloadPlants,reloadPlantsAndHarvest
 reloadHarvestRecords,setCurrentPage,executeLogout,setFromAccountSettings,attemptLogInFromEndSubForm,
 logInSuccess,getDryRooms,reloadDryRooms,reloadExportRecords,getUniqueIDCount,reloadSubscription,
 getPossiblePlantCount,getSubscriptionType,getTutorials,setTutorials,showHints,getPrint,print,getFreeTrial,
-getFreeTrialEnds,getReferalLink}){
+getFreeTrialEnds,getReferalLink,getGrantFreeMonthCode,setGrantFreeMonthCode}){
 	let fromAccountSettings = true;
 
     return(
@@ -27,7 +27,7 @@ getFreeTrialEnds,getReferalLink}){
 				resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} refreshOuter={refreshOuter} 
 				setNewHarvestRecordID={setNewHarvestRecordID} setNewPlantID={setNewPlantID} userID={userID} reloadPlants={reloadPlants} reloadPlantsAndHarvestRecords={reloadPlantsAndHarvestRecords}
 				reloadHarvestBatches={reloadHarvestBatches} reloadHarvestRecords={reloadHarvestRecords} getTutorials={getTutorials} setTutorials={setTutorials} showHints={showHints}
-				setCurrentPage={setCurrentPage} getFreeTrial={getFreeTrial} getReferalLink={getReferalLink}/>
+				setCurrentPage={setCurrentPage} getFreeTrial={getFreeTrial} getReferalLink={getReferalLink} getGrantFreeMonthCode={getGrantFreeMonthCode}/>
 			) : currentPage === 'harvest-batches-form' ? (
 				<HarvestBatchesForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} 
 				getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms} getPossiblePlantCount={getPossiblePlantCount} getFreeTrial={getFreeTrial}/>
@@ -35,7 +35,7 @@ getFreeTrialEnds,getReferalLink}){
 				<ManageDryRoomsForm getDryRooms={getDryRooms} refreshOuter={refreshOuter} reloadDryRooms={reloadDryRooms} userID={userID} showHints={showHints}/>
 			) : currentPage === 'manage-plants-form' ? (
 				<ManagePlantsForm getPlants={getPlants} refreshOuter={refreshOuter} userID={userID} setPlants={setPlants} 
-				setNewPlantID={setNewPlantID} reloadPlants={reloadPlants} showHints={showHints}/>
+				setNewPlantID={setNewPlantID} reloadPlants={reloadPlants} showHints={showHints} setGrantFreeMonthCode={setGrantFreeMonthCode}/>
 			) : currentPage === 'account-form' ? (
 				<AccountForm userID={userID} setCurrentPage={setCurrentPage} setFromAccountSettings={setFromAccountSettings} executeLogout={executeLogout} getPrint={getPrint}/>
 			) : currentPage === 'subscription-form' ? (

@@ -22,10 +22,11 @@ import {isMobile} from 'react-device-detect';
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches,
 	currentHarvest, setNewHBID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
 	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords,getTutorials,setTutorials,showHints,
-	setCurrentPage,getFreeTrial,getReferalLink}) { 
+	setCurrentPage,getFreeTrial,getReferalLink,getGrantFreeMonthCode}) { 
 
 	let referalLink = getReferalLink();
 	let tutorials = getTutorials();
+	let grantFreeMonthCode = getGrantFreeMonthCode();
 	function HarvestBatch(name,type,date,userID){
 		this.name = name;
 		this.type = type;
@@ -97,6 +98,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [hbNameError,setHbNameError] = React.useState(false);
 	const [hbNameHelperText,setHbNameHelperText] = React.useState('');
+
+	const [grantFreeMonthHintVisible,setGrantFreeMonthHintVisible] = React.useState(true);
 	
 	if(hbNameError && hbName.length === 0){
 		setHbNameError(false);
@@ -230,9 +233,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	function revertChanges(){
 		resetHarvestForm(true);
 	}
-
 	
-
 	function editHarvestDate(){
 		setEdittingHarvestDate(true);
 		let monthVal = parseInt(currentHarvest.date.substring(0,2),10)
@@ -578,6 +579,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function closeReferal(){
 		setReferalVisible(false);
+	}
+
+	function closeGrantFreeMonthHint(){
+		setGrantFreeMonthHintVisible(false);
 	}
 
 	function dontShowAgain(){
@@ -1055,6 +1060,26 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			>
 				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={dontShowAgain}>Don't show again</Button>
 				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={closeEntryTutorial}>Close</Button>
+				</Grid>
+				</Grid> : null}
+
+				{(grantFreeMonthCode!=="" && grantFreeMonthHintVisible && userID.includes("Mitchell")) ? <Grid
+				container
+				direction="column"
+  				justify="center"
+				alignItems="center"
+				style={{width:entryTutorialWidth,borderColor:"#90ee90",marginLeft:"10px",marginRight:"10px",marginTop:"10px",marginBottom:"10px",borderRadius:"5px",border: "1px solid #90ee90",paddingRight:"5px",paddingBottom:"5px"}}
+			>
+				
+				<div style={{margin:"5px",textAlign:"center",fontSize:entryTutorialFontSize}}>Thanks for signing up with a referral code! Import your plants in the Manage Plants section to activate a month free for the account that sent you the referral code.</div>
+				<Grid
+				container
+				direction="row"
+				justify="center"
+				alignItems="center"
+				style={{width:"100%"}}
+			>
+				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={closeGrantFreeMonthHint}>Close</Button>
 				</Grid>
 				</Grid> : null}
 				
