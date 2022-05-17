@@ -298,7 +298,8 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
       }catch(err){
       }
       console.log("CPR");
-      setCurrentPage('verification-form');      
+      window.history.pushState(null,document.title,"https://www.zipharvest.app/");
+      setCurrentPage('verification-form');  
     }
 
     async function sendSignupNotificationEmail(){

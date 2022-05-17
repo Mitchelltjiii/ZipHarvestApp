@@ -1010,7 +1010,7 @@ app.put('/user/subid/:subid/:username', (req, res) =>{
   });
 });
 
-app.put('/api/user-set-grantFreeMonthCode/:username', (req, res) =>{
+app.put("/user-set-grantFreeMonthCode/:username", (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
     console.log("User set grantfreemonthcode: " + req.params.username);
