@@ -105,6 +105,12 @@ class ImportPlantsButton extends Component{
         console.log("get user grant first month free response: " + grantFreeMonthCodeText);
         let grantFreeMonthCode = grantFreeMonthCodeText.substring(1,grantFreeMonthCodeText.length-1);
         if(grantFreeMonthCode===""){
+          this.props.reloadPlants([]);
+          this.props.setPlantList([]);
+          this.props.setImporting(false);
+          this.props.setSelectedFile("");
+          this.props.setGrantFreeMonthCode("");
+          this.props.refreshOuter(); 
           return;
         }
         console.log("grantfreemonthcode: " + grantFreeMonthCode);
