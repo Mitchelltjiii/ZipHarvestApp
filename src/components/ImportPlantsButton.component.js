@@ -93,6 +93,13 @@ class ImportPlantsButton extends Component{
                 }
         if(this.props.userID.includes("Mitchell")){
           this.grantFreeMonth();
+        }else{
+          this.props.reloadPlants([]);
+          this.props.setPlantList([]);
+          this.props.setImporting(false);
+          this.props.setSelectedFile("");
+          this.props.setGrantFreeMonthCode("");
+          this.props.refreshOuter(); 
         }
     }
     
