@@ -398,10 +398,10 @@ export default class App extends React.Component {
     let txt = text.substring(1,text.length-1);
     console.log("tuts1: " + txt);
     
-    this.getGrantFreeMonthCode(user,staySignedIn,txt,subid);
+    this.getGrantFreeMonthCodeFromDB(user,staySignedIn,txt,subid);
   }
 
-  getGrantFreeMonthCode = async (user,staySignedIn,tuts,subid) => {
+  getGrantFreeMonthCodeFromDB = async (user,staySignedIn,tuts,subid) => {
     const response = await fetch(`/api/user-get-grantFreeMonthCode/${this.props.userID}`);
 		  const text = await response.text();
     let txt = text.substring(1,text.length-1);
