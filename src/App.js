@@ -398,7 +398,7 @@ export default class App extends React.Component {
     let txt = text.substring(1,text.length-1);
     console.log("tuts1: " + txt);
     
-    this.getFirstMonthFree(user,staySignedIn,txt,subid);
+    this.getGrantFreeMonthCode(user,staySignedIn,txt,subid);
   }
 
   getGrantFreeMonthCode = async (user,staySignedIn,tuts,subid) => {
@@ -704,6 +704,7 @@ export default class App extends React.Component {
     //console.log("Using referal Code: " + this.state.usingReferalCode);
     //console.log("My referal Code: " + this.state.myReferalCode);
     //console.log("First months free: " + this.state.firstMonthFree);
+    //TRACE TUTORIALS - try loggin in as mitchelltj76 and follow errors
     console.log("Tuts render: " + this.state.tutorials);
     localStorage.setItem("currentPage","harvest-form");
     let reloaded = this.pageAccessedByReload();
