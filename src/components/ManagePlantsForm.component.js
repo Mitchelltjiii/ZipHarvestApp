@@ -7,6 +7,8 @@ import ImportPlantsButton from './ImportPlantsButton.component';
 import RemoveFromAvailablePlantsButton from './RemoveFromAvailablePlantsButton.component';
 import TextField from '@material-ui/core/TextField';
 import * as XLSX from 'xlsx';
+import {isMobile} from 'react-device-detect';
+
 
 function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPlantID,reloadPlants,showHints,
 	setGrantFreeMonthCode,getFreeMonthGrantedVisible,setFreeMonthGrantedVisible}) {
