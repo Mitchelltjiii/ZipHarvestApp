@@ -77,7 +77,12 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
 
   app.get('/send-pause-notification-email/:address/:username/:resumeAt', async (req,res) =>{
     console.log("send pause notification email");
-    console.log("email: " + req.params.address + ", username: " + req.params.username + ", resumeAt: " + req.params.resumeAt);
+    let dt = new Date(req.params.resumeAt);
+    console.log("Date: " + dt.toLocaleDateString("en-US"));
+
+    let dateString = dt.toLocaleDateString("en-US");
+
+    console.log("email: " + req.params.address + ", username: " + req.params.username + ", resumeAt: " + dateString);
       const msg = {
         to: req.params.address, // Change to your recipient
         from: 'welcome@zipharvest.app', // Change to your verified sender

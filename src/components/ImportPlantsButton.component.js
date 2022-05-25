@@ -178,13 +178,7 @@ class ImportPlantsButton extends Component{
 
     console.log("IPB em: " + em);
 
-    let dt = new Date(resumeAt);
-    console.log("Date: " + dt.toLocaleDateString("en-US"));
-
-    let dateString = dt.toLocaleDateString("en-US");
-    console.log("UID: " + userID);
-
-    const response4 = await fetch(`/send-pause-notification-email/${em}/${userID}/${dateString}`);
+    const response4 = await fetch(`/send-pause-notification-email/${em}/${userID}/${resumeAt}`);
     await response4.json();
       
         this.props.reloadPlants([]);
