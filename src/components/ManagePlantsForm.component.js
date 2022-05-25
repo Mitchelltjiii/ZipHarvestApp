@@ -21,7 +21,9 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	const [selectedFile, setSelectedFile] = React.useState('');
 	const [plantList, setPlantList] = React.useState([]);
 
-	console.log("Plantlist empty: " + (JSON.stringify(plantList) === "[]"));
+	let pls = JSON.parse(getPlants());
+
+	console.log("pls empty: " + (JSON.stringify(pls) === "[]"));
 
 
 	let entryTutorialWidth = "500px";
@@ -287,7 +289,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 				</div>
 
 				<div>
-				{(freeMonthGrantedVisible && userID.includes("Mitchell") && JSON.stringify(plantList) !== "[]") ? <Grid
+				{(freeMonthGrantedVisible && userID.includes("Mitchell") && (JSON.stringify(pls) !== "[]")) ? <Grid
 				container
 				direction="column"
   				justify="center"

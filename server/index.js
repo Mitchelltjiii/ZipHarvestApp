@@ -89,7 +89,7 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
         templateId: 'd-03c552ad40614196a866b3f00fb5a5ee',
         dynamic_template_data: {
           username:req.params.username,
-          resumeAt:req.params.resumeAt
+          resumeAt:dateString
         }      
       }
       
