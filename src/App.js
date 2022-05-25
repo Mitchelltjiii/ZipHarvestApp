@@ -739,7 +739,7 @@ export default class App extends React.Component {
 
     let refCodeEqualsStr = "refcode=";
     if(currUrl.includes("refcode")){
-      let refCodeStr = currUrl.substring(currUrl.indexOf(refCodeEqualsStr)+refCodeEqualsStr.length,currUrl.indexOf(refCodeEqualsStr)+refCodeEqualsStr.length+5);
+      let refCodeStr = currUrl.substring(currUrl.indexOf(refCodeEqualsStr)+refCodeEqualsStr.length,currUrl.indexOf(refCodeEqualsStr)+refCodeEqualsStr.length+8);
       if(this.state.currentPage !== 'create-user-form'){
         localStorage.setItem("currentPage",'create-user-form');
         this.setState({currentPage:'create-user-form',usingReferalCode:refCodeStr});

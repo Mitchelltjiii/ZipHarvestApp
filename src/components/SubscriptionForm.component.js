@@ -27,6 +27,7 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial
     const [plantCount,setPlantCount] = React.useState("");
 
     let freeTrial = getFreeTrial();
+    console.log("Free trial: " + freeTrial);
     
     let subscriptionType = "";
 
@@ -122,13 +123,13 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial
     }
 
     async function getSubscription(subId){
-      const response = await fetch(`/get-subscription/${subId}`);
-      const json = await response.json();
-      setSubscription(json);
-      setPlantCount(getUniqueIDCount());
+        const response = await fetch(`/get-subscription/${subId}`);
+        const json = await response.json();
+        setSubscription(json);
+        setPlantCount(getUniqueIDCount());
     }
 
-    if(JSON.stringify(subscription) === "[]"){
+    if(JSON.stringify(subscription) === "[]" && !freeTrial){
       getSubId();
     }
 

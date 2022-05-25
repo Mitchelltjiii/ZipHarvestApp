@@ -409,7 +409,7 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
     }}
   />   
   {usingReferalCode !== "" ?       
-  <FormControlLabel style={{width:'250px'}} onChange={handleReferalAgreementChanged} control={<Checkbox/>} label="This is a different licensed facility than the one that you received this referal from." />
+  <FormControlLabel style={{width:'250px'}} onChange={handleReferalAgreementChanged} control={<Checkbox/>} label="This is a different licensed facility than the one that you received this referral from." />
     : null}       
   <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>  
   {usingReferalCode !== "" ?
@@ -462,7 +462,7 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
     }}
   />   
   {usingReferalCode !== "" ?       
-  <FormControlLabel style={{width:'250px'}} onChange={handleReferalAgreementChanged} control={<Checkbox/>} label="This is a different licensed facility than the one that you received this referal from." />
+  <FormControlLabel style={{width:'250px'}} onChange={handleReferalAgreementChanged} control={<Checkbox/>} label="This is a different licensed facility than the one that you received this referral from." />
     : null}
 
   <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>
