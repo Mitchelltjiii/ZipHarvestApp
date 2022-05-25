@@ -45,7 +45,8 @@ export default class App extends React.Component {
     print: "",
     usingReferalCode: "",
     myReferalCode: "",
-    grantFreeMonthCode: ""
+    grantFreeMonthCode: "",
+    freeMonthGrantedVisible: false
   };
 
   componentDidMount() {    
@@ -500,6 +501,14 @@ export default class App extends React.Component {
     return x;
   }
 
+  getFreeMonthGrantedVisible = () => {
+    return this.state.freeMonthGrantedVisible;
+  }
+
+  setFreeMonthGrantedVisible = (vis) => {
+    this.setState({freeMonthGrantedVisible:vis});
+  }
+
   getPossiblePlantCount = () => {
     let subscriptionType = "";
 
@@ -833,7 +842,7 @@ export default class App extends React.Component {
       getTutorials={this.getTutorials} setTutorials={this.setTutorials}
       showHints={this.state.showHints} getPrint={this.getPrint} print={this.state.print} getFreeTrial={this.getFreeTrial}
       getFreeTrialEnds={this.getFreeTrialEnds} getReferalLink={this.getReferalLink} getGrantFreeMonthCode={this.getGrantFreeMonthCode}
-      setGrantFreeMonthCode={this.setGrantFreeMonthCode}/>
+      setGrantFreeMonthCode={this.setGrantFreeMonthCode} getFreeMonthGrantedVisible={this.getFreeMonthGrantedVisible} setFreeMonthGrantedVisible={this.setFreeMonthGrantedVisible}/>
     </div>;
     }else{
       let loginForm = false;

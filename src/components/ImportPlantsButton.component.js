@@ -178,6 +178,7 @@ class ImportPlantsButton extends Component{
         this.props.setImporting(false);
         this.props.setSelectedFile("");
         this.props.setGrantFreeMonthCode("");
+        this.props.setFreeMonthGrantedVisible(true);
         this.props.refreshOuter();   
     }
 

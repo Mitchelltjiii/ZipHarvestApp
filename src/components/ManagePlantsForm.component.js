@@ -8,14 +8,27 @@ import RemoveFromAvailablePlantsButton from './RemoveFromAvailablePlantsButton.c
 import TextField from '@material-ui/core/TextField';
 import * as XLSX from 'xlsx';
 
-function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPlantID,reloadPlants,showHints,setGrantFreeMonthCode}) {
+function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPlantID,reloadPlants,showHints,
+	setGrantFreeMonthCode,getFreeMonthGrantedVisible,setFreeMonthGrantedVisible}) {
     const [uploadList,setUploadList] = React.useState([]);
     const [importing,setImporting] = React.useState(false);
 	const [selectedToDelete,setSelectedToDelete] = React.useState([]);
 	const [searchText,setSearchText] = React.useState('');
 	let removeList = selectedToDelete;
+	let freeMonthGrantedVisible = getFreeMonthGrantedVisible();
 	const [selectedFile, setSelectedFile] = React.useState('');
 	const [plantList, setPlantList] = React.useState([]);
+
+	console.log("Plantlist empty: " + (JSON.stringify(plantList) === "[]"));
+
+
+	let entryTutorialWidth = "500px";
+  	let entryTutorialFontSize = "17px";
+
+  	if(isMobile){
+		entryTutorialWidth = "340px";
+		entryTutorialFontSize = "15px";
+  	}
 
 	function getPlantList(){
 		return plantList;
@@ -113,6 +126,10 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 			}
 		}
 		return (removeList.length === x);
+	}
+
+	function closeFreeMonthGranted(){
+		setFreeMonthGrantedVisible(false);
 	}
 
     const handleGetReady = () => {
@@ -236,7 +253,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 						>
 						<ImportPlantsButton getPlants={getPlants} getPlantList={getPlantList} setPlants={setPlants} setPlantList={setPlantList}
 							setImporting={setImporting} setSelectedFile={setSelectedFile} setNewPlantID={setNewPlantID} userID={userID} 
-							refreshOuter={refreshOuter} reloadPlants={reloadPlants}
+							refreshOuter={refreshOuter} reloadPlants={reloadPlants} setFreeMonthGrantedVisible={setFreeMonthGrantedVisible}
 							setGrantFreeMonthCode={setGrantFreeMonthCode}></ImportPlantsButton>
 						<Button style={{marginLeft:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancel}>Cancel</Button>
 						</Grid>
@@ -267,6 +284,28 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
           			))}
 				</div>
 
+				<div>
+				{(freeMonthGrantedVisible && userID.includes("Mitchell") && JSON.stringify(plantList) !== "[]") ? <Grid
+				container
+				direction="column"
+  				justify="center"
+				alignItems="center"
+				style={{width:entryTutorialWidth,borderColor:"#90ee90",marginLeft:"10px",marginRight:"10px",marginTop:"10px",marginBottom:"10px",borderRadius:"5px",border: "1px solid #90ee90",paddingRight:"5px",paddingBottom:"5px"}}
+			>
+				
+				<div style={{margin:"5px",textAlign:"center",fontSize:entryTutorialFontSize}}>Your plants have been imported and your friend has been granted one month free! Follow the tutorial to finish all steps before harvesting.</div>
+				<Grid
+				container
+				direction="row"
+				justify="center"
+				alignItems="center"
+				style={{width:"100%"}}
+			>
+			<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={closeFreeMonthGranted}>Close</Button>
+
+				</Grid>
+				</Grid> : null}
+				</div>
                 <div>
                     <PlantTable plantsWithSearch={plantsWithSearch} toggleDeleteAllSelected={toggleDeleteAllSelected} getDeleteAllSelected={getDeleteAllSelected} 
 					toggleDeletePlantSelected={toggleDeletePlantSelected} getDeletePlantSelected={getDeletePlantSelected}></PlantTable>
