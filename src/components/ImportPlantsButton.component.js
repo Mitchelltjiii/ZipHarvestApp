@@ -64,6 +64,10 @@ class ImportPlantsButton extends Component{
             let addPlant = new Plant("","","","");
             let pList = JSON.parse(this.props.getPlants());
             let plantList = this.props.getPlantList();
+            if(plantList.length === 0){
+              console.log("plantlist length zero");
+              return;
+            }
             for(const val of plantList){
 			    let splitList = val.split(",");
 
