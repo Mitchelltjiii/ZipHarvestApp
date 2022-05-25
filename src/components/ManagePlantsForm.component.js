@@ -23,9 +23,6 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 
 	let pls = JSON.parse(getPlants());
 
-	console.log("pls empty: " + (JSON.stringify(pls) === "[]"));
-
-
 	let entryTutorialWidth = "500px";
   	let entryTutorialFontSize = "17px";
 
@@ -289,7 +286,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 				</div>
 
 				<div>
-				{(freeMonthGrantedVisible && userID.includes("Mitchell") && (JSON.stringify(pls) !== "[]")) ? <Grid
+				{(freeMonthGrantedVisible && (JSON.stringify(pls) !== "[]")) ? <Grid
 				container
 				direction="column"
   				justify="center"

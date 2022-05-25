@@ -1063,7 +1063,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				</Grid>
 				</Grid> : null}
 
-				{(grantFreeMonthCode!=="" && grantFreeMonthHintVisible && userID.includes("Mitchell")) ? <Grid
+				{(grantFreeMonthCode!=="" && grantFreeMonthHintVisible) ? <Grid
 				container
 				direction="column"
   				justify="center"
@@ -1083,7 +1083,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				</Grid>
 				</Grid> : null}
 				
-				{(referalVisible && !freeTrail && userID.includes("Mitchell")) ? <Grid
+				{(referalVisible && !freeTrail) ? <Grid
 				container
 				direction="column"
   				justify="center"
