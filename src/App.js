@@ -402,10 +402,11 @@ export default class App extends React.Component {
   }
 
   getGrantFreeMonthCodeFromDB = async (user,staySignedIn,tuts,subid) => {
-    const response = await fetch(`/api/user-get-grantFreeMonthCode/${this.props.userID}`);
+    const response = await fetch(`/api/user-get-grantFreeMonthCode/${user}`);
 		  const text = await response.text();
     let txt = text.substring(1,text.length-1);
     console.log("tuts2: " + tuts);
+    console.log("initial get grant free month code: " + txt);
     
     this.getFirstMonthFree(user,staySignedIn,tuts,subid,txt);
   }
