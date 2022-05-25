@@ -28,7 +28,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	let tutorials = getTutorials();
 	let grantFreeMonthCode = getGrantFreeMonthCode();
 	console.log("grant free month code harvestform: " + grantFreeMonthCode);
-
 	function HarvestBatch(name,type,date,userID){
 		this.name = name;
 		this.type = type;
