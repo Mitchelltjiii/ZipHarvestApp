@@ -104,12 +104,10 @@ class ImportPlantsButton extends Component{
     }
     
     async grantFreeMonth(){
-      console.log("GFN");
       try{
         const getGrantFreeMonthCodeResponse = await fetch(`/api/user-get-grantFreeMonthCode/${this.props.userID}`);
         const grantFreeMonthCodeText = await getGrantFreeMonthCodeResponse.text();
 
-        console.log("get user grant first month free response: " + grantFreeMonthCodeText);
         let grantFreeMonthCode = grantFreeMonthCodeText.substring(1,grantFreeMonthCodeText.length-1);
         if(grantFreeMonthCode===""){
           this.props.reloadPlants([]);
@@ -120,25 +118,17 @@ class ImportPlantsButton extends Component{
           this.props.refreshOuter(); 
           return;
         }
-        console.log("grantfreemonthcode: " + grantFreeMonthCode);
 
         const response = await fetch(`api/refcode-get-userid/${grantFreeMonthCode}`);
         const userId = await response.text();
         let uid = userId.substring(1,userId.length-1);
-        console.log("uid: " + uid);
         const response2 = await fetch(`api/user-get-subid/${uid}`);
         const subid = await response2.text();
-        console.log("Grant Free month to  " + userId);
-        console.log("subid: " + subid);
         
         let sid = subid.substring(1,subid.length-1);
-        console.log("sid: " + sid);
         
         const response3 = await fetch(`/get-subscription/${sid}`);
         const sub = await response3.json();
-
-        console.log("sub: " + JSON.stringify(sub));
-
 
         this.pauseSubscription(sub,uid);
 
@@ -149,20 +139,11 @@ class ImportPlantsButton extends Component{
 
     async pauseSubscription(sub,userID){
       let resumeAt = (new Date()).getTime()+2678400000;
-      console.log("Pause sub: " + sub.id);
-      console.log("Resume at: " + resumeAt);
       if(sub.pause_collection !== null){
-        console.log("Sub.pauseCollection: " + JSON.stringify(sub.pause_collection));
         resumeAt = parseInt(sub.pause_collection.resumes_at) + 2678400000;
-        console.log("Resume at updated: " + resumeAt);
       }
       const response = await fetch(`/pause-subscription/${sub.id}/${resumeAt}`);
       const json = await response.json();
-
-      console.log("Pause response: " + JSON.stringify(json));
-
-      console.log("set grant free month code blank userID: " + this.props.userID);
-      console.log("/user-set-grantFreeMonthCode/" + this.props.userID)
       const response2 = await fetch(`/user-set-grantFreeMonthCode/${this.props.userID}`, {
         method: 'PUT',
         headers: {
@@ -176,8 +157,6 @@ class ImportPlantsButton extends Component{
     const email = await response3.text();
     let em = email.substring(1,email.length-1);
 
-    console.log("IPB em: " + em);
-
     const response4 = await fetch(`/send-pause-notification-email/${em}/${userID}/${resumeAt}`);
     await response4.json();
       
@@ -188,8 +167,6 @@ class ImportPlantsButton extends Component{
         this.props.setGrantFreeMonthCode("");
         this.props.setFreeMonthGrantedVisible(true);
         this.props.refreshOuter(); 
-        
-        
     }
 
     async executeAddPlant(event,plantItem){

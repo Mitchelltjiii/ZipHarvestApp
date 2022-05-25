@@ -77,7 +77,7 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
 
   app.get('/send-pause-notification-email/:address/:username/:resumeAt', async (req,res) =>{
     console.log("send pause notification email");
-    let dt = new Date(req.params.resumeAt);
+    let dt = new Date(parseInt(req.params.resumeAt));
     console.log("Date: " + dt.toLocaleDateString("en-US"));
 
     let dateString = dt.toLocaleDateString("en-US");

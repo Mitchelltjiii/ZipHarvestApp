@@ -251,8 +251,6 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
           userItem.grantFreeMonthCode = usingReferalCode;
         }
 
-        console.log("UserItem: " + JSON.stringify(userItem));
-
       return userItem;
     }
 
@@ -297,7 +295,6 @@ function CreateUserForm({setCurrentPage,setNewUsername,logVisit,usingReferalCode
         await response.text();
       }catch(err){
       }
-      console.log("CPR");
       window.history.pushState(null,document.title,"https://www.zipharvest.app/");
       setCurrentPage('verification-form');  
     }

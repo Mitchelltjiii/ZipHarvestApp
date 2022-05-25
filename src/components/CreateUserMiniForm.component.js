@@ -247,7 +247,6 @@ function CreateUserMiniForm({setAccountCreated,setNewUsername}) {
           await response.json();
       }catch(err){
       }
-      console.log("Set account created");
       setAccountCreated(true);
     }
 

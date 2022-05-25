@@ -81,7 +81,6 @@ export default class App extends React.Component {
     if(subid === ""){
       subid = this.state.subscription.id;
     }
-    console.log("Pause sub: " + subId);
     const response = await fetch(`/pause-subscription/${subid}/${resumeAt}`);
     const json = await response.json();
   }
@@ -397,7 +396,6 @@ export default class App extends React.Component {
     const response = await fetch(`/api/tutorials/${user}`);
     const text = await response.text();
     let txt = text.substring(1,text.length-1);
-    console.log("tuts1: " + txt);
     
     this.getGrantFreeMonthCodeFromDB(user,staySignedIn,txt,subid);
   }
@@ -406,8 +404,6 @@ export default class App extends React.Component {
     const response = await fetch(`/api/user-get-grantFreeMonthCode/${user}`);
 		  const text = await response.text();
     let txt = text.substring(1,text.length-1);
-    console.log("tuts2: " + tuts);
-    console.log("initial get grant free month code: " + txt);
     
     this.getFirstMonthFree(user,staySignedIn,tuts,subid,txt);
   }
@@ -415,17 +411,11 @@ export default class App extends React.Component {
   getFirstMonthFree = async (user,staySignedIn,tuts,subid,grantFreeMonthCode) => {
     const response = await fetch(`/api/get-first-month-free/${user}`);
     const text = await response.text();
-    console.log("get first month free response: " + text);
     let txt = text.substring(1,text.length-1);
-    console.log("txt: " + txt);
 
     const response2 = await fetch(`/api/user-get-refCode/${user}`);
     const text2 = await response2.text();
-    console.log("get my refcode: " + text2);
     let txt2 = text2.substring(1,text2.length-1);
-    console.log("txt2: " + txt2);
-
-    console.log("tuts3: " + tuts);
     
     this.executeLogIn(user,staySignedIn,tuts,subid,txt,txt2,grantFreeMonthCode);
   }
@@ -439,9 +429,7 @@ export default class App extends React.Component {
     if(firstMonthFree==="0"){
       fmf = true;
     }
-    
-    console.log("tuts4: " + tuts);
- 
+     
     if(currPage !== null && currPage !== undefined && currPage !== ""){
       this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts,myReferalCode:myReferalCode,grantFreeMonthCode:grantFreeMonthCode});
     
@@ -539,7 +527,6 @@ export default class App extends React.Component {
     let freeTrial = false;
 
     if(this.state.firstMonthFree){
-      console.log("Get free trial first month free");
       if((new Date()).getTime()-parseInt(this.state.subid)<2678400000){
         freeTrial = true;
       }
@@ -549,7 +536,6 @@ export default class App extends React.Component {
       }
     }
     
-    console.log("Free trial: " + freeTrial);
     return freeTrial;
   }
   
@@ -557,7 +543,6 @@ export default class App extends React.Component {
   getFreeTrialEnds = () => {
     let endTime = new Date(parseInt(this.state.subid)+1209600000);
     if(this.state.firstMonthFree){
-      console.log("Get free trial ends first month free");
       endTime = new Date(parseInt(this.state.subid)+2678400000);
     }
 
@@ -711,11 +696,6 @@ export default class App extends React.Component {
   }    
    
   render() { 
-    //console.log("Using referal Code: " + this.state.usingReferalCode);
-    //console.log("My referal Code: " + this.state.myReferalCode);
-    //console.log("First months free: " + this.state.firstMonthFree);
-    //TRACE TUTORIALS - try loggin in as mitchelltj76 and follow errors
-    console.log("Tuts render: " + this.state.tutorials);
     localStorage.setItem("currentPage","harvest-form");
     let reloaded = this.pageAccessedByReload();
     const loggedInUser = localStorage.getItem("user");
@@ -760,10 +740,8 @@ export default class App extends React.Component {
     let refCodeEqualsStr = "refcode=";
     if(currUrl.includes("refcode")){
       let refCodeStr = currUrl.substring(currUrl.indexOf(refCodeEqualsStr)+refCodeEqualsStr.length,currUrl.indexOf(refCodeEqualsStr)+refCodeEqualsStr.length+5);
-      console.log("refcodestr: " + refCodeStr);
       if(this.state.currentPage !== 'create-user-form'){
         localStorage.setItem("currentPage",'create-user-form');
-        console.log("Setting state createuserform");
         this.setState({currentPage:'create-user-form',usingReferalCode:refCodeStr});
       }
     }
