@@ -27,6 +27,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	let referalLink = getReferalLink();
 	let tutorials = getTutorials();
 	let grantFreeMonthCode = getGrantFreeMonthCode();
+	console.log("grant free month code harvestform: " + grantFreeMonthCode);
+
 	function HarvestBatch(name,type,date,userID){
 		this.name = name;
 		this.type = type;
@@ -100,6 +102,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const [hbNameHelperText,setHbNameHelperText] = React.useState('');
 
 	const [grantFreeMonthHintVisible,setGrantFreeMonthHintVisible] = React.useState(true);
+	console.log("grantFreemonthhintvisible: " + grantFreeMonthHintVisible);
 	
 	if(hbNameError && hbName.length === 0){
 		setHbNameError(false);
