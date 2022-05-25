@@ -140,14 +140,14 @@ class ImportPlantsButton extends Component{
         console.log("sub: " + JSON.stringify(sub));
 
 
-        this.pauseSubscription(sub);
+        this.pauseSubscription(sub,uid);
 
         }catch(err){
         }
       
     }
 
-    async pauseSubscription(sub){
+    async pauseSubscription(sub,userID){
       let resumeAt = (new Date()).getTime()+2678400000;
       console.log("Pause sub: " + sub.id);
       console.log("Resume at: " + resumeAt);
@@ -172,6 +172,21 @@ class ImportPlantsButton extends Component{
     });
     const text = await response2.text();
 
+    const response3 = await fetch(`/get-email/${userID}`);
+    const email = await response3.text();
+    let em = email;
+
+    console.log("IPB email: " + email);
+    console.log("IPB em: " + em);
+
+    let dt = new Date(resumeAt*1000);
+    console.log("Date: " + dt.toLocaleDateString("en-US"));
+
+    let dateString = dt.toLocaleDateString("en-US");
+    console.log("UID: " + userID);
+
+    const response4 = await fetch(`/send-pause-notification-email/${em}/${userID}/${dateString}`);
+    const text4 = await response4.text();
       
         this.props.reloadPlants([]);
         this.props.setPlantList([]);
@@ -179,7 +194,9 @@ class ImportPlantsButton extends Component{
         this.props.setSelectedFile("");
         this.props.setGrantFreeMonthCode("");
         this.props.setFreeMonthGrantedVisible(true);
-        this.props.refreshOuter();   
+        this.props.refreshOuter(); 
+        
+        
     }
 
     async executeAddPlant(event,plantItem){

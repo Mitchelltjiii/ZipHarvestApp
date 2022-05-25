@@ -75,6 +75,28 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
       })
   })
 
+  app.get('/send-pause-notification-email/:address/:username/:resumeAt', async (req,res) =>{
+    console.log("send pause notification email");
+    console.log("email: " + req.params.address + ", username: " + req.params.username + ", resumeAt: " + req.params.resumeAt);
+      const msg = {
+        to: req.params.address, // Change to your recipient
+        from: 'welcome@zipharvest.app', // Change to your verified sender
+        templateId: 'd-03c552ad40614196a866b3f00fb5a5ee',
+        dynamic_template_data: {
+          username:req.params.username,
+          resumeAt:req.params.resumeAt
+        }      
+      }
+      
+      sgMail.send(msg).then((response) => {
+        console.log("send pause not return 0");
+          res.json(0);
+        }).catch((error) => {
+          console.log("sendver return 1");
+          res.json(1);
+        })
+    })
+
   app.get('/send-reset-link/:address/:linkCode/:username', async (req,res) =>{
     const msg = {
       to: req.params.address, // Change to your recipient
