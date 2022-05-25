@@ -92,7 +92,7 @@ app.get('/send-verification-email/:address/:verificationCode/:username', async (
         console.log("send pause not return 0");
           res.json(0);
         }).catch((error) => {
-          console.log("sendver return 1");
+          console.log("send pause return 1");
           res.json(1);
         })
     })

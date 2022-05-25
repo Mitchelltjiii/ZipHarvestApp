@@ -185,7 +185,7 @@ class ImportPlantsButton extends Component{
     console.log("UID: " + userID);
 
     const response4 = await fetch(`/send-pause-notification-email/${em}/${userID}/${dateString}`);
-    const text4 = await response4.text();
+    await response4.json();
       
         this.props.reloadPlants([]);
         this.props.setPlantList([]);
