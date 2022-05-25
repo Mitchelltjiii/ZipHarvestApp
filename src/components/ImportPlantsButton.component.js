@@ -174,12 +174,11 @@ class ImportPlantsButton extends Component{
 
     const response3 = await fetch(`/get-email/${userID}`);
     const email = await response3.text();
-    let em = email;
+    let em = email.substring(1,email.length-1);
 
-    console.log("IPB email: " + email);
     console.log("IPB em: " + em);
 
-    let dt = new Date(resumeAt*1000);
+    let dt = new Date(resumeAt);
     console.log("Date: " + dt.toLocaleDateString("en-US"));
 
     let dateString = dt.toLocaleDateString("en-US");
