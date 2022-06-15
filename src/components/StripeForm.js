@@ -430,11 +430,11 @@ const handleRight = () => {
 }
 
 const handleGoToBasicYear = () => {
-  goToProduct("basicyeartest");
+  goToProduct("basicyear");
 }
 
 const handleGoToStandardYear = () => {
-  goToProduct("standardyear");
+  goToProduct("standardyeartest");
 }
 
 const handleGoToPremiumYear = () => {

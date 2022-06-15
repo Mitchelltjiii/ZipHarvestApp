@@ -390,9 +390,9 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
             wrap="nowrap"
             style={{marginTop:"10px"}}
               >
-              {subType.includes("standard") ?
-                <div style={{marginRight:"70px",fontWeight:"bold",fontSize:"50px"}}>&#10094;</div>
-                : <div style={{marginRight:"70px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#10094;</div>
+              {subType.includes("basic") || subType.includes("standard") ?
+                <div style={{marginRight:"70px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#10094;</div>
+                : <div style={{marginRight:"70px",fontWeight:"bold",fontSize:"50px"}}>&#10094;</div>
               }
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px",marginTop:"2px"}}>Billed monthly</div>
               <div style={{marginLeft:"70px",fontWeight:"bold",fontSize:"50px"}}>&#10095;</div>
@@ -471,7 +471,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
             wrap="nowrap"
             style={{marginTop:"10px"}}
               >
-              <div style={{marginRight:"70px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#10094;</div>
+              <div style={{marginRight:"70px",fontWeight:"bold",fontSize:"50px"}}>&#10094;</div>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px",marginTop:"2px"}}>Billed monthly</div>
               <div style={{marginLeft:"70px",fontWeight:"bold",fontSize:"50px"}}>&#10095;</div>
               </Grid>
