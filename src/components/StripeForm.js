@@ -80,7 +80,7 @@ const ProductDisplay = () => (
             justifyContent="center"
           alignItems="center"
         >
-          <div style={{width:"900px",height:"450px",borderRadius:5,backgroundColor:"#eeeeee"}}>
+          <div style={{width:"100px",height:"450px",borderRadius:5,backgroundColor:"#eeeeee"}}>
               <Grid
 				    container
 				    direction="row"
@@ -93,7 +93,7 @@ const ProductDisplay = () => (
 				    direction="column"
             justifyContent="center"
 				    alignItems="center"
-            style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff"}}
+            style={{marginLeft:"10px",marginRight:"20px",backgroundColor:"#ffffff"}}
 			        >
               <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold",fontSize:"29px"}}>Basic</div>
               <img alt="leafImage1" src={leafImage1} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
@@ -131,7 +131,7 @@ const ProductDisplay = () => (
 				    direction="column"
             justifyContent="center"
 				    alignItems="center"
-            style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff"}}
+            style={{marginLeft:"20px",marginRight:"20px",backgroundColor:"#ffffff"}}
 			        >
               <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold",fontSize:"29px"}}>Standard</div>
               <img alt="leafImage1" src={leafImage2} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
@@ -169,7 +169,7 @@ const ProductDisplay = () => (
 				    direction="column"
             justifyContent="center"
 				    alignItems="center"
-            style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff"}}
+            style={{marginLeft:"20px",marginRight:"20px",backgroundColor:"#ffffff"}}
 			        >
               <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold",fontSize:"29px"}}>Premium</div>
               <img alt="leafImage1" src={leafImage3} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
@@ -207,7 +207,7 @@ const ProductDisplay = () => (
 				    direction="column"
             justifyContent="center"
 				    alignItems="center"
-            style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff"}}
+            style={{marginLeft:"20px",marginRight:"10px",backgroundColor:"#ffffff"}}
 			        >
               <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold",fontSize:"29px"}}>Deluxe</div>
               <img alt="leafImage1" src={leafImage4} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
