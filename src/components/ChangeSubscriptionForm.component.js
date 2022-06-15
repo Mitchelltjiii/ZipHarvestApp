@@ -45,13 +45,13 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
     let premiumText = "Select";
     let deluxeText = "Select";
     let subType = getSubscriptionType();
-    if(subType === "basic"){
+    if(subType.includes("basic")){
       basicText = "Current";
-    }else if(subType === "standard"){
+    }else if(subType.includes("standard")){
       standardText = "Current";
-    }else if(subType === "premium"){
+    }else if(subType.includes("premium")){
       premiumText = "Current";
-    }else if(subType === "deluxe"){
+    }else if(subType.includes("deluxe")){
       deluxeText = "Current";
     }
 
@@ -77,20 +77,22 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
         }
       }else{
         if(lookup_key === "standard"){
-          newPriceID = "price_1LAzVVGBqcLC10HcImc4gvbG"; //new standard
+          newPriceID = "price_1LAzVVGBqcLC10HcImc4gvbG";
         }else if(lookup_key === "premium"){
-          newPriceID = "price_1LAzVjGBqcLC10HcHDHOJLjw"; //new premium
+          newPriceID = "price_1LAzVjGBqcLC10HcHDHOJLjw";
         }else if(lookup_key === "deluxe"){
-          newPriceID = "price_1LAzVrGBqcLC10Hcr8cHZ2QG"; //new deluxe, was premium
+          newPriceID = "price_1LAzVrGBqcLC10Hcr8cHZ2QG";
+        }else if(lookup_key === "basicyear"){
+          newPriceID = "price_1LAekdGBqcLC10HcSZcrmHBq";
+        }else if(lookup_key === "standardyear"){
+          newPriceID = "price_1LAelbGBqcLC10HcRWxzQy0M";
+        }else if(lookup_key === "premiumyear"){
+          newPriceID = "price_1LAemCGBqcLC10HcmXiBXyTM";
+        }else if(lookup_key === "deluxeyear"){
+          newPriceID = "price_1LAemSGBqcLC10HcvBkALOAW"; 
         }
       }
         updateSubscription(newPriceID);
-    }
-
-    const handleGoToBasic = () => {
-        if(JSON.stringify(subscription) !== "[]"){
-            goToProduct("basic");
-        }
     }
       
       const handleGoToStandard = () => {
@@ -104,6 +106,12 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
             goToProduct("premium");
         }      
     }
+
+    const handleGoToPremiumYear = () => {
+      if(JSON.stringify(subscription) !== "[]"){
+          goToProduct("premiumyear");
+      }      
+  }
 
     const handleGoToDeluxe = () => {
       if(JSON.stringify(subscription) !== "[]"){
@@ -179,7 +187,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
                   alignItems="center"
                   wrap="nowrap"
                     >
-                    {(subType === "basic") ? 
+                    {(subType.includes("basic")) ? 
                     <Grid
                   container
                   direction="column"
@@ -215,11 +223,11 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
                     </Grid>
                     </Grid>
                     </Grid>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToStandard}>Start a free trial</Button>
+                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToStandard}>{standardText}</Button>
                     <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"11px",fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures2}</div>
                     </Grid>
                     : null}
-                    {(subType === "basic")||(subType === "standard") ? 
+                    {(subType.includes("basic"))||(subType.includes("standard")) ? 
                     <Grid
                   container
                   direction="column"
@@ -255,7 +263,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
                     </Grid>
                     </Grid>
                     </Grid>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>Start a free trial</Button>
+                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>{premiumText}</Button>
                     <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"11px",fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures3}</div>
                     </Grid>
                     :null}
@@ -294,7 +302,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
                     </Grid>
                     </Grid>
                     </Grid>
-                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToDeluxe}>Start a free trial</Button>
+                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToDeluxe}>{deluxeText}</Button>
                     <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"11px",fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures4}</div>
                     </Grid>
                     </Grid>
@@ -321,9 +329,9 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
                 </div>
           : 
           <div>
-            {(subType === "basic") || (subType === "standard") ? 
+            {(subType.includes("basic")) || (subType.includes("standard")) ? 
           <SwipeableViews>
-            {(subType === "basic") ?
+            {(subType.includes("basic")) ?
           <div style={Object.assign({}, styles.slide, styles.slide1)}>
           <Grid
             container
@@ -357,7 +365,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
               <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 1,250</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToStandard}>Start a free trial</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToStandard}>{standardText}</Button>
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures2}</div>
               </Grid>
           </div>
@@ -382,7 +390,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
             wrap="nowrap"
             style={{marginTop:"10px"}}
               >
-              {subType==="standard" ?
+              {subType.includes("standard") ?
                 <div style={{marginRight:"70px",fontWeight:"bold",fontSize:"50px"}}>&#10094;</div>
                 : <div style={{marginRight:"70px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#10094;</div>
               }
@@ -398,7 +406,10 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
               <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 2,500</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>Start a free trial</Button>
+              {subType.includes("year") ?
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremiumYear}>{premiumText}</Button>
+              : <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>{premiumText}</Button>
+              }
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures3}</div>
               </Grid>
           </div>
@@ -435,7 +446,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
               <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 5,000</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>Start a free trial</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>{premiumText}</Button>
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures4}</div>
               </Grid>
           </div>
@@ -473,7 +484,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
               <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 5,000</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>Start a free trial</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>{premiumText}</Button>
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures3}</div>
               </Grid>
                }

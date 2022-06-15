@@ -98,6 +98,7 @@ const ProductDisplay = () => (
               <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold",fontSize:"29px"}}>Basic</div>
               <img alt="leafImage1" src={leafImage1} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
               <img alt="pricingImage" src={pricingImage1} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+              <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px"}}>Billed monthly</div>
               <Grid
 				    container
 				    direction="column"
@@ -117,7 +118,7 @@ const ProductDisplay = () => (
             justifyContent="center"
 				    alignItems="center"
 			        >
-              <div style={{marginTop:"40px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>Export up to 625</div>
+              <div style={{marginTop:"25px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>Export up to 625</div>
               <div style={{marginTop:"2px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
               </Grid>
@@ -162,6 +163,8 @@ const ProductDisplay = () => (
               </Grid>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToStandard}>Buy Now</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"50px",marginRight:"5px",marginLeft:"5px",marginTop:"5px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToStandardYear}>Get One Year 50% OFF</Button>
+
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"11px",fontFamily:"Arial, Helvetica, sans-serif",letterSpacing:2}}>{seeMoreFeatures2}</div>
               </Grid>
               <Grid
@@ -200,6 +203,8 @@ const ProductDisplay = () => (
               </Grid>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>Buy Now</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"50px",marginRight:"5px",marginLeft:"5px",marginTop:"5px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremiumYear}>Get One Year 50% OFF</Button>
+
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"11px",fontFamily:"Arial, Helvetica, sans-serif",letterSpacing:2}}>{seeMoreFeatures3}</div>
               </Grid>
               <Grid
@@ -238,6 +243,7 @@ const ProductDisplay = () => (
               </Grid>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToDeluxe}>Buy Now</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"50px",marginRight:"5px",marginLeft:"5px",marginTop:"5px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToDeluxeYear}>Get One Year 50% OFF</Button>
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"11px",fontFamily:"Arial, Helvetica, sans-serif",letterSpacing:2}}>{seeMoreFeatures4}</div>
               </Grid>
               </Grid>
@@ -322,6 +328,7 @@ const ProductDisplayMobile = () => (
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToStandard}>Buy Now</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"50px",marginRight:"5px",marginLeft:"5px",marginTop:"5px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToStandardYear}>Get One Year 50% OFF</Button>
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, sans-serif",letterSpacing:2}}>{seeMoreFeatures2}</div>
               </Grid>
           </div>
@@ -359,6 +366,7 @@ const ProductDisplayMobile = () => (
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>Buy Now</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"50px",marginRight:"5px",marginLeft:"5px",marginTop:"5px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremiumYear}>Get One Year 50% OFF</Button>
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, sans-serif",letterSpacing:2}}>{seeMoreFeatures3}</div>
               </Grid>
           </div>
@@ -396,6 +404,7 @@ const ProductDisplayMobile = () => (
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToDeluxe}>Buy Now</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"50px",marginRight:"5px",marginLeft:"5px",marginTop:"5px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToDeluxeYear}>Get One Year 50% OFF</Button>
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, sans-serif",letterSpacing:2}}>{seeMoreFeatures4}</div>
               </Grid>
           </div>

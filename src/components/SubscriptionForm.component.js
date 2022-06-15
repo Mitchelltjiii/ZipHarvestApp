@@ -47,18 +47,24 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial
 
     let possiblePlantCount = "";
     let subType = "";
-    if(subscriptionType === "basic"){
+    if(subscriptionType.includes("basic")){
       possiblePlantCount = "625";
       subType = "Basic";
-    }else if(subscriptionType === "standard"){
+    }else if(subscriptionType.includes("standard")){
       possiblePlantCount = "1250";
       subType = "Standard";
-    }else if(subscriptionType === "premium"){
+    }else if(subscriptionType.includes("premium")){
       possiblePlantCount = "2500";
       subType = "Premium";
-    }else if(subscriptionType === "deluxe"){
+    }else if(subscriptionType.includes("deluxe")){
       possiblePlantCount = "5000";
       subType = "Deluxe";
+    }
+
+    if(subscriptionType.includes("year")){
+      subType += " Yearly";
+    }else{
+      subType += " Monthly"
     }
 
     if(freeTrial){
@@ -109,7 +115,7 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial
       rows.push(createData("Unique Plant Tags Per Month",possiblePlantCount));
     }
     rows.push(createData("Renewal Date",renewalDate));
-    if(subType !== "Premium" && !freeTrial){
+    if(subType !== "Deluxe Monthly" && subType !== "Deluxe Yearly" && !freeTrial){
       rows.push(createData("Upgrade Subscription",""));
     }
     if(!freeTrial){
