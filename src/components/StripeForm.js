@@ -5,10 +5,12 @@ import {isMobile} from 'react-device-detect';
 import pricingImage1 from '../pricing1.svg';
 import pricingImage2 from '../pricing2.svg';
 import pricingImage3 from '../pricing3.svg';
+import pricingImage4 from '../pricing3.svg';
 import SwipeableViews from 'react-swipeable-views';
 import leafImage1 from '../leafImage1.svg';
 import leafImage2 from '../leafImage2.svg';
 import leafImage3 from '../leafImage3.svg';
+import leafImage4 from '../leafImage3.svg';
 
 
 export default function StripeForm({verCode,userFromUrl,userFromLogin,setCurrentPage}) {
@@ -32,9 +34,10 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin,setCurrent
 
   let green = "#729d3f";
 
-  var seeMoreFeatures = <a href="https://flora-sol.com/pricing#4234583d-852b-4753-b64e-c6e17a520e78" style={{cursor:"pointer",color:"#000000",textDecoration:"underline",letterSpacing:"1"}}>LEARN MORE</a>;
-  var seeMoreFeatures2 = <a href="https://flora-sol.com/pricing#d793dccc-e5f2-4f89-81ea-922233de0cc0" style={{cursor:"pointer",color:"#000000",textDecoration:"underline",letterSpacing:"1"}}>LEARN MORE</a>;
-  var seeMoreFeatures3 = <a href="https://flora-sol.com/pricing#d4b43337-6bf9-41e5-a9ae-3c5743e62e40" style={{cursor:"pointer",color:"#000000",textDecoration:"underline",letterSpacing:"1"}}>LEARN MORE</a>;
+  var seeMoreFeatures = <a href="https://flora-sol.com/pricing#b04aad02-7057-4a2b-97d8-2e361e3cd289" style={{cursor:"pointer",color:"#000000",textDecoration:"underline",letterSpacing:"1"}}>LEARN MORE</a>;
+  var seeMoreFeatures2 = <a href="https://flora-sol.com/pricing#4234583d-852b-4753-b64e-c6e17a520e78" style={{cursor:"pointer",color:"#000000",textDecoration:"underline",letterSpacing:"1"}}>LEARN MORE</a>;
+  var seeMoreFeatures3 = <a href="https://flora-sol.com/pricing#d793dccc-e5f2-4f89-81ea-922233de0cc0" style={{cursor:"pointer",color:"#000000",textDecoration:"underline",letterSpacing:"1"}}>LEARN MORE</a>;
+  var seeMoreFeatures4 = <a href="https://flora-sol.com/pricing#d4b43337-6bf9-41e5-a9ae-3c5743e62e40" style={{cursor:"pointer",color:"#000000",textDecoration:"underline",letterSpacing:"1"}}>LEARN MORE</a>;
 
   /*slide1: {
       background: '#FEA900',
@@ -115,7 +118,7 @@ const ProductDisplay = () => (
             justifyContent="center"
 				    alignItems="center"
 			        >
-              <div style={{marginTop:"25px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>Export up to 2,000</div>
+              <div style={{marginTop:"25px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>Export up to 625</div>
               <div style={{marginTop:"2px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
               </Grid>
@@ -153,7 +156,7 @@ const ProductDisplay = () => (
             justifyContent="center"
 				    alignItems="center"
 			        >
-              <div style={{marginTop:"25px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>Export up to 5,000</div>
+              <div style={{marginTop:"25px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>Export up to 1,250</div>
               <div style={{marginTop:"2px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
               </Grid>
@@ -191,13 +194,51 @@ const ProductDisplay = () => (
             justifyContent="center"
 				    alignItems="center"
 			        >
-              <div style={{marginTop:"25px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>Export up to 10,000</div>
+              <div style={{marginTop:"25px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>Export up to 2,500</div>
               <div style={{marginTop:"2px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
               </Grid>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>Buy Now</Button>
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"11px",fontFamily:"Arial, Helvetica, sans-serif",letterSpacing:2}}>{seeMoreFeatures3}</div>
+              </Grid>
+              <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+            style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff"}}
+			        >
+              <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold",fontSize:"29px"}}>Deluxe</div>
+              <img alt="leafImage1" src={leafImage4} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
+              <img alt="pricingImage" src={pricingImage4} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+              <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px"}}>Billed monthly</div>
+              <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <Grid
+				    container
+				    direction="row"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+
+            <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <div style={{marginTop:"25px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>Export up to 5,000</div>
+              <div style={{marginTop:"2px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
+              </Grid>
+              </Grid>
+              </Grid>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToDeluxe}>Buy Now</Button>
+              <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"11px",fontFamily:"Arial, Helvetica, sans-serif",letterSpacing:2}}>{seeMoreFeatures4}</div>
               </Grid>
               </Grid>
           </div> 
@@ -239,7 +280,7 @@ const ProductDisplayMobile = () => (
             justifyContent="center"
 				    alignItems="center"
 			        >
-              <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 2,000</div>
+              <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 625</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToBasic}>Buy Now</Button>
@@ -276,7 +317,7 @@ const ProductDisplayMobile = () => (
             justifyContent="center"
 				    alignItems="center"
 			        >
-              <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 5,000</div>
+              <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 1,250</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToStandard}>Buy Now</Button>
@@ -313,11 +354,48 @@ const ProductDisplayMobile = () => (
             justifyContent="center"
 				    alignItems="center"
 			        >
-              <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 10,000</div>
+              <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 2,500</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>Buy Now</Button>
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, sans-serif",letterSpacing:2}}>{seeMoreFeatures3}</div>
+              </Grid>
+          </div>
+          <div style={Object.assign({}, styles.slide, styles.slide4)}>
+          <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+              style={{width:formWidth}}
+              wrap="nowrap"
+			        >
+              <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#000000",fontSize:"29px"}}>Deluxe</div>
+              <img alt="leafImage1" src={leafImage4} style={{height:leafImageHeight,marginTop:"10px",marginBottom:"10px"}}/>
+              <img alt="pricingImage" src={pricingImage4} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+              <Grid
+				    container
+				    direction="row"
+            justifyContent="center"
+				    alignItems="center"
+            wrap="nowrap"
+            style={{marginTop:"10px"}}
+			        >
+              <div style={{marginRight:"70px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#10094;</div>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px",marginTop:"2px"}}>Billed monthly</div>
+              <div style={{marginLeft:"70px",fontWeight:"bold",fontSize:"50px"}}>&#10095;</div>
+              </Grid>
+            <Grid
+				    container
+				    direction="column"
+            justifyContent="center"
+				    alignItems="center"
+			        >
+              <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 5,000</div>
+              <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
+              </Grid>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToDeluxe}>Buy Now</Button>
+              <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, sans-serif",letterSpacing:2}}>{seeMoreFeatures4}</div>
               </Grid>
           </div>
         </SwipeableViews>
@@ -351,6 +429,10 @@ const handleGoToStandard = () => {
 
 const handleGoToPremium = () => {
   goToProduct("premium");
+}
+
+const handleGoToDeluxe = () => {
+  goToProduct("deluxe");
 }
 
 

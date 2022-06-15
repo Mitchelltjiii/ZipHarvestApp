@@ -506,11 +506,13 @@ export default class App extends React.Component {
 
     let possiblePlantCount = 0;
     if(subscriptionType === "basic"){
-      possiblePlantCount = 2000;
+      possiblePlantCount = 625;
     }else if(subscriptionType === "standard"){
-      possiblePlantCount = 5000;
+      possiblePlantCount = 1250;
     }else if(subscriptionType === "premium"){
-      possiblePlantCount = 10000;
+      possiblePlantCount = 2500;
+    }else if(subscriptionType === "deluxe"){
+      possiblePlantCount = 5000;
     }
     return possiblePlantCount;
   }

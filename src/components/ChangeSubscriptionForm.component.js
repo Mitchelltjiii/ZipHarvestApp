@@ -2,12 +2,13 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import {isMobile} from 'react-device-detect';
-import pricingImage1 from '../pricing1.svg';
 import pricingImage2 from '../pricing2.svg';
 import pricingImage3 from '../pricing3.svg';
+import pricingImage4 from '../pricing3.svg';
 import SwipeableViews from 'react-swipeable-views';
 import leafImage2 from '../leafImage2.svg';
 import leafImage3 from '../leafImage3.svg';
+import leafImage4 from '../leafImage3.svg';
 
 function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,setCurrentPage}) {
   let testMode = false;
@@ -33,16 +34,16 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
   }  
 
   let green = "#729d3f";
-
-  var seeMoreFeatures2 = <a href="https://flora-sol.com/pricing#d793dccc-e5f2-4f89-81ea-922233de0cc0" style={{cursor:"pointer",color:"#000000",textDecoration:"underline",letterSpacing:"1"}}>LEARN MORE</a>;
-  var seeMoreFeatures3 = <a href="https://flora-sol.com/pricing#d4b43337-6bf9-41e5-a9ae-3c5743e62e40" style={{cursor:"pointer",color:"#000000",textDecoration:"underline",letterSpacing:"1"}}>LEARN MORE</a>;
-
+  var seeMoreFeatures2 = <a href="https://flora-sol.com/pricing#4234583d-852b-4753-b64e-c6e17a520e78" style={{cursor:"pointer",color:"#000000",textDecoration:"underline",letterSpacing:"1"}}>LEARN MORE</a>;
+  var seeMoreFeatures3 = <a href="https://flora-sol.com/pricing#d793dccc-e5f2-4f89-81ea-922233de0cc0" style={{cursor:"pointer",color:"#000000",textDecoration:"underline",letterSpacing:"1"}}>LEARN MORE</a>;
+  var seeMoreFeatures4 = <a href="https://flora-sol.com/pricing#d4b43337-6bf9-41e5-a9ae-3c5743e62e40" style={{cursor:"pointer",color:"#000000",textDecoration:"underline",letterSpacing:"1"}}>LEARN MORE</a>;
 
   const [success,setSuccess] = React.useState("");
     const [subscription,setSubscription] = React.useState([]);
     let basicText = "Select";
     let standardText = "Select";
     let premiumText = "Select";
+    let deluxeText = "Select";
     let subType = getSubscriptionType();
     if(subType === "basic"){
       basicText = "Current";
@@ -50,6 +51,8 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
       standardText = "Current";
     }else if(subType === "premium"){
       premiumText = "Current";
+    }else if(subType === "deluxe"){
+      deluxeText = "Current";
     }
 
     let formWidth = "450px";
@@ -63,7 +66,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
     }
 
     async function goToProduct(lookup_key){
-      let newPriceID = "price_1KnQdpGBqcLC10HcMhAEuBbM"; //basic
+      let newPriceID = "price_1LAen3GBqcLC10HcgKNmOJD0"; //new basic
       if(testMode){
         if(lookup_key === "basic"){
           newPriceID = "price_1JwFPlGBqcLC10HcdJ30adu9";
@@ -74,9 +77,11 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
         }
       }else{
         if(lookup_key === "standard"){
-          newPriceID = "price_1KrDrOGBqcLC10Hcic8ZAGNk";
+          newPriceID = "price_1LAzVVGBqcLC10HcImc4gvbG"; //new standard
         }else if(lookup_key === "premium"){
-          newPriceID = "price_1KnQdFGBqcLC10HcgFmdFEH4";
+          newPriceID = "price_1LAzVjGBqcLC10HcHDHOJLjw"; //new premium
+        }else if(lookup_key === "deluxe"){
+          newPriceID = "price_1LAzVrGBqcLC10Hcr8cHZ2QG"; //new deluxe, was premium
         }
       }
         updateSubscription(newPriceID);
@@ -99,6 +104,12 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
             goToProduct("premium");
         }      
     }
+
+    const handleGoToDeluxe = () => {
+      if(JSON.stringify(subscription) !== "[]"){
+          goToProduct("deluxe");
+      }      
+  }
 
     const updateSubscription = async(newPriceID) => {
         const response = await fetch(`/update-subscription/${subscription.id}/${newPriceID}`);
@@ -199,7 +210,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
                   justifyContent="center"
                   alignItems="center"
                     >
-                    <div style={{marginTop:"25px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>Export up to 5,000</div>
+                    <div style={{marginTop:"25px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>Export up to 1,250</div>
                     <div style={{marginTop:"2px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
                     </Grid>
                     </Grid>
@@ -208,6 +219,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
                     <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"11px",fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures2}</div>
                     </Grid>
                     : null}
+                    {(subType === "basic")||(subType === "standard") ? 
                     <Grid
                   container
                   direction="column"
@@ -238,13 +250,52 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
                   justifyContent="center"
                   alignItems="center"
                     >
-                    <div style={{marginTop:"25px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>Export up to 10,000</div>
+                    <div style={{marginTop:"25px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>Export up to 2,500</div>
                     <div style={{marginTop:"2px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
                     </Grid>
                     </Grid>
                     </Grid>
                     <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>Start a free trial</Button>
                     <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"11px",fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures3}</div>
+                    </Grid>
+                    :null}
+                    <Grid
+                  container
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="center"
+                  style={{marginLeft:"50px",marginRight:"10px",backgroundColor:"#ffffff"}}
+                    >
+                    <div style={{marginTop:"40px",textAlign:"center",fontWeight:"bold",fontSize:"29px"}}>Deluxe</div>
+                    <img alt="leafImage1" src={leafImage4} style={{height:leafImageHeight,marginTop:"20px",marginBottom:"15px"}}/>
+                    <img alt="pricingImage" src={pricingImage4} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+                    <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px"}}>Billed monthly</div>
+                    <Grid
+                  container
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="center"
+                    >
+                    <Grid
+                  container
+                  direction="row"
+                  justifyContent="center"
+                  alignItems="center"
+                    >
+      
+                  <Grid
+                  container
+                  direction="column"
+                  justifyContent="center"
+                  alignItems="center"
+                    >
+                    <div style={{marginTop:"25px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>Export up to 5,000</div>
+                    <div style={{marginTop:"2px",textAlign:"center",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
+                    </Grid>
+                    </Grid>
+                    </Grid>
+                    <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToDeluxe}>Start a free trial</Button>
+                    <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"11px",fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures4}</div>
                     </Grid>
                     </Grid>
                 </div> 
@@ -270,8 +321,9 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
                 </div>
           : 
           <div>
-            {(subType === "basic") ? 
+            {(subType === "basic") || (subType === "standard") ? 
           <SwipeableViews>
+            {(subType === "basic") ?
           <div style={Object.assign({}, styles.slide, styles.slide1)}>
           <Grid
             container
@@ -302,13 +354,15 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
             justifyContent="center"
             alignItems="center"
               >
-              <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 5,000</div>
+              <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 1,250</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToStandard}>Start a free trial</Button>
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures2}</div>
               </Grid>
           </div>
+          : null}
+          {(subType==="basic"||subType==="standard") ?
           <div style={Object.assign({}, styles.slide, styles.slide2)}>
           <Grid
             container
@@ -339,16 +393,16 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
             justifyContent="center"
             alignItems="center"
               >
-              <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 10,000</div>
+              <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 2,500</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>Start a free trial</Button>
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures3}</div>
               </Grid>
           </div>
-        </SwipeableViews>
-        :
-        <Grid
+          : null}
+          <div style={Object.assign({}, styles.slide, styles.slide3)}>
+          <Grid
             container
             direction="column"
             justifyContent="center"
@@ -356,9 +410,9 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
               style={{width:formWidth}}
               wrap="nowrap"
               >
-              <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#000000",fontSize:"29px"}}>Premium</div>
-              <img alt="leafImage1" src={leafImage3} style={{height:leafImageHeight,marginTop:"10px",marginBottom:"10px"}}/>
-              <img alt="pricingImage" src={pricingImage3} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+              <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#000000",fontSize:"29px"}}>Deluxe</div>
+              <img alt="leafImage1" src={leafImage4} style={{height:leafImageHeight,marginTop:"10px",marginBottom:"10px"}}/>
+              <img alt="pricingImage" src={pricingImage4} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
               <Grid
             container
             direction="row"
@@ -377,7 +431,45 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
             justifyContent="center"
             alignItems="center"
               >
-              <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 10,000</div>
+              <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 5,000</div>
+              <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
+              </Grid>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>Start a free trial</Button>
+              <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures4}</div>
+              </Grid>
+          </div>
+        </SwipeableViews>
+        :
+        <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+              style={{width:formWidth}}
+              wrap="nowrap"
+              >
+              <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#000000",fontSize:"29px"}}>Deluxe</div>
+              <img alt="leafImage1" src={leafImage4} style={{height:leafImageHeight,marginTop:"10px",marginBottom:"10px"}}/>
+              <img alt="pricingImage" src={pricingImage4} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+              <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            wrap="nowrap"
+            style={{marginTop:"10px"}}
+              >
+              <div style={{marginRight:"70px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#10094;</div>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px",marginTop:"2px"}}>Billed monthly</div>
+              <div style={{marginLeft:"70px",fontWeight:"bold",fontSize:"50px"}}>&#10095;</div>
+              </Grid>
+            <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+              >
+              <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 5,000</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>Start a free trial</Button>
