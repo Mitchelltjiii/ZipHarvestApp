@@ -45,6 +45,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
     let premiumText = "Select";
     let deluxeText = "Select";
     let subType = getSubscriptionType();
+    console.log("Subtype: " + subType);
     if(subType.includes("basic")){
       basicText = "Current";
     }else if(subType.includes("standard")){
@@ -100,6 +101,12 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
             goToProduct("standard");
         }
       }
+
+      const handleGoToStandardYear = () => {
+        if(JSON.stringify(subscription) !== "[]"){
+            goToProduct("standardyear");
+        }
+      }
       
       const handleGoToPremium = () => {
         if(JSON.stringify(subscription) !== "[]"){
@@ -117,6 +124,12 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
       if(JSON.stringify(subscription) !== "[]"){
           goToProduct("deluxe");
       }      
+  }
+
+  const handleGoToDeluxeYear = () => {
+    if(JSON.stringify(subscription) !== "[]"){
+        goToProduct("deluxeyear");
+    }
   }
 
     const updateSubscription = async(newPriceID) => {
@@ -365,7 +378,10 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
               <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 1,250</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToStandard}>{standardText}</Button>
+              {subType.includes("year") ?
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToStandardYear}>Upgrade Now</Button>
+              : <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToStandard}>Upgrade Now</Button>
+            }
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures2}</div>
               </Grid>
           </div>
@@ -407,8 +423,8 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
               {subType.includes("year") ?
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremiumYear}>{premiumText}</Button>
-              : <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>{premiumText}</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremiumYear}>Upgrade Now</Button>
+              : <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>Upgrade Now</Button>
               }
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures3}</div>
               </Grid>
@@ -446,7 +462,10 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
               <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 5,000</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>{premiumText}</Button>
+              {subType.includes("year") ?
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToDeluxeYear}>Upgrade Now</Button>
+              :  <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToDeluxe}>Upgrade Now</Button>
+            }
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures4}</div>
               </Grid>
           </div>
@@ -471,9 +490,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
             wrap="nowrap"
             style={{marginTop:"10px"}}
               >
-              <div style={{marginRight:"70px",fontWeight:"bold",fontSize:"50px"}}>&#10094;</div>
-              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px",marginTop:"2px"}}>Billed monthly</div>
-              <div style={{marginLeft:"70px",fontWeight:"bold",fontSize:"50px"}}>&#10095;</div>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px",marginTop:"2px"}}>{subType}</div>
               </Grid>
             <Grid
             container
@@ -484,8 +501,11 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
               <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 5,000</div>
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>{premiumText}</Button>
-              <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures3}</div>
+              {subType.includes("year") ?
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToDeluxeYear}>Upgrade Now</Button>
+              :  <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToDeluxe}>Upgrade Now</Button>
+            }             
+             <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures4}</div>
               </Grid>
                }
           </div>
