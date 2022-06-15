@@ -362,7 +362,6 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
               </Grid>
           </div>
           : null}
-          {(subType==="basic"||subType==="standard") ?
           <div style={Object.assign({}, styles.slide, styles.slide2)}>
           <Grid
             container
@@ -383,7 +382,10 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
             wrap="nowrap"
             style={{marginTop:"10px"}}
               >
-              <div style={{marginRight:"70px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#10094;</div>
+              {subType==="standard" ?
+                <div style={{marginRight:"70px",fontWeight:"bold",fontSize:"50px"}}>&#10094;</div>
+                : <div style={{marginRight:"70px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#10094;</div>
+              }
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px",marginTop:"2px"}}>Billed monthly</div>
               <div style={{marginLeft:"70px",fontWeight:"bold",fontSize:"50px"}}>&#10095;</div>
               </Grid>
@@ -400,7 +402,6 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures3}</div>
               </Grid>
           </div>
-          : null}
           <div style={Object.assign({}, styles.slide, styles.slide3)}>
           <Grid
             container

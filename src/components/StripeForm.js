@@ -80,7 +80,7 @@ const ProductDisplay = () => (
             justifyContent="center"
           alignItems="center"
         >
-          <div style={{width:"100px",height:"450px",borderRadius:5,backgroundColor:"#eeeeee"}}>
+          <div style={{width:"1000px",height:"450px",borderRadius:5,backgroundColor:"#eeeeee"}}>
               <Grid
 				    container
 				    direction="row"
@@ -346,7 +346,7 @@ const ProductDisplayMobile = () => (
 			        >
               <div style={{marginRight:"70px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#10094;</div>
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px",marginTop:"2px"}}>Billed monthly</div>
-              <div style={{marginLeft:"70px",fontWeight:"bold",fontSize:"50px"}}>&#10095;</div>
+              <div style={{marginLeft:"70px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#10095;</div>
               </Grid>
             <Grid
 				    container
@@ -361,7 +361,7 @@ const ProductDisplayMobile = () => (
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, sans-serif",letterSpacing:2}}>{seeMoreFeatures3}</div>
               </Grid>
           </div>
-          <div style={Object.assign({}, styles.slide, styles.slide4)}>
+          <div style={Object.assign({}, styles.slide, styles.slide3)}>
           <Grid
 				    container
 				    direction="column"
