@@ -123,7 +123,7 @@ const ProductDisplay = () => (
               </Grid>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToBasic}>Buy Now</Button>
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"15px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToBasicYear}>Get One Year 50% OFF</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"50px",marginRight:"5px",marginLeft:"5px",marginTop:"5px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToBasicYear}>Get One Year 50% OFF</Button>
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"11px",fontFamily:"Arial, Helvetica, sans-serif",letterSpacing:2}}>{seeMoreFeatures}</div>
               </Grid>
               <Grid
@@ -284,6 +284,7 @@ const ProductDisplayMobile = () => (
               <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToBasic}>Buy Now</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"50px",marginRight:"5px",marginLeft:"5px",marginTop:"5px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToBasicYear}>Get One Year 50% OFF</Button>
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, sans-serif",letterSpacing:2}}>{seeMoreFeatures}</div>
               </Grid> 
           </div>
@@ -420,7 +421,19 @@ const handleRight = () => {
 }
 
 const handleGoToBasicYear = () => {
-  goToProduct("testyear");
+  goToProduct("basicyear");
+}
+
+const handleGoToStandardYear = () => {
+  goToProduct("standardyear");
+}
+
+const handleGoToPremiumYear = () => {
+  goToProduct("premiumyear");
+}
+
+const handleGoToDeluxeYear = () => {
+  goToProduct("deluxeyear");
 }
 
 const handleGoToBasic = () => {
