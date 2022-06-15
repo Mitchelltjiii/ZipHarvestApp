@@ -342,9 +342,8 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
                 </div>
           : 
           <div>
-            {(subType.includes("basic")) || (subType.includes("standard")) ? 
+            {(subType.includes("basic")) ? 
           <SwipeableViews>
-            {(subType.includes("basic")) ?
           <div style={Object.assign({}, styles.slide, styles.slide1)}>
           <Grid
             container
@@ -385,7 +384,6 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures2}</div>
               </Grid>
           </div>
-          : null}
           <div style={Object.assign({}, styles.slide, styles.slide2)}>
           <Grid
             container
@@ -405,13 +403,10 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
             alignItems="center"
             wrap="nowrap"
             style={{marginTop:"10px"}}
-              >
-              {subType.includes("basic") || subType.includes("standard") ?
-                <div style={{marginRight:"70px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#10094;</div>
-                : <div style={{marginRight:"70px",fontWeight:"bold",fontSize:"50px"}}>&#10094;</div>
-              }
+              >                
+              <div style={{marginRight:"70px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#10094;</div>  
               <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px",marginTop:"2px"}}>Billed monthly</div>
-              <div style={{marginLeft:"70px",fontWeight:"bold",fontSize:"50px"}}>&#10095;</div>
+              <div style={{marginLeft:"70px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#10095;</div>
               </Grid>
             <Grid
             container
@@ -470,6 +465,89 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
               </Grid>
           </div>
         </SwipeableViews>
+        : subType.includes("standard") ?
+        <SwipeableViews>
+      <div style={Object.assign({}, styles.slide, styles.slide1)}>
+      <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+          style={{width:formWidth}}
+          wrap="nowrap"
+          >
+          <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#000000",fontSize:"29px"}}>Premium</div>
+          <img alt="leafImage1" src={leafImage3} style={{height:leafImageHeight,marginTop:"10px",marginBottom:"10px"}}/>
+          <img alt="pricingImage" src={pricingImage3} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+          <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        wrap="nowrap"
+        style={{marginTop:"10px"}}
+          >
+          <div style={{marginRight:"70px",fontWeight:"bold",fontSize:"50px"}}>&#10094;</div>
+          <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px",marginTop:"2px"}}>Billed monthly</div>
+          <div style={{marginLeft:"70px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#10095;</div>
+          </Grid>
+        <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+          >
+          <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 2,500</div>
+          <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
+          </Grid>
+          {subType.includes("year") ?
+          <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremiumYear}>Upgrade Now</Button>
+          : <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToPremium}>Upgrade Now</Button>
+          }
+          <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures3}</div>
+          </Grid>
+      </div>
+      <div style={Object.assign({}, styles.slide, styles.slide2)}>
+      <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+          style={{width:formWidth}}
+          wrap="nowrap"
+          >
+          <div style={{marginTop:"20px",textAlign:"center",fontWeight:"bold",color:"#000000",fontSize:"29px"}}>Deluxe</div>
+          <img alt="leafImage1" src={leafImage4} style={{height:leafImageHeight,marginTop:"10px",marginBottom:"10px"}}/>
+          <img alt="pricingImage" src={pricingImage4} style={{width:pricingImageWidth,height:pricingImageHeight}}/>
+          <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        wrap="nowrap"
+        style={{marginTop:"10px"}}
+          >
+          <div style={{marginRight:"70px",fontWeight:"bold",color:green,fontSize:"50px"}}>&#10094;</div>
+          <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px",marginTop:"2px"}}>Billed monthly</div>
+          <div style={{marginLeft:"70px",fontWeight:"bold",fontSize:"50px"}}>&#10095;</div>
+          </Grid>
+        <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+          >
+          <div style={{marginTop:"25px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>Export up to 5,000</div>
+          <div style={{marginTop:"2px",textAlign:"center",color:"#000000",fontSize:"23px",fontWeight:"bold"}}>plants per month</div>
+          </Grid>
+          {subType.includes("year") ?
+          <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToDeluxeYear}>Upgrade Now</Button>
+          :  <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"15px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToDeluxe}>Upgrade Now</Button>
+        }
+          <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"15px",fontSize:"14px", fontFamily:"Arial, Helvetica, serif",letterSpacing:2}}>{seeMoreFeatures4}</div>
+          </Grid>
+      </div>
+    </SwipeableViews>
         :
         <Grid
             container
@@ -490,7 +568,7 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
             wrap="nowrap"
             style={{marginTop:"10px"}}
               >
-              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px",marginTop:"2px"}}>{subType}</div>
+              <div style={{textAlign:"center",fontWeight:"bold",color:"#5b5b5b",fontSize:"18px",marginTop:"2px"}}>Billed Monthly</div>
               </Grid>
             <Grid
             container
