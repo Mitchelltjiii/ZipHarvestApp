@@ -1060,7 +1060,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				style={{width:entryTutorialWidth,borderColor:"#90ee90",marginLeft:"10px",marginRight:"10px",marginTop:"10px",marginBottom:"10px",borderRadius:"5px",border: "1px solid #90ee90",paddingRight:"5px",paddingBottom:"5px"}}
 			>
 				
-				<div style={{margin:"5px",textAlign:"center",fontSize:entryTutorialFontSize}}>Outdoor Harvest 2022 Sale: Get 50% off 3 months!</div>
+				<div style={{margin:"5px",textAlign:"center",fontSize:entryTutorialFontSize}}>Outdoor Harvest Sale: Get 50% off 3 months!</div>
 				<Grid
 				container
 				direction="row"
@@ -1068,7 +1068,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				alignItems="center"
 				style={{width:"100%"}}
 			>
-				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={goToOffer}>Go To Offer</Button>
+				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={goToOffer}>Go To Offer</Button>
 				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={closeOffer}>Close</Button>
 				</Grid>
 				</Grid> : null}

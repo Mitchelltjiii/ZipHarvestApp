@@ -13,7 +13,7 @@ import leafImage3 from '../leafImage2.svg';
 import leafImage4 from '../leafImage3.svg';
 
 
-export default function StripeForm({verCode,userFromUrl,userFromLogin,setCurrentPage,getOffer}) {
+export default function StripeForm({verCode,userFromUrl,userFromLogin,setCurrentPage,getOffer,executeLogout}) {
 
   const styles = {
     slide: {
@@ -66,6 +66,7 @@ export default function StripeForm({verCode,userFromUrl,userFromLogin,setCurrent
   );
 
   const handleGoToHome = () => {
+    executeLogout();
     window.location.replace("https://www.zipharvest.app/");
   }  
 

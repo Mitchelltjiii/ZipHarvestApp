@@ -605,7 +605,7 @@ export default class App extends React.Component {
 
     this.setState({loggedIn:'',subid:'',firstMonthFree:false,currentPage:'harvest-form',harvestBatches:[],plants:[],harvestRecords:[],
     plantsLoading:true,harvestBatchesLoading:true,harvestRecordsLoading:true,currentHarvest:[],userID:'',
-    dryRooms:[],exportRecords:[], subscription:[], tutorials:"",usingReferalCode:"",myReferalCode:"",grantFreeMonthCode:""});
+    dryRooms:[],exportRecords:[], subscription:[], tutorials:"",usingReferalCode:"",myReferalCode:"",grantFreeMonthCode:"",offer:false});
     this.forceUpdate();
   }
 
@@ -816,7 +816,7 @@ export default class App extends React.Component {
     }
 
     let landingForm = false;
-    if (this.state.loggedIn !== '') {
+    if (this.state.loggedIn !== '' && !this.state.offer) {
 	  	showForm = <div style={{margin:"auto"}}>
 	    <Header setCurrentPage={this.setCurrentPage}/>
       <Outer currentPage={this.state.currentPage} setCurrentPage={this.setCurrentPage} getPlants={this.getPlants} getHarvestRecords={this.getHarvestRecords} getHarvestBatches={this.getHarvestBatches}
@@ -839,7 +839,8 @@ export default class App extends React.Component {
 				showForm = <CreateUserForm setCurrentPage={this.setCurrentPage} setNewUsername={this.setNewUsername} logVisit={this.logVisit} 
         usingReferalCode={this.state.usingReferalCode}></CreateUserForm>
       }else if(this.state.currentPage === 'stripe-form'){
-				showForm = <StripeForm verCode={verCode} userFromUrl={userFromUrl} userFromLogin={this.state.newUsername} setCurrentPage={this.setCurrentPage} getOffer={this.getOffer}></StripeForm>
+				showForm = <StripeForm verCode={verCode} userFromUrl={userFromUrl} userFromLogin={this.state.newUsername} setCurrentPage={this.setCurrentPage} getOffer={this.getOffer}
+        executeLogout={this.executeLogout}></StripeForm>
       }else if(this.state.currentPage === 'verification-form'){
 				showForm = <VerificationForm newUsername={this.state.newUsername} setCurrentPage={this.setCurrentPage}></VerificationForm>
       }else if(this.state.currentPage === 'reset-password-form'){
