@@ -511,7 +511,6 @@ async function goToProduct(lookup_key){
   const json = await response.json();
 
   updateUserSessionID(user.username,json.id);
-
   window.location.replace(json.url);
 }
 
