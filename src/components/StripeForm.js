@@ -503,7 +503,6 @@ const handleGoToDeluxe = () => {
   goToProduct("deluxe");
 }
 
-
 async function goToProduct(lookup_key){
   const response = await fetch(`/create-checkout-session/${lookup_key}`, {
         method: 'POST',
