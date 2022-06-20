@@ -46,7 +46,8 @@ export default class App extends React.Component {
     usingReferalCode: "",
     myReferalCode: "",
     grantFreeMonthCode: "",
-    freeMonthGrantedVisible: false
+    freeMonthGrantedVisible: false,
+    offer: false
   };
 
   componentDidMount() {    
@@ -540,7 +541,14 @@ export default class App extends React.Component {
     
     return freeTrial;
   }
+
+  getOffer = () => {
+    return this.state.offer;
+  }
   
+  setOffer = (offer) => {
+    this.setState({offer:offer});
+  }
 
   getFreeTrialEnds = () => {
     let endTime = new Date(parseInt(this.state.subid)+1209600000);
@@ -822,7 +830,8 @@ export default class App extends React.Component {
       getTutorials={this.getTutorials} setTutorials={this.setTutorials}
       showHints={this.state.showHints} getPrint={this.getPrint} print={this.state.print} getFreeTrial={this.getFreeTrial}
       getFreeTrialEnds={this.getFreeTrialEnds} getReferalLink={this.getReferalLink} getGrantFreeMonthCode={this.getGrantFreeMonthCode}
-      setGrantFreeMonthCode={this.setGrantFreeMonthCode} getFreeMonthGrantedVisible={this.getFreeMonthGrantedVisible} setFreeMonthGrantedVisible={this.setFreeMonthGrantedVisible}/>
+      setGrantFreeMonthCode={this.setGrantFreeMonthCode} getFreeMonthGrantedVisible={this.getFreeMonthGrantedVisible} setFreeMonthGrantedVisible={this.setFreeMonthGrantedVisible}
+      setOffer={this.setOffer}/>
     </div>;
     }else{
       let loginForm = false;
@@ -830,7 +839,7 @@ export default class App extends React.Component {
 				showForm = <CreateUserForm setCurrentPage={this.setCurrentPage} setNewUsername={this.setNewUsername} logVisit={this.logVisit} 
         usingReferalCode={this.state.usingReferalCode}></CreateUserForm>
       }else if(this.state.currentPage === 'stripe-form'){
-				showForm = <StripeForm verCode={verCode} userFromUrl={userFromUrl} userFromLogin={this.state.newUsername} setCurrentPage={this.setCurrentPage}></StripeForm>
+				showForm = <StripeForm verCode={verCode} userFromUrl={userFromUrl} userFromLogin={this.state.newUsername} setCurrentPage={this.setCurrentPage} getOffer={this.getOffer}></StripeForm>
       }else if(this.state.currentPage === 'verification-form'){
 				showForm = <VerificationForm newUsername={this.state.newUsername} setCurrentPage={this.setCurrentPage}></VerificationForm>
       }else if(this.state.currentPage === 'reset-password-form'){

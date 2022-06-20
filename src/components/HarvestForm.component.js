@@ -22,7 +22,7 @@ import {isMobile} from 'react-device-detect';
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches,
 	currentHarvest, setNewHBID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
 	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords,getTutorials,setTutorials,showHints,
-	setCurrentPage,getFreeTrial,getReferalLink,getGrantFreeMonthCode}) { 
+	setCurrentPage,getFreeTrial,getReferalLink,getGrantFreeMonthCode,setOffer}) { 
 
 	let referalLink = getReferalLink();
 	let tutorials = getTutorials();
@@ -408,6 +408,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   let entryTutorialFontSize = "17px";
   const[entryTutorialVisible,setEntryTutorialVisible] = React.useState(true);
   const[referalVisible,setReferalVisible] = React.useState(true);
+  const[offerVisible,setOfferVisible] = React.useState(true);
 
   if(isMobile){
 	entryTutorialWidth = "340px";
@@ -579,6 +580,15 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function closeReferal(){
 		setReferalVisible(false);
+	}
+
+	function closeOffer(){
+		setOfferVisible(false);
+	}
+
+	function goToOffer(){
+		setOffer(true);
+		setCurrentPage('stripe-form');
 	}
 
 	function closeGrantFreeMonthHint(){
@@ -1042,6 +1052,26 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   				justify="center"
 				alignItems="center"
 			>
+				{(offerVisible && freeTrail && userID.includes("Test")) ? <Grid
+				container
+				direction="column"
+  				justify="center"
+				alignItems="center"
+				style={{width:entryTutorialWidth,borderColor:"#90ee90",marginLeft:"10px",marginRight:"10px",marginTop:"10px",marginBottom:"10px",borderRadius:"5px",border: "1px solid #90ee90",paddingRight:"5px",paddingBottom:"5px"}}
+			>
+				
+				<div style={{margin:"5px",textAlign:"center",fontSize:entryTutorialFontSize}}>Outdoor Harvest 2022 Sale: Get 50% off 3 months!</div>
+				<Grid
+				container
+				direction="row"
+				justify="center"
+				alignItems="center"
+				style={{width:"100%"}}
+			>
+				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={goToOffer}>Go To Offer</Button>
+				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={closeOffer}>Close</Button>
+				</Grid>
+				</Grid> : null}
 				{(entryTutorialVisible && tutorials.substring(0,1)==="1") ? <Grid
 				container
 				direction="column"
