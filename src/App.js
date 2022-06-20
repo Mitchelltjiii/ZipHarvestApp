@@ -840,7 +840,7 @@ export default class App extends React.Component {
         usingReferalCode={this.state.usingReferalCode}></CreateUserForm>
       }else if(this.state.currentPage === 'stripe-form'){
 				showForm = <StripeForm verCode={verCode} userFromUrl={userFromUrl} userFromLogin={this.state.newUsername} setCurrentPage={this.setCurrentPage} getOffer={this.getOffer}
-        executeLogout={this.executeLogout}></StripeForm>
+        setOffer={this.setOffer}></StripeForm>
       }else if(this.state.currentPage === 'verification-form'){
 				showForm = <VerificationForm newUsername={this.state.newUsername} setCurrentPage={this.setCurrentPage}></VerificationForm>
       }else if(this.state.currentPage === 'reset-password-form'){
