@@ -588,6 +588,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function goToOffer(){
 		setOffer(true);
+		
 		setCurrentPage('stripe-form');
 	}
 
