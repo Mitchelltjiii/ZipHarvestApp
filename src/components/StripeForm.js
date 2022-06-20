@@ -835,7 +835,18 @@ async function getSession(seshId){
       if (success && sessionId !== '') {
         return <SuccessDisplay seshId={sessionId} />;
       }else{
-        return <ExpiredForm msg={"This code isn't correct.\nTry resending or looking for the correct email."}></ExpiredForm>
+        if(offer){
+          try{
+            if(isMobile){
+              return <ProductDisplayMobile />;
+            }else{
+              return <ProductDisplay />;
+            }
+        }catch(err){
+        }
+        }else{
+          return <ExpiredForm msg={"This code isn't correct.\nTry resending or looking for the correct email."}></ExpiredForm>
+        }
       }
     }
   }
