@@ -7,7 +7,7 @@ import pricingImage2 from '../pricing2.svg';
 import pricingImage3 from '../pricing3.svg';
 import pricingImage4 from '../pricing3.svg';
 import SwipeableViews from 'react-swipeable-views';
-import leafImage1 from '../leafImage1.svg';
+import leafImage1 from '../leafImage0.svg';
 import leafImage2 from '../leafImage1.svg';
 import leafImage3 from '../leafImage2.svg';
 import leafImage4 from '../leafImage3.svg';
@@ -82,7 +82,7 @@ const ProductDisplay = () => (
             justifyContent="center"
           alignItems="center"
         >
-          <div style={{width:"1000px",height:"450px",borderRadius:5,backgroundColor:"#eeeeee"}}>
+          <div style={{width:"80%",height:"70%",borderRadius:5,backgroundColor:"#eeeeee"}}>
               <Grid
 				    container
 				    direction="row"
@@ -127,7 +127,7 @@ const ProductDisplay = () => (
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToBasic}>Buy Now</Button>
               {offer ? 
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"50px",marginRight:"5px",marginLeft:"5px",marginTop:"5px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToBasicOutdoor}>Get 3 Months 50% OFF</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"50px",marginRight:"5px",marginLeft:"5px",marginTop:"5px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToBasicOutdoor}>3 Months 50% OFF</Button>
               :<Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"50px",marginRight:"5px",marginLeft:"5px",marginTop:"5px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToBasicYear}>Get One Year 50% OFF</Button>
               }
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"11px",fontFamily:"Arial, Helvetica, sans-serif",letterSpacing:2}}>{seeMoreFeatures}</div>
