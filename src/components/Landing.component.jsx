@@ -18,7 +18,7 @@ reloadHarvestRecords,setCurrentPage,executeLogout,setFromAccountSettings,attempt
 logInSuccess,getDryRooms,reloadDryRooms,reloadExportRecords,getUniqueIDCount,reloadSubscription,
 getPossiblePlantCount,getSubscriptionType,getTutorials,setTutorials,showHints,getPrint,print,getFreeTrial,
 getFreeTrialEnds,getReferalLink,getGrantFreeMonthCode,setGrantFreeMonthCode,getFreeMonthGrantedVisible,setFreeMonthGrantedVisible,
-setOffer}){
+setOffer,setNewUsername}){
 	let fromAccountSettings = true;
 
     return(
@@ -29,7 +29,7 @@ setOffer}){
 				setNewHarvestRecordID={setNewHarvestRecordID} setNewPlantID={setNewPlantID} userID={userID} reloadPlants={reloadPlants} reloadPlantsAndHarvestRecords={reloadPlantsAndHarvestRecords}
 				reloadHarvestBatches={reloadHarvestBatches} reloadHarvestRecords={reloadHarvestRecords} getTutorials={getTutorials} setTutorials={setTutorials} showHints={showHints}
 				setCurrentPage={setCurrentPage} getFreeTrial={getFreeTrial} getReferalLink={getReferalLink} getGrantFreeMonthCode={getGrantFreeMonthCode} setOffer={setOffer}
-				executeLogout={executeLogout}/>
+				executeLogout={executeLogout} setNewUsername={this.setNewUsername}/>
 			) : currentPage === 'harvest-batches-form' ? (
 				<HarvestBatchesForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} 
 				getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms} getPossiblePlantCount={getPossiblePlantCount} getFreeTrial={getFreeTrial}/>

@@ -22,7 +22,7 @@ import {isMobile} from 'react-device-detect';
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches,
 	currentHarvest, setNewHBID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
 	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords,getTutorials,setTutorials,showHints,
-	setCurrentPage,getFreeTrial,getReferalLink,getGrantFreeMonthCode,setOffer,executeLogout}) { 
+	setCurrentPage,getFreeTrial,getReferalLink,getGrantFreeMonthCode,setOffer,executeLogout,setNewUsername}) { 
 
 	let referalLink = getReferalLink();
 	let tutorials = getTutorials();
@@ -587,8 +587,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	function goToOffer(){
+		let uid = userID;
 		executeLogout();
 		setOffer(true);
+		setNewUsername(uid);
 		setCurrentPage('stripe-form');
 	}
 

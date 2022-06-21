@@ -830,7 +830,7 @@ export default class App extends React.Component {
       showHints={this.state.showHints} getPrint={this.getPrint} print={this.state.print} getFreeTrial={this.getFreeTrial}
       getFreeTrialEnds={this.getFreeTrialEnds} getReferalLink={this.getReferalLink} getGrantFreeMonthCode={this.getGrantFreeMonthCode}
       setGrantFreeMonthCode={this.setGrantFreeMonthCode} getFreeMonthGrantedVisible={this.getFreeMonthGrantedVisible} setFreeMonthGrantedVisible={this.setFreeMonthGrantedVisible}
-      setOffer={this.setOffer}/>
+      setOffer={this.setOffer} setNewUsername={this.setNewUsername}/>
     </div>;
     }else{
       let loginForm = false;
