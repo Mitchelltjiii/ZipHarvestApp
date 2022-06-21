@@ -513,7 +513,11 @@ async function goToProduct(lookup_key){
   if(user.username !== null && user.username !== ""){
     updateUserSessionID(user.username,json.id);
   }else{
-    updateUserSessionID(newUsername,json.id);
+    if((""+lookup_key).includes("outdoor")){
+      updateUserSessionID(newUsername,(lookup_key+""));
+    }else{
+      updateUserSessionID(newUsername,json.id);
+    }
   }
   window.location.replace(json.url);
 }
@@ -531,7 +535,13 @@ async function updateUserSessionID(username,id){
 }
 
 async function updateUserSubId(username,subid){
-  fetch(`/user/subid/${subid}/${username}`, {
+  console.log("Update sub id: " + subid);
+  let s = subid;
+  if(subid===null){
+    s="outdoor2022";
+  }
+  console.log("S: " + s);
+  fetch(`/user/subid/${s}/${username}`, {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
