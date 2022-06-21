@@ -13,7 +13,7 @@ import leafImage3 from '../leafImage2.svg';
 import leafImage4 from '../leafImage3.svg';
 
 
-export default function StripeForm({verCode,userFromUrl,userFromLogin,setCurrentPage,getOffer,setOffer}) {
+export default function StripeForm({verCode,userFromUrl,userFromLogin,setCurrentPage,getOffer,setOffer,newUsername}) {
 
   const styles = {
     slide: {
@@ -510,7 +510,11 @@ async function goToProduct(lookup_key){
   });
   const json = await response.json();
 
-  updateUserSessionID(user.username,json.id);
+  if(user.username !== null && user.username !== ""){
+    updateUserSessionID(user.username,json.id);
+  }else{
+    updateUserSessionID(newUsername,json.id);
+  }
   window.location.replace(json.url);
 }
 

@@ -786,6 +786,7 @@ export default class App extends React.Component {
         this.setCurrentPage('reset-password-form');
       }
     }
+
     let userFromUrl = "";
     let userEqualsStr = "username=";
     if(currUrl.includes("username")){
@@ -838,7 +839,7 @@ export default class App extends React.Component {
         usingReferalCode={this.state.usingReferalCode}></CreateUserForm>
       }else if(this.state.currentPage === 'stripe-form'){
 				showForm = <StripeForm verCode={verCode} userFromUrl={userFromUrl} userFromLogin={this.state.newUsername} setCurrentPage={this.setCurrentPage} getOffer={this.getOffer}
-        setOffer={this.setOffer}></StripeForm>
+        setOffer={this.setOffer} newUsername={this.state.newUsername}></StripeForm>
       }else if(this.state.currentPage === 'verification-form'){
 				showForm = <VerificationForm newUsername={this.state.newUsername} setCurrentPage={this.setCurrentPage}></VerificationForm>
       }else if(this.state.currentPage === 'reset-password-form'){
