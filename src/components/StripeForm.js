@@ -534,14 +534,15 @@ async function updateUserSessionID(username,id){
   });
 }
 
-async function updateUserSubId(username,subid){
-  console.log("Update sub id: " + subid);
-  let s = subid;
-  if(subid===null){
-    s="outdoor2022";
-  }
-  console.log("S: " + s);
-  fetch(`/user/subid/${s}/${username}`, {
+async function getSessionID(username){
+  const response = await fetch(`/get-sessionid/${username}`);
+    const json = await response.json();
+    if(json !== undefined){
+      let sessionid = JSON.stringify(json);
+      sessionid = sessionid.substring(1,sessionid.length-1);
+      console.log("getSessionID sessionID: " + sessionid);
+
+      fetch(`/user/subid/${sessionid}/${username}`, {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
@@ -551,6 +552,25 @@ async function updateUserSubId(username,subid){
   }).then(function(data) {
     setUserUpdated(true);
   });
+    }  
+}
+
+async function updateUserSubId(username,subid){
+  console.log("Update sub id: " + subid);
+  if(subid===null){
+    getSessionID(username);
+  }else{
+    fetch(`/user/subid/${subid}/${username}`, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+}).then(function(response) {
+}).then(function(data) {
+  setUserUpdated(true);
+});
+  }
 }
 
 async function updateUserVerified(username){

@@ -451,6 +451,19 @@ app.get('/get-subid/:username', async (req,res) =>{
   })
 })
 
+app.get('/get-sessionid/:username', async (req,res) =>{
+  pool.getConnection((err, connection) => {
+    if(err) throw err;
+    let username = req.params.username;
+    var sql = `${username}`;
+    connection.query(usersQueryStringFromUsername + sql + "'", (err, rows) => {
+        connection.release(); // return the connection to pool
+        if(err) throw err;
+        res.json(rows[0].sessionid);
+    });
+  })
+})
+
 app.get('/get-user-seshId/:seshId', async (req,res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
