@@ -515,21 +515,39 @@ app.post('/create-checkout-session/:lookup_key', async (req, res) => {
     lookup_keys: [req.params.lookup_key],
     expand: ['data.product'],
   });
-  const session = await stripe.checkout.sessions.create({
-    billing_address_collection: 'auto',
-    payment_method_types: ['card'],
-    line_items: [
-      {
-        price: prices.data[0].id,
-        // For metered billing, do not pass quantity
-        quantity: 1,
-      },
-    ],
-    mode: 'subscription',
-    success_url: `${YOUR_DOMAIN}?success=true&session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${YOUR_DOMAIN}?canceled=true`,
-  });
-  res.json(session);
+  if(req.params.lookup_key.includes("outdoor")){
+    const session = await stripe.checkout.sessions.create({
+      billing_address_collection: 'auto',
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price: prices.data[0].id,
+          // For metered billing, do not pass quantity
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      success_url: `${YOUR_DOMAIN}?success=true&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+    });
+    res.json(session);
+  }else{
+    const session = await stripe.checkout.sessions.create({
+      billing_address_collection: 'auto',
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price: prices.data[0].id,
+          // For metered billing, do not pass quantity
+          quantity: 1,
+        },
+      ],
+      mode: 'subscription',
+      success_url: `${YOUR_DOMAIN}?success=true&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+    });
+    res.json(session);
+  }
 });
 app.post('/create-portal-session', async (req, res) => {
   // For demonstration purposes, we're using the Checkout session to retrieve the customer ID.
