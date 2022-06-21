@@ -786,7 +786,6 @@ export default class App extends React.Component {
         this.setCurrentPage('reset-password-form');
       }
     }
-
     let userFromUrl = "";
     let userEqualsStr = "username=";
     if(currUrl.includes("username")){
