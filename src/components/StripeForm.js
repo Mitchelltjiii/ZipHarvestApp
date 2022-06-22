@@ -625,7 +625,7 @@ const SuccessDisplay = ({ seshId }) => {
       console.log("uusi a");
 
       updateUserSubId(user.username,subscription.id);
-    }else if(subscription===null){
+    }else{
       console.log("uusi b");
 
       updateUserSubId(user.username,"");
