@@ -554,7 +554,9 @@ async function getSessionID(username){
           'Content-Type': 'application/json'
         }
   }).then(function(response) {
+    console.log("Get session id resp: " + response);
   }).then(function(data) {
+    console.log("Get session id data: " + data);
     setUserUpdated(true);
   });
     }  
