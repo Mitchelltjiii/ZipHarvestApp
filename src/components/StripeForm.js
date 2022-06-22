@@ -510,12 +510,17 @@ async function goToProduct(lookup_key){
   });
   const json = await response.json();
 
+  console.log("gtp: a");
   if(user.username !== null && user.username !== ""){
+    console.log("gtp: b");
     updateUserSessionID(user.username,json.id);
   }else{
+    console.log("gtp: newUsername: " + newUsername + ", Lookupkey: " + lookup_key);
     if((""+lookup_key).includes("outdoor")){
+      console.log("gtp: c");
       updateUserSessionID(newUsername,(lookup_key+""));
     }else{
+      console.log("gtp: d");
       updateUserSessionID(newUsername,json.id);
     }
   }
@@ -558,6 +563,7 @@ async function getSessionID(username){
 async function updateUserSubId(username,subid){
   console.log("Update sub id: " + subid);
   if(subid===null){
+    console.log("subid is null");
     getSessionID(username);
   }else{
     fetch(`/user/subid/${subid}/${username}`, {

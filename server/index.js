@@ -460,6 +460,7 @@ app.get('/get-sessionid/:username', async (req,res) =>{
         connection.release(); // return the connection to pool
         if(err) throw err;
         res.json(rows[0].sessionid);
+        //stripeform get session id to tell database which subscription type for promo account
     });
   })
 })
