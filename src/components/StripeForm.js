@@ -616,12 +616,20 @@ async function updateUserVerificationCode(username,newCode){
 }
 
 const SuccessDisplay = ({ seshId }) => {
+  console.log("Success display");
   if(session === null || session === [] || session === undefined || JSON.stringify(session) === "[]"){
+    console.log("Get session");
     getSession(sessionId);
   }else{
-    if(user.username !== undefined && subscription.id !== undefined && !userUpdated){
+    if(user.username !== undefined && subscription !== null && subscription.id !== undefined && !userUpdated){
+      console.log("uusi a");
+
       updateUserSubId(user.username,subscription.id);
-    }  
+    }else if(subscription===null){
+      console.log("uusi b");
+
+      updateUserSubId(user.username,"");
+    } 
   }
 
 
