@@ -567,6 +567,7 @@ async function getSessionID(username){
 
 async function updateUserSubId(username,subid){
   console.log("Update sub id: " + subid);
+  console.log("username: " + username);
   if(subid===null){
     console.log("subid is null");
     getSessionID(username);
@@ -627,8 +628,7 @@ const SuccessDisplay = ({ seshId }) => {
       updateUserSubId(user.username,subscription.id);
     }else{
       console.log("uusi b");
-
-      updateUserSubId(user.username,"");
+      updateUserSubId(userFromUrl,null);
     } 
   }
 
