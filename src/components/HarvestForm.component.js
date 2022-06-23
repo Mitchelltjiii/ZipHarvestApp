@@ -22,11 +22,12 @@ import {isMobile} from 'react-device-detect';
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches,
 	currentHarvest, setNewHBID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
 	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords,getTutorials,setTutorials,showHints,
-	setCurrentPage,getFreeTrial,getReferalLink,getGrantFreeMonthCode,setOffer,executeLogout,setNewUsername}) { 
+	setCurrentPage,getFreeTrial,getReferalLink,getGrantFreeMonthCode,setOffer,executeLogout,setNewUsername,getOutdoorOffer}) { 
 
 	let referalLink = getReferalLink();
 	let tutorials = getTutorials();
 	let grantFreeMonthCode = getGrantFreeMonthCode();
+	let outdoorOffer = getOutdoorOffer();
 	function HarvestBatch(name,type,date,userID){
 		this.name = name;
 		this.type = type;
@@ -1116,7 +1117,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				</Grid>
 				</Grid> : null}
 				
-				{(referalVisible && !freeTrail) ? <Grid
+				{(referalVisible && !freeTrail && !outdoorOffer) ? <Grid
 				container
 				direction="column"
   				justify="center"

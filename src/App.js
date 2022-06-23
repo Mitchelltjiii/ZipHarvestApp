@@ -449,6 +449,10 @@ export default class App extends React.Component {
     this.forceUpdate();
   }
 
+  getOutdoorOffer = () => {
+    return (this.state.subid.includes("outdoorx"));
+  }
+
   getPlants = () => {
     return this.state.plants;
   }
@@ -474,22 +478,52 @@ export default class App extends React.Component {
 
     let uids = [];
     let x = 0;
-    for(const val of exportRecords){
-      if(Number(val.time)>((Number(this.state.subscription.current_period_start))*1000) && Number(val.time)<((Number(this.state.subscription.current_period_end))*1000)){
-        let foundUid = false;
-
-        for(const uid of uids){
-          if(uid === val.tag){
-            foundUid = true;
+    console.log("Get unique id count");
+    if(this.getOutdoorOffer){
+      console.log("is outdoor offer");
+      let today = new Date();
+        let sept1 = new Date("9 1 2022");
+        let oct1 = new Date("10 1 2022");
+        let nov1 = new Date("11 1 2022");
+        if(today<oct1){
+          console.log("Today is before oct 1");
+      for(const val of exportRecords){
+          //Number(val.time)>today.getTime() &&
+          if(Number(val.time)<oct1.getTime()){
+            let foundUid = false;
+    
+            for(const uid of uids){
+              if(uid === val.tag){
+                foundUid = true;
+              }
+            }
+            if(!foundUid){
+              x++;
+              uids.push(val.tag);
+            }
           }
         }
-        if(!foundUid){
-          x++;
-          uids.push(val.tag);
+        
+      }
+      return x;
+    }else{
+      for(const val of exportRecords){
+        if(Number(val.time)>((Number(this.state.subscription.current_period_start))*1000) && Number(val.time)<((Number(this.state.subscription.current_period_end))*1000)){
+          let foundUid = false;
+  
+          for(const uid of uids){
+            if(uid === val.tag){
+              foundUid = true;
+            }
+          }
+          if(!foundUid){
+            x++;
+            uids.push(val.tag);
+          }
         }
       }
-    }
-    return x;
+      return x;
+    } 
   }
 
   getFreeMonthGrantedVisible = () => {
@@ -525,6 +559,16 @@ export default class App extends React.Component {
 
     if(JSON.stringify(this.state.subscription) !== "[]"){
       subscriptionType = this.state.subscription.items.data[0].price.lookup_key;
+    }else if(this.state.subid.includes("outdoorx")){
+      if(this.state.subid.includes("basic")){
+        subscriptionType = "Basic Fall 2022";
+      }else if(this.state.subid.includes("standard")){
+        subscriptionType = "Standard Fall 2022";
+      }else if(this.state.subid.includes("premium")){
+        subscriptionType = "Premium Fall 2022";
+      }else if(this.state.subid.includes("deluxe")){
+        subscriptionType = "Deluxe Fall 2022";
+      }
     }
     return subscriptionType;
   }
@@ -832,7 +876,7 @@ export default class App extends React.Component {
       showHints={this.state.showHints} getPrint={this.getPrint} print={this.state.print} getFreeTrial={this.getFreeTrial}
       getFreeTrialEnds={this.getFreeTrialEnds} getReferalLink={this.getReferalLink} getGrantFreeMonthCode={this.getGrantFreeMonthCode}
       setGrantFreeMonthCode={this.setGrantFreeMonthCode} getFreeMonthGrantedVisible={this.getFreeMonthGrantedVisible} setFreeMonthGrantedVisible={this.setFreeMonthGrantedVisible}
-      setOffer={this.setOffer} setNewUsername={this.setNewUsername}/>
+      setOffer={this.setOffer} setNewUsername={this.setNewUsername} getOutdoorOffer={this.getOutdoorOffer}/>
     </div>;
     }else{
       let loginForm = false;

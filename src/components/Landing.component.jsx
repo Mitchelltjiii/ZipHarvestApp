@@ -18,7 +18,7 @@ reloadHarvestRecords,setCurrentPage,executeLogout,setFromAccountSettings,attempt
 logInSuccess,getDryRooms,reloadDryRooms,reloadExportRecords,getUniqueIDCount,reloadSubscription,
 getPossiblePlantCount,getSubscriptionType,getTutorials,setTutorials,showHints,getPrint,print,getFreeTrial,
 getFreeTrialEnds,getReferalLink,getGrantFreeMonthCode,setGrantFreeMonthCode,getFreeMonthGrantedVisible,setFreeMonthGrantedVisible,
-setOffer,setNewUsername}){
+setOffer,setNewUsername,getOutdoorOffer}){
 	let fromAccountSettings = true;
 
     return(
@@ -29,7 +29,7 @@ setOffer,setNewUsername}){
 				setNewHarvestRecordID={setNewHarvestRecordID} setNewPlantID={setNewPlantID} userID={userID} reloadPlants={reloadPlants} reloadPlantsAndHarvestRecords={reloadPlantsAndHarvestRecords}
 				reloadHarvestBatches={reloadHarvestBatches} reloadHarvestRecords={reloadHarvestRecords} getTutorials={getTutorials} setTutorials={setTutorials} showHints={showHints}
 				setCurrentPage={setCurrentPage} getFreeTrial={getFreeTrial} getReferalLink={getReferalLink} getGrantFreeMonthCode={getGrantFreeMonthCode} setOffer={setOffer}
-				executeLogout={executeLogout} setNewUsername={setNewUsername}/>
+				executeLogout={executeLogout} setNewUsername={setNewUsername} getOutdoorOffer={getOutdoorOffer}/>
 			) : currentPage === 'harvest-batches-form' ? (
 				<HarvestBatchesForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} 
 				getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms} getPossiblePlantCount={getPossiblePlantCount} getFreeTrial={getFreeTrial}/>
@@ -43,7 +43,7 @@ setOffer,setNewUsername}){
 				<AccountForm userID={userID} setCurrentPage={setCurrentPage} setFromAccountSettings={setFromAccountSettings} executeLogout={executeLogout} getPrint={getPrint}/>
 			) : currentPage === 'subscription-form' ? (
 				<SubscriptionForm userID={userID} setCurrentPage={setCurrentPage} getUniqueIDCount={getUniqueIDCount} getFreeTrial={getFreeTrial}
-				getFreeTrialEnds={getFreeTrialEnds}/>
+				getFreeTrialEnds={getFreeTrialEnds} getOutdoorOffer={getOutdoorOffer} getSubscriptionType={getSubscriptionType}/>
 			) : currentPage === 'end-subscription-form' ? (
 				<EndSubscriptionForm setCurrentPage={setCurrentPage} attemptLogInFromEndSubForm={attemptLogInFromEndSubForm} logInSuccess={logInSuccess}></EndSubscriptionForm>
 			) : currentPage === 'reset-password-form' ? (

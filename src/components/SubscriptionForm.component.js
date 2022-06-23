@@ -11,7 +11,8 @@ import Paper from '@material-ui/core/Paper';
 import {isMobile} from 'react-device-detect';
 
 
-function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial,getFreeTrialEnds}) {
+function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial,getFreeTrialEnds,getOutdoorOffer,
+getSubscriptionType}) {
 
     const handleClick = (title) => {
       if(title==="Cancel Subscription"){
@@ -27,6 +28,7 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial
     const [plantCount,setPlantCount] = React.useState("");
 
     let freeTrial = getFreeTrial();
+    let outdoorOffer = getOutdoorOffer();
     console.log("Free trial: " + freeTrial);
     
     let subscriptionType = "";
@@ -38,6 +40,10 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial
       newDate.setTime(Number(subscription.current_period_end)*1000);
       renewalDate = (newDate.toLocaleDateString(undefined, options));
       subscriptionType = subscription.items.data[0].price.lookup_key;
+    }else{
+      let newDate = new Date("12 1 2022");
+      renewalDate = (newDate.toLocaleDateString(undefined, options));
+      subscriptionType = getSubscriptionType();
     }
     
 
@@ -115,10 +121,10 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial
       rows.push(createData("Unique Plant Tags Per Month",possiblePlantCount));
     }
     rows.push(createData("Renewal Date",renewalDate));
-    if(subType !== "Deluxe Monthly" && subType !== "Deluxe Yearly" && !freeTrial){
+    if(subType !== "Deluxe Monthly" && subType !== "Deluxe Yearly" && !freeTrial && !outdoorOffer){
       rows.push(createData("Upgrade Subscription",""));
     }
-    if(!freeTrial){
+    if(!freeTrial && !outdoorOffer){
       rows.push(createData("Cancel Subscription",""));
     }
 
@@ -132,9 +138,11 @@ function SubscriptionForm({userID, setCurrentPage, getUniqueIDCount,getFreeTrial
     }
 
     async function getSubscription(subId){
+      if(!subId.includes("outdoorx")){
         const response = await fetch(`/get-subscription/${subId}`);
         const json = await response.json();
         setSubscription(json);
+      }
         setPlantCount(getUniqueIDCount());
     }
 
