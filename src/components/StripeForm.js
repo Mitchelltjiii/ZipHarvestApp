@@ -595,7 +595,7 @@ const SuccessDisplay = ({ seshId }) => {
   }else{
     if(user.username !== undefined && subscription.id !== undefined && !userUpdated){
       updateUserSubId(user.username,subscription.id);
-    }else{
+    }else if(!userUpdated){
       console.log("user.username in successdisplay: " + user.username);
       console.log("new username: " + newUsername);
       getSubId(user.username);
