@@ -1114,6 +1114,8 @@ app.put('/user/updateUserSessionID/:username/:sessionID', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
 
+    console.log("Update user session id user: " + req.params.username + " id: " + req.params.sessionID)
+
   connection.query(`UPDATE users SET
   sessionid = ? WHERE (username = ?)`, 
   [
@@ -1121,6 +1123,7 @@ app.put('/user/updateUserSessionID/:username/:sessionID', (req, res) =>{
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
+    console.log("result: " + JSON.stringify(result));
     res.json(result);
     });
   });

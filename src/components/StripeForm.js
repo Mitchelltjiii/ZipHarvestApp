@@ -531,30 +531,10 @@ async function updateUserSessionID(username,id,lookupKey){
           'Content-Type': 'application/json'
         }
   }).then(function(response) {
+    setUserUpdated(true);
     updateUserSubId(username,lookupKey);
   }).then(function(data) {
   });
-}
-
-async function getSessionID(username){
-  const response = await fetch(`/get-sessionid/${username}`);
-    const json = await response.json();
-    if(json !== undefined){
-      let sessionid = JSON.stringify(json);
-      sessionid = sessionid.substring(1,sessionid.length-1);
-      console.log("getSessionID sessionID: " + sessionid);
-
-      fetch(`/user/subid/${sessionid}/${username}`, {
-        method: 'PUT',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-  }).then(function(response) {
-  }).then(function(data) {
-    setUserUpdated(true);
-  });
-    }  
 }
 
 async function updateUserSubId(username,subid){
@@ -570,7 +550,6 @@ async function updateUserSubId(username,subid){
       }
 }).then(function(response) {
 }).then(function(data) {
-  setUserUpdated(true);
 });
 }
 
