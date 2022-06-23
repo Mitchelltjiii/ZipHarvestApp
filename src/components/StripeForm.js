@@ -595,6 +595,10 @@ const SuccessDisplay = ({ seshId }) => {
   }else{
     if(user.username !== undefined && subscription.id !== undefined && !userUpdated){
       updateUserSubId(user.username,subscription.id);
+    }else{
+      console.log("user.username in successdisplay: " + user.username);
+      console.log("new username: " + newUsername);
+      getSubId(user.username);
     }
   }
 
@@ -636,6 +640,15 @@ async function getSession(seshId){
   getUser(false,json.subscription,seshId);
   setSession(json);
 }
+
+async function getSubId(username){
+  const response = await fetch(`/api/user-get-subid/${username}`);
+  const json = await response.json();
+  console.log("get sub id json: " + json);
+  updateUserSessionAndSubID(username,"x",json+"x");
+}
+
+
 
   let [message, setMessage] = useState('');
   let [success, setSuccess] = useState(false);
