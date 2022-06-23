@@ -523,6 +523,7 @@ async function goToProduct(lookup_key){
 }
 
 async function updateUserSessionID(username,id,lookupKey){
+  console.log("ID: " + id);
   fetch(`/user/updateUserSessionID/${username}/${id}`, {
         method: 'PUT',
         headers: {
