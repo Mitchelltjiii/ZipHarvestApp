@@ -512,27 +512,17 @@ async function goToProduct(lookup_key){
 
   console.log("gtp: a");
   if(user.username !== null && user.username !== ""){
-    if((""+lookup_key).includes("outdoor")){
-      console.log("gtp: ba");
-      updateUserSessionID(user.username,(lookup_key+""));
-    }else{
       console.log("gtp: bb");
-      updateUserSessionID(user.username,json.id);
-    }
+      updateUserSessionID(user.username,json.id,(lookup_key+""));
   }else{
     console.log("gtp: newUsername: " + newUsername + ", Lookupkey: " + lookup_key);
-    if((""+lookup_key).includes("outdoor")){
-      console.log("gtp: c");
-      updateUserSessionID(newUsername,(lookup_key+""));
-    }else{
       console.log("gtp: d");
-      updateUserSessionID(newUsername,json.id);
-    }
+      updateUserSessionID(newUsername,json.id,(lookup_key+""));
   }
   window.location.replace(json.url);
 }
 
-async function updateUserSessionID(username,id){
+async function updateUserSessionID(username,id,lookupKey){
   fetch(`/user/updateUserSessionID/${username}/${id}`, {
         method: 'PUT',
         headers: {
@@ -540,6 +530,7 @@ async function updateUserSessionID(username,id){
           'Content-Type': 'application/json'
         }
   }).then(function(response) {
+    updateUserSubId(username,lookupKey);
   }).then(function(data) {
   });
 }
@@ -568,10 +559,8 @@ async function getSessionID(username){
 async function updateUserSubId(username,subid){
   console.log("Update sub id: " + subid);
   console.log("username: " + username);
-  if(subid===null){
-    console.log("subid is null");
-    getSessionID(username);
-  }else{
+
+  
     fetch(`/user/subid/${subid}/${username}`, {
       method: 'PUT',
       headers: {
@@ -582,7 +571,6 @@ async function updateUserSubId(username,subid){
 }).then(function(data) {
   setUserUpdated(true);
 });
-  }
 }
 
 async function updateUserVerified(username){
@@ -622,14 +610,9 @@ const SuccessDisplay = ({ seshId }) => {
     console.log("Get session");
     getSession(sessionId);
   }else{
-    if(user.username !== undefined && subscription !== null && subscription.id !== undefined && !userUpdated){
-      console.log("uusi a");
-
+    if(user.username !== undefined && subscription.id !== undefined && !userUpdated){
       updateUserSubId(user.username,subscription.id);
-    }else{
-      console.log("uusi b");
-      updateUserSubId(userFromUrl,null);
-    } 
+    }
   }
 
 
