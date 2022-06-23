@@ -90,7 +90,9 @@ export default class App extends React.Component {
     const response = await fetch(`/get-subid/${username}`);
     const json = await response.json();
     if(json !== undefined){
-      if(json.length===13 || JSON.stringify(json).length===13){
+      if(json.includes("outdoorx")){
+        this.getUser(username,staySignedIn,json);
+      }else if(json.length===13 || JSON.stringify(json).length===13){
         if((new Date()).getTime()-parseInt(json)>1209600000){
           this.setState({newUsername:username,currentPage:'stripe-form'});
         }else{
