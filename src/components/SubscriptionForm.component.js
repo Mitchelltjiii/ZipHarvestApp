@@ -134,7 +134,9 @@ getSubscriptionType}) {
       rows.push(createData("Unique Plant Tags Exported This Month",plantCount));
       rows.push(createData("Unique Plant Tags Per Month",possiblePlantCount));
     }
-    rows.push(createData("Renewal Date",renewalDate));
+    if(!outdoorOffer){
+      rows.push(createData("Renewal Date",renewalDate));
+    }
     if(subType !== "Deluxe Monthly" && subType !== "Deluxe Yearly" && !freeTrial && !outdoorOffer){
       rows.push(createData("Upgrade Subscription",""));
     }

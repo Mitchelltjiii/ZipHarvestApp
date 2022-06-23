@@ -482,12 +482,12 @@ export default class App extends React.Component {
     if(this.getOutdoorOffer){
       console.log("is outdoor offer");
       let today = new Date();
-        let sept1 = new Date("9 1 2022");
         let oct1 = new Date("10 1 2022");
         let nov1 = new Date("11 1 2022");
+        let dec1 = new Date("12 1 2022");
         if(today<oct1){
           console.log("Today is before oct 1");
-      for(const val of exportRecords){
+          for(const val of exportRecords){
           //Number(val.time)>today.getTime() &&
           if(Number(val.time)<oct1.getTime()){
             let foundUid = false;
@@ -502,9 +502,44 @@ export default class App extends React.Component {
               uids.push(val.tag);
             }
           }
+          }
+        }else if(today < nov1){
+          console.log("Today is before nov 1");
+          for(const val of exportRecords){
+          
+          if(Number(val.time)>oct1.getTime() && Number(val.time)<nov1.getTime()){
+            let foundUid = false;
+    
+            for(const uid of uids){
+              if(uid === val.tag){
+                foundUid = true;
+              }
+            }
+            if(!foundUid){
+              x++;
+              uids.push(val.tag);
+            }
+          }
+          }
+        }else if(today < dec1){
+          console.log("Today is before dec 1");
+          for(const val of exportRecords){
+          
+          if(Number(val.time)>nov1.getTime() && Number(val.time)<dec1.getTime()){
+            let foundUid = false;
+    
+            for(const uid of uids){
+              if(uid === val.tag){
+                foundUid = true;
+              }
+            }
+            if(!foundUid){
+              x++;
+              uids.push(val.tag);
+            }
+          }
+          }
         }
-        
-      }
       return x;
     }else{
       for(const val of exportRecords){
