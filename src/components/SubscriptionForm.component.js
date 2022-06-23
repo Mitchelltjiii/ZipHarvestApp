@@ -73,6 +73,20 @@ getSubscriptionType}) {
       subType += " Monthly"
     }
 
+    if(subscriptionType==="Basic Fall 2022"){
+      possiblePlantCount = "625";
+      subType = subscriptionType;
+    }else if(subscriptionType==="Standard Fall 2022"){
+      possiblePlantCount = "1250";
+      subType = subscriptionType;
+    }else if(subscriptionType==="Premium Fall 2022"){
+      possiblePlantCount = "2500";
+      subType = subscriptionType;
+    }else if(subscriptionType==="Deluxe Fall 2022"){
+      possiblePlantCount = "5000";
+      subType = subscriptionType;
+    }
+
     if(freeTrial){
       subType = "Free Trial";
     }

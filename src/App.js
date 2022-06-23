@@ -535,22 +535,29 @@ export default class App extends React.Component {
   }
 
   getPossiblePlantCount = () => {
-    let subscriptionType = "";
-
-    if(JSON.stringify(this.state.subscription) !== "[]"){
-      subscriptionType = this.state.subscription.items.data[0].price.lookup_key;
-    }
+    let subscriptionType = this.getSubscriptionType();
 
     let possiblePlantCount = 0;
-    if(subscriptionType === "basic"){
-      possiblePlantCount = 625;
-    }else if(subscriptionType === "standard"){
-      possiblePlantCount = 1250;
-    }else if(subscriptionType === "premium"){
-      possiblePlantCount = 2500;
-    }else if(subscriptionType === "deluxe"){
-      possiblePlantCount = 5000;
+    if(subscriptionType.includes("basic")){
+      possiblePlantCount = "625";
+    }else if(subscriptionType.includes("standard")){
+      possiblePlantCount = "1250";
+    }else if(subscriptionType.includes("premium")){
+      possiblePlantCount = "2500";
+    }else if(subscriptionType.includes("deluxe")){
+      possiblePlantCount = "5000";
     }
+
+    if(subscriptionType==="Basic Fall 2022"){
+      possiblePlantCount = "625";
+    }else if(subscriptionType==="Standard Fall 2022"){
+      possiblePlantCount = "1250";
+    }else if(subscriptionType==="Premium Fall 2022"){
+      possiblePlantCount = "2500";
+    }else if(subscriptionType==="Deluxe Fall 2022"){
+      possiblePlantCount = "5000";
+    }
+    
     return possiblePlantCount;
   }
 
