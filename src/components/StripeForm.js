@@ -597,7 +597,6 @@ const SuccessDisplay = ({ seshId }) => {
       updateUserSubId(user.username,subscription.id);
     }else if(!userUpdated){
       console.log("user.username in successdisplay: " + user.username);
-      console.log("new username: " + newUsername);
       getSubId(user.username);
     }
   }
@@ -645,7 +644,9 @@ async function getSubId(username){
   const response = await fetch(`/api/user-get-subid/${username}`);
   const json = await response.json();
   console.log("get sub id json: " + json);
-  updateUserSessionAndSubID(username,"x",json+"x");
+  if(json.includes("outdoor")){
+    updateUserSessionAndSubID(username,"x",json+"x");
+  }
 }
 
 
