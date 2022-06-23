@@ -1110,16 +1110,17 @@ app.put('/user/verified/:username/:trialstart', (req, res) =>{
   });
 });
 
-app.put('/user/updateUserSessionID/:username/:sessionID', (req, res) =>{
+app.put('/user/updateUserSessionAndSubID/:username/:sessionID/:subID', (req, res) =>{
   pool.getConnection((err, connection) => {
     if(err) throw err;
 
-    console.log("Update user session id user: " + req.params.username + " id: " + req.params.sessionID)
+    console.log("Update user session and sub id user: " + req.params.username + "sesh id: " + req.params.sessionID
+    + "sub id: " + req.params.subID);
 
   connection.query(`UPDATE users SET
-  sessionid = ? WHERE (username = ?)`, 
+  sessionid = ?, subid = ? WHERE (username = ?)`, 
   [
-    req.params.sessionID,req.params.username
+    req.params.sessionID,req.params.subID,req.params.username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;

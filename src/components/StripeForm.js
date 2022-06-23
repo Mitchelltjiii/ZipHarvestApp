@@ -513,36 +513,30 @@ async function goToProduct(lookup_key){
   console.log("gtp: a");
   if(user.username !== null && user.username !== ""){
       console.log("gtp: bb");
-      updateUserSessionID(user.username,json.id,(lookup_key+""));
+      updateUserSessionAndSubID(user.username,json.id,(lookup_key+""));
   }else{
     console.log("gtp: newUsername: " + newUsername + ", Lookupkey: " + lookup_key);
       console.log("gtp: d");
-      updateUserSessionID(newUsername,json.id,(lookup_key+""));
+      updateUserSessionAndSubID(newUsername,json.id,(lookup_key+""));
   }
   window.location.replace(json.url);
 }
 
 //see if refresh was calling this method a second time and overwriting the new session id as blank
-async function updateUserSessionID(username,id,lookupKey){
+async function updateUserSessionAndSubID(username,id,lookupKey){
   console.log("Update user session id ID: " + id);
+  console.log("update user lookup key: " + lookupKey);
 
-  if(id !== null && id !== undefined && id !== ""){
-    console.log("Update user session id A");
-
-    fetch(`/user/updateUserSessionID/${username}/${id}`, {
+    fetch(`/user/updateUserSessionAndSubID/${username}/${id}/${lookupKey}`, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
     }).then(function(response) {
-    updateUserSubId(username,lookupKey);
+      setUserUpdated(true);
     }).then(function(data) {
     });
-  }else{
-    console.log("Update user session id B");
-    updateUserSubId(username,lookupKey);
-  }
 }
 
 async function updateUserSubId(username,subid){
