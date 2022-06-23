@@ -522,19 +522,27 @@ async function goToProduct(lookup_key){
   window.location.replace(json.url);
 }
 
+//see if refresh was calling this method a second time and overwriting the new session id as blank
 async function updateUserSessionID(username,id,lookupKey){
-  console.log("ID: " + id);
-  fetch(`/user/updateUserSessionID/${username}/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-  }).then(function(response) {
-    setUserUpdated(true);
+  console.log("Update user session id ID: " + id);
+
+  if(id !== null && id !== undefined && id !== ""){
+    console.log("Update user session id A");
+
+    fetch(`/user/updateUserSessionID/${username}/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(function(response) {
     updateUserSubId(username,lookupKey);
-  }).then(function(data) {
-  });
+    }).then(function(data) {
+    });
+  }else{
+    console.log("Update user session id B");
+    updateUserSubId(username,lookupKey);
+  }
 }
 
 async function updateUserSubId(username,subid){
@@ -549,6 +557,7 @@ async function updateUserSubId(username,subid){
         'Content-Type': 'application/json'
       }
 }).then(function(response) {
+  setUserUpdated(true);
 }).then(function(data) {
 });
 }
