@@ -660,6 +660,9 @@ async function getSubId(username){
   let [continued,setContinued] = useState(false);
 
   async function getSubscription(subId){
+    if(subId === null){
+      return;
+    }
     const response = await fetch(`/get-subscription/${subId}`);
     const json = await response.json();
     setSubscription(json);
