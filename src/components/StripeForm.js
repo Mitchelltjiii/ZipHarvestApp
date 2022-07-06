@@ -520,7 +520,11 @@ async function goToProduct(lookup_key){
 
 //see if refresh was calling this method a second time and overwriting the new session id as blank
 async function updateUserSessionAndSubID(username,id,lookupKey){
-    fetch(`/user/updateUserSessionAndSubID/${username}/${id}/${lookupKey}`, {
+  let lk = "";
+  if(lk.includes("outdoor")){
+    lk = lookupKey;
+  }
+    fetch(`/user/updateUserSessionAndSubID/${username}/${id}/${lk}`, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
