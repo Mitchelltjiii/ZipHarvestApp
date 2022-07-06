@@ -92,6 +92,8 @@ export default class App extends React.Component {
     if(json !== undefined){
       if(json.includes("outdoorx")){
         this.getUser(username,staySignedIn,json);
+      }else if(json.includes("outdoor")){
+          this.setState({newUsername:username,currentPage:'stripe-form'});
       }else if(json.length===13 || JSON.stringify(json).length===13){
         if((new Date()).getTime()-parseInt(json)>1209600000){
           this.setState({newUsername:username,currentPage:'stripe-form'});
