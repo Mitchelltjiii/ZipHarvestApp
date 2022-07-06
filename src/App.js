@@ -85,7 +85,6 @@ export default class App extends React.Component {
     const response = await fetch(`/pause-subscription/${subid}/${resumeAt}`);
     const json = await response.json();
   }
-
   getSubId = async (username,staySignedIn,signIn) => {
     const response = await fetch(`/get-subid/${username}`);
     const json = await response.json();
