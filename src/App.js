@@ -478,15 +478,12 @@ export default class App extends React.Component {
 
     let uids = [];
     let x = 0;
-    console.log("Get unique id count");
     if(this.getOutdoorOffer){
-      console.log("is outdoor offer");
       let today = new Date();
         let oct1 = new Date("10 1 2022");
         let nov1 = new Date("11 1 2022");
         let dec1 = new Date("12 1 2022");
         if(today<oct1){
-          console.log("Today is before oct 1");
           for(const val of exportRecords){
           //Number(val.time)>today.getTime() &&
           if(Number(val.time)<oct1.getTime()){
@@ -504,7 +501,6 @@ export default class App extends React.Component {
           }
           }
         }else if(today < nov1){
-          console.log("Today is before nov 1");
           for(const val of exportRecords){
           
           if(Number(val.time)>oct1.getTime() && Number(val.time)<nov1.getTime()){
@@ -522,7 +518,6 @@ export default class App extends React.Component {
           }
           }
         }else if(today < dec1){
-          console.log("Today is before dec 1");
           for(const val of exportRecords){
           
           if(Number(val.time)>nov1.getTime() && Number(val.time)<dec1.getTime()){

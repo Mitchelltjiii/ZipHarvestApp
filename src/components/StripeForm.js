@@ -5,7 +5,7 @@ import {isMobile} from 'react-device-detect';
 import pricingImage1 from '../pricing1.svg';
 import pricingImage2 from '../pricing2.svg';
 import pricingImage3 from '../pricing3.svg';
-import pricingImage4 from '../pricing3.svg';
+import pricingImage4 from '../pricing4.svg';
 import SwipeableViews from 'react-swipeable-views';
 import leafImage1 from '../leafImage0.svg';
 import leafImage2 from '../leafImage1.svg';
@@ -510,13 +510,9 @@ async function goToProduct(lookup_key){
   });
   const json = await response.json();
 
-  console.log("gtp: a");
   if(user.username !== null && user.username !== ""){
-      console.log("gtp: bb");
       updateUserSessionAndSubID(user.username,json.id,(lookup_key+""));
   }else{
-    console.log("gtp: newUsername: " + newUsername + ", Lookupkey: " + lookup_key);
-      console.log("gtp: d");
       updateUserSessionAndSubID(newUsername,json.id,(lookup_key+""));
   }
   window.location.replace(json.url);
@@ -524,9 +520,6 @@ async function goToProduct(lookup_key){
 
 //see if refresh was calling this method a second time and overwriting the new session id as blank
 async function updateUserSessionAndSubID(username,id,lookupKey){
-  console.log("Update user session id ID: " + id);
-  console.log("update user lookup key: " + lookupKey);
-
     fetch(`/user/updateUserSessionAndSubID/${username}/${id}/${lookupKey}`, {
       method: 'PUT',
       headers: {
@@ -540,10 +533,6 @@ async function updateUserSessionAndSubID(username,id,lookupKey){
 }
 
 async function updateUserSubId(username,subid){
-  console.log("Update sub id: " + subid);
-  console.log("username: " + username);
-
-  
     fetch(`/user/subid/${subid}/${username}`, {
       method: 'PUT',
       headers: {
@@ -588,15 +577,12 @@ async function updateUserVerificationCode(username,newCode){
 }
 
 const SuccessDisplay = ({ seshId }) => {
-  console.log("Success display");
   if(session === null || session === [] || session === undefined || JSON.stringify(session) === "[]"){
-    console.log("Get session");
     getSession(sessionId);
   }else{
     if(user.username !== undefined && subscription.id !== undefined && !userUpdated){
       updateUserSubId(user.username,subscription.id);
     }else if(!userUpdated){
-      console.log("user.username in successdisplay: " + user.username);
       getSubId(user.username);
     }
   }
@@ -643,7 +629,6 @@ async function getSession(seshId){
 async function getSubId(username){
   const response = await fetch(`/api/user-get-subid/${username}`);
   const json = await response.json();
-  console.log("get sub id json: " + json);
   if(json.includes("outdoor")){
     updateUserSessionAndSubID(username,"x",json+"x");
   }

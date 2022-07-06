@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import {isMobile} from 'react-device-detect';
 import pricingImage2 from '../pricing2.svg';
 import pricingImage3 from '../pricing3.svg';
-import pricingImage4 from '../pricing3.svg';
+import pricingImage4 from '../pricing4.svg';
 import SwipeableViews from 'react-swipeable-views';
 import leafImage2 from '../leafImage2.svg';
 import leafImage3 from '../leafImage3.svg';
@@ -45,7 +45,6 @@ function ChangeSubscriptionForm({userID,reloadSubscription,getSubscriptionType,s
     let premiumText = "Select";
     let deluxeText = "Select";
     let subType = getSubscriptionType();
-    console.log("Subtype: " + subType);
     if(subType.includes("basic")){
       basicText = "Current";
     }else if(subType.includes("standard")){

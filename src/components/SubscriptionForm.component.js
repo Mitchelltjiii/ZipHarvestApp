@@ -29,7 +29,6 @@ getSubscriptionType}) {
 
     let freeTrial = getFreeTrial();
     let outdoorOffer = getOutdoorOffer();
-    console.log("Free trial: " + freeTrial);
     
     let subscriptionType = "";
 
