@@ -48,7 +48,8 @@ export default class App extends React.Component {
     grantFreeMonthCode: "",
     freeMonthGrantedVisible: false,
     offer: false,
-    outdoorOffer: false
+    outdoorOffer: false,
+    facilityName: ""
   };
 
   componentDidMount() {    
@@ -68,7 +69,7 @@ export default class App extends React.Component {
     if(signIn){
       if(json.canceled_at === null){
         this.setState({subscription:json});
-        this.getUser(username,staySignedIn,subId,false);
+        this.getUser(username,staySignedIn,subId,false,"");
       }else{
         this.setState({newUsername:username,currentPage:'stripe-form'});
       }
@@ -95,7 +96,7 @@ export default class App extends React.Component {
         if((new Date()).getTime()-parseInt(json)>1209600000){
           this.getFacilityName(username,staySignedIn,json);
         }else{
-          this.getUser(username,staySignedIn,json,false);
+          this.getUser(username,staySignedIn,json,false,"");
         }
       }else{
         this.getSubscription(json,username,staySignedIn,signIn);
@@ -399,30 +400,30 @@ export default class App extends React.Component {
     const json = await response.json();
 
     if(json.includes("outdoorx")){
-      this.getUser(user,staySignedIn,subid,true);
+      this.getUser(user,staySignedIn,subid,true,json);
     }else{
       this.setState({newUsername:username,currentPage:'stripe-form'});
     }
   }
 
 
-  getUser = async (user,staySignedIn,subid,outdoorOffer) => {
+  getUser = async (user,staySignedIn,subid,outdoorOffer,facilityName) => {
     const response = await fetch(`/api/tutorials/${user}`);
     const text = await response.text();
     let txt = text.substring(1,text.length-1);
     
-    this.getGrantFreeMonthCodeFromDB(user,staySignedIn,txt,subid,outdoorOffer);
+    this.getGrantFreeMonthCodeFromDB(user,staySignedIn,txt,subid,outdoorOffer,facilityName);
   }
 
-  getGrantFreeMonthCodeFromDB = async (user,staySignedIn,tuts,subid,outdoorOffer) => {
+  getGrantFreeMonthCodeFromDB = async (user,staySignedIn,tuts,subid,outdoorOffer,facilityName) => {
     const response = await fetch(`/api/user-get-grantFreeMonthCode/${user}`);
 		  const text = await response.text();
     let txt = text.substring(1,text.length-1);
     
-    this.getFirstMonthFree(user,staySignedIn,tuts,subid,txt,outdoorOffer);
+    this.getFirstMonthFree(user,staySignedIn,tuts,subid,txt,outdoorOffer,facilityName);
   }
 
-  getFirstMonthFree = async (user,staySignedIn,tuts,subid,grantFreeMonthCode,outdoorOffer) => {
+  getFirstMonthFree = async (user,staySignedIn,tuts,subid,grantFreeMonthCode,outdoorOffer,facilityName) => {
     const response = await fetch(`/api/get-first-month-free/${user}`);
     const text = await response.text();
     let txt = text.substring(1,text.length-1);
@@ -431,11 +432,11 @@ export default class App extends React.Component {
     const text2 = await response2.text();
     let txt2 = text2.substring(1,text2.length-1);
     
-    this.executeLogIn(user,staySignedIn,tuts,subid,txt,txt2,grantFreeMonthCode,outdoorOffer);
+    this.executeLogIn(user,staySignedIn,tuts,subid,txt,txt2,grantFreeMonthCode,outdoorOffer,facilityName);
   }
   
 
-  executeLogIn = (user,staySignedIn,tuts,subid,firstMonthFree,myReferalCode,grantFreeMonthCode,outdoorOffer) =>{
+  executeLogIn = (user,staySignedIn,tuts,subid,firstMonthFree,myReferalCode,grantFreeMonthCode,outdoorOffer,facilityName) =>{
     localStorage.setItem('user', user);
     localStorage.setItem('staySignedIn',staySignedIn);
     let currPage = localStorage.getItem("currentPage");
@@ -446,9 +447,10 @@ export default class App extends React.Component {
      
     if(currPage !== null && currPage !== undefined && currPage !== ""){
       this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,currentPage:currPage,logInFailed:false,tutorials:tuts,myReferalCode:myReferalCode,grantFreeMonthCode:grantFreeMonthCode,
-      outdoorOffer:outdoorOffer});
+      outdoorOffer:outdoorOffer,facilityName:facilityName});
     }else{
-      this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,logInFailed:false,tutorials:tuts,myReferalCode:myReferalCode,grantFreeMonthCode:grantFreeMonthCode,outdoorOffer:outdoorOffer});
+      this.setState({loggedIn:user,subid:subid,firstMonthFree:fmf,userID:user,logInFailed:false,tutorials:tuts,myReferalCode:myReferalCode,grantFreeMonthCode:grantFreeMonthCode,outdoorOffer:outdoorOffer,
+      facilityName:facilityName});
     }
   
     this.resetAll([]);
@@ -605,19 +607,18 @@ export default class App extends React.Component {
   getSubscriptionType = () => {
     let subscriptionType = "";
 
-    const response = await fetch(`/api/user-get-facility-name/${username}`);
-    const json = await response.json();
+    let facilityName = this.state.facilityName;
 
     if(JSON.stringify(this.state.subscription) !== "[]"){
       subscriptionType = this.state.subscription.items.data[0].price.lookup_key;
-    }else if(json.includes("outdoorx")){
-      if(json.includes("basic")){
+    }else if(facilityName.includes("outdoorx")){
+      if(facilityName.includes("basic")){
         subscriptionType = "Basic Fall 2022";
-      }else if(json.includes("standard")){
+      }else if(facilityName.includes("standard")){
         subscriptionType = "Standard Fall 2022";
-      }else if(json.includes("premium")){
+      }else if(facilityName.includes("premium")){
         subscriptionType = "Premium Fall 2022";
-      }else if(json.includes("deluxe")){
+      }else if(facilityName.includes("deluxe")){
         subscriptionType = "Deluxe Fall 2022";
       }
     }
@@ -709,7 +710,7 @@ export default class App extends React.Component {
     this.setState({loggedIn:'',subid:'',firstMonthFree:false,currentPage:'harvest-form',harvestBatches:[],plants:[],harvestRecords:[],
     plantsLoading:true,harvestBatchesLoading:true,harvestRecordsLoading:true,currentHarvest:[],userID:'',
     dryRooms:[],exportRecords:[], subscription:[], tutorials:"",usingReferalCode:"",myReferalCode:"",grantFreeMonthCode:"",offer:false,
-    outdoorOffer: false});
+    outdoorOffer: false, facilityName: ''});
     this.forceUpdate();
   }
 
@@ -829,7 +830,7 @@ export default class App extends React.Component {
         this.reloadExportRecords([]);
         this.reloadSubscription([]);
         this.setState({loggedIn:loggedInUser,subid:subid,firstMonthFree:false,userID:loggedInUser,usersLoading:false,subid:subid});
-        this.getUser(loggedInUser,staySignedIn,subid,false);
+        this.getUser(loggedInUser,staySignedIn,subid,false,"");
       }
     }
 
