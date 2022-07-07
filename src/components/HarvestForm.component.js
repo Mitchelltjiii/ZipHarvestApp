@@ -28,7 +28,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	let tutorials = getTutorials();
 	let grantFreeMonthCode = getGrantFreeMonthCode();
 	let outdoorOffer = getOutdoorOffer();
-	console.log("outdoor offer: " + outdoorOffer);
 	function HarvestBatch(name,type,date,userID){
 		this.name = name;
 		this.type = type;
@@ -67,7 +66,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	};
 
 	let freeTrail = getFreeTrial();
-	console.log("Free trial: " + freeTrail);
 
 	const [day, setDay] = React.useState('today');
 
@@ -1059,7 +1057,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				alignItems="center"
 			>
 				
-				{(offerVisible && freeTrail && !outdoorOffer && userID.includes("Test")) ? <Grid
+				{(offerVisible && freeTrail && !outdoorOffer) ? <Grid
 				container
 				direction="column"
   				justify="center"

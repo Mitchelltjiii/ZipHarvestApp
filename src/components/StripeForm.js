@@ -127,7 +127,7 @@ const ProductDisplay = () => (
               </Grid>
               <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"60px",marginRight:"5px",marginLeft:"5px",marginTop:"25px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToBasic}>Buy Now</Button>
               {offer ? 
-              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"50px",marginRight:"5px",marginLeft:"5px",marginTop:"5px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToBasicOutdoor}>3 Months 50% OFF</Button>
+              <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"50px",marginRight:"5px",marginLeft:"5px",marginTop:"5px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToBasicOutdoor}>Get 3 Months 50% OFF</Button>
               :<Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{width:"90%",height:"50px",marginRight:"5px",marginLeft:"5px",marginTop:"5px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleGoToBasicYear}>Get One Year 50% OFF</Button>
               }
               <div style={{textAlign:"center",color:"#5b5b5b",marginBottom:"20px",fontSize:"11px",fontFamily:"Arial, Helvetica, sans-serif",letterSpacing:2}}>{seeMoreFeatures}</div>
@@ -578,14 +578,11 @@ async function updateUserVerificationCode(username,newCode){
 
 const SuccessDisplay = ({ seshId }) => {
   if(session === null || session === [] || session === undefined || JSON.stringify(session) === "[]"){
-    console.log("Get Session");
     getSession(sessionId);
   }else{
     if(user.username !== undefined && subscription.id !== undefined && !userUpdated){
-      console.log("Update user sub id");
       updateUserSubId(user.username,subscription.id);
     }else if(!userUpdated){
-      console.log("get Facility name")
       getFacilityName(user.username);
     }
   }
@@ -632,7 +629,6 @@ async function getSession(seshId){
 async function getFacilityName(username){
   const response = await fetch(`/api/user-get-facility-name/${username}`);
   const json = await response.json();
-  console.log("Facility name: " + json);
   if(json.includes("outdoor")){
     updateUserSessionAndFacilityName(username,"none",json+"x");
   }
