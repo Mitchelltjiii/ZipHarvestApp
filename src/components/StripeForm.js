@@ -520,7 +520,7 @@ async function goToProduct(lookup_key){
 
 //see if refresh was calling this method a second time and overwriting the new session id as blank
 async function updateUserSessionAndFacilityName(username,id,lookupKey){
-    fetch(`/user/updateUserSessionAndSubID/${username}/${id}/${lookupKey}`, {
+    fetch(`/user/updateUserSessionAndFacilityName/${username}/${id}/${lookupKey}`, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
