@@ -634,7 +634,7 @@ async function getFacilityName(username){
   const json = await response.json();
   console.log("Facility name: " + json);
   if(json.includes("outdoor")){
-    updateUserSessionAndFacilityName(username,"",json+"x");
+    updateUserSessionAndFacilityName(username,"none",json+"x");
   }
 }
 

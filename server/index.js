@@ -1141,10 +1141,15 @@ app.put('/user/updateUserSessionAndFacilityName/:username/:sessionID/:facilityNa
     console.log("Update user session and sub id user: " + req.params.username + "sesh id: " + req.params.sessionID
     + "facility name: " + req.params.facilityName);
 
+    let sessionID = "";
+    if(req.params.sessionID !== "none"){
+      sessionID = req.params.sessionID;
+    }
+
   connection.query(`UPDATE users SET
   sessionid = ?, facilityName = ? WHERE (username = ?)`, 
   [
-    req.params.sessionID,req.params.facilityName,req.params.username
+    sessionID,req.params.facilityName,req.params.username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
