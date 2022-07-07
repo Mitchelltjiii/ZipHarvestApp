@@ -85,17 +85,14 @@ export default class App extends React.Component {
     const response = await fetch(`/pause-subscription/${subid}/${resumeAt}`);
     const json = await response.json();
   }
+
   getSubId = async (username,staySignedIn,signIn) => {
     const response = await fetch(`/get-subid/${username}`);
     const json = await response.json();
     if(json !== undefined){
-      if(json.includes("outdoorx")){
-        this.getUser(username,staySignedIn,json);
-      }else if(json.includes("outdoor")){
-          this.setState({newUsername:username,currentPage:'stripe-form'});
-      }else if(json.length===13 || JSON.stringify(json).length===13){
+      if(json.length===13 || JSON.stringify(json).length===13){
         if((new Date()).getTime()-parseInt(json)>1209600000){
-          this.setState({newUsername:username,currentPage:'stripe-form'});
+          this.getFacilityName(username,staySignedIn,json);
         }else{
           this.getUser(username,staySignedIn,json);
         }
@@ -396,6 +393,18 @@ export default class App extends React.Component {
       this.setState({plants: tempPlants});
 	}
 
+  getFacilityName = async (user,staySignedIn,subid) => {
+    const response = await fetch(`/api/user-get-facility-name/${username}`);
+    const json = await response.json();
+
+    if(json.includes("outdoorx")){
+      this.getUser(user,staySignedIn,subid);
+    }else{
+      this.setState({newUsername:username,currentPage:'stripe-form'});
+    }
+  }
+
+
   getUser = async (user,staySignedIn,subid) => {
     const response = await fetch(`/api/tutorials/${user}`);
     const text = await response.text();
@@ -451,7 +460,14 @@ export default class App extends React.Component {
   }
 
   getOutdoorOffer = () => {
-    return (this.state.subid.includes("outdoorx"));
+    const response = await fetch(`/api/user-get-facility-name/${username}`);
+    const json = await response.json();
+
+    if(json.includes("outdoorx")){
+      return true;
+    }else{
+      return false;
+    }  
   }
 
   getPlants = () => {
@@ -595,16 +611,19 @@ export default class App extends React.Component {
   getSubscriptionType = () => {
     let subscriptionType = "";
 
+    const response = await fetch(`/api/user-get-facility-name/${username}`);
+    const json = await response.json();
+
     if(JSON.stringify(this.state.subscription) !== "[]"){
       subscriptionType = this.state.subscription.items.data[0].price.lookup_key;
-    }else if(this.state.subid.includes("outdoorx")){
-      if(this.state.subid.includes("basic")){
+    }else if(json.includes("outdoorx")){
+      if(json.includes("basic")){
         subscriptionType = "Basic Fall 2022";
-      }else if(this.state.subid.includes("standard")){
+      }else if(json.includes("standard")){
         subscriptionType = "Standard Fall 2022";
-      }else if(this.state.subid.includes("premium")){
+      }else if(json.includes("premium")){
         subscriptionType = "Premium Fall 2022";
-      }else if(this.state.subid.includes("deluxe")){
+      }else if(json.includes("deluxe")){
         subscriptionType = "Deluxe Fall 2022";
       }
     }
@@ -622,8 +641,15 @@ export default class App extends React.Component {
         freeTrial = true;
       }
     }
-    
-    return freeTrial;
+
+    const response = await fetch(`/api/user-get-facility-name/${username}`);
+    const json = await response.json();
+
+    if(json.includes("outdoorx")){
+      return false;
+    }else{
+      return freeTrial;    
+    }
   }
 
   getOffer = () => {

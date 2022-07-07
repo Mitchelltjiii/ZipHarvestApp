@@ -511,20 +511,16 @@ async function goToProduct(lookup_key){
   const json = await response.json();
 
   if(user.username !== null && user.username !== ""){
-      updateUserSessionAndSubID(user.username,json.id,(lookup_key+""));
+      updateUserSessionAndFacilityName(user.username,json.id,(lookup_key+""));
   }else{
-      updateUserSessionAndSubID(newUsername,json.id,(lookup_key+""));
+      updateUserSessionAndFacilityName(newUsername,json.id,(lookup_key+""));
   }
   window.location.replace(json.url);
 }
 
 //see if refresh was calling this method a second time and overwriting the new session id as blank
-async function updateUserSessionAndSubID(username,id,lookupKey){
-  let lk = "";
-  if(lk.includes("outdoor")){
-    lk = lookupKey;
-  }
-    fetch(`/user/updateUserSessionAndSubID/${username}/${id}/${lk}`, {
+async function updateUserSessionAndFacilityName(username,id,lookupKey){
+    fetch(`/user/updateUserSessionAndSubID/${username}/${id}/${lookupKey}`, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -587,7 +583,7 @@ const SuccessDisplay = ({ seshId }) => {
     if(user.username !== undefined && subscription.id !== undefined && !userUpdated){
       updateUserSubId(user.username,subscription.id);
     }else if(!userUpdated){
-      getSubId(user.username);
+      getFacilityName(user.username);
     }
   }
 
@@ -630,11 +626,11 @@ async function getSession(seshId){
   setSession(json);
 }
 
-async function getSubId(username){
-  const response = await fetch(`/api/user-get-subid/${username}`);
+async function getFacilityName(username){
+  const response = await fetch(`/api/user-get-facility-name/${username}`);
   const json = await response.json();
   if(json.includes("outdoor")){
-    updateUserSessionAndSubID(username,"x",json+"x");
+    updateUserSessionAndFacilityName(username,"",json+"x");
   }
 }
 
