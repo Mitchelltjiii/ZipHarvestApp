@@ -396,13 +396,13 @@ export default class App extends React.Component {
 	}
 
   getFacilityName = async (user,staySignedIn,subid) => {
-    const response = await fetch(`/api/user-get-facility-name/${username}`);
+    const response = await fetch(`/api/user-get-facility-name/${user}`);
     const json = await response.json();
 
     if(json.includes("outdoorx")){
       this.getUser(user,staySignedIn,subid,true,json);
     }else{
-      this.setState({newUsername:username,currentPage:'stripe-form'});
+      this.setState({newUsername:user,currentPage:'stripe-form'});
     }
   }
 
