@@ -408,8 +408,12 @@ app.get('/get-session/:sessionId', async (req,res) =>{
 })
 
 app.get('/get-subscription/:subscriptionId', async (req,res) =>{
-  const subscription = await stripe.subscriptions.retrieve(req.params.subscriptionId);
-  res.json(subscription);
+  try{
+    const subscription = await stripe.subscriptions.retrieve(req.params.subscriptionId);
+    res.json(subscription);
+  }catch(err){
+    res.json("");
+  }
 })
 
 app.get('/cancel-subscription/:subscriptionId', async (req,res) =>{
