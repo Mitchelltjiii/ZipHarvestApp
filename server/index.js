@@ -1146,10 +1146,15 @@ app.put('/user/updateUserSessionAndFacilityName/:username/:sessionID/:facilityNa
       sessionID = req.params.sessionID;
     }
 
+    let facilityName = "";
+    if(req.params.facilityName.includes("outdoor")){
+      facilityName = req.params.facilityName;
+    }
+
   connection.query(`UPDATE users SET
   sessionid = ?, facilityName = ? WHERE (username = ?)`, 
   [
-    sessionID,req.params.facilityName,req.params.username
+    sessionID,facilityName,req.params.username
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
