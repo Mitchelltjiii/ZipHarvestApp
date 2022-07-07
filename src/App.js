@@ -405,7 +405,7 @@ export default class App extends React.Component {
       if(cleared){
         this.setState({newUsername:user,currentPage:'stripe-form'});
       }else{
-        this.getUser(username,staySignedIn,json,false,"");
+        this.getUser(user,staySignedIn,subid,false,"");
       }
     }
   }
