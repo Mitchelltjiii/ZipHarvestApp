@@ -637,10 +637,7 @@ export default class App extends React.Component {
       }
     }
 
-    const response = await fetch(`/api/user-get-facility-name/${username}`);
-    const json = await response.json();
-
-    if(json.includes("outdoorx")){
+    if(this.state.facilityName.includes("outdoorx")){
       return false;
     }else{
       return freeTrial;    
