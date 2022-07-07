@@ -813,6 +813,8 @@ export default class App extends React.Component {
     const loggedInUser = localStorage.getItem("user");
     const subid = localStorage.getItem("subid");
 
+    console.log("In App.js outdoor offer: " + this.state.outdoorOffer);
+
     let staySignedInLocal = false;
     if(localStorage.getItem("staySignedIn")!==null && localStorage.getItem("staySignedIn")!==undefined && localStorage.getItem("staySignedIn")!==""){
       staySignedInLocal = localStorage.getItem("staySignedIn");
