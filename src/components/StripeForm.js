@@ -578,11 +578,14 @@ async function updateUserVerificationCode(username,newCode){
 
 const SuccessDisplay = ({ seshId }) => {
   if(session === null || session === [] || session === undefined || JSON.stringify(session) === "[]"){
+    console.log("Get Session");
     getSession(sessionId);
   }else{
     if(user.username !== undefined && subscription.id !== undefined && !userUpdated){
+      console.log("Update user sub id");
       updateUserSubId(user.username,subscription.id);
     }else if(!userUpdated){
+      console.log("get Facility name")
       getFacilityName(user.username);
     }
   }
@@ -629,6 +632,7 @@ async function getSession(seshId){
 async function getFacilityName(username){
   const response = await fetch(`/api/user-get-facility-name/${username}`);
   const json = await response.json();
+  console.log("Facility name: " + json);
   if(json.includes("outdoor")){
     updateUserSessionAndFacilityName(username,"",json+"x");
   }
