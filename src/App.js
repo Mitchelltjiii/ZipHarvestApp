@@ -94,9 +94,9 @@ export default class App extends React.Component {
     if(json !== undefined){
       if(json.length===13 || JSON.stringify(json).length===13){
         if((new Date()).getTime()-parseInt(json)>1209600000){
-          this.getFacilityName(username,staySignedIn,json);
+          this.getFacilityName(username,staySignedIn,json,true);
         }else{
-          this.getUser(username,staySignedIn,json,false,"");
+          this.getFacilityName(username,staySignedIn,json,false);
         }
       }else{
         this.getSubscription(json,username,staySignedIn,signIn);
@@ -395,14 +395,18 @@ export default class App extends React.Component {
       this.setState({plants: tempPlants});
 	}
 
-  getFacilityName = async (user,staySignedIn,subid) => {
+  getFacilityName = async (user,staySignedIn,subid,cleared) => {
     const response = await fetch(`/api/user-get-facility-name/${user}`);
     const json = await response.json();
 
     if(json.includes("outdoorx")){
       this.getUser(user,staySignedIn,subid,true,json);
     }else{
-      this.setState({newUsername:user,currentPage:'stripe-form'});
+      if(cleared){
+        this.setState({newUsername:user,currentPage:'stripe-form'});
+      }else{
+        this.getUser(username,staySignedIn,json,false,"");
+      }
     }
   }
 
