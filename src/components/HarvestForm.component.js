@@ -1056,7 +1056,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   				justify="center"
 				alignItems="center"
 			>
-				{(offerVisible && (freeTrail || !outdoorOffer) && userID.includes("Test")) ? <Grid
+				{(offerVisible && freeTrail && !outdoorOffer && userID.includes("Test")) ? <Grid
 				container
 				direction="column"
   				justify="center"
