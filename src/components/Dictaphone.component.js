@@ -59,7 +59,25 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
             callback: (weight) => {
               enterWeightFromSpeech(weight,1);
             },
-          },  
+          }, 
+          {
+            command: "*lb",
+            callback: (weight) => {
+              enterWeightFromSpeech(weight,0);
+            },
+        },
+        {
+            command: "*G",
+            callback: (weight) => {
+              enterWeightFromSpeech(weight,1);
+            },
+        },
+        {
+          command: "*g",
+          callback: (weight) => {
+            enterWeightFromSpeech(weight,1);
+          },
+        },  
           {
               command: "Next *",
               callback: () => {
