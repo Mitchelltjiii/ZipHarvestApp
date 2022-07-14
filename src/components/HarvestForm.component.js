@@ -417,6 +417,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   }
 
 	function searchTagFromSpeech(searchText,searchText2){
+		console.log("Search text 2: " + searchText2)
 		let fixedSearch = searchText;
 		    while(fixedSearch.includes(" to ")){
 			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf(" to ")) + 2 + fixedSearch.substring(fixedSearch.indexOf(" to ")+4);
@@ -448,7 +449,16 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			if(searchText2.includes("lb") || searchText2.includes("lbs") || searchText2.includes("pounds")){
 				enterWeightFromSpeech(searchText2.substring(0,searchText2.indexOf(" ")),0);
 			}else{
-				enterWeightFromSpeech(searchText2.substring(0,searchText2.indexOf(" ")),1);
+				if(searchText2.includes(" ")){
+					console.log("ST: A");
+					enterWeightFromSpeech(searchText2.substring(0,searchText2.indexOf(" ")),1);
+				}else{
+					console.log("ST: B");
+					if(searchText2.includes("g")){
+						console.log("ST-B: A");
+						enterWeightFromSpeech(searchText2.substring(0,searchText2.indexOf("g")),1);
+					}
+				}
 			}
 		setSearchTag(fixedSearch);
 	}
