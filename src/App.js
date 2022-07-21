@@ -392,6 +392,7 @@ export default class App extends React.Component {
       let tempPlants = this.state.plants;
 			tempPlants = tempPlants.substring(0,tempPlants.length-1) + "," + JSON.stringify(plant) + "]";
       
+      console.log("Set plants tempPlants: " + JSON.stringify(tempPlants));
       this.setState({plants: tempPlants});
 	}
 
@@ -685,6 +686,7 @@ export default class App extends React.Component {
   }
 
   setPlants = (plantMapFromChild) => {
+    console.log("Set plantmapfromchild: " + JSON.stringify(plantMapFromChild));
     this.setState({plants:plantMapFromChild});
   }
 
