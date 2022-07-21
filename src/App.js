@@ -443,6 +443,7 @@ export default class App extends React.Component {
   executeLogIn = (user,staySignedIn,tuts,subid,firstMonthFree,myReferalCode,grantFreeMonthCode,outdoorOffer,facilityName) =>{
     localStorage.setItem('user', user);
     localStorage.setItem('staySignedIn',staySignedIn);
+    localStorage.setItem('subid',subid)
     let currPage = localStorage.getItem("currentPage");
     let fmf = false;
     if(firstMonthFree==="0"){

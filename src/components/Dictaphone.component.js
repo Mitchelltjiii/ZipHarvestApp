@@ -3,67 +3,97 @@ import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognitio
 import VoiceButton from './VoiceButton.component';
 
 
-const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpeech}) => {
+const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpeech,browser}) => {
 
     const commands = [
         {
             command: "search *",
             callback: (searchText) => {
               searchTagFromSpeech(searchText,"");
+              if(browser==="safari"){
+                SpeechRecognition.stopListening();
+              }
             },
           },
           {
             command: "* is *",
             callback: (searchText,searchText2) => {
               searchTagFromSpeech(searchText,searchText2);
+              if(browser==="safari"){
+                SpeechRecognition.stopListening();
+              }
             },
           },
           {
             command: "Certs *",
             callback: (searchText) => {
               searchTagFromSpeech(searchText,"");
+              if(browser==="safari"){
+                SpeechRecognition.stopListening();
+              }
             },
           },
           {
             command: "Easter *",
             callback: (searchText) => {
               searchTagFromSpeech(searchText,"");
+              if(browser==="safari"){
+                SpeechRecognition.stopListening();
+              }
             },
           },
           {
               command: "weight *",
               callback: (weight) => {
                 enterWeightFromSpeech(weight,-1);
+                if(browser==="safari"){
+                  SpeechRecognition.stopListening();
+                }
               },
           },
           {
               command: "wait *",
               callback: (weight) => {
                 enterWeightFromSpeech(weight,-1);
+                if(browser==="safari"){
+                  SpeechRecognition.stopListening();
+                }
               },
           },
           {
               command: "* lb",
               callback: (weight) => {
                 enterWeightFromSpeech(weight,0);
+                if(browser==="safari"){
+                  SpeechRecognition.stopListening();
+                }
               },
           },
           {
               command: "* G",
               callback: (weight) => {
                 enterWeightFromSpeech(weight,1);
+                if(browser==="safari"){
+                  SpeechRecognition.stopListening();
+                }
               },
           },
           {
             command: "* g",
             callback: (weight) => {
               enterWeightFromSpeech(weight,1);
+              if(browser==="safari"){
+                SpeechRecognition.stopListening();
+              }
             },
           },   
           {
               command: "Next *",
               callback: () => {
                 nextPlantFromSpeech();
+                if(browser==="safari"){
+                  SpeechRecognition.stopListening();
+                }
               },
           },
       ];
