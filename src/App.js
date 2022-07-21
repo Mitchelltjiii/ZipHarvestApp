@@ -826,11 +826,15 @@ export default class App extends React.Component {
       staySignedIn = true;
     }
 
+    console.log("this.state.Subid: " + this.state.subid);
+
     if (loggedInUser !== null && loggedInUser !== undefined && loggedInUser !== "" && this.state.loggedIn === "") {
       if(reloaded || staySignedIn){
+        console.log("Reloaded");
+        console.log("New sub id: " + subid);
         this.reloadExportRecords([]);
         this.reloadSubscription([]);
-        this.setState({loggedIn:loggedInUser,subid:subid,firstMonthFree:false,userID:loggedInUser,usersLoading:false,subid:subid});
+        this.setState({loggedIn:loggedInUser,subid:subid,firstMonthFree:false,userID:loggedInUser,usersLoading:false});
         this.getUser(loggedInUser,staySignedIn,subid,false,"");
       }
     }

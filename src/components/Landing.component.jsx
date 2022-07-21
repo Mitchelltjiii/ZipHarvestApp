@@ -40,7 +40,7 @@ setOffer,setNewUsername,getOutdoorOffer}){
 			if (window.confirm("Please use the menu to navigate.")) {
 				setfinishStatus(true)
 				// your logic
-				this.props.history.push("/");
+				//this.props.history.push("/");
 			} else {
 				window.history.pushState(null, null, window.location.pathname);
 				setfinishStatus(false)
