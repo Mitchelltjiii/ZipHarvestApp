@@ -29,7 +29,7 @@ setOffer,setNewUsername,getOutdoorOffer}){
 			if (window.confirm("Do you want to go back ?")) {
 				setfinishStatus(true)
 				// your logic
-				props.history.push("/");
+				this.props.history.push("/");
 			} else {
 				window.history.pushState(null, null, window.location.pathname);
 				setfinishStatus(false)
@@ -44,7 +44,7 @@ setOffer,setNewUsername,getOutdoorOffer}){
 		  window.removeEventListener('popstate', onBackButtonEvent);  
 		};
 	  }, []);
-	  
+
     return(
         <div>
 			{currentPage === 'harvest-form' ? (
