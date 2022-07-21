@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import HarvestForm from './HarvestForm.component';
 import HarvestBatchesForm from './HarvestBatchesForm.component';
 import ManagePlantsForm from './ManagePlantsForm.component';
@@ -21,42 +21,30 @@ getFreeTrialEnds,getReferalLink,getGrantFreeMonthCode,setGrantFreeMonthCode,getF
 setOffer,setNewUsername,getOutdoorOffer}){
 	let fromAccountSettings = true;
 
-	React.useEffect(
-		() =>
-		  navigation.addListener('beforeRemove', (e) => {
-			if (!hasUnsavedChanges) {
-			  // If we don't have unsaved changes, then we don't need to do anything
-			  return;
-			}
+	const [finishStatus, setfinishStatus] = useState(false);
 
-			if(!userID.includes("Demo")){
-				console.log("NotD");
-				return;
+	const onBackButtonEvent = (e) => {
+		e.preventDefault();
+		if (!finishStatus) {
+			if (window.confirm("Do you want to go back ?")) {
+				setfinishStatus(true)
+				// your logic
+				props.history.push("/");
+			} else {
+				window.history.pushState(null, null, window.location.pathname);
+				setfinishStatus(false)
 			}
-			console.log("Demo");
+		}
+	}
 	
-			// Prevent default behavior of leaving the screen
-			e.preventDefault();
-	
-			// Prompt the user before leaving the screen
-			Alert.alert(
-			  'Discard changes?',
-			  'You have unsaved changes. Are you sure to discard them and leave the screen?',
-			  [
-				{ text: "Don't leave", style: 'cancel', onPress: () => {} },
-				{
-				  text: 'Discard',
-				  style: 'destructive',
-				  // If the user confirmed, then we dispatch the action we blocked earlier
-				  // This will continue the action that had triggered the removal of the screen
-				  onPress: () => navigation.dispatch(e.data.action),
-				},
-			  ]
-			);
-		  }),
-		[navigation, hasUnsavedChanges]
-	  );
-
+	  useEffect(() => {
+		window.history.pushState(null, null, window.location.pathname);
+		window.addEventListener('popstate', onBackButtonEvent);
+		return () => {
+		  window.removeEventListener('popstate', onBackButtonEvent);  
+		};
+	  }, []);
+	  
     return(
         <div>
 			{currentPage === 'harvest-form' ? (
