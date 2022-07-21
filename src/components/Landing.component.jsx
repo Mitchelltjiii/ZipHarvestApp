@@ -10,6 +10,8 @@ import ManageDryRoomsForm from './ManageDryRoomsForm.component';
 import ChangeSubscriptionForm from './ChangeSubscriptionForm.component';
 import TutorialForm from './TutorialForm.component';
 import PrintPage from './PrintPage.component';
+import BrowserDetection from 'react-browser-detection';
+
 
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
 	setHarvestBatches, resetHarvestBatches, currentHarvest,setNewHBID, refreshOuter,
@@ -23,10 +25,19 @@ setOffer,setNewUsername,getOutdoorOffer}){
 
 	const [finishStatus, setfinishStatus] = useState(false);
 
+	const browserHandler = {
+		default: (browser) => <HarvestForm getHarvestBatches={getHarvestBatches} setHarvestBatches={setHarvestBatches} getPlants={getPlants} setPlants={setPlants} getHarvestRecords={getHarvestRecords} setHarvestRecords={setHarvestRecords} 
+		resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} refreshOuter={refreshOuter} 
+		setNewHarvestRecordID={setNewHarvestRecordID} setNewPlantID={setNewPlantID} userID={userID} reloadPlants={reloadPlants} reloadPlantsAndHarvestRecords={reloadPlantsAndHarvestRecords}
+		reloadHarvestBatches={reloadHarvestBatches} reloadHarvestRecords={reloadHarvestRecords} getTutorials={getTutorials} setTutorials={setTutorials} showHints={showHints}
+		setCurrentPage={setCurrentPage} getFreeTrial={getFreeTrial} getReferalLink={getReferalLink} getGrantFreeMonthCode={getGrantFreeMonthCode} setOffer={setOffer}
+		executeLogout={executeLogout} setNewUsername={setNewUsername} getOutdoorOffer={getOutdoorOffer} browser={browser}/>,
+	  };
+
 	const onBackButtonEvent = (e) => {
 		e.preventDefault();
 		if (!finishStatus) {
-			if (window.confirm("Do you want to go back ?")) {
+			if (window.confirm("Please use the menu to navigate.")) {
 				setfinishStatus(true)
 				// your logic
 				this.props.history.push("/");
@@ -44,17 +55,14 @@ setOffer,setNewUsername,getOutdoorOffer}){
 		  window.removeEventListener('popstate', onBackButtonEvent);  
 		};
 	  }, []);
-
+	
     return(
         <div>
 			{currentPage === 'harvest-form' ? (
-				<HarvestForm getHarvestBatches={getHarvestBatches} setHarvestBatches={setHarvestBatches} getPlants={getPlants} setPlants={setPlants} getHarvestRecords={getHarvestRecords} setHarvestRecords={setHarvestRecords} 
-				resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} refreshOuter={refreshOuter} 
-				setNewHarvestRecordID={setNewHarvestRecordID} setNewPlantID={setNewPlantID} userID={userID} reloadPlants={reloadPlants} reloadPlantsAndHarvestRecords={reloadPlantsAndHarvestRecords}
-				reloadHarvestBatches={reloadHarvestBatches} reloadHarvestRecords={reloadHarvestRecords} getTutorials={getTutorials} setTutorials={setTutorials} showHints={showHints}
-				setCurrentPage={setCurrentPage} getFreeTrial={getFreeTrial} getReferalLink={getReferalLink} getGrantFreeMonthCode={getGrantFreeMonthCode} setOffer={setOffer}
-				executeLogout={executeLogout} setNewUsername={setNewUsername} getOutdoorOffer={getOutdoorOffer}/>
-			) : currentPage === 'harvest-batches-form' ? (
+				<BrowserDetection>
+				{ browserHandler }
+			  </BrowserDetection>
+				) : currentPage === 'harvest-batches-form' ? (
 				<HarvestBatchesForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} 
 				getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms} getPossiblePlantCount={getPossiblePlantCount} getFreeTrial={getFreeTrial}/>
 			) : currentPage === 'manage-dry-rooms-form' ? (

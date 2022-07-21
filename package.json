@@ -26,6 +26,7 @@
     "nodemon": "^2.0.14",
     "pool": "^0.4.1",
     "react": "^17.0.2",
+    "react-browser-detection": "^1.2.1",
     "react-collapsible": "^2.8.3",
     "react-csv": "^2.0.3",
     "react-data-table-component": "^6.11.8",

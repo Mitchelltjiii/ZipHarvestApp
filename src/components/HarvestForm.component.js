@@ -22,7 +22,10 @@ import {isMobile} from 'react-device-detect';
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches,
 	currentHarvest, setNewHBID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
 	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords,getTutorials,setTutorials,showHints,
-	setCurrentPage,getFreeTrial,getReferalLink,getGrantFreeMonthCode,setOffer,executeLogout,setNewUsername,getOutdoorOffer}) { 
+	setCurrentPage,getFreeTrial,getReferalLink,getGrantFreeMonthCode,setOffer,executeLogout,setNewUsername,getOutdoorOffer,
+	browser}) {
+		
+	console.log("Browser: " + browser);
 
 	let referalLink = getReferalLink();
 	let tutorials = getTutorials();
