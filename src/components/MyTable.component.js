@@ -39,7 +39,9 @@ function MyTable({currHarvest,getHarvestRecords,editNow,currWeightChanges,setWei
     }
 
     function getStrainFromTag(tag){
+      console.log("Get strain from tag: " + tag);
       for(let val of JSON.parse(getPlants())){
+        console.log("val.tag: " + val.tag);
         if(val.tag === tag){
           return val.strain;
         }

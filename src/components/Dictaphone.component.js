@@ -108,6 +108,9 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
   }
 
   function startListeningFromVoiceButton(){
+    if(browser==="safari"){
+      SpeechRecognition.stopListening();
+    }
     SpeechRecognition.startListening();
   }
 
