@@ -206,7 +206,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	function removePlant(plantTag){
 		let x = 0;
 		let foundX = -1;
-		let replaceEntry = "";
+		let replaceEntry = [];
 		for(let val of JSON.parse(getPlants())) {
 			if(val.tag === plantTag){
 				foundX = x;
@@ -218,6 +218,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			x++;
 		}
 		if(foundX !== -1){
+			let newPl = JSON.stringify(JSON.parse(getPlants()).splice(foundX,1,replaceEntry));
+			console.log("newpl: " + newPl);
 			setPlants(JSON.stringify(JSON.parse(getPlants()).splice(foundX,1,replaceEntry)));
 		}
 	}
