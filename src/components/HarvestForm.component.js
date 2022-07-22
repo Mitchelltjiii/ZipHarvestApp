@@ -239,7 +239,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			}
 			//let spliced = pl.splice(foundX,1,JSON.stringify(replaceEntry));
 			console.log("spliced:  " + JSON.stringify(spliced));
-			setPlants(spliced);
+			setPlants(JSON.stringify(spliced));
 		}
 	}
 	
