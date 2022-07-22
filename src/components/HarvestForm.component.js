@@ -218,6 +218,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			x++;
 		}
 		if(foundX !== -1){
+			let pl = JSON.parse(getPlants());
+			console.log("PL: " + JSON.stringify(pl));
+			console.log("ReplaceEntry: " + replaceEntry)
+			let spliced = pl.splice(foundX,1,replaceEntry);
+			console.log("spliced:  " + JSON.stringify(spliced));
 			let newPl = JSON.stringify(JSON.parse(getPlants()).splice(foundX,1,replaceEntry));
 			console.log("newpl: " + newPl);
 			setPlants(JSON.stringify(JSON.parse(getPlants()).splice(foundX,1,replaceEntry)));
