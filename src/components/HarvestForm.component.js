@@ -71,6 +71,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	let freeTrail = getFreeTrial();
 
 	const [day, setDay] = React.useState('today');
+	const [currentHBItem, setCurrentHBItem] = React.useState('');
 
 	const [harvestType, setHarvestType] = React.useState('harvest');
 
@@ -173,6 +174,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	};
 
 	function getHarvestBatch(selectedHB){
+		console.log("Get Harvest Batch --");
 		try{
 			for(let val of JSON.parse(getHarvestBatches())) {
 				if(val.name === selectedHB){
@@ -182,6 +184,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}catch(excc){
 			
 		}
+		console.log("Returning currentHBItem: " + JSON.stringify(currentHBItem));
+		return currentHBItem;
 	}
 
 	function setCurrentHarvestDate(){
@@ -539,6 +543,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function reloadHarvestBatchesFromAddHB(harvestBatchItem){
 		setHbName("");
+		setCurrentHBItem(harvestBatchItem);
 		reloadHarvestBatches(harvestBatchItem)
 	}
 
