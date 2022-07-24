@@ -24,6 +24,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords,getTutorials,setTutorials,showHints,
 	setCurrentPage,getFreeTrial,getReferalLink,getGrantFreeMonthCode,setOffer,executeLogout,setNewUsername,getOutdoorOffer,
 	browser}) {
+
+		console.log("Enter harvestform getharvestbatches: " + JSON.stringify(getHarvestBatches()));
 		
 	let referalLink = getReferalLink();
 	let tutorials = getTutorials();
@@ -315,9 +317,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	let searchOptionsList = ["Contains","Ends With"];
     
+	console.log("Creating hboptionslist");
 	for(let val of JSON.parse(getHarvestBatches())) {
+		console.log("Val: " + JSON.stringify(val));
 		if(!hbOptionsList.includes(val.name)){
 			hbOptionsList.push(val.name);
+			console.log("Push: " + val.name);
 		}
 	  }
 
