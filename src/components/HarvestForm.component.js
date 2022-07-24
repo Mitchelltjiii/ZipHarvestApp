@@ -540,7 +540,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	function reloadHarvestBatchesFromAddHB(){
 		console.log("Current Harvest: " + JSON.stringify(currentHarvest));
 		reloadHarvestBatches(currentHarvest)
-		setHbName("");
+		//setHbName("");
 	}
 
 	function isValidHBName(str){
