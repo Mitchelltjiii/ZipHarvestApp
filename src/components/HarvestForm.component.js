@@ -71,7 +71,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	let freeTrail = getFreeTrial();
 
 	const [day, setDay] = React.useState('today');
-	const [currentHBItem, setCurrentHBItem] = React.useState('');
+	const [currentHBItem, setCurrentHBItem] = React.useState([]);
 
 	const [harvestType, setHarvestType] = React.useState('harvest');
 
