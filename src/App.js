@@ -340,6 +340,10 @@ export default class App extends React.Component {
 
   reloadHarvestBatches = (currHarvest) => {
 
+    let ch = currHarvest;
+    if(ch === undefined){
+      ch = [];
+    }
     this.setState({currentHarvest: currHarvest});
 
     console.log("get harvest batches from db")
