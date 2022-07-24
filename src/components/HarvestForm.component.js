@@ -233,8 +233,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			setPlants(JSON.stringify(spliced));
 		}
 	}
-	
+
+	console.log("SelectedHB: " + JSON.stringify(selectedHB));
 	currentHarvest = getHarvestBatch(selectedHB);
+	console.log("Current Harvest from getharvestbatch: " + JSON.stringify(currentHarvest));
 
   	const handleDayChange = (event) => {
     	setDay(event.target.value);
@@ -965,7 +967,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		plant.userID = userID;
 
 		if(currentHarvestRecord.itemID!==""){
-			plant.id = currentHarvestRecord.itemID;
+			plant.tag = currentHarvestRecord.itemID;
 		}
 		return plant;
 	}
@@ -1018,7 +1020,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		plant.active = active;
 
 		if(currentHarvestRecord.itemID!==""){
-			plant.id = currentHarvestRecord.itemID;
+			plant.tag = currentHarvestRecord.itemID;
 		}
 
 		return plant;
@@ -1040,9 +1042,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		hb.userID = userID;
 		hb.type = ch.type;
 		hb.date = ch.date;
+		/*
 		if(ch.itemID!==""){
 			hb.id = ch.itemID;
-		}
+		}*/
 
 		return hb;
 	}
