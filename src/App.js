@@ -976,6 +976,7 @@ export default class App extends React.Component {
           </Grid>)
       } 
     }
+    console.log("End of render");
     if(landingForm && !isMobile){
       return showForm;
     }else{
