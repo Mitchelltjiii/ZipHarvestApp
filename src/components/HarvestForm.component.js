@@ -330,6 +330,13 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}
 	  }
 
+	if(JSON.stringify(currentHBItem) !== "[]"){
+		if(!hbOptionsList.includes(currentHBItem.name)){
+			hbOptionsList.push(currentHBItem.name);
+			console.log("Push currentHBItem: " + currentHBItem.name);
+		}
+	}
+
 	let tagList = searchTag ? commitSearch(): ["Search For Results"];
 
 	let currSelectedTag = selectedTag;
@@ -574,6 +581,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		let harvType = 0;
 		if(harvestType === "manicure"){
 			harvType = 1;
+		}
+
+		for(const val of JSON.parse(getHarvestRecords())) {  
+			if(val.name === hbName){
+				return false;
+			}
 		}
 
 		addedHB = new HarvestBatch(hbName,harvType,hbDate,userID);
