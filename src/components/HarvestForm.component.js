@@ -537,11 +537,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		return newTagList; 
 	}
 
-	function reloadHarvestBatchesFromAddHB(){
-		console.log("Current Harvest: " + JSON.stringify(currentHarvest));
-		reloadHarvestBatches(currentHarvest)
+	function reloadHarvestBatchesFromAddHB(harvestBatchItem){
 		setHbName("");
-		refreshOuter();
+		reloadHarvestBatches(harvestBatchItem)
 	}
 
 	function isValidHBName(str){

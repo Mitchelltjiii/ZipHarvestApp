@@ -32,7 +32,7 @@ class AddHarvestBatchButton extends Component{
       }).then(function(response) {
         return response.json();
       }).then(function(data) {
-        parent.props.reloadHarvestBatchesFromAddHB();
+        parent.props.reloadHarvestBatchesFromAddHB(harvestBatchItem);
       });
     }
     
