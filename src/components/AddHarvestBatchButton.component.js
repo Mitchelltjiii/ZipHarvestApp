@@ -20,7 +20,7 @@ class AddHarvestBatchButton extends Component{
       let parent = this;
 
       const harvestBatchItem = this.props.getHarvestBatchItem(true);
-      console.log("Harvest Batch item: " + harvestBatchItem)
+      console.log("Harvest Batch item: " + JSON.stringify(harvestBatchItem))
     
       fetch('/hb', {
         method: (harvestBatchItem.id) ? 'PUT' : 'POST',
@@ -32,7 +32,6 @@ class AddHarvestBatchButton extends Component{
       }).then(function(response) {
         return response.json();
       }).then(function(data) {
-        parent.props.setHbName("");
         parent.props.reloadHarvestBatchesFromAddHB();
       });
     }

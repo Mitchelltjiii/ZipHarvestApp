@@ -540,6 +540,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	function reloadHarvestBatchesFromAddHB(){
 		console.log("Current Harvest: " + JSON.stringify(currentHarvest));
 		reloadHarvestBatches(currentHarvest)
+		setHbName("");
 	}
 
 	function isValidHBName(str){
@@ -972,7 +973,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		plant.userID = userID;
 
 		if(currentHarvestRecord.itemID!==""){
-			plant.tag = currentHarvestRecord.itemID;
+			plant.id = currentHarvestRecord.itemID;
 		}
 		return plant;
 	}
@@ -1025,7 +1026,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		plant.active = active;
 
 		if(currentHarvestRecord.itemID!==""){
-			plant.tag = currentHarvestRecord.itemID;
+			plant.id = currentHarvestRecord.itemID;
 		}
 
 		return plant;
@@ -1047,10 +1048,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		hb.userID = userID;
 		hb.type = ch.type;
 		hb.date = ch.date;
-		/*
 		if(ch.itemID!==""){
 			hb.id = ch.itemID;
-		}*/
+		}
 
 		return hb;
 	}
