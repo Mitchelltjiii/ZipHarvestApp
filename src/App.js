@@ -56,6 +56,7 @@ export default class App extends React.Component {
   }
   
   engageReload = () => {
+    console.log("engage reload");
     if((!this.state.usersLoading) || (!this.state.plantsLoading && !this.state.harvestRecordsLoading && !this.state.harvestBatchesLoading && !this.state.dryRoomsLoading
       && !this.state.exportRecordsLoading)){
       this.forceUpdate();
@@ -244,6 +245,7 @@ export default class App extends React.Component {
     }
     const response = await fetch(`/api/hb/${userForFetch}`);
     const text = await response.text();
+    console.log("Harvest batches: " + text);
     this.state.harvestBatches = text;
     this.state.harvestBatchesLoading = false;
     this.engageReload();
@@ -340,6 +342,7 @@ export default class App extends React.Component {
 
     this.setState({currentHarvest: currHarvest});
 
+    console.log("get harvest batches from db")
     this.getHarvestBatchesFromDB();
   }
 
@@ -390,9 +393,7 @@ export default class App extends React.Component {
   setNewPlantID = (newID,plant) => {
       plant.id = newID;
       let tempPlants = this.state.plants;
-			tempPlants = tempPlants.substring(0,tempPlants.length-1) + "," + JSON.stringify(plant) + "]";
-      
-      console.log("Set plants tempPlants: " + JSON.stringify(tempPlants));
+			tempPlants = tempPlants.substring(0,tempPlants.length-1) + "," + JSON.stringify(plant) + "]"; 
       this.setState({plants: tempPlants});
 	}
 
@@ -686,7 +687,6 @@ export default class App extends React.Component {
   }
 
   setPlants = (plantMapFromChild) => {
-    console.log("Set plantmapfromchild: " + JSON.stringify(plantMapFromChild));
     this.setState({plants:plantMapFromChild});
   }
 
@@ -829,12 +829,8 @@ export default class App extends React.Component {
       staySignedIn = true;
     }
 
-    console.log("this.state.Subid: " + this.state.subid);
-
     if (loggedInUser !== null && loggedInUser !== undefined && loggedInUser !== "" && this.state.loggedIn === "") {
       if(reloaded || staySignedIn){
-        console.log("Reloaded");
-        console.log("New sub id: " + subid);
         this.reloadExportRecords([]);
         this.reloadSubscription([]);
         this.setState({loggedIn:loggedInUser,subid:subid,firstMonthFree:false,userID:loggedInUser,usersLoading:false});

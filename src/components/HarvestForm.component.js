@@ -219,26 +219,17 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}
 		if(foundX !== -1){
 			let pl = JSON.parse(getPlants());
-			console.log("PL: " + JSON.stringify(pl));
-			console.log("ReplaceEntry: " + JSON.stringify(replaceEntry));
-			console.log("Foundx: " + foundX);
 			let spliced = [];
 			let x = 0;
 			for(let val of pl){
-				console.log("Pl Val: " + val);
-				console.log("PL val string: " + JSON.stringify(val));
-				console.log("x: " + x);
 				if(x === foundX){
 					spliced.push(replaceEntry);
-					console.log("Replace pl");
 				}else{
 					spliced.push(val);
-					console.log("Add pl");
 				}
 				x++;
 			}
 			//let spliced = pl.splice(foundX,1,JSON.stringify(replaceEntry));
-			console.log("spliced:  " + JSON.stringify(spliced));
 			setPlants(JSON.stringify(spliced));
 		}
 	}
@@ -439,7 +430,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   }
 
 	function searchTagFromSpeech(searchText,searchText2){
-		console.log("Search text 2: " + searchText2)
 		let fixedSearch = searchText;
 		    while(fixedSearch.includes(" to ")){
 			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf(" to ")) + 2 + fixedSearch.substring(fixedSearch.indexOf(" to ")+4);
@@ -472,12 +462,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				enterWeightFromSpeech(searchText2.substring(0,searchText2.indexOf(" ")),0);
 			}else{
 				if(searchText2.includes(" ")){
-					console.log("ST: A");
 					enterWeightFromSpeech(searchText2.substring(0,searchText2.indexOf(" ")),1);
 				}else{
-					console.log("ST: B");
 					if(searchText2.includes("g")){
-						console.log("ST-B: A");
 						enterWeightFromSpeech(searchText2.substring(0,searchText2.indexOf("g")),1);
 					}
 				}
@@ -544,6 +531,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	function reloadHarvestBatchesFromAddHB(){
+		console.log("Current Harvest: " + JSON.stringify(currentHarvest));
 		reloadHarvestBatches(currentHarvest)
 	}
 
