@@ -24,8 +24,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	reloadPlants, reloadPlantsAndHarvestRecords, reloadHarvestBatches, reloadHarvestRecords,getTutorials,setTutorials,showHints,
 	setCurrentPage,getFreeTrial,getReferalLink,getGrantFreeMonthCode,setOffer,executeLogout,setNewUsername,getOutdoorOffer,
 	browser}) {
-
-		console.log("Enter harvestform getharvestbatches: " + JSON.stringify(getHarvestBatches()));
 		
 	let referalLink = getReferalLink();
 	let tutorials = getTutorials();
@@ -174,7 +172,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	};
 
 	function getHarvestBatch(selectedHB){
-		console.log("Get Harvest Batch --");
 		try{
 			for(let val of JSON.parse(getHarvestBatches())) {
 				if(val.name === selectedHB){
@@ -184,7 +181,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}catch(excc){
 			
 		}
-		console.log("Returning currentHBItem: " + JSON.stringify(currentHBItem));
 		return currentHBItem;
 	}
 
@@ -240,9 +236,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}
 	}
 
-	console.log("SelectedHB: " + JSON.stringify(selectedHB));
 	currentHarvest = getHarvestBatch(selectedHB);
-	console.log("Current Harvest from getharvestbatch: " + JSON.stringify(currentHarvest));
 
   	const handleDayChange = (event) => {
     	setDay(event.target.value);
@@ -321,19 +315,15 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	let searchOptionsList = ["Contains","Ends With"];
     
-	console.log("Creating hboptionslist");
 	for(let val of JSON.parse(getHarvestBatches())) {
-		console.log("Val: " + JSON.stringify(val));
 		if(!hbOptionsList.includes(val.name)){
 			hbOptionsList.push(val.name);
-			console.log("Push: " + val.name);
 		}
 	  }
 
 	if(JSON.stringify(currentHBItem) !== "[]"){
 		if(!hbOptionsList.includes(currentHBItem.name)){
 			hbOptionsList.push(currentHBItem.name);
-			console.log("Push currentHBItem: " + currentHBItem.name);
 		}
 	}
 
