@@ -368,7 +368,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	let hbInfoTabsHiddenNow = true;
 
-	if(!(currentHarvest === undefined || currentHarvest.name === '')){
+	if(!(currentHarvest === undefined || currentHarvest.name === '' || JSON.stringify(currentHarvest)) === "[]"){
 		hbInfoTabsHiddenNow=false;
 	}
 
