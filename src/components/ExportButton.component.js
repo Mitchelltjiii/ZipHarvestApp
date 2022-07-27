@@ -187,7 +187,6 @@ class ExportButton extends Component{
         let fileName = this.props.row.name;
         fileName = fileName.replace(" ","_");
         fileName = fileName.replace("/",".") + ".csv";
-
         return <div>
             {this.state.choosingUnit ? (
               <Grid
