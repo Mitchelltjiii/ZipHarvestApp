@@ -923,6 +923,9 @@ export default class App extends React.Component {
         }else if(currUrl.includes("tryit")){
           this.logVisit("ig");
           window.location.replace("https://www.zipharvest.app/");
+        }else if(currUrl.includes("try")){
+          this.logVisit("lb");
+          window.location.replace("https://www.zipharvest.app/");
         }else{
           //this.logVisit("Home");
         }
