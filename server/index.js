@@ -403,8 +403,12 @@ app.use(express.json());
 const YOUR_DOMAIN = 'https://www.zipharvest.app/';
 
 app.get('/get-session/:sessionId', async (req,res) =>{
-  const session = await stripe.checkout.sessions.retrieve(req.params.sessionId);
-  res.json(session);
+  try{
+    const session = await stripe.checkout.sessions.retrieve(req.params.sessionId);
+    res.json(session);
+  }catch(err){
+    res.json("");
+  }
 })
 
 app.get('/get-subscription/:subscriptionId', async (req,res) =>{
@@ -417,12 +421,17 @@ app.get('/get-subscription/:subscriptionId', async (req,res) =>{
 })
 
 app.get('/cancel-subscription/:subscriptionId', async (req,res) =>{
-  const deleted = await stripe.subscriptions.del(req.params.subscriptionId);
-  res.json(deleted);
+  try{
+    const deleted = await stripe.subscriptions.del(req.params.subscriptionId);
+    res.json(deleted);
+  }catch(err){
+    res.json("");
+  }
 })
 
 app.get('/pause-subscription/:subscriptionId/:resumesAt', async (req,res) =>{
-  const subscription = await stripe.subscriptions.update(
+  try{
+    const subscription = await stripe.subscriptions.update(
     req.params.subscriptionId,
     {
       pause_collection: {
@@ -432,6 +441,10 @@ app.get('/pause-subscription/:subscriptionId/:resumesAt', async (req,res) =>{
     }
   );
   res.json(subscription);
+  }catch(err){
+    res.json("");
+  }
+  
 })
 
 
@@ -1033,7 +1046,8 @@ app.post('/user', (req, res) =>{
   let refCode = postData.refCode;
   let firstMonthFree = postData.firstMonthFree;
   let grantFreeMonthCode = postData.grantFreeMonthCode;
-
+  
+  try{
   if(apiid !== null && username !== null && password !== null && subid !== null){
     bcrypt.hash(password, 10, function(error, hash) {
     connection.query(`INSERT INTO users 
@@ -1051,6 +1065,9 @@ app.post('/user', (req, res) =>{
   }else{
     res.json("");
   }
+}catch(errorD){
+  res.json("");
+}
   }); 
 });
 
