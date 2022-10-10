@@ -11,7 +11,6 @@ import Paper from '@material-ui/core/Paper';
 import {isMobile} from 'react-device-detect';
 
 function AccountForm({userID, setCurrentPage, setFromAccountSettings,executeLogout,getPrint}) {
-
     const handleClick = (title) => {
       if(title==="Change Password"){
         setFromAccountSettings(true);
