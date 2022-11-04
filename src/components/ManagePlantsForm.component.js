@@ -16,7 +16,6 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
     const [importing,setImporting] = React.useState(false);
 	const [selectedToDelete,setSelectedToDelete] = React.useState([]);
 	const [searchText,setSearchText] = React.useState('');
-	let removeList = selectedToDelete;
 	let freeMonthGrantedVisible = getFreeMonthGrantedVisible();
 	const [selectedFile, setSelectedFile] = React.useState('');
 	const [plantList, setPlantList] = React.useState([]);
@@ -87,6 +86,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	} 
 	
 	const toggleDeletePlantSelected = (tag) => {
+		let removeList = selectedToDelete;
 		let foundIndex = -1;
 		let i = 0;
 		for(const val of removeList){
@@ -107,6 +107,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	}
 
 	const getDeletePlantSelected = (tag) => {
+		let removeList = selectedToDelete;
 		for(const val of removeList){
 			if(tag === val.substring(val.length-5)){
 				return true;
@@ -117,6 +118,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 	}
 
 	const getDeleteAllSelected = () => {
+		let removeList = selectedToDelete;
 		if(removeList.length===0){
 			return false;
 		}
@@ -270,7 +272,7 @@ function ManagePlantsForm({getPlants, refreshOuter, userID, setPlants, setNewPla
 					>
 						<TextField onChange={handleSearchFieldChange} value={searchText} label="Search" style={{width:"100px"}}></TextField>
 					<Button style={{marginRight:"10px",marginLeft:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGetReady}>Import File</Button>
-					<RemoveFromAvailablePlantsButton getPlants={getPlants} removeList={removeList} setPlants={setPlants} setRemoveList={setSelectedToDelete}
+					<RemoveFromAvailablePlantsButton getPlants={getPlants} selectedToDelete={selectedToDelete} setPlants={setPlants} setSelectedToDelete={setSelectedToDelete}
 							setImporting={setImporting} setNewPlantID={setNewPlantID} userID={userID} refreshOuter={refreshOuter} reloadPlants={reloadPlants}></RemoveFromAvailablePlantsButton>
 					{showHints ? <div class="tooltip">?
   					          <span class="tooltiptext">Before harvesting, download your flowering plants from your compliance software as an XLSX file. Then import the file here. To remove plants, select the boxes and click delete.</span>

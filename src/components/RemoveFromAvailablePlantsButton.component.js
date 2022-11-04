@@ -63,7 +63,7 @@ class RemoveFromAvailablePlants extends Component{
     let timeLimit = 10000;
 
             let addPlant = new Plant("","","","");
-            for(const val of this.props.removeList){
+            for(const val of this.props.selectedToDelete){
 			        for(const val2 of JSON.parse(this.props.getPlants())){
                 if(val2.tag === val){
                   addPlant = new Plant(val2.tag,val2.strain,this.props.userID,1);
@@ -84,7 +84,7 @@ class RemoveFromAvailablePlants extends Component{
                 }
 
         this.props.reloadPlants([]);
-		    this.props.setRemoveList([]);
+		    this.props.setSelectedToDelete([]);
         this.props.refreshOuter();
     }
     constructor(props) {
