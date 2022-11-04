@@ -1220,10 +1220,11 @@ app.put('/user/resetPassword/:username/:password', (req, res) =>{
   });
 });
 
-app.put('/pl/active', (req, res) =>{
+app.put('/pl/active/:tag/:active', (req, res) =>{
   pool.getConnection((err, connection) => {
+    console.log("Set tag: " + req.params.tag + ", active:  " + req.params.active);
     if(err) throw err;
-    var postData  = req.body;
+    var postData  = req.params;
 
   let tag = postData.tag;
   let active = postData.active;
