@@ -19,14 +19,20 @@ class ImportPlantsButton extends Component{
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(plantItem),
-        }).then(function(response) {
-          return response.json();
         }).then(function(data) { 
+          if(parent.state.locked){
+            setTimeout(null,200);
+          }
+          parent.setState({locked:true});
+          let foundIndex = -1;
           for( var i = 0; i < parent.state.busyAddingPlants.length; i++){ 
             if ( parent.state.busyAddingPlants[i] === plantItem.tag) { 
-                parent.state.busyAddingPlants.splice(i, 1); 
+                foundIndex = i;
             }
           }
+          let bap = parent.state.busyAddingPlants;
+          bap.splice(foundIndex,1);
+          parent.setState({busyAddingPlants:bap,locked:false});
         });
     }
 
@@ -69,12 +75,18 @@ class ImportPlantsButton extends Component{
             }
             for(const val of plantList){
 			    let splitList = val.split(",");
+          let bap = [];
+          for(let i = 0; i < splitList.length; i++){
+            bap.push(splitList[i]);
+            i++;
+          }
+
+          this.setState({busyAddingPlants:bap})
 
 			    for(let i = 0; i < splitList.length; i++){
                     addPlant = new Plant(splitList[i],splitList[i+1],this.props.userID,0);
 
                     const plantItem = getPlantItem(addPlant);
-                    this.state.busyAddingPlants.push(addPlant.tag);
                 let tagExists = false;
 
                 for(const val2 of pList){
@@ -181,7 +193,8 @@ class ImportPlantsButton extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            busyAddingPlants: []
+            busyAddingPlants: [],
+            locked: false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.executeAddPlant = this.executeAddPlant.bind(this);
