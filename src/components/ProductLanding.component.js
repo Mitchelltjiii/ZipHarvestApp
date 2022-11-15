@@ -19,6 +19,7 @@ import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
 import Dictaphone from './Dictaphone.component';
 import BrowserDetection from 'react-browser-detection';
+import MenuItem from '@material-ui/core/MenuItem';
 
 /*
 
@@ -47,6 +48,8 @@ import BrowserDetection from 'react-browser-detection';
 */
 
 function ProductLanding({setCurrentPage,logVisit}) {
+
+  const classes = useStyles();
 
   let lineSpacing = "12px";
   const styles = {
@@ -78,7 +81,14 @@ function ProductLanding({setCurrentPage,logVisit}) {
   const [searchTag, setSearchTag] = React.useState('');
   const [weight, setWeight] = React.useState('');
 	const [unit, setUnit] = React.useState('lbs');
+  const [selectedTag, setSelectedTag] = React.useState('');
+  const [searchStrain, setSearchStrain] = React.useState('All Strains');
+
   let unitList = ["lbs","g"];
+
+  const handleSelectedTag = (event) => {
+		setSelectedTag(event.target.value);
+	  };
 
   const handleWeight = (event) => {
 		setWeight(event.target.value);
