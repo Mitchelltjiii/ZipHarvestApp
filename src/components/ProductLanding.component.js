@@ -18,7 +18,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
 import Dictaphone from './Dictaphone.component';
-import BrowserDetection from 'react-browser-detection';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -48,7 +47,7 @@ import { makeStyles } from '@material-ui/core/styles';
           </div>
 */
 
-function ProductLanding({setCurrentPage,logVisit}) {
+function ProductLanding({setCurrentPage,logVisit,browser}) {
   let tableWidth = 300;
     
     if(isMobile){
@@ -210,6 +209,11 @@ function ProductLanding({setCurrentPage,logVisit}) {
 		return newTagList; 
 	}
 
+  let margB = "200px";
+  if(currUrl.includes("Test1")){
+    margB = "40px";
+  }
+
   let newLink = "";
     if(resent){
       newLink = "new "
@@ -288,88 +292,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
     const handleSearchTag = (event) => {
       setSearchTag(event.target.value);
       };
-
-    const browserHandler = {
-        default: (browser) => <div style={{display:"flex",flexDirection:"row"}}>
-        <TableContainer component={Paper} style={{marginRight:"50px"}}>
-          <Table className={classes.table} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Plant Tag</TableCell>
-                <TableCell align="center">Strain</TableCell>            
-              </TableRow>
-            </TableHead>
-            <TableBody>
-                {availablePlants.map((row) => (
-                <TableRow key={row.tag}>
-                  <TableCell component="th" scope="row">
-                      {row.tag}
-                  </TableCell>
-                  <TableCell align="center">
-                      {row.strain}
-                  </TableCell>
-                </TableRow>
-                ))}
-                </TableBody>
-          </Table>
-          </TableContainer>
-  
-          <div style={{display:"flex",flexDirection:"column"}}>
-          <Grid
-            container
-            direction="row"
-              justify="center"
-            alignItems="center"
-          >
-  
-          <TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width:"180px"}}/>
-          </Grid>
-  
-          <Grid
-            container
-            direction="row"
-              justify="center"
-            alignItems="center"
-          >
-        
-          <Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{width:"180px",marginTop:"15px",direction:"rtl"}}>
-                    {    
-                      tagList.map((name, index) => (
-                    <MenuItem key={index} value={name}>
-                      {name}
-                    </MenuItem>
-                  ))}
-                 </Select>
-          </Grid>
-  
-          <Grid
-            container
-            direction="row"
-              justify="center"
-            alignItems="center"
-          >
-  
-          <TextField id="Weight" value={weight} onChange={handleWeight} style={{width: "100px"}}/>
-  
-          <Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{width:"80px"}}>
-                    {unitList.map((name, index) => (
-                    <MenuItem key={index} value={name}>
-                      {name}
-                    </MenuItem>
-                  ))}
-                 </Select>
-          </Grid>
-  
-          <div style={{display:"flex",flexDirection:"column"}}>
-            <div>Click this button and say "001 is 2.4 pounds"</div>
-            <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
-            voiceCommand={voiceCommand} browser={browser}></Dictaphone>
-          </div>
-          </div>
-      </div>,
-        };
-    
-  
 
   if(isMobile){
     return (
@@ -518,7 +440,7 @@ style={{width:"100%"}}>
                      </Grid>
                      </Grid>
                      :
-          <div style={{width:"70%",marginBottom:"200px"}}>
+          <div style={{width:"70%",marginBottom:margB}}>
                   <div style={{float:"left",backgroundColor:"#444444",width:"60%",height:"95%"}}>
                   <Grid
 				container
@@ -547,9 +469,83 @@ style={{width:"100%"}}>
   }
   {currUrl.includes("Test1")
   ?
-  <BrowserDetection>
-  { browserHandler }
-  </BrowserDetection>
+  <div style={{display:"flex",flexDirection:"row"}}>
+        <TableContainer component={Paper} style={{marginRight:"50px"}}>
+          <Table className={classes.table} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Plant Tag</TableCell>
+                <TableCell align="center">Strain</TableCell>            
+              </TableRow>
+            </TableHead>
+            <TableBody>
+                {availablePlants.map((row) => (
+                <TableRow key={row.tag}>
+                  <TableCell component="th" scope="row">
+                      {row.tag}
+                  </TableCell>
+                  <TableCell align="center">
+                      {row.strain}
+                  </TableCell>
+                </TableRow>
+                ))}
+                </TableBody>
+          </Table>
+          </TableContainer>
+  
+          <div style={{display:"flex",flexDirection:"column"}}>
+          <Grid
+            container
+            direction="row"
+              justify="center"
+            alignItems="center"
+          >
+  
+          <TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width:"180px"}}/>
+          </Grid>
+  
+          <Grid
+            container
+            direction="row"
+              justify="center"
+            alignItems="center"
+          >
+        
+          <Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{width:"180px",marginTop:"15px",direction:"rtl"}}>
+                    {    
+                      tagList.map((name, index) => (
+                    <MenuItem key={index} value={name}>
+                      {name}
+                    </MenuItem>
+                  ))}
+                 </Select>
+          </Grid>
+  
+          <Grid
+            container
+            direction="row"
+              justify="center"
+            alignItems="center"
+          >
+  
+          <TextField id="Weight" value={weight} onChange={handleWeight} style={{width: "100px"}}/>
+  
+          <Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{width:"80px"}}>
+                    {unitList.map((name, index) => (
+                    <MenuItem key={index} value={name}>
+                      {name}
+                    </MenuItem>
+                  ))}
+                 </Select>
+          </Grid>
+  
+          <div style={{display:"flex",flexDirection:"column"}}>
+            <div>Click this button and say "001 is 2.4 pounds"</div>
+            <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
+            voiceCommand={voiceCommand} browser={browser}></Dictaphone>
+          </div>
+          </div>
+      </div>
     :
     null
   }
