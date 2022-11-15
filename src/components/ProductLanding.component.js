@@ -115,7 +115,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
   ap.push(createPlant("1A4200000010000004000002","Biscotti",true));
   ap.push(createPlant("1A4200000010000004000003","Key Lime Pie",true));
 
-  const [availablePlants,setAvailablePlants] = React.useState([]);
+  const [availablePlants,setAvailablePlants] = React.useState(ap);
   let leafImageHeight = "80px";
 
   let tagList = searchTag ? commitSearch(): ["Search For Results"];
@@ -126,6 +126,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
 	}
 
   function searchTagFromSpeech(searchText,searchText2){
+    console.log("Search tag from speech: searchtext1: " + searchText + ", searchtext2: " + searchText2);
 		let fixedSearch = searchText;
 		    while(fixedSearch.includes(" to ")){
 			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf(" to ")) + 2 + fixedSearch.substring(fixedSearch.indexOf(" to ")+4);
@@ -193,6 +194,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
 	}
 
   function commitSearch(){
+    console.log("Commit Search, search tag: " + searchTag);
 		let newTagList = [];
 
 		for (const val of availablePlants) {
@@ -299,7 +301,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
             </TableHead>
             <TableBody>
                 {availablePlants.map((row) => (
-                <TableRow key={row.name}>
+                <TableRow key={row.tag}>
                   <TableCell component="th" scope="row">
                       {row.tag}
                   </TableCell>
@@ -481,7 +483,7 @@ style={{width:"100%"}}>
 </Grid>
       
 </div>
-<div style={{backgroundColor:"#444444", position:"absolute",top:"80px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
+<div style={{backgroundColor:"#444444", position:"absolute",top:"80px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center',flexDirection:"column"}}>
          {accountCreated ? 
          <Grid
          container
