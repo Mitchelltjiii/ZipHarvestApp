@@ -48,6 +48,17 @@ import MenuItem from '@material-ui/core/MenuItem';
 */
 
 function ProductLanding({setCurrentPage,logVisit}) {
+  let tableWidth = 300;
+    
+    if(isMobile){
+      tableWidth = 240;
+    }
+    const useStyles = makeStyles({
+        table: {
+          minWidth: tableWidth,
+          maxWidth: tableWidth
+        },
+      });
 
   const classes = useStyles();
 
