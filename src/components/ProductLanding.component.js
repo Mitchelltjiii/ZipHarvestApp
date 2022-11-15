@@ -9,6 +9,17 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import CreateUserMiniForm from './CreateUserMiniForm.component';
 import zhlogotransparent from '../zhlogotransparent.png';
 import leafImage1 from '../leafImage1.png';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Select from '@material-ui/core/Select';
+import Dictaphone from './Dictaphone.component';
+import BrowserDetection from 'react-browser-detection';
+
 /*
 
         <div style={{backgroundColor:"#e1e1e1", position:"absolute",top:"80px",bottom:"0px",left:"0px",right:"0px",display:'flex',alignItems: 'center',justifyContent: 'center'}}>
@@ -54,11 +65,126 @@ function ProductLanding({setCurrentPage,logVisit}) {
       background: '#FFFFFF',
     },
   };
+
+  function createPlant(tag, strain, active){
+		return {tag, strain, active};
+  }
+
+  
   
   const [accountCreated,setAccountCreated] = React.useState(false);
   const [resent,setResent] = React.useState(false);
   const [newUsername,setNewUsername] = React.useState("");
+  const [searchTag, setSearchTag] = React.useState('');
+  const [weight, setWeight] = React.useState('');
+	const [unit, setUnit] = React.useState('lbs');
+  let unitList = ["lbs","g"];
+
+  const handleWeight = (event) => {
+		setWeight(event.target.value);
+	  };
+
+	const handleUnitSelect = (event) => {
+		setUnit(event.target.value);
+	  };
+
+  let ap = [];
+  ap.push(createPlant("1A4200000010000004000001","OG Kush",true));
+  ap.push(createPlant("1A4200000010000004000002","Biscotti",true));
+  ap.push(createPlant("1A4200000010000004000003","Key Lime Pie",true));
+
+  const [availablePlants,setAvailablePlants] = React.useState([]);
   let leafImageHeight = "80px";
+
+  let tagList = searchTag ? commitSearch(): ["Search For Results"];
+
+  let currSelectedTag = selectedTag;
+	if(tagList.length>0 && selectedTag === ''){
+		currSelectedTag = tagList[0];
+	}
+
+  function searchTagFromSpeech(searchText,searchText2){
+		let fixedSearch = searchText;
+		    while(fixedSearch.includes(" to ")){
+			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf(" to ")) + 2 + fixedSearch.substring(fixedSearch.indexOf(" to ")+4);
+			}
+			while(fixedSearch.includes(" to")){
+			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf(" to")) + 2 + fixedSearch.substring(fixedSearch.indexOf(" to")+3);
+			}
+			while(fixedSearch.includes("to ")){
+			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf("to ")) + 2 + fixedSearch.substring(fixedSearch.indexOf("to ")+3);
+			}
+			while(fixedSearch.includes(" for ")){
+			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf(" for ")) + 4 + fixedSearch.substring(fixedSearch.indexOf(" for ")+5);
+			}
+			while(fixedSearch.includes(" for")){
+			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf(" for")) + 4 + fixedSearch.substring(fixedSearch.indexOf(" for")+4);
+			}
+			while(fixedSearch.includes("for ")){
+			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf("for ")) + 4 + fixedSearch.substring(fixedSearch.indexOf("for ")+4);
+			}
+			while(fixedSearch.includes("one")){
+			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf("one")) + 1 + fixedSearch.substring(fixedSearch.indexOf("one")+3);
+			}
+			while(fixedSearch.includes(" ")){
+			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf(" ")) + fixedSearch.substring(fixedSearch.indexOf(" ")+1);
+			}
+			while(fixedSearch.includes("-")){
+			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf("-")) + fixedSearch.substring(fixedSearch.indexOf("-")+1);
+			}
+			if(searchText2.includes("lb") || searchText2.includes("lbs") || searchText2.includes("pounds")){
+				enterWeightFromSpeech(searchText2.substring(0,searchText2.indexOf(" ")),0);
+			}else{
+				if(searchText2.includes(" ")){
+					enterWeightFromSpeech(searchText2.substring(0,searchText2.indexOf(" ")),1);
+				}else{
+					if(searchText2.includes("g")){
+						enterWeightFromSpeech(searchText2.substring(0,searchText2.indexOf("g")),1);
+					}
+				}
+			}
+		setSearchTag(fixedSearch);
+	}
+
+	function enterWeightFromSpeech(weight,unit){
+		if(!isNaN(weight)){
+			setWeight(weight);
+			if(unit === 0){
+				setUnit('lbs');
+			}else{
+				setUnit('g');
+			}
+		}
+	}
+
+	function nextPlantFromSpeech(){
+	}
+
+	function voiceCommand(text){
+	}
+
+	function fixStrain(strain){
+		if(strain.length>8){
+			strain = strain.substring(0,8);
+		}
+		return strain;
+	}
+
+  function commitSearch(){
+		let newTagList = [];
+
+		for (const val of availablePlants) {
+			if(val.active){
+        if(val.tag.substring(val.tag.length-searchTag.length)===(searchTag)){
+					if((searchStrain === 'All Strains' )|| (searchStrain === val.strain)){
+						newTagList.push(val.tag + " | " + fixStrain(val.strain));
+					}
+				}			
+      }
+		}
+
+		return newTagList; 
+	}
 
   let newLink = "";
     if(resent){
@@ -128,6 +254,97 @@ function ProductLanding({setCurrentPage,logVisit}) {
          }
          return result;
       }
+      let currUrl = "";
+    try{
+      currUrl = window.location.href.toString();
+    }catch(err){
+
+    }
+
+    const handleSearchTag = (event) => {
+      setSearchTag(event.target.value);
+      };
+
+    const browserHandler = {
+        default: (browser) => <div style={{display:"flex",flexDirection:"row"}}>
+        <TableContainer component={Paper} style={{marginRight:"50px"}}>
+          <Table className={classes.table} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Plant Tag</TableCell>
+                <TableCell align="center">Strain</TableCell>            
+              </TableRow>
+            </TableHead>
+            <TableBody>
+                {availablePlants.map((row) => (
+                <TableRow key={row.name}>
+                  <TableCell component="th" scope="row">
+                      {row.tag}
+                  </TableCell>
+                  <TableCell align="center">
+                      {row.strain}
+                  </TableCell>
+                </TableRow>
+                ))}
+                </TableBody>
+          </Table>
+          </TableContainer>
+  
+          <div style={{display:"flex",flexDirection:"column"}}>
+          <Grid
+            container
+            direction="row"
+              justify="center"
+            alignItems="center"
+          >
+  
+          <TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width:"180px"}}/>
+          </Grid>
+  
+          <Grid
+            container
+            direction="row"
+              justify="center"
+            alignItems="center"
+          >
+        
+          <Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{width:"180px",marginTop:"15px",direction:"rtl"}}>
+                    {    
+                      tagList.map((name, index) => (
+                    <MenuItem key={index} value={name}>
+                      {name}
+                    </MenuItem>
+                  ))}
+                 </Select>
+          </Grid>
+  
+          <Grid
+            container
+            direction="row"
+              justify="center"
+            alignItems="center"
+          >
+  
+          <TextField id="Weight" value={weight} onChange={handleWeight} style={{width: "100px"}}/>
+  
+          <Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{width:"80px"}}>
+                    {unitList.map((name, index) => (
+                    <MenuItem key={index} value={name}>
+                      {name}
+                    </MenuItem>
+                  ))}
+                 </Select>
+          </Grid>
+  
+          <div style={{display:"flex",flexDirection:"column"}}>
+            <div>Click this button and say "001 is 2.4 pounds"</div>
+            <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
+            voiceCommand={voiceCommand} browser={browser}></Dictaphone>
+          </div>
+          </div>
+      </div>,
+        };
+    
   
 
   if(isMobile){
@@ -303,6 +520,14 @@ style={{width:"100%"}}>
                   <CreateUserMiniForm setAccountCreated={setAccountCreated} setNewUsername={setNewUsername}></CreateUserMiniForm>
         </div>
               </div>
+  }
+  {currUrl.includes("Test1")
+  ?
+  <BrowserDetection>
+  { browserHandler }
+  </BrowserDetection>
+    :
+    null
   }
 					</div>
       </Grid>
