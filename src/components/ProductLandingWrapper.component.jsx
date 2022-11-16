@@ -4,7 +4,9 @@ import ProductLanding from './ProductLanding.component';
 
 function ProductLandingWrapper({setCurrentPage,logVisit}) {
     let success = false;
-    const browserHandler = <ProductLanding setCurrentPage={setCurrentPage} logVisit={logVisit} browser={"Chromeded"}/>;
+    const browserHandler = {
+        default: (browser) => <div>Browser Handler</div>,
+        };
     try{
         browserHandler = {
             default: (browser) => <ProductLanding setCurrentPage={setCurrentPage} logVisit={logVisit} browser={browser}/>,
@@ -13,13 +15,13 @@ function ProductLandingWrapper({setCurrentPage,logVisit}) {
     }catch(err){
         
     }
-    console.log("Success!");
+    console.log("Success: " + success);
     
   return(
     <div>{success ? <BrowserDetection>
     { browserHandler }
     </BrowserDetection>
-    : null} </div>  
+    :  <ProductLanding setCurrentPage={setCurrentPage} logVisit={logVisit} browser={"Chromeded"}/>} </div>  
     );
 }
 
