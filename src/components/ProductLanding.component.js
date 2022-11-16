@@ -80,11 +80,9 @@ function ProductLanding({setCurrentPage,logVisit}) {
     },
   };
 
-  function createPlant(tag, strain, active){
-		return {tag, strain, active};
+  function createPlant(tag, strain, active, weight, unit){
+		return {tag, strain, active,weight,unit};
   }
-
-  
   
   const [accountCreated,setAccountCreated] = React.useState(false);
   const [resent,setResent] = React.useState(false);
@@ -110,9 +108,9 @@ function ProductLanding({setCurrentPage,logVisit}) {
 	  };
 
   let ap = [];
-  ap.push(createPlant("1A4200000010000004000001","OG Kush",true));
-  ap.push(createPlant("1A4200000010000004000002","Biscotti",true));
-  ap.push(createPlant("1A4200000010000004000003","Key Lime Pie",true));
+  ap.push(createPlant("1A4200000010000004000001","OG Kush",true,0,''));
+  ap.push(createPlant("1A4200000010000004000002","Biscotti",true,0,''));
+  ap.push(createPlant("1A4200000010000004000003","Key Lime Pie",true,0,''));
 
   const [availablePlants,setAvailablePlants] = React.useState(ap);
   let leafImageHeight = "80px";
@@ -224,6 +222,40 @@ function ProductLanding({setCurrentPage,logVisit}) {
   let newLink = "";
     if(resent){
       newLink = "new "
+    }
+
+    const handleNextPlant = () => {
+      nextPlant();
+    }
+
+    function nextPlant(){
+      let newAvailablePlants = [];
+
+      if(isNumeric(weight) && weight !== 0){
+          let plantTag = currSelectedTag;
+          if(plantTag !== ''){
+            plantTag = plantTag.substring(0,plantTag.indexOf(" | "));
+          }          
+  
+          let newPlant = [];
+          console.log("PlantTag: " + plantTag);
+          for(const val of availablePlants){
+            console.log("Val.tag: " + val.tag);
+            if(val.tag === plantTag){
+              newPlant = val;
+              newPlant.weight = weight;
+              newPlant.unit = unit;
+              newPlant.active = false;
+              newAvailablePlants.push(val);
+            }else{
+              newAvailablePlants.push(val);
+            }
+          }
+      }
+        setAvailablePlants(newAvailablePlants);
+        setSearchTag('');
+        setWeight('');
+        setSelectedTag('');
     }
 
     const handleGoToFloraSolNewTab = () => {
@@ -547,6 +579,7 @@ style={{width:"100%"}}>
             voiceCommand={voiceCommand}></Dictaphone>
           </div>
           </div>
+          <Button style={{marginTop:"10px"}} variant="outlined" onClick={handleNextPlant}>Next Plant</Button>   
       </div>
     :
     null
