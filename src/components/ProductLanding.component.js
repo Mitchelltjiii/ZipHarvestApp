@@ -112,7 +112,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
   ap.push(createPlant("1A4200000010000004000002","Biscotti",true,0,''));
   ap.push(createPlant("1A4200000010000004000003","Key Lime Pie",true,0,''));
 
-  const [availablePlants,setAvailablePlants] = React.useState(ap);
+  const [plants,setPlants] = React.useState(ap);
   let leafImageHeight = "80px";
 
   let tagList = searchTag ? commitSearch(): ["Search For Results"];
@@ -194,7 +194,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
     console.log("Commit Search, search tag: " + searchTag);
 		let newTagList = [];
 
-		for (const val of availablePlants) {
+		for (const val of plants) {
 			if(val.active){
         if(val.tag.substring(val.tag.length-searchTag.length)===(searchTag)){
 					if((searchStrain === 'All Strains' )|| (searchStrain === val.strain)){
@@ -235,7 +235,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
     }
 
     function nextPlant(){
-      let newAvailablePlants = [];
+      let newPlants = [];
 
       if(isNumeric(weight) && weight !== '0'){
           let plantTag = currSelectedTag;
@@ -245,20 +245,20 @@ function ProductLanding({setCurrentPage,logVisit}) {
   
           let newPlant = [];
           console.log("PlantTag: " + plantTag);
-          for(const val of availablePlants){
+          for(const val of plants){
             console.log("Val.tag: " + val.tag);
             if(val.tag === plantTag){
               newPlant = val;
               newPlant.weight = parseFloat(weight);
               newPlant.unit = unit;
               newPlant.active = false;
-              newAvailablePlants.push(newPlant);
+              newPlants.push(newPlant);
             }else{
-              newAvailablePlants.push(val);
+              newPlants.push(val);
             }
           }
       }
-        setAvailablePlants(newAvailablePlants);
+        setPlants(newPlants);
         setSearchTag('');
         setWeight('');
         setSelectedTag('');
@@ -333,13 +333,14 @@ function ProductLanding({setCurrentPage,logVisit}) {
       setSearchTag(event.target.value);
       };
 
-    let availablePlantsCount = 0;
-    let harvestedPlantsCount = 0;
+    let availablePlants = [];
+    let harvestedPlants = [];
+
     for(const val of availablePlants){
       if(val.active){
-        availablePlantsCount++;
+        availablePlants.push(val);
       }else{
-        harvestedPlantsCount++;
+        harvestedPlants.push(val);
       }
     }
 
@@ -521,7 +522,7 @@ style={{width:"100%"}}>
   ?
   <div style={{display:"flex",flexDirection:"row"}}>
       <div style={{display:"flex",flexDirection:"column"}}>
-      {availablePlantsCount>0 ?
+      {availablePlants.length>0 ?
         <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -532,8 +533,7 @@ style={{width:"100%"}}>
         </TableHead>
         <TableBody>
             {availablePlants.map((row) => (
-              <div style={{width:"100%"}}>
-              {row.active ? <TableRow key={row.tag}>
+              <TableRow key={row.tag}>
               <TableCell>
                   {row.tag}
               </TableCell>
@@ -541,16 +541,14 @@ style={{width:"100%"}}>
                   {row.strain}
               </TableCell>
             </TableRow>
-              : null}
-              </div>
             ))}
             </TableBody>
         </Table>
         </TableContainer>
       :null}
 
-      {harvestedPlantsCount>0 ?
-        <TableContainer component={Paper}>
+      {harvestedPlants.length>0 ?
+        <TableContainer component={Paper} style={{marginTop:"5px"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -561,9 +559,8 @@ style={{width:"100%"}}>
           </TableRow>
         </TableHead>
         <TableBody>
-            {availablePlants.map((row) => (
-              <div style={{width:"100%"}}>
-              {!row.active ? <TableRow key={row.tag}>
+            {harvestedPlants.map((row) => (
+              <TableRow key={row.tag}>
               <TableCell>
                   {row.tag}
               </TableCell>
@@ -577,8 +574,6 @@ style={{width:"100%"}}>
                   {row.unit}
               </TableCell>
             </TableRow>
-              : null}
-              </div>
             ))}
             </TableBody>
         </Table>
@@ -586,8 +581,8 @@ style={{width:"100%"}}>
       :null}
           </div>
   
-          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#FFFFFF",borderRadius: '3px',width:"300px"}}>
-          <div style={{width:"100%",fontSize:"16px",marginTop:"5px",marginBottom:"5px",textAlign:"center"}}>Harvest Now</div>
+          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#FFFFFF",borderRadius: '3px',width:"300px",marginLeft:"100px",float:"right"}}>
+          <div style={{width:"100%",fontSize:"18px",marginTop:"5px",marginBottom:"5px",textAlign:"center"}}>Harvest Now</div>
           <Grid
             container
             direction="row"
@@ -634,7 +629,7 @@ style={{width:"100%"}}>
           </Grid>
   
           <div style={{display:"flex",flexDirection:"column"}}>
-            <div>Click this button and say "001 is 2.4 pounds"</div>
+            <div style={{textAlign:"center",fontSize:"15px"}}>Click and say "001 is 2.4 pounds"</div>
             <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
             voiceCommand={voiceCommand}></Dictaphone>
           </div>
