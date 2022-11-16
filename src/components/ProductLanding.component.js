@@ -512,7 +512,7 @@ style={{width:"100%"}}>
   <div style={{display:"flex",flexDirection:"column",width:"70%"}}>
     <div style={{float:"left",fontSize:"38px",fontWeight:"bold",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif",marginBottom:"10px"}}>Try it now!</div>
     <div style={{width:"100%"}}>
-          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',width:"50%",marginLeft:"100px",float:"left"}}>
+          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',width:"40%",marginLeft:"100px",float:"left"}}>
           <div style={{width:"100%",fontSize:"20px",marginTop:"10px",marginBottom:"5px",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",}}>Harvest Now</div>
           <Grid
             container
