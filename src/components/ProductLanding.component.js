@@ -464,7 +464,7 @@ style={{width:"100%"}}>
           </Grid>
         </Grid>
                   </div>
-                  <div style={{float:"right",backgroundColor:"#e4e4e4",width:"30%",height:"95%",borderRadius:"5px"}}>
+                  <div style={{float:"right",backgroundColor:"#e4e4e4",width:"30%",height:"95%",borderRadius:"5px",paddingBottom:"20px"}}>
                   <CreateUserMiniForm setAccountCreated={setAccountCreated} setNewUsername={setNewUsername}></CreateUserMiniForm>
         </div>
               </div>
