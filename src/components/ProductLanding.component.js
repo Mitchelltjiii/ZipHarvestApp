@@ -109,8 +109,8 @@ function ProductLanding({setCurrentPage,logVisit}) {
 
   let ap = [];
   ap.push(createPlant("1A4200000010000004000001","OG Kush",true,0,''));
-  ap.push(createPlant("1A4200000010000004000002","Biscotti",true,0,''));
-  ap.push(createPlant("1A4200000010000004000003","Key Lime Pie",true,0,''));
+  ap.push(createPlant("1A4200000010000004000002","OG Kush",true,0,''));
+  ap.push(createPlant("1A4200000010000004000003","OG Kush",true,0,''));
 
   const [plants,setPlants] = React.useState(ap);
   let leafImageHeight = "80px";
@@ -333,17 +333,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
       setSearchTag(event.target.value);
       };
 
-    let availablePlants = [];
-    let harvestedPlants = [];
-
-    for(const val of plants){
-      if(val.active){
-        availablePlants.push(val);
-      }else{
-        harvestedPlants.push(val);
-      }
-    }
-
   if(isMobile){
     return (
       <div id="product-display-mobile" style={{width:"100%",backgroundColor:"#444444"}}>
@@ -522,44 +511,18 @@ style={{width:"100%"}}>
   ?
   <div style={{display:"flex",flexDirection:"row"}}>
       <div style={{display:"flex",flexDirection:"column"}}>
-      {availablePlants.length>0 ?
-        <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Available Plant Tag</TableCell>
-            <TableCell>Strain</TableCell>            
-          </TableRow>
-        </TableHead>
-        <TableBody>
-            {availablePlants.map((row) => (
-              <TableRow key={row.tag}>
-              <TableCell>
-                  {row.tag}
-              </TableCell>
-              <TableCell>
-                  {row.strain}
-              </TableCell>
-            </TableRow>
-            ))}
-            </TableBody>
-        </Table>
-        </TableContainer>
-      :null}
-
-      {harvestedPlants.length>0 ?
         <TableContainer component={Paper} style={{marginTop:"5px"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Harvested Plant Tag</TableCell>
+            <TableCell>Plant Tag</TableCell>
             <TableCell>Strain</TableCell>   
             <TableCell>Weight</TableCell>            
             <TableCell>Unit</TableCell>            
           </TableRow>
         </TableHead>
         <TableBody>
-            {harvestedPlants.map((row) => (
+            {plants.map((row) => (
               <TableRow key={row.tag}>
               <TableCell>
                   {row.tag}
@@ -578,11 +541,10 @@ style={{width:"100%"}}>
             </TableBody>
         </Table>
         </TableContainer>
-      :null}
           </div>
   
           <div style={{display:"flex",flexDirection:"column",backgroundColor:"#FFFFFF",borderRadius: '3px',width:"300px",marginLeft:"100px",float:"right"}}>
-          <div style={{width:"100%",fontSize:"18px",marginTop:"5px",marginBottom:"5px",textAlign:"center"}}>Harvest Now</div>
+          <div style={{width:"100%",fontSize:"20px",marginTop:"10px",marginBottom:"5px",textAlign:"center"}}>Harvest Now</div>
           <Grid
             container
             direction="row"
@@ -633,7 +595,7 @@ style={{width:"100%"}}>
             <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
             voiceCommand={voiceCommand}></Dictaphone>
           </div>
-          <Button style={{marginTop:"10px"}} onClick={handleNextPlant}>Next Plant</Button>   
+          <Button style={{marginTop:"10px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
           </div>
       </div>
     :
