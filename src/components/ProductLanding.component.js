@@ -522,16 +522,12 @@ style={{width:"100%"}}>
   <div style={{display:"flex",flexDirection:"row"}}>
       <div style={{display:"flex",flexDirection:"column"}}>
       {availablePlantsCount>0 ?
-      <div style={{display:"flex",flexDirection:"column"}}>
-        <div style={{float:"left"}}>
-          Available Plants
-        </div>
-        <TableContainer component={Paper} style={{marginRight:"50px"}}>
+        <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Plant Tag</TableCell>
-            <TableCell align="right">Strain</TableCell>            
+            <TableCell>Available Plant Tag</TableCell>
+            <TableCell>Strain</TableCell>            
           </TableRow>
         </TableHead>
         <TableBody>
@@ -541,7 +537,7 @@ style={{width:"100%"}}>
               <TableCell>
                   {row.tag}
               </TableCell>
-              <TableCell align="right">
+              <TableCell>
                   {row.strain}
               </TableCell>
             </TableRow>
@@ -551,38 +547,33 @@ style={{width:"100%"}}>
             </TableBody>
         </Table>
         </TableContainer>
-      </div>
       :null}
 
       {harvestedPlantsCount>0 ?
-      <div style={{display:"flex",flexDirection:"column"}}>
-        <div style={{float:"left"}}>
-          Harvested Plants
-        </div>
-        <TableContainer component={Paper} style={{marginRight:"50px"}}>
+        <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="left">Plant Tag</TableCell>
-            <TableCell align="left">Strain</TableCell>   
-            <TableCell align="left">Weight</TableCell>            
-            <TableCell align="right">Unit</TableCell>            
+            <TableCell>Harvested Plant Tag</TableCell>
+            <TableCell>Strain</TableCell>   
+            <TableCell>Weight</TableCell>            
+            <TableCell>Unit</TableCell>            
           </TableRow>
         </TableHead>
         <TableBody>
             {availablePlants.map((row) => (
               <div style={{width:"100%"}}>
               {!row.active ? <TableRow key={row.tag}>
-              <TableCell align="left">
+              <TableCell>
                   {row.tag}
               </TableCell>
-              <TableCell align="left">
+              <TableCell>
                   {row.strain}
               </TableCell>
-              <TableCell align="left">
+              <TableCell>
                   {row.weight}
               </TableCell>
-              <TableCell align="right">
+              <TableCell>
                   {row.unit}
               </TableCell>
             </TableRow>
@@ -592,12 +583,11 @@ style={{width:"100%"}}>
             </TableBody>
         </Table>
         </TableContainer>
-      </div>
       :null}
           </div>
   
-          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#FFFFFF",borderRadius: '5px',width:"300px"}}>
-          <div style={{width:"100%",fontWeight:"bold"}}>Harvest Now</div>
+          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#FFFFFF",borderRadius: '3px',width:"300px"}}>
+          <div style={{width:"100%",fontSize:"16px",marginTop:"5px",marginBottom:"5px",textAlign:"center"}}>Harvest Now</div>
           <Grid
             container
             direction="row"
