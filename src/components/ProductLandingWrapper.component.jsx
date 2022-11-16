@@ -4,13 +4,14 @@ import ProductLanding from './ProductLanding.component';
 
 function ProductLandingWrapper({setCurrentPage,logVisit}) {
     const browserHandler = {
-        default: (browser) => <ProductLanding setCurrentPage={setCurrentPage} logVisit={logVisit} browser={browser}></ProductLanding>,
+        default: (browser) => <ProductLanding setCurrentPage={setCurrentPage} logVisit={logVisit} browser={browser}/>,
         };
     
   return(
-    <BrowserDetection>
+    <div><BrowserDetection>
     { browserHandler }
-    </BrowserDetection>);
+    </BrowserDetection></div>  
+    );
 }
 
 export default ProductLandingWrapper;
