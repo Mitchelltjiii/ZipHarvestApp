@@ -336,7 +336,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
     let availablePlants = [];
     let harvestedPlants = [];
 
-    for(const val of availablePlants){
+    for(const val of plants){
       if(val.active){
         availablePlants.push(val);
       }else{
