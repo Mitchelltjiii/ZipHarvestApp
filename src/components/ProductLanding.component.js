@@ -333,6 +333,16 @@ function ProductLanding({setCurrentPage,logVisit}) {
       setSearchTag(event.target.value);
       };
 
+    let availablePlantsCount = 0;
+    let harvestedPlantsCount = 0;
+    for(const val of availablePlants){
+      if(val.active){
+        availablePlantsCount++;
+      }else{
+        harvestedPlantsCount++;
+      }
+    }
+
   if(isMobile){
     return (
       <div id="product-display-mobile" style={{width:"100%",backgroundColor:"#444444"}}>
@@ -510,33 +520,84 @@ style={{width:"100%"}}>
   {currUrl.includes("Test1")
   ?
   <div style={{display:"flex",flexDirection:"row"}}>
+      <div style={{display:"flex",flexDirection:"column"}}>
+      {availablePlantsCount>0 ?
+      <div style={{display:"flex",flexDirection:"column"}}>
+        <div style={{float:"left"}}>
+          Available Plants
+        </div>
         <TableContainer component={Paper} style={{marginRight:"50px"}}>
-          <Table className={classes.table} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Plant Tag</TableCell>
-                <TableCell align="center">Strain</TableCell>            
-              </TableRow>
-            </TableHead>
-            <TableBody>
-                {availablePlants.map((row) => (
-                  <div>
-                  {row.active ? <TableRow key={row.tag}>
-                  <TableCell component="th" scope="row">
-                      {row.tag}
-                  </TableCell>
-                  <TableCell align="center">
-                      {row.strain}
-                  </TableCell>
-                </TableRow>
-                  : null}
-                  </div>
-                ))}
-                </TableBody>
-          </Table>
-          </TableContainer>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Plant Tag</TableCell>
+            <TableCell align="right">Strain</TableCell>            
+          </TableRow>
+        </TableHead>
+        <TableBody>
+            {availablePlants.map((row) => (
+              <div style={{width:"100%"}}>
+              {row.active ? <TableRow key={row.tag}>
+              <TableCell>
+                  {row.tag}
+              </TableCell>
+              <TableCell align="right">
+                  {row.strain}
+              </TableCell>
+            </TableRow>
+              : null}
+              </div>
+            ))}
+            </TableBody>
+        </Table>
+        </TableContainer>
+      </div>
+      :null}
+
+      {harvestedPlantsCount>0 ?
+      <div style={{display:"flex",flexDirection:"column"}}>
+        <div style={{float:"left"}}>
+          Harvested Plants
+        </div>
+        <TableContainer component={Paper} style={{marginRight:"50px"}}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell align="left">Plant Tag</TableCell>
+            <TableCell align="left">Strain</TableCell>   
+            <TableCell align="left">Weight</TableCell>            
+            <TableCell align="right">Unit</TableCell>            
+          </TableRow>
+        </TableHead>
+        <TableBody>
+            {availablePlants.map((row) => (
+              <div style={{width:"100%"}}>
+              {!row.active ? <TableRow key={row.tag}>
+              <TableCell align="left">
+                  {row.tag}
+              </TableCell>
+              <TableCell align="left">
+                  {row.strain}
+              </TableCell>
+              <TableCell align="left">
+                  {row.weight}
+              </TableCell>
+              <TableCell align="right">
+                  {row.unit}
+              </TableCell>
+            </TableRow>
+              : null}
+              </div>
+            ))}
+            </TableBody>
+        </Table>
+        </TableContainer>
+      </div>
+      :null}
+          </div>
   
-          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#FFFFFF"}}>
+          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#FFFFFF",borderRadius: '5px',width:"300px"}}>
+          <div style={{width:"100%",fontWeight:"bold"}}>Harvest Now</div>
           <Grid
             container
             direction="row"
