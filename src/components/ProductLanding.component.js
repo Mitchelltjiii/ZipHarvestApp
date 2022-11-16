@@ -252,7 +252,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
               newPlant.weight = parseFloat(weight);
               newPlant.unit = unit;
               newPlant.active = false;
-              newAvailablePlants.push(val);
+              newAvailablePlants.push(newPlant);
             }else{
               newAvailablePlants.push(val);
             }
@@ -533,7 +533,7 @@ style={{width:"100%"}}>
           </Table>
           </TableContainer>
   
-          <div style={{display:"flex",flexDirection:"column"}}>
+          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#FFFFFF"}}>
           <Grid
             container
             direction="row"
@@ -584,8 +584,8 @@ style={{width:"100%"}}>
             <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
             voiceCommand={voiceCommand}></Dictaphone>
           </div>
+          <Button style={{marginTop:"10px"}} onClick={handleNextPlant}>Next Plant</Button>   
           </div>
-          <Button style={{marginTop:"10px"}} variant="outlined" onClick={handleNextPlant}>Next Plant</Button>   
       </div>
     :
     null
