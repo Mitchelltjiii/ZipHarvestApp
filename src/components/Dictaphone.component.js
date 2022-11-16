@@ -1,16 +1,17 @@
 import React from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import VoiceButton from './VoiceButton.component';
+import { browserName, browserVersion } from "react-device-detect";
 
 
-const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpeech,browser}) => {
+const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpeech}) => {
 
     const commands = [
         {
             command: "search *",
             callback: (searchText) => {
               searchTagFromSpeech(searchText,"");
-              if(browser==="safari"){
+              if(browserName==="Safari"){
                 SpeechRecognition.stopListening();
               }
             },
@@ -19,7 +20,7 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
             command: "* is *",
             callback: (searchText,searchText2) => {
               searchTagFromSpeech(searchText,searchText2);
-              if(browser==="safari"){
+              if(browserName==="Safari"){
                 SpeechRecognition.stopListening();
               }
             },
@@ -28,7 +29,7 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
             command: "Certs *",
             callback: (searchText) => {
               searchTagFromSpeech(searchText,"");
-              if(browser==="safari"){
+              if(browserName==="Safari"){
                 SpeechRecognition.stopListening();
               }
             },
@@ -37,7 +38,7 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
             command: "Easter *",
             callback: (searchText) => {
               searchTagFromSpeech(searchText,"");
-              if(browser==="safari"){
+              if(browserName==="Safari"){
                 SpeechRecognition.stopListening();
               }
             },
@@ -46,7 +47,7 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
               command: "weight *",
               callback: (weight) => {
                 enterWeightFromSpeech(weight,-1);
-                if(browser==="safari"){
+                if(browserName==="Safari"){
                   SpeechRecognition.stopListening();
                 }
               },
@@ -55,7 +56,7 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
               command: "wait *",
               callback: (weight) => {
                 enterWeightFromSpeech(weight,-1);
-                if(browser==="safari"){
+                if(browserName==="Safari"){
                   SpeechRecognition.stopListening();
                 }
               },
@@ -64,7 +65,7 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
               command: "* lb",
               callback: (weight) => {
                 enterWeightFromSpeech(weight,0);
-                if(browser==="safari"){
+                if(browserName==="Safari"){
                   SpeechRecognition.stopListening();
                 }
               },
@@ -73,7 +74,7 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
               command: "* G",
               callback: (weight) => {
                 enterWeightFromSpeech(weight,1);
-                if(browser==="safari"){
+                if(browserName==="Safari"){
                   SpeechRecognition.stopListening();
                 }
               },
@@ -82,7 +83,7 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
             command: "* g",
             callback: (weight) => {
               enterWeightFromSpeech(weight,1);
-              if(browser==="safari"){
+              if(browserName==="Safari"){
                 SpeechRecognition.stopListening();
               }
             },
@@ -91,7 +92,7 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
               command: "Next *",
               callback: () => {
                 nextPlantFromSpeech();
-                if(browser==="safari"){
+                if(browserName==="Safari"){
                   SpeechRecognition.stopListening();
                 }
               },
@@ -104,11 +105,11 @@ const Dictaphone = ({searchTagFromSpeech,enterWeightFromSpeech,nextPlantFromSpee
   } = useSpeechRecognition({commands});
 
   if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
+    return <span>Name doesn't support speech recognition.</span>;
   }
 
   function startListeningFromVoiceButton(){
-    if(browser==="safari"){
+    if(browserName==="Safari"){
       SpeechRecognition.stopListening();
     }
     SpeechRecognition.startListening();

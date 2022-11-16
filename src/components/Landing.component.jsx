@@ -10,8 +10,6 @@ import ManageDryRoomsForm from './ManageDryRoomsForm.component';
 import ChangeSubscriptionForm from './ChangeSubscriptionForm.component';
 import TutorialForm from './TutorialForm.component';
 import PrintPage from './PrintPage.component';
-import BrowserDetection from 'react-browser-detection';
-
 
 function Landing({currentPage, getPlants, setPlants, getHarvestRecords, setHarvestRecords, getHarvestBatches, 
 	setHarvestBatches, resetHarvestBatches, currentHarvest,setNewHBID, refreshOuter,
@@ -24,15 +22,6 @@ setOffer,setNewUsername,getOutdoorOffer}){
 	let fromAccountSettings = true;
 
 	const [finishStatus, setfinishStatus] = useState(false);
-
-	const browserHandler = {
-		default: (browser) => <HarvestForm getHarvestBatches={getHarvestBatches} setHarvestBatches={setHarvestBatches} getPlants={getPlants} setPlants={setPlants} getHarvestRecords={getHarvestRecords} setHarvestRecords={setHarvestRecords} 
-		resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} refreshOuter={refreshOuter} 
-		setNewHarvestRecordID={setNewHarvestRecordID} setNewPlantID={setNewPlantID} userID={userID} reloadPlants={reloadPlants} reloadPlantsAndHarvestRecords={reloadPlantsAndHarvestRecords}
-		reloadHarvestBatches={reloadHarvestBatches} reloadHarvestRecords={reloadHarvestRecords} getTutorials={getTutorials} setTutorials={setTutorials} showHints={showHints}
-		setCurrentPage={setCurrentPage} getFreeTrial={getFreeTrial} getReferalLink={getReferalLink} getGrantFreeMonthCode={getGrantFreeMonthCode} setOffer={setOffer}
-		executeLogout={executeLogout} setNewUsername={setNewUsername} getOutdoorOffer={getOutdoorOffer} browser={browser}/>,
-	  };
 
 	const onBackButtonEvent = (e) => {
 		e.preventDefault();
@@ -59,9 +48,12 @@ setOffer,setNewUsername,getOutdoorOffer}){
     return(
         <div>
 			{currentPage === 'harvest-form' ? (
-				<BrowserDetection>
-				{ browserHandler }
-			  </BrowserDetection>
+				<HarvestForm getHarvestBatches={getHarvestBatches} setHarvestBatches={setHarvestBatches} getPlants={getPlants} setPlants={setPlants} getHarvestRecords={getHarvestRecords} setHarvestRecords={setHarvestRecords} 
+				resetHarvestBatches={resetHarvestBatches} currentHarvest={currentHarvest} setNewHBID={setNewHBID} refreshOuter={refreshOuter} 
+				setNewHarvestRecordID={setNewHarvestRecordID} setNewPlantID={setNewPlantID} userID={userID} reloadPlants={reloadPlants} reloadPlantsAndHarvestRecords={reloadPlantsAndHarvestRecords}
+				reloadHarvestBatches={reloadHarvestBatches} reloadHarvestRecords={reloadHarvestRecords} getTutorials={getTutorials} setTutorials={setTutorials} showHints={showHints}
+				setCurrentPage={setCurrentPage} getFreeTrial={getFreeTrial} getReferalLink={getReferalLink} getGrantFreeMonthCode={getGrantFreeMonthCode} setOffer={setOffer}
+				executeLogout={executeLogout} setNewUsername={setNewUsername} getOutdoorOffer={getOutdoorOffer}/>
 				) : currentPage === 'harvest-batches-form' ? (
 				<HarvestBatchesForm getHarvestBatches={getHarvestBatches} getHarvestRecords={getHarvestRecords} getPlants={getPlants} userID={userID} reloadExportRecords={reloadExportRecords} 
 				getUniqueIDCount={getUniqueIDCount} getDryRooms={getDryRooms} getPossiblePlantCount={getPossiblePlantCount} getFreeTrial={getFreeTrial}/>

@@ -47,10 +47,9 @@ import { makeStyles } from '@material-ui/core/styles';
           </div>
 */
 
-function ProductLanding({setCurrentPage,logVisit,browser}) {
+function ProductLanding({setCurrentPage,logVisit}) {
   let tableWidth = 300;
     
-  console.log("Browser: " + browser);
     if(isMobile){
       tableWidth = 240;
     }
@@ -543,7 +542,7 @@ style={{width:"100%"}}>
           <div style={{display:"flex",flexDirection:"column"}}>
             <div>Click this button and say "001 is 2.4 pounds"</div>
             <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
-            voiceCommand={voiceCommand} browser={browser}></Dictaphone>
+            voiceCommand={voiceCommand}></Dictaphone>
           </div>
           </div>
       </div>

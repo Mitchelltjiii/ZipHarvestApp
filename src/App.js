@@ -10,7 +10,7 @@ import ResetPasswordForm from './components/ResetPasswordForm.component';
 import FindUserForm from './components/FindUserForm.component'
 import LoginHeader from "./components/LoginHeader.component";
 import Grid from '@material-ui/core/Grid';
-import ProductLandingWrapper from './components/ProductLandingWrapper.component'
+import ProductLanding from './components/ProductLanding.component'
 import {isMobile} from 'react-device-detect';
 
 export default class App extends React.Component {
@@ -968,7 +968,7 @@ export default class App extends React.Component {
         showForm = <LogIn attemptLogin={this.attemptLogin} setCurrentPage={this.setCurrentPage} logInFailed={this.state.logInFailed}></LogIn>;
         loginForm = true;
       }else{
-        showForm = <ProductLandingWrapper setCurrentPage={this.setCurrentPage} logVisit={this.logVisit}></ProductLandingWrapper>
+        showForm = <ProductLanding setCurrentPage={this.setCurrentPage} logVisit={this.logVisit}></ProductLanding>
         landingForm = true;
       }
       if(!loginForm && !landingForm){
