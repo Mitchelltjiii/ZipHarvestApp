@@ -209,6 +209,13 @@ function ProductLanding({setCurrentPage,logVisit}) {
 		return newTagList; 
 	}
 
+  let currUrl = "";
+    try{
+      currUrl = window.location.href.toString();
+    }catch(err){
+
+    }
+
   let margB = "200px";
   if(currUrl.includes("Test1")){
     margB = "40px";
@@ -282,13 +289,8 @@ function ProductLanding({setCurrentPage,logVisit}) {
          }
          return result;
       }
-      let currUrl = "";
-    try{
-      currUrl = window.location.href.toString();
-    }catch(err){
 
-    }
-
+    console.log("Curr Url: " + currUrl);
     const handleSearchTag = (event) => {
       setSearchTag(event.target.value);
       };
