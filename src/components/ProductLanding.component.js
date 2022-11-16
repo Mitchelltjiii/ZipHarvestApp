@@ -520,7 +520,8 @@ style={{width:"100%"}}>
             </TableHead>
             <TableBody>
                 {availablePlants.map((row) => (
-                <TableRow key={row.tag}>
+                  <div>
+                  {row.active ? <TableRow key={row.tag}>
                   <TableCell component="th" scope="row">
                       {row.tag}
                   </TableCell>
@@ -528,6 +529,8 @@ style={{width:"100%"}}>
                       {row.strain}
                   </TableCell>
                 </TableRow>
+                  : null}
+                  </div>
                 ))}
                 </TableBody>
           </Table>
