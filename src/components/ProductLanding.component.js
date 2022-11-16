@@ -509,11 +509,11 @@ style={{width:"100%"}}>
   }
   {currUrl.includes("Test1")
   ?
-  <div style={{display:"flex",flexDirection:"column"}}>
+  <div style={{display:"flex",flexDirection:"column",width:"70%"}}>
     <div style={{float:"left",fontSize:"38px",fontWeight:"bold",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif",marginBottom:"10px"}}>Try it now!</div>
-    <div style={{display:"flex",flexDirection:"row"}}>
+    <div style={{width:"100%"}}>
           <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',width:"50%",marginLeft:"100px",float:"left"}}>
-          <div style={{width:"100%",fontSize:"20px",marginTop:"10px",marginBottom:"5px",textAlign:"center"}}>Harvest Now</div>
+          <div style={{width:"100%",fontSize:"20px",marginTop:"10px",marginBottom:"5px",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",}}>Harvest Now</div>
           <Grid
             container
             direction="row"
@@ -568,7 +568,7 @@ style={{width:"100%"}}>
           </div>
           <Button style={{marginTop:"10px",marginBottom:"10px",marginRight:"10px",marginLeft:"10px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
           </div>
-          <TableContainer component={Paper} style={{marginTop:"5px",float:"right",width:"30%",backgroundColor:"#e4e4e4"}}>
+          <TableContainer component={Paper} style={{marginTop:"5px",float:"right",width:"40%",backgroundColor:"#e4e4e4"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
