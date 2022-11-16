@@ -510,40 +510,7 @@ style={{width:"100%"}}>
   {currUrl.includes("Test1")
   ?
   <div style={{display:"flex",flexDirection:"row"}}>
-      <div style={{display:"flex",flexDirection:"column"}}>
-        <TableContainer component={Paper} style={{marginTop:"5px"}}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Plant Tag</TableCell>
-            <TableCell>Strain</TableCell>   
-            <TableCell>Weight</TableCell>            
-            <TableCell>Unit</TableCell>            
-          </TableRow>
-        </TableHead>
-        <TableBody>
-            {plants.map((row) => (
-              <TableRow key={row.tag}>
-              <TableCell>
-                  {row.tag}
-              </TableCell>
-              <TableCell>
-                  {row.strain}
-              </TableCell>
-              <TableCell>
-                  {row.weight}
-              </TableCell>
-              <TableCell>
-                  {row.unit}
-              </TableCell>
-            </TableRow>
-            ))}
-            </TableBody>
-        </Table>
-        </TableContainer>
-          </div>
-  
-          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#FFFFFF",borderRadius: '3px',width:"300px",marginLeft:"100px",float:"right"}}>
+          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#FFFFFF",borderRadius: '3px',width:"450px",marginLeft:"100px",float:"left"}}>
           <div style={{width:"100%",fontSize:"20px",marginTop:"10px",marginBottom:"5px",textAlign:"center"}}>Harvest Now</div>
           <Grid
             container
@@ -592,11 +559,45 @@ style={{width:"100%"}}>
   
           <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{textAlign:"center",fontSize:"15px"}}>Click and say "001 is 2.4 pounds"</div>
+            <div style={{marginRight:"10px",marginLeft:"10px"}}>
             <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
             voiceCommand={voiceCommand}></Dictaphone>
+            </div>
           </div>
-          <Button style={{marginTop:"10px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
+          <Button style={{marginTop:"10px",marginBottom:"10px",marginRight:"10px",marginLeft:"10px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
           </div>
+          <TableContainer component={Paper} style={{marginTop:"5px",float:"right"}}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Plant Tag</TableCell>
+            <TableCell>Strain</TableCell>   
+            <TableCell>Weight</TableCell>            
+            <TableCell>Unit</TableCell>            
+          </TableRow>
+        </TableHead>
+        <TableBody>
+            {plants.map((row) => (
+              <TableRow key={row.tag}>
+              <TableCell>
+                  {row.tag}
+              </TableCell>
+              <TableCell style={{whiteSpace:"nowrap"}}>
+                  {row.strain}
+              </TableCell>
+              <TableCell>
+                  {row.weight!==0 ?
+                  row.weight
+                  : null}
+              </TableCell>
+              <TableCell>
+                  {row.unit}
+              </TableCell>
+            </TableRow>
+            ))}
+            </TableBody>
+        </Table>
+        </TableContainer>
       </div>
     :
     null
