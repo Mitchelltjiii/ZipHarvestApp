@@ -333,6 +333,9 @@ function ProductLanding({setCurrentPage,logVisit}) {
       setSearchTag(event.target.value);
       };
 
+      //    <div style={{float:"left",fontSize:"38px",fontWeight:"bold",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif",marginBottom:"10px"}}>Try it now!</div>
+
+
   if(isMobile){
     return (
       <div id="product-display-mobile" style={{width:"100%",backgroundColor:"#444444"}}>
@@ -510,10 +513,26 @@ style={{width:"100%"}}>
   {currUrl.includes("Test1")
   ?
   <div style={{display:"flex",flexDirection:"column",width:"70%"}}>
-    <div style={{float:"left",fontSize:"38px",fontWeight:"bold",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif",marginBottom:"10px"}}>Try it now!</div>
-    <div style={{width:"100%"}}>
-          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',width:"40%",marginLeft:"100px",float:"left"}}>
-          <div style={{width:"100%",fontSize:"20px",marginTop:"10px",marginBottom:"5px",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",}}>Harvest Now</div>
+    <div style={{width:"100%",display:"flex"}}>
+    <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',marginLeft:"100px",float:"left"}}>
+          <div style={{width:"100%",fontSize:"20px",marginTop:"10px",marginBottom:"5px",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",}}>Try it now!</div>
+          <Grid
+            container
+            direction="row"
+              justify="center"
+            alignItems="center"
+          >
+            <div style={{display:"flex",flexDirection:"column"}}>
+            <div style={{textAlign:"center",fontSize:"18px"}}>Click here and say "001 is 2.4 pounds"</div>
+            <div style={{marginRight:"10px",marginLeft:"10px"}}>
+            <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
+            voiceCommand={voiceCommand}></Dictaphone>
+            </div>
+          </div>
+            </Grid>
+            </div>
+          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',marginLeft:"100px",float:"left"}}>
+          <div style={{width:"100%",fontSize:"20px",marginTop:"10px",marginBottom:"5px",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",}}>Plant Info</div>
           <Grid
             container
             direction="row"
@@ -558,17 +577,9 @@ style={{width:"100%"}}>
                   ))}
                  </Select>
           </Grid>
-  
-          <div style={{display:"flex",flexDirection:"column"}}>
-            <div style={{textAlign:"center",fontSize:"15px"}}>Click and say "001 is 2.4 pounds"</div>
-            <div style={{marginRight:"10px",marginLeft:"10px"}}>
-            <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
-            voiceCommand={voiceCommand}></Dictaphone>
-            </div>
-          </div>
           <Button style={{marginTop:"10px",marginBottom:"10px",marginRight:"10px",marginLeft:"10px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
-          </div>
-          <TableContainer component={Paper} style={{marginTop:"5px",float:"right",width:"40%",backgroundColor:"#e4e4e4"}}>
+         </div>
+          <TableContainer component={Paper} style={{marginTop:"5px",float:"right",backgroundColor:"#e4e4e4"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
