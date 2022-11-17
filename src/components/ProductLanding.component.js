@@ -414,6 +414,62 @@ function ProductLanding({setCurrentPage,logVisit}) {
           <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToFloraSolNewTab} style={{borderRadius:5,marginTop:lineSpacing,width:"160px",marginBottom:"15px"}}>Learn More</Button>
           </Grid>
           <CreateUserMiniForm setAccountCreated={setAccountCreated} setNewUsername={setNewUsername}></CreateUserMiniForm>
+          {currUrl.includes("Test1")
+  ?
+          <div style={{display:"flex",flexDirection:"column"}}>
+          <Grid
+            container
+            direction="row"
+              justify="center"
+            alignItems="center"
+          >
+  
+          <TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width:"180px"}}/>
+          </Grid>
+  
+          <Grid
+            container
+            direction="row"
+              justify="center"
+            alignItems="center"
+          >
+        
+          <Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{width:"180px",marginTop:"15px",direction:"rtl"}}>
+                    {    
+                      tagList.map((name, index) => (
+                    <MenuItem key={index} value={name}>
+                      {name}
+                    </MenuItem>
+                  ))}
+                 </Select>
+          </Grid>
+  
+          <Grid
+            container
+            direction="row"
+              justify="center"
+            alignItems="center"
+          >
+  
+          <TextField id="Weight" value={weight} onChange={handleWeight} style={{width: "100px"}}/>
+  
+          <Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{width:"80px"}}>
+                    {unitList.map((name, index) => (
+                    <MenuItem key={index} value={name}>
+                      {name}
+                    </MenuItem>
+                  ))}
+                 </Select>
+          </Grid>
+          <div style={{textAlign:"center",fontSize:"18px"}}>Click here and say "001 is 2.4 pounds"</div>
+            <div style={{marginRight:"10px",marginLeft:"10px"}}>
+            <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
+            voiceCommand={voiceCommand}></Dictaphone>
+            </div>
+          <Button style={{marginTop:"10px",marginBottom:"10px",marginRight:"10px",marginLeft:"10px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
+
+          </div>
+    :null}
           </Grid>
   }
   </div>
@@ -514,7 +570,7 @@ style={{width:"100%"}}>
   ?
   <div style={{display:"flex",flexDirection:"column",width:"70%"}}>
     <div style={{width:"100%",display:"flex"}}>
-    <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',marginLeft:"100px",float:"left"}}>
+    <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',float:"left"}}>
           <div style={{width:"100%",fontSize:"20px",marginTop:"10px",marginBottom:"5px",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",}}>Try it now!</div>
           <Grid
             container
@@ -531,7 +587,7 @@ style={{width:"100%"}}>
           </div>
             </Grid>
             </div>
-          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',marginLeft:"100px",float:"left"}}>
+          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',marginLeft:"50px",marginRight:"50px"}}>
           <div style={{width:"100%",fontSize:"20px",marginTop:"10px",marginBottom:"5px",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",}}>Plant Info</div>
           <Grid
             container
@@ -579,7 +635,7 @@ style={{width:"100%"}}>
           </Grid>
           <Button style={{marginTop:"10px",marginBottom:"10px",marginRight:"10px",marginLeft:"10px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
          </div>
-          <TableContainer component={Paper} style={{marginTop:"5px",float:"right",backgroundColor:"#e4e4e4"}}>
+          <TableContainer component={Paper} style={{float:"right",backgroundColor:"#e4e4e4"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
