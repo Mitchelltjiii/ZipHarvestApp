@@ -335,6 +335,9 @@ function ProductLanding({setCurrentPage,logVisit}) {
 
       //    <div style={{float:"left",fontSize:"38px",fontWeight:"bold",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif",marginBottom:"10px"}}>Try it now!</div>
 
+      function getWeightAndUnit(w,u){
+        return w + " " + u;
+      }
 
   if(isMobile){
     return (
@@ -417,7 +420,8 @@ function ProductLanding({setCurrentPage,logVisit}) {
           {currUrl.includes("Test1")
   ?
           <div style={{display:"flex",flexDirection:"column",backgroundColor:"#E4E4E4"}}>
-           <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"20px",fontFamily:"Arial, Helvetica, sans-serif"}}>Try it now!</div> 
+           <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"20px",fontFamily:"Arial, Helvetica, sans-serif",textAlign:"center",
+          fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Try it now!</div> 
           <Grid
             container
             direction="row"
@@ -468,34 +472,27 @@ function ProductLanding({setCurrentPage,logVisit}) {
             <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
             voiceCommand={voiceCommand}></Dictaphone>
             </div>
-          <Button style={{marginTop:"10px",marginBottom:"10px",marginRight:"10px",marginLeft:"10px",fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
+          <Button style={{marginTop:"10px",marginBottom:"10px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
 
           <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Plant Tag</TableCell>
-            <TableCell>Strain</TableCell>   
+            <TableCell>Plant</TableCell>
             <TableCell>Weight</TableCell>            
-            <TableCell>Unit</TableCell>            
           </TableRow>
         </TableHead>
         <TableBody>
             {plants.map((row) => (
               <TableRow key={row.tag}>
               <TableCell>
-                  {row.tag}
-              </TableCell>
-              <TableCell style={{whiteSpace:"nowrap"}}>
-                  {row.strain}
-              </TableCell>
-              <TableCell>
-                  {row.weight!==0 ?
-                  row.weight
-                  : null}
+                  <div style={{display:"flex",flexDirection:"column"}}>
+                    <div style={{fontWeight:"bold"}}>{row.tag}</div>
+                    <div>{row.strain}</div>
+                  </div>  
               </TableCell>
               <TableCell>
-                  {row.unit}
+                  {getWeightAndUnit(row.weight,row.unit)}
               </TableCell>
             </TableRow>
             ))}
@@ -605,7 +602,8 @@ style={{width:"100%"}}>
   <div style={{display:"flex",flexDirection:"column",width:"70%"}}>
     <div style={{width:"100%",display:"flex"}}>
     <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px'}}>
-          <div style={{width:"100%",fontSize:"20px",marginTop:"10px",marginBottom:"15px",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif"}}>Try it now!</div>
+          <div style={{width:"100%",fontSize:"20px",marginTop:"20px",marginBottom:"15px",textAlign:"center",
+          fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Try it now!</div>
           <Grid
             container
             direction="row"
@@ -622,8 +620,9 @@ style={{width:"100%"}}>
           </div>
             </Grid>
             </div>
-          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',marginLeft:"50px",marginRight:"50px"}}>
-          <div style={{width:"100%",fontSize:"20px",marginTop:"10px",marginBottom:"5px",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif"}}>Plant Info</div>
+          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',marginLeft:"50px",marginRight:"50px",width:"320px"}}>
+          <div style={{width:"100%",fontSize:"20px",marginTop:"20px",marginBottom:"5px",textAlign:"center",
+          fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Plant Info</div>
           <Grid
             container
             direction="row"
@@ -668,33 +667,33 @@ style={{width:"100%"}}>
                   ))}
                  </Select>
           </Grid>
-          <Button style={{marginTop:"10px",marginBottom:"10px",marginRight:"10px",marginLeft:"10px",fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
+          <Button style={{marginTop:"10px",marginBottom:"10px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
          </div>
-          <TableContainer component={Paper} style={{backgroundColor:"#e4e4e4"}}>
+          <TableContainer component={Paper} style={{backgroundColor:"#e4e4e4",width:"360px",minWidth:"380px"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Plant Tag</TableCell>
-            <TableCell>Strain</TableCell>   
-            <TableCell>Weight</TableCell>            
-            <TableCell>Unit</TableCell>            
+            <TableCell style={{fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Plant Tag</TableCell>
+            <TableCell style={{fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Strain</TableCell>   
+            <TableCell style={{fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Weight</TableCell>            
+            <TableCell style={{fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Unit</TableCell>            
           </TableRow>
         </TableHead>
         <TableBody>
             {plants.map((row) => (
               <TableRow key={row.tag}>
-              <TableCell>
+              <TableCell style={{fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>
                   {row.tag}
               </TableCell>
-              <TableCell style={{whiteSpace:"nowrap"}}>
+              <TableCell style={{fontSize:"20px",fontFamily:"Arial, Helvetica, sans-serif",whiteSpace:"nowrap"}}>
                   {row.strain}
               </TableCell>
-              <TableCell>
+              <TableCell style={{fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>
                   {row.weight!==0 ?
                   row.weight
                   : null}
               </TableCell>
-              <TableCell>
+              <TableCell style={{fontSize:"20px",fontFamily:"Arial, Helvetica, sans-serif"}}>
                   {row.unit}
               </TableCell>
             </TableRow>
