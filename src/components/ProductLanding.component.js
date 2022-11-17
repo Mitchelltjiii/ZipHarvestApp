@@ -416,7 +416,8 @@ function ProductLanding({setCurrentPage,logVisit}) {
           <CreateUserMiniForm setAccountCreated={setAccountCreated} setNewUsername={setNewUsername}></CreateUserMiniForm>
           {currUrl.includes("Test1")
   ?
-          <div style={{display:"flex",flexDirection:"column"}}>
+          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#E4E4E4"}}>
+           <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"20px",fontFamily:"Arial, Helvetica, sans-serif"}}>Try it now!</div> 
           <Grid
             container
             direction="row"
@@ -461,13 +462,46 @@ function ProductLanding({setCurrentPage,logVisit}) {
                   ))}
                  </Select>
           </Grid>
-          <div style={{textAlign:"center",fontSize:"18px"}}>Click here and say "001 is 2.4 pounds"</div>
-            <div style={{marginRight:"10px",marginLeft:"10px"}}>
+          <div style={{textAlign:"center",fontSize:"18px"}}>Click here and say</div>
+            <div style={{textAlign:"center",fontSize:"18px"}}>"001 is 2.4 pounds"</div>
+              <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"10px"}}>
             <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
             voiceCommand={voiceCommand}></Dictaphone>
             </div>
-          <Button style={{marginTop:"10px",marginBottom:"10px",marginRight:"10px",marginLeft:"10px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
+          <Button style={{marginTop:"10px",marginBottom:"10px",marginRight:"10px",marginLeft:"10px",fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
 
+          <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF"}}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Plant Tag</TableCell>
+            <TableCell>Strain</TableCell>   
+            <TableCell>Weight</TableCell>            
+            <TableCell>Unit</TableCell>            
+          </TableRow>
+        </TableHead>
+        <TableBody>
+            {plants.map((row) => (
+              <TableRow key={row.tag}>
+              <TableCell>
+                  {row.tag}
+              </TableCell>
+              <TableCell style={{whiteSpace:"nowrap"}}>
+                  {row.strain}
+              </TableCell>
+              <TableCell>
+                  {row.weight!==0 ?
+                  row.weight
+                  : null}
+              </TableCell>
+              <TableCell>
+                  {row.unit}
+              </TableCell>
+            </TableRow>
+            ))}
+            </TableBody>
+        </Table>
+        </TableContainer>
           </div>
     :null}
           </Grid>
@@ -570,8 +604,8 @@ style={{width:"100%"}}>
   ?
   <div style={{display:"flex",flexDirection:"column",width:"70%"}}>
     <div style={{width:"100%",display:"flex"}}>
-    <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',float:"left"}}>
-          <div style={{width:"100%",fontSize:"20px",marginTop:"10px",marginBottom:"5px",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",}}>Try it now!</div>
+    <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px'}}>
+          <div style={{width:"100%",fontSize:"20px",marginTop:"10px",marginBottom:"15px",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif"}}>Try it now!</div>
           <Grid
             container
             direction="row"
@@ -579,8 +613,9 @@ style={{width:"100%"}}>
             alignItems="center"
           >
             <div style={{display:"flex",flexDirection:"column"}}>
-            <div style={{textAlign:"center",fontSize:"18px"}}>Click here and say "001 is 2.4 pounds"</div>
-            <div style={{marginRight:"10px",marginLeft:"10px"}}>
+            <div style={{textAlign:"center",fontSize:"18px"}}>Click here and say</div>
+            <div style={{textAlign:"center",fontSize:"18px"}}>"001 is 2.4 pounds"</div>
+            <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"10px"}}>
             <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
             voiceCommand={voiceCommand}></Dictaphone>
             </div>
@@ -588,7 +623,7 @@ style={{width:"100%"}}>
             </Grid>
             </div>
           <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',marginLeft:"50px",marginRight:"50px"}}>
-          <div style={{width:"100%",fontSize:"20px",marginTop:"10px",marginBottom:"5px",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",}}>Plant Info</div>
+          <div style={{width:"100%",fontSize:"20px",marginTop:"10px",marginBottom:"5px",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif"}}>Plant Info</div>
           <Grid
             container
             direction="row"
@@ -633,9 +668,9 @@ style={{width:"100%"}}>
                   ))}
                  </Select>
           </Grid>
-          <Button style={{marginTop:"10px",marginBottom:"10px",marginRight:"10px",marginLeft:"10px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
+          <Button style={{marginTop:"10px",marginBottom:"10px",marginRight:"10px",marginLeft:"10px",fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
          </div>
-          <TableContainer component={Paper} style={{float:"right",backgroundColor:"#e4e4e4"}}>
+          <TableContainer component={Paper} style={{backgroundColor:"#e4e4e4"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
