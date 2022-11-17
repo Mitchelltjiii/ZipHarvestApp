@@ -419,8 +419,8 @@ function ProductLanding({setCurrentPage,logVisit}) {
           <CreateUserMiniForm setAccountCreated={setAccountCreated} setNewUsername={setNewUsername}></CreateUserMiniForm>
           {currUrl.includes("Test1")
   ?
-          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#E4E4E4"}}>
-           <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"20px",fontFamily:"Arial, Helvetica, sans-serif",textAlign:"center",
+          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#F5F5F5",width:"100%"}}>
+           <div style={{marginTop:"15px",marginBottom:"5px",fontSize:"20px",fontFamily:"Arial, Helvetica, sans-serif",textAlign:"center",
           fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Try it now!</div> 
           <Grid
             container
@@ -429,7 +429,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
             alignItems="center"
           >
   
-          <TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width:"180px"}}/>
+          <TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width:"80%"}}/>
           </Grid>
   
           <Grid
@@ -439,7 +439,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
             alignItems="center"
           >
         
-          <Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{width:"180px",marginTop:"15px",direction:"rtl"}}>
+          <Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{width:"80%",marginTop:"15px",direction:"rtl"}}>
                     {    
                       tagList.map((name, index) => (
                     <MenuItem key={index} value={name}>
@@ -454,9 +454,10 @@ function ProductLanding({setCurrentPage,logVisit}) {
             direction="row"
               justify="center"
             alignItems="center"
+            style={{width:"80%"}}
           >
   
-          <TextField id="Weight" value={weight} onChange={handleWeight} style={{width: "100px"}}/>
+          <TextField id="Weight" value={weight} onChange={handleWeight} style={{width:"100%"}}/>
   
           <Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{width:"80px"}}>
                     {unitList.map((name, index) => (
@@ -466,13 +467,13 @@ function ProductLanding({setCurrentPage,logVisit}) {
                   ))}
                  </Select>
           </Grid>
-          <div style={{textAlign:"center",fontSize:"18px"}}>Click here and say</div>
+          <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px"}}>Click the mic and say</div>
             <div style={{textAlign:"center",fontSize:"18px"}}>"001 is 2.4 pounds"</div>
               <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"10px"}}>
             <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
             voiceCommand={voiceCommand}></Dictaphone>
             </div>
-          <Button style={{marginTop:"10px",marginBottom:"10px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
+          <Button style={{marginTop:"10px",marginBottom:"15px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
 
           <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF"}}>
       <Table className={classes.table} aria-label="simple table">
@@ -602,7 +603,7 @@ style={{width:"100%"}}>
   <div style={{display:"flex",flexDirection:"column",width:"70%"}}>
     <div style={{width:"100%",display:"flex"}}>
     <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px'}}>
-          <div style={{width:"100%",fontSize:"20px",marginTop:"20px",marginBottom:"15px",textAlign:"center",
+          <div style={{width:"100%",fontSize:"20px",marginTop:"20px",marginBottom:"25px",textAlign:"center",
           fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Try it now!</div>
           <Grid
             container
@@ -611,9 +612,9 @@ style={{width:"100%"}}>
             alignItems="center"
           >
             <div style={{display:"flex",flexDirection:"column"}}>
-            <div style={{textAlign:"center",fontSize:"18px"}}>Click here and say</div>
-            <div style={{textAlign:"center",fontSize:"18px"}}>"001 is 2.4 pounds"</div>
-            <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"10px"}}>
+            <div style={{textAlign:"center",fontSize:"20px",marginBottom:"5px"}}>Click the mic and say</div>
+            <div style={{textAlign:"center",fontSize:"20px"}}>"001 is 2.4 pounds"</div>
+            <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"30px"}}>
             <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
             voiceCommand={voiceCommand}></Dictaphone>
             </div>
@@ -630,7 +631,7 @@ style={{width:"100%"}}>
             alignItems="center"
           >
   
-          <TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width:"180px"}}/>
+          <TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width:"80%"}}/>
           </Grid>
   
           <Grid
@@ -640,7 +641,7 @@ style={{width:"100%"}}>
             alignItems="center"
           >
         
-          <Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{width:"180px",marginTop:"15px",direction:"rtl"}}>
+          <Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{width:"80%",marginTop:"15px"}}>
                     {    
                       tagList.map((name, index) => (
                     <MenuItem key={index} value={name}>
@@ -655,9 +656,10 @@ style={{width:"100%"}}>
             direction="row"
               justify="center"
             alignItems="center"
+            style={{width:"80%"}}
           >
   
-          <TextField id="Weight" value={weight} onChange={handleWeight} style={{width: "100px"}}/>
+          <TextField id="Weight" value={weight} onChange={handleWeight} style={{width:"100%"}}/>
   
           <Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{width:"80px"}}>
                     {unitList.map((name, index) => (
@@ -667,34 +669,27 @@ style={{width:"100%"}}>
                   ))}
                  </Select>
           </Grid>
-          <Button style={{marginTop:"10px",marginBottom:"10px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
+          <Button style={{marginTop:"10px",marginBottom:"10px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF",width:"80%",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
          </div>
           <TableContainer component={Paper} style={{backgroundColor:"#e4e4e4",width:"360px",minWidth:"380px"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell style={{fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Plant Tag</TableCell>
-            <TableCell style={{fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Strain</TableCell>   
+            <TableCell style={{fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Plant</TableCell>
             <TableCell style={{fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Weight</TableCell>            
-            <TableCell style={{fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Unit</TableCell>            
           </TableRow>
         </TableHead>
         <TableBody>
             {plants.map((row) => (
               <TableRow key={row.tag}>
-              <TableCell style={{fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>
-                  {row.tag}
+                <TableCell>
+                  <div style={{display:"flex",flexDirection:"column"}}>
+                    <div style={{fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>{row.tag}</div>
+                    <div style={{fontFamily:"Arial, Helvetica, sans-serif"}}>{row.strain}</div>
+                  </div>  
               </TableCell>
-              <TableCell style={{fontSize:"20px",fontFamily:"Arial, Helvetica, sans-serif",whiteSpace:"nowrap"}}>
-                  {row.strain}
-              </TableCell>
-              <TableCell style={{fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>
-                  {row.weight!==0 ?
-                  row.weight
-                  : null}
-              </TableCell>
-              <TableCell style={{fontSize:"20px",fontFamily:"Arial, Helvetica, sans-serif"}}>
-                  {row.unit}
+              <TableCell>
+                  {getWeightAndUnit(row.weight,row.unit)}
               </TableCell>
             </TableRow>
             ))}
