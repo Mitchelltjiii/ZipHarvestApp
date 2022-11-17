@@ -91,7 +91,9 @@ function ProductLanding({setCurrentPage,logVisit}) {
   const [weight, setWeight] = React.useState('');
 	const [unit, setUnit] = React.useState('lbs');
   const [selectedTag, setSelectedTag] = React.useState('');
-  const [searchStrain, setSearchStrain] = React.useState('All Strains');
+  const [searchStrain, setSearchStrain] = React.useState('Choose One');
+
+  let searchForList = ["Choose One","OG Kush","Blue Dream","Biscotti"];
 
   let unitList = ["lbs","g"];
 
@@ -108,9 +110,23 @@ function ProductLanding({setCurrentPage,logVisit}) {
 	  };
 
   let ap = [];
-  ap.push(createPlant("1A4200000010000004000001","OG Kush",true,0,''));
-  ap.push(createPlant("1A4200000010000004000002","OG Kush",true,0,''));
-  ap.push(createPlant("1A4200000010000004000003","OG Kush",true,0,''));
+  ap.push(createPlant("000001","OG Kush",true,0,''));
+  ap.push(createPlant("000002","OG Kush",true,0,''));
+  ap.push(createPlant("000003","OG Kush",true,0,''));
+  ap.push(createPlant("000004","OG Kush",true,0,''));
+  ap.push(createPlant("000005","OG Kush",true,0,''));
+
+  ap.push(createPlant("001001","Blue Dream",true,0,''));
+  ap.push(createPlant("001002","Blue Dream",true,0,''));
+  ap.push(createPlant("001003","Blue Dream",true,0,''));
+  ap.push(createPlant("001004","Blue Dream",true,0,''));
+  ap.push(createPlant("001005","Blue Dream",true,0,''));
+
+  ap.push(createPlant("002001","Biscotti",true,0,''));
+  ap.push(createPlant("002002","Biscotti",true,0,''));
+  ap.push(createPlant("002003","Biscotti",true,0,''));
+  ap.push(createPlant("002004","Biscotti",true,0,''));
+  ap.push(createPlant("002005","Biscotti",true,0,''));
 
   const [plants,setPlants] = React.useState(ap);
   let leafImageHeight = "80px";
@@ -137,6 +153,9 @@ function ProductLanding({setCurrentPage,logVisit}) {
   }else if(harvestedCount>0){
     micText1 = "That's it!";
     micText2 = "Let's try that again."
+  }else if(harvestedCount===0&&searchStrain==="Choose One"){
+    micText1 = "First, pick a strain.";
+    micText2 = "Which do you prefer?"
   }
 
   function searchTagFromSpeech(searchText,searchText2){
@@ -214,7 +233,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
 		for (const val of plants) {
 			if(val.active){
         if(val.tag.substring(val.tag.length-searchTag.length)===(searchTag)){
-					if((searchStrain === 'All Strains' )|| (searchStrain === val.strain)){
+					if((searchStrain === 'Choose One' )|| (searchStrain === val.strain)){
 						newTagList.push(val.tag + " | " + fixStrain(val.strain));
 					}
 				}			
@@ -360,6 +379,10 @@ function ProductLanding({setCurrentPage,logVisit}) {
         }
       }
 
+      const handleChangeSearchForStrainSelect = (event) => {
+        setSearchStrain(event.target.value);
+        }; 
+
   if(isMobile){
     return (
       <div id="product-display-mobile" style={{width:"100%",backgroundColor:"#444444"}}>
@@ -495,10 +518,20 @@ function ProductLanding({setCurrentPage,logVisit}) {
           : null}
           <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px"}}>{micText1}</div>
             <div style={{textAlign:"center",fontSize:"18px"}}>{micText2}</div>
+            <Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"180px"}}>
+                	{searchForList.map((name, index) => (
+            			<MenuItem key={index} value={name}>
+             	 		{name}
+            			</MenuItem>
+          			))}
+             	</Select>
+              {searchStrain !== "Choose One" || harvestedCount>0 ?
               <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"10px"}}>
-            <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
-            voiceCommand={voiceCommand}></Dictaphone>
-            </div>
+              <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
+              voiceCommand={voiceCommand}></Dictaphone>
+              </div>
+              :null
+              } 
             {harvestedCount > 0 || searchTag !== "" ? 
   
           <Button style={{marginTop:"10px",marginBottom:"15px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
@@ -644,15 +677,18 @@ style={{width:"100%"}}>
             <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{textAlign:"center",fontSize:"20px",marginBottom:"7px"}}>{micText1}</div>
             <div style={{textAlign:"center",fontSize:"20px"}}>{micText2}</div>
-            <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"45px"}}>
-            <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
-            voiceCommand={voiceCommand}></Dictaphone>
-            </div>
+            {searchStrain !== "Choose One" || harvestedCount>0 ?
+              <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"35px",marginBottom:"15px"}}>
+              <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
+              voiceCommand={voiceCommand}></Dictaphone>
+              </div>
+              :null
+              } 
           </div>
             </Grid>
             </div>
           {harvestedCount > 0 || searchTag !== "" ? 
-          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',marginLeft:"50px",marginRight:"50px",width:"320px"}}>
+          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',marginLeft:"80px",marginRight:"80px",width:"320px"}}>
           <div style={{width:"100%",fontSize:"20px",marginTop:"20px",marginBottom:"5px",textAlign:"center",
           fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Plant Info</div>
           <Grid
@@ -689,7 +725,7 @@ style={{width:"100%"}}>
             alignItems="center"
           >
   
-          <div style={{width:"80%"}}>
+          <div style={{width:"80%",flexWrap:"nowrap"}}>
           <TextField id="Weight" value={weight} onChange={handleWeight} style={{width:"100%"}}/>
   
           <Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{width:"80px"}}>
@@ -701,11 +737,11 @@ style={{width:"100%"}}>
                  </Select>
             </div>
           </Grid>
-          <Button style={{marginTop:"10px",marginBottom:"10px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF",width:"80%",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
+          <Button style={{marginTop:"10px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF",width:"80%",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
          </div>
          :null}
          {harvestedCount>0 ? 
-          <TableContainer component={Paper} style={{backgroundColor:"#e4e4e4",width:"320px",minWidth:"380px"}}>
+          <TableContainer component={Paper} style={{backgroundColor:"#e4e4e4",width:"320px",minWidth:"320px"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -723,7 +759,12 @@ style={{width:"100%"}}>
                   </div>  
               </TableCell>
               <TableCell align="right">
-                  {getWeightAndUnit(row.weight,row.unit)}
+              <div style={{display:"flex",flexDirection:"column"}}>
+                    <div style={{fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>
+                      {getWeightAndUnit(row.weight,row.unit)}
+                    </div>
+                    <div style={{fontFamily:"Arial, Helvetica, sans-serif"}}></div>
+                  </div> 
               </TableCell>
             </TableRow>
             ))}
