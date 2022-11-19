@@ -136,14 +136,24 @@ function ProductLanding({setCurrentPage,logVisit}) {
 
   let tagList = searchTag ? commitSearch(): ["Search For Results"];
 
-  if(currentStep===0&&searchStrain !== "Choose One"){
+  const scrollToBottom = () =>{ 
+    window.scrollTo({ 
+      top: document.documentElement.scrollHeight, 
+      behavior: 'auto'
+      /* you can also use 'auto' behaviour 
+         in place of 'smooth' */
+    }); 
+  };     
+
+  if(currentStep===0 && searchStrain !== "Choose One"){
     bottomRef.current?.scrollIntoView({behavior: 'smooth'});
+    scrollToBottom();
     setCurrentStep(1);
   }else if(currentStep===1&&searchTag !== ""){
-    bottomRef.current?.scrollIntoView({behavior: 'smooth'});
+    scrollToBottom();
     setCurrentStep(2);
   }else if(currentStep===3&&harvestedCount>0){
-    bottomRef.current?.scrollIntoView({behavior: 'smooth'});
+    scrollToBottom();
     setCurrentStep(3);
   }
 
