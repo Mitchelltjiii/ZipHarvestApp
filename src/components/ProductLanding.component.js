@@ -146,7 +146,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
   };     
 
   if(currentStep===0 && searchStrain !== "Choose One"){
-    bottomRef.current?.scrollIntoView({behavior: 'smooth'});
     scrollToBottom();
     setCurrentStep(1);
   }else if(currentStep===1&&searchTag !== ""){
