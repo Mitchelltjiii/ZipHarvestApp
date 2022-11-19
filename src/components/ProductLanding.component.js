@@ -95,6 +95,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
   const [selectedTag, setSelectedTag] = React.useState('');
   const [searchStrain, setSearchStrain] = React.useState('Choose One');
   const [currentStep, setCurrentStep] = React.useState(0);
+  const [newStep,setNewStep] = React.useState(false);
 
   let searchForList = ["Choose One","OG Kush","Blue Dream","Biscotti"];
 
@@ -136,15 +137,23 @@ function ProductLanding({setCurrentPage,logVisit}) {
 
   let tagList = searchTag ? commitSearch(): ["Search For Results"];
 
+  if(newStep){
+    bottomRef.current.scrollIntoView({behavior: 'smooth'});
+  }
+  let outputText = "";
+
   if(currentStep===0 && searchStrain !== "Choose One"){
-    bottomRef.current.scrollIntoView({behavior: 'smooth'});
+    outputText = "Set new step: 1";
     setCurrentStep(1);
+    setNewStep(true);
   }else if(currentStep===1&&searchTag !== ""){
-    bottomRef.current.scrollIntoView({behavior: 'smooth'});
+    outputText = "Set new step: 2";
     setCurrentStep(2);
+    setNewStep(true);
   }else if(currentStep===3&&harvestedCount>0){
-    bottomRef.current.scrollIntoView({behavior: 'smooth'});
+    outputText = "Set new step: 3";
     setCurrentStep(3);
+    setNewStep(true);
   }
 
   let currSelectedTag = selectedTag;
@@ -487,7 +496,8 @@ function ProductLanding({setCurrentPage,logVisit}) {
   ?
           <div style={{display:"flex",flexDirection:"column",backgroundColor:"#F5F5F5",width:"100%"}}>
            <div style={{marginTop:"15px",marginBottom:"5px",fontSize:"20px",fontFamily:"Arial, Helvetica, sans-serif",textAlign:"center",
-          fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Try it now!</div> 
+          fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Try it now!</div>
+          <div>{outputText}</div> 
           {currentStep===0 ?
                 <div style={{display:"flex",flexDirection:"column"}}>
                       <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px"}}>{micText1}</div>
