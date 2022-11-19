@@ -496,8 +496,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
   ?
           <div style={{display:"flex",flexDirection:"column",backgroundColor:"#F5F5F5",width:"100%"}}>
            <div style={{marginTop:"15px",marginBottom:"5px",fontSize:"20px",fontFamily:"Arial, Helvetica, sans-serif",textAlign:"center",
-          fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Try it now!</div>
-          <div>{outputText}</div> 
+          fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>{outputText}</div>
           {currentStep===0 ?
                 <div style={{display:"flex",flexDirection:"column"}}>
                       <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px"}}>{micText1}</div>
