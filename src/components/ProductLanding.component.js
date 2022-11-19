@@ -112,19 +112,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
 		setUnit(event.target.value);
 	  };
 
-  const scrollToBottom = () =>{ 
-      window.scrollTo({ 
-        top: document.documentElement.scrollHeight, 
-        behavior: 'auto'
-        /* you can also use 'auto' behaviour 
-           in place of 'smooth' */
-      }); 
-    };   
-  
-  if(currentStep>0){
-    scrollToBottom();
-  }
-
   let ap = [];
   ap.push(createPlant("000001","OG Kush",true,0,''));
   ap.push(createPlant("000002","OG Kush",true,0,''));
@@ -147,7 +134,18 @@ function ProductLanding({setCurrentPage,logVisit}) {
   const [plants,setPlants] = React.useState(ap);
   let leafImageHeight = "80px";
 
-  let tagList = searchTag ? commitSearch(): ["Search For Results"];  
+  let tagList = searchTag ? commitSearch(): ["Search For Results"];
+
+  if(currentStep===0 && searchStrain !== "Choose One"){
+    bottomRef.current.scrollIntoView({behavior: 'smooth'});
+    setCurrentStep(1);
+  }else if(currentStep===1&&searchTag !== ""){
+    bottomRef.current.scrollIntoView({behavior: 'smooth'});
+    setCurrentStep(2);
+  }else if(currentStep===3&&harvestedCount>0){
+    bottomRef.current.scrollIntoView({behavior: 'smooth'});
+    setCurrentStep(3);
+  }
 
   let currSelectedTag = selectedTag;
 	if(tagList.length>0 && selectedTag === ''){
@@ -396,11 +394,8 @@ function ProductLanding({setCurrentPage,logVisit}) {
       }
 
       const handleChangeSearchForStrainSelect = (event) => {
-        if(currentStep===0){
-          setCurrentStep(1);
-        }
         setSearchStrain(event.target.value);
-      }; 
+        }; 
 
 
         let filteredPlants = [];
