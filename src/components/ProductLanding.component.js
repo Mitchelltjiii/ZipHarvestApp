@@ -1,4 +1,5 @@
 import React from 'react';
+import {useRef} from 'react';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -84,6 +85,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
 		return {tag, strain, active,weight,unit};
   }
   
+  const bottomRef = useRef(null);
   const [accountCreated,setAccountCreated] = React.useState(false);
   const [resent,setResent] = React.useState(false);
   const [newUsername,setNewUsername] = React.useState("");
@@ -92,6 +94,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
 	const [unit, setUnit] = React.useState('lbs');
   const [selectedTag, setSelectedTag] = React.useState('');
   const [searchStrain, setSearchStrain] = React.useState('Choose One');
+  const [currentStep, setCurrentStep] = React.useState(0);
 
   let searchForList = ["Choose One","OG Kush","Blue Dream","Biscotti"];
 
@@ -132,6 +135,17 @@ function ProductLanding({setCurrentPage,logVisit}) {
   let leafImageHeight = "80px";
 
   let tagList = searchTag ? commitSearch(): ["Search For Results"];
+
+  if(currentStep===0&&searchStrain !== "Choose One"){
+    bottomRef.current?.scrollIntoView({behavior: 'smooth'});
+    setCurrentStep(1);
+  }else if(currentStep===1&&searchTag !== ""){
+    bottomRef.current?.scrollIntoView({behavior: 'smooth'});
+    setCurrentStep(2);
+  }else if(currentStep===3&&harvestedCount>0){
+    bottomRef.current?.scrollIntoView({behavior: 'smooth'});
+    setCurrentStep(3);
+  }
 
   let currSelectedTag = selectedTag;
 	if(tagList.length>0 && selectedTag === ''){
@@ -220,8 +234,8 @@ function ProductLanding({setCurrentPage,logVisit}) {
 	}
 
 	function fixStrain(strain){
-		if(strain.length>8){
-			strain = strain.substring(0,8);
+		if(strain.length>16){
+			strain = strain.substring(0,16);
 		}
 		return strain;
 	}
@@ -383,6 +397,14 @@ function ProductLanding({setCurrentPage,logVisit}) {
         setSearchStrain(event.target.value);
         }; 
 
+
+        let filteredPlants = [];
+        for(const val of plants){
+          if(val.strain === searchStrain){
+            filteredPlants.push(val);
+          }
+        }
+
   if(isMobile){
     return (
       <div id="product-display-mobile" style={{width:"100%",backgroundColor:"#444444"}}>
@@ -466,7 +488,37 @@ function ProductLanding({setCurrentPage,logVisit}) {
           <div style={{display:"flex",flexDirection:"column",backgroundColor:"#F5F5F5",width:"100%"}}>
            <div style={{marginTop:"15px",marginBottom:"5px",fontSize:"20px",fontFamily:"Arial, Helvetica, sans-serif",textAlign:"center",
           fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Try it now!</div> 
-          {harvestedCount > 0 || searchTag !== "" ? 
+          {currentStep===0 ?
+                <div style={{display:"flex",flexDirection:"column"}}>
+                      <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px"}}>{micText1}</div>
+                      <div style={{textAlign:"center",fontSize:"18px"}}>{micText2}</div>
+                </div>      
+        :null}
+          <div style={{alignItems:"center"}}>
+          <Select id="search-for-strain-select" label={"Filter by Strain"} value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"180px",marginTop:"10px",marginBottom:"20px"}}>
+              {searchForList.map((name, index) => (
+              <MenuItem key={index} value={name}>
+                {name}
+              </MenuItem>
+            ))}
+           </Select>
+        </div> 
+          {currentStep===1 ?
+                <div style={{display:"flex",flexDirection:"column"}}>
+                      <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px"}}>{micText1}</div>
+                      <div style={{textAlign:"center",fontSize:"18px"}}>{micText2}</div>
+                </div>      
+        :null}
+            
+ 
+              {searchStrain !== "Choose One" || harvestedCount>0 ?
+              <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"10px"}}>
+              <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
+              voiceCommand={voiceCommand}></Dictaphone>
+              </div>
+              :null
+              } 
+              {harvestedCount > 0 || searchTag !== "" ? 
           <div style={{display:"flex",flexDirection:"column",width:"100%"}}>
           <Grid
             container
@@ -475,7 +527,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
             alignItems="center"
           >
   
-          <TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width:"80%"}}/>
+          <TextField id="search-field" value={searchTag} label="Searching For Tag" onChange={handleSearchTag} style={{width:"80%"}}/>
           </Grid>
   
           <Grid
@@ -485,7 +537,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
             alignItems="center"
           >
         
-          <Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{width:"80%",marginTop:"15px",direction:"rtl"}}>
+          <Select id="searchTagSelect" label={"Search Results"} value={currSelectedTag} onChange={handleSelectedTag} style={{width:"80%",marginTop:"15px",direction:"rtl"}}>
                     {    
                       tagList.map((name, index) => (
                     <MenuItem key={index} value={name}>
@@ -504,7 +556,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
             style={{width:"80%"}}
           >
   
-          <TextField id="Weight" value={weight} onChange={handleWeight} style={{width:"100%"}}/>
+          <TextField id="Weight" value={weight} onChange={handleWeight} style={{width:"100px"}}/>
   
           <Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{width:"80px"}}>
                     {unitList.map((name, index) => (
@@ -514,28 +566,9 @@ function ProductLanding({setCurrentPage,logVisit}) {
                   ))}
                  </Select>
           </Grid>
+          <Button style={{marginTop:"10px",marginBottom:"15px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
           </div>
           : null}
-          <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px"}}>{micText1}</div>
-            <div style={{textAlign:"center",fontSize:"18px"}}>{micText2}</div>
-            <Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"180px"}}>
-                	{searchForList.map((name, index) => (
-            			<MenuItem key={index} value={name}>
-             	 		{name}
-            			</MenuItem>
-          			))}
-             	</Select>
-              {searchStrain !== "Choose One" || harvestedCount>0 ?
-              <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"10px"}}>
-              <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
-              voiceCommand={voiceCommand}></Dictaphone>
-              </div>
-              :null
-              } 
-            {harvestedCount > 0 || searchTag !== "" ? 
-  
-          <Button style={{marginTop:"10px",marginBottom:"15px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
-            : null}
                       {harvestedCount > 0 ? 
           <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF"}}>
       <Table className={classes.table} aria-label="simple table">
@@ -546,7 +579,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
           </TableRow>
         </TableHead>
         <TableBody>
-            {plants.map((row) => (
+            {filteredPlants.map((row) => (
               <TableRow key={row.tag}>
               <TableCell>
                   <div style={{display:"flex",flexDirection:"column"}}>
@@ -563,6 +596,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
         </Table>
         </TableContainer>
         :null}
+          <div ref={bottomRef} />
           </div>
     :null}
           </Grid>
@@ -667,7 +701,7 @@ style={{width:"100%"}}>
     <div style={{width:"100%",display:"flex"}}>
     <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px'}}>
           <div style={{width:"100%",fontSize:"20px",marginTop:"20px",marginBottom:"40px",textAlign:"center",
-          fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Try it now!</div>
+          fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold",width:"320px"}}>Try it now!</div>
           <Grid
             container
             direction="row"
@@ -677,6 +711,13 @@ style={{width:"100%"}}>
             <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{textAlign:"center",fontSize:"20px",marginBottom:"7px"}}>{micText1}</div>
             <div style={{textAlign:"center",fontSize:"20px"}}>{micText2}</div>
+            <Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"80%",marginBottom:"20px"}}>
+                	{searchForList.map((name, index) => (
+            			<MenuItem key={index} value={name}>
+             	 		{name}
+            			</MenuItem>
+          			))}
+             	</Select>
             {searchStrain !== "Choose One" || harvestedCount>0 ?
               <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"35px",marginBottom:"15px"}}>
               <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
@@ -750,7 +791,7 @@ style={{width:"100%"}}>
           </TableRow>
         </TableHead>
         <TableBody>
-            {plants.map((row) => (
+            {filteredPlants.map((row) => (
               <TableRow key={row.tag}>
                 <TableCell>
                   <div style={{display:"flex",flexDirection:"column"}}>
