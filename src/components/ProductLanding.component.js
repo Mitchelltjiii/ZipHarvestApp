@@ -21,6 +21,8 @@ import Select from '@material-ui/core/Select';
 import Dictaphone from './Dictaphone.component';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 /*
 
@@ -85,7 +87,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
 		return {tag, strain, active,weight,unit};
   }
   
-  const bottomRef = useRef(null);
   const [accountCreated,setAccountCreated] = React.useState(false);
   const [resent,setResent] = React.useState(false);
   const [newUsername,setNewUsername] = React.useState("");
@@ -137,9 +138,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
 
   let tagList = searchTag ? commitSearch(): ["Search For Results"];
 
-  if(newStep){
-    bottomRef.current.scrollIntoView({behavior: 'smooth'});
-  }
   let outputText = "";
 
   if(currentStep===0 && searchStrain !== "Choose One"){
@@ -504,6 +502,9 @@ function ProductLanding({setCurrentPage,logVisit}) {
                 </div>      
         :null}
           <div style={{alignItems:"center"}}>
+          <Popup trigger={<Button>Trigger</Button>} position="right center">
+              <div>Popup content here !!</div>
+            </Popup>
           <Select id="search-for-strain-select" label={"Filter by Strain"} value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"180px",marginTop:"10px",marginBottom:"20px"}}>
               {searchForList.map((name, index) => (
               <MenuItem key={index} value={name}>
@@ -605,7 +606,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
         </Table>
         </TableContainer>
         :null}
-          <div ref={bottomRef} />
           </div>
     :null}
           </Grid>
@@ -720,6 +720,10 @@ style={{width:"100%"}}>
             <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{textAlign:"center",fontSize:"20px",marginBottom:"7px"}}>{micText1}</div>
             <div style={{textAlign:"center",fontSize:"20px"}}>{micText2}</div>
+            <Popup trigger={<Button>Trigger</Button>} position="right center">
+              <div>Popup content here !!</div>
+            </Popup>
+
             <Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"80%",marginBottom:"20px"}}>
                 	{searchForList.map((name, index) => (
             			<MenuItem key={index} value={name}>
