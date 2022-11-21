@@ -322,6 +322,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
     }
 
     const handleGoToFloraSolNewTab = () => {
+      logVisit("ToFloraSol");
       window.open("https://www.flora-sol.com/");
     }
 
