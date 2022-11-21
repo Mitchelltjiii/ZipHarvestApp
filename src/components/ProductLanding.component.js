@@ -503,16 +503,16 @@ function ProductLanding({setCurrentPage,logVisit}) {
                 </div>      
         :null}
           <div style={{alignItems:"center"}}>
-          <Popup trigger={<Button>Trigger</Button>} position="right center">
-              <div>Popup content here !!</div>
-            </Popup>
-          <Select id="search-for-strain-select" label={"Filter by Strain"} value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"180px",marginTop:"10px",marginBottom:"20px"}}>
+          <Popup trigger={ <Select id="search-for-strain-select" label={"Filter by Strain"} value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"180px",marginTop:"10px",marginBottom:"20px"}}>
               {searchForList.map((name, index) => (
               <MenuItem key={index} value={name}>
                 {name}
               </MenuItem>
             ))}
-           </Select>
+           </Select>} position="right center">
+              <div>Popup content here !!</div>
+            </Popup>
+         
         </div> 
           {currentStep===1 ?
                 <div style={{display:"flex",flexDirection:"column"}}>
@@ -721,17 +721,17 @@ style={{width:"100%"}}>
             <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{textAlign:"center",fontSize:"20px",marginBottom:"7px"}}>{micText1}</div>
             <div style={{textAlign:"center",fontSize:"20px"}}>{micText2}</div>
-            <Popup trigger={<Button>Trigger</Button>} position="right center">
-              <div>Popup content here !!</div>
-            </Popup>
-
-            <Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"80%",marginBottom:"20px"}}>
+            <Popup trigger={<Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"80%",marginBottom:"20px"}}>
                 	{searchForList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
             			</MenuItem>
           			))}
-             	</Select>
+             	</Select>} position="right center">
+              <div>Popup content here !!</div>
+            </Popup>
+
+            
             {searchStrain !== "Choose One" || harvestedCount>0 ?
               <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"35px",marginBottom:"15px"}}>
               <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
