@@ -94,8 +94,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
 	const [unit, setUnit] = React.useState('lbs');
   const [selectedTag, setSelectedTag] = React.useState('');
   const [searchStrain, setSearchStrain] = React.useState('Choose One');
-  const [currentStep, setCurrentStep] = React.useState(0);
-  const [newStep,setNewStep] = React.useState(false);
 
   let searchForList = ["Choose One","OG Kush","Blue Dream","Biscotti"];
 
@@ -136,22 +134,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
   let leafImageHeight = "80px";
 
   let tagList = searchTag ? commitSearch(): ["Search For Results"];
-
-  let outputText = "";
-
-  if(currentStep===0 && searchStrain !== "Choose One"){
-    outputText = "Set new step: 1";
-    setCurrentStep(1);
-    setNewStep(true);
-  }else if(currentStep===1&&searchTag !== ""){
-    outputText = "Set new step: 2";
-    setCurrentStep(2);
-    setNewStep(true);
-  }else if(currentStep===3&&harvestedCount>0){
-    outputText = "Set new step: 3";
-    setCurrentStep(3);
-    setNewStep(true);
-  }
 
   let currSelectedTag = selectedTag;
 	if(tagList.length>0 && selectedTag === ''){
@@ -494,16 +476,14 @@ function ProductLanding({setCurrentPage,logVisit}) {
   ?
           <div style={{display:"flex",flexDirection:"column",backgroundColor:"#F5F5F5",width:"100%"}}>
            <div style={{marginTop:"15px",marginBottom:"5px",fontSize:"20px",fontFamily:"Arial, Helvetica, sans-serif",textAlign:"center",
-          fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>{outputText}</div>
-          {currentStep===0 ?
+          fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Try our Voice-Activated Harvesting now!</div>
                 <div style={{display:"flex",flexDirection:"column"}}>
-                      <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px"}}>{micText1}</div>
-                      <div style={{textAlign:"center",fontSize:"18px"}}>{micText2}</div>
+                      <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px"}}>Select your preferred strain to get started</div>
+                      <div style={{textAlign:"center",fontSize:"18px"}}></div>
                 </div>      
-        :null}
           <div style={{alignItems:"center"}}>
-          <CustomPopUp></CustomPopUp>
-
+          <CustomPopUp searchTag={searchTag} handleSearchTag={handleSearchTag}></CustomPopUp>
+ 
           <Select id="search-for-strain-select" label={"Filter by Strain"} value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"180px",marginTop:"10px",marginBottom:"20px"}}>
               {searchForList.map((name, index) => (
               <MenuItem key={index} value={name}>
@@ -513,12 +493,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
            </Select>
          
         </div> 
-          {currentStep===1 ?
-                <div style={{display:"flex",flexDirection:"column"}}>
-                      <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px"}}>{micText1}</div>
-                      <div style={{textAlign:"center",fontSize:"18px"}}>{micText2}</div>
-                </div>      
-        :null}
             
  
               {searchStrain !== "Choose One" || harvestedCount>0 ?
@@ -709,8 +683,8 @@ style={{width:"100%"}}>
   <div style={{display:"flex",flexDirection:"column",width:"70%"}}>
     <div style={{width:"100%",display:"flex"}}>
     <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px'}}>
-          <div style={{width:"100%",fontSize:"20px",marginTop:"20px",marginBottom:"40px",textAlign:"center",
-          fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold",width:"320px"}}>Try it now!</div>
+          <div style={{width:"100%",fontSize:"20px",marginTop:"20px",marginBottom:"20px",textAlign:"center",
+          fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold",width:"320px"}}>Try our Voice-Activated Harvesting now!</div>
           <Grid
             container
             direction="row"
@@ -718,9 +692,8 @@ style={{width:"100%"}}>
             alignItems="center"
           >
             <div style={{display:"flex",flexDirection:"column"}}>
-            <div style={{textAlign:"center",fontSize:"20px",marginBottom:"7px"}}>{micText1}</div>
-            <div style={{textAlign:"center",fontSize:"20px"}}>{micText2}</div>
-            <CustomPopUp></CustomPopUp>
+            <div style={{textAlign:"center",fontSize:"20px",marginBottom:"7px"}}>Select your preferred strain to get started</div>
+            <CustomPopUp searchTag={searchTag} handleSearchTag={handleSearchTag}></CustomPopUp>
 
             <Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"80%",marginBottom:"20px"}}>
                 	{searchForList.map((name, index) => (

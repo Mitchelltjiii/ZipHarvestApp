@@ -2,10 +2,9 @@ import React from 'react';
 import Popup from 'reactjs-popup';
 import Button from '@material-ui/core/Button';
 
-
 export default () => (
   <Popup
-    trigger={<button className="button"> Open Modal </button>}
+    trigger={<Button className="button">Select</Button>}
     modal
     nested
   >
@@ -18,16 +17,11 @@ export default () => (
         </Button>
         <div className="header"> Modal Title </div>
         <div className="content">
-          {' '}
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, a nostrum.
-          Dolorem, repellat quidem ut, minima sint vel eveniet quibusdam voluptates
-          delectus doloremque, explicabo tempore dicta adipisci fugit amet dignissimos?
-          <br />
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur sit
-          commodi beatae optio voluptatum sed eius cumque, delectus saepe repudiandae
-          explicabo nemo nam libero ad, doloribus, voluptas rem alias. Vitae?
+          <div style={{display:"flex",flexDirection:"column"}}>
+            <TextField id="search-field" value={this.props.searchTag} label="Searching For Tag" onChange={this.props.handleSearchTag} style={{width:"80%"}}/>
+          </div>
         </div>
-        <div className="actions">
+        <div className="actions" style={{margin:"auto"}}>
           <Button
             className="button"
             onClick={() => {
@@ -35,7 +29,7 @@ export default () => (
               close();
             }}
           >
-            close modal
+            Got it
           </Button>
         </div>
       </div>
