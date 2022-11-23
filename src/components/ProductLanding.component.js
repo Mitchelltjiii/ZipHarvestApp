@@ -497,45 +497,11 @@ function ProductLanding({setCurrentPage,logVisit}) {
         <div className="header"> Modal Title </div>
         <div className="content">
           <div style={{display:"flex",flexDirection:"column"}}>
-            <TextField id="search-field" value={searchTag} label="Searching For Tag" onChange={handleSearchTag} style={{width:"80%"}}/>
-          </div>
-        </div>
-        <div className="actions" style={{margin:"auto"}}>
-          <Button
-            className="button"
-            onClick={() => {
-              console.log('modal closed ');
-              close();
-            }}
-          >
-            Got it
-          </Button>
-        </div>
-      </div>
-      </div>
-    )}
-  </Popup> 
-          <Select id="search-for-strain-select" label={"Filter by Strain"} value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"180px",marginTop:"10px",marginBottom:"20px"}}>
-              {searchForList.map((name, index) => (
-              <MenuItem key={index} value={name}>
-                {name}
-              </MenuItem>
-            ))}
-           </Select>
-         
-        </div> 
-            
- 
-              {searchStrain !== "Choose One" || harvestedCount>0 ?
-              <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"10px"}}>
+            <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"10px"}}>
               <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
               voiceCommand={voiceCommand}></Dictaphone>
-              </div>
-              :null
-              } 
-              {harvestedCount > 0 || searchTag !== "" ? 
-          <div style={{display:"flex",flexDirection:"column",width:"100%"}}>
-          <Grid
+            </div>
+            <Grid
             container
             direction="row"
               justify="center"
@@ -582,9 +548,8 @@ function ProductLanding({setCurrentPage,logVisit}) {
                  </Select>
           </Grid>
           <Button style={{marginTop:"10px",marginBottom:"15px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
-          </div>
-          : null}
-                      {harvestedCount > 0 ? 
+          
+          {harvestedCount > 0 ? 
           <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -611,6 +576,24 @@ function ProductLanding({setCurrentPage,logVisit}) {
         </Table>
         </TableContainer>
         :null}
+          </div>
+        </div>
+        <div className="actions" style={{margin:"auto"}}>
+          <Button
+            className="button"
+            onClick={() => {
+              console.log('modal closed ');
+              close();
+            }}
+          >
+            Got it
+          </Button>
+        </div>
+      </div>
+      </div>
+    )}
+  </Popup> 
+        </div> 
           </div>
     :null}
           </Grid>
@@ -739,45 +722,10 @@ style={{width:"100%"}}>
         <div className="header"> Modal Title </div>
         <div className="content">
           <div style={{display:"flex",flexDirection:"column"}}>
-            <TextField id="search-field" value={searchTag} label="Searching For Tag" onChange={handleSearchTag} style={{width:"80%"}}/>
-          </div>
-        </div>
-        <div className="actions" style={{margin:"auto"}}>
-          <Button
-            className="button"
-            onClick={() => {
-              console.log('modal closed ');
-              close();
-            }}
-          >
-            Got it
-          </Button>
-        </div>
-      </div>
-      </div>
-    )}
-  </Popup>
-            <Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"80%",marginBottom:"20px"}}>
-                	{searchForList.map((name, index) => (
-            			<MenuItem key={index} value={name}>
-             	 		{name}
-            			</MenuItem>
-          			))}
-             	</Select>
-
-            
-            {searchStrain !== "Choose One" || harvestedCount>0 ?
-              <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"35px",marginBottom:"15px"}}>
+            <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"35px",marginBottom:"15px"}}>
               <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
               voiceCommand={voiceCommand}></Dictaphone>
               </div>
-              :null
-              } 
-          </div>
-            </Grid>
-            </div>
-          {harvestedCount > 0 || searchTag !== "" ? 
-          <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',marginLeft:"80px",marginRight:"80px",width:"320px"}}>
           <div style={{width:"100%",fontSize:"20px",marginTop:"20px",marginBottom:"5px",textAlign:"center",
           fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Plant Info</div>
           <Grid
@@ -827,9 +775,8 @@ style={{width:"100%"}}>
             </div>
           </Grid>
           <Button style={{marginTop:"10px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF",width:"80%",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
-         </div>
-         :null}
-         {harvestedCount>0 ? 
+         
+          {harvestedCount>0 ? 
           <TableContainer component={Paper} style={{backgroundColor:"#e4e4e4",width:"320px",minWidth:"320px"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -861,6 +808,26 @@ style={{width:"100%"}}>
         </Table>
         </TableContainer>
         : null}
+        </div>
+        </div>
+        <div className="actions" style={{margin:"auto"}}>
+          <Button
+            className="button"
+            onClick={() => {
+              console.log('modal closed ');
+              close();
+            }}
+          >
+            Got it
+          </Button>
+        </div>
+      </div>
+      </div>
+    )}
+  </Popup>            
+          </div>
+            </Grid>
+            </div>
       </div>
       </div>
     :
