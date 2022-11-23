@@ -490,7 +490,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
   >
     {close => (
         <div style={{width:"100%",height:"100%",backgroundColor:"#a3a3a3"}}>
-
       <div className="modal">
         <Button className="close" onClick={close}>
           &times;
