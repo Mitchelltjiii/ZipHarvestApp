@@ -22,6 +22,7 @@ import Dictaphone from './Dictaphone.component';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 import CustomPopUp from './CustomPopUp';
+import PopUp from 'reactjs-popup';
 
 /*
 
@@ -482,8 +483,39 @@ function ProductLanding({setCurrentPage,logVisit}) {
                       <div style={{textAlign:"center",fontSize:"18px"}}></div>
                 </div>      
           <div style={{alignItems:"center"}}>
-          <CustomPopUp searchTag={searchTag} handleSearchTag={handleSearchTag}></CustomPopUp>
- 
+          <Popup
+    trigger={<Button className="button">Select</Button>}
+    modal
+    nested
+  >
+    {close => (
+        <div style={{width:"100%",height:"100%",backgroundColor:"#a3a3a3"}}>
+
+      <div className="modal">
+        <Button className="close" onClick={close}>
+          &times;
+        </Button>
+        <div className="header"> Modal Title </div>
+        <div className="content">
+          <div style={{display:"flex",flexDirection:"column"}}>
+            <TextField id="search-field" value={searchTag} label="Searching For Tag" onChange={handleSearchTag} style={{width:"80%"}}/>
+          </div>
+        </div>
+        <div className="actions" style={{margin:"auto"}}>
+          <Button
+            className="button"
+            onClick={() => {
+              console.log('modal closed ');
+              close();
+            }}
+          >
+            Got it
+          </Button>
+        </div>
+      </div>
+      </div>
+    )}
+  </Popup> 
           <Select id="search-for-strain-select" label={"Filter by Strain"} value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"180px",marginTop:"10px",marginBottom:"20px"}}>
               {searchForList.map((name, index) => (
               <MenuItem key={index} value={name}>
@@ -693,8 +725,39 @@ style={{width:"100%"}}>
           >
             <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{textAlign:"center",fontSize:"20px",marginBottom:"7px"}}>Select your preferred strain to get started</div>
-            <CustomPopUp searchTag={searchTag} handleSearchTag={handleSearchTag}></CustomPopUp>
+            <Popup
+    trigger={<Button className="button">Select</Button>}
+    modal
+    nested
+  >
+    {close => (
+        <div style={{width:"100%",height:"100%",backgroundColor:"#a3a3a3"}}>
 
+      <div className="modal">
+        <Button className="close" onClick={close}>
+          &times;
+        </Button>
+        <div className="header"> Modal Title </div>
+        <div className="content">
+          <div style={{display:"flex",flexDirection:"column"}}>
+            <TextField id="search-field" value={searchTag} label="Searching For Tag" onChange={handleSearchTag} style={{width:"80%"}}/>
+          </div>
+        </div>
+        <div className="actions" style={{margin:"auto"}}>
+          <Button
+            className="button"
+            onClick={() => {
+              console.log('modal closed ');
+              close();
+            }}
+          >
+            Got it
+          </Button>
+        </div>
+      </div>
+      </div>
+    )}
+  </Popup>
             <Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"80%",marginBottom:"20px"}}>
                 	{searchForList.map((name, index) => (
             			<MenuItem key={index} value={name}>
