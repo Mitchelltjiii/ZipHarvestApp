@@ -22,7 +22,7 @@ import Dictaphone from './Dictaphone.component';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 import CustomPopUp from './CustomPopUp';
-import PopUp from 'reactjs-popup';
+import Popup from 'reactjs-popup';
 
 /*
 
