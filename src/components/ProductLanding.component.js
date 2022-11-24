@@ -96,7 +96,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
   const [selectedTag, setSelectedTag] = React.useState('');
   const [searchStrain, setSearchStrain] = React.useState('OG Kush');
 
-  const [borderColor1, setBorderColor1] = React.useState('#000000');
+  const [borderColor1, setBorderColor1] = React.useState('#FFFFFF');
   const [borderColor2, setBorderColor2] = React.useState('#FFFFFF');
   const [borderColor3, setBorderColor3] = React.useState('#FFFFFF');
 
@@ -105,23 +105,26 @@ function ProductLanding({setCurrentPage,logVisit}) {
   let unitList = ["lbs","g"];
 
   const handleClickedStrain1 = () => {
-      setBorderColor1("#000000");
+      /*setBorderColor1("#000000");
       setBorderColor2("#FFFFFF");
-      setBorderColor3("#FFFFFF");
+      setBorderColor3("#FFFFFF");*/
+      document.getElementById('popupbutton').click();
       setSearchStrain("OG Kush");
 	};
 
   const handleClickedStrain2 = () => {
-    setBorderColor1("#FFFFFF");
+    /*setBorderColor1("#FFFFFF");
     setBorderColor2("#000000");
-    setBorderColor3("#FFFFFF");
+    setBorderColor3("#FFFFFF");*/
+    document.getElementById('popupbutton').click();
     setSearchStrain("Blue Dream");
   };
 
   const handleClickedStrain3 = () => {
-    setBorderColor1("#FFFFFF");
+    /*setBorderColor1("#FFFFFF");
     setBorderColor2("#FFFFFF");
-    setBorderColor3("#000000");
+    setBorderColor3("#000000");*/
+    document.getElementById('popupbutton').click();
     setSearchStrain("Biscotti");
   };
 
@@ -510,11 +513,11 @@ function ProductLanding({setCurrentPage,logVisit}) {
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor3),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain3}>Biscotti</Button>
                 </div>
                 </div>      
-          <div style={{width:"100%",display:"flex"}}>
           <Popup
-    trigger={<Button style={{marginTop:"10px",marginBottom:"20px",width:"80%"}}>Select</Button>}
+    trigger={<Button id="popupbutton" style={{display:"none"}}></Button>}
     modal
     nested
+    style={{width:"100%",display:"flex"}}
   >
     {close => (
       <div style={{width:"100vw",height:"100vh",backgroundColor:"rgba(0, 0, 0, 0.5)",display:"flex"}}>
@@ -620,7 +623,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
     )}
   </Popup> 
         </div> 
-          </div>
     :null}
           </Grid>
   }
@@ -740,9 +742,10 @@ style={{width:"100%"}}>
                 </div>
             <div style={{width:"100%",display:"flex"}}>
             <Popup
-    trigger={<Button style={{marginTop:"10px",marginBottom:"20px",width:"80%"}}>Select</Button>}
+    trigger={<Button id="popupbutton" style={{display:"none"}}></Button>}
     modal
     nested
+    style={{width:"100%",display:"flex"}}
   >
     {close => (
         <div style={{width:"100vw",height:"100vh",backgroundColor:"rgba(0, 0, 0, 0.5)",display:"flex"}}>
