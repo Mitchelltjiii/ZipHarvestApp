@@ -94,13 +94,13 @@ function ProductLanding({setCurrentPage,logVisit}) {
   const [weight, setWeight] = React.useState('');
 	const [unit, setUnit] = React.useState('lbs');
   const [selectedTag, setSelectedTag] = React.useState('');
-  const [searchStrain, setSearchStrain] = React.useState('Choose One');
+  const [searchStrain, setSearchStrain] = React.useState('OG Kush');
 
   const [borderColor1, setBorderColor1] = React.useState('#000000');
   const [borderColor2, setBorderColor2] = React.useState('#FFFFFF');
   const [borderColor3, setBorderColor3] = React.useState('#FFFFFF');
 
-  let searchForList = ["Choose One","OG Kush","Blue Dream","Biscotti"];
+  let searchForList = ["OG Kush","Blue Dream","Biscotti"];
 
   let unitList = ["lbs","g"];
 
@@ -108,18 +108,21 @@ function ProductLanding({setCurrentPage,logVisit}) {
       setBorderColor1("#000000");
       setBorderColor2("#FFFFFF");
       setBorderColor3("#FFFFFF");
+      setSearchStrain("OG Kush");
 	};
 
   const handleClickedStrain2 = () => {
     setBorderColor1("#FFFFFF");
     setBorderColor2("#000000");
     setBorderColor3("#FFFFFF");
+    setSearchStrain("Blue Dream");
   };
 
   const handleClickedStrain3 = () => {
     setBorderColor1("#FFFFFF");
     setBorderColor2("#FFFFFF");
     setBorderColor3("#000000");
+    setSearchStrain("Biscotti");
   };
 
   const handleSelectedTag = (event) => {
@@ -258,7 +261,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
 		for (const val of plants) {
 			if(val.active){
         if(val.tag.substring(val.tag.length-searchTag.length)===(searchTag)){
-					if((searchStrain === 'Choose One' )|| (searchStrain === val.strain)){
+					if(searchStrain === val.strain){
 						newTagList.push(val.tag + " | " + fixStrain(val.strain));
 					}
 				}			
@@ -405,10 +408,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
         }
       }
 
-      const handleChangeSearchForStrainSelect = (event) => {
-        setSearchStrain(event.target.value);
-        }; 
-
 
         let filteredPlants = [];
         for(const val of plants){
@@ -504,9 +503,9 @@ function ProductLanding({setCurrentPage,logVisit}) {
                       <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px"}}>Select your preferred strain to get started</div>
                       <div style={{textAlign:"center",fontSize:"18px"}}></div>
                       <div style={{display:"flex",flexDirection:"row"}}>
-                  <Button style={{width:"80px",height:"80px",borderColor:borderColor1}} onClick={handleClickedStrain1}>OG Kush</Button>
-                  <Button style={{width:"80px",height:"80px",borderColor:borderColor2,marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
-                  <Button style={{width:"80px",height:"80px",borderColor:borderColor3}} onClick={handleClickedStrain3}>Biscotti</Button>
+                  <Button style={{width:"80px",height:"80px",borderColor:borderColor1,borderWidth:"1px"}} onClick={handleClickedStrain1}>OG Kush</Button>
+                  <Button style={{width:"80px",height:"80px",borderColor:borderColor2,marginLeft:"10px",marginRight:"10px",borderWidth:"1px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
+                  <Button style={{width:"80px",height:"80px",borderColor:borderColor3,borderWidth:"1px"}} onClick={handleClickedStrain3}>Biscotti</Button>
                 </div>
                 </div>      
           <div style={{margin:"auto",width:"100%"}}>
@@ -745,9 +744,9 @@ style={{width:"100%"}}>
             <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{textAlign:"center",fontSize:"20px",marginBottom:"7px"}}>Select your preferred strain to get started</div>
             <div style={{display:"flex",flexDirection:"row"}}>
-                  <Button style={{width:"80px",height:"80px",borderColor:borderColor1}} onClick={handleClickedStrain1}>OG Kush</Button>
-                  <Button style={{width:"80px",height:"80px",borderColor:borderColor2,marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
-                  <Button style={{width:"80px",height:"80px",borderColor:borderColor3}} onClick={handleClickedStrain3}>Biscotti</Button>
+                  <Button style={{width:"80px",height:"80px",borderColor:borderColor1,borderWidth:"1px"}} onClick={handleClickedStrain1}>OG Kush</Button>
+                  <Button style={{width:"80px",height:"80px",borderColor:borderColor2,marginLeft:"10px",marginRight:"10px",borderWidth:"1px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
+                  <Button style={{width:"80px",height:"80px",borderColor:borderColor3,borderWidth:"1px"}} onClick={handleClickedStrain3}>Biscotti</Button>
                 </div>
             <Popup
     trigger={<Button className="button">Select</Button>}
