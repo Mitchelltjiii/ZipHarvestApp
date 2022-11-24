@@ -516,7 +516,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
   >
     {close => (
         <div style={{width:"100%",height:"100%",backgroundColor:"#a3a3a3"}}>
-      <div className="modal">
+      <div style={{backgroundColor:"#e4e4e4"}}>
         <Button className="close" onClick={close}>
           &times;
         </Button>
@@ -583,7 +583,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
               </div>
               : null
           }
-            
           {harvestedCount > 0 ? 
           <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF"}}>
       <Table className={classes.table} aria-label="simple table">
@@ -611,7 +610,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
         </Table>
         </TableContainer>
         :null}
-          </div>
+          </div>  
         </div>
         <div className="actions" style={{margin:"auto",width:"100%"}}>
           <Button
@@ -622,7 +621,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
               close();
             }}
           >
-            Got it
+            Got It
           </Button>
         </div>
       </div>
@@ -756,7 +755,7 @@ style={{width:"100%"}}>
     {close => (
         <div style={{width:"100%",height:"100%",backgroundColor:"#a3a3a3"}}>
 
-      <div className="modal">
+      <div style={{backgroundColor:"#e4e4e4"}}>
         <Button className="close" onClick={close}>
           &times;
         </Button>
@@ -765,6 +764,8 @@ style={{width:"100%"}}>
         <div style={{width:"100%",textAlign:"center",marginTop:"10px",marginBottom:"3px"}}>Click the mic and say</div>
         <div style={{width:"100%",textAlign:"center"}}>"001 is 2 pounds"</div>       
          <div className="content">
+         <div style={{display:"flex",flexDirection:"row"}}>
+
           <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"35px",marginBottom:"15px"}}>
               <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
@@ -778,7 +779,7 @@ style={{width:"100%"}}>
           <Grid
             container
             direction="row"
-              justify="center"
+            justify="center"
             alignItems="center"
           >
   
@@ -821,12 +822,13 @@ style={{width:"100%"}}>
                  </Select>
             </div>
           </Grid>
-          <div style={{margin:"auto",width:"100%"}}>
+          <div style={{width:"100%",alignItems:"center"}}>
               <Button style={{marginTop:"10px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF",width:"80%",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
             </div>
          </div>
          : null}
-          {harvestedCount>0 ? 
+        </div>
+        {harvestedCount>0 ? 
           <TableContainer component={Paper} style={{backgroundColor:"#e4e4e4",width:"320px",minWidth:"320px"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -860,7 +862,7 @@ style={{width:"100%"}}>
         : null}
         </div>
         </div>
-        <div className="actions" style={{margin:"auto",width:"100%"}}>
+        <div style={{width:"100%",alignItems:"center"}}>
           <Button
             className="button"
             onClick={() => {
@@ -869,7 +871,7 @@ style={{width:"100%"}}>
             }}
             style={{width:"80%"}}
           >
-            Got it
+            Got It
           </Button>
         </div>
       </div>
