@@ -500,7 +500,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
            <div style={{marginTop:"15px",marginBottom:"5px",fontSize:"20px",fontFamily:"Arial, Helvetica, sans-serif",textAlign:"center",
           fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Try our Voice-Activated Harvesting now!</div>
                 <div style={{display:"flex",flexDirection:"column"}}>
-                      <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px"}}>Select your preferred strain to get started</div>
+                      <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px",marginBottom:"10px"}}>Select your preferred strain to get started</div>
                       <div style={{textAlign:"center",fontSize:"18px"}}></div>
                       <div style={{display:"flex",flexDirection:"row",width:"100%"}}>
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor1),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain1}>OG Kush</Button>
@@ -510,13 +510,14 @@ function ProductLanding({setCurrentPage,logVisit}) {
                 </div>      
           <div style={{margin:"auto",width:"100%"}}>
           <Popup
-    trigger={<Button style={{marginTop:"10px",marginBottom:"20px"}}>Select</Button>}
+    trigger={<Button style={{marginTop:"10px",marginBottom:"20px",width:"80%"}}>Select</Button>}
     modal
     nested
   >
     {close => (
-        <div style={{width:"100%",height:"100%",backgroundColor:"#a3a3a3"}}>
-      <div style={{backgroundColor:"#e4e4e4"}}>
+      <div style={{width:"100vw",height:"100vh",backgroundColor:"rgba(0, 0, 0, 0.5)",display:"flex"}}>
+
+        <div style={{backgroundColor:"#e4e4e4",margin:"auto",position:"relative"}}>
         <Button className="close" onClick={close}>
           &times;
         </Button>
@@ -526,7 +527,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
 
         <div className="content">
           <div style={{display:"flex",flexDirection:"column"}}>
-            <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"10px"}}>
+            <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"10px",marginBottom:"10px"}}>
               <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
               voiceCommand={voiceCommand}></Dictaphone>
             </div>
@@ -729,19 +730,20 @@ style={{width:"100%"}}>
             alignItems="center"
           >
             <div style={{display:"flex",flexDirection:"column"}}>
-            <div style={{textAlign:"center",fontSize:"20px",marginBottom:"7px"}}>Select your preferred strain to get started</div>
+            <div style={{textAlign:"center",fontSize:"20px",marginBottom:"15px"}}>Select your preferred strain to get started</div>
             <div style={{display:"flex",flexDirection:"row",width:"100%"}}>
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor1),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain1}>OG Kush</Button>
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor2),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor3),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain3}>Biscotti</Button>
                 </div>
+            <div style={{width:"100%"}}>
             <Popup
-    trigger={<Button style={{marginTop:"10px",marginBottom:"20px"}}>Select</Button>}
+    trigger={<Button style={{marginTop:"10px",marginBottom:"20px",width:"80%"}}>Select</Button>}
     modal
     nested
   >
     {close => (
-        <div style={{width:"100vw",height:"100vh",backgroundColor:"#a3a3a3",display:"flex"}}>
+        <div style={{width:"100vw",height:"100vh",backgroundColor:"rgba(0, 0, 0, 0.5)",display:"flex"}}>
 
       <div style={{backgroundColor:"#e4e4e4",margin:"auto",position:"relative"}}>
         <Button className="close" onClick={close}>
@@ -810,9 +812,16 @@ style={{width:"100%"}}>
                  </Select>
             </div>
           </Grid>
+          <Grid
+            container
+            direction="row"
+              justify="center"
+            alignItems="center"
+          >
           <div style={{width:"80%"}}>
               <Button style={{marginTop:"10px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF",width:"100%",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
             </div>
+            </Grid>
          </div>
          : null}
         </div>
@@ -853,7 +862,8 @@ style={{width:"100%"}}>
       </div>
       </div>
     )}
-  </Popup>            
+  </Popup>
+  </div>
           </div>
             </Grid>
             </div>
