@@ -612,18 +612,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
         :null}
           </div>  
         </div>
-        <div className="actions" style={{margin:"auto",width:"100%"}}>
-          <Button
-            className="button"
-            style={{marginTop:"10px",marginBottom:"15px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF",height:"50px"}} 
-            variant={"outlined"}
-            onClick={() => {
-              close();
-            }}
-          >
-            Got It
-          </Button>
-        </div>
       </div>
       </div>
     )}
@@ -759,14 +747,14 @@ style={{width:"100%"}}>
         <Button className="close" onClick={close}>
           &times;
         </Button>
-
-        <div className="header" style={{width:"100%",textAlign:"center",fontWeight:"bold"}}>Harvest Now</div>
-        <div style={{width:"100%",textAlign:"center",marginTop:"10px",marginBottom:"3px"}}>Click the mic and say</div>
-        <div style={{width:"100%",textAlign:"center"}}>"001 is 2 pounds"</div>       
+      
          <div className="content">
          <div style={{display:"flex",flexDirection:"row"}}>
 
           <div style={{display:"flex",flexDirection:"column"}}>
+          <div className="header" style={{width:"100%",textAlign:"center",fontWeight:"bold"}}>Harvest Now</div>
+          <div style={{width:"100%",textAlign:"center",marginTop:"10px",marginBottom:"3px"}}>Click the mic and say</div>
+          <div style={{width:"100%",textAlign:"center"}}>"001 is 2 pounds"</div> 
             <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"35px",marginBottom:"15px"}}>
               <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
               voiceCommand={voiceCommand}></Dictaphone>
@@ -822,7 +810,7 @@ style={{width:"100%"}}>
                  </Select>
             </div>
           </Grid>
-          <div style={{width:"100%",alignItems:"center"}}>
+          <div style={{width:"100%",justifyContent:"center"}}>
               <Button style={{marginTop:"10px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF",width:"80%",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
             </div>
          </div>
@@ -862,18 +850,6 @@ style={{width:"100%"}}>
         : null}
         </div>
         </div>
-        <div style={{width:"100%",alignItems:"center"}}>
-          <Button
-            className="button"
-            onClick={() => {
-              console.log('modal closed ');
-              close();
-            }}
-            style={{width:"80%"}}
-          >
-            Got It
-          </Button>
-        </div>
       </div>
       </div>
     )}
@@ -894,4 +870,31 @@ style={{width:"100%"}}>
 
 export default ProductLanding;
 
+
+/* <div style={{width:"100%",justifyContent:"center"}}>
+          <Button
+            className="button"
+            onClick={() => {
+              console.log('modal closed ');
+              close();
+            }}
+            style={{width:"80%",marginTop:"10px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF",width:"80%",height:"50px"}} 
+            variant={"outlined"}
+          >
+            Got It
+          </Button>
+        </div>
+
+        <div className="actions" style={{margin:"auto",width:"100%"}}>
+          <Button
+            className="button"
+            style={{marginTop:"10px",marginBottom:"15px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF",height:"50px"}} 
+            variant={"outlined"}
+            onClick={() => {
+              close();
+            }}
+          >
+            Got It
+          </Button>
+        </div>*/
 
