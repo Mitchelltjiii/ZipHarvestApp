@@ -503,14 +503,14 @@ function ProductLanding({setCurrentPage,logVisit}) {
                       <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px"}}>Select your preferred strain to get started</div>
                       <div style={{textAlign:"center",fontSize:"18px"}}></div>
                       <div style={{display:"flex",flexDirection:"row",width:"100%"}}>
-                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor1)}} onClick={handleClickedStrain1}>OG Kush</Button>
+                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor1),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain1}>OG Kush</Button>
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor2),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
-                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor3)}} onClick={handleClickedStrain3}>Biscotti</Button>
+                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor3),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain3}>Biscotti</Button>
                 </div>
                 </div>      
           <div style={{margin:"auto",width:"100%"}}>
           <Popup
-    trigger={<Button>Select</Button>}
+    trigger={<Button style={{marginTop:"10px",marginBottom:"20px"}}>Select</Button>}
     modal
     nested
   >
@@ -731,19 +731,19 @@ style={{width:"100%"}}>
             <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{textAlign:"center",fontSize:"20px",marginBottom:"7px"}}>Select your preferred strain to get started</div>
             <div style={{display:"flex",flexDirection:"row",width:"100%"}}>
-                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor1)}} onClick={handleClickedStrain1}>OG Kush</Button>
+                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor1),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain1}>OG Kush</Button>
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor2),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
-                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor3)}} onClick={handleClickedStrain3}>Biscotti</Button>
+                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor3),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain3}>Biscotti</Button>
                 </div>
             <Popup
-    trigger={<Button className="button">Select</Button>}
+    trigger={<Button style={{marginTop:"10px",marginBottom:"20px"}}>Select</Button>}
     modal
     nested
   >
     {close => (
-        <div style={{width:"100vh",height:"100vh",backgroundColor:"#a3a3a3",margin:"auto"}}>
+        <div style={{width:"100vw",height:"100vh",backgroundColor:"#a3a3a3",display:"flex"}}>
 
-      <div style={{backgroundColor:"#e4e4e4"}}>
+      <div style={{backgroundColor:"#e4e4e4",margin:"auto",position:"relative"}}>
         <Button className="close" onClick={close}>
           &times;
         </Button>
