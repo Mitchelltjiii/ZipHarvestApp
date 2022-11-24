@@ -502,10 +502,10 @@ function ProductLanding({setCurrentPage,logVisit}) {
                 <div style={{display:"flex",flexDirection:"column"}}>
                       <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px"}}>Select your preferred strain to get started</div>
                       <div style={{textAlign:"center",fontSize:"18px"}}></div>
-                      <div style={{display:"flex",flexDirection:"row"}}>
-                  <Button style={{width:"80px",height:"80px",border:("3px solid " + borderColor1)}} onClick={handleClickedStrain1}>OG Kush</Button>
-                  <Button style={{width:"80px",height:"80px",border:("3px solid " + borderColor2),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
-                  <Button style={{width:"80px",height:"80px",border:("3px solid " + borderColor3)}} onClick={handleClickedStrain3}>Biscotti</Button>
+                      <div style={{display:"flex",flexDirection:"row",width:"100%"}}>
+                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor1)}} onClick={handleClickedStrain1}>OG Kush</Button>
+                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor2),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
+                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor3)}} onClick={handleClickedStrain3}>Biscotti</Button>
                 </div>
                 </div>      
           <div style={{margin:"auto",width:"100%"}}>
@@ -730,10 +730,10 @@ style={{width:"100%"}}>
           >
             <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{textAlign:"center",fontSize:"20px",marginBottom:"7px"}}>Select your preferred strain to get started</div>
-            <div style={{display:"flex",flexDirection:"row"}}>
-                  <Button style={{width:"80px",height:"80px",border:("3px solid " + borderColor1)}} onClick={handleClickedStrain1}>OG Kush</Button>
-                  <Button style={{width:"80px",height:"80px",border:("3px solid " + borderColor2),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
-                  <Button style={{width:"80px",height:"80px",border:("3px solid " + borderColor3)}} onClick={handleClickedStrain3}>Biscotti</Button>
+            <div style={{display:"flex",flexDirection:"row",width:"100%"}}>
+                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor1)}} onClick={handleClickedStrain1}>OG Kush</Button>
+                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor2),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
+                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor3)}} onClick={handleClickedStrain3}>Biscotti</Button>
                 </div>
             <Popup
     trigger={<Button className="button">Select</Button>}
@@ -741,7 +741,7 @@ style={{width:"100%"}}>
     nested
   >
     {close => (
-        <div style={{width:"100%",height:"100%",backgroundColor:"#a3a3a3"}}>
+        <div style={{width:"100vh",height:"100vh",backgroundColor:"#a3a3a3",margin:"auto"}}>
 
       <div style={{backgroundColor:"#e4e4e4"}}>
         <Button className="close" onClick={close}>
@@ -810,8 +810,8 @@ style={{width:"100%"}}>
                  </Select>
             </div>
           </Grid>
-          <div style={{width:"100%",justifyContent:"center"}}>
-              <Button style={{marginTop:"10px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF",width:"80%",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
+          <div style={{width:"80%"}}>
+              <Button style={{marginTop:"10px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF",width:"100%",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
             </div>
          </div>
          : null}
