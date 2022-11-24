@@ -503,9 +503,9 @@ function ProductLanding({setCurrentPage,logVisit}) {
                       <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px"}}>Select your preferred strain to get started</div>
                       <div style={{textAlign:"center",fontSize:"18px"}}></div>
                       <div style={{display:"flex",flexDirection:"row"}}>
-                  <Button style={{width:"80px",height:"80px",borderColor:borderColor1,borderWidth:"1px"}} onClick={handleClickedStrain1}>OG Kush</Button>
-                  <Button style={{width:"80px",height:"80px",borderColor:borderColor2,marginLeft:"10px",marginRight:"10px",borderWidth:"1px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
-                  <Button style={{width:"80px",height:"80px",borderColor:borderColor3,borderWidth:"1px"}} onClick={handleClickedStrain3}>Biscotti</Button>
+                  <Button style={{width:"80px",height:"80px",border:("3px solid " + borderColor1)}} onClick={handleClickedStrain1}>OG Kush</Button>
+                  <Button style={{width:"80px",height:"80px",border:("3px solid " + borderColor2),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
+                  <Button style={{width:"80px",height:"80px",border:("3px solid " + borderColor3)}} onClick={handleClickedStrain3}>Biscotti</Button>
                 </div>
                 </div>      
           <div style={{margin:"auto",width:"100%"}}>
@@ -744,9 +744,9 @@ style={{width:"100%"}}>
             <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{textAlign:"center",fontSize:"20px",marginBottom:"7px"}}>Select your preferred strain to get started</div>
             <div style={{display:"flex",flexDirection:"row"}}>
-                  <Button style={{width:"80px",height:"80px",borderColor:borderColor1,borderWidth:"1px"}} onClick={handleClickedStrain1}>OG Kush</Button>
-                  <Button style={{width:"80px",height:"80px",borderColor:borderColor2,marginLeft:"10px",marginRight:"10px",borderWidth:"1px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
-                  <Button style={{width:"80px",height:"80px",borderColor:borderColor3,borderWidth:"1px"}} onClick={handleClickedStrain3}>Biscotti</Button>
+                  <Button style={{width:"80px",height:"80px",border:("3px solid " + borderColor1)}} onClick={handleClickedStrain1}>OG Kush</Button>
+                  <Button style={{width:"80px",height:"80px",border:("3px solid " + borderColor2),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
+                  <Button style={{width:"80px",height:"80px",border:("3px solid " + borderColor3)}} onClick={handleClickedStrain3}>Biscotti</Button>
                 </div>
             <Popup
     trigger={<Button className="button">Select</Button>}
@@ -772,7 +772,7 @@ style={{width:"100%"}}>
               </div>
               
             {harvestedCount > 0 || searchTag !== "" ?
-            <div style={{display:"flex",flexDirection:"column"}}>
+            <div style={{display:"flex",flexDirection:"column",width:"100%"}}>
           <div style={{width:"100%",fontSize:"20px",marginTop:"20px",marginBottom:"5px",textAlign:"center",
           fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Plant Info</div>
           <Grid
@@ -823,7 +823,6 @@ style={{width:"100%"}}>
           </Grid>
           <div style={{margin:"auto",width:"100%"}}>
               <Button style={{marginTop:"10px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF",width:"80%",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
-
             </div>
          </div>
          : null}
@@ -861,13 +860,14 @@ style={{width:"100%"}}>
         : null}
         </div>
         </div>
-        <div className="actions" style={{margin:"auto"}}>
+        <div className="actions" style={{margin:"auto",width:"100%"}}>
           <Button
             className="button"
             onClick={() => {
               console.log('modal closed ');
               close();
             }}
+            style={{width:"80%"}}
           >
             Got it
           </Button>
