@@ -299,33 +299,35 @@ function ProductLanding({setCurrentPage,logVisit}) {
     }
 
     function nextPlant(){
+
       let newPlants = [];
 
       if(isNumeric(weight) && weight !== '0'){
           let plantTag = currSelectedTag;
           if(plantTag !== ''){
             plantTag = plantTag.substring(0,plantTag.indexOf(" | "));
-          }          
-  
-          let newPlant = [];
-          console.log("PlantTag: " + plantTag);
-          for(const val of plants){
-            console.log("Val.tag: " + val.tag);
-            if(val.tag === plantTag){
-              newPlant = val;
-              newPlant.weight = parseFloat(weight);
-              newPlant.unit = unit;
-              newPlant.active = false;
-              newPlants.push(newPlant);
-            }else{
-              newPlants.push(val);
+          
+            let newPlant = [];
+            console.log("PlantTag: " + plantTag);
+            for(const val of plants){
+             console.log("Val.tag: " + val.tag);
+              if(val.tag === plantTag){
+                newPlant = val;
+                newPlant.weight = parseFloat(weight);
+                newPlant.unit = unit;
+                newPlant.active = false;
+                newPlants.push(newPlant);
+              }else{
+                newPlants.push(val);
+              }
             }
-          }
-      }
-        setPlants(newPlants);
-        setSearchTag('');
-        setWeight('');
-        setSelectedTag('');
+            setPlants(newPlants);
+            setSearchTag('');
+            setWeight('');
+            setSelectedTag('');
+          }         
+        }
+        
     }
 
     const handleGoToFloraSolNewTab = () => {
@@ -508,7 +510,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor3),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain3}>Biscotti</Button>
                 </div>
                 </div>      
-          <div style={{margin:"auto",width:"100%"}}>
+          <div style={{width:"100%",display:"flex"}}>
           <Popup
     trigger={<Button style={{marginTop:"10px",marginBottom:"20px",width:"80%"}}>Select</Button>}
     modal
@@ -585,7 +587,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
               : null
           }
           {harvestedCount > 0 ? 
-          <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF"}}>
+          <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF",maxHeight:"200px",overflowY:"scroll"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -736,7 +738,7 @@ style={{width:"100%"}}>
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor2),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor3),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain3}>Biscotti</Button>
                 </div>
-            <div style={{width:"100%"}}>
+            <div style={{width:"100%",display:"flex"}}>
             <Popup
     trigger={<Button style={{marginTop:"10px",marginBottom:"20px",width:"80%"}}>Select</Button>}
     modal
