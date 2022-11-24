@@ -620,7 +620,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
             style={{marginTop:"10px",marginBottom:"15px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF",height:"50px"}} 
             variant={"outlined"}
             onClick={() => {
-              close();contained
+              close();
             }}
           >
             Got it
