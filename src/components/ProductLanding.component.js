@@ -96,9 +96,31 @@ function ProductLanding({setCurrentPage,logVisit}) {
   const [selectedTag, setSelectedTag] = React.useState('');
   const [searchStrain, setSearchStrain] = React.useState('Choose One');
 
+  const [borderColor1, setBorderColor1] = React.useState('#000000');
+  const [borderColor2, setBorderColor2] = React.useState('#FFFFFF');
+  const [borderColor3, setBorderColor3] = React.useState('#FFFFFF');
+
   let searchForList = ["Choose One","OG Kush","Blue Dream","Biscotti"];
 
   let unitList = ["lbs","g"];
+
+  const handleClickedStrain1 = () => {
+      setBorderColor1("#000000");
+      setBorderColor2("#FFFFFF");
+      setBorderColor3("#FFFFFF");
+	};
+
+  const handleClickedStrain2 = () => {
+    setBorderColor1("#FFFFFF");
+    setBorderColor2("#000000");
+    setBorderColor3("#FFFFFF");
+  };
+
+  const handleClickedStrain3 = () => {
+    setBorderColor1("#FFFFFF");
+    setBorderColor2("#FFFFFF");
+    setBorderColor3("#000000");
+  };
 
   const handleSelectedTag = (event) => {
 		setSelectedTag(event.target.value);
@@ -481,10 +503,15 @@ function ProductLanding({setCurrentPage,logVisit}) {
                 <div style={{display:"flex",flexDirection:"column"}}>
                       <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px"}}>Select your preferred strain to get started</div>
                       <div style={{textAlign:"center",fontSize:"18px"}}></div>
+                      <div style={{display:"flex",flexDirection:"row"}}>
+                  <Button style={{width:"80px",height:"80px",borderColor:borderColor1}} onClick={handleClickedStrain1}>OG Kush</Button>
+                  <Button style={{width:"80px",height:"80px",borderColor:borderColor2,marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
+                  <Button style={{width:"80px",height:"80px",borderColor:borderColor3}} onClick={handleClickedStrain3}>Biscotti</Button>
+                </div>
                 </div>      
-          <div style={{alignItems:"center"}}>
+          <div style={{margin:"auto",width:"100%"}}>
           <Popup
-    trigger={<Button className="button">Select</Button>}
+    trigger={<Button>Select</Button>}
     modal
     nested
   >
@@ -494,14 +521,19 @@ function ProductLanding({setCurrentPage,logVisit}) {
         <Button className="close" onClick={close}>
           &times;
         </Button>
-        <div className="header"> Modal Title </div>
+        <div className="header" style={{width:"100%",textAlign:"center",fontWeight:"bold"}}>Harvest Now</div>
+        <div style={{width:"100%",textAlign:"center",marginTop:"10px",marginBottom:"3px"}}>Click the mic and say</div>
+        <div style={{width:"100%",textAlign:"center"}}>"001 is 2 pounds"</div>
+
         <div className="content">
           <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"10px"}}>
               <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
               voiceCommand={voiceCommand}></Dictaphone>
             </div>
-            <Grid
+            {harvestedCount > 0 || searchTag !== "" ?
+            <div style={{display:"flex",flexDirection:"column"}}>
+              <Grid
             container
             direction="row"
               justify="center"
@@ -549,6 +581,10 @@ function ProductLanding({setCurrentPage,logVisit}) {
           </Grid>
           <Button style={{marginTop:"10px",marginBottom:"15px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
           
+              </div>
+              : null
+          }
+            
           {harvestedCount > 0 ? 
           <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF"}}>
       <Table className={classes.table} aria-label="simple table">
@@ -578,12 +614,13 @@ function ProductLanding({setCurrentPage,logVisit}) {
         :null}
           </div>
         </div>
-        <div className="actions" style={{margin:"auto"}}>
+        <div className="actions" style={{margin:"auto",width:"100%"}}>
           <Button
             className="button"
+            style={{marginTop:"10px",marginBottom:"15px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF",height:"50px"}} 
+            variant={"outlined"}
             onClick={() => {
-              console.log('modal closed ');
-              close();
+              close();contained
             }}
           >
             Got it
@@ -707,6 +744,11 @@ style={{width:"100%"}}>
           >
             <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{textAlign:"center",fontSize:"20px",marginBottom:"7px"}}>Select your preferred strain to get started</div>
+            <div style={{display:"flex",flexDirection:"row"}}>
+                  <Button style={{width:"80px",height:"80px",borderColor:borderColor1}} onClick={handleClickedStrain1}>OG Kush</Button>
+                  <Button style={{width:"80px",height:"80px",borderColor:borderColor2,marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
+                  <Button style={{width:"80px",height:"80px",borderColor:borderColor3}} onClick={handleClickedStrain3}>Biscotti</Button>
+                </div>
             <Popup
     trigger={<Button className="button">Select</Button>}
     modal
@@ -719,13 +761,19 @@ style={{width:"100%"}}>
         <Button className="close" onClick={close}>
           &times;
         </Button>
-        <div className="header"> Modal Title </div>
-        <div className="content">
+
+        <div className="header" style={{width:"100%",textAlign:"center",fontWeight:"bold"}}>Harvest Now</div>
+        <div style={{width:"100%",textAlign:"center",marginTop:"10px",marginBottom:"3px"}}>Click the mic and say</div>
+        <div style={{width:"100%",textAlign:"center"}}>"001 is 2 pounds"</div>       
+         <div className="content">
           <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"35px",marginBottom:"15px"}}>
               <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
               voiceCommand={voiceCommand}></Dictaphone>
               </div>
+              
+            {harvestedCount > 0 || searchTag !== "" ?
+            <div style={{display:"flex",flexDirection:"column"}}>
           <div style={{width:"100%",fontSize:"20px",marginTop:"20px",marginBottom:"5px",textAlign:"center",
           fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Plant Info</div>
           <Grid
@@ -774,8 +822,12 @@ style={{width:"100%"}}>
                  </Select>
             </div>
           </Grid>
-          <Button style={{marginTop:"10px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF",width:"80%",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
-         
+          <div style={{margin:"auto",width:"100%"}}>
+              <Button style={{marginTop:"10px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF",width:"80%",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
+
+            </div>
+         </div>
+         : null}
           {harvestedCount>0 ? 
           <TableContainer component={Paper} style={{backgroundColor:"#e4e4e4",width:"320px",minWidth:"320px"}}>
       <Table className={classes.table} aria-label="simple table">
