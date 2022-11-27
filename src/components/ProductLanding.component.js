@@ -627,26 +627,26 @@ function ProductLanding({setCurrentPage,logVisit}) {
               : null
           }
           {harvestedCount > 0 ? 
-          <div style={{display:"flex",flexDirection:"column",height:"240px",overflowY:"scroll"}}>
-            <div style={{display:"flex",flexDirection:"column"}}>
-              <div style={{display:"flex",flexDirection:"row"}}>
-                <div style={{textAlign:"left"}}>Harvested Plants</div>
-                <div style={{textAlign:"right"}}>Weight</div>
+          <div style={{display:"flex",flexDirection:"column",height:"240px",overflowY:"scroll",width:"100%"}}>
+            <div style={{display:"flex",flexDirection:"column",width:"100%"}}>
+              <div style={{display:"flex",flexDirection:"row",width:"100%"}}>
+                <div style={{textAlign:"left",width:"100%"}}>Harvested Plants</div>
+                <div style={{textAlign:"right",width:"100%"}}>Weight</div>
               </div>
               {harvestedPlants.map((row) => (
-                <div style={{display:"flex",flexDirection:"row"}}>
-                  <div style={{display:"flex",flexDirection:"column"}}>
+                <div style={{display:"flex",flexDirection:"row",width:"100%"}}>
+                  <div style={{display:"flex",flexDirection:"column",width:"100%"}}>
                     <div style={{fontWeight:"bold",textAlign:"left"}}>{row.tag}</div>
                     <div style={{textAlign:"left"}}>{row.strain}</div>
                   </div>
-                  <div style={{textAlign:"right"}}>{getWeightAndUnit(row.weight,row.unit)}</div>
+                  <div style={{textAlign:"right",width:"100%"}}>{getWeightAndUnit(row.weight,row.unit)}</div>
                 </div>
             ))}
             </div>
-            <div style={{display:"flex",flexDirection:"column"}}>
+            <div style={{display:"flex",flexDirection:"column",width:"100%"}}>
               <div style={{textAlign:"left"}}>Available Plants</div>
               {availablePlants.map((row) => (
-                <div style={{display:"flex",flexDirection:"column"}}>
+                <div style={{display:"flex",flexDirection:"column",width:"100%"}}>
                   <div style={{fontWeight:"bold",textAlign:"left"}}>{row.tag}</div>
                   <div style={{textAlign:"left"}}>{row.strain}</div>
                 </div>
