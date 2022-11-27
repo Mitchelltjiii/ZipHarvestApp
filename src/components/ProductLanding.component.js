@@ -629,13 +629,13 @@ function ProductLanding({setCurrentPage,logVisit}) {
           }
           {harvestedCount > 0 ? 
           <div style={{display:"flex",flexDirection:"column",height:"240px",overflowY:"scroll",width:"100%",backgroundColor:"#FFFFFF"}}>
-            <div style={{display:"flex",flexDirection:"column",width:"100%"}}>
-              <div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"5px",marginBottom:"5px",marginLeft:"5px",marginRight:"5px"}}>
+            <div style={{display:"flex",flexDirection:"column",width:"100%",alignItems:"center"}}>
+              <div style={{display:"flex",flexDirection:"row",width:"90%",marginTop:"5px",marginBottom:"5px"}}>
                 <div style={{textAlign:"left",width:"100%",whiteSpace:"nowrap",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Harvested Plants</div>
                 <div style={{textAlign:"right",width:"100%",whiteSpace:"nowrap",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Weight</div>
               </div>
               {harvestedPlants.map((row) => (
-                <div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"5px",marginBottom:"5px",marginLeft:"5px",marginRight:"5px"}}>
+                <div style={{display:"flex",flexDirection:"row",width:"90%",marginTop:"5px",marginBottom:"5px"}}>
                   <div style={{display:"flex",flexDirection:"column",width:"100%"}}>
                     <div style={{fontWeight:"bold",textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif"}}>{row.tag}</div>
                     <div style={{textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif"}}>{row.strain}</div>
