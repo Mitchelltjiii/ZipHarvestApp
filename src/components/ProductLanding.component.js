@@ -414,10 +414,15 @@ function ProductLanding({setCurrentPage,logVisit}) {
       }
 
 
-        let filteredPlants = [];
+        let harvestedPlants = [];
+        let availablePlants = [];
         for(const val of plants){
           if(val.strain === searchStrain){
-            filteredPlants.push(val);
+            if(val.active){
+              availablePlants.push(val);
+            }else{
+              harvestedPlants.push(val);
+            }
           }
         }
 
@@ -507,7 +512,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
                 <div style={{display:"flex",flexDirection:"column"}}>
                       <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px",marginBottom:"10px"}}>Select your preferred strain to get started</div>
                       <div style={{textAlign:"center",fontSize:"18px"}}></div>
-                      <div style={{display:"flex",flexDirection:"row",width:"100%"}}>
+                      <div style={{display:"flex",flexDirection:"row",width:"100%",marginBottom:"20px"}}>
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor1),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain1}>OG Kush</Button>
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor2),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor3),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain3}>Biscotti</Button>
@@ -527,8 +532,14 @@ function ProductLanding({setCurrentPage,logVisit}) {
           &times;
         </Button>
         <div className="header" style={{width:"100%",textAlign:"center",fontWeight:"bold"}}>Harvest Now</div>
-        <div style={{width:"100%",textAlign:"center",marginTop:"10px",marginBottom:"3px"}}>Click the mic and say</div>
-        <div style={{width:"100%",textAlign:"center"}}>"001 is 2 pounds"</div>
+        {harvestedCount > 0 || searchTag !== "" ?
+          null
+          :
+          <div style={{display:"flex",flexDirection:"column"}}>
+            <div style={{width:"100%",textAlign:"center",marginTop:"10px",marginBottom:"3px"}}>Click the mic and say</div>
+            <div style={{width:"100%",textAlign:"center"}}>"001 is 2 pounds"</div>
+          </div>
+          } 
 
         <div className="content">
           <div style={{display:"flex",flexDirection:"column"}}>
@@ -555,7 +566,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
             alignItems="center"
           >
         
-          <Select id="searchTagSelect" label={"Search Results"} value={currSelectedTag} onChange={handleSelectedTag} style={{width:"80%",marginTop:"15px",direction:"rtl"}}>
+          <Select id="searchTagSelect" label="Search Results" value={currSelectedTag} onChange={handleSelectedTag} style={{width:"80%",marginTop:"15px",direction:"rtl"}}>
                     {    
                       tagList.map((name, index) => (
                     <MenuItem key={index} value={name}>
@@ -564,33 +575,36 @@ function ProductLanding({setCurrentPage,logVisit}) {
                   ))}
                  </Select>
           </Grid>
-  
+
           <Grid
             container
             direction="row"
               justify="center"
             alignItems="center"
-            wrap="nowrap"
-            style={{width:"80%"}}
           >
   
-          <TextField id="Weight" value={weight} onChange={handleWeight} style={{width:"100px"}}/>
+          <div style={{display:"flex",flexDirection:"row",flexWrap:"nowrap"}}>
   
-          <Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{width:"80px"}}>
+          <TextField id="Weight" label="Weight" value={weight} onChange={handleWeight} style={{width:"100%"}}/>
+  
+          <Select id="unit-select" label="Unit" value={unit} onChange={handleUnitSelect} style={{width:"100%"}}>
                     {unitList.map((name, index) => (
                     <MenuItem key={index} value={name}>
                       {name}
                     </MenuItem>
                   ))}
                  </Select>
-          </Grid>
-          <Button style={{marginTop:"10px",marginBottom:"15px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
+          </div>        
+          </Grid>  
+          <Button style={{marginTop:"10px",marginBottom:"15px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF",height:"50px"}} 
+          variant={"contained"} onClick={handleNextPlant}>Save Plant</Button>   
           
               </div>
               : null
           }
           {harvestedCount > 0 ? 
-          <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF",maxHeight:"200px",overflowY:"scroll"}}>
+          <div style={{display:"flex",flexDirection:"column",maxHeight:"200px",overflowY:"scroll"}}>
+            <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -599,7 +613,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
           </TableRow>
         </TableHead>
         <TableBody>
-            {filteredPlants.map((row) => (
+            {harvestedPlants.map((row) => (
               <TableRow key={row.tag}>
               <TableCell>
                   <div style={{display:"flex",flexDirection:"column"}}>
@@ -615,6 +629,28 @@ function ProductLanding({setCurrentPage,logVisit}) {
             </TableBody>
         </Table>
         </TableContainer>
+        <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF"}}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Available Plants</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+            {availablePlants.map((row) => (
+              <TableRow key={row.tag}>
+              <TableCell>
+                  <div style={{display:"flex",flexDirection:"column"}}>
+                    <div style={{fontWeight:"bold"}}>{row.tag}</div>
+                    <div>{row.strain}</div>
+                  </div>  
+              </TableCell>
+            </TableRow>
+            ))}
+            </TableBody>
+        </Table>
+        </TableContainer>
+          </div>
         :null}
           </div>  
         </div>
@@ -735,7 +771,7 @@ style={{width:"100%"}}>
           >
             <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{textAlign:"center",fontSize:"20px",marginBottom:"15px"}}>Select your preferred strain to get started</div>
-            <div style={{display:"flex",flexDirection:"row",width:"100%"}}>
+            <div style={{display:"flex",flexDirection:"row",width:"100%",marginBottom:"20px"}}>
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor1),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain1}>OG Kush</Button>
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor2),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor3),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain3}>Biscotti</Button>
@@ -760,8 +796,14 @@ style={{width:"100%"}}>
 
           <div style={{display:"flex",flexDirection:"column"}}>
           <div className="header" style={{width:"100%",textAlign:"center",fontWeight:"bold"}}>Harvest Now</div>
-          <div style={{width:"100%",textAlign:"center",marginTop:"10px",marginBottom:"3px"}}>Click the mic and say</div>
-          <div style={{width:"100%",textAlign:"center"}}>"001 is 2 pounds"</div> 
+          {harvestedCount > 0 || searchTag !== "" ?
+          null
+          :
+          <div style={{display:"flex",flexDirection:"column"}}>
+            <div style={{width:"100%",textAlign:"center",marginTop:"10px",marginBottom:"3px"}}>Click the mic and say</div>
+            <div style={{width:"100%",textAlign:"center"}}>"001 is 2 pounds"</div>
+          </div>
+          } 
             <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"35px",marginBottom:"15px"}}>
               <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
               voiceCommand={voiceCommand}></Dictaphone>
@@ -778,7 +820,7 @@ style={{width:"100%"}}>
             alignItems="center"
           >
   
-          <TextField id="search-field" value={searchTag} label="Search Tag" onChange={handleSearchTag} style={{width:"80%"}}/>
+          <TextField id="search-field" value={searchTag} label="Searching For Tag" onChange={handleSearchTag} style={{width:"80%"}}/>
           </Grid>
   
           <Grid
@@ -788,7 +830,7 @@ style={{width:"100%"}}>
             alignItems="center"
           >
         
-          <Select id="searchTagSelect" value={currSelectedTag} onChange={handleSelectedTag} style={{width:"80%",marginTop:"15px"}}>
+          <Select id="searchTagSelect" label="Search Results" value={currSelectedTag} onChange={handleSelectedTag} style={{width:"80%",marginTop:"15px"}}>
                     {    
                       tagList.map((name, index) => (
                     <MenuItem key={index} value={name}>
@@ -805,10 +847,10 @@ style={{width:"100%"}}>
             alignItems="center"
           >
   
-          <div style={{width:"80%",flexWrap:"nowrap"}}>
-          <TextField id="Weight" value={weight} onChange={handleWeight} style={{width:"100%"}}/>
+          <div style={{width:"80%",display:"flex",flexWrap:"nowrap"}}>
+          <TextField id="Weight" label="weight" value={weight} onChange={handleWeight} style={{width:"100%"}}/>
   
-          <Select id="unit-select" value={unit} onChange={handleUnitSelect} style={{width:"80px"}}>
+          <Select id="unit-select" label="unit" value={unit} onChange={handleUnitSelect} style={{width:"100%"}}>
                     {unitList.map((name, index) => (
                     <MenuItem key={index} value={name}>
                       {name}
@@ -824,23 +866,24 @@ style={{width:"100%"}}>
             alignItems="center"
           >
           <div style={{width:"80%"}}>
-              <Button style={{marginTop:"10px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF",width:"100%",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Next Plant</Button>   
+              <Button style={{marginTop:"10px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF",width:"100%",height:"50px"}} variant={"contained"} onClick={handleNextPlant}>Save Plant</Button>   
             </div>
             </Grid>
          </div>
          : null}
         </div>
         {harvestedCount>0 ? 
+        <div style={{display:"flex",flexDirection:"column"}}>
           <TableContainer component={Paper} style={{backgroundColor:"#e4e4e4",width:"320px",minWidth:"320px"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell style={{fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Plant</TableCell>
+            <TableCell style={{fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Harvested Plants</TableCell>
             <TableCell align="right" style={{fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Weight</TableCell>            
           </TableRow>
         </TableHead>
         <TableBody>
-            {filteredPlants.map((row) => (
+            {harvestedPlants.map((row) => (
               <TableRow key={row.tag}>
                 <TableCell>
                   <div style={{display:"flex",flexDirection:"column"}}>
@@ -861,6 +904,29 @@ style={{width:"100%"}}>
             </TableBody>
         </Table>
         </TableContainer>
+
+        <TableContainer component={Paper} style={{backgroundColor:"#e4e4e4",width:"320px",minWidth:"320px"}}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell style={{fontSize:"20px",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Available Plants</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+            {activePlants.map((row) => (
+              <TableRow key={row.tag}>
+                <TableCell>
+                  <div style={{display:"flex",flexDirection:"column"}}>
+                    <div style={{fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>{row.tag}</div>
+                    <div style={{fontFamily:"Arial, Helvetica, sans-serif"}}>{row.strain}</div>
+                  </div>  
+              </TableCell>
+            </TableRow>
+            ))}
+            </TableBody>
+        </Table>
+        </TableContainer>
+        </div>
         : null}
         </div>
         </div>
