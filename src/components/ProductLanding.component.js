@@ -429,6 +429,9 @@ function ProductLanding({setCurrentPage,logVisit}) {
           }
         }
 
+        let harvestedTableHeight = (60 + (60*harvestedPlants.length)) + "px";
+        let availableTableHeight = (60 + (60*availablePlants.length)) + "px";
+
   if(isMobile){
     return (
       <div id="product-display-mobile" style={{width:"100%",backgroundColor:"#444444"}}>
@@ -513,12 +516,12 @@ function ProductLanding({setCurrentPage,logVisit}) {
            <div style={{marginTop:"15px",marginBottom:"5px",fontSize:"20px",fontFamily:"Arial, Helvetica, sans-serif",textAlign:"center",
           fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Try our Voice-Activated Harvesting now!</div>
                 <div style={{display:"flex",flexDirection:"column"}}>
-                      <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px",marginBottom:"10px"}}>Select your preferred strain</div>
-                      <div style={{textAlign:"center",fontSize:"18px"}}>to get started</div>
+                      <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px",marginBottom:"2px",fontFamily:"Arial, Helvetica, sans-serif"}}>Select your preferred strain</div>
+                      <div style={{textAlign:"center",fontSize:"18px",marginBottom:"10px",fontFamily:"Arial, Helvetica, sans-serif"}}>to get started</div>
                       <div style={{display:"flex",flexDirection:"row",width:"100%",marginBottom:"20px"}}>
-                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor1),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain1}>OG Kush</Button>
-                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor2),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
-                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor3),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain3}>Biscotti</Button>
+                  <Button style={{width:"100%",height:"80px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"10px",marginRight:"10px"}} variant={"contained"} onClick={handleClickedStrain1}>OG Kush</Button>
+                  <Button style={{width:"100%",height:"80px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"10px",marginRight:"10px"}} variant={"contained"} onClick={handleClickedStrain2}>Blue Dream</Button>
+                  <Button style={{width:"100%",height:"80px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"10px",marginRight:"10px"}} variant={"contained"} onClick={handleClickedStrain3}>Biscotti</Button>
                 </div>
                 </div>      
           <Popup
@@ -624,8 +627,33 @@ function ProductLanding({setCurrentPage,logVisit}) {
               : null
           }
           {harvestedCount > 0 ? 
-          <div style={{display:"flex",flexDirection:"column",maxHeight:"240px",overflowY:"scroll"}}>
-            <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF",minHeight:"120px",overflowY:"hidden"}}>
+          <div style={{display:"flex",flexDirection:"column",height:"240px",overflowY:"scroll"}}>
+            <div style={{display:"flex",flexDirection:"column"}}>
+              <div style={{display:"flex",flexDirection:"row"}}>
+                <div style={{textAlign:"left"}}>Harvested Plants</div>
+                <div style={{textAlign:"right"}}>Weight</div>
+              </div>
+              {harvestedPlants.map((row) => (
+                <div style={{display:"flex",flexDirection:"row"}}>
+                  <div style={{display:"flex",flexDirection:"column"}}>
+                    <div style={{fontWeight:"bold",textAlign:"left"}}>{row.tag}</div>
+                    <div style={{textAlign:"left"}}>{row.strain}</div>
+                  </div>
+                  <div style={{textAlign:"right"}}>{getWeightAndUnit(row.weight,row.unit)}</div>
+                </div>
+            ))}
+            </div>
+            <div style={{display:"flex",flexDirection:"column"}}>
+              <div style={{textAlign:"left"}}>Available Plants</div>
+              {availablePlants.map((row) => (
+                <div style={{display:"flex",flexDirection:"column"}}>
+                  <div style={{fontWeight:"bold",textAlign:"left"}}>{row.tag}</div>
+                  <div style={{textAlign:"left"}}>{row.strain}</div>
+                </div>
+              ))}
+            </div>
+            
+            <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF",height:harvestedTableHeight,overflowY:"hidden"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -650,7 +678,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
             </TableBody>
         </Table>
         </TableContainer>
-        <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF",overflowY:"hidden"}}>
+        <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF",height:availableTableHeight,overflowY:"hidden"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -793,9 +821,9 @@ style={{width:"100%"}}>
             <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{textAlign:"center",fontSize:"20px",marginBottom:"15px"}}>Select your preferred strain to get started</div>
             <div style={{display:"flex",flexDirection:"row",width:"100%",marginBottom:"20px"}}>
-                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor1),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain1}>OG Kush</Button>
-                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor2),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
-                  <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor3),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain3}>Biscotti</Button>
+                  <Button style={{width:"100%",height:"80px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"10px",marginRight:"10px"}} variant={"contained"} onClick={handleClickedStrain1}>OG Kush</Button>
+                  <Button style={{width:"100%",height:"80px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"10px",marginRight:"10px"}} variant={"contained"} onClick={handleClickedStrain2}>Blue Dream</Button>
+                  <Button style={{width:"100%",height:"80px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"10px",marginRight:"10px"}} variant={"contained"} onClick={handleClickedStrain3}>Biscotti</Button>
                 </div>
             <div style={{width:"100%",display:"flex"}}>
             <Popup
