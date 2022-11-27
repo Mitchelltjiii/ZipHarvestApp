@@ -23,6 +23,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 import CustomPopUp from './CustomPopUp';
 import Popup from 'reactjs-popup';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+
 
 /*
 
@@ -510,8 +513,8 @@ function ProductLanding({setCurrentPage,logVisit}) {
            <div style={{marginTop:"15px",marginBottom:"5px",fontSize:"20px",fontFamily:"Arial, Helvetica, sans-serif",textAlign:"center",
           fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Try our Voice-Activated Harvesting now!</div>
                 <div style={{display:"flex",flexDirection:"column"}}>
-                      <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px",marginBottom:"10px"}}>Select your preferred strain to get started</div>
-                      <div style={{textAlign:"center",fontSize:"18px"}}></div>
+                      <div style={{textAlign:"center",fontSize:"18px",marginTop:"5px",marginBottom:"10px"}}>Select your preferred strain</div>
+                      <div style={{textAlign:"center",fontSize:"18px"}}>to get started</div>
                       <div style={{display:"flex",flexDirection:"row",width:"100%",marginBottom:"20px"}}>
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor1),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain1}>OG Kush</Button>
                   <Button style={{width:"100%",height:"80px",border:("3px solid " + borderColor2),marginLeft:"10px",marginRight:"10px"}} onClick={handleClickedStrain2}>Blue Dream</Button>
@@ -531,7 +534,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
         <Button className="close" onClick={close}>
           &times;
         </Button>
-        <div className="header" style={{width:"100%",textAlign:"center",fontWeight:"bold"}}>Harvest Now</div>
+        <div className="header" style={{width:"100%",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Harvest Now</div>
         {harvestedCount > 0 || searchTag !== "" ?
           null
           :
@@ -566,14 +569,22 @@ function ProductLanding({setCurrentPage,logVisit}) {
             alignItems="center"
           >
         
-          <Select id="searchTagSelect" label="Search Results" value={currSelectedTag} onChange={handleSelectedTag} style={{width:"80%",marginTop:"15px",direction:"rtl"}}>
-                    {    
-                      tagList.map((name, index) => (
+        <FormControl style={{width:"80%",marginTop:"15px",direction:"rtl"}}>
+            <InputLabel id="search-results-label">Results</InputLabel>
+            <Select 
+              id="search-results-select"
+              label="Results"
+              labelId ="search-results-label" 
+              value={currSelectedTag} 
+              onChange={handleSelectedTag} 
+              >
+                    {tagList.map((name, index) => (
                     <MenuItem key={index} value={name}>
                       {name}
                     </MenuItem>
                   ))}
                  </Select>
+          </FormControl>
           </Grid>
 
           <Grid
@@ -587,13 +598,23 @@ function ProductLanding({setCurrentPage,logVisit}) {
   
           <TextField id="Weight" label="Weight" value={weight} onChange={handleWeight} style={{width:"100%"}}/>
   
-          <Select id="unit-select" label="Unit" value={unit} onChange={handleUnitSelect} style={{width:"100%"}}>
+          <FormControl fullWidth>
+            <InputLabel id="unit-select-label">Unit</InputLabel>
+            <Select 
+              id="unit-select"
+              label="Unit"
+              labelId ="unit-select-label" 
+              value={unit} 
+              onChange={handleUnitSelect} 
+              style={{width:"100%"}}>
                     {unitList.map((name, index) => (
                     <MenuItem key={index} value={name}>
                       {name}
                     </MenuItem>
                   ))}
                  </Select>
+          </FormControl>
+          
           </div>        
           </Grid>  
           <Button style={{marginTop:"10px",marginBottom:"15px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF",height:"50px"}} 
@@ -603,12 +624,12 @@ function ProductLanding({setCurrentPage,logVisit}) {
               : null
           }
           {harvestedCount > 0 ? 
-          <div style={{display:"flex",flexDirection:"column",maxHeight:"200px",overflowY:"scroll"}}>
-            <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF"}}>
+          <div style={{display:"flex",flexDirection:"column",maxHeight:"240px",overflowY:"scroll"}}>
+            <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF",minHeight:"120px",overflowY:"hidden"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Plant</TableCell>
+            <TableCell>Harvested Plants</TableCell>
             <TableCell>Weight</TableCell>            
           </TableRow>
         </TableHead>
@@ -629,7 +650,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
             </TableBody>
         </Table>
         </TableContainer>
-        <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF"}}>
+        <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF",overflowY:"hidden"}}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -795,7 +816,7 @@ style={{width:"100%"}}>
          <div style={{display:"flex",flexDirection:"row"}}>
 
           <div style={{display:"flex",flexDirection:"column"}}>
-          <div className="header" style={{width:"100%",textAlign:"center",fontWeight:"bold"}}>Harvest Now</div>
+          <div className="header" style={{width:"100%",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold",marginTop:"15px"}}>Harvest Now</div>
           {harvestedCount > 0 || searchTag !== "" ?
           null
           :
@@ -830,14 +851,22 @@ style={{width:"100%"}}>
             alignItems="center"
           >
         
-          <Select id="searchTagSelect" label="Search Results" value={currSelectedTag} onChange={handleSelectedTag} style={{width:"80%",marginTop:"15px"}}>
-                    {    
-                      tagList.map((name, index) => (
+        <FormControl style={{width:"80%",marginTop:"15px",direction:"rtl"}}>
+            <InputLabel id="search-results-label">Results</InputLabel>
+            <Select 
+              id="search-results-select"
+              label="Results"
+              labelId ="search-results-label" 
+              value={currSelectedTag} 
+              onChange={handleSelectedTag} 
+              >
+                    {tagList.map((name, index) => (
                     <MenuItem key={index} value={name}>
                       {name}
                     </MenuItem>
                   ))}
                  </Select>
+          </FormControl>
           </Grid>
   
           <Grid
@@ -848,15 +877,24 @@ style={{width:"100%"}}>
           >
   
           <div style={{width:"80%",display:"flex",flexWrap:"nowrap"}}>
-          <TextField id="Weight" label="weight" value={weight} onChange={handleWeight} style={{width:"100%"}}/>
+          <TextField id="Weight" label="Weight" value={weight} onChange={handleWeight} style={{width:"100%"}}/>
   
-          <Select id="unit-select" label="unit" value={unit} onChange={handleUnitSelect} style={{width:"100%"}}>
+          <FormControl fullWidth>
+            <InputLabel id="unit-select-label">Unit</InputLabel>
+            <Select 
+              id="unit-select"
+              label="Unit"
+              labelId ="unit-select-label" 
+              value={unit} 
+              onChange={handleUnitSelect} 
+              style={{width:"100%"}}>
                     {unitList.map((name, index) => (
                     <MenuItem key={index} value={name}>
                       {name}
                     </MenuItem>
                   ))}
                  </Select>
+          </FormControl>
             </div>
           </Grid>
           <Grid
