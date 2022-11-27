@@ -572,7 +572,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
             alignItems="center"
           >
         
-        <FormControl style={{width:"80%",marginTop:"15px",direction:"rtl"}}>
+        <FormControl style={{width:"80%",marginTop:"15px"}}>
             <InputLabel id="search-results-label">Results</InputLabel>
             <Select 
               id="search-results-select"
@@ -597,7 +597,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
             alignItems="center"
           >
   
-          <div style={{display:"flex",flexDirection:"row",flexWrap:"nowrap"}}>
+          <div style={{display:"flex",flexDirection:"row",flexWrap:"nowrap",width:"80%"}}>
   
           <TextField id="Weight" label="Weight" value={weight} onChange={handleWeight} style={{width:"100%"}}/>
   
@@ -618,37 +618,38 @@ function ProductLanding({setCurrentPage,logVisit}) {
                  </Select>
           </FormControl>
           
-          </div>        
+          </div>    
+          <Button style={{marginTop:"10px",marginBottom:"15px",width:"80%",backgroundColor:"#444444",color:"#FFFFFF",height:"50px"}} 
+          variant={"contained"} onClick={handleNextPlant}>Save Plant</Button>     
           </Grid>  
-          <Button style={{marginTop:"10px",marginBottom:"15px",marginRight:"10px",marginLeft:"10px",backgroundColor:"#444444",color:"#FFFFFF",height:"50px"}} 
-          variant={"contained"} onClick={handleNextPlant}>Save Plant</Button>   
+            
           
               </div>
               : null
           }
           {harvestedCount > 0 ? 
-          <div style={{display:"flex",flexDirection:"column",height:"240px",overflowY:"scroll",width:"100%"}}>
-            <div style={{display:"flex",flexDirection:"column",width:"100%"}}>
-              <div style={{display:"flex",flexDirection:"row",width:"100%"}}>
-                <div style={{textAlign:"left",width:"100%"}}>Harvested Plants</div>
-                <div style={{textAlign:"right",width:"100%"}}>Weight</div>
+          <div style={{display:"flex",flexDirection:"column",height:"240px",overflowY:"scroll",width:"100%",backgroundColor:"#FFFFFF"}}>
+            <div style={{display:"flex",flexDirection:"column",width:"100%",paddingLeft:"10px",paddingRight:"10px"}}>
+              <div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"5px",marginBottom:"5px"}}>
+                <div style={{textAlign:"left",width:"100%",whiteSpace:"nowrap",fontWeight:"bold"}}>Harvested Plants</div>
+                <div style={{textAlign:"right",width:"100%",whiteSpace:"nowrap",fontWeight:"bold"}}>Weight</div>
               </div>
               {harvestedPlants.map((row) => (
-                <div style={{display:"flex",flexDirection:"row",width:"100%"}}>
+                <div style={{display:"flex",flexDirection:"row",width:"100%",marginTop:"5px",marginBottom:"5px"}}>
                   <div style={{display:"flex",flexDirection:"column",width:"100%"}}>
-                    <div style={{fontWeight:"bold",textAlign:"left"}}>{row.tag}</div>
-                    <div style={{textAlign:"left"}}>{row.strain}</div>
+                    <div style={{fontWeight:"bold",textAlign:"left",whiteSpace:"nowrap"}}>{row.tag}</div>
+                    <div style={{textAlign:"left",whiteSpace:"nowrap"}}>{row.strain}</div>
                   </div>
                   <div style={{textAlign:"right",width:"100%"}}>{getWeightAndUnit(row.weight,row.unit)}</div>
                 </div>
             ))}
             </div>
             <div style={{display:"flex",flexDirection:"column",width:"100%"}}>
-              <div style={{textAlign:"left"}}>Available Plants</div>
+              <div style={{textAlign:"left",whiteSpace:"nowrap",fontWeight:"bold"}}>Available Plants</div>
               {availablePlants.map((row) => (
                 <div style={{display:"flex",flexDirection:"column",width:"100%"}}>
-                  <div style={{fontWeight:"bold",textAlign:"left"}}>{row.tag}</div>
-                  <div style={{textAlign:"left"}}>{row.strain}</div>
+                  <div style={{fontWeight:"bold",textAlign:"left",whiteSpace:"nowrap"}}>{row.tag}</div>
+                  <div style={{textAlign:"left",whiteSpace:"nowrap"}}>{row.strain}</div>
                 </div>
               ))}
             </div>
@@ -763,14 +764,14 @@ style={{width:"100%"}}>
   <div style={{display:"flex",flexDirection:"column",width:"70%"}}>
     <div style={{width:"100%",display:"flex"}}>
     <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px'}}>
-          <div style={{width:"100%",fontSize:"20px",marginTop:"20px",marginBottom:"20px",textAlign:"center",
-          fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold",width:"320px"}}>Try our Voice-Activated Harvesting now!</div>
           <Grid
             container
             direction="row"
               justify="center"
             alignItems="center"
           >
+          <div style={{width:"100%",fontSize:"20px",marginTop:"20px",marginBottom:"20px",textAlign:"center",
+          fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Try our Voice-Activated Harvesting now!</div>
             <div style={{display:"flex",flexDirection:"column"}}>
             <div style={{textAlign:"center",fontSize:"20px",marginBottom:"15px"}}>Select your preferred strain to get started</div>
             <div style={{display:"flex",flexDirection:"row",width:"100%",marginBottom:"20px"}}>
@@ -797,7 +798,7 @@ style={{width:"100%"}}>
          <div style={{display:"flex",flexDirection:"row"}}>
 
           <div style={{display:"flex",flexDirection:"column"}}>
-          <div className="header" style={{width:"100%",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold",marginTop:"15px"}}>Harvest Now</div>
+          <div className="header" style={{width:"100%",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold",marginTop:"20px"}}>Harvest Now</div>
           {harvestedCount > 0 || searchTag !== "" ?
           null
           :
@@ -832,7 +833,7 @@ style={{width:"100%"}}>
             alignItems="center"
           >
         
-        <FormControl style={{width:"80%",marginTop:"15px",direction:"rtl"}}>
+        <FormControl style={{width:"80%",marginTop:"15px"}}>
             <InputLabel id="search-results-label">Results</InputLabel>
             <Select 
               id="search-results-select"
