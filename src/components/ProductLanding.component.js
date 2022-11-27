@@ -913,7 +913,7 @@ style={{width:"100%"}}>
           </TableRow>
         </TableHead>
         <TableBody>
-            {activePlants.map((row) => (
+            {availablePlants.map((row) => (
               <TableRow key={row.tag}>
                 <TableCell>
                   <div style={{display:"flex",flexDirection:"column"}}>
