@@ -652,53 +652,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
                 </div>
               ))}
             </div>
-            
-            <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF",height:harvestedTableHeight,overflowY:"hidden"}}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Harvested Plants</TableCell>
-            <TableCell>Weight</TableCell>            
-          </TableRow>
-        </TableHead>
-        <TableBody>
-            {harvestedPlants.map((row) => (
-              <TableRow key={row.tag}>
-              <TableCell>
-                  <div style={{display:"flex",flexDirection:"column"}}>
-                    <div style={{fontWeight:"bold"}}>{row.tag}</div>
-                    <div>{row.strain}</div>
-                  </div>  
-              </TableCell>
-              <TableCell>
-                  {getWeightAndUnit(row.weight,row.unit)}
-              </TableCell>
-            </TableRow>
-            ))}
-            </TableBody>
-        </Table>
-        </TableContainer>
-        <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF",height:availableTableHeight,overflowY:"hidden"}}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Available Plants</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-            {availablePlants.map((row) => (
-              <TableRow key={row.tag}>
-              <TableCell>
-                  <div style={{display:"flex",flexDirection:"column"}}>
-                    <div style={{fontWeight:"bold"}}>{row.tag}</div>
-                    <div>{row.strain}</div>
-                  </div>  
-              </TableCell>
-            </TableRow>
-            ))}
-            </TableBody>
-        </Table>
-        </TableContainer>
           </div>
         :null}
           </div>  
@@ -1045,3 +998,51 @@ export default ProductLanding;
           </Button>
         </div>*/
 
+
+
+        /*<TableContainer component={Paper} style={{backgroundColor:"#FFFFFF",height:harvestedTableHeight,overflowY:"hidden"}}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Harvested Plants</TableCell>
+            <TableCell>Weight</TableCell>            
+          </TableRow>
+        </TableHead>
+        <TableBody>
+            {harvestedPlants.map((row) => (
+              <TableRow key={row.tag}>
+              <TableCell>
+                  <div style={{display:"flex",flexDirection:"column"}}>
+                    <div style={{fontWeight:"bold"}}>{row.tag}</div>
+                    <div>{row.strain}</div>
+                  </div>  
+              </TableCell>
+              <TableCell>
+                  {getWeightAndUnit(row.weight,row.unit)}
+              </TableCell>
+            </TableRow>
+            ))}
+            </TableBody>
+        </Table>
+        </TableContainer>
+        <TableContainer component={Paper} style={{backgroundColor:"#FFFFFF",height:availableTableHeight,overflowY:"hidden"}}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Available Plants</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+            {availablePlants.map((row) => (
+              <TableRow key={row.tag}>
+              <TableCell>
+                  <div style={{display:"flex",flexDirection:"column"}}>
+                    <div style={{fontWeight:"bold"}}>{row.tag}</div>
+                    <div>{row.strain}</div>
+                  </div>  
+              </TableCell>
+            </TableRow>
+            ))}
+            </TableBody>
+        </Table>
+        </TableContainer> */
