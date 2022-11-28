@@ -104,6 +104,15 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const [hbNameHelperText,setHbNameHelperText] = React.useState('');
 
 	const [grantFreeMonthHintVisible,setGrantFreeMonthHintVisible] = React.useState(true);
+
+	const [currentEditPlant,setCurrentEditPlant] = React.useState([]);
+
+	let popup = document.getElementById('popup');
+
+	if(currentEditPlant.length>0 && popup.closed){
+		console.log("Clear Current Edit Plant");
+		setCurrentEditPlant([]);
+	}
 	
 	if(hbNameError && hbName.length === 0){
 		setHbNameError(false);
@@ -124,7 +133,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const handleClickedRow = (row) => {
 		console.log("Clicked Row: " + JSON.stringify(row));
-		document.getElementById('popupbutton').click();
+		setCurrentEditPlant(row);
 	  };
 
 
@@ -1392,7 +1401,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				updateHBList={updateHBList} getPlantItem={getPlantItem} harvestType={harvestType} getStrainForPlantItem={getStrainForPlantItem}></HarvestPlantButton>
     
 	<Popup
-    trigger={<Button id="popupbutton" style={{display:"none"}}></Button>}
+	id="popup"
+	open={(currentEditPlant.length>0)}
     modal
     nested
     style={{width:"100%",display:"flex"}}
@@ -1404,7 +1414,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
         <Button className="close" onClick={close}>
           &times;
         </Button>
-        <div className="header" style={{width:"100%",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Plant Info</div> 
+		<div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
+			<div style={{width:"100%",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Plant Info</div> 
+         	<TextField id="edit-tag" value={currentEditPlant.length>0 ? currentEditPlant.tag : null} label="Tag" style={{width:"80%"}}/>
+		</div>
       </div>
       </div>
     )}
