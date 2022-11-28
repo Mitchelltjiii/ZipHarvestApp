@@ -480,6 +480,14 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setSearchTag(fixedSearch);
 	}
 
+	function getWeightAndUnit(w,u){
+        if(w==0){
+          return "";
+        }else{
+          return w + " " + u;
+        }
+      }
+
 	function enterWeightFromSpeech(weight,unit){
 		if(!isNaN(weight)){
 			setWeight(weight);
