@@ -1259,7 +1259,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				<ChangeHBForm></ChangeHBForm>
 				}
 				
-
 				</Grid>
 
 				<Grid
@@ -1273,7 +1272,143 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 				</Grid>
 				
-				<Grid
+				<div className="content">
+          <div style={{display:"flex",flexDirection:"column"}}>
+            <div style={{display:"flex",flexDirection:"column"}}>
+              <Grid
+            container
+            direction="row"
+              justify="center"
+            alignItems="center"
+          >
+  
+          <TextField id="search-field" value={searchTag} label="Searching For Tag" onChange={handleSearchTag} style={{width:"80%"}}/>
+          </Grid>
+  
+          <Grid
+            container
+            direction="row"
+              justify="center"
+            alignItems="center"
+          >
+        
+        <FormControl style={{width:"80%",marginTop:"15px"}}>
+            <InputLabel id="search-results-label">Results</InputLabel>
+            <Select 
+              id="search-results-select"
+              label="Results"
+              labelId ="search-results-label" 
+              value={currSelectedTag} 
+              onChange={handleSelectedTag} 
+              >
+                    {tagList.map((name, index) => (
+                    <MenuItem key={index} value={name}>
+                      {name}
+                    </MenuItem>
+                  ))}
+                 </Select>
+          </FormControl>
+          </Grid>
+
+          <Grid
+            container
+            direction="row"
+              justify="center"
+            alignItems="center"
+          >
+  
+          <div style={{display:"flex",flexDirection:"row",flexWrap:"nowrap",width:"80%"}}>
+  
+          <TextField id="Weight" label="Weight" value={weight} onChange={handleWeight} style={{width:"100%"}}/>
+  
+          <FormControl fullWidth>
+            <InputLabel id="unit-select-label">Unit</InputLabel>
+            <Select 
+              id="unit-select"
+              label="Unit"
+              labelId ="unit-select-label" 
+              value={unit} 
+              onChange={handleUnitSelect} 
+              style={{width:"100%"}}>
+                    {unitList.map((name, index) => (
+                    <MenuItem key={index} value={name}>
+                      {name}
+                    </MenuItem>
+                  ))}
+                 </Select>
+          </FormControl>
+          
+          </div>
+		  <Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
+		  		<Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
+					nextPlantFromSpeech={nextPlantFromSpeech} voiceCommand={voiceCommand}></Dictaphone>	
+					</Grid>
+		  <HarvestPlantButton plantRef={nextPlantRef} getHarvestRecordItem={getHarvestRecordItem} getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} 
+				nextPlant={nextPlant} setChanges={setChanges} resetHarvestForm={resetHarvestForm} setNewHarvestRecordID={interceptSetNewHarvestRecordID} 
+				updateHBList={updateHBList} getPlantItem={getPlantItem} harvestType={harvestType} getStrainForPlantItem={getStrainForPlantItem}></HarvestPlantButton>
+    
+          </Grid>  
+            
+          
+              </div>
+          </div>  
+        </div>
+				</Grid>
+				</div>
+					{(lastHarvestedPlant.tag === undefined) ? 
+					<div></div> :
+					<LastHarvested lastHarvestedPlant={lastHarvestedPlant} getStrainForPlantItem={getStrainForPlantItem} getLastHarvestRecordItem={getLastHarvestRecordItem} 
+					getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} 
+					setChanges={setChanges} resetHarvestForm={resetHarvestForm}
+					getPlantItem={getPlantItem} harvestType={harvestType}></LastHarvested>}	
+					<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
+					{editNow ? null : <Button variant="outlined" style={{marginRight:"5px"}} aria-controls="simple-menu" aria-haspopup="true" onClick={handleShowTable}>{showTableText}</Button>}
+					
+					{(tableVisible && editNow) ? <Button variant="outlined" style={{marginRight:"5px"}}aria-controls="simple-menu" aria-haspopup="true" onClick={handleRevertChanges}>Cancel</Button>
+					: null}
+					{tableVisible ? <EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} getHarvestRecords={getHarvestRecords} currHidePlants={currHidePlants}
+				    currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
+				    setHarvestRecords={setHarvestRecords} setPlants={setPlants} resetHarvestForm={resetHarvestForm}
+				    reloadFromEditButton={reloadFromEditButton}></EditButton> : null}
+				 
+				 </Grid>
+					{tableVisible ? <div>
+				<TableWrapper currHarvest={currentHarvest} getHarvestRecords={getHarvestRecords} editNow={editNow} 
+      currWeightChanges={currWeightChanges} setWeightChanges={setWeightChanges} 
+      getRemovePlantIDDelete={getRemovePlantIDDelete} currHidePlants={currHidePlants} setHidePlants={setHidePlants}
+      getPlants={getPlants}></TableWrapper>
+	  </div> :
+	  null}
+				</Grid>
+		</div>
+	);
+}
+
+export default HarvestForm;
+
+//				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddBranch}>Add Branch</Button>
+/*<Select id="search-param-select" value={searchParam} onChange={handleSearchParamSelect} style={{minWidth:"120px",marginTop:"15px"}}>
+                	{searchOptionsList.map((name, index) => (
+            			<MenuItem key={index} value={name}>
+             	 		{name}
+            			</MenuItem>
+          			))}
+             	</Select> */
+
+
+				 /*
+
+				 <Grid
 					container
 					direction="column"
   					justify="center"
@@ -1401,49 +1536,4 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				</div>  : null}
 					
 				</Grid>
-				</Grid>
-				</div>
-					{(lastHarvestedPlant.tag === undefined) ? 
-					<div></div> :
-					<LastHarvested lastHarvestedPlant={lastHarvestedPlant} getStrainForPlantItem={getStrainForPlantItem} getLastHarvestRecordItem={getLastHarvestRecordItem} 
-					getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} 
-					setChanges={setChanges} resetHarvestForm={resetHarvestForm}
-					getPlantItem={getPlantItem} harvestType={harvestType}></LastHarvested>}	
-					<Grid
-					container
-					direction="row"
-  					justify="center"
-					alignItems="center"
-				>
-					{editNow ? null : <Button variant="outlined" style={{marginRight:"5px"}} aria-controls="simple-menu" aria-haspopup="true" onClick={handleShowTable}>{showTableText}</Button>}
-					
-					{(tableVisible && editNow) ? <Button variant="outlined" style={{marginRight:"5px"}}aria-controls="simple-menu" aria-haspopup="true" onClick={handleRevertChanges}>Cancel</Button>
-					: null}
-					{tableVisible ? <EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} getHarvestRecords={getHarvestRecords} currHidePlants={currHidePlants}
-				    currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
-				    setHarvestRecords={setHarvestRecords} setPlants={setPlants} resetHarvestForm={resetHarvestForm}
-				    reloadFromEditButton={reloadFromEditButton}></EditButton> : null}
-				 
-				 </Grid>
-					{tableVisible ? <div>
-				<TableWrapper currHarvest={currentHarvest} getHarvestRecords={getHarvestRecords} editNow={editNow} 
-      currWeightChanges={currWeightChanges} setWeightChanges={setWeightChanges} 
-      getRemovePlantIDDelete={getRemovePlantIDDelete} currHidePlants={currHidePlants} setHidePlants={setHidePlants}
-      getPlants={getPlants}></TableWrapper>
-	  </div> :
-	  null}
-				</Grid>
-		</div>
-	);
-}
-
-export default HarvestForm;
-
-//				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddBranch}>Add Branch</Button>
-/*<Select id="search-param-select" value={searchParam} onChange={handleSearchParamSelect} style={{minWidth:"120px",marginTop:"15px"}}>
-                	{searchOptionsList.map((name, index) => (
-            			<MenuItem key={index} value={name}>
-             	 		{name}
-            			</MenuItem>
-          			))}
-             	</Select> */
+				 */
