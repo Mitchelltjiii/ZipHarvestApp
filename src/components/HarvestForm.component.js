@@ -18,6 +18,7 @@ import LastHarvested from './LastHarvested.component';
 import edit from '../edit.png';
 import SaveHarvestDateButton from './SaveHarvestDateButton.component';
 import {isMobile} from 'react-device-detect';
+import InputLabel from '@material-ui/core/InputLabel';
 
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches,
 	currentHarvest, setNewHBID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
