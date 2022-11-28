@@ -429,8 +429,8 @@ function ProductLanding({setCurrentPage,logVisit}) {
           }
         }
 
-        let harvestedTableHeight = (60 + (60*harvestedPlants.length)) + "px";
-        let availableTableHeight = (60 + (60*availablePlants.length)) + "px";
+        let tableFontSize = "18px";
+        let tableFontSizeBig = "20px";
 
   if(isMobile){
     return (
@@ -549,10 +549,17 @@ function ProductLanding({setCurrentPage,logVisit}) {
 
         <div className="content">
           <div style={{display:"flex",flexDirection:"column"}}>
-            <div style={{marginRight:"10px",marginLeft:"10px",marginTop:"10px",marginBottom:"10px"}}>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+          >
+            <div style={{width:"80%",marginTop:"10px",marginBottom:"10px"}}>
               <Dictaphone searchTagFromSpeech={searchTagFromSpeech} enterWeightFromSpeech={enterWeightFromSpeech}
               voiceCommand={voiceCommand}></Dictaphone>
             </div>
+            </Grid>
             {harvestedCount > 0 || searchTag !== "" ?
             <div style={{display:"flex",flexDirection:"column"}}>
               <Grid
@@ -631,26 +638,28 @@ function ProductLanding({setCurrentPage,logVisit}) {
           <div style={{display:"flex",flexDirection:"column",height:"240px",overflowY:"scroll",width:"100%",backgroundColor:"#FFFFFF"}}>
             <div style={{display:"flex",flexDirection:"column",width:"100%",alignItems:"center"}}>
               <div style={{display:"flex",flexDirection:"row",width:"90%",marginTop:"15px",marginBottom:"5px"}}>
-                <div style={{textAlign:"left",width:"100%",whiteSpace:"nowrap",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Harvested Plants</div>
-                <div style={{textAlign:"right",width:"100%",whiteSpace:"nowrap",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>Weight</div>
+                <div style={{textAlign:"left",width:"100%",whiteSpace:"nowrap",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif",
+              fontSize:tableFontSizeBig}}>Harvested Plants</div>
+                <div style={{textAlign:"right",width:"100%",whiteSpace:"nowrap",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif",
+              fontSize:tableFontSizeBig}}>Weight</div>
               </div>
               {harvestedPlants.map((row) => (
                 <div style={{display:"flex",flexDirection:"row",width:"90%",marginTop:"5px",marginBottom:"5px"}}>
                   <div style={{display:"flex",flexDirection:"column",width:"100%"}}>
-                    <div style={{fontWeight:"bold",textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif"}}>{row.tag}</div>
-                    <div style={{textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif"}}>{row.strain}</div>
+                    <div style={{fontWeight:"bold",textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif",fontSize:tableFontSize}}>{row.tag}</div>
+                    <div style={{textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif",fontSize:tableFontSize}}>{row.strain}</div>
                   </div>
-                  <div style={{textAlign:"right",width:"100%",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif"}}>{getWeightAndUnit(row.weight,row.unit)}</div>
+                  <div style={{textAlign:"right",width:"100%",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif",fontSize:tableFontSize}}>{getWeightAndUnit(row.weight,row.unit)}</div>
                 </div>
             ))}
             </div>
             <div style={{display:"flex",flexDirection:"column",width:"100%",alignItems:"center"}}>
               <div style={{textAlign:"left",whiteSpace:"nowrap",fontWeight:"bold",marginTop:"10px",
-              marginBottom:"5px",width:"90%",fontFamily:"Arial, Helvetica, sans-serif"}}>Available Plants</div>
+              marginBottom:"5px",width:"90%",fontFamily:"Arial, Helvetica, sans-serif",fontSize:tableFontSizeBig}}>Available Plants</div>
               {availablePlants.map((row) => (
                 <div style={{display:"flex",flexDirection:"column",width:"90%",marginTop:"5px",marginBottom:"5px"}}>
-                  <div style={{fontWeight:"bold",textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif"}}>{row.tag}</div>
-                  <div style={{textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif"}}>{row.strain}</div>
+                  <div style={{fontWeight:"bold",textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif",fontSize:tableFontSize}}>{row.tag}</div>
+                  <div style={{textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif",fontSize:tableFontSize}}>{row.strain}</div>
                 </div>
               ))}
             </div>

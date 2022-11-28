@@ -811,37 +811,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		setNewHarvestRecordID(data.insertId,harvestRecordItem);
 	}
 
-	const ChangeHBForm = () => {	  
-		return (
-			<Grid
-				container
-				direction="column"
-			  	justifyContent="center"
-				alignItems="center"
-			>
-			<FormLabel>Choose Harvest Batch</FormLabel>
-			<Grid
-				container
-				direction="row"
-			  	justifyContent="center"
-				alignItems="center"
-			>
-				<Select id="change-HB-select" value={selectedHB} onChange={handleSelectHB} style={{width:"180px"}}>
-                	{hbOptionsList.map((name, index) => (
-            			<MenuItem key={index} value={name}>
-             	 		{name}
-            			</MenuItem>
-          			))}
-             	</Select>
-				 {showHints ? <div class="tooltip">?
-  					<span class="tooltiptext">Create and select harvest batch.</span>
-				</div>  : null}
-				 
-				</Grid>
-			</Grid>
-		);
-	  };
-
 	  const UpdateHarvestDateTab = () => {	  
 		return (<div>
       <Grid
@@ -1173,12 +1142,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				</Grid>
 				</Grid> : null}
 
-				<Grid
-					container
-					direction="row"
-  					justify="center"
-					alignItems="center"
-				>
+				<div style={{display:"flex",flexDirection:"column",width:"400px"}}>
 
 				{changeHBHiddenNow ?
 				<div className="full tr" style={{border:"1px solid #d7d7d7",borderRadius:5}}>
@@ -1257,10 +1221,35 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				  </Grid>
 				  </div>
 			</div> :
-				<ChangeHBForm></ChangeHBForm>
+							<Grid
+							container
+							direction="column"
+							  justifyContent="center"
+							alignItems="center"
+						>
+						<FormLabel>Choose Harvest Batch</FormLabel>
+						<Grid
+							container
+							direction="row"
+							  justifyContent="center"
+							alignItems="center"
+						>
+							<Select id="change-HB-select" value={selectedHB} onChange={handleSelectHB} style={{width:"80%"}}>
+								{hbOptionsList.map((name, index) => (
+									<MenuItem key={index} value={name}>
+									  {name}
+									</MenuItem>
+								  ))}
+							 </Select>
+							 {showHints ? <div class="tooltip">?
+								  <span class="tooltiptext">Create and select harvest batch.</span>
+							</div>  : null}
+							 
+							</Grid>
+						</Grid>
 				}
 				
-				</Grid>
+				</div>
 
 				<Grid
 					container
