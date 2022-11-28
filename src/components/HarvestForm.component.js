@@ -1431,12 +1431,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					fontSize:tableFontSizeBig}}>Weight</div>
 					</div>
 					{rows.map((row) => (
-					  <div style={{display:"flex",flexDirection:"row",width:"90%",marginTop:"5px",marginBottom:"5px"}} onClick={handleClickedRow(row)}>
+					  <div style={{display:"flex",flexDirection:"row",width:"90%",marginTop:"5px",marginBottom:"5px"}}>
 						<div style={{display:"flex",flexDirection:"column",width:"100%"}}>
-						  <div style={{fontWeight:"bold",textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif",fontSize:tableFontSize}}>{row.tag}</div>
-						  <div style={{textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif",fontSize:tableFontSize}}>{row.strain}</div>
+						  <div style={{fontWeight:"bold",textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif",fontSize:tableFontSize}}  onClick={handleClickedRow(row)}>{row.tag}</div>
+						  <div style={{textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif",fontSize:tableFontSize}}  onClick={handleClickedRow(row)}>{row.strain}</div>
 						</div>
-						<div style={{textAlign:"right",width:"100%",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif",fontSize:tableFontSize}}>{getWeightAndUnit(row.weight,row.unit)}</div>
+						<div style={{textAlign:"right",width:"100%",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif",fontSize:tableFontSize}}  onClick={handleClickedRow(row)}>{getWeightAndUnit(row.weight,row.unit)}</div>
 					  </div>
 				  ))}
 				  </div>
