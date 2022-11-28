@@ -1045,6 +1045,41 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
         });
     }
 
+
+	let tableFontSize = "18px";
+	let tableFontSizeBig = "20px";
+
+	function getStrainFromTag(tag){
+		for(let val of JSON.parse(getPlants())){
+		  if(val.tag === tag){
+			return val.strain;
+		  }
+		}
+	  }
+
+	  function createData(tag, strain, weight, unit) {
+		return {tag, strain, weight, unit};
+	  }
+
+	let rows = [];
+      try{
+        for(let val of JSON.parse(getHarvestRecords())) {  
+          if(val.batchName === currentHarvest.name){
+            let hidden = false;
+            for(let val2 of currHidePlants){
+              if(val2 === val.tag){
+                hidden = true;
+              }
+            }
+            if(!hidden){
+              rows.push(createData(val.tag,getStrainFromTag(val.tag),val.weight,val.unit));
+            }
+          }
+        }
+      }catch(error){
+  
+      }
+
 	return (
 		<div id="harvest-form" style={{margin:"auto"}}>
 				<Grid
@@ -1142,7 +1177,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				</Grid>
 				</Grid> : null}
 
-				<div style={{display:"flex",flexDirection:"column",width:"400px"}}>
+				<div style={{display:"flex",flexDirection:"column",width:"350px"}}>
 
 				{changeHBHiddenNow ?
 				<div className="full tr" style={{border:"1px solid #d7d7d7",borderRadius:5}}>
@@ -1249,8 +1284,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 						</Grid>
 				}
 				
-				</div>
-
 				<Grid
 					container
 					direction="row"
@@ -1261,10 +1294,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					<HarvestBatchInfoTabs hbInfoTabsHiddenNow={hbInfoTabsHiddenNow}> </HarvestBatchInfoTabs>
 
 				</Grid>
-				
-				<div className="content">
-          <div style={{display:"flex",flexDirection:"column"}}>
-            <div style={{display:"flex",flexDirection:"column"}}>
               <Grid
             container
             direction="row"
@@ -1346,8 +1375,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
             
           
               </div>
-          </div>  
-        </div>
 				</Grid>
 				</div>
 					{(lastHarvestedPlant.tag === undefined) ? 
@@ -1372,12 +1399,25 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				    reloadFromEditButton={reloadFromEditButton}></EditButton> : null}
 				 
 				 </Grid>
-					{tableVisible ? <div>
-				<TableWrapper currHarvest={currentHarvest} getHarvestRecords={getHarvestRecords} editNow={editNow} 
-      currWeightChanges={currWeightChanges} setWeightChanges={setWeightChanges} 
-      getRemovePlantIDDelete={getRemovePlantIDDelete} currHidePlants={currHidePlants} setHidePlants={setHidePlants}
-      getPlants={getPlants}></TableWrapper>
-	  </div> :
+					{tableVisible ?
+					<div style={{display:"flex",flexDirection:"column",width:"100%",alignItems:"center"}}>
+					<div style={{display:"flex",flexDirection:"row",width:"90%",marginTop:"15px",marginBottom:"5px"}}>
+					  <div style={{textAlign:"left",width:"100%",whiteSpace:"nowrap",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif",
+					fontSize:tableFontSizeBig}}>Harvested Plants</div>
+					  <div style={{textAlign:"right",width:"100%",whiteSpace:"nowrap",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif",
+					fontSize:tableFontSizeBig}}>Weight</div>
+					</div>
+					{rows.map((row) => (
+					  <div style={{display:"flex",flexDirection:"row",width:"90%",marginTop:"5px",marginBottom:"5px"}}>
+						<div style={{display:"flex",flexDirection:"column",width:"100%"}}>
+						  <div style={{fontWeight:"bold",textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif",fontSize:tableFontSize}}>{row.tag}</div>
+						  <div style={{textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif",fontSize:tableFontSize}}>{row.strain}</div>
+						</div>
+						<div style={{textAlign:"right",width:"100%",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif",fontSize:tableFontSize}}>{getWeightAndUnit(row.weight,row.unit)}</div>
+					  </div>
+				  ))}
+				  </div>
+				   :
 	  null}
 				</Grid>
 		</div>
@@ -1385,7 +1425,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 }
 
 export default HarvestForm;
-
+/**.
+ * <TableWrapper currHarvest={currentHarvest} getHarvestRecords={getHarvestRecords} editNow={editNow} 
+      currWeightChanges={currWeightChanges} setWeightChanges={setWeightChanges} 
+      getRemovePlantIDDelete={getRemovePlantIDDelete} currHidePlants={currHidePlants} setHidePlants={setHidePlants}
+      getPlants={getPlants}></TableWrapper>
+ */
 //				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleAddBranch}>Add Branch</Button>
 /*<Select id="search-param-select" value={searchParam} onChange={handleSearchParamSelect} style={{minWidth:"120px",marginTop:"15px"}}>
                 	{searchOptionsList.map((name, index) => (
