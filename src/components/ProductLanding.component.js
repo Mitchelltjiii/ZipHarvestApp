@@ -547,7 +547,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
           </div>
           } 
 
-        <div className="content">
           <div style={{display:"flex",flexDirection:"column"}}>
           <Grid
             container
@@ -666,7 +665,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
           </div>
         :null}
           </div>  
-        </div>
       </div>
       </div>
     )}

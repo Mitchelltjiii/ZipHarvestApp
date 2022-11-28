@@ -19,6 +19,7 @@ import edit from '../edit.png';
 import SaveHarvestDateButton from './SaveHarvestDateButton.component';
 import {isMobile} from 'react-device-detect';
 import InputLabel from '@material-ui/core/InputLabel';
+import Popup from 'reactjs-popup';
 
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches,
 	currentHarvest, setNewHBID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
@@ -120,6 +121,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	if(tableIsVisible){
 		showTableText = "Hide Table";
 	}
+
+	const handleClickedRow = (row) => {
+		console.log("Clicked Row: " + JSON.stringify(row));
+		document.getElementById('popupbutton').click();
+	  };
 
 
 	let searchForList = [];
@@ -1385,6 +1391,24 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				nextPlant={nextPlant} setChanges={setChanges} resetHarvestForm={resetHarvestForm} setNewHarvestRecordID={interceptSetNewHarvestRecordID} 
 				updateHBList={updateHBList} getPlantItem={getPlantItem} harvestType={harvestType} getStrainForPlantItem={getStrainForPlantItem}></HarvestPlantButton>
     
+	<Popup
+    trigger={<Button id="popupbutton" style={{display:"none"}}></Button>}
+    modal
+    nested
+    style={{width:"100%",display:"flex"}}
+  >
+    {close => (
+      <div style={{width:"100vw",height:"100vh",backgroundColor:"rgba(0, 0, 0, 0.5)",display:"flex"}}>
+
+        <div style={{backgroundColor:"#e4e4e4",margin:"auto",position:"relative"}}>
+        <Button className="close" onClick={close}>
+          &times;
+        </Button>
+        <div className="header" style={{width:"100%",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Plant Info</div> 
+      </div>
+      </div>
+    )}
+  </Popup>
           </Grid>  
             
           
@@ -1407,7 +1431,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					fontSize:tableFontSizeBig}}>Weight</div>
 					</div>
 					{rows.map((row) => (
-					  <div style={{display:"flex",flexDirection:"row",width:"90%",marginTop:"5px",marginBottom:"5px"}}>
+					  <div style={{display:"flex",flexDirection:"row",width:"90%",marginTop:"5px",marginBottom:"5px"}} onClick={handleClickedRow(row)}>
 						<div style={{display:"flex",flexDirection:"column",width:"100%"}}>
 						  <div style={{fontWeight:"bold",textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif",fontSize:tableFontSize}}>{row.tag}</div>
 						  <div style={{textAlign:"left",whiteSpace:"nowrap",fontFamily:"Arial, Helvetica, sans-serif",fontSize:tableFontSize}}>{row.strain}</div>
