@@ -19,6 +19,7 @@ import edit from '../edit.png';
 import SaveHarvestDateButton from './SaveHarvestDateButton.component';
 import {isMobile} from 'react-device-detect';
 import InputLabel from '@material-ui/core/InputLabel';
+import {isMobile} from 'react-device-detect';
 
 function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,getHarvestRecords,setHarvestRecords,resetHarvestBatches,
 	currentHarvest, setNewHBID, refreshOuter, setNewHarvestRecordID, setNewPlantID, userID, 
@@ -598,6 +599,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}
 		return false;
 	}
+
+	let tableWidth = "600px";
+    
+    if(isMobile){
+      tableWidth = "345px";
+    }
 
 	const handleCancelNewHB = (event) => {
 		setChangeHBHidden(false);
@@ -1391,24 +1398,9 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 					getAndResetRemovedPlantID={getAndResetRemovedPlantID} getHarvestBatchItem={getHarvestBatchItem} 
 					setChanges={setChanges} resetHarvestForm={resetHarvestForm}
 					getPlantItem={getPlantItem} harvestType={harvestType}></LastHarvested>}	
-					<Grid
-					container
-					direction="row"
-  					justify="center"
-					alignItems="center"
-				>
-					{editNow ? null : <Button variant="outlined" style={{marginRight:"5px"}} aria-controls="simple-menu" aria-haspopup="true" onClick={handleShowTable}>{showTableText}</Button>}
 					
-					{(tableVisible && editNow) ? <Button variant="outlined" style={{marginRight:"5px"}}aria-controls="simple-menu" aria-haspopup="true" onClick={handleRevertChanges}>Cancel</Button>
-					: null}
-					{tableVisible ? <EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} getHarvestRecords={getHarvestRecords} currHidePlants={currHidePlants}
-				    currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
-				    setHarvestRecords={setHarvestRecords} setPlants={setPlants} resetHarvestForm={resetHarvestForm}
-				    reloadFromEditButton={reloadFromEditButton}></EditButton> : null}
-				 
-				 </Grid>
 					{tableVisible ?
-					<div style={{display:"flex",flexDirection:"column",width:"100%",alignItems:"center"}}>
+					<div style={{display:"flex",flexDirection:"column",width:"100%",alignItems:"center",width:tableWidth}}>
 					<div style={{display:"flex",flexDirection:"row",width:"90%",marginTop:"15px",marginBottom:"5px"}}>
 					  <div style={{textAlign:"left",width:"100%",whiteSpace:"nowrap",fontWeight:"bold",fontFamily:"Arial, Helvetica, sans-serif",
 					fontSize:tableFontSizeBig}}>Harvested Plants</div>
@@ -1580,3 +1572,24 @@ export default HarvestForm;
 					
 				</Grid>
 				 */
+
+
+
+				/*
+<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
+					{editNow ? null : <Button variant="outlined" style={{marginRight:"5px"}} aria-controls="simple-menu" aria-haspopup="true" onClick={handleShowTable}>{showTableText}</Button>}
+					
+					{(tableVisible && editNow) ? <Button variant="outlined" style={{marginRight:"5px"}}aria-controls="simple-menu" aria-haspopup="true" onClick={handleRevertChanges}>Cancel</Button>
+					: null}
+					{tableVisible ? <EditButton editNow={editNow} setEditMode={setEditMode} setChanges={setChanges} getWeightChanges={getWeightChanges} getHarvestRecords={getHarvestRecords} currHidePlants={currHidePlants}
+				    currentHarvest={currentHarvest} timeLimit={timeLimit} setNewPlantID={setNewPlantID} getStrainForPlantItem={getStrainForPlantItem} 
+				    setHarvestRecords={setHarvestRecords} setPlants={setPlants} resetHarvestForm={resetHarvestForm}
+				    reloadFromEditButton={reloadFromEditButton}></EditButton> : null}
+				 
+				 </Grid>
+				*/
