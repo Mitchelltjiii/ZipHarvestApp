@@ -106,6 +106,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const [grantFreeMonthHintVisible,setGrantFreeMonthHintVisible] = React.useState(true);
 
 	const [currentEditPlant,setCurrentEditPlant] = React.useState([]);
+	console.log("Current Edit Plant: " + JSON.stringify(currentEditPlant));
+	console.log("Current Edit Plant.length: " + currentEditPlant.length);
 
 	let popup = document.getElementById('popup');
 
