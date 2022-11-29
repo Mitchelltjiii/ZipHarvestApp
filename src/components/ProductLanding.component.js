@@ -112,6 +112,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
       setBorderColor2("#FFFFFF");
       setBorderColor3("#FFFFFF");*/
       document.getElementById('popupbutton').click();
+      logVisit("Vote: OG Kush");
       setSearchStrain("OG Kush");
 	};
 
@@ -120,6 +121,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
     setBorderColor2("#000000");
     setBorderColor3("#FFFFFF");*/
     document.getElementById('popupbutton').click();
+    logVisit("Vote: Blue Dream");
     setSearchStrain("Blue Dream");
   };
 
@@ -128,6 +130,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
     setBorderColor2("#FFFFFF");
     setBorderColor3("#000000");*/
     document.getElementById('popupbutton').click();
+    logVisit("Vote: Biscotti");
     setSearchStrain("Biscotti");
   };
 
@@ -324,6 +327,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
                 newPlants.push(val);
               }
             }
+            logVisit("Harvest");
             setPlants(newPlants);
             setSearchTag('');
             setWeight('');
@@ -528,7 +532,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
     {close => (
       <div style={{width:"100vw",height:"100vh",backgroundColor:"rgba(0, 0, 0, 0.5)",display:"flex"}}>
 
-        <div style={{backgroundColor:"#e4e4e4",margin:"auto",position:"relative"}}>
+        <div style={{backgroundColor:"#e4e4e4",margin:"auto",position:"relative",minWidth:"280px"}}>
         <Button className="close" onClick={close}>
           &times;
         </Button>
