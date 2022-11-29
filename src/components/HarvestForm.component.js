@@ -289,8 +289,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			  plant.weight = currentHarvestRecord.weight;
 			  plant.batchName = currentHarvestRecord.batchName;
 			  plant.userID = currentHarvestRecord.userID;
-			if(currentHarvestRecord.id!==""){
-			  plant.id = currentHarvestRecord.id;
+			if(currentHarvestRecord.itemID!==""){
+			  plant.id = currentHarvestRecord.itemID;
 			}
 			return plant;
 		  }
