@@ -82,9 +82,13 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [selectedTag, setSelectedTag] = React.useState('');
 
+	const [currentEditPlant,setCurrentEditPlant] = React.useState([]);
+
 	const [weight, setWeight] = React.useState('');
+	const [editWeight, setEditWeight] = React.useState('');
 
 	const [unit, setUnit] = React.useState('lbs');
+	const [editUnit, setEditUnit] = React.useState('lbs');
 
 	const [branchValue, setBranchValue] = React.useState('');
 
@@ -105,7 +109,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [grantFreeMonthHintVisible,setGrantFreeMonthHintVisible] = React.useState(true);
 
-	const [currentEditPlant,setCurrentEditPlant] = React.useState([]);
 	
 	if(hbNameError && hbName.length === 0){
 		setHbNameError(false);
@@ -125,16 +128,26 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	const handleClickedRow = (row) => {
-		console.log("Clicked Row: " + JSON.stringify(row));
+		setEditWeight(row.weight+"");
+		setEditUnit(row.unit);
 		setCurrentEditPlant(row);
 	  };
 
 	  const handlePopupClosed = () => {
-		  console.log("Handle Popup Closed")
 		  setCurrentEditPlant([]);
 		};
 
+	const handleCancelEdit = () => {
+			setCurrentEditPlant([]);
+		};
 
+	const handleSaveEdit = () => {
+			setCurrentEditPlant([]);
+		};
+
+	const handleUndoEdit = () => {
+			setCurrentEditPlant([]);
+		};	
 
 	let searchForList = [];
 	let strain = '';
@@ -304,6 +317,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const handleUnitSelect = (event) => {
 		setUnit(event.target.value);
+	  };
+
+	  const handleEditUnitSelect = (event) => {
+		setEditUnit(event.target.value);
 	  };
 
 	  /*
@@ -1415,7 +1432,50 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
         </Button>
 		<div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
 			<div style={{width:"100%",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Plant Info</div> 
-         	<TextField id="edit-tag" value={JSON.stringify(currentEditPlant)!=="[]" ? currentEditPlant.tag : null} label="Tag" style={{width:"80%"}}/>
+         	<TextField id="edit-tag" 
+			 value={JSON.stringify(currentEditPlant)!=="[]" ? currentEditPlant.tag : null} 
+			 label="Tag" 
+			 style={{width:"80%",marginTop:"20px",marginBottom:"10px"}}
+			 inputProps={
+				{ readOnly: true, }
+			}/>
+
+			<TextField id="edit-strain" 
+			 value={JSON.stringify(currentEditPlant)!=="[]" ? currentEditPlant.strain : null} 
+			 label="Strain" 
+			 style={{width:"80%",marginTop:"10px",marginBottom:"10px"}}
+			 inputProps={
+				{ readOnly: true, }
+			}/>
+
+			<TextField id="edit-weight" 
+			 value={editWeight} 
+			 label="Weight" 
+			 style={{width:"80%",marginTop:"10px",marginBottom:"10px"}}
+			 />
+
+			<FormControl style={{width:"80%",marginTop:"10px",marginBottom:"10px"}}>
+            <InputLabel id="edit-unit-select-label">Unit</InputLabel>
+            <Select 
+              id="edit-unit-select"
+              label="Unit"
+              labelId ="edit-unit-select-label" 
+              value={editUnit} 
+              onChange={handleEditUnitSelect} 
+              style={{width:"100%"}}>
+                    {unitList.map((name, index) => (
+                    <MenuItem key={index} value={name}>
+                      {name}
+                    </MenuItem>
+                  ))}
+                 </Select>
+          </FormControl>
+
+		  <div style={{display:"flex",flexDirection:"row"}}>
+		  		<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancelEdit}>Cancel</Button>
+				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleUndoEdit}>Undo Record</Button>
+				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSaveEdit}>Save</Button>
+		  </div>
 		</div>
       </div>
       </div>
