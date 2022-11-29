@@ -153,6 +153,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		let i = 0;
               let foundIndex = -1;
               let foundHarvestRecord = new HarvestRecord('','','','','','');
+			  console.log("Handle Save Edit");
               for(const val2 of JSON.parse(getHarvestRecords())){
                 if(val2.tag===currentEditPlant.tag){
                   foundIndex = i;
@@ -160,6 +161,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
                     newWeight = val2.weight;
                   }
                   foundHarvestRecord = new HarvestRecord(val2.id,val2.tag,newWeight,editUnit,val2.batchName,val2.userID);
+
+				  console.log("Found harvest record: " + JSON.stringify(foundHarvestRecord));
                 }
                 i++;
               }
@@ -169,8 +172,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
             splicedHR.splice(foundIndex,1,foundHarvestRecord)
             setHarvestRecords(JSON.stringify(splicedHR));
 
-			const harvestRecordItem = getHarvestRecordItemFromRecord(foundHarvestRecord);
-  			updateHarvestRecord(harvestRecordItem);
+  			updateHarvestRecord(getHarvestRecordItemFromRecord(foundHarvestRecord));
   		  }		
 		setCurrentEditPlant([]);
 		reloadPlantsAndHarvestRecords(currentHarvest);
@@ -256,6 +258,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		  }
 	  
 	async function updateHarvestRecord(harvestRecordItem){
+		console.log("Update harvest record: " + JSON.stringify(harvestRecordItem));
 			const response = fetch('/hr', {
 				  method: (harvestRecordItem.id) ? 'PUT' : 'POST',
 				  headers: {
