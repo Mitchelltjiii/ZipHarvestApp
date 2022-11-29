@@ -107,7 +107,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [currentEditPlant,setCurrentEditPlant] = React.useState([]);
 
-	let popup = document.getElementById('popup');
+	const popup = document.getElementById('popup');
 
 	if(JSON.stringify(currentEditPlant)!=="[]" && popup.closed){
 		console.log("Clear Current Edit Plant");
