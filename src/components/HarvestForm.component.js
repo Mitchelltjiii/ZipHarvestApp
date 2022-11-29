@@ -276,7 +276,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function getHarvestRecordItemFromRecord(currentHarvestRecord){
 			let plant = {
-			  tag: '',
+				id: '',
+			  	tag: '',
 					weight: 0,
 					unit: '',
 					batchName: '',
@@ -459,6 +460,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const handleWeight = (event) => {
 		setWeight(event.target.value);
 	  };
+	 
+	const handleEditWeight = (event) => {
+		setEditWeight(event.target.value);
+	  };  
 
 	const handleUnitSelect = (event) => {
 		setUnit(event.target.value);
@@ -1595,6 +1600,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 			<TextField id="edit-weight" 
 			 value={editWeight} 
+			 onChange={handleEditWeight}
 			 label="Weight" 
 			 style={{width:"80%",marginTop:"10px",marginBottom:"10px"}}
 			 />
