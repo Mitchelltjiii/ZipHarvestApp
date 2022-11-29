@@ -780,11 +780,11 @@ style={{width:"100%"}}>
           <div style={{width:"100%",fontSize:"25px",marginTop:"20px",marginBottom:"20px",textAlign:"center",
           fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Try our Voice-Activated Harvesting now!</div>
             <div style={{display:"flex",flexDirection:"column"}}>
-            <div style={{textAlign:"center",fontSize:"24px",marginBottom:"15px"}}>Select your preferred strain to get started</div>
+            <div style={{textAlign:"center",fontSize:"24px",marginBottom:"25px"}}>Select your preferred strain to get started</div>
             <div style={{display:"flex",flexDirection:"row",width:"100%",marginBottom:"20px"}}>
-                  <Button style={{width:"100%",height:"120px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"10px",marginRight:"10px"}} variant={"contained"} onClick={handleClickedStrain1}>OG Kush</Button>
-                  <Button style={{width:"100%",height:"120px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"10px",marginRight:"10px"}} variant={"contained"} onClick={handleClickedStrain2}>Blue Dream</Button>
-                  <Button style={{width:"100%",height:"120px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"10px",marginRight:"10px"}} variant={"contained"} onClick={handleClickedStrain3}>Biscotti</Button>
+                  <Button style={{width:"100%",height:"80px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"25px",marginRight:"25px"}} variant={"contained"} onClick={handleClickedStrain1}>OG Kush</Button>
+                  <Button style={{width:"100%",height:"80px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"25px",marginRight:"25px"}} variant={"contained"} onClick={handleClickedStrain2}>Blue Dream</Button>
+                  <Button style={{width:"100%",height:"80px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"25px",marginRight:"25px"}} variant={"contained"} onClick={handleClickedStrain3}>Biscotti</Button>
                 </div>
             <div style={{width:"100%",display:"flex"}}>
             <Popup
@@ -801,9 +801,9 @@ style={{width:"100%"}}>
           &times;
         </Button>
       
-         <div style={{display:"flex",flexDirection:"row",minWidth:"300px"}}>
+         <div style={{display:"flex",flexDirection:"row",alignItems:"center"}}>
 
-          <div style={{display:"flex",flexDirection:"column"}}>
+          <div style={{display:"flex",flexDirection:"column",minWidth:"300px"}}>
           <div className="header" style={{width:"100%",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold",marginTop:"20px"}}>Harvest Now</div>
           {harvestedCount > 0 || searchTag !== "" ?
           null
