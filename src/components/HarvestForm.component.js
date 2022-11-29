@@ -1243,6 +1243,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	let tableFontSize = "18px";
 	let tableFontSizeBig = "20px";
+	if(isMobile){
+		tableFontSize = "16px";
+	    tableFontSizeBig = "18px";
+	}
 
 	function getStrainFromTag(tag){
 		for(let val of JSON.parse(getPlants())){
