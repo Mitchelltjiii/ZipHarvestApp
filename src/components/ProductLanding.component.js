@@ -770,21 +770,21 @@ style={{width:"100%"}}>
   {currUrl.includes("Test1")
   ?
   <div style={{display:"flex",flexDirection:"column",width:"70%"}}>
-    <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',width:"400px"}}>
+    <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',width:"60%"}}>
           <Grid
             container
             direction="row"
               justify="center"
             alignItems="center"
           >
-          <div style={{width:"100%",fontSize:"20px",marginTop:"20px",marginBottom:"20px",textAlign:"center",
+          <div style={{width:"100%",fontSize:"25px",marginTop:"20px",marginBottom:"20px",textAlign:"center",
           fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Try our Voice-Activated Harvesting now!</div>
             <div style={{display:"flex",flexDirection:"column"}}>
-            <div style={{textAlign:"center",fontSize:"20px",marginBottom:"15px"}}>Select your preferred strain to get started</div>
+            <div style={{textAlign:"center",fontSize:"24px",marginBottom:"15px"}}>Select your preferred strain to get started</div>
             <div style={{display:"flex",flexDirection:"row",width:"100%",marginBottom:"20px"}}>
-                  <Button style={{width:"100%",height:"80px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"10px",marginRight:"10px"}} variant={"contained"} onClick={handleClickedStrain1}>OG Kush</Button>
-                  <Button style={{width:"100%",height:"80px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"10px",marginRight:"10px"}} variant={"contained"} onClick={handleClickedStrain2}>Blue Dream</Button>
-                  <Button style={{width:"100%",height:"80px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"10px",marginRight:"10px"}} variant={"contained"} onClick={handleClickedStrain3}>Biscotti</Button>
+                  <Button style={{width:"100%",height:"120px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"10px",marginRight:"10px"}} variant={"contained"} onClick={handleClickedStrain1}>OG Kush</Button>
+                  <Button style={{width:"100%",height:"120px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"10px",marginRight:"10px"}} variant={"contained"} onClick={handleClickedStrain2}>Blue Dream</Button>
+                  <Button style={{width:"100%",height:"120px",backgroundColor:"#444444",color:"#FFFFFF",marginLeft:"10px",marginRight:"10px"}} variant={"contained"} onClick={handleClickedStrain3}>Biscotti</Button>
                 </div>
             <div style={{width:"100%",display:"flex"}}>
             <Popup
@@ -801,8 +801,7 @@ style={{width:"100%"}}>
           &times;
         </Button>
       
-         <div className="content">
-         <div style={{display:"flex",flexDirection:"row"}}>
+         <div style={{display:"flex",flexDirection:"row",minWidth:"300px"}}>
 
           <div style={{display:"flex",flexDirection:"column"}}>
           <div className="header" style={{width:"100%",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold",marginTop:"20px"}}>Harvest Now</div>
@@ -955,7 +954,6 @@ style={{width:"100%"}}>
         </TableContainer>
         </div>
         : null}
-        </div>
         </div>
       </div>
       </div>
