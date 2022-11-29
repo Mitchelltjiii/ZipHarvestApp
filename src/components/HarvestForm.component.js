@@ -173,7 +173,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				  if(plant.itemID!==""){
 					  plantItem.id = plant.itemID;
 				  }
-	  
 				  return plantItem;
 			  }
 			  
