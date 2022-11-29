@@ -109,7 +109,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const popup = document.getElementById('popup');
 
-	if(JSON.stringify(currentEditPlant)!=="[]" && popup.closed){
+	if(JSON.stringify(currentEditPlant)!=="[]" && popup !== null && popup.closed){
 		console.log("Clear Current Edit Plant");
 		setCurrentEditPlant([]);
 	}
@@ -1401,7 +1401,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				updateHBList={updateHBList} getPlantItem={getPlantItem} harvestType={harvestType} getStrainForPlantItem={getStrainForPlantItem}></HarvestPlantButton>
     
 	<Popup
-	id="popup"
+	id='popup'
 	open={(JSON.stringify(currentEditPlant)!=="[]")}
     modal
     nested
