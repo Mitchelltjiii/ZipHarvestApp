@@ -155,12 +155,14 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
               let foundIndex = -1;
               let foundID = '';
               for(const val2 of JSON.parse(getHarvestRecords())){
-                if(val2.tag===tag){
+                if(val2.tag===currentEditPlant.tag){
                   foundIndex = i;
                   foundID = val2.id;
                 }
                 i++;
               }
+			  console.log("CurrenEditPlant ID: " + currentEditPlant.id);
+			  console.log("foundID: " + foundID);
     
               if(foundIndex !== -1){
                 let splicedHR = JSON.parse(getHarvestRecords());
