@@ -106,13 +106,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const [grantFreeMonthHintVisible,setGrantFreeMonthHintVisible] = React.useState(true);
 
 	const [currentEditPlant,setCurrentEditPlant] = React.useState([]);
-
-	const popup = document.getElementById('popup');
-
-	if(JSON.stringify(currentEditPlant)!=="[]" && popup !== null && popup.closed){
-		console.log("Clear Current Edit Plant");
-		setCurrentEditPlant([]);
-	}
 	
 	if(hbNameError && hbName.length === 0){
 		setHbNameError(false);
@@ -135,6 +128,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		console.log("Clicked Row: " + JSON.stringify(row));
 		setCurrentEditPlant(row);
 	  };
+
+	  const handlePopupClosed = () => {
+		  console.log("Handle Popup Closed")
+		  setCurrentEditPlant([]);
+		};
+
 
 
 	let searchForList = [];
@@ -1401,11 +1400,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				updateHBList={updateHBList} getPlantItem={getPlantItem} harvestType={harvestType} getStrainForPlantItem={getStrainForPlantItem}></HarvestPlantButton>
     
 	<Popup
-	id='popup'
 	open={(JSON.stringify(currentEditPlant)!=="[]")}
     modal
     nested
     style={{width:"100%",display:"flex"}}
+	onClose={handlePopupClosed}
   >
     {close => (
       <div style={{width:"100vw",height:"100vh",backgroundColor:"rgba(0, 0, 0, 0.5)",display:"flex"}}>
