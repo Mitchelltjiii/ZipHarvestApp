@@ -1629,7 +1629,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		  <div style={{display:"flex",flexDirection:"row"}}>
 		  		<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleCancelEdit}>Cancel</Button>
 				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleUndoEdit}>Undo Record</Button>
-				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSaveEdit}>Save</Button>
+				<Button style={{marginTop:"5px",marginBottom:"5px",marginRight:"5px",fontSize:"10px"}} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleSaveEdit}>Save</Button>
 		  </div>
 		</div>
       </div>
