@@ -109,6 +109,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	const [grantFreeMonthHintVisible,setGrantFreeMonthHintVisible] = React.useState(true);
 
+	const [busy,setBusy] = React.useState(false);
+
 	
 	if(hbNameError && hbName.length === 0){
 		setHbNameError(false);
@@ -146,8 +148,101 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		};
 
 	const handleUndoEdit = () => {
+			let newPlant = new Plant(currentEditPlant.tag,currentEditPlant.strain,userID,0);
+			addPlant(getPlantItem(newPlant));
+			setBusy(true);
+			deleteHarvestRecord(currentEditPlant.tag);		
 			setCurrentEditPlant([]);
-		};	
+		};
+
+	
+	function getPlantItem(plant){
+
+			let plantItem = {
+			  tag: '',
+			  strain: '',
+			  userID: '',
+			  active: ''
+			  };
+	  
+			  plantItem.tag = plant.tag;
+			  plantItem.strain = plant.strain;
+			  plantItem.userID = plant.userID;
+			  plantItem.active = plant.active;
+	  
+				  if(plant.itemID!==""){
+					  plantItem.id = plant.itemID;
+				  }
+	  
+				  return plantItem;
+			  }
+			  
+		async function addPlant(plantItem){
+			fetch('/pl', {
+			  method: (plantItem.tag) ? 'PUT' : 'POST',
+			  headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			  },
+			  body: JSON.stringify(plantItem),
+			}).then(function(response) {
+			  return response.json();
+			}).then(function(data) {
+			  setBusy(false);
+			});
+		  }	  	
+		
+	async function deleteHarvestRecord(removePlantID){
+			const response = fetch(`/hr/${removePlantID}`, {
+			method: 'DELETE',
+			headers: {
+			  'Accept': 'application/json',
+			  'Content-Type': 'application/json'
+			}
+			});
+	  
+			try{
+			  await response.text();
+			}catch(err){
+			} 
+			setBusy(false);
+		  }
+	  
+	async function updateHarvestRecord(harvestRecordItem){
+			const response = fetch('/hr', {
+				  method: (harvestRecordItem.id) ? 'PUT' : 'POST',
+				  headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				  },
+				  body: JSON.stringify(harvestRecordItem)
+			});
+			try{
+			  await response.text();
+			}catch(err){
+			} 
+			setBusy(false);
+		  }	
+
+	function getHarvestRecordItemFromRecord(currentHarvestRecord){
+			let plant = {
+			  tag: '',
+					weight: 0,
+					unit: '',
+					batchName: '',
+					userID: ''
+			  };
+		
+			  plant.tag = currentHarvestRecord.tag;
+			  plant.unit = currentHarvestRecord.unit;
+			  plant.weight = currentHarvestRecord.weight;
+			  plant.batchName = currentHarvestRecord.batchName;
+			  plant.userID = currentHarvestRecord.userID;
+			if(currentHarvestRecord.id!==""){
+			  plant.id = currentHarvestRecord.id;
+			}
+			return plant;
+		  }
 
 	let searchForList = [];
 	let strain = '';
