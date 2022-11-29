@@ -106,12 +106,10 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const [grantFreeMonthHintVisible,setGrantFreeMonthHintVisible] = React.useState(true);
 
 	const [currentEditPlant,setCurrentEditPlant] = React.useState([]);
-	console.log("Current Edit Plant: " + JSON.stringify(currentEditPlant));
-	console.log("Current Edit Plant.length: " + currentEditPlant.length);
 
 	let popup = document.getElementById('popup');
 
-	if(currentEditPlant.length>0 && popup.closed){
+	if(JSON.stringify(currentEditPlant)!=="[]" && popup.closed){
 		console.log("Clear Current Edit Plant");
 		setCurrentEditPlant([]);
 	}
@@ -1404,7 +1402,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
     
 	<Popup
 	id="popup"
-	open={(currentEditPlant.length>0)}
+	open={(JSON.stringify(currentEditPlant)!=="[]")}
     modal
     nested
     style={{width:"100%",display:"flex"}}
@@ -1418,7 +1416,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
         </Button>
 		<div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
 			<div style={{width:"100%",textAlign:"center",fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Plant Info</div> 
-         	<TextField id="edit-tag" value={currentEditPlant.length>0 ? currentEditPlant.tag : null} label="Tag" style={{width:"80%"}}/>
+         	<TextField id="edit-tag" value={JSON.stringify(currentEditPlant)!=="[]" ? currentEditPlant.tag : null} label="Tag" style={{width:"80%"}}/>
 		</div>
       </div>
       </div>
