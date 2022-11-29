@@ -151,8 +151,25 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			let newPlant = new Plant(currentEditPlant.tag,currentEditPlant.strain,userID,0);
 			addPlant(getPlantItem(newPlant));
 			setBusy(true);
-			deleteHarvestRecord(currentEditPlant.id);		
+			let i = 0;
+              let foundIndex = -1;
+              let foundID = '';
+              for(const val2 of JSON.parse(getHarvestRecords())){
+                if(val2.tag===tag){
+                  foundIndex = i;
+                  foundID = val2.id;
+                }
+                i++;
+              }
+    
+              if(foundIndex !== -1){
+                let splicedHR = JSON.parse(getHarvestRecords());
+                splicedHR.splice(foundIndex,1);
+                setHarvestRecords(JSON.stringify(splicedHR));
+				deleteHarvestRecord(currentEditPlant.id);	
+			  }		
 			setCurrentEditPlant([]);
+			reloadPlantsAndHarvestRecords(currentHarvest);
 		};
 
 	
@@ -1202,10 +1219,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	let rows = [];
       try{
-        for(let val of JSON.parse(getHarvestRecords())) { 
+        for(let val of JSON.parse(getHarvestRecords())) {  
           if(val.batchName === currentHarvest.name){
-			console.log("Harvest Record: " + JSON.stringify(val)); 
-
             let hidden = false;
             for(let val2 of currHidePlants){
               if(val2 === val.tag){
