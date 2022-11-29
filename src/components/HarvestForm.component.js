@@ -144,7 +144,36 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		};
 
 	const handleSaveEdit = () => {
-			setCurrentEditPlant([]);
+		let newWeight = 0;
+		try{
+			newWeight = parseFloat(editWeight);
+		}catch(err){
+			
+		}
+		let i = 0;
+              let foundIndex = -1;
+              let foundHarvestRecord = new HarvestRecord('','','','','','');
+              for(const val2 of JSON.parse(getHarvestRecords())){
+                if(val2.tag===currentEditPlant.tag){
+                  foundIndex = i;
+                  if(isNaN(newWeight) || newWeight === 0){
+                    newWeight = val2.weight;
+                  }
+                  foundHarvestRecord = new HarvestRecord(val2.id,val2.tag,newWeight,editUnit,val2.batchName,val2.userID);
+                }
+                i++;
+              }
+    
+        if(foundIndex !== -1){
+            let splicedHR = JSON.parse(getHarvestRecords());
+            splicedHR.splice(foundIndex,1,foundHarvestRecord)
+            setHarvestRecords(JSON.stringify(splicedHR));
+
+			const harvestRecordItem = getHarvestRecordItemFromRecord(foundHarvestRecord);
+  			updateHarvestRecord(harvestRecordItem);
+  		  }		
+		setCurrentEditPlant([]);
+		reloadPlantsAndHarvestRecords(currentHarvest);
 		};
 
 	const handleUndoEdit = () => {
@@ -1539,7 +1568,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
     {close => (
       <div style={{width:"100vw",height:"100vh",backgroundColor:"rgba(0, 0, 0, 0.5)",display:"flex"}}>
 
-        <div style={{backgroundColor:"#e4e4e4",margin:"auto",position:"relative"}}>
+        <div style={{backgroundColor:"#e4e4e4",margin:"auto",position:"relative",width:"320px"}}>
         <Button className="close" onClick={close}>
           &times;
         </Button>
