@@ -151,7 +151,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			let newPlant = new Plant(currentEditPlant.tag,currentEditPlant.strain,userID,0);
 			addPlant(getPlantItem(newPlant));
 			setBusy(true);
-			deleteHarvestRecord(currentEditPlant.tag);		
+			deleteHarvestRecord(currentEditPlant.id);		
 			setCurrentEditPlant([]);
 		};
 
@@ -1196,14 +1196,16 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}
 	  }
 
-	  function createData(tag, strain, weight, unit) {
-		return {tag, strain, weight, unit};
+	  function createData(id, tag, strain, weight, unit) {
+		return {id, tag, strain, weight, unit};
 	  }
 
 	let rows = [];
       try{
-        for(let val of JSON.parse(getHarvestRecords())) {  
+        for(let val of JSON.parse(getHarvestRecords())) { 
           if(val.batchName === currentHarvest.name){
+			console.log("Harvest Record: " + JSON.stringify(val)); 
+
             let hidden = false;
             for(let val2 of currHidePlants){
               if(val2 === val.tag){
@@ -1211,7 +1213,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
               }
             }
             if(!hidden){
-              rows.push(createData(val.tag,getStrainFromTag(val.tag),val.weight,val.unit));
+              rows.push(createData(val.id,val.tag,getStrainFromTag(val.tag),val.weight,val.unit));
             }
           }
         }
