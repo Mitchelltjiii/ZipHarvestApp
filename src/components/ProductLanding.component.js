@@ -290,10 +290,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
 
     }
 
-  let margB = "200px";
-  if(currUrl.includes("Test1")){
-    margB = "40px";
-  }
+  let margB = "40px";
 
   let newLink = "";
     if(resent){
@@ -510,8 +507,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
           <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToFloraSolNewTab} style={{borderRadius:5,marginTop:lineSpacing,width:"160px",marginBottom:"15px"}}>Learn More</Button>
           </Grid>
           <CreateUserMiniForm setAccountCreated={setAccountCreated} setNewUsername={setNewUsername}></CreateUserMiniForm>
-          {currUrl.includes("Test1")
-  ?
           <div style={{display:"flex",flexDirection:"column",backgroundColor:"#F5F5F5",width:"100%"}}>
            <div style={{marginTop:"15px",marginBottom:"5px",fontSize:"20px",fontFamily:"Arial, Helvetica, sans-serif",textAlign:"center",
           fontFamily:"Arial, Helvetica, sans-serif",fontWeight:"bold"}}>Try our Voice-Activated Harvesting now!</div>
@@ -670,7 +665,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
     )}
   </Popup> 
         </div> 
-    :null}
           </Grid>
   }
   </div>
@@ -767,8 +761,6 @@ style={{width:"100%"}}>
         </div>
               </div>
   }
-  {currUrl.includes("Test1")
-  ?
   <div style={{display:"flex",flexDirection:"column",width:"70%"}}>
     <div style={{display:"flex",flexDirection:"column",backgroundColor:"#e4e4e4",borderRadius: '3px',width:"60%"}}>
           <Grid
@@ -964,9 +956,6 @@ style={{width:"100%"}}>
             </Grid>
             </div>
       </div>
-    :
-    null
-  }
 					</div>
       </Grid>
     );
