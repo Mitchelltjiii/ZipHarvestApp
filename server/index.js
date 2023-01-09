@@ -1058,8 +1058,12 @@ app.post('/user', (req, res) =>{
     apiid, username, hash, subid, linkCode, facilityName, firstName, lastName, email, verificationCode, verified, sessionid, verCodeTime, linkCodeTime, tutorials, refCode,firstMonthFree,grantFreeMonthCode
   ], (err, result) => {
     connection.release(); // return the connection to pool
-    if(err) throw err;
-    res.json(hash);
+    if(err){
+      res.json(hash);
+    }else{
+      console.log("duplicate user caught");
+      res.json("");
+    }
     });
   });
   }else{
