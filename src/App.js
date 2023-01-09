@@ -93,16 +93,21 @@ export default class App extends React.Component {
     const response = await fetch(`/get-subid/${username}`);
     const json = await response.json();
     if(json !== undefined){
+      this.getFacilityName(username,staySignedIn,json,false);
+
+      /*
       if(json.length===13 || JSON.stringify(json).length===13){
-        /*if((new Date()).getTime()-parseInt(json)>1209600000){
+        if((new Date()).getTime()-parseInt(json)>1209600000){
           this.getFacilityName(username,staySignedIn,json,true);
         }else{
           this.getFacilityName(username,staySignedIn,json,false);
-        }*/
+        }
+        console.log("A-");
         this.getFacilityName(username,staySignedIn,json,false);
       }else{
+        console.log("B-");
         this.getSubscription(json,username,staySignedIn,signIn);
-      }
+      }*/
       }else{
         this.setState({newUsername:username,currentPage:'stripe-form'});
       }
