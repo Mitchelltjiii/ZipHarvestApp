@@ -501,6 +501,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
         alignItems="center"
         style={{backgroundColor:"#444444",width:"100%"}}
       >
+        
       <div style={{fontSize:"32px",fontWeight:"bold",color:"#FFFFFF",fontFamily:"Arial, Helvetica, sans-serif",marginTop:lineSpacing,
       textAlign:"center"}}>WELCOME TO ZIPHARVEST</div>
           <div style={{paddingLeft:"20px",paddingRight:"20px",fontSize:"17px",color:"#FFFFFF",marginTop:lineSpacing,fontFamily:"Arial, Helvetica, sans-serif"}}>&#10004;Record plant harvest weights faster than ever with a single voice command</div>
