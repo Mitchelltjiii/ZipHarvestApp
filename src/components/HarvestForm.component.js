@@ -610,7 +610,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   let entryTutorialWidth = "500px";
   let entryTutorialFontSize = "17px";
   const[entryTutorialVisible,setEntryTutorialVisible] = React.useState(true);
-  const[referalVisible,setReferalVisible] = React.useState(true);
+  const[referalVisible,setReferalVisible] = React.useState(false);
   const[offerVisible,setOfferVisible] = React.useState(false);
 
   if(isMobile){

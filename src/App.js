@@ -94,11 +94,12 @@ export default class App extends React.Component {
     const json = await response.json();
     if(json !== undefined){
       if(json.length===13 || JSON.stringify(json).length===13){
-        if((new Date()).getTime()-parseInt(json)>1209600000){
+        /*if((new Date()).getTime()-parseInt(json)>1209600000){
           this.getFacilityName(username,staySignedIn,json,true);
         }else{
           this.getFacilityName(username,staySignedIn,json,false);
-        }
+        }*/
+        this.getFacilityName(username,staySignedIn,json,false);
       }else{
         this.getSubscription(json,username,staySignedIn,signIn);
       }
@@ -421,8 +422,10 @@ export default class App extends React.Component {
     const response = await fetch(`/api/tutorials/${user}`);
     const text = await response.text();
     let txt = text.substring(1,text.length-1);
+
+    this.executeLogIn(user,staySignedIn,txt,subid,"","","","","");
     
-    this.getGrantFreeMonthCodeFromDB(user,staySignedIn,txt,subid,outdoorOffer,facilityName);
+    //this.getGrantFreeMonthCodeFromDB(user,staySignedIn,txt,subid,outdoorOffer,facilityName);
   }
 
   getGrantFreeMonthCodeFromDB = async (user,staySignedIn,tuts,subid,outdoorOffer,facilityName) => {
