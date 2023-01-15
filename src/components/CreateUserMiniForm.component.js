@@ -343,7 +343,7 @@ function CreateUserMiniForm({setAccountCreated,setNewUsername}) {
     }}
   />          
   <div style={{marginTop:"5px",marginBottom:"5px",fontSize:"12px",textAlign:"center",width:"248px",color:"#000000"}}>By creating an account, you agree to our {termsOfServiceLink} and {privacyPolicyLink}</div>  
-  <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{height:"60px",marginTop:"10px",marginBottom:"20px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleContinue}>Start Free Trial</Button>    
+  <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{height:"60px",marginTop:"10px",marginBottom:"20px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleContinue}>Start Free Account</Button>    
   </Grid>);
   }else{
     return (
@@ -392,7 +392,7 @@ function CreateUserMiniForm({setAccountCreated,setNewUsername}) {
   
     </Grid>
   </div>
-  <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{height:"60px",marginBottom:"20px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleContinue}>Start Free Trial</Button>           
+  <Button variant="contained" aria-controls="simple-menu" aria-haspopup="true" style={{height:"60px",marginBottom:"20px",backgroundColor:"#444444",color:"#FFFFFF"}} onClick={handleContinue}>Start Free Account</Button>           
 </Grid>
 </div>
     );

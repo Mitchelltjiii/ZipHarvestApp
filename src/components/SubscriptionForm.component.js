@@ -47,7 +47,7 @@ getSubscriptionType}) {
     
 
     if(freeTrial){
-      renewalDate = "Free trial ends " + getFreeTrialEnds();
+      renewalDate = "None";
     }
 
     let possiblePlantCount = "";
@@ -87,7 +87,7 @@ getSubscriptionType}) {
     }
 
     if(freeTrial){
-      subType = "Free Trial";
+      subType = "Free forever!";
     }
 
 

@@ -731,7 +731,7 @@ async function getFacilityName(username){
 				            alignItems="center"
 			              >
                     <div style={{textAlign:"center"}}>You have verified your account!</div>
-                    <div style={{textAlign:"center"}}>Your 14-day free trial starts now!</div>
+                    <div style={{textAlign:"center"}}>Welcome to ZipHarvest!</div>
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                   </Grid>    
           </div> :
@@ -743,7 +743,7 @@ async function getFacilityName(username){
 				            alignItems="center"
 			              >
                     <div style={{textAlign:"center"}}>You have verified your account!</div>
-                    <div style={{textAlign:"center"}}>Your 14-day free trial starts now!</div>
+                    <div style={{textAlign:"center"}}>Welcome to ZipHarvest!</div>
                     <Button style={{marginTop:"10px"}} variant="contained" aria-controls="simple-menu" aria-haspopup="true" onClick={handleGoToHome}>Home</Button>
                   </Grid>
           </div>
