@@ -1220,13 +1220,15 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		hb.type = ch.type;
 		hb.date = ch.date;
 		hb.name = ch.name;
-		if(ch.itemID!=="" && ch.itemID !==null){
-			hb.id = ch.itemID;
+		console.log("Current Harvest: " + JSON.stringify(currentHarvest));
+		if(ch.id!=="" && ch.id !==null){
+			hb.id = ch.id;
 			console.log("xa1");
 		}else{
 			hb.id = makeid(8);
 			console.log("xa2");
 		}
+		hb.id = makeid(8);
 		return hb;
 	}
 
