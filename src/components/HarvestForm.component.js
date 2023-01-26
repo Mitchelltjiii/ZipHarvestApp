@@ -1143,7 +1143,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		plant.tag = currentHarvestRecord.tag;
 		plant.unit = currentHarvestRecord.unit;
 		plant.weight = currentHarvestRecord.weight;
-		plant.batchName = currentHarvestRecord.batchName;
+		plant.batchName = currentHarvestRecord.hbid;
 		plant.userID = userID;
 
 		if(currentHarvestRecord.itemID!==""){
