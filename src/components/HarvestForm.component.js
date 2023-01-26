@@ -30,11 +30,12 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	let tutorials = getTutorials();
 	let grantFreeMonthCode = getGrantFreeMonthCode();
 	let outdoorOffer = getOutdoorOffer();
-	function HarvestBatch(name,type,date,userID){
-		this.name = name;
+	function HarvestBatch(id,type,date,userID,name){
+		this.id = id;
 		this.type = type;
 		this.date = date;
 		this.userID = userID;
+		this.name = name;
 	}
 
 	function Plant(userID,strain,tag,active){
@@ -56,7 +57,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	let hbOptionsList = ["Add New Harvest Batch"];
 	let currentHarvestRecord = new HarvestRecord('','','','','','');
 
-	let addedHB = new HarvestBatch("","","",userID);
+	let addedHB = new HarvestBatch("","","",userID,"");
 
 	var bgColors = { "Default": "#81b71a",
                     "Blue": "#00B1E1",
@@ -348,7 +349,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		try{
 			for(let val of JSON.parse(getHarvestBatches())) {
 				if(val.name === selectedHB){
-					return new HarvestBatch(val.name,val.type,val.date,val.userID);
+					return new HarvestBatch(val.id,val.type,val.date,val.userID,val.name);
 				}
 			}
 		}catch(excc){
@@ -768,9 +769,11 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			}
 		}
 
-		addedHB = new HarvestBatch(hbName,harvType,hbDate,userID);
+		let harvID = makeid(8);
 
-		setSelectedHB(hbName);
+		addedHB = new HarvestBatch(harvID,harvType,hbDate,userID,hbName);
+
+		setSelectedHB(hbName); //xx
 		setChangeHBHidden(false);
 		setErrorMessage("");
 		setHbNameError(false);
@@ -883,7 +886,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		
 		let plantCount = 0;
 		for(const val of JSON.parse(getHarvestRecords())) {  
-			if(val.batchName === currentHarvest.name){
+			if(val.batchName === currentHarvest.id){
                 plantCount++;
 			}
 		}
@@ -966,7 +969,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		parsedHBs.splice(foundX,1,replaceHB);
 		setHarvestBatches(JSON.stringify(parsedHBs));
 		let tempHB = parsedHBs[foundX];
-		currentHarvest = new HarvestBatch(tempHB.name,tempHB.type,tempHB.date,userID);
+		currentHarvest = new HarvestBatch(tempHB.id,tempHB.type,tempHB.date,userID,tempHB.name);
 	}
 
 	function resetHarvestForm(resetLastHarvested){
@@ -1225,7 +1228,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			hb.id = ch.id;
 			console.log("xa1");
 		}else{
-			hb.id = makeid(8);
 			console.log("xa2");
 		}
 
@@ -1282,7 +1284,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	let rows = [];
       try{
         for(let val of JSON.parse(getHarvestRecords())) {  
-          if(val.batchName === currentHarvest.name){
+          if(val.batchName === currentHarvest.id){
             let hidden = false;
             for(let val2 of currHidePlants){
               if(val2 === val.tag){
