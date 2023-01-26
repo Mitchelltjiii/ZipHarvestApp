@@ -897,18 +897,18 @@ app.post('/hb', (req, res) =>{
     if(err) throw err;
     var postData  = req.body;
 
-  let id = postData.id;
+  let hbid = postData.hbid;
   let userID = postData.userID;
   let type = postData.type;
   let date = postData.date;
   let name = postData.name;
 
   connection.query(`INSERT INTO hb 
-    (id, userID, type, date, name) 
+    (hbid, userID, type, date, name) 
     VALUES 
     (?, ?, ?, ?, ?)`, 
     [
-      id, userID, type, date, name
+      hbid, userID, type, date, name
     ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
@@ -922,16 +922,16 @@ app.put('/hb', (req, res) =>{
     if(err) throw err;
     var postData  = req.body;
 
-  let id = postData.id;
+  let hbid = postData.hbid;
   let userID = postData.userID;
   let type = postData.type;
   let date = postData.date;
   let name = postData.name;
 
   connection.query(`UPDATE hb set
-  userID =?, type =?, date =?, name =? WHERE id = ?`, 
+  userID =?, type =?, date =?, name =? WHERE hbid = ?`, 
   [
-    userID, type, date, name, id
+    userID, type, date, name, hbid
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
@@ -1297,7 +1297,7 @@ app.put('/hr', (req, res) =>{
     if(err) throw err;
     var postData  = req.body;
 
-  let hbid = postData.hbid;
+  let id = postData.id;
   let tag = postData.tag;
   let weight = postData.weight;
   let unit = postData.unit;
@@ -1305,9 +1305,9 @@ app.put('/hr', (req, res) =>{
   let userID = postData.userID;
 
   connection.query(`UPDATE hr set
-  tag =?, weight =?, unit =?, batchName =?, userID =? WHERE hbid = ?`, 
+  tag =?, weight =?, unit =?, batchName =?, userID =? WHERE id = ?`, 
   [
-    tag, weight, unit, batchName, userID, hbid
+    tag, weight, unit, batchName, userID, id
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
