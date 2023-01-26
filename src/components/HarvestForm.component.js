@@ -1219,10 +1219,13 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		hb.userID = userID;
 		hb.type = ch.type;
 		hb.date = ch.date;
-		if(ch.itemID!==""){
+		hb.name = ch.name;
+		if(ch.itemID!=="" && ch.itemID !==null){
 			hb.id = ch.itemID;
+			console.log("xa1");
 		}else{
 			hb.id = makeid(8);
+			console.log("xa2");
 		}
 		return hb;
 	}
