@@ -1297,7 +1297,7 @@ app.put('/hr', (req, res) =>{
     if(err) throw err;
     var postData  = req.body;
 
-  let id = postData.id;
+  let hbid = postData.hbid;
   let tag = postData.tag;
   let weight = postData.weight;
   let unit = postData.unit;
@@ -1305,9 +1305,9 @@ app.put('/hr', (req, res) =>{
   let userID = postData.userID;
 
   connection.query(`UPDATE hr set
-  tag =?, weight =?, unit =?, batchName =?, userID =? WHERE id = ?`, 
+  tag =?, weight =?, unit =?, batchName =?, userID =? WHERE hbid = ?`, 
   [
-    tag, weight, unit, batchName, userID, id
+    tag, weight, unit, batchName, userID, hbid
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
