@@ -1205,25 +1205,38 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	function getHarvestBatchItem(addNew){
 		let hb = {
-			name: '',
+			id: '',
 			userID: '',
 			type: '',
-			date: ''
+			date: '',
+			name: ''
 			};
 
 		let ch = currentHarvest;
 		if(addNew){
 			ch = addedHB;
 		}
-		hb.name = ch.name;
 		hb.userID = userID;
 		hb.type = ch.type;
 		hb.date = ch.date;
 		if(ch.itemID!==""){
 			hb.id = ch.itemID;
+		}else{
+			hb.id = makeid(8);
 		}
 
 		return hb;
+	}
+
+	function makeid(length) {
+		var result           = '';
+		var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		var charactersLength = characters.length;
+		for ( var i = 0; i < length; i++ ) {
+		  result += characters.charAt(Math.floor(Math.random() * 
+		  charactersLength));
+	   }
+	   return result;
 	}
 
 	async function updateTutorials(){

@@ -897,17 +897,18 @@ app.post('/hb', (req, res) =>{
     if(err) throw err;
     var postData  = req.body;
 
-  let name = postData.name;
+  let id = postData.id;
   let userID = postData.userID;
   let type = postData.type;
   let date = postData.date;
+  let name = postData.name;
 
   connection.query(`INSERT INTO hb 
-    (name, userID, type, date) 
+    (id, userID, type, date, name) 
     VALUES 
-    (?, ?, ?, ?)`, 
+    (?, ?, ?, ?, ?)`, 
     [
-      name, userID, type, date
+      id, userID, type, date, name
     ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
@@ -921,15 +922,16 @@ app.put('/hb', (req, res) =>{
     if(err) throw err;
     var postData  = req.body;
 
-  let name = postData.name;
+  let id = postData.id;
   let userID = postData.userID;
   let type = postData.type;
   let date = postData.date;
+  let name = postData.name;
 
   connection.query(`UPDATE hb set
-  userID =?, type =?, date =? WHERE name = ?`, 
+  userID =?, type =?, date =?, name =? WHERE id = ?`, 
   [
-    userID, type, date, name
+    userID, type, date, name, id
   ], (err, result) => {
     connection.release(); // return the connection to pool
     if(err) throw err;
