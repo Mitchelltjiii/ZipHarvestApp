@@ -1224,7 +1224,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		}else{
 			hb.id = makeid(8);
 		}
-
 		return hb;
 	}
 
