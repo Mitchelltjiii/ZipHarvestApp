@@ -429,7 +429,6 @@ export default class App extends React.Component {
     let txt = text.substring(1,text.length-1);
 
     this.executeLogIn(user,staySignedIn,txt,subid,"","","","","");
-    
     //this.getGrantFreeMonthCodeFromDB(user,staySignedIn,txt,subid,outdoorOffer,facilityName);
   }
 
