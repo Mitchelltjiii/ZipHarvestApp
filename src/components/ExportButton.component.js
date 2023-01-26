@@ -148,9 +148,9 @@ class ExportButton extends Component{
             parent.props.reloadExportRecords("");
           }
 
-        function getHBDate(batchName){
+        function getHBDate(hbid){
             for(let val of JSON.parse(parent.props.getHarvestBatches())){
-                if(val.name === batchName){
+                if(val.hbid === hbid){
                     let parsedDate = new Date(val.date);
                     var dd = String(parsedDate.getDate()).padStart(2, '0');
                     var mm = String(parsedDate.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -169,7 +169,7 @@ class ExportButton extends Component{
         const gramsInAPound = 453.592;
 
         for(let val of JSON.parse(this.props.getHarvestRecords())){
-            if(val.batchName === this.props.row.name){
+            if(val.batchName === this.props.row.hbid){
                 let weight = val.weight;
                 let gramsWeight = weight;
                 let poundsWeight = weight;
@@ -178,8 +178,8 @@ class ExportButton extends Component{
                 }else{
                     gramsWeight = Math.round((weight*gramsInAPound)*100)/100;
                 }
-                gramsData += String(val.tag) + "," + gramsWeight + ",Grams," + parent.state.selectedDR + "," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
-                poundsData += String(val.tag) + "," + poundsWeight + ",Pounds," + parent.state.selectedDR + "," + val.batchName + ",," + getHBDate(val.batchName) + "\n";
+                gramsData += String(val.tag) + "," + gramsWeight + ",Grams," + parent.state.selectedDR + "," + val.batchName + ",," + getHBDate(val.hbid) + "\n";
+                poundsData += String(val.tag) + "," + poundsWeight + ",Pounds," + parent.state.selectedDR + "," + val.batchName + ",," + getHBDate(val.hbid) + "\n";
                 exportRecordsData.push(val.tag);
             }
         } 

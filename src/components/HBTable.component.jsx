@@ -33,11 +33,11 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
     const gramsInAPound = 453.592;
 
 
-    function createData(name, plants, strain, date, totalWeight) {
-      return { name, plants, strain, date, totalWeight};
+    function createData(hbid, plants, strain, date, totalWeight, name) {
+      return { hbid, plants, strain, date, totalWeight, name};
     }
 
-    function checkPlantList(batchName) {
+    function checkPlantList(hbid) {
       plantCount = 0;
       strain = "";
       tWeight = 0;
@@ -49,7 +49,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
       }
 
       for(let val of JSON.parse(getHarvestRecords())){
-        if(val.batchName === batchName){
+        if(val.hbid === hbid){
           plantCount++;
           if(val.unit === "g"){
             tWeight += val.weight;
@@ -85,12 +85,12 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
     const rows = [];
 
     for(let val of JSON.parse(getHarvestBatches())) {
-      checkPlantList(val.name);
+      checkPlantList(val.hbid);
       if(strain === ""){
         strain = "N/A";
       }
 
-      rows.push(createData(val.name,plantCount,strain,fixDate(val.date),Math.round(tWeight)));
+      rows.push(createData(val.hbid,plantCount,strain,fixDate(val.date),Math.round(tWeight),val.name));
     }
 
     let emptyMessageWidth = "500px";
@@ -145,7 +145,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
           </TableHead>
           <TableBody>
               {parsedRows.map((row) => (
-              <TableRow key={row.name}>
+              <TableRow key={row.hbid}>
                 <TableCell component="th" scope="row">
                 <Grid
                     container

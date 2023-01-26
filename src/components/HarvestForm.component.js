@@ -133,6 +133,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const handleClickedRow = (row) => {
 		setEditWeight(row.weight+"");
 		setEditUnit(row.unit);
+		console.log("Set Current Edit Plant: " + JSON.stringify(row));
 		setCurrentEditPlant(row);
 	  };
 
@@ -182,6 +183,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const handleUndoEdit = () => {
 
 			let newPlant = new Plant(userID,currentEditPlant.strain,currentEditPlant.tag,0);
+			console.log("Handle Undo Edit: " + JSON.stringify(newPlant));
 			addPlant(getPlantItem(newPlant));
 			setBusy(true);
 			let i = 0;
