@@ -909,7 +909,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				if(addPlant===null||addPlant===undefined){
 					return false;
 				}
-				currentHarvestRecord = new HarvestRecord('',plantTag,0,'',currentHarvest.name,userID);
+				currentHarvestRecord = new HarvestRecord('',plantTag,0,'',currentHarvest.hbid,userID);
 				if(weight===""||weight===undefined){
 					currentHarvestRecord.weight=getBranchWeight();
 				}else{
@@ -1143,7 +1143,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		plant.tag = currentHarvestRecord.tag;
 		plant.unit = currentHarvestRecord.unit;
 		plant.weight = currentHarvestRecord.weight;
-		plant.batchName = currentHarvestRecord.hbid;
+		plant.batchName = currentHarvestRecord.batchName;
 		plant.userID = userID;
 
 		if(currentHarvestRecord.itemID!==""){
