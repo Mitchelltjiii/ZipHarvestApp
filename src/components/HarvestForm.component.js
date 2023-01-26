@@ -1221,14 +1221,16 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		hb.date = ch.date;
 		hb.name = ch.name;
 		console.log("Current Harvest: " + JSON.stringify(currentHarvest));
-		if(ch.id!=="" && ch.id !==null){
+		if(!addNew && ch.id!=="" && ch.id !==null){
 			hb.id = ch.id;
 			console.log("xa1");
 		}else{
 			hb.id = makeid(8);
 			console.log("xa2");
 		}
-		hb.id = makeid(8);
+
+		console.log("Havest batch: " + JSON.stringify(hb));
+
 		return hb;
 	}
 
