@@ -180,7 +180,8 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		};
 
 	const handleUndoEdit = () => {
-			let newPlant = new Plant(currentEditPlant.tag,currentEditPlant.strain,userID,0);
+
+			let newPlant = new Plant(userID,currentEditPlant.strain,currentEditPlant.tag,0);
 			addPlant(getPlantItem(newPlant));
 			setBusy(true);
 			let i = 0;
