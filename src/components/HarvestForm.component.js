@@ -184,7 +184,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 			let newPlant = new Plant(userID,currentEditPlant.strain,currentEditPlant.tag,0);
 			console.log("Handle Undo Edit: " + JSON.stringify(newPlant));
-			addPlant(getPlantItem(newPlant));
+			addPlant(getPlantItemFromPlant(newPlant));
 			setBusy(true);
 			let i = 0;
               let foundIndex = -1;
@@ -210,7 +210,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		};
 
 	
-	function getPlantItem(plant){
+	function getPlantItemFromPlant(plant){
 		console.log("GET Item plant: " + JSON.stringify(plant));
 
 			let plantItem = {
