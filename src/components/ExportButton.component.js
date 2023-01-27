@@ -178,8 +178,8 @@ class ExportButton extends Component{
                 }else{
                     gramsWeight = Math.round((weight*gramsInAPound)*100)/100;
                 }
-                gramsData += String(val.tag) + "," + gramsWeight + ",Grams," + parent.state.selectedDR + "," + this.props.row.name + ",," + getHBDate(val.hbid) + "\n";
-                poundsData += String(val.tag) + "," + poundsWeight + ",Pounds," + parent.state.selectedDR + "," + this.props.row.name + ",," + getHBDate(val.hbid) + "\n";
+                gramsData += String(val.tag) + "," + gramsWeight + ",Grams," + parent.state.selectedDR + "," + this.props.row.name + ",," + getHBDate(val.batchName) + "\n";
+                poundsData += String(val.tag) + "," + poundsWeight + ",Pounds," + parent.state.selectedDR + "," + this.props.row.name + ",," + getHBDate(val.batchName) + "\n";
                 exportRecordsData.push(val.tag);
             }
         } 
