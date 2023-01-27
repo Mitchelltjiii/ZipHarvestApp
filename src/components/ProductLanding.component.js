@@ -196,7 +196,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
   }
 
   function searchTagFromSpeech(searchText,searchText2){
-    console.log("Search tag from speech: searchtext1: " + searchText + ", searchtext2: " + searchText2);
 		let fixedSearch = searchText;
 		    while(fixedSearch.includes(" to ")){
 			    fixedSearch = fixedSearch.substring(0,fixedSearch.indexOf(" to ")) + 2 + fixedSearch.substring(fixedSearch.indexOf(" to ")+4);
@@ -264,7 +263,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
 	}
 
   function commitSearch(){
-    console.log("Commit Search, search tag: " + searchTag);
 		let newTagList = [];
 
 		for (const val of plants) {
@@ -314,9 +312,7 @@ function ProductLanding({setCurrentPage,logVisit}) {
             plantTag = plantTag.substring(0,plantTag.indexOf(" | "));
           
             let newPlant = [];
-            console.log("PlantTag: " + plantTag);
             for(const val of plants){
-             console.log("Val.tag: " + val.tag);
               if(val.tag === plantTag){
                 newPlant = val;
                 newPlant.weight = parseFloat(weight);
@@ -402,7 +398,6 @@ function ProductLanding({setCurrentPage,logVisit}) {
          return result;
       }
 
-    console.log("Curr Url: " + currUrl);
     const handleSearchTag = (event) => {
       setSearchTag(event.target.value);
       };
@@ -974,7 +969,6 @@ export default ProductLanding;
           <Button
             className="button"
             onClick={() => {
-              console.log('modal closed ');
               close();
             }}
             style={{width:"80%",marginTop:"10px",marginBottom:"10px",backgroundColor:"#444444",color:"#FFFFFF",width:"80%",height:"50px"}} 

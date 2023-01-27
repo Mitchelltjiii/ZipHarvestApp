@@ -56,7 +56,6 @@ export default class App extends React.Component {
   }
   
   engageReload = () => {
-    console.log("engage reload");
     if((!this.state.usersLoading) || (!this.state.plantsLoading && !this.state.harvestRecordsLoading && !this.state.harvestBatchesLoading && !this.state.dryRoomsLoading
       && !this.state.exportRecordsLoading)){
       this.forceUpdate();
@@ -251,7 +250,6 @@ export default class App extends React.Component {
     }
     const response = await fetch(`/api/hb/${userForFetch}`);
     const text = await response.text();
-    console.log("Harvest batches: " + text);
     this.state.harvestBatches = text;
     this.state.harvestBatchesLoading = false;
     this.engageReload();
@@ -352,7 +350,6 @@ export default class App extends React.Component {
     }
     this.setState({currentHarvest: currHarvest});
 
-    console.log("get harvest batches from db")
     this.getHarvestBatchesFromDB();
   }
 
@@ -367,6 +364,7 @@ export default class App extends React.Component {
   }
 
   reloadPlantsAndHarvestRecords = (currHarvest) => {
+    console.log("rlph-app")
     this.setState({currentHarvest: currHarvest, plantsLoading: true, harvestRecordsLoading: true});
 
     this.getPlantsFromDB(true);
@@ -826,7 +824,6 @@ export default class App extends React.Component {
   }    
    
   render() { 
-    console.log("Render app - harvest batches: " + this.state.harvestBatches);
     localStorage.setItem("currentPage","harvest-form");
     let reloaded = this.pageAccessedByReload();
     const loggedInUser = localStorage.getItem("user");
@@ -990,7 +987,6 @@ export default class App extends React.Component {
           </Grid>)
       } 
     }
-    console.log("End of render");
     if(landingForm && !isMobile){
       return showForm;
     }else{

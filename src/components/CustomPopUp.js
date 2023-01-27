@@ -26,7 +26,6 @@ export default () => (
           <Button
             className="button"
             onClick={() => {
-              console.log('modal closed ');
               close();
             }}
           >

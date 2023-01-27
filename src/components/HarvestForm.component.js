@@ -133,7 +133,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const handleClickedRow = (row) => {
 		setEditWeight(row.weight+"");
 		setEditUnit(row.unit);
-		console.log("Set Current Edit Plant: " + JSON.stringify(row));
 		setCurrentEditPlant(row);
 	  };
 
@@ -155,7 +154,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		let i = 0;
               let foundIndex = -1;
               let foundHarvestRecord = new HarvestRecord('','','','','','');
-			  console.log("Handle Save Edit");
               for(const val2 of JSON.parse(getHarvestRecords())){
                 if(val2.tag===currentEditPlant.tag){
                   foundIndex = i;
@@ -163,8 +161,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
                     newWeight = val2.weight;
                   }
                   foundHarvestRecord = new HarvestRecord(val2.id,val2.tag,newWeight,editUnit,val2.batchName,val2.userID);
-
-				  console.log("Found harvest record: " + JSON.stringify(foundHarvestRecord));
                 }
                 i++;
               }
@@ -183,7 +179,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	const handleUndoEdit = () => {
 
 			let newPlant = new Plant(userID,currentEditPlant.strain,currentEditPlant.tag,0);
-			console.log("Handle Undo Edit: " + JSON.stringify(newPlant));
 			addPlant(getPlantItemFromPlant(newPlant));
 			setBusy(true);
 			let i = 0;
@@ -196,8 +191,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
                 }
                 i++;
               }
-			  console.log("CurrenEditPlant ID: " + currentEditPlant.id);
-			  console.log("foundID: " + foundID);
     
               if(foundIndex !== -1){
                 let splicedHR = JSON.parse(getHarvestRecords());
@@ -211,8 +204,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	
 	function getPlantItemFromPlant(plant){
-		console.log("GET Item plant: " + JSON.stringify(plant));
-
 			let plantItem = {
 			  tag: '',
 			  strain: '',
@@ -232,7 +223,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			  }
 			  
 		async function addPlant(plantItem){
-			console.log("Addplant plantItem: " + JSON.stringify(plantItem));
 			fetch('/pl', {
 			  method: (plantItem.tag) ? 'PUT' : 'POST',
 			  headers: {
@@ -264,7 +254,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		  }
 	  
 	async function updateHarvestRecord(harvestRecordItem){
-		console.log("Update harvest record: " + JSON.stringify(harvestRecordItem));
 			const response = fetch('/hr', {
 				  method: (harvestRecordItem.id) ? 'PUT' : 'POST',
 				  headers: {
@@ -1212,6 +1201,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	function getHarvestBatchItem(addNew){
+		
 		let hb = {
 			hbid: '',
 			userID: '',
@@ -1223,26 +1213,27 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		let ch = currentHarvest;
 		if(addNew){
 			ch = addedHB;
+			for(let val of JSON.parse(getHarvestBatches())){
+				if(val.name === ch.name){
+					return null;
+				}
+			}
 		}
 		hb.userID = userID;
 		hb.type = ch.type;
 		hb.date = ch.date;
 		hb.name = ch.name;
-		console.log("Current Harvest: " + JSON.stringify(currentHarvest));
 		/*
 		if(!addNew && ch.id!=="" && ch.id !==null){
 			hb.id = ch.id;
-			console.log("xa1");
 		}else{
 			hb.id = ch.id;
-			console.log("xa2");
 		}*/
 		hb.hbid = ch.hbid;
 		if(ch.itemID!==""){
 			hb.id = ch.itemID;
 		}
 
-		console.log("Havest batch: " + JSON.stringify(hb));
 
 		return hb;
 	}
@@ -1523,6 +1514,34 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 				>
 
 					<HarvestBatchInfoTabs hbInfoTabsHiddenNow={hbInfoTabsHiddenNow}> </HarvestBatchInfoTabs>
+
+				</Grid>
+				<Grid
+					container
+					direction="column"
+  					justify="center"
+					alignItems="center"
+				>
+				<FormLabel style={{marginTop:"8px"}} component="legend">Search For Strain</FormLabel>
+				<Grid
+					container
+					direction="row"
+  					justify="center"
+					alignItems="center"
+				>
+				<Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"180px"}}>
+                	{searchForList.map((name, index) => (
+            			<MenuItem key={index} value={name}>
+             	 		{name}
+            			</MenuItem>
+          			))}
+             	</Select>
+				 {showHints ? <div class="tooltip">?
+  					<span class="tooltiptext">Filter your search by strain.</span>
+				</div>  : null}
+				 
+				</Grid>
+
 
 				</Grid>
               <Grid

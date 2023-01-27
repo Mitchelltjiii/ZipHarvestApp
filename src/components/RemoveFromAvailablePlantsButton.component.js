@@ -22,7 +22,6 @@ class RemoveFromAvailablePlants extends Component{
             setTimeout(null,200);
           }
           parent.setState({locked:true});
-          console.log("Locked tag: " + tag);
           let foundIndex = -1;
           for( var i = 0; i < parent.state.busyAddingPlants.length; i++){ 
             if ( parent.state.busyAddingPlants[i] === tag) {
@@ -32,7 +31,6 @@ class RemoveFromAvailablePlants extends Component{
 
           let bap = parent.state.busyAddingPlants;
           bap.splice(foundIndex,1);
-          console.log("Unlocked tag: " + tag);
           parent.setState({busyAddingPlants:bap,locked:false});
         });        
       }

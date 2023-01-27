@@ -20,6 +20,10 @@ class AddHarvestBatchButton extends Component{
       let parent = this;
 
       const harvestBatchItem = this.props.getHarvestBatchItem(true);
+
+      if(harvestBatchItem === null){
+        return null;
+      }
     
       fetch('/hb', {
         method: (harvestBatchItem.id) ? 'PUT' : 'POST',

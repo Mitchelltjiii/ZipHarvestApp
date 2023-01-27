@@ -15,7 +15,6 @@ function ProductLandingWrapper({setCurrentPage,logVisit}) {
     }catch(err){
         
     }
-    console.log("Success: " + success);
     
   return(
     <div>{success ? <BrowserDetection>
