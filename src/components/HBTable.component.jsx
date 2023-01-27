@@ -49,7 +49,7 @@ function HBTable({getHarvestBatches,getHarvestRecords,getPlants,userID,reloadExp
       }
 
       for(let val of JSON.parse(getHarvestRecords())){
-        if(val.hbid === hbid){
+        if(val.batchName === hbid){
           plantCount++;
           if(val.unit === "g"){
             tWeight += val.weight;
