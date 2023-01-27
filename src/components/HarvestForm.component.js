@@ -211,6 +211,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 
 	
 	function getPlantItem(plant){
+		console.log("GET Item plant: " + JSON.stringify(plant));
 
 			let plantItem = {
 			  tag: '',
@@ -231,6 +232,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 			  }
 			  
 		async function addPlant(plantItem){
+			console.log("Addplant plantItem: " + JSON.stringify(plantItem));
 			fetch('/pl', {
 			  method: (plantItem.tag) ? 'PUT' : 'POST',
 			  headers: {
