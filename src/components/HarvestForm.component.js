@@ -729,6 +729,13 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 	}
 
 	function isValidHBName(str){
+		for(let val of JSON.parse(getHarvestBatches())){
+			if(val.name === str){
+				setHbNameError(true);
+				setHbNameHelperText("Batch exists already.");
+				return false;
+			}
+		}
 		var minNumberofChars = 1;
 		var maxNumberofChars = 24;
 		var regularExpression = /^[a-zA-Z0-9!_\- ]{1,24}$/;
@@ -1213,11 +1220,6 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
 		let ch = currentHarvest;
 		if(addNew){
 			ch = addedHB;
-			for(let val of JSON.parse(getHarvestBatches())){
-				if(val.name === ch.name){
-					return null;
-				}
-			}
 		}
 		hb.userID = userID;
 		hb.type = ch.type;
@@ -1529,7 +1531,7 @@ function HarvestForm({getHarvestBatches,setHarvestBatches,getPlants,setPlants,ge
   					justify="center"
 					alignItems="center"
 				>
-				<Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"180px"}}>
+				<Select id="search-for-strain-select" value={searchStrain} onChange={handleChangeSearchForStrainSelect} style={{width:"80%"}}>
                 	{searchForList.map((name, index) => (
             			<MenuItem key={index} value={name}>
              	 		{name}
