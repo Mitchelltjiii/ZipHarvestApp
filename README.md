@@ -8,10 +8,10 @@ ZipHarvest avoids some of the major downfalls of similar systems. For example, t
 
 Installation: ZipHarvest was live at www.ZipHarvest.app but is not longer operating. Subscriptions were available and there was no download required.
 
-Usage Instructions: The person collecting the data reads aloud the last 3 digits of a serial number found on a tag that is attached to every crop, then says the key word "is", and then the weight of the crop. For example, if the serial code is 1234567 and the crop weights 2.4 pounds, then the user would say "567 is 2.4 pounds" and ZipHarvest applies the weight to the associated serial number. The app is able to determine the correct serial code with only 3 digits because of a secondary filter on the type of crop.
+Usage Instructions: The person collecting the data reads aloud the last 3 digits of a serial number found on a tag that is attached to every crop, then says the key word "is", and then the weight of the crop. For example, if the serial code is 1234567 and the crop weights 2.4 pounds, then the user says "567 is 2.4 pounds" and ZipHarvest applies the weight to the associated serial number. The app is able to determine the correct serial code with only 3 digits because of a secondary filter on the type of crop.
 
-Contributing Guidelines: Users reported errors via email.
+Contributing Guidelines: Users report errors via email.
 
 Apache License 2.0
 
-Credits/Acknowledgement: 
+Credits/Acknowledgement: Mitchell Johnson, React Speech Recognition
