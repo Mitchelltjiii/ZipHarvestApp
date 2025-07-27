@@ -1,17 +1,50 @@
-The ZipHarvest App - For recording and reporting data for compliance.
+🌽 ZipHarvest – Voice-Activated Crop Data Compliance App
+ZipHarvest is a full-stack React web application developed to streamline compliance reporting for agricultural producers. By enabling voice-controlled data entry, ZipHarvest eliminates the need for manual logging.
 
-This React web app is designed to be used by farmers who are required by law to record and report the weight of their crops. It utilizes voice commands so that users can record data hands-free, allowing them to continue placing the crops on a scale so they can take measurements one-by-one, thus avoiding the need for them to stop and write down the info or have a second individual standing by to record the weights. 
+🚀 Key Features
+🎙️ Hands-Free Voice Input – Uses speech recognition to allow farmers to record crop weights without interrupting their workflow.
 
-This app is designed to work with the specific syntax requirements for reporting data, which adds to the overall usefulness compared to collecting data by hand. Once the data is collected, the process of reporting that info for compliance is much faster and simpler.
+🔍 Smart Serial Matching – Matches crops using the last 3 digits of a tag’s serial number, filtered by crop type to ensure accurate associations.
 
-ZipHarvest avoids some of the major downfalls of similar systems. For example, there is no additional hardware required, whereas other solutions require a scale with bluetooth capability. This is a huge initial cost, and it limits the scalability for the customer.
+📄 Compliance-Ready Format – Captures and organizes data according to regulatory reporting requirements.
 
-Installation: ZipHarvest was live at www.ZipHarvest.app but is not longer operating. Subscriptions were available and there was no download required.
+🖥️ No Special Hardware Needed – Unlike many commercial solutions, ZipHarvest runs on any modern device without the need for a Bluetooth-enabled scale.
 
-Usage Instructions: The person collecting the data reads aloud the last 3 digits of a serial number found on a tag that is attached to every crop, then says the key word "is", and then the weight of the crop. For example, if the serial code is 1234567 and the crop weights 2.4 pounds, then the user says "567 is 2.4 pounds" and ZipHarvest applies the weight to the associated serial number. The app is able to determine the correct serial code with only 3 digits because of a secondary filter on the type of crop.
+💵 Cost-Effective & Scalable – Avoids expensive hardware investments, making it accessible to small and large farming operations alike.
 
-Contributing Guidelines: Users report errors via email.
+🛠️ Tech Stack
+Frontend: React, React Speech Recognition
 
+Backend: Node.js, Express
+
+Database: MySQL
+
+Other Tools: Stripe (for subscriptions), SendGrid (for notifications)
+
+🧑‍🌾 Real-World Use Case
+A farmer reads aloud the last three digits of a serial tag followed by the crop’s weight:
+“567 is 2.4 pounds”
+ZipHarvest parses the speech, matches the serial number to the correct crop using context filters, and logs the weight—ready for compliance submission.
+
+📦 Deployment & Access
+🚫 Note: ZipHarvest was previously live at www.ZipHarvest.app but is no longer active.
+The platform supported subscriptions with no installation required—just a web browser.
+
+🧩 Installation
+While the app is no longer hosted, the code can be adapted for self-hosted use or redeployment. Reach out if you’re interested in exploring licensing or collaboration. However, much of the code relies on deprecated assets.
+
+📝 Usage Notes
+Works well even in loud environments.
+
+Currently designed for English-language input and imperial units (grams, pounds).
+
+👥 Contributing
+No contribution guidelines.
+
+⚖️ License
 Apache License 2.0
 
-Credits/Acknowledgement: Mitchell Johnson, React Speech Recognition
+🙌 Credits
+Developer: Mitchell Johnson
+
+Voice Recognition: React Speech Recognition
