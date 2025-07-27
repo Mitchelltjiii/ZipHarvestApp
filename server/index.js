@@ -10,7 +10,7 @@ const bcrypt = require('bcrypt');
 var pool  = mysql.createPool({
   host     : 'db-mysql-sfo3-15933-do-user-9039451-0.b.db.ondigitalocean.com',
   user     : 'doadmin',
-  password : 'xo6wgtevue3qzrmw',
+  password : '',
   database : 'defaultdb',
   port: '25060'
 });
