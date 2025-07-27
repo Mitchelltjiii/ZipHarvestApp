@@ -1,3 +1,9 @@
+![React](https://img.shields.io/badge/Frontend-React-61DAFB?logo=react)
+![Node.js](https://img.shields.io/badge/Backend-Node.js-339933?logo=node.js)
+![MySQL](https://img.shields.io/badge/Database-MySQL-00758F?logo=mysql)
+![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)
+![Status](https://img.shields.io/badge/Status-Inactive%20Deployment-lightgrey)
+
 🌽 ZipHarvest – Voice-Activated Crop Data Compliance App
 ZipHarvest is a full-stack React web application developed to streamline compliance reporting for agricultural producers. By enabling voice-controlled data entry, ZipHarvest eliminates the need for manual logging.
 
